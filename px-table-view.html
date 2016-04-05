@@ -1,0 +1,63 @@
+<link rel="import" href="px-table-view-behavior.html" />
+<link rel="import" href="px-table-row.html" />
+
+<link rel="stylesheet" href="css/px-table-view.min.css" />
+
+<!--
+## Usage
+To use:
+
+```
+
+```
+@element component.html
+@blurb px-table-view
+@demo demo.html
+@homepage index.html
+-->
+<dom-module id="px-table-view">
+  <style>
+    :host {
+      display: block;
+    }
+  </style>
+  <template>
+    <ul id="list" class="list-ui list-ui--small">
+      <template is="dom-if" if="{{listData}}">
+        <template is="dom-repeat" items="{{listData}}">
+          <li class="list-item list-item--tappable" on-click="handleSelect">
+            <px-table-row item="{{item}}"></px-table-row>
+          </li>
+        </template>
+      </template>
+      <content></content>
+    </ul>
+  </template>
+  <script>
+    Polymer({
+      is: 'px-table-view',
+      behaviors: [
+        px.behaviors.TableRow
+      ],
+      properties: {
+        listData: {
+          type: Array,
+          value: []
+        },
+        responsive: {
+          type: Boolean,
+          value: false
+        }
+      },
+      created: function() {
+       // console.log('Created', this.tagName);
+       // console.dir(this);
+      },
+      attached: function() {
+        if(this.responsive){
+          this.toggleClass('list-ui--responsive', this.responsive, this.$.list);
+        }
+      }
+    });
+  </script>
+</dom-module>

@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>px-list component</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+	<script src="../../../../bower_components/jquery/dist/jquery.js"></script>
+	<script src="../../../../bower_components/webcomponentsjs/webcomponents.js"></script>
+	<link rel="import" href="../../../../bower_components/polymer/polymer.html" />
+<!--
+  <link rel="import" href="../../../../px-mobile.html">
+	<link rel="import" href="../../pxm-example/component.html" />
+-->
+	<link rel="stylesheet" href="../../../../bower_components/Ionicons/css/ionicons.css" />
+	<link rel="stylesheet" href="style.css" />
+
+	<link rel="stylesheet" href="../px.css" />
+	<link rel="import" href="px-list-view/px-list-view.html" />
+
+</head>
+
+<body class="">
+  <div class="example">
+
+
+    <div class="padding-10">
+      <h1>px-list</h1>
+      <p>The following list examples:</p>
+      <h2>Responsive Colors</h2>
+
+      <ul class="list-ui">
+        <li class="pink">Large desktop</li>
+        <li class="green">Portrait tablet / landscape</li>
+        <li class="purple">Landscape phone / portrait tablet</li>
+        <li class="red">Landscape phones</li>
+      </ul>
+      <button class="btn btn--" onclick="debug()">Debug Responsive</button>
+
+    </div>
+
+    <hr>
+    <h2>Default</h2>
+    <px-list-view id="list0"></px-list-view>
+
+
+    <h2>Default - Disclosure Indicator</h2>
+    <px-list-view id="list9">
+      <li class="list-item list-item--chevron">
+        <div class="list-item__title">list-item__title</div>
+      </li>
+      <li class="list-item list-item--chevron">
+        <div class="list-item__title">list-item__title</div>
+      </li>
+      <li class="list-item list-item--chevron">
+        <div class="list-item__title">list-item__title</div>
+      </li>
+    </px-list-view>
+
+
+    <h2>Default - Icon Right</h2>
+    <px-list-view id="list9">
+      <li class="list-item  list-item--tappable">
+        <div class="list-item__body">
+          <span class="list-item__body--title">Text Label</span>
+          <a href="#" class="list-item__icon list-item__icon--right">
+            <i class="icon fa fa-check"></i>
+          </a>
+        </div>
+      </li>
+    </px-list-view>
+
+
+    <h2>Default - Row Order</h2>
+    <px-list-view id="list" edit-mode="reorder">
+      <li class="list-item list-item--tappable">
+        <px-list-item title="Text Label" order-mode></px-list-item>
+      </li>
+      <li class="list-item list-item--tappable">
+        <px-list-item title="Text Label" order-mode></px-list-item>
+      </li>
+    </px-list-view>
+
+
+    <h2>Default - Delete</h2>
+    <px-list-view id="list" edit-mode="delete">
+      <li class="list-item list-item--tappable">
+        <px-list-item title="Text Label" edit-mode></px-list-item>
+      </li>
+      <li class="list-item list-item--tappable">
+        <px-list-item title="Text Label" edit-mode></px-list-item>
+      </li>
+    </px-list-view>
+
+
+    <h2>Default with SubTitle
+    <button class="btn btn--tertiary btn--icon" onclick="addListItem('list1')"><i class="fa fa-plus"></i></button>
+    </h2>
+    <px-list-view id="list1"></px-list-view>
+
+
+
+    <h2>Default with Label 1
+    <button class="btn btn--tertiary btn--icon" onclick="addListItem('list6')"><i class="fa fa-plus"></i></button>
+    </h2>
+    <px-list-view id="list6"></px-list-view>
+
+
+
+    <h2>Default with Label 2
+    <button class="btn btn--tertiary btn--icon" onclick="addListItem('list7')"><i class="fa fa-plus"></i></button>
+    </h2>
+    <px-list-view id="list7"></px-list-view>
+
+
+
+    <h2>Default with Icon
+    <button class="btn btn--tertiary btn--icon" onclick="addListItem('list2')"><i class="fa fa-plus"></i></button>
+    </h2>
+    <px-list-view id="list2"></px-list-view>
+
+
+
+    <h2>Default with Image
+    <button class="btn btn--tertiary btn--icon" onclick="addListItem('list5')"><i class="fa fa-plus"></i></button>
+    </h2>
+    <px-list-view id="list5"></px-list-view>
+
+
+
+    <h2>Default with Image / SubTitle
+    <button class="btn btn--tertiary btn--icon" onclick="addListItem('list3')"> <i class="fa fa-plus"></i>  </button></h2>
+    <px-list-view id="list3"></px-list-view>
+
+
+
+    <h2>Default - Responsive
+    <button class="btn btn--tertiary btn--icon" onclick="addListItem('list8', {title: 'list-item__title', image: 'http://placehold.it/60'})">
+      <i class="fa fa-plus"></i>
+    </button>
+    </h2>
+
+    <px-list-view id="list8" responsive></px-list-view>
+
+    <h2>Default - Header</h2>
+    <ul class="list-ui">
+      <li class="list-item list-item--header">
+        Header
+      </li>
+      <li class="list-item">
+        Text Label
+      </li>
+      <li class="list-item">
+        Text Label
+      </li>
+    </ul>
+
+
+
+
+    <h2>All Variations</h2>
+    <px-list-view id="list9">
+
+      <li class="list-item list-item--tappable">
+        list-item__title
+      </li>
+      <li class="list-item list-item--indicator" data-indicator="chevron">
+        <div class="list-item__content__title">list-item__title</div>
+      </li>
+
+      <li class="list-item list-item--chevron">
+        <div class="list-item__content__title">list-item__title</div>
+        <div class="list-item__content__body">list-item__body</div>
+      </li>
+
+      <li class="list-item list-item--chevron">
+        <div class="list-item__content">
+          <div class="list-item__content__title">list-item__title</div>
+          <div class="list-item__content__body">list-item__body</div>
+          <div class="list-item__content__label list-item__label--right">
+            list-item__label
+          </div>
+        </div>
+      </li>
+
+      <li class="list-item list-item--chevron">
+        <div class="list-item__content">
+          <div class="list-item__content__title list-item__title--small">list-item__title --small</div>
+          <div class="list-item__content__body">list-item__body</div>
+          <div class="list-item__content__label list-item__content__label--right">list-item__label</div>
+        </div>
+      </li>
+
+      <li class="list-item list-item--chevron">
+        <div class="list-item__content__title list-item__content__title--large">list-item__title --large</div>
+        <div class="list-item__content__body">list-item__body</div>
+        <div class="list-item__content__label list-item__content__label--right">list-item__label</div>
+      </li>
+
+      <li class="list-item">
+        <div class="list-item__content">
+          <div class="list-item__content__title">
+            Title Text
+          </div>
+          <div class="list-item__content__label list-item__content__label--right">
+            Label text
+          </div>
+        </div>
+      </li>
+
+      <li class="list-item list-item--chevron">
+        <div class="list-item__media list-item__media--icon">
+          <i class="fa fa-lg fa-dashboard"></i>
+        </div>
+        <div class="list-item__content">
+          <div class="list-item__content__title">
+            Dashboard
+          </div>
+
+        </div>
+
+      </li>
+    </px-list-view>
+
+
+  </div>
+  	<script src="script.js"></script>
+	<script src="http://localhost:35729/livereload.js?snipver=1"></script>
+</body>
+
+</html>

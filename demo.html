@@ -1,0 +1,612 @@
+<html class="pxm">
+
+<head>
+  <title>px-table-row demo</title>
+
+  <script src="../../../bower_components/webcomponentsjs/webcomponents-lite.js"></script>
+  <link rel="import" href="../../../bower_components/polymer/polymer.html">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/fastclick/1.0.6/fastclick.min.js"></script>
+  <!--
+    <link rel="import" href="../../../../px-mobile.html">
+    <link rel="import" href="../../pxm-example/component.html" />
+     <link rel="import" href="../../../dist/px-mobile.min.html">
+  <link rel="import" href="../pxm-example/component.html">
+    -->
+  <link rel="stylesheet" href="../Ionicons/css/ionicons.css"/>
+  <link rel="stylesheet" href="demo/style.css"/>
+  <link rel="stylesheet" href="px.css"/>
+  <link rel="import" href="px-table-view.html"/>
+</head>
+
+<body unresolved>
+
+<div class="container gutters">
+  <div class="col-12">
+
+    <div class="">
+        <!--
+      <div class="padding-10">
+        <h1>px-list</h1>
+        <p>The following list examples:</p>
+        <h2>Responsive Colors</h2>
+
+        <ul class="table-view">
+          <li class="pink">Large desktop</li>
+          <li class="green">Portrait tablet / landscape</li>
+          <li class="purple">Landscape phone / portrait tablet</li>
+          <li class="red">Landscape phones</li>
+        </ul>
+        <button class="btn btn--" onclick="debug()">Debug Responsive</button>
+
+      </div>
+
+      <h2>Action Buttons</h2>
+      <div class="flex flex--row action-btns">
+        <div class="flex__item">
+          <button class="btn btn--full btn-more">
+            <i class="icon ion-ios-more fa-2x"></i>
+            <span>More</span>
+          </button>
+        </div>
+        <div class="flex__item">
+          <button class="btn btn--full btn-flag">
+            <i class="icon ion-ios-flag fa-2x"></i>
+            <span>Flag</span>
+          </button>
+        </div>
+        <div class="flex__item">
+          <button class="btn btn--full btn-delete">
+            <i class="icon ion-ios-trash fa-2x"></i>
+            <span>Trash</span>
+          </button>
+        </div>
+      </div>-->
+
+      <h2>Actionable List</h2>
+      <ul id="list1" class="table-view table-view--inset table-view--regular">
+
+        <!-- Default with disclosure -->
+        <li class="table-row table-row--actionable table-row--tapable ">
+          <div class="table-row__actions table-row__actions--left">
+            <button class="btn btn--bare delete">L Action 1</button>
+            <button>L Action 2</button>
+          </div>
+          <div class="table-row__content">
+            <span>Swippable</span>
+          </div>
+
+          <div class="table-row__actions table-row__actions--right">
+            <div class="flex flex--row action-btns">
+              <div class="flex__item">
+                <button class="btn btn--full btn-more">
+                  <i class="icon ion-ios-more fa-2x"></i>
+                  <span>More</span>
+                </button>
+              </div>
+              <div class="flex__item">
+                <button class="btn btn--full btn-flag">
+                  <i class="icon ion-ios-flag fa-2x"></i>
+                  <span>Flag</span>
+                </button>
+              </div>
+              <div class="flex__item">
+                <button class="btn btn--full btn-delete">
+                  <i class="icon ion-ios-trash fa-2x"></i>
+                  <span>Trash</span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </li>
+
+        <!-- Default with disclosure -->
+        <li class="table-row table-row--actionable table-row--tappale ">
+          <div class="table-row__actions table-row__actions--left">
+            <button>L Action 1</button>
+            <button>L Action 2</button>
+          </div>
+          <div class="table-row__content">
+            <span>Swippable</span>
+          </div>
+          <div class="table-row__actions table-row__actions--right">
+            <div class="flex flex--row action-btns">
+              <div class="flex__item">
+                <button class="btn btn--full btn-more">
+                  <i class="icon ion-ios-more fa-2x"></i>
+                  <span>More</span>
+                </button>
+              </div>
+              <div class="flex__item">
+                <button class="btn btn--full btn-delete">
+                  <i class="icon ion-ios-trash fa-2x"></i>
+                  <span>Trash</span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </li>
+
+        <!-- Default with disclosure -->
+        <li class="table-row table-row--actionable table-row--tappble ">
+          <div class="table-row__actions table-row__actions--left">
+            <button>L Action 1</button>
+            <button>L Action 2</button>
+          </div>
+          <div class="table-row__content">
+            <span>Swippable</span>
+          </div>
+          <div class="table-row__actions table-row__actions--right">
+            <button>R Action 1</button>
+            <button>R Action 2</button>
+          </div>
+        </li>
+
+        <!-- Default with disclosure -->
+        <li class="table-row table-row--actionable table-row--tapable ">
+          <div class="table-row__actions table-row__actions--left">
+            <button>L Action 1</button>
+            <button>L Action 2</button>
+          </div>
+          <div class="table-row__content">
+            <span>Text Label</span>
+          </div>
+          <div class="table-row__actions table-row__actions--right">
+            <button>R Action 1</button>
+            <button>R Action 2</button>
+          </div>
+        </li>
+
+
+      </ul>
+
+
+      <h2>Default</h2>
+      <pxm-example>
+        <px-table-view id="list0"></px-table-row>
+      </pxm-example>
+
+      <h2>Default - Disclosure Indicator</h2>
+      <pxm-example>
+        <px-table-row id="list9">
+          <li class="table-row table-row--chevron">
+            <div class="table-row__title">table-row__title</div>
+          </li>
+          <li class="table-row table-row--chevron">
+            <div class="table-row__title">table-row__title</div>
+          </li>
+          <li class="table-row table-row--chevron">
+            <div class="table-row__title">table-row__title</div>
+          </li>
+        </px-table-row>
+      </pxm-example>
+
+      <h2>Default - Icon Right</h2>
+      <pxm-example>
+        <px-table-row id="list9">
+          <li class="table-row  table-row--tappable">
+            <div class="table-row__body">
+              <span class="table-row__body--title">Text Label</span>
+              <a href="#" class="table-row__icon table-row__icon--right">
+                <i class="icon fa fa-check"></i>
+              </a>
+            </div>
+          </li>
+        </px-table-row>
+      </pxm-example>
+
+      <h2>Default - Row Order</h2>
+      <pxm-example>
+        <px-table-row id="list" edit-mode="reorder">
+          <li class="table-row table-row--tappable">
+            <px-table-row title="Text Label" order-mode></px-table-row>
+          </li>
+          <li class="table-row table-row--tappable">
+            <px-table-row title="Text Label" order-mode></px-table-row>
+          </li>
+        </px-table-row>
+      </pxm-example>
+
+      <h2>Default - Delete</h2>
+      <pxm-example>
+        <px-table-view id="list" edit-mode="delete">
+          <li class="table-row table-row--tappable">
+            <px-table-row title="Text Label" edit-mode></px-table-row>
+          </li>
+          <li class="table-row table-row--tappable">
+            <px-table-row title="Text Label" edit-mode></px-table-row>
+          </li>
+        </px-table-row>
+      </pxm-example>
+
+      <h2>Default with SubTitle
+        <button class="btn btn--tertiary btn--icon" onclick="addListItem('list1')"><i class="fa fa-plus"></i></button>
+      </h2>
+      <pxm-example>
+        <px-table-row id="list1"></px-table-view>
+      </pxm-example>
+
+      <h2>Default with Label 1
+        <button class="btn btn--tertiary btn--icon" onclick="addListItem('list6')"><i class="fa fa-plus"></i></button>
+      </h2>
+      <pxm-example>
+        <px-table-view id="list6"></px-table-view>
+      </pxm-example>
+
+      <h2>Default with Label 2
+        <button class="btn btn--tertiary btn--icon" onclick="addListItem('list7')"><i class="fa fa-plus"></i></button>
+      </h2>
+      <pxm-example>
+        <px-table-view id="list7"></px-table-view>
+      </pxm-example>
+
+      <h2>Default with Icon
+        <button class="btn btn--tertiary btn--icon" onclick="addListItem('list2')"><i class="fa fa-plus"></i></button>
+      </h2>
+      <pxm-example>
+        <px-table-view id="list2"></px-table-view>
+      </pxm-example>
+
+      <h2>Default with Image
+        <button class="btn btn--tertiary btn--icon" onclick="addListItem('list5')"><i class="fa fa-plus"></i></button>
+      </h2>
+      <pxm-exaple>
+        <px-table-view id="list5"></px-table-view>
+      </pxm-exaple>
+
+      <h2>Default with Image / SubTitle
+        <button class="btn btn--tertiary btn--icon" onclick="addListItem('list3')"> <i class="fa fa-plus"></i> </button>
+      </h2>
+      <pxm-example>
+        <px-table-view id="list3"></px-table-view>
+      </pxm-example>
+
+      <h2>Default - Responsive
+        <button class="btn btn--tertiary btn--icon" onclick="addListItem('list8', {title: 'table-row__title', image: 'http://placehold.it/60'})">
+          <i class="fa fa-plus"></i>
+        </button>
+      </h2>
+      <pxm-example>
+        <px-table-view id="list8" responsive></px-table-view>
+      </pxm-example>
+
+      <h2>Default with Checkbox</h2>
+      <pxm-example>
+        <px-table-view>
+          <li class="table-row">
+            <label class="checkbox table-row">
+              <input type="checkbox" name="user" value="test1">
+              <div class="checkmark"></div>
+              Checkbox
+            </label>
+          </li>
+          <li class="table-row">
+            <label class="checkbox table-row">
+              <input type="checkbox" name="user" value="test1">
+              <div class="checkmark"></div>
+              Checkbox
+            </label>
+          </li>
+        </px-table-view>
+      </pxm-example>
+
+      <h2>Default - Header</h2>
+      <pxm-example>
+        <ul class="table-view">
+          <li class="table-row table-row--header">
+            Header
+          </li>
+          <li class="table-row">
+            Text Label
+          </li>
+          <li class="table-row">
+            Text Label
+          </li>
+        </ul>
+      </pxm-example>
+
+      <h2>Default - Usage with any Element</h2>
+      <pxm-example>
+        <div class="table-view table-view--inset table-view--large">
+          <div class="table-row">
+            Div List Item
+          </div>
+          <div class="table-row">
+            Div List Item
+          </div>
+          <div class="table-row">
+            Div List Item
+          </div>
+        </div>
+      </pxm-example>
+
+      <!-- TODO: List Item Variatons -->
+      <h2>Default - List Item Variations</h2>
+      <pxm-example>
+        <ul class="table-view table-view--small">
+          <li class="table-row">
+            table-row__title
+          </li>
+          <li class="table-row table-row--indicator" data-indicator="chevron">
+            <div class="table-row__content__title">Text Label</div>
+          </li>
+          <li class="table-row table-row--chevron">
+            <div class="table-row__content__title">Text Label</div>
+            <div class="table-row__content__body">table-row__body</div>
+          </li>
+          <li class="table-row table-row--chevron">
+            <div class="table-row__content">
+              <div class="table-row__content__title">Text Label</div>
+              <div class="table-row__content__body">table-row__body</div>
+              <div class="table-row__content__label table-row__label--right">
+                table-row__label
+              </div>
+            </div>
+          </li>
+          <li class="table-row table-row--chevron">
+            <div class="table-row__content">
+              <div class="table-row__content__title table-row__title--small">Text Label --small</div>
+              <div class="table-row__content__body">table-row__body</div>
+              <div class="table-row__content__label table-row__content__label--right">table-row__label</div>
+            </div>
+          </li>
+          <li class="table-row table-row--chevron">
+            <div class="table-row__content__title table-row__content__title--large">Text Label --large</div>
+            <div class="table-row__content__body">table-row__body</div>
+            <div class="table-row__content__label table-row__content__label--right">table-row__label</div>
+          </li>
+          <li class="table-row">
+            <div class="table-row__content">
+              <div class="table-row__content__title">
+                Title Text
+              </div>
+              <div class="table-row__content__label table-row__content__label--right">
+                Label text
+              </div>
+            </div>
+          </li>
+          <li class="table-row table-row--chevron">
+            <div class="table-row__media table-row__media--icon">
+              <i class="fa fa-lg fa-dashboard"></i>
+            </div>
+            <div class="table-row__content">
+              <div class="table-row__content__title">
+                Dashboard
+              </div>
+            </div>
+          </li>
+        </ul>
+      </pxm-example>
+
+      <h2>Default - Swipe Actions</h2>
+      <pxm-example>
+        <ul class="table-view table-view--large">
+          <li class="table-row">
+            <px-table-row id="listitem2" title="Item 1" actionable>
+              <div class="table-row__actions table-row__actions--left">
+                <a href="" class="swipeout-overswipe bg-green reply">Reply</a>
+                <a href="" class="bg-blue forward">Forward</a>
+              </div>
+              <div class="table-row__actions table-row__actions--right">
+                <a href="" class="mark bg-orange">Mark</a>
+                <a href="" class="swipeout-delete swipeout-overswipe">Delete</a>
+              </div>
+            </px-table-row>
+          </li>
+
+          <li class="table-row">
+            <px-table-row id="listitem0" title="Swippable List Item">
+
+              <px-table-row-action-button style="background-color:red;">Delete</px-table-row-action-button>
+              <px-table-row-action-button>More</px-table-row-action-button>
+            </px-table-row>
+          </li>
+
+          <li class="table-row">
+            <px-table-row id="listitem1" title="Another Swippable List Item">
+              <px-table-row-action-button style="background-color:red;">Delete</px-table-row-action-button>
+              <px-table-row-action-button>More</px-table-row-action-button>
+            </px-table-row>
+          </li>
+
+          <li class="table-row table-row--actionable table-row--chevron">
+            <div class="table-row__content">
+              <div class="table-row__content__title">
+                <h3>Swippable Item</h3>
+              </div>
+              <div class="table-row__content__body">
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+              </div>
+            </div>
+            <div class="table-row__actions table-row__actions--left">
+              <a href="" class="swipeout-overswipe bg-green reply">Reply</a>
+              <a href="" class="bg-blue forward">Forward</a>
+            </div>
+            <div class="table-row__actions table-row__actions--right">
+              <a href="" class="mark bg-orange">Mark</a>
+              <a href="" class="swipeout-delete swipeout-overswipe">Delete</a>
+            </div>
+          </li>
+        </ul>
+      </pxm-example>
+    </div>
+
+    <div class="page-header">
+      <h1>Component Examples</h1>
+    </div>
+
+    <h2>Default List</h2>
+    <pxm-example>
+      <div class="position-relative scroll-y height-300">
+        <pxm-navbar title="Default List"></pxm-navbar>
+        <px-table-view id="exampleListView1">
+        </px-table-view>
+        <script type="text/javascript">
+          document.addEventListener('WebComponentsReady', function() {
+            document.getElementById('exampleListView1').listData = [{
+              title: 'Gas Turbine Vibration',
+              label1: 'Ready'
+            }, {
+              title: 'Oil Rig Location',
+              label1: 'Ready'
+            }, {
+              title: 'Jet Pack Vibration',
+              label1: 'Ready'
+            }];
+          });
+        </script>
+      </div>
+    </pxm-example>
+
+    <h2>Details List</h2>
+    <pxm-example>
+      <div class="position-relative height-300">
+        <pxm-navbar title="Detail List"></pxm-navbar>
+        <px-table-view id="exampleListView2">
+        </px-table-view>
+        <script type="text/javascript">
+          document.addEventListener('WebComponentsReady', function() {
+            document.getElementById('exampleListView2').listData = [{
+              title: 'Item 1',
+              body: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minus, ab ducimus sit tempore qui aut, dolorem repellat suscipit molestias dignissimos expedita nisi iure veniam voluptatibus fugiat.'
+            }, {
+              title: 'Item 2',
+              body: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minus, ab ducimus sit tempore qui aut, dolorem repellat suscipit molestias dignissimos expedita nisi iure veniam voluptatibus fugiat.'
+            }, {
+              title: 'Item 3',
+              body: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minus, ab ducimus sit tempore qui aut, dolorem repellat suscipit molestias dignissimos expedita nisi iure veniam voluptatibus fugiat.'
+            }];
+          });
+        </script>
+      </div>
+    </pxm-example>
+
+    <h2>Thumbnails List</h2>
+    <pxm-example>
+      <div class="position-relative height-300">
+        <pxm-navbar title="Thumbnail List"></pxm-navbar>
+        <px-table-view id="exampleListView3">
+        </px-table-view>
+        <script type="text/javascript">
+          document.addEventListener('WebComponentsReady', function() {
+            document.getElementById('exampleListView3').listData = [{
+              title: 'Item 1',
+              body: 'Text body value',
+              image: 'http://lorempixel.com/100/100/city/1'
+            }, {
+              title: 'Item 2',
+              body: 'Text body value',
+              image: 'http://lorempixel.com/100/100/food/2'
+            }, {
+              title: 'Item 3',
+              body: 'Text body value',
+              image: 'http://lorempixel.com/100/100/people/3'
+            }];
+          });
+        </script>
+      </div>
+    </pxm-example>
+
+    <!-- TODO: Contacts List -->
+    <h2>Contacts List</h2>
+    <pxm-example>
+      <div class="position-relative height-300">
+        <pxm-navbar title="Contacts List"></pxm-navbar>
+        <px-table-view id="exampleListView4"></px-table-view>
+        <style>
+          #exampleListView4 .table-row__content__body {
+            font-size: .9em;
+            color: #777;
+            margin-top: 5px;
+          }
+        </style>
+        <script type="text/javascript">
+          document.addEventListener('WebComponentsReady', function() {
+            document.getElementById('exampleListView4').listData = [{
+              title: 'John Doe',
+              body: '@johndoe',
+              image: 'http://lorempixel.com/32/32/people/2'
+            }, {
+              title: 'Tom Edison',
+              body: '@tomedison',
+              image: 'http://lorempixel.com/32/32/people/4'
+            }, {
+              title: 'Jonnie Spratley',
+              body: '@jonniespratley',
+              image: 'http://lorempixel.com/32/32/people/7'
+            }];
+          });
+        </script>
+      </div>
+    </pxm-example>
+
+    <!-- TODO: Issue List -->
+    <h2>Issues List</h2>
+    <pxm-example>
+      <div class="position-relative height-300">
+        <pxm-navbar title="Issue List"></pxm-navbar>
+        <px-table-row id="exampleListView5">
+        </px-table-row>
+        <style>
+          #exampleListView5 .table-row__content__title {
+            font-weight:bold;
+          }
+        </style>
+        <script type="text/javascript">
+          document.addEventListener('WebComponentsReady', function() {
+            document.getElementById('exampleListView5').listData = [{
+              title: 'Normal Issue',
+              body: 'Text body value',
+              icon: 'fa fa-2x fa-exclamation-triangle color-orange'
+            }, {
+              title: 'Fixed Issue',
+              body: 'Text body value',
+              icon: 'fa fa-2x fa-exclamation-triangle color-blue'
+            }, {
+              title: 'Urgent Issue',
+              body: 'Text body value',
+              icon: 'fa fa-2x fa-exclamation-triangle color-red'
+            }];
+          });
+        </script>
+      </div>
+    </pxm-example>
+
+    <!-- TODO: Icons List -->
+    <h2>Icons List</h2>
+    <pxm-example>
+      <div class="position-relative height-300">
+        <pxm-navbar title="Icons List"></pxm-navbar>
+        <px-table-row id="exampleListView6">
+        </px-table-row>
+        <script type="text/javascript">
+          document.addEventListener('WebComponentsReady', function() {
+            document.getElementById('exampleListView6').listData = [{
+              title: 'Dashboard',
+              icon: 'fa fa-dashboard'
+            }, {
+              title: 'Alerts',
+              icon: 'fa fa-exclamation-triangle'
+            }, {
+              title: 'Cases',
+              icon: 'fa fa-briefcase'
+            }, {
+              title: 'Analysis',
+              icon: 'fa fa-bar-chart'
+            }];
+          });
+        </script>
+      </div>
+    </pxm-example>
+
+  </div>
+</div>
+
+<script src="demo/script.js"></script>
+<script src="http://localhost:35729/livereload.js?snipver=1"></script>
+</body>
+
+</html>

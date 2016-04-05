@@ -1,0 +1,631 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><title>Px-table-view - v0.0.1</title><link rel="stylesheet" href="assets/css/main.css"><link href="http://fonts.googleapis.com/css?family=Open+Sans:400,500,700" rel="stylesheet" type="text/css"><meta name="viewport" content="width=device-width"><meta content="IE=edge, chrome=1" http-equiv="X-UA-Compatible"><!-- Open Graph tags --><meta property="og:title" content="Px-table-view - SassDoc"><meta property="og:type" content="website"><meta property="og:description" content="<p>A px mobile web component.</p>
+"><!-- Thanks to Sass-lang.com for the icons --><link href="assets/images/favicon.png" rel="shortcut icon"></head><body><aside class="sidebar" role="nav"><div class="sidebar__header"><h1 class="sidebar__title">Px-table-view - 0.0.1</h1></div><div class="sidebar__body"><button type="button" class="btn-toggle js-btn-toggle" data-alt="Open all">Close all</button><p class="sidebar__item sidebar__item--heading" data-slug="px"><a href="#px">px</a></p><div><p class="sidebar__item sidebar__item--sub-heading" data-slug="px-css"><a href="#px-css">csss</a></p><ul class="list-unstyled"><li class="sidebar__item sassdoc__item" data-group="px" data-name="/*
+ * Copyright (c) 2014 GE Global Research. All rights reserved.
+ *
+ * The copyright to the computer software herein is the property of
+ * GE Global Research. The software may be used and/or copied only
+ * with the written permission of GE Global Research or in accordance
+ * with the terms and conditions stipulated in the agreement/contract
+ * under which the software has been supplied.
+ */
+///
+//@import &quot;px-colors-design/_settings.colors.scss&quot;;
+///
+@import &quot;px-table-view-sketch.scss&quot;;
+
+///Mixins
+@import &quot;mixins&quot;;
+
+///Variables
+@import &quot;variables&quot;;
+
+
+
+.color-white" data-type="css"><a href="#px-css-/*
+ * Copyright (c) 2014 GE Global Research. All rights reserved.
+ *
+ * The copyright to the computer software herein is the property of
+ * GE Global Research. The software may be used and/or copied only
+ * with the written permission of GE Global Research or in accordance
+ * with the terms and conditions stipulated in the agreement/contract
+ * under which the software has been supplied.
+ */
+///
+//@import &quot;px-colors-design/_settings.colors.scss&quot;;
+///
+@import &quot;px-table-view-sketch.scss&quot;;
+
+///Mixins
+@import &quot;mixins&quot;;
+
+///Variables
+@import &quot;variables&quot;;
+
+
+
+.color-white">/* * Copyright (c) 2014 GE Global Research. All rights reserved. * * The copyright to the computer software herein is the property of * GE Global Research. The software may be used and/or copied only * with the written permission of GE Global Research or in accordance * with the terms and conditions stipulated in the agreement/contract * under which the software has been supplied. */ /// //@import &quot;px-colors-design/_settings.colors.scss&quot;; /// @import &quot;px-table-view-sketch.scss&quot;; ///Mixins @import &quot;mixins&quot;; ///Variables @import &quot;variables&quot;; .color-white</a></li></ul></div><p class="sidebar__item sidebar__item--heading" data-slug="undefined"><a href="#undefined">Ungrouped</a></p><div><p class="sidebar__item sidebar__item--sub-heading" data-slug="undefined-mixin"><a href="#undefined-mixin">mixins</a></p><ul class="list-unstyled"><li class="sidebar__item sassdoc__item" data-group="undefined" data-name="modifier" data-type="mixin"><a href="#undefined-mixin-modifier">modifier</a></li><li class="sidebar__item sassdoc__item" data-group="undefined" data-name="e" data-type="mixin"><a href="#undefined-mixin-e">e</a></li><li class="sidebar__item sassdoc__item" data-group="undefined" data-name="m" data-type="mixin"><a href="#undefined-mixin-m">m <span class="sidebar__annotation sidebar__annotation--alias">alias</span></a></li><li class="sidebar__item sassdoc__item" data-group="undefined" data-name="tableRowClickable" data-type="mixin"><a href="#undefined-mixin-tableRowClickable">tableRowClickable</a></li><li class="sidebar__item sassdoc__item" data-group="undefined" data-name="tableRowIcon" data-type="mixin"><a href="#undefined-mixin-tableRowIcon">tableRowIcon</a></li><li class="sidebar__item sassdoc__item" data-group="undefined" data-name="actionButton" data-type="mixin"><a href="#undefined-mixin-actionButton">actionButton</a></li><li class="sidebar__item sassdoc__item" data-group="undefined" data-name="n-columns" data-type="mixin"><a href="#undefined-mixin-n-columns">n-columns</a></li><li class="sidebar__item sassdoc__item" data-group="undefined" data-name="scrollable" data-type="mixin"><a href="#undefined-mixin-scrollable">scrollable</a></li></ul><p class="sidebar__item sidebar__item--sub-heading" data-slug="undefined-variable"><a href="#undefined-variable">variables</a></p><ul class="list-unstyled"><li class="sidebar__item sassdoc__item" data-group="undefined" data-name="red" data-type="variable"><a href="#undefined-variable-red">red</a></li><li class="sidebar__item sassdoc__item" data-group="undefined" data-name="table-row-font-color" data-type="variable"><a href="#undefined-variable-table-row-font-color">table-row-font-color</a></li><li class="sidebar__item sassdoc__item" data-group="undefined" data-name="table-row-font-size" data-type="variable"><a href="#undefined-variable-table-row-font-size">table-row-font-size</a></li><li class="sidebar__item sassdoc__item" data-group="undefined" data-name="table-row-border-color" data-type="variable"><a href="#undefined-variable-table-row-border-color">table-row-border-color</a></li><li class="sidebar__item sassdoc__item" data-group="undefined" data-name="table-row-background-color" data-type="variable"><a href="#undefined-variable-table-row-background-color">table-row-background-color</a></li><li class="sidebar__item sassdoc__item" data-group="undefined" data-name="table-row-active-background-color" data-type="variable"><a href="#undefined-variable-table-row-active-background-color">table-row-active-background-color</a></li><li class="sidebar__item sassdoc__item" data-group="undefined" data-name="table-row-active-font-color" data-type="variable"><a href="#undefined-variable-table-row-active-font-color">table-row-active-font-color</a></li><li class="sidebar__item sassdoc__item" data-group="undefined" data-name="table-row-label-color" data-type="variable"><a href="#undefined-variable-table-row-label-color">table-row-label-color</a></li><li class="sidebar__item sassdoc__item" data-group="undefined" data-name="table-row-detail-icon-color" data-type="variable"><a href="#undefined-variable-table-row-detail-icon-color">table-row-detail-icon-color</a></li></ul><p class="sidebar__item sidebar__item--sub-heading" data-slug="undefined-css"><a href="#undefined-css">csss</a></p><ul class="list-unstyled"><li class="sidebar__item sassdoc__item" data-group="undefined" data-name="/**
+bem model:
+
+  .table-row-ui
+    --inset
+    --small
+    --large
+    --regular
+    .table-row-item
+      --actionable
+
+      .table-row-item__media
+        --left
+        --right
+        __image
+        __icon
+
+      .table-row-item__content
+        .table-row-item__content__title
+          --small
+          --large
+
+        .table-row-item__content__body
+
+        .table-row-item__content__label
+          --left
+          --right
+
+*/
+.table-row" data-type="css"><a href="#undefined-css-/**
+bem model:
+
+  .table-row-ui
+    --inset
+    --small
+    --large
+    --regular
+    .table-row-item
+      --actionable
+
+      .table-row-item__media
+        --left
+        --right
+        __image
+        __icon
+
+      .table-row-item__content
+        .table-row-item__content__title
+          --small
+          --large
+
+        .table-row-item__content__body
+
+        .table-row-item__content__label
+          --left
+          --right
+
+*/
+.table-row">/** bem model: .table-row-ui --inset --small --large --regular .table-row-item --actionable .table-row-item__media --left --right __image __icon .table-row-item__content .table-row-item__content__title --small --large .table-row-item__content__body .table-row-item__content__label --left --right */ .table-row</a></li><li class="sidebar__item sassdoc__item" data-group="undefined" data-name="//@import &quot;px-colors-design/_settings.colors.scss&quot;;
+///
+@import &quot;px-table-view-sketch.scss&quot;;
+
+///Mixins
+@import &quot;mixins&quot;;
+
+///Variables
+@import &quot;variables&quot;;
+
+
+
+.color-white" data-type="css"><a href="#undefined-css-//@import &quot;px-colors-design/_settings.colors.scss&quot;;
+///
+@import &quot;px-table-view-sketch.scss&quot;;
+
+///Mixins
+@import &quot;mixins&quot;;
+
+///Variables
+@import &quot;variables&quot;;
+
+
+
+.color-white">//@import &quot;px-colors-design/_settings.colors.scss&quot;; /// @import &quot;px-table-view-sketch.scss&quot;; ///Mixins @import &quot;mixins&quot;; ///Variables @import &quot;variables&quot;; .color-white</a></li><li class="sidebar__item sassdoc__item" data-group="undefined" data-name=".action-btns" data-type="css"><a href="#undefined-css-.action-btns">.action-btns</a></li><li class="sidebar__item sassdoc__item" data-group="undefined" data-name=".btn" data-type="css"><a href="#undefined-css-.btn">.btn</a></li><li class="sidebar__item sassdoc__item" data-group="undefined" data-name=".btn-delete" data-type="css"><a href="#undefined-css-.btn-delete">.btn-delete</a></li><li class="sidebar__item sassdoc__item" data-group="undefined" data-name=".btn-flag" data-type="css"><a href="#undefined-css-.btn-flag">.btn-flag</a></li><li class="sidebar__item sassdoc__item" data-group="undefined" data-name=".btn-more" data-type="css"><a href="#undefined-css-.btn-more">.btn-more</a></li><li class="sidebar__item sassdoc__item" data-group="undefined" data-name=".table-view,
+.list-ui" data-type="css"><a href="#undefined-css-.table-view,
+.list-ui">.table-view, .list-ui</a></li><li class="sidebar__item sassdoc__item" data-group="undefined" data-name="///.list-ui--responsive
+  @include modifier(&#39;responsive&#39;)" data-type="css"><a href="#undefined-css-///.list-ui--responsive
+  @include modifier(&#39;responsive&#39;)">///.list-ui--responsive @include modifier(&#39;responsive&#39;)</a></li></ul></div></div></aside><article class="main" role="main"><header class="header" role="banner"><div class="container"><div class="sassdoc__searchbar searchbar"><label for="js-search-input" class="visually-hidden">Search</label><div class="searchbar__form" id="js-search"><input name="search" type="search" class="searchbar__field" autocomplete="off" autofocus id="js-search-input" placeholder="Search"><ul class="searchbar__suggestions" id="js-search-suggestions"></ul></div></div></div></header><section class="main__section"><h1 class="main__heading" id="px"><div class="container">px</div></h1><section class="main__sub-section" id="px-css"><h2 class="main__heading--secondary"><div class="container">csss</div></h2><section class="main__item container item" id="px-css-/*
+ * Copyright (c) 2014 GE Global Research. All rights reserved.
+ *
+ * The copyright to the computer software herein is the property of
+ * GE Global Research. The software may be used and/or copied only
+ * with the written permission of GE Global Research or in accordance
+ * with the terms and conditions stipulated in the agreement/contract
+ * under which the software has been supplied.
+ */
+///
+//@import &quot;px-colors-design/_settings.colors.scss&quot;;
+///
+@import &quot;px-table-view-sketch.scss&quot;;
+
+///Mixins
+@import &quot;mixins&quot;;
+
+///Variables
+@import &quot;variables&quot;;
+
+
+
+.color-white"><h3 class="item__heading"><a class="item__name" href="#css-/*
+ * Copyright (c) 2014 GE Global Research. All rights reserved.
+ *
+ * The copyright to the computer software herein is the property of
+ * GE Global Research. The software may be used and/or copied only
+ * with the written permission of GE Global Research or in accordance
+ * with the terms and conditions stipulated in the agreement/contract
+ * under which the software has been supplied.
+ */
+///
+//@import &quot;px-colors-design/_settings.colors.scss&quot;;
+///
+@import &quot;px-table-view-sketch.scss&quot;;
+
+///Mixins
+@import &quot;mixins&quot;;
+
+///Variables
+@import &quot;variables&quot;;
+
+
+
+.color-white">/* * Copyright (c) 2014 GE Global Research. All rights reserved. * * The copyright to the computer software herein is the property of * GE Global Research. The software may be used and/or copied only * with the written permission of GE Global Research or in accordance * with the terms and conditions stipulated in the agreement/contract * under which the software has been supplied. */ /// //@import &quot;px-colors-design/_settings.colors.scss&quot;; /// @import &quot;px-table-view-sketch.scss&quot;; ///Mixins @import &quot;mixins&quot;; ///Variables @import &quot;variables&quot;; .color-white</a></h3><div class="item__code-wrapper"><pre class="item__code item__code--togglable language-scss" data-current-state="collapsed" data-expanded="@css /*
+ * Copyright (c) 2014 GE Global Research. All rights reserved.
+ *
+ * The copyright to the computer software herein is the property of
+ * GE Global Research. The software may be used and/or copied only
+ * with the written permission of GE Global Research or in accordance
+ * with the terms and conditions stipulated in the agreement/contract
+ * under which the software has been supplied.
+ */
+///
+//@import &quot;px-colors-design/_settings.colors.scss&quot;;
+///
+@import &quot;px-table-view-sketch.scss&quot;;
+
+///Mixins
+@import &quot;mixins&quot;;
+
+///Variables
+@import &quot;variables&quot;;
+
+
+
+.color-white() {  }" data-collapsed="@css /*
+ * Copyright (c) 2014 GE Global Research. All rights reserved.
+ *
+ * The copyright to the computer software herein is the property of
+ * GE Global Research. The software may be used and/or copied only
+ * with the written permission of GE Global Research or in accordance
+ * with the terms and conditions stipulated in the agreement/contract
+ * under which the software has been supplied.
+ */
+///
+//@import &quot;px-colors-design/_settings.colors.scss&quot;;
+///
+@import &quot;px-table-view-sketch.scss&quot;;
+
+///Mixins
+@import &quot;mixins&quot;;
+
+///Variables
+@import &quot;variables&quot;;
+
+
+
+.color-white() { ... }"><code>@css /*
+ * Copyright (c) 2014 GE Global Research. All rights reserved.
+ *
+ * The copyright to the computer software herein is the property of
+ * GE Global Research. The software may be used and/or copied only
+ * with the written permission of GE Global Research or in accordance
+ * with the terms and conditions stipulated in the agreement/contract
+ * under which the software has been supplied.
+ */
+///
+//@import &quot;px-colors-design/_settings.colors.scss&quot;;
+///
+@import &quot;px-table-view-sketch.scss&quot;;
+
+///Mixins
+@import &quot;mixins&quot;;
+
+///Variables
+@import &quot;variables&quot;;
+
+
+
+.color-white() { ... }</code></pre></div></section></section></section><section class="main__section"><h1 class="main__heading" id="undefined"><div class="container">Ungrouped</div></h1><section class="main__sub-section" id="undefined-mixin"><h2 class="main__heading--secondary"><div class="container">mixins</div></h2><section class="main__item container item" id="undefined-mixin-modifier"><h3 class="item__heading"><a class="item__name" href="#mixin-modifier">modifier</a> <span class="item__aliased">(aliased as <a href="#mixin-m"><code>m</code></a> )</span></h3><div class="item__code-wrapper"><pre class="item__code item__code--togglable language-scss" data-current-state="collapsed" data-expanded="@mixin modifier($modifier) { 
+  &amp;--#{$modifier} {
+    @content;
+  }
+ }" data-collapsed="@mixin modifier($modifier) { ... }"><code>@mixin modifier($modifier) { ... }</code></pre></div><h3 class="item__sub-heading">Description</h3><div class="item__description"><p>Block Modifier</p></div><h3 class="item__sub-heading">Parameters</h3><table class="item__parameters"><thead><tr><th scope="col"><span class="visually-hidden">parameter</span>Name</th><th scope="col"><span class="visually-hidden">parameter</span>Description</th><th scope="col"><span class="visually-hidden">parameter</span>Type</th><th scope="col"><span class="visually-hidden">parameter</span>Default value</th></tr></thead><tbody><tr class="item__parameter"><th scope="row" data-label="name"><code>$modifier</code></th><td data-label="desc"><p>Modifier&#39;s name</p></td><td data-label="type"><code>String</code></td><td data-label="default">&mdash;<span class="visually-hidden">none</span></td></tr></tbody></table><h3 class="item__sub-heading">Content</h3><p>This mixin allows extra content to be passed (through the <code>@content</code> directive).<h3 class="item__sub-heading">Example</h3><div class="item__example example"><pre class="example__code language-scss"><code>@include modifier(&#39;modifier&#39;) {
+   // CSS declarations for .block--modifier
+   @include element(&#39;element&#39;) {
+      // CSS declarations for .block--modifier__element
+   }
+}</code></pre></div><h3 class="item__sub-heading">Used by</h3><ul class="list-unstyled"><li><span class="item__cross-type">[mixin]</span> <a href="#undefined-mixin-m"><code>m</code></a></li></ul></p></section><section class="main__item container item" id="undefined-mixin-e"><h3 class="item__heading"><a class="item__name" href="#mixin-e">e</a></h3><div class="item__code-wrapper"><pre class="item__code item__code--togglable language-scss" data-current-state="collapsed" data-expanded="@mixin e($element) { 
+  @include element($element) {
+    @content;
+  }
+ }" data-collapsed="@mixin e($element) { ... }"><code>@mixin e($element) { ... }</code></pre></div><h3 class="item__sub-heading">Parameters</h3><table class="item__parameters"><thead><tr><th scope="col"><span class="visually-hidden">parameter</span>Name</th><th scope="col"><span class="visually-hidden">parameter</span>Description</th><th scope="col"><span class="visually-hidden">parameter</span>Type</th><th scope="col"><span class="visually-hidden">parameter</span>Default value</th></tr></thead><tbody><tr class="item__parameter"><th scope="row" data-label="name"><code>$element</code></th><td data-label="desc"><p>Element&#39;s name</p></td><td data-label="type"><code>String</code></td><td data-label="default">&mdash;<span class="visually-hidden">none</span></td></tr></tbody></table><h3 class="item__sub-heading">Content</h3><p>This mixin allows extra content to be passed (through the <code>@content</code> directive).<h3 class="item__sub-heading">Example</h3><div class="item__example example"><div class="example__description"><p>Block element</p></div><pre class="example__code language-scss"><code> .block {
+   // CSS declarations for .block
+   @include element(&#39;element&#39;) {
+        //CSS declarations for .block__element
+   }
+
+   @include modifier(&#39;modifier&#39;) {
+       // CSS declarations for .block--modifier
+
+       @include element(&#39;element&#39;) {
+           // CSS declarations for .block--modifier__element
+       }
+   }
+}</code></pre></div></p></section><section class="main__item container item item--alias" id="undefined-mixin-m"><h3 class="item__heading"><a class="item__name" href="#mixin-m">m</a> <span class="item__alias">(alias for <a href="#mixin-modifier"><code>modifier</code></a>)</span></h3><div class="item__code-wrapper"><pre class="item__code item__code--togglable language-scss" data-current-state="collapsed" data-expanded="@mixin m($element) { 
+  @include modifier($modifier) {
+    @content;
+  }
+ }" data-collapsed="@mixin m($element) { ... }"><code>@mixin m($element) { ... }</code></pre></div><p>Refer to <a href="#mixin-modifier">modifier</a>.</p></section><section class="main__item container item" id="undefined-mixin-tableRowClickable"><h3 class="item__heading"><a class="item__name" href="#mixin-tableRowClickable">tableRowClickable</a></h3><div class="item__code-wrapper"><pre class="item__code item__code--togglable language-scss" data-current-state="collapsed" data-expanded="@mixin tableRowClickable($element) { 
+  transition: background-color 0.2s linear;
+  &amp;:active {
+    color: $font !important;
+    background-color: $bg;
+    transition: none;
+  }
+  &amp;:hover {
+    transition: none;
+  }
+  @content;
+ }" data-collapsed="@mixin tableRowClickable($element) { ... }"><code>@mixin tableRowClickable($element) { ... }</code></pre></div><h3 class="item__sub-heading">Description</h3><div class="item__description"><p>Make a list item clickable</p></div><h3 class="item__sub-heading">Parameters</h3><table class="item__parameters"><thead><tr><th scope="col"><span class="visually-hidden">parameter</span>Name</th><th scope="col"><span class="visually-hidden">parameter</span>Description</th><th scope="col"><span class="visually-hidden">parameter</span>Type</th><th scope="col"><span class="visually-hidden">parameter</span>Default value</th></tr></thead><tbody><tr class="item__parameter"><th scope="row" data-label="name"><code>$element</code></th><td data-label="desc"><p>Element&#39;s name</p></td><td data-label="type"><code>String</code></td><td data-label="default">&mdash;<span class="visually-hidden">none</span></td></tr></tbody></table><h3 class="item__sub-heading">Content</h3><p>This mixin allows extra content to be passed (through the <code>@content</code> directive).<h3 class="item__sub-heading">Example</h3><div class="item__example example"><div class="example__description"><p>Block element</p></div><pre class="example__code language-scss"><code> .block {
+   // CSS declarations for .block
+   @include element(&#39;element&#39;) {
+        //CSS declarations for .block__element
+   }
+
+   @include modifier(&#39;modifier&#39;) {
+       // CSS declarations for .block--modifier
+
+       @include element(&#39;element&#39;) {
+           // CSS declarations for .block--modifier__element
+       }
+   }
+}</code></pre></div></p></section><section class="main__item container item" id="undefined-mixin-tableRowIcon"><h3 class="item__heading"><a class="item__name" href="#mixin-tableRowIcon">tableRowIcon</a></h3><div class="item__code-wrapper"><pre class="item__code item__code--togglable language-scss" data-current-state="collapsed" data-expanded="@mixin tableRowIcon($element) { 
+  transition: background-color 0.2s linear;
+  overflow: hidden;
+  &amp;:active {
+    //color: $list-item-active-font-color;
+    background-color: $table-row-active-background-color;
+    transition: none;
+  }
+  &amp;:before {
+    position: absolute;
+    right: 16px;
+    top: 50%;
+    color: $table-row-border-color;
+    line-height: 28px;
+    height: 28px;
+    transform: translateY(-50%);
+    font-size: 28px;
+    font-family: Ionicons;
+    font-style: normal;
+    font-weight: normal;
+    content: &quot;#{$icon}&quot;;
+  }
+  &amp;:hover {
+    transition: none;
+  }
+  @content;
+ }" data-collapsed="@mixin tableRowIcon($element) { ... }"><code>@mixin tableRowIcon($element) { ... }</code></pre></div><h3 class="item__sub-heading">Description</h3><div class="item__description"><p>Make a list item have an icon</p></div><h3 class="item__sub-heading">Parameters</h3><table class="item__parameters"><thead><tr><th scope="col"><span class="visually-hidden">parameter</span>Name</th><th scope="col"><span class="visually-hidden">parameter</span>Description</th><th scope="col"><span class="visually-hidden">parameter</span>Type</th><th scope="col"><span class="visually-hidden">parameter</span>Default value</th></tr></thead><tbody><tr class="item__parameter"><th scope="row" data-label="name"><code>$element</code></th><td data-label="desc"><p>Element&#39;s name</p></td><td data-label="type"><code>String</code></td><td data-label="default">&mdash;<span class="visually-hidden">none</span></td></tr></tbody></table><h3 class="item__sub-heading">Content</h3><p>This mixin allows extra content to be passed (through the <code>@content</code> directive).<h3 class="item__sub-heading">Example</h3><div class="item__example example"><div class="example__description"><p>Block element</p></div><pre class="example__code language-scss"><code> .block {
+   // CSS declarations for .block
+   @include element(&#39;element&#39;) {
+        //CSS declarations for .block__element
+   }
+
+   @include modifier(&#39;modifier&#39;) {
+       // CSS declarations for .block--modifier
+
+       @include element(&#39;element&#39;) {
+           // CSS declarations for .block--modifier__element
+       }
+   }
+}</code></pre></div><h3 class="item__sub-heading">Requires</h3><ul class="list-unstyled"><li class="item__description item__description--inline"><span class="item__cross-type">[variable]</span> <a href="#undefined-variable-table-row-active-background-color"><code>table-row-active-background-color</code></a></li><li class="item__description item__description--inline"><span class="item__cross-type">[variable]</span> <a href="#undefined-variable-table-row-border-color"><code>table-row-border-color</code></a></li></ul></p></section><section class="main__item container item" id="undefined-mixin-actionButton"><h3 class="item__heading"><a class="item__name" href="#mixin-actionButton">actionButton</a></h3><div class="item__code-wrapper"><pre class="item__code item__code--togglable language-scss" data-current-state="collapsed" data-expanded="@mixin actionButton($element) { 
+  user-select:none;
+  transition: background-color 0.2s linear;
+  background-color: $color;
+  //	border-color: darken($color, 25%);
+  border: none;
+  outline:none;
+  &amp;:active {
+    background-color: darken($color, 20%);
+  }
+
+  &amp;:hover {
+    background-color: darken($color, 15%);
+  }
+  @content;
+ }" data-collapsed="@mixin actionButton($element) { ... }"><code>@mixin actionButton($element) { ... }</code></pre></div><h3 class="item__sub-heading">Description</h3><div class="item__description"><p>Style an action button</p></div><h3 class="item__sub-heading">Parameters</h3><table class="item__parameters"><thead><tr><th scope="col"><span class="visually-hidden">parameter</span>Name</th><th scope="col"><span class="visually-hidden">parameter</span>Description</th><th scope="col"><span class="visually-hidden">parameter</span>Type</th><th scope="col"><span class="visually-hidden">parameter</span>Default value</th></tr></thead><tbody><tr class="item__parameter"><th scope="row" data-label="name"><code>$element</code></th><td data-label="desc"><p>Element&#39;s name</p></td><td data-label="type"><code>String</code></td><td data-label="default">&mdash;<span class="visually-hidden">none</span></td></tr></tbody></table><h3 class="item__sub-heading">Content</h3><p>This mixin allows extra content to be passed (through the <code>@content</code> directive).<h3 class="item__sub-heading">Example</h3><div class="item__example example"><div class="example__description"><p>Block element</p></div><pre class="example__code language-scss"><code> .block {
+   // CSS declarations for .block
+   @include element(&#39;element&#39;) {
+        //CSS declarations for .block__element
+   }
+
+   @include modifier(&#39;modifier&#39;) {
+       // CSS declarations for .block--modifier
+
+       @include element(&#39;element&#39;) {
+           // CSS declarations for .block--modifier__element
+       }
+   }
+}</code></pre></div></p></section><section class="main__item container item" id="undefined-mixin-n-columns"><h3 class="item__heading"><a class="item__name" href="#mixin-n-columns">n-columns</a></h3><div class="item__code-wrapper"><pre class="item__code item__code--togglable language-scss" data-current-state="collapsed" data-expanded="@mixin n-columns($element) { 
+  display: flex;
+  flex-wrap: wrap;
+  margin-left: -$gutter;
+  margin-top: -$gutter;
+  .list-item {
+    flex: 1 0 $min-width;
+    margin-left: $gutter;
+    margin-top: $gutter;
+    @if $last-equal {
+      @for $i from 2 through $max-cols {
+        $screen-width: ($min-width*$i)+($gutter*$i);
+        $column-width: (100%/$i);
+        @media (min-width: $screen-width) {
+          max-width: calc(#{$column-width} - #{$gutter});
+        }
+      }
+      $column-width: (100%/$max-cols);
+      @media (min-width: $min-width*$max-cols) {
+        min-width: calc(#{$column-width} - #{$gutter});
+      }
+    }
+  }
+ }" data-collapsed="@mixin n-columns($element) { ... }"><code>@mixin n-columns($element) { ... }</code></pre></div><h3 class="item__sub-heading">Description</h3><div class="item__description"><p>Mixin to make list turn into columns on larger screen. Similar to App Store On iPad there are grid list On iPhone there grid column</p></div><h3 class="item__sub-heading">Parameters</h3><table class="item__parameters"><thead><tr><th scope="col"><span class="visually-hidden">parameter</span>Name</th><th scope="col"><span class="visually-hidden">parameter</span>Description</th><th scope="col"><span class="visually-hidden">parameter</span>Type</th><th scope="col"><span class="visually-hidden">parameter</span>Default value</th></tr></thead><tbody><tr class="item__parameter"><th scope="row" data-label="name"><code>$element</code></th><td data-label="desc"><p>Element&#39;s name</p></td><td data-label="type"><code>String</code></td><td data-label="default">&mdash;<span class="visually-hidden">none</span></td></tr></tbody></table><h3 class="item__sub-heading">Example</h3><div class="item__example example"><div class="example__description"><p>Block element</p></div><pre class="example__code language-scss"><code> .block {
+   // CSS declarations for .block
+   @include element(&#39;element&#39;) {
+        //CSS declarations for .block__element
+   }
+
+   @include modifier(&#39;modifier&#39;) {
+       // CSS declarations for .block--modifier
+
+       @include element(&#39;element&#39;) {
+           // CSS declarations for .block--modifier__element
+       }
+   }
+}</code></pre></div></section><section class="main__item container item" id="undefined-mixin-scrollable"><h3 class="item__heading"><a class="item__name" href="#mixin-scrollable">scrollable</a></h3><div class="item__code-wrapper"><pre class="item__code item__code--togglable language-scss" data-current-state="collapsed" data-expanded="@mixin scrollable($element) { 
+  overflow-y: scroll; /* has to be scroll, not auto */
+  -webkit-overflow-scrolling: touch;
+  @content;
+ }" data-collapsed="@mixin scrollable($element) { ... }"><code>@mixin scrollable($element) { ... }</code></pre></div><h3 class="item__sub-heading">Description</h3><div class="item__description"><p>Scrollable mixin</p></div><h3 class="item__sub-heading">Parameters</h3><table class="item__parameters"><thead><tr><th scope="col"><span class="visually-hidden">parameter</span>Name</th><th scope="col"><span class="visually-hidden">parameter</span>Description</th><th scope="col"><span class="visually-hidden">parameter</span>Type</th><th scope="col"><span class="visually-hidden">parameter</span>Default value</th></tr></thead><tbody><tr class="item__parameter"><th scope="row" data-label="name"><code>$element</code></th><td data-label="desc"><p>Element&#39;s name</p></td><td data-label="type"><code>String</code></td><td data-label="default">&mdash;<span class="visually-hidden">none</span></td></tr></tbody></table><h3 class="item__sub-heading">Content</h3><p>This mixin allows extra content to be passed (through the <code>@content</code> directive).<h3 class="item__sub-heading">Example</h3><div class="item__example example"><div class="example__description"><p>Block element</p></div><pre class="example__code language-scss"><code> .block {
+   // CSS declarations for .block
+   @include element(&#39;element&#39;) {
+        //CSS declarations for .block__element
+   }
+
+   @include modifier(&#39;modifier&#39;) {
+       // CSS declarations for .block--modifier
+
+       @include element(&#39;element&#39;) {
+           // CSS declarations for .block--modifier__element
+       }
+   }
+}</code></pre></div></p></section></section><section class="main__sub-section" id="undefined-variable"><h2 class="main__heading--secondary"><div class="container">variables</div></h2><section class="main__item container item" id="undefined-variable-red"><h3 class="item__heading"><a class="item__name" href="#variable-red">red</a></h3><div class="item__code-wrapper"><pre class="item__code language-scss"><code>$red: #FE3F35;</code></pre></div><h3 class="item__sub-heading">Description</h3><div class="item__description"><p>For Demo</p></div></section><section class="main__item container item" id="undefined-variable-table-row-font-color"><h3 class="item__heading"><a class="item__name" href="#variable-table-row-font-color">table-row-font-color</a></h3><div class="item__code-wrapper"><pre class="item__code language-scss"><code>$table-row-font-color: #111;</code></pre></div></section><section class="main__item container item" id="undefined-variable-table-row-font-size"><h3 class="item__heading"><a class="item__name" href="#variable-table-row-font-size">table-row-font-size</a></h3><div class="item__code-wrapper"><pre class="item__code language-scss"><code>$table-row-font-size: 1.1rem;</code></pre></div></section><section class="main__item container item" id="undefined-variable-table-row-border-color"><h3 class="item__heading"><a class="item__name" href="#variable-table-row-border-color">table-row-border-color</a></h3><div class="item__code-wrapper"><pre class="item__code language-scss"><code>$table-row-border-color: #ccc;</code></pre></div><h3 class="item__sub-heading">Used by</h3><ul class="list-unstyled"><li><span class="item__cross-type">[mixin]</span> <a href="#undefined-mixin-tableRowIcon"><code>tableRowIcon</code></a></li></ul></section><section class="main__item container item" id="undefined-variable-table-row-background-color"><h3 class="item__heading"><a class="item__name" href="#variable-table-row-background-color">table-row-background-color</a></h3><div class="item__code-wrapper"><pre class="item__code language-scss"><code>$table-row-background-color: #fff;</code></pre></div></section><section class="main__item container item" id="undefined-variable-table-row-active-background-color"><h3 class="item__heading"><a class="item__name" href="#variable-table-row-active-background-color">table-row-active-background-color</a></h3><div class="item__code-wrapper"><pre class="item__code language-scss"><code>$table-row-active-background-color: #0a9ec1;</code></pre></div><h3 class="item__sub-heading">Used by</h3><ul class="list-unstyled"><li><span class="item__cross-type">[mixin]</span> <a href="#undefined-mixin-tableRowIcon"><code>tableRowIcon</code></a></li></ul></section><section class="main__item container item" id="undefined-variable-table-row-active-font-color"><h3 class="item__heading"><a class="item__name" href="#variable-table-row-active-font-color">table-row-active-font-color</a></h3><div class="item__code-wrapper"><pre class="item__code language-scss"><code>$table-row-active-font-color: #fff;</code></pre></div></section><section class="main__item container item" id="undefined-variable-table-row-label-color"><h3 class="item__heading"><a class="item__name" href="#variable-table-row-label-color">table-row-label-color</a></h3><div class="item__code-wrapper"><pre class="item__code language-scss"><code>$table-row-label-color: #999;</code></pre></div></section><section class="main__item container item" id="undefined-variable-table-row-detail-icon-color"><h3 class="item__heading"><a class="item__name" href="#variable-table-row-detail-icon-color">table-row-detail-icon-color</a></h3><div class="item__code-wrapper"><pre class="item__code language-scss"><code>$table-row-detail-icon-color: #429cfc;</code></pre></div></section></section><section class="main__sub-section" id="undefined-css"><h2 class="main__heading--secondary"><div class="container">csss</div></h2><section class="main__item container item" id="undefined-css-/**
+bem model:
+
+  .table-row-ui
+    --inset
+    --small
+    --large
+    --regular
+    .table-row-item
+      --actionable
+
+      .table-row-item__media
+        --left
+        --right
+        __image
+        __icon
+
+      .table-row-item__content
+        .table-row-item__content__title
+          --small
+          --large
+
+        .table-row-item__content__body
+
+        .table-row-item__content__label
+          --left
+          --right
+
+*/
+.table-row"><h3 class="item__heading"><a class="item__name" href="#css-/**
+bem model:
+
+  .table-row-ui
+    --inset
+    --small
+    --large
+    --regular
+    .table-row-item
+      --actionable
+
+      .table-row-item__media
+        --left
+        --right
+        __image
+        __icon
+
+      .table-row-item__content
+        .table-row-item__content__title
+          --small
+          --large
+
+        .table-row-item__content__body
+
+        .table-row-item__content__label
+          --left
+          --right
+
+*/
+.table-row">/** bem model: .table-row-ui --inset --small --large --regular .table-row-item --actionable .table-row-item__media --left --right __image __icon .table-row-item__content .table-row-item__content__title --small --large .table-row-item__content__body .table-row-item__content__label --left --right */ .table-row</a></h3><div class="item__code-wrapper"><pre class="item__code item__code--togglable language-scss" data-current-state="collapsed" data-expanded="@css /**
+bem model:
+
+  .table-row-ui
+    --inset
+    --small
+    --large
+    --regular
+    .table-row-item
+      --actionable
+
+      .table-row-item__media
+        --left
+        --right
+        __image
+        __icon
+
+      .table-row-item__content
+        .table-row-item__content__title
+          --small
+          --large
+
+        .table-row-item__content__body
+
+        .table-row-item__content__label
+          --left
+          --right
+
+*/
+.table-row() {  }" data-collapsed="@css /**
+bem model:
+
+  .table-row-ui
+    --inset
+    --small
+    --large
+    --regular
+    .table-row-item
+      --actionable
+
+      .table-row-item__media
+        --left
+        --right
+        __image
+        __icon
+
+      .table-row-item__content
+        .table-row-item__content__title
+          --small
+          --large
+
+        .table-row-item__content__body
+
+        .table-row-item__content__label
+          --left
+          --right
+
+*/
+.table-row() { ... }"><code>@css /**
+bem model:
+
+  .table-row-ui
+    --inset
+    --small
+    --large
+    --regular
+    .table-row-item
+      --actionable
+
+      .table-row-item__media
+        --left
+        --right
+        __image
+        __icon
+
+      .table-row-item__content
+        .table-row-item__content__title
+          --small
+          --large
+
+        .table-row-item__content__body
+
+        .table-row-item__content__label
+          --left
+          --right
+
+*/
+.table-row() { ... }</code></pre></div></section><section class="main__item container item" id="undefined-css-//@import &quot;px-colors-design/_settings.colors.scss&quot;;
+///
+@import &quot;px-table-view-sketch.scss&quot;;
+
+///Mixins
+@import &quot;mixins&quot;;
+
+///Variables
+@import &quot;variables&quot;;
+
+
+
+.color-white"><h3 class="item__heading"><a class="item__name" href="#css-//@import &quot;px-colors-design/_settings.colors.scss&quot;;
+///
+@import &quot;px-table-view-sketch.scss&quot;;
+
+///Mixins
+@import &quot;mixins&quot;;
+
+///Variables
+@import &quot;variables&quot;;
+
+
+
+.color-white">//@import &quot;px-colors-design/_settings.colors.scss&quot;; /// @import &quot;px-table-view-sketch.scss&quot;; ///Mixins @import &quot;mixins&quot;; ///Variables @import &quot;variables&quot;; .color-white</a></h3><div class="item__code-wrapper"><pre class="item__code item__code--togglable language-scss" data-current-state="collapsed" data-expanded="@css //@import &quot;px-colors-design/_settings.colors.scss&quot;;
+///
+@import &quot;px-table-view-sketch.scss&quot;;
+
+///Mixins
+@import &quot;mixins&quot;;
+
+///Variables
+@import &quot;variables&quot;;
+
+
+
+.color-white() {  }" data-collapsed="@css //@import &quot;px-colors-design/_settings.colors.scss&quot;;
+///
+@import &quot;px-table-view-sketch.scss&quot;;
+
+///Mixins
+@import &quot;mixins&quot;;
+
+///Variables
+@import &quot;variables&quot;;
+
+
+
+.color-white() { ... }"><code>@css //@import &quot;px-colors-design/_settings.colors.scss&quot;;
+///
+@import &quot;px-table-view-sketch.scss&quot;;
+
+///Mixins
+@import &quot;mixins&quot;;
+
+///Variables
+@import &quot;variables&quot;;
+
+
+
+.color-white() { ... }</code></pre></div></section><section class="main__item container item" id="undefined-css-.action-btns"><h3 class="item__heading"><a class="item__name" href="#css-.action-btns">.action-btns</a></h3><div class="item__code-wrapper"><pre class="item__code item__code--togglable language-scss" data-current-state="collapsed" data-expanded="@css .action-btns() {  }" data-collapsed="@css .action-btns() { ... }"><code>@css .action-btns() { ... }</code></pre></div></section><section class="main__item container item" id="undefined-css-.btn"><h3 class="item__heading"><a class="item__name" href="#css-.btn">.btn</a></h3><div class="item__code-wrapper"><pre class="item__code item__code--togglable language-scss" data-current-state="collapsed" data-expanded="@css .btn() {  }" data-collapsed="@css .btn() { ... }"><code>@css .btn() { ... }</code></pre></div></section><section class="main__item container item" id="undefined-css-.btn-delete"><h3 class="item__heading"><a class="item__name" href="#css-.btn-delete">.btn-delete</a></h3><div class="item__code-wrapper"><pre class="item__code item__code--togglable language-scss" data-current-state="collapsed" data-expanded="@css .btn-delete() {  }" data-collapsed="@css .btn-delete() { ... }"><code>@css .btn-delete() { ... }</code></pre></div></section><section class="main__item container item" id="undefined-css-.btn-flag"><h3 class="item__heading"><a class="item__name" href="#css-.btn-flag">.btn-flag</a></h3><div class="item__code-wrapper"><pre class="item__code item__code--togglable language-scss" data-current-state="collapsed" data-expanded="@css .btn-flag() {  }" data-collapsed="@css .btn-flag() { ... }"><code>@css .btn-flag() { ... }</code></pre></div></section><section class="main__item container item" id="undefined-css-.btn-more"><h3 class="item__heading"><a class="item__name" href="#css-.btn-more">.btn-more</a></h3><div class="item__code-wrapper"><pre class="item__code item__code--togglable language-scss" data-current-state="collapsed" data-expanded="@css .btn-more() {  }" data-collapsed="@css .btn-more() { ... }"><code>@css .btn-more() { ... }</code></pre></div></section><section class="main__item container item" id="undefined-css-.table-view,
+.list-ui"><h3 class="item__heading"><a class="item__name" href="#css-.table-view,
+.list-ui">.table-view, .list-ui</a></h3><div class="item__code-wrapper"><pre class="item__code item__code--togglable language-scss" data-current-state="collapsed" data-expanded="@css .table-view,
+.list-ui() {  }" data-collapsed="@css .table-view,
+.list-ui() { ... }"><code>@css .table-view,
+.list-ui() { ... }</code></pre></div></section><section class="main__item container item" id="undefined-css-///.list-ui--responsive
+  @include modifier(&#39;responsive&#39;)"><h3 class="item__heading"><a class="item__name" href="#css-///.list-ui--responsive
+  @include modifier(&#39;responsive&#39;)">///.list-ui--responsive @include modifier(&#39;responsive&#39;)</a></h3><div class="item__code-wrapper"><pre class="item__code item__code--togglable language-scss" data-current-state="collapsed" data-expanded="@css ///.list-ui--responsive
+  @include modifier(&#39;responsive&#39;)() {  }" data-collapsed="@css ///.list-ui--responsive
+  @include modifier(&#39;responsive&#39;)() { ... }"><code>@css ///.list-ui--responsive
+  @include modifier(&#39;responsive&#39;)() { ... }</code></pre></div></section></section></section><footer class="footer" role="contentinfo"><div class="container"><div class="footer__project-info project-info"><!-- Name and URL --><span class="project-info__name">Px-table-view</span><!-- Version --> <span class="project-info__version">- v0.0.1</span><!-- License --> <span class="project-info__license">, under ISC</span></div><a class="footer__watermark" href="http://sassdoc.com"><img src="assets/images/logo_light_inline.svg" alt="SassDoc Logo"></a></div></footer></article><script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script><script>window.jQuery || document.write('<script src="assets/js/vendor/jquery.min.js"><\/script>')</script><script src="assets/js/main.min.js"></script></body></html>

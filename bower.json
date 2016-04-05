@@ -1,0 +1,37 @@
+{
+  "name": "px-table-view",
+  "version": "0.0.1",
+  "authors": [
+    "Jonnie Spratley <jonnie.spratley@ge.com>"
+  ],
+  "main": [
+    "px-table-view.html"
+  ],
+  "keywords": [
+    "px",
+    "px-mobile"
+  ],
+
+  "ignore": [
+    ".*",
+    "npm-debug.log",
+    "Gruntfile.js",
+    "sass",
+    "bower_components",
+    "node_modules",
+    "test"
+  ],
+  "dependencies": {
+    "polymer": "latest",
+    "px-theme": "https://github.com/PredixDev/px-theme.git#~0.4.0"
+  },
+  "devDependencies": {
+    "iron-component-page": "PolymerElements/iron-component-page#~v1.1.0",
+    "px-meta-buttons-design": "https://github.com/PredixDev/px-meta-buttons-design.git#~0.5.2",
+    "px-meta-lists-design": "https://github.com/PredixDev/px-meta-lists-design.git#~0.3.2",
+    "px-forms-design": "https://github.com/PredixDev/px-forms-design.git#~0.3.11",
+    "px-starter-kit-design": "https://github.com/PredixDev/px-starter-kit-design.git#~0.4.9",
+    "px-mobile-mixin-designs": "https://github.build.ge.com/PredixComponents/px-mobile-mixin-designs.git",
+    "px-example": "https://github.build.ge.com/PredixComponents/px-example.git"
+  }
+}

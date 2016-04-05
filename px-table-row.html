@@ -1,0 +1,180 @@
+<link rel="import" href="px-table-row-action-button.html">
+<link rel="import" href="px-table-row-swipe-behavior.html" />
+<!--
+## Usage
+To use:
+
+```
+<px-table-row title="Item Label"></px-table-row>
+```
+@element component.html
+@blurb pxm-list-item
+@demo demo.html
+@homepage index.html
+-->
+<dom-module id="px-table-row">
+  <style>
+    :host{
+      display:block;
+      width: 100%;
+    }
+    :host  .flex {
+      position: relative;
+      display: -ms-flexbox;
+      display: -webkit-flex;
+      display: flex;
+    }
+    :host .list-item__actions--underlay {
+      position: absolute;
+      right: 0;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: row;
+      flex-direction: row-reverse;
+    }
+    :host .swipe-content {
+      width: 100%;
+      transform-style: preserve-3d;
+      backface-visibility: hidden;
+    }
+    :host .cubic-bezier {
+      -webkit-transition: -webkit-transform .8s cubic-bezier(.10, .70, .10, 1) .5s;
+      transition: transform .8s cubic-bezier(.10, .70, .10, 1) .5s;
+    }
+  </style>
+  <template>
+
+    <div id="content" on-track="handleTrack" on-down="handleDown" on-up="handleUp">
+
+      <!-- list-item__actions -->
+      <div class="list-item__actions--underlay">
+        <content select="px-table-row-action-button"></content>
+
+        <!-- list-item__delete-btn -->
+        <template is="dom-if" if="{{editMode}}">
+          <button class="btn btn--bare list-item__delete-btn" on-click="_handleRemoveItem">
+            <i class="fa fa-minus-circle fa-lg color-red"></i>
+          </button>
+        </template>
+      </div>
+
+      <!-- image -->
+      <template is="dom-if" if="{{item.image}}">
+        <div class="list-item__media list-item__media--image">
+          <img src$="{{item.image}}" alt="{{item.title}}">
+        </div>
+      </template>
+
+      <!-- icon -->
+      <template is="dom-if" if="{{item.icon}}">
+        <div class="list-item__media list-item__media--icon">
+          <i class$="{{item.icon}}"></i>
+        </div>
+      </template>
+
+      <!-- List Item Content -->
+      <div class="list-item__content">
+
+        <!-- label2 -->
+        <template is="dom-if" if="{{item.label2}}">
+          <span class="list-item__content__label list-item__content__label--left">{{item.label2}}</span>
+        </template>
+
+        <!-- title -->
+        <template is="dom-if" if="{{item.title}}">
+          <div class="list-item__content__title">{{item.title}}</div>
+        </template>
+
+        <!-- body -->
+        <template is="dom-if" if="{{item.body}}">
+          <div class="list-item__content__body">{{item.body}}</div>
+        </template>
+
+        <!-- label1 -->
+        <template is="dom-if" if="{{item.label1}}">
+          <span class="list-item__content__label list-item__content__label--right">{{item.label1}}</span>
+        </template>
+
+      </div>
+
+      <!-- reorder -->
+      <template is="dom-if" if="{{orderMode}}">
+        <button class="btn btn--bare list-item__reorder-btn" on-click="_handleReorderItem">
+          <i class="icon fa ion-drag fa-lg muted"></i>
+        </button>
+      </template>
+      <!-- content -->
+      <content></content>
+    </div>
+
+  </template>
+  <script>
+    Polymer({
+      is: 'px-table-row',
+      behaviors: [px.behaviors.ListViewItemSwiper],
+      properties: {
+        //The list item object.
+        item: {
+          type: Object,
+          value: {}
+        },
+        //The title to set on the list item.
+        title: {
+          type: String
+        },
+        //The body to set on the list item.
+        body: {
+          type: String
+        },
+        //The image to set on the list item.
+        image: {
+          type: String
+        },
+        //The icon to set on the list item.
+        icon: {
+          type: String
+        },
+        //If editMode is true then this item displays a delete icon.
+        editMode: {
+          type: Boolean
+        },
+        //If orderMode is true then this item displays a order icon.
+        orderMode: {
+          type: Boolean
+        },
+        //If actionable is true then this item responds to swipeleft/swiperight events.
+        actionable: {
+          type: Boolean
+        }
+      },
+      attached: function() {
+        if (this.title) {
+          this.set('item.title', this.title);
+        }
+        if (this.body) {
+          this.set('item.body', this.body);
+        }
+        if (this.image) {
+          this.set('item.image', this.image);
+        }
+        if (this.icon) {
+          this.set('item.icon', this.icon);
+        }
+        if (this.actionable) {
+          //this.parent.toggleClass('list-item--actionable');
+        }
+      },
+      _handleRemoveItem: function(e) {
+        e.preventDefault();
+        console.log('handleRemoveItem', e);
+        return false;
+      },
+      _handleReorderItem: function(e) {
+        e.preventDefault();
+        console.log('handleReorderItem', e);
+        return false;
+      }
+    });
+  </script>
+</dom-module>

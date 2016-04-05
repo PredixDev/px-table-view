@@ -1,0 +1,182 @@
+///
+/// Sass for the Predix notion of the my-px-comp component
+/// THIS FILE SHOULD CONTAIN ONLY RULES SPECIFIC TO PREDIX BRANDING
+/// common/abstract rules go in my-px-comp-sketch.scss, not in this file.
+/// @group px
+/// @author Jonnie Spratley
+/*
+ * Copyright (c) 2014 GE Global Research. All rights reserved.
+ *
+ * The copyright to the computer software herein is the property of
+ * GE Global Research. The software may be used and/or copied only
+ * with the written permission of GE Global Research or in accordance
+ * with the terms and conditions stipulated in the agreement/contract
+ * under which the software has been supplied.
+ */
+///
+//@import "px-colors-design/_settings.colors.scss";
+///
+@import "px-table-view-sketch.scss";
+
+///Mixins
+@import "mixins";
+
+///Variables
+@import "variables";
+
+
+
+.color-white {
+  color: $white;
+}
+
+.color-red {
+  color: $red;
+}
+
+.color-blue {
+  color: $blue;
+}
+
+.color-orange {
+  color: $orange;
+}
+
+.color-gray {
+  color: $gray;
+}
+
+.background-color-gray {
+  background-color: $gray;
+}
+
+.background-color-red {
+  background-color: $red;
+}
+
+.background-color-orange {
+  background-color: $orange;
+}
+
+.background-color-blue {
+  background-color: $blue;
+}
+
+///
+.action-btns {
+
+  ///
+  .btn {
+    color: #fff !important;
+    border-radius: 0;
+    padding: 10px 0;
+    i {
+      display: block;
+    }
+  }
+
+  ///
+  .btn-delete {
+    @include actionButton($red);
+  }
+
+  ///
+  .btn-flag {
+    @include actionButton($orange);
+  }
+
+  ///
+  .btn-more {
+    @include actionButton($blue);
+  }
+}
+
+///
+///
+///
+///
+.table-view,
+.list-ui {
+  padding: 0;
+  margin: 0;
+  position: relative;
+  list-style-type: none;
+  text-align: left;
+  user-select: none;
+  border: none;
+  line-height: normal;
+  cursor: default;
+  //background-color: $table-background-color;
+  transition: transform 500ms ease;
+
+  @include scrollable();
+  //border-top: 1px solid $list-border-color;
+  //border-bottom: 1px solid $list-border-color;
+  /// List Modifiers
+  ///--------------------------------
+
+  ///.list-ui--responsive
+  @include modifier('responsive') {
+    @include n-columns(300px, 0, true, 4);
+  }
+
+  ///.list-ui--inset
+  @include modifier('inset') {
+    background-image: none;
+    border: 1px solid $table-row-border-color;
+    border-radius: 4px;
+    margin-left: 8px;
+    margin-right: 8px;
+  }
+
+  ///.list-ui--rev
+  @include modifier('rev') {
+    direction: rtl;
+  }
+
+  ///.list-ui--flush
+  @include modifier('flush') {
+    padding: 0;
+  }
+  ///.list-ui--tiny
+  @include modifier('tiny') {
+    > .list-item {
+      padding: 0.2rem;
+    }
+  }
+  ///.list-ui--small
+  @include modifier('small') {
+    > .list-item {
+      padding: 0.5rem;
+    }
+  }
+  ///.list-ui--flush
+  @include modifier('flush') {
+    > .list-item {
+      padding: 0;
+    }
+  }
+  ///.list-ui--regular
+  @include modifier('regular') {
+    > .list-item {
+      padding: 1rem;
+    }
+  }
+  ///.list-ui--large
+  @include modifier('large') {
+    > .list-item {
+      padding: 1.5rem;
+    }
+  }
+
+  ///.list-ui--avatars
+  @include modifier('avatars') {
+    > .list-item {
+      padding: 0.5rem;
+      img {
+        height: 32px;
+        border-radius: 6px;
+      }
+    }
+  }
+}

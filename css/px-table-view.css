@@ -1,0 +1,407 @@
+@charset "UTF-8";
+/**
+bem model:
+
+  .table-row-ui
+    --inset
+    --small
+    --large
+    --regular
+    .table-row-item
+      --actionable
+
+      .table-row-item__media
+        --left
+        --right
+        __image
+        __icon
+
+      .table-row-item__content
+        .table-row-item__content__title
+          --small
+          --large
+
+        .table-row-item__content__body
+
+        .table-row-item__content__label
+          --left
+          --right
+
+*/
+.table-row {
+  width: 100%;
+  font-size: 1.1rem;
+  position: relative;
+  box-sizing: border-box;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  transition: 0.3s;
+  border-color: #ccc; }
+  .table-row h2,
+  .table-row h3,
+  .table-row h4,
+  .table-row h4,
+  .table-row h5,
+  .table-row p {
+    margin: 0;
+    padding: 0;
+    font-weight: 500; }
+  .table-row:active {
+    transition: none; }
+  .table-row:last-child {
+    border-bottom: none; }
+  .table-row:first-child:last-child {
+    border-top: none;
+    border-bottom: none; }
+  .table-row > a {
+    text-decoration: none;
+    color: #111;
+    transition: background-color 0.2s linear; }
+    .table-row > a:active {
+      color: #fff !important;
+      background-color: #0a9ec1;
+      transition: none; }
+    .table-row > a:hover {
+      transition: none; }
+  .table-row__media {
+    display: table-cell;
+    vertical-align: middle;
+    padding-right: 1rem;
+    padding-left: 0.1rem; }
+    .table-row__media--image {
+      padding-right: 1rem;
+      padding-left: 0.1rem; }
+      .table-row__media--image > img {
+        display: block;
+        max-width: 80px;
+        max-height: 80px; }
+    .table-row__media--icon {
+      padding-right: 0.5rem;
+      padding-left: 0.5rem; }
+  .table-row__content {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    display: table-cell;
+    vertical-align: middle;
+    width: 100%; }
+    .table-row__content > :last-child {
+      margin-bottom: 0; }
+    .table-row__content__title {
+      padding: 0;
+      font-size: 1.1rem;
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none; }
+      .table-row__content__title--small {
+        font-size: 0.8rem; }
+      .table-row__content__title--large {
+        font-size: 1.5rem; }
+    .table-row__content__label {
+      color: #d9d9d9;
+      position: absolute;
+      top: 39%;
+      float: right;
+      right: 8%; }
+      .table-row__content__label--right {
+        float: right;
+        right: 8%; }
+      .table-row__content__label--left {
+        float: left;
+        position: relative;
+        left: 0; }
+  .table-row--header {
+    background-color: #bfbfbf;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    min-height: 30px;
+    background-color: #f5f5f5;
+    color: #222;
+    font-weight: 500; }
+  .table-row__icon {
+    padding: 0; }
+    .table-row__icon--left {
+      float: left; }
+    .table-row__icon--right {
+      float: right; }
+  .table-row__reorder-btn {
+    float: right;
+    position: absolute;
+    right: 5%;
+    top: 25%; }
+  .table-row--tappable {
+    transition: background-color 0.2s linear; }
+    .table-row--tappable:active {
+      color: #fff !important;
+      background-color: #0a9ec1;
+      transition: none; }
+    .table-row--tappable:hover {
+      transition: none; }
+  .table-row--chevron {
+    transition: background-color 0.2s linear;
+    overflow: hidden;
+    transition: background-color 0.2s linear; }
+    .table-row--chevron:active {
+      background-color: #0a9ec1;
+      transition: none; }
+    .table-row--chevron:before {
+      position: absolute;
+      right: 16px;
+      top: 50%;
+      color: #ccc;
+      line-height: 28px;
+      height: 28px;
+      -webkit-transform: translateY(-50%);
+      transform: translateY(-50%);
+      font-size: 28px;
+      font-family: Ionicons;
+      font-style: normal;
+      font-weight: normal;
+      content: ""; }
+    .table-row--chevron:hover {
+      transition: none; }
+    .table-row--chevron:active {
+      color: #fff !important;
+      background-color: #0a9ec1;
+      transition: none; }
+    .table-row--chevron:hover {
+      transition: none; }
+  .table-row--actionable__content {
+    transition: 0.3s;
+    position: relative;
+    z-index: 10; }
+  .table-row__actions {
+    overflow: hidden;
+    -webkit-transform-style: preserve-3d;
+    transform-style: preserve-3d;
+    position: absolute;
+    top: 0;
+    height: 100%;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex; }
+    .table-row__actions--left {
+      left: 0;
+      -webkit-transform: translateX(-100%);
+      transform: translateX(-100%); }
+    .table-row__actions--right {
+      right: 0;
+      -webkit-transform: translateX(100%);
+      transform: translateX(100%); }
+    .table-row__actions a {
+      padding: 0 30px;
+      color: #fff;
+      background: #c7c7cc;
+      display: -webkit-flex;
+      display: -ms-flexbox;
+      display: flex;
+      -webkit-align-items: center;
+      -ms-flex-align: center;
+      align-items: center;
+      position: relative;
+      left: 0; }
+
+/*
+ * Copyright (c) 2014 GE Global Research. All rights reserved.
+ *
+ * The copyright to the computer software herein is the property of
+ * GE Global Research. The software may be used and/or copied only
+ * with the written permission of GE Global Research or in accordance
+ * with the terms and conditions stipulated in the agreement/contract
+ * under which the software has been supplied.
+ */
+/*
+ * Copyright (c) 2016 GE Global Research. All rights reserved.
+ *
+ * The copyright to the computer software herein is the property of
+ * GE Global Research. The software may be used and/or copied only
+ * with the written permission of GE Global Research or in accordance
+ * with the terms and conditions stipulated in the agreement/contract
+ * under which the software has been supplied.
+ */
+/*
+THIS FILE SHOULD CONTAIN ONLY ABSTRACT/'SKETCH' THEME RULES, NOT SPECIFIC TO PREDIX BRANDING
+Predix branding rules go in my-px-comp-predix.scss, not in this file.
+*/
+.color-white {
+  color: #fff; }
+
+.color-red {
+  color: #FE3F35; }
+
+.color-blue {
+  color: #177efb; }
+
+.color-orange {
+  color: #fd9427; }
+
+.color-gray {
+  color: #c7c7cc; }
+
+.background-color-gray {
+  background-color: #c7c7cc; }
+
+.background-color-red {
+  background-color: #FE3F35; }
+
+.background-color-orange {
+  background-color: #fd9427; }
+
+.background-color-blue {
+  background-color: #177efb; }
+
+.action-btns .btn {
+  color: #fff !important;
+  border-radius: 0;
+  padding: 10px 0; }
+  .action-btns .btn i {
+    display: block; }
+
+.action-btns .btn-delete {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  transition: background-color 0.2s linear;
+  background-color: #FE3F35;
+  border: none;
+  outline: none; }
+  .action-btns .btn-delete:active {
+    background-color: #cc0b01; }
+  .action-btns .btn-delete:hover {
+    background-color: #e50c01; }
+
+.action-btns .btn-flag {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  transition: background-color 0.2s linear;
+  background-color: #fd9427;
+  border: none;
+  outline: none; }
+  .action-btns .btn-flag:active {
+    background-color: #bc6102; }
+  .action-btns .btn-flag:hover {
+    background-color: #d66e02; }
+
+.action-btns .btn-more {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  transition: background-color 0.2s linear;
+  background-color: #177efb;
+  border: none;
+  outline: none; }
+  .action-btns .btn-more:active {
+    background-color: #034ea9; }
+  .action-btns .btn-more:hover {
+    background-color: #035ac2; }
+
+.table-view,
+.list-ui {
+  padding: 0;
+  margin: 0;
+  position: relative;
+  list-style-type: none;
+  text-align: left;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  border: none;
+  line-height: normal;
+  cursor: default;
+  transition: -webkit-transform 500ms ease;
+  transition: transform 500ms ease;
+  transition: transform 500ms ease, -webkit-transform 500ms ease;
+  overflow-y: scroll;
+  /* has to be scroll, not auto */
+  -webkit-overflow-scrolling: touch; }
+  .table-view--responsive,
+  .list-ui--responsive {
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-flex-wrap: wrap;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    margin-left: 0;
+    margin-top: 0; }
+    .table-view--responsive .list-item,
+    .list-ui--responsive .list-item {
+      -webkit-flex: 1 0 300px;
+      -ms-flex: 1 0 300px;
+      flex: 1 0 300px;
+      margin-left: 0;
+      margin-top: 0; }
+      @media (min-width: 600px) {
+        .table-view--responsive .list-item,
+        .list-ui--responsive .list-item {
+          max-width: calc(50% - 0); } }
+      @media (min-width: 900px) {
+        .table-view--responsive .list-item,
+        .list-ui--responsive .list-item {
+          max-width: calc(33.33333% - 0); } }
+      @media (min-width: 1200px) {
+        .table-view--responsive .list-item,
+        .list-ui--responsive .list-item {
+          max-width: calc(25% - 0); } }
+      @media (min-width: 1200px) {
+        .table-view--responsive .list-item,
+        .list-ui--responsive .list-item {
+          min-width: calc(25% - 0); } }
+  .table-view--inset,
+  .list-ui--inset {
+    background-image: none;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin-left: 8px;
+    margin-right: 8px; }
+  .table-view--rev,
+  .list-ui--rev {
+    direction: rtl; }
+  .table-view--flush,
+  .list-ui--flush {
+    padding: 0; }
+  .table-view--tiny > .list-item,
+  .list-ui--tiny > .list-item {
+    padding: 0.2rem; }
+  .table-view--small > .list-item,
+  .list-ui--small > .list-item {
+    padding: 0.5rem; }
+  .table-view--flush > .list-item,
+  .list-ui--flush > .list-item {
+    padding: 0; }
+  .table-view--regular > .list-item,
+  .list-ui--regular > .list-item {
+    padding: 1rem; }
+  .table-view--large > .list-item,
+  .list-ui--large > .list-item {
+    padding: 1.5rem; }
+  .table-view--avatars > .list-item,
+  .list-ui--avatars > .list-item {
+    padding: 0.5rem; }
+    .table-view--avatars > .list-item img,
+    .list-ui--avatars > .list-item img {
+      height: 32px;
+      border-radius: 6px; }
+
+/*
+ * Copyright (c) 2016 GE Global Research. All rights reserved.
+ *
+ * The copyright to the computer software herein is the property of
+ * GE Global Research. The software may be used and/or copied only
+ * with the written permission of GE Global Research or in accordance
+ * with the terms and conditions stipulated in the agreement/contract
+ * under which the software has been supplied.
+ */
+/*
+THIS FILE SHOULD CONTAIN ONLY ABSTRACT/'SKETCH' THEME RULES, NOT SPECIFIC TO PREDIX BRANDING
+Predix branding rules go in my-px-comp-predix.scss, not in this file.
+*/

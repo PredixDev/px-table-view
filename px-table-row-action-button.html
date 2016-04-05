@@ -1,0 +1,26 @@
+<dom-module id="px-table-row-action-button">
+	<style>
+		:host {
+			display: table;
+			height: 100%;
+			padding: 0 5px;
+		}
+
+		.action-button-wrapper {
+			display: table-cell;
+			vertical-align: middle;
+			font-size: 1rem;
+			font-weight: 300;
+		}
+	</style>
+	<template>
+		<div class="action-button-wrapper">
+			<content></content>
+		</div>
+	</template>
+</dom-module>
+<script>
+	Polymer({
+		is: "px-table-row-action-button"
+	});
+</script>

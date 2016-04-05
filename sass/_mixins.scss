@@ -1,0 +1,156 @@
+/// @group px
+/// @author Jonnie Spratley
+///Variables
+@import "variables";
+
+////
+/// Block Element
+/// @access public
+/// @param {String} $element - Element's name
+/// @example scss Block element
+///    .block {
+///      // CSS declarations for .block
+///      @include element('element') {
+///           //CSS declarations for .block__element
+///      }
+///
+///      @include modifier('modifier') {
+///          // CSS declarations for .block--modifier
+///
+///          @include element('element') {
+///              // CSS declarations for .block--modifier__element
+///          }
+///      }
+///   }
+///
+@mixin element($element) {
+  &__#{$element} {
+    @content;
+  }
+}
+/// Block Modifier
+/// @access public
+/// @param {String} $modifier - Modifier's name
+/// @example scss
+///     @include modifier('modifier') {
+///        // CSS declarations for .block--modifier
+///        @include element('element') {
+///           // CSS declarations for .block--modifier__element
+///        }
+///     }
+@mixin modifier($modifier) {
+  &--#{$modifier} {
+    @content;
+  }
+}
+/// @alias element
+@mixin e($element) {
+  @include element($element) {
+    @content;
+  }
+}
+/// @alias modifier
+@mixin m($modifier) {
+  @include modifier($modifier) {
+    @content;
+  }
+}
+
+
+/// Make a list item clickable
+@mixin tableRowClickable($bg, $font) {
+  transition: background-color 0.2s linear;
+  &:active {
+    color: $font !important;
+    background-color: $bg;
+    transition: none;
+  }
+  &:hover {
+    transition: none;
+  }
+  @content;
+}
+
+/// Make a list item have an icon
+@mixin tableRowIcon($icon) {
+  transition: background-color 0.2s linear;
+  overflow: hidden;
+  &:active {
+    //color: $list-item-active-font-color;
+    background-color: $table-row-active-background-color;
+    transition: none;
+  }
+  &:before {
+    position: absolute;
+    right: 16px;
+    top: 50%;
+    color: $table-row-border-color;
+    line-height: 28px;
+    height: 28px;
+    transform: translateY(-50%);
+    font-size: 28px;
+    font-family: Ionicons;
+    font-style: normal;
+    font-weight: normal;
+    content: "#{$icon}";
+  }
+  &:hover {
+    transition: none;
+  }
+  @content;
+}
+
+///Style an action button
+@mixin actionButton($color) {
+  user-select:none;
+  transition: background-color 0.2s linear;
+  background-color: $color;
+  //	border-color: darken($color, 25%);
+  border: none;
+  outline:none;
+  &:active {
+    background-color: darken($color, 20%);
+  }
+
+  &:hover {
+    background-color: darken($color, 15%);
+  }
+  @content;
+}
+
+
+/// Mixin to make list turn into columns on larger screen. Similar to App Store
+/// On iPad there are grid list
+/// On iPhone there grid column
+@mixin n-columns($min-width, $gutter, $last-equal: false, $max-cols: 6) {
+  display: flex;
+  flex-wrap: wrap;
+  margin-left: -$gutter;
+  margin-top: -$gutter;
+  .list-item {
+    flex: 1 0 $min-width;
+    margin-left: $gutter;
+    margin-top: $gutter;
+    @if $last-equal {
+      @for $i from 2 through $max-cols {
+        $screen-width: ($min-width*$i)+($gutter*$i);
+        $column-width: (100%/$i);
+        @media (min-width: $screen-width) {
+          max-width: calc(#{$column-width} - #{$gutter});
+        }
+      }
+      $column-width: (100%/$max-cols);
+      @media (min-width: $min-width*$max-cols) {
+        min-width: calc(#{$column-width} - #{$gutter});
+      }
+    }
+  }
+}
+
+
+/// Scrollable mixin
+@mixin scrollable(){
+  overflow-y: scroll; /* has to be scroll, not auto */
+  -webkit-overflow-scrolling: touch;
+  @content;
+}

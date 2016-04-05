@@ -1,0 +1,127 @@
+/* Styles go here */
+
+html,
+body {
+  background: #eee;
+  padding: 10px;
+}
+pxm-example{
+  width:100%;
+  display:block;
+}
+.example {
+  background: #efeff4;
+  padding: 10px 0;
+  overflow: hidden;
+}
+
+h2 {
+  cursor: pointer;
+  padding: 0 10px;
+  text-transform: uppercase;
+  font-size: 1rem;
+  white-space: nowrap;
+  font-weight: normal;
+  color: #888;
+  text-shadow: 0 1px 1px #fff;
+  margin-top: 2.5em;
+  user-select: none;
+}
+
+
+.padding-10{
+  padding: 10px;
+}
+.btn--full {
+  width: calc(100% - 20px) !important;
+}
+
+
+.green {
+  background: lime;
+}
+
+.purple {
+  background: purple;
+}
+
+.pink {
+  background: pink;
+}
+
+.red {
+  background: #FE3F35;
+}
+
+
+/**
+
+<div class="pink">Large desktop</div>
+<div class="green">Portrait tablet to landscape and desktop</div>
+<div class="blue">Landscape phone to portrait tablet</div>
+<div class="red">Landscape phones and down</div>
+*/
+
+
+/* Large desktop 1200 */
+
+@media (min-width: 75em) {
+  .debug .list-ui {
+    background: pink !important;
+  }
+}
+
+
+/* Portrait tablet to landscape and desktop */
+
+@media (min-width: 48em) and (max-width: 62em) {
+  .debug .list-ui {
+    background: lime !important;
+  }
+}
+
+
+/* Landscape phone to portrait tablet */
+
+@media (max-width: 48em) {
+  .debug .list-ui {
+    background: purple !important;
+  }
+}
+
+
+/* Landscape phones and down */
+
+@media (max-width: 30em) {
+  .debug .list-ui {
+    background: red !important;
+  }
+}
+
+
+/* Large desktop */
+
+@media (min-width: 75em) {
+  .list-ui {}
+}
+
+
+/* Portrait tablet to landscape and desktop */
+
+@media (min-width: 48em) and (max-width: 62em) {
+  .list-ui {}
+}
+
+
+/* Landscape phone to portrait tablet */
+
+@media (max-width: 48em) {
+  .list-ui {}
+}
+
+
+/* Landscape phones and down */
+
+@media (max-width: 30em) {
+  .list-ui {}
+}
