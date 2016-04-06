@@ -1,42 +1,51 @@
-/* Styles go here */
+.box {
+    background: #fff;
+    margin: 10px;
+  }
 
-html,
-body {
-  background: #eee;
-  padding: 10px;
-}
-pxm-example{
-  width:100%;
-  display:block;
-}
-.example {
-  background: #efeff4;
-  padding: 10px 0;
-  overflow: hidden;
-}
+  .color-white {
+    color: #fff;
+  }
 
-h2 {
-  cursor: pointer;
-  padding: 0 10px;
-  text-transform: uppercase;
-  font-size: 1rem;
-  white-space: nowrap;
-  font-weight: normal;
-  color: #888;
-  text-shadow: 0 1px 1px #fff;
-  margin-top: 2.5em;
-  user-select: none;
-}
+  .background-color-gray {
+    background-color: #c7c7cc;
+  }
 
+  .background-color-red {
+    background-color: #fb413d;
+  }
 
-.padding-10{
-  padding: 10px;
-}
-.btn--full {
-  width: calc(100% - 20px) !important;
-}
+  .background-color-orange {
+    background-color: #fd9427;
+  }
+
+  .background-color-blue {
+    background-color: #177efb;
+  }
+
+  html, body {
+     background: #efeff4;
+  }
+  .demo{
+
+    padding: 10px;
+  }
 
 
+  .examples h2 {
+    padding: 20px 5px 10px;
+    text-transform: uppercase;
+    font-size: 1.2rem;
+    white-space: nowrap;
+    font-weight: normal;
+    color: #888;
+    text-shadow: 0 1px 1px #fff;
+    margin-top: 20px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+  }
 .green {
   background: lime;
 }

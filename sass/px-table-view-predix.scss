@@ -19,164 +19,851 @@
 @import "px-table-view-sketch.scss";
 
 ///Mixins
-@import "mixins";
+//@import "mixins";
 
 ///Variables
-@import "variables";
+//@import "variables";
 
 
+$red: #FE3F35;
+$blue: #177efb;
+$gray: #c7c7cc;
+$orange: #fd9427;
+$white: #fff;
+$red: #FE3F35;
+$blue: #177efb;
+$gray: #c7c7cc;
+$orange: #fd9427;
+$white: #fff;
 
-.color-white {
-  color: $white;
+///Table View Var
+$list-font-color: #111;
+$list-font-size: 1.1rem;
+$list-border-color: #ccc;
+$list-background-color: #fff;
+$table-row-active-background-color: #d9d9d9;
+$table-row-active-font-color: #fff;
+$table-row-label-color: #808080;
+$table-row-detail-icon-color: #429cfc;
+$table-row-header-background-color: #F2F2F2;
+$table-row-header-font-color: #808080;
+$table-row-header-text-transform: uppercase;
+$table-row-checkbox-font-color: #fff;
+$table-row-checkbox-background-color: #1284ff;
+
+@mixin element($element) {
+	&__#{$element} {
+		@content;
+	}
 }
 
-.color-red {
-  color: $red;
+@mixin modifier($modifier) {
+	&--#{$modifier} {
+		@content;
+	}
 }
 
-.color-blue {
-  color: $blue;
+@mixin e($element) {
+	@include element($element) {
+		@content;
+	}
 }
 
-.color-orange {
-  color: $orange;
+@mixin m($modifier) {
+	@include modifier($modifier) {
+		@content;
+	}
 }
 
-.color-gray {
-  color: $gray;
+@mixin clearfix() {
+	&:before,
+	&:after {
+		display: table;
+		content: " ";
+	}
+	&:after {
+		clear: both;
+	}
+	@content;
 }
 
-.background-color-gray {
-  background-color: $gray;
+@mixin scrollable() {
+	overflow-y: scroll;
+	overflow-y: auto;
+	-webkit-overflow-scrolling: touch;
+	@content;
 }
 
-.background-color-red {
-  background-color: $red;
+@mixin listItemClickable($bg, $font) {
+	transition: background-color 0.2s linear;
+	&:active {
+
+		background-color: $table-row-active-background-color;
+	}
+	&:hover {
+		transition: none;
+	 -webkit-transition: none;
+	}
+	@content;
 }
 
-.background-color-orange {
-  background-color: $orange;
+
+@mixin listItemIcon($icon, $iconColor: $list-border-color, $position:'right') {
+	transition: background-color 0.2s linear;
+	overflow: hidden;
+	//	background-color: rgba(0,0,0,.5);
+	&:active {
+		background-color: $table-row-active-background-color;
+		transition: none;
+	}
+	&:before {
+		transform: translateY(-50%);
+		font-style: normal;
+		font-weight: normal;
+		position: absolute;
+    right: 12px;
+		top: 50%;
+		color: $iconColor;
+		line-height: 28px;
+		height: 28px;
+		font-size: 28px;
+		font-family: Ionicons;
+		content: "#{$icon}";
+	}
+	&:hover {
+		transition: none;
+	}
 }
 
-.background-color-blue {
-  background-color: $blue;
+@mixin actionButton($color) {
+	user-select: none;
+	transition: background-color 0.2s linear;
+	background-color: $color;
+	border: none;
+	outline: none;
+	&:active {
+		background-color: darken($color, 20%);
+	}
+	&:hover {
+		background-color: darken($color, 15%);
+	}
+	@content;
+}
+
+@mixin n-columns($min-width, $gutter, $last-equal: false, $max-cols: 6) {
+	display: flex;
+	flex-wrap: wrap;
+	margin-left: -$gutter;
+	margin-top: -$gutter;
+	.table-row {
+		flex: 1 0 $min-width;
+		margin-left: $gutter;
+		margin-top: $gutter;
+		@if $last-equal {
+			@for $i from 2 through $max-cols {
+				$screen-width: ($min-width*$i)+($gutter*$i);
+				$column-width: (100%/$i);
+				@media (min-width: $screen-width) {
+					max-width: calc(#{$column-width} - #{$gutter});
+				}
+			}
+			$column-width: (100%/$max-cols);
+			@media (min-width: $min-width*$max-cols) {
+				min-width: calc(#{$column-width} - #{$gutter});
+			}
+		}
+	}
+}
+
+@mixin switch() {
+	.switch {
+		position: relative;
+		display: inline-block;
+		vertical-align: top;
+		box-sizing: border-box;
+		background-clip: padding-box;
+		position: relative;
+		overflow: hidden;
+		font-size: 17px;
+		padding: 0 20px;
+		border: none;
+		overflow: visible;
+		width: 51px;
+		height: 32px;
+		z-index: 0;
+		text-align: left;
+		input {
+			position: absolute;
+			overflow: hidden;
+			right: 0;
+			top: 0;
+			left: 0;
+			bottom: 0;
+			padding: 0;
+			border: 0;
+			opacity: 0.001;
+			z-index: 1;
+			vertical-align: top;
+			outline: none;
+			width: 100%;
+			height: 100%;
+			margin: 0;
+			appearance: none;
+			width: 51px;
+			height: 44px;
+			margin-top: -6px;
+			top: 0;
+			left: 0;
+			transition: all 0.2s linear;
+		}
+
+		@include element('toggle') {
+			background-color: #ddd;
+			position: absolute;
+			top: 0;
+			left: 0;
+			right: 0;
+			bottom: 0;
+			border-radius: 30px;
+			transition-property: all;
+			transition-duration: 0.35s;
+			transition-timing-function: ease-out;
+			&:before {
+				box-sizing: border-box;
+				background-clip: padding-box;
+				position: absolute;
+				content: '';
+				border-radius: 28px;
+				height: 28px;
+				width: 28px;
+				background-color: #fff;
+				left: 2px;
+				top: 2px;
+				transition-property: all;
+				transition-duration: 0.35s;
+				transition-timing-function: cubic-bezier(0.5, 1.6, 0.5, 1);
+			}
+		}
+
+		input:checked + .toggle {
+			background-color: #4cd964;
+		}
+		input:checked + .toggle:before {
+			transform: translateX(18px);
+		}
+		input:not(:checked) + .toggle:before {
+			transform: translateX(0px);
+		}
+		input:disabled + .toggle {
+			opacity: 0.3;
+			cursor: default;
+			pointer-events: none;
+		}
+		&.table-row {
+			float: right;
+			margin-top: 6px;
+			margin-right: 10px;
+		}
+	}
+}
+
+@include switch();
+
+/// -------------------------
+/// Table View
+///
+/*
+bem:
+
+  .table-view
+    --inset
+    --small
+    --large
+    --regular
+
+    .table-row
+      --actionable
+      --tappable
+      --nav-right
+      --nav-left
+      --disclosure
+
+      .table-row__media
+        --left
+        --right
+        __image
+        __icon
+
+      .table-row__content
+        .table-row__content__title
+          --small
+          --large
+
+        .table-row__content__body
+          --small
+          --large
+
+        .table-row__content__label
+          --left
+          --right
+*/
+$table-view-responsive-row-width: 240px;
+$table-view-responsive-row-gutters: 0;
+$table-view-responsive-row-max: 4;
+
+///
+.table-view {
+	@include clearfix();
+	@include scrollable();
+
+	border: none;
+	background: transparent;
+	background-color: $list-background-color;
+	cursor: default;
+	list-style-type: none;
+	line-height: normal;
+	margin: 0;
+	padding: 0;
+	position: relative;
+	text-align: left;
+	transition: transform 500ms ease;
+
+	/// Modifiers
+	///--------------------------------
+	///.table-view--responsive
+	@include modifier('responsive') {
+		@include n-columns($table-view-responsive-row-width, $table-view-responsive-row-gutters, true, $table-view-responsive-row-max);
+	}
+	///.table-view--inset
+	@include modifier('inset') {
+		background-image: none;
+		border: 1px solid $list-border-color;
+		border-radius: 4px;
+		margin-left: 8px;
+		margin-right: 8px;
+	}
+	///.table-view--rev
+	@include modifier('rev') {
+		direction: rtl;
+	}
+	///.table-view--flush
+	@include modifier('flush') {
+		padding: 0;
+	}
+	///.table-view--tiny
+	@include modifier('tiny') {
+		> .table-row {
+			padding: 0.2rem;
+		}
+	}
+	///.table-view--small
+	@include modifier('small') {
+		> .table-row {
+			padding: 0.5rem;
+		}
+	}
+	///.table-view--flush
+	@include modifier('flush') {
+		> .table-row {
+			padding: 0;
+		}
+	}
+	///.table-view--regular
+	@include modifier('regular') {
+		> .table-row {
+			padding: 1rem;
+		}
+	}
+	///.table-view--large
+	@include modifier('large') {
+		> .table-row {
+			padding: 1.5rem;
+		}
+	}
+	///.table-view--huge
+	@include modifier('huge') {
+		> .table-row {
+			padding: 3rem;
+		}
+	}
+	///.table-view--avatars
+	@include modifier('avatars') {
+		> .table-row {
+			padding: 0.5rem;
+			img {
+				height: 32px;
+				border-radius: 6px;
+			}
+		}
+	}
 }
 
 ///
-.action-btns {
+.table-row {
+	@include clearfix();
+	min-height: 44px;
+	line-height: 44px;
+	width: 100%;
+	font-size: $list-font-size;
+	border-color: $list-border-color;
+	box-sizing: border-box;
+	background-color: transparent;
+	position: relative;
+	overflow:hidden;
+	display: block;
+	margin: 0;
+	padding: 0 10px 0 10px;
+	transition: background-color 0.2s linear;
+	h1, h2, h3, h4, h5, h6, p {
+		margin: 0;
+		padding: 0;
+		line-height: normal;
+	}
+	*:not(input), *:not(textarea), *:not(select) {
+		user-select: none;
+		-webkit-user-select: none;
+	}
+	&:active {
+		transition: none;
+		background: $table-row-active-background-color;
+	}
+	&:first-child {
+	}
+	&:last-child {
+		border-bottom: none;
+	}
+	&:first-child:last-child {
+		border-top: none;
+		border-bottom: none;
+	}
+	&:not(:last-child) {
+		border-bottom: 1px solid $list-border-color;
+	}
+	> a {
+		text-decoration: none;
+		color: $list-font-color;
+		@include listItemClickable($table-row-active-background-color, $table-row-active-font-color);
+	}
 
-  ///
-  .btn {
-    color: #fff !important;
-    border-radius: 0;
-    padding: 10px 0;
-    i {
-      display: block;
-    }
-  }
+	///.table-row__media
+	@include element('media') {
+		display: table-cell;
+		vertical-align: middle;
+		padding-right: 1rem;
+		padding-left: 0.1rem;
 
-  ///
-  .btn-delete {
-    @include actionButton($red);
-  }
+		@include modifier('left') {
+			//float: left !important;
+		}
+		@include modifier('right') {
+			float: right !important;
+		}
 
-  ///
-  .btn-flag {
-    @include actionButton($orange);
-  }
+		@include modifier('toggle') {
+			padding-top: 0.5rem;
+			padding-left: 0.5rem;
+		}
+		@include modifier('image') {
+			//	padding-top: .1rem;
+			padding-right: 1rem;
+			padding-left: .1rem;
+			img {
+				display: block;
+				max-width: 80px;
+				max-height: 80px;
+			}
+		}
+		@include modifier('icon') {
+			padding-right: 0.5rem;
+			padding-left: 0.5rem;
+		}
+	}
 
-  ///
-  .btn-more {
-    @include actionButton($blue);
-  }
+	@include modifier('icon-left') {
+		.table-row__media--icon {
+			float: left !important;
+		}
+	}
+	@include modifier('icon-right') {
+		.table-row__media--icon {
+			float: right !important;
+		}
+	}
+	@include modifier('image-left') {
+		.table-row__media--image {
+			float: left !important;
+		}
+	}
+	@include modifier('image-right') {
+		.table-row__media--image {
+			float: right !important;
+			margin-right: 1rem;
+		}
+	}
+
+	///.table-row__content
+	@include element('content') {
+		display: table-cell;
+		vertical-align: middle;
+		width: 100%;
+		user-select: none;
+		-webkit-user-select: none;
+
+		@include element('title') {
+			padding: 0;
+			font-size: 1.1rem;
+			display: block;
+			user-select: none;
+			-webkit-user-select: none;
+			@include modifier('small') {
+				font-size: 0.8rem;
+			}
+			@include modifier('large') {
+				font-size: 1.5rem;
+			}
+		}
+		@include element('body') {
+			display: block;
+			line-height: normal;
+		}
+	}
+
+	///.table-row__label
+	@include element('label') {
+		color: $table-row-label-color;
+		@include modifier('right') {
+			float: right;
+			margin-right: 6%;
+		}
+		@include modifier('left') {
+			float: left;
+			position: relative;
+			margin-left: 5%;
+		}
+	}
+
+	///.table-row__icon
+	@include element('icon') {
+		padding: 0;
+		@include modifier('left') {
+			float: left;
+		}
+		@include modifier('right') {
+			float: right;
+		}
+	}
+
+	///.table-row__reorder-btn
+	@include element('reorder-btn') {
+		float: right;
+		//font-size: 1rem;
+		position: absolute;
+		right: 5%;
+		top: 25%;
+	}
+
+	//.table-row--header
+	@include modifier('header') {
+		padding-top: 15px !important;
+		padding-bottom: 15px !important;
+		box-sizing: border-box;
+		font-size: 15px;
+		font-weight: 500;
+		background-color: $table-row-header-background-color;
+		color: $table-row-header-font-color;
+		text-transform: $table-row-header-text-transform;
+		text-shadow: none;
+		border-top: none;
+		border-bottom: none !important;
+		min-height: 24px !important;
+		line-height: 24px !important;
+
+	}
+
+	///.table-row--tappable
+	@include modifier('tappable') {
+		@include listItemClickable($table-row-active-background-color, $table-row-active-font-color);
+	}
+
+	///.table-row--chevron
+	@include modifier('chevron') {
+		@include listItemIcon('\f3d3', $list-border-color);
+		@include listItemClickable($table-row-active-background-color, $table-row-active-font-color);
+	}
+
+	///.table-row--detail
+	@include modifier('detail') {
+		@include listItemIcon('\f44c', #007aff);
+		@include listItemClickable($table-row-active-background-color, $table-row-active-font-color);
+	}
+
+	///.table-row--order
+	@include modifier('order') {
+		@include listItemIcon('\f421', #888);
+	}
+
+	///.table-row--edit
+	@include modifier('edit') {
+		@include listItemIcon('\f464', $red);
+	}
+
+	@include modifier('nav') {
+		@include listItemClickable($table-row-active-background-color, $table-row-active-font-color);
+		@include modifier('left') {
+			@include listItemIcon('\f3d2');
+		}
+		@include modifier('right') {
+			@include listItemIcon('\f3d3');
+		}
+	}
+
+
+	///.table-row--actionable
+	@include modifier('actionable') {
+		@include element('content') {
+			transition: 0.3s;
+			position: relative;
+			z-index: 10;
+		}
+	}
+
+	///.table-row__actions
+	@include element('actions') {
+		overflow: hidden;
+		transform-style: preserve-3d;
+		position: absolute;
+		top: 0;
+		height: 100%;
+		display: flex;
+		flex-direction: row;
+		justify-content: space-between;
+		transition: transform 200ms ease-out;
+		will-change: transform;
+		z-index: 0;
+		width: auto;
+
+		//Button
+		@include element('button') {
+			cursor:pointer;
+
+			margin: 0;
+			color: #fff !important;
+			border-radius: 0;
+			padding: 2px 15px;
+			min-width: 50px;
+			i {
+				display: block;
+			}
+		}
+		.btn-delete {
+			@include actionButton($red);
+		}
+		.btn-flag {
+			@include actionButton($orange);
+		}
+		.btn-more {
+			@include actionButton($blue);
+		}
+		.btn-info {
+			@include actionButton(#848484);
+		}
+
+
+		//left actions
+		@include modifier('left') {
+			left: 0;
+			transform: translateX(-110%);
+
+			//Visible actions
+			&.is-visible {
+				transform: translateX(0%);
+
+				 .table-row__actions__button{
+					transition: width 300ms ease-out;
+					width: auto;
+				}
+			}
+		}
+
+		//right actions
+		@include modifier('right') {
+			right: 0;
+			transform: translateX(110%);
+
+			&.is-visible {
+				transform: translateX(0%);
+			}
+		}
+
+	}
+
 }
 
-///
-///
-///
-///
-.table-view,
-.list-ui {
-  padding: 0;
-  margin: 0;
-  position: relative;
-  list-style-type: none;
-  text-align: left;
-  user-select: none;
-  border: none;
-  line-height: normal;
-  cursor: default;
-  //background-color: $table-background-color;
-  transition: transform 500ms ease;
+.switch {
+	float: right;
+	position: absolute;
+	margin-top: -25px;
+	right: 3%;
 
-  @include scrollable();
-  //border-top: 1px solid $list-border-color;
-  //border-bottom: 1px solid $list-border-color;
-  /// List Modifiers
-  ///--------------------------------
+}
 
-  ///.list-ui--responsive
-  @include modifier('responsive') {
-    @include n-columns(300px, 0, true, 4);
-  }
+.switch--table-row {
+	float: right;
+	margin-top: 6px;
+	margin-right: 10px;
+}
 
-  ///.list-ui--inset
-  @include modifier('inset') {
-    background-image: none;
-    border: 1px solid $table-row-border-color;
-    border-radius: 4px;
-    margin-left: 8px;
-    margin-right: 8px;
-  }
+///Checkbox
+.table-row {
+	&.checkbox {
+		width: 100%;
+		height: 100%;
+		padding: 0;
+		margin: 0;
+		line-height: 44px;
+	}
 
-  ///.list-ui--rev
-  @include modifier('rev') {
-    direction: rtl;
-  }
+	@include element('checkbox') {
 
-  ///.list-ui--flush
-  @include modifier('flush') {
-    padding: 0;
-  }
-  ///.list-ui--tiny
-  @include modifier('tiny') {
-    > .list-item {
-      padding: 0.2rem;
-    }
-  }
-  ///.list-ui--small
-  @include modifier('small') {
-    > .list-item {
-      padding: 0.5rem;
-    }
-  }
-  ///.list-ui--flush
-  @include modifier('flush') {
-    > .list-item {
-      padding: 0;
-    }
-  }
-  ///.list-ui--regular
-  @include modifier('regular') {
-    > .list-item {
-      padding: 1rem;
-    }
-  }
-  ///.list-ui--large
-  @include modifier('large') {
-    > .list-item {
-      padding: 1.5rem;
-    }
-  }
+		position: relative;
+		display: inline-block;
+		vertical-align: top;
+		cursor: default;
+		user-select: none;
+		font-weight: 400;
+		font-size: 17px;
+		line-height: 24px;
+		margin: 10px 0;
 
-  ///.list-ui--avatars
-  @include modifier('avatars') {
-    > .list-item {
-      padding: 0.5rem;
-      img {
-        height: 32px;
-        border-radius: 6px;
-      }
-    }
-  }
+		input[type="checkbox"] {
+			position: absolute;
+			overflow: hidden;
+			right: 0;
+			top: 0;
+			left: 0;
+			bottom: 0;
+			padding: 0;
+			border: 0;
+			opacity: 0.001;
+			z-index: 1;
+			vertical-align: top;
+			outline: none;
+			width: 100%;
+			height: 100%;
+			margin: 0;
+			appearance: none;
+			height: 0;
+			width: 0;
+		}
+		input[type="checkbox"]:checked {
+			background: $table-row-checkbox-background-color;
+		}
+		input[type="checkbox"]:checked + div:before {
+			background: $table-row-checkbox-background-color;
+			border: 1px solid $table-row-checkbox-background-color;
+		}
+		input[type="checkbox"]:checked + div:after {
+			opacity: 1;
+		}
+		input[type="checkbox"]:focus + div:before {
+			box-shadow: none;
+		}
+		input[type="checkbox"]:disabled + div {
+			opacity: 0.3;
+			cursor: default;
+			pointer-events: none;
+		}
+		input[type="checkbox"]:disabled:active + div:before {
+			background: transparent;
+			box-shadow: none;
+		}
+
+		@include element('checkmark') {
+			box-sizing: border-box;
+			background-clip: padding-box;
+			position: relative;
+			display: inline-block;
+			vertical-align: top;
+			cursor: default;
+			user-select: none;
+			font-weight: 400;
+			font-size: 17px;
+			position: relative;
+			overflow: hidden;
+			width: 24px;
+			height: 24px;
+			&:before {
+				content: '';
+				position: absolute;
+				box-sizing: border-box;
+				background-clip: padding-box;
+				width: 24px;
+				height: 24px;
+				background: transparent;
+				border: 1px solid $table-row-checkbox-background-color;
+				border-radius: 16px;
+				box-shadow: none;
+				left: 0;
+			}
+
+			&:after {
+				content: '';
+				position: absolute;
+				top: 8px;
+				left: 6px;
+				width: 12px;
+				height: 6px;
+				background: transparent;
+				border: 3px solid $table-row-checkbox-font-color;
+				border-width: 2px;
+				border-top: none;
+				border-right: none;
+				border-radius: 0;
+				transform: rotate(-45deg);
+				opacity: 0;
+			}
+		}
+
+		@include modifier('no-border') {
+			background: transparent;
+			border: none;
+
+			input[type="checkbox"]{
+				background: transparent;
+
+				//circle
+				+ div:before {
+					border:none;
+				}
+				//check
+				+ div:after {
+					//opacity:.5;
+					border-color: $table-row-checkbox-background-color;
+				}
+
+				&:checked {
+					//Checkbox circle
+					+ div:before {
+            border:none;
+						background: transparent;
+					}
+					//Checkbox check
+					+ div:after {
+						border-color: $table-row-checkbox-background-color;
+						opacity:1;
+					}
+				}
+
+				&:disabled{
+					//check
+					+ div:after {
+						opacity:.5;
+					}
+				}
+
+			}
+
+
+		}
+	}
 }

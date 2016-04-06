@@ -11,7 +11,6 @@
     "px",
     "px-mobile"
   ],
-
   "ignore": [
     ".*",
     "npm-debug.log",
@@ -23,7 +22,8 @@
   ],
   "dependencies": {
     "polymer": "latest",
-    "px-theme": "https://github.com/PredixDev/px-theme.git#~0.4.0"
+    "px-theme": "https://github.com/PredixDev/px-theme.git#~0.4.0",
+    "iron-swipeable-container": "PolymerElements/iron-swipeable-container#^1.0.2"
   },
   "devDependencies": {
     "iron-component-page": "PolymerElements/iron-component-page#~v1.1.0",
