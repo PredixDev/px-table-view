@@ -1,458 +1,646 @@
-<html class="pxm">
+<html>
 
 <head>
   <title>px-table-row demo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <script src="../webcomponentsjs/webcomponents-lite.js"></script>
 
-  <script src="../../../bower_components/webcomponentsjs/webcomponents-lite.js"></script>
+  <link rel='stylesheet prefetch' href='https://predixdev.github.io/px-library-design/css/style.css'>
+  <link rel='stylesheet prefetch' href='https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css'>
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.2/jquery.min.js'></script>
 
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-
-
-
-	<link rel='stylesheet prefetch' href='http://predixdev.github.io/px-library-design/css/style.css'>
-	<link rel='stylesheet prefetch' href='https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css'>
-	<script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.2/jquery.min.js'></script>
-  <link rel="stylesheet" href="demo/style.css"/>
-
-  <link rel="import" href="px-table-view.html"/>
+  <link rel="stylesheet" href="demo/style.css" />
   <script src="demo/script.js"></script>
+
+  <!-- TODO: Component -->
+  <link rel="import" href="px-table-view.html" />
+
+  <!-- TODO: iron-list example -->
+  <link rel="import" href="../iron-demo-helpers/demo-snippet.html" />
+  <link rel="import" href="../iron-ajax/iron-ajax.html" />
+  <link rel="import" href="../iron-list/iron-list.html" />
+
 </head>
 
 <body unresolved>
   <section class="box u-mb+">
- 		<h1>Table View Examples</h1>
- 		<p>The following are the different variations of the table view.</p>
- 		<ol id="toc" class="list listbare"></ol>
- 		<button class="btn-collapse-all btn btn--full"><span>Collapse</span> Examples</button>
- 	</section>
-
-
- <article class="examples">
-
- 	<h2>Default - Text Label</h2>
- 	<ol class="table-view">
- 		<li class="table-row">Text Label</li>
- 	</ol>
-
- 	<h2>Default - Disclosure Indicator</h2>
- 	<ol class="table-view">
- 		<li class="table-row table-row--chevron">Text Label</li>
- 	</ol>
-
- 	<h2>Default - Detail Disclosure</h2>
- 	<ol class="table-view">
- 		<li class="table-row table-row--detail">Text Label</li>
- 	</ol>
-
-
- 	<h2>Default - Row Order</h2>
- 	<ol class="table-view">
- 		<li class="table-row table-row--order">Item 1</li>
- 	</ol>
-
- 	<h2>Default - Row Delete</h2>
- 	<ol class="table-view">
- 		<li class="table-row table-row--edit">Item 1</li>
- 	</ol>
-
- 	<h2>Default - Delete and Row Order</h2>
- 	<ol class="table-view">
- 		<li class="table-row table-row--order table-row--edit">Item 1</li>
- 	</ol>
-
-
- 	<h2>Default - Icon Right</h2>
- 	<section class="table-view">
- 		<div class="table-row">
- 			<div class="table-row__media table-row__media--icon table-row__media--right">
- 				<i class="fa fa-lg ion-ios-information-outline"></i>
- 			</div>
- 			<div class="table-row__content">
- 				<span class="table-row__content__title">Text Label</span>
- 			</div>
- 		</div>
- 	</section>
-
- 	<h2>Default - Icon Left</h2>
- 	<section class="table-view">
- 		<div class="table-row">
- 			<div class="table-row__media table-row__media--icon table-row__media--left">
- 				<i class="fa fa-lg ion-ios-gear"></i>
- 			</div>
- 			<div class="table-row__content">
- 				<span class="table-row__content__title">Text Label</span>
- 			</div>
- 		</div>
- 	</section>
-
-
- 	<h2>Default - Image Left</h2>
- 	<section class="table-view table-view--small">
- 		<div class="table-row table-row--tappable">
- 			<div class="table-row__media table-row__media--image table-row__media--left">
- 				<img src="http://placehold.it/44"/>
- 			</div>
- 			<div class="table-row__content">
- 				<span class="table-row__content__title">Text Label</span>
- 			</div>
- 		</div>
- 	</section>
-
- 	<h2>Default - Image Right</h2>
- 	<section class="table-view table-view--small">
- 		<div class="table-row table-row--tappable">
- 			<div class="table-row__media table-row__media--image table-row__media--right">
- 				<img src="http://placehold.it/44"/>
- 			</div>
- 			<div class="table-row__content">
- 				<span class="table-row__content__title">Text Label</span>
- 			</div>
- 		</div>
- 	</section>
-
-
- 	<h2>Default - Image with Disclosure Indicator</h2>
- 	<section class="table-view table-view--small">
- 		<div class="table-row table-row--chevron">
- 			<div class="table-row__media table-row__media--image">
- 				<img src="//placehold.it/60x60&text=img"/>
- 			</div>
- 			<div class="table-row__content">
- 				<span class="table-row__content__title">Text Label</span>
- 			</div>
- 		</div>
- 	</section>
-
-
- 	<h2>Default - Image with Detail Disclosure</h2>
- 	<section class="table-view table-view--small">
- 		<div class="table-row table-row--detail">
- 			<div class="table-row__media table-row__media--image">
- 				<img src="//placehold.it/60x60&text=img"/>
- 			</div>
- 			<div class="table-row__content">
- 				<span class="table-row__content__title">Text Label</span>
- 			</div>
- 		</div>
- 	</section>
-
-
- 	<h2>Default - Image with Description</h2>
- 	<section class="table-view table-view--small">
- 		<div class="table-row table-row--detail">
- 			<div class="table-row__media table-row__media--image">
- 				<img src="//placehold.it/80x80&text=img"/>
- 			</div>
- 			<div class="table-row__content">
- 				<span class="table-row__content__title">Text Label</span>
- 				<span class="table-row__content__body">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</span>
- 			</div>
- 		</div>
- 	</section>
-
-
- 	<h2>Default - Description with Disclosure Indicator</h2>
- 	<section class="table-view">
- 		<div class="table-row table-row--chevron">
- 			<div class="table-row__content">
- 				<span class="table-row__content__title">Text Label</span>
- 				<span class="table-row__content__body">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</span>
- 			</div>
- 		</div>
- 	</section>
-
-
- 	<h2>Default - Description with Detail Disclosure</h2>
- 	<section class="table-view">
- 		<div class="table-row table-row--detail">
- 			<div class="table-row__content">
- 				<span class="table-row__content__title">Text Label</span>
- 				<span class="table-row__content__body">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</span>
- 			</div>
- 		</div>
- 	</section>
-
-
- 	<h2>Default with Label - Disclosure Indicator</h2>
- 	<section class="table-view">
- 		<div class="table-row table-row--chevron">
- 			<span class="table-row__label table-row__label--right">Detail label</span>
- 			<span class="table-row__content__title">Text Label</span>
- 		</div>
- 	</section>
-
- 	<h2>Default with Label - Detail Disclosure </h2>
- 	<section class="table-view">
- 		<div class="table-row table-row--detail">
- 			<span class="table-row__label table-row__label--right">Detail Label</span>
- 			<span class="table-row__content__title">Text Label</span>
- 		</div>
- 	</section>
-
-
-
- 	<h2>Default with Switch</h2>
- 	<section class="table-view table-view--small">
- 		<div class="table-row">
-       <div class="table-row__media table-row__media--toggle table-row__media--right">
- 				<div class="toggle toggle__table-view-item">
- 					<input id="toggle1" class="toggle__input" type="checkbox" checked>
- 					<label for="toggle1" class="toggle__label">On</label>
- 				</div>
- 			</div>
- 			<div class="table-row__content">
- 				<span class="table-row__content__title">Text Label</span>
- 			</div>
- 		</div>
- 	</section>
-
-
-
- 	<h2>Default - Checkboxes</h2>
- 	<section class="table-view table-view--small table-view-- u-mb+">
- 		<div class="table-row">
- 			<label class="table-row__checkbox">
- 				<input type="checkbox" name="cb1" value="test1">
- 				<div class="table-row__checkbox__checkmark"></div>
- 				Checkbox
- 			</label>
- 		</div>
- 		<div class="table-row">
- 			<label class="table-row__checkbox">
- 				<input type="checkbox" name="cb12" value="test1" checked disabled>
- 				<div class="table-row__checkbox__checkmark"></div>
- 				Checkbox - Checked
- 			</label>
- 		</div>
- 		<div class="table-row">
- 			<label class="table-row__checkbox">
- 				<input type="checkbox" name="cb13" value="test1" disabled>
- 				<div class="table-row__checkbox__checkmark"></div>
- 				Checkbox - Disabled
- 			</label>
- 		</div>
-
- 	</section>
-
- 		<h2>Default - No Border Checkboxes</h2>
- 	<section class="table-view table-view--small table-view-- u-mb+">
- 		<div class="table-row">
- 			<label class="table-row__checkbox table-row__checkbox--no-border">
- 				<input type="checkbox" name="cb2" value="test1">
- 				<div class="table-row__checkbox__checkmark "></div>
- 				No Border Checkbox
- 			</label>
- 		</div>
- 		<div class="table-row">
- 			<label class="table-row__checkbox table-row__checkbox--no-border">
- 				<input type="checkbox" name="cb3" value="test1" checked>
- 				<div class="table-row__checkbox__checkmark"></div>
- 				No Border Checkbox - Checked
- 			</label>
- 		</div>
- 		<div class="table-row">
- 			<label class="table-row__checkbox table-row__checkbox--no-border">
- 				<input type="checkbox" name="cb4" value="test1" disabled>
- 				<div class="table-row__checkbox__checkmark"></div>
- 				No Border Checkbox - Disabled
- 			</label>
- 		</div>
- 	</section>
-
- 	<h2>Default with Swipe - Left Actions</h2>
- 	<div>
- 	  <button class="btn btn--full btn-toggle-actions u-mb+">Toggle Actions</button>
- 			<section class="table-view table-view--small">
- 		<div class="table-row">
- 		  <div class="table-row__content">
- 				<span class="table-row__content__title">Text Label</span>
- 			</div>
- 			<div class="table-row__actions table-row__actions--left">
- 				<button class="table-row__actions__button btn--full btn-more">
- 					More
- 				</button>
- 				<button class="table-row__actions__button btn--full btn-flag">
- 					Flag
- 				</button>
- 				<button class="table-row__actions__button btn--full btn-delete">
- 					Delete
- 				</button>
- 			</div>
- 		</div>
- 	</section>
-
- 	</div>
-
-
-
- 	<h2>Default with Swipe - Left Actions with Icons</h2>
-   <div>
- 		<button class="btn btn--full btn-toggle-actions u-mb+">Toggle Actions</button>
-     <section class="table-view table-view--small">
- 		<div class="table-row">
- 		  <div class="table-row__content">
- 				<span class="table-row__content__title">Text Label</span>
- 			</div>
- 			<div class="table-row__actions table-row__actions--left">
- 				<button class="table-row__actions__button btn--full btn-more">
- 					<i class="icon ion-ios-more fa-3x"></i>
- 				</button>
- 				<button class="table-row__actions__button btn--full btn-flag">
- 					<i class="icon ion-ios-flag fa-3x"></i>
- 				</button>
-
- 				<button class="table-row__actions__button btn--full btn-delete">
- 					<i class="icon ion-ios-trash fa-3x"></i>
- 				</button>
- 			</div>
- 		</div>
- 	</section>
-
-   </div>
- 	<h2>Default with Swipe - Right Actions</h2>
-   <div>
-
- 					<button class="btn btn--full btn-toggle-actions u-mb+">Toggle Actions</button>
- 	<section class="table-view table-view--small">
- 		<div class="table-row">
- 		  <div class="table-row__content">
- 				<span class="table-row__content__title">Text Label</span>
- 			</div>
- 			<div class="table-row__actions table-row__actions--right">
- 				<button class="table-row__actions__button btn--full btn-more">
- 					More
- 				</button>
- 				<button class="table-row__actions__button btn--full btn-flag">
- 					Flag
- 				</button>
- 				<button class="table-row__actions__button btn--full btn-delete">
- 					Delete
- 				</button>
- 			</div>
- 		</div>
- 	</section>
-
-   </div>
- 	<h2>Default with Swipe - Right Actions with Icons</h2>
- <div>
- 	<button class="btn btn--full btn-toggle-actions u-mb+">Toggle Actions</button>
-     <section class="table-view table-view--small">
- 		<div class="table-row">
- 		  <div class="table-row__content">
- 				<span class="table-row__content__title">Text Label</span>
- 			</div>
- 			<div class="table-row__actions table-row__actions--right table-row__actions--right--is-visible">
- 				<button class="table-row__actions__button btn--full btn-more">
- 					<i class="icon ion-ios-more fa-3x"></i>
- 				</button>
- 				<button class="table-row__actions__button btn--full btn-flag">
- 					<i class="icon ion-ios-flag fa-3x"></i>
- 				</button>
-
- 				<button class="table-row__actions__button btn--full btn-delete">
- 					<i class="icon ion-ios-trash fa-3x"></i>
- 				</button>
- 			</div>
- 		</div>
- 	</section>
-
- </div>
-
-
-
-
-   <h2>Default - Form Inputs</h2>
- 	<section class="table-view table-view--small table-view-- u-mb+">
- 		<div class="table-row">
- 			<input type="text" class="text-input" placeholder="Text Input">
- 		</div>
-
- 		<div class="table-row">
- 			<input type="email" class="text-input" placeholder="Email Input">
- 		</div>
-
- 		<div class="table-row">
- 			<input type="password" class="text-input" placeholder="Password Input">
- 		</div>
-
-     <div class="table-row">
- 			<input type="number" class="text-input" placeholder="Number Input">
- 		</div>
- 		<div class="table-row">
- 			<input type="range" class="range">
- 		</div>
- 		<div class="table-row">
- 			<input type="date" class="text-input">
- 		</div>
- 			<div class="table-row">
-   <textarea class="text-input" placeholder="Enter your message.." cols="30" rows="10"></textarea>
- 		</div>
- 	</section>
-
-
-
-
-
-
-
- 	<h2>Default - Modifier - Flush</h2>
-   <ul class="table-view table-view--flush">
-     <li class="table-row">
-       Item 1
-     </li>
-   </ul>
-
- 	<h2>Default - Modifier - Tiny</h2>
-   <ul class="table-view table-view--tiny">
-     <li class="table-row">
-       Item 1
-     </li>
-   </ul>
-
- 	<h2>Default - Modifier - Small</h2>
-   <ul class="table-view table-view--small">
-     <li class="table-row">
-       Item 1
-     </li>
-   </ul>
-
- 	<h2>Default - Modifier - Regular</h2>
-   <ul class="table-view table-view--regular">
-     <li class="table-row">
-       Item 1
-     </li>
-   </ul>
-
- 	<h2>Default - Modifier - Large</h2>
-   <ul class="table-view table-view--large">
-     <li class="table-row">
-       Item 1
-     </li>
-   </ul>
-
- 	<h2>Default - Modifier - Huge</h2>
-   <ul class="table-view table-view--huge">
-     <li class="table-row">
-       Item 1
-     </li>
-   </ul>
-
- 	<h2>Default - Modifier - Inset</h2>
-   <ul class="table-view table-view--inset">
-     <li class="table-row">
-       Item 1
-     </li>
-   </ul>
-
- </article>
-
- 	<br>
- <footer>
-   	<p>&copy; 2016 GE Digital</p>
- </footer>
-
-
-<script src="http://localhost:35729/livereload.js?snipver=1"></script>
+    <h1>Table View Examples</h1>
+    <p>The following are the different variations of the table view.</p>
+    <ol id="toc" class="list listbare"></ol>
+    <button class="btn-collapse-all btn btn--full"><span>Collapse</span> Examples</button>
+  </section>
+
+
+  <article class="examples">
+
+    <h2>Default - Text Label</h2>
+    <demo-snippet>
+      <template>
+        <ol class="table-view">
+          <li class="table-row">Text Label</li>
+        </ol>
+      </template>
+    </demo-snippet>
+
+
+    <h2>Default - Disclosure Indicator</h2>
+    <demo-snippet>
+      <template>
+        <ol class="table-view">
+          <li class="table-row table-row--chevron">Text Label</li>
+        </ol>
+      </template>
+    </demo-snippet>
+
+
+    <h2>Default - Detail Disclosure</h2>
+    <demo-snippet>
+      <template>
+        <ol class="table-view">
+          <li class="table-row table-row--detail">Text Label</li>
+        </ol>
+      </template>
+    </demo-snippet>
+
+
+
+    <h2>Default - Row Order</h2>
+    <demo-snippet>
+      <template>
+        <ol class="table-view">
+          <li class="table-row table-row--order">Item 1</li>
+        </ol>
+      </template>
+    </demo-snippet>
+
+
+    <h2>Default - Row Delete</h2>
+    <demo-snippet>
+      <template>
+        <ol class="table-view">
+          <li class="table-row table-row--edit">Item 1</li>
+        </ol>
+      </template>
+    </demo-snippet>
+
+
+    <h2>Default - Delete and Row Order</h2>
+    <demo-snippet>
+      <template>
+        <ol class="table-view">
+          <li class="table-row table-row--order table-row--edit">Item 1</li>
+        </ol>
+      </template>
+    </demo-snippet>
+
+
+    <h2>Default - Icon Right</h2>
+    <demo-snippet>
+      <template>
+        <section class="table-view">
+          <div class="table-row">
+            <div class="table-row__media table-row__media--icon table-row__media--right">
+              <i class="fa fa-lg ion-ios-information-outline"></i>
+            </div>
+            <div class="table-row__content">
+              <span class="table-row__content__title">Text Label</span>
+            </div>
+          </div>
+        </section>
+      </template>
+    </demo-snippet>
+
+
+    <h2>Default - Icon Left</h2>
+    <demo-snippet>
+      <template>
+        <section class="table-view">
+          <div class="table-row">
+            <div class="table-row__media table-row__media--icon table-row__media--left">
+              <i class="fa fa-lg ion-ios-gear"></i>
+            </div>
+            <div class="table-row__content">
+              <span class="table-row__content__title">Text Label</span>
+            </div>
+          </div>
+        </section>
+      </template>
+    </demo-snippet>
+
+    <h2>Default - Image Left</h2>
+    <demo-snippet>
+      <template>
+        <section class="table-view table-view--small">
+          <div class="table-row table-row--tappable">
+            <div class="table-row__media table-row__media--image table-row__media--left">
+              <img src="http://placehold.it/44" />
+            </div>
+            <div class="table-row__content">
+              <span class="table-row__content__title">Text Label</span>
+            </div>
+          </div>
+        </section>
+      </template>
+    </demo-snippet>
+
+    <h2>Default - Image Right</h2>
+    <demo-snippet>
+      <template>
+        <section class="table-view table-view--small">
+          <div class="table-row table-row--tappable">
+            <div class="table-row__media table-row__media--image table-row__media--right">
+              <img src="http://placehold.it/44" />
+            </div>
+            <div class="table-row__content">
+              <span class="table-row__content__title">Text Label</span>
+            </div>
+          </div>
+        </section>
+      </template>
+    </demo-snippet>
+
+    <h2>Default - Image with Disclosure Indicator</h2>
+    <demo-snippet>
+      <template>
+        <section class="table-view table-view--small">
+          <div class="table-row table-row--chevron">
+            <div class="table-row__media table-row__media--image">
+              <img src="//placehold.it/60x60&text=img" />
+            </div>
+            <div class="table-row__content">
+              <span class="table-row__content__title">Text Label</span>
+            </div>
+          </div>
+        </section>
+      </template>
+    </demo-snippet>
+
+    <h2>Default - Image with Detail Disclosure</h2>
+    <demo-snippet>
+      <template>
+        <section class="table-view table-view--small">
+          <div class="table-row table-row--detail">
+            <div class="table-row__media table-row__media--image">
+              <img src="//placehold.it/60x60&text=img" />
+            </div>
+            <div class="table-row__content">
+              <span class="table-row__content__title">Text Label</span>
+            </div>
+          </div>
+        </section>
+      </template>
+    </demo-snippet>
+
+    <h2>Default - Image with Description</h2>
+    <demo-snippet>
+      <template>
+        <section class="table-view table-view--small">
+          <div class="table-row table-row--detail">
+            <div class="table-row__media table-row__media--image">
+              <img src="//placehold.it/80x80&text=img" />
+            </div>
+            <div class="table-row__content">
+              <span class="table-row__content__title">Text Label</span>
+              <span class="table-row__content__body">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</span>
+            </div>
+          </div>
+        </section>
+      </template>
+    </demo-snippet>
+
+    <h2>Default - Description with Disclosure Indicator</h2>
+    <demo-snippet>
+      <template>
+        <section class="table-view table-view--small">
+          <div class="table-row table-row--chevron">
+            <div class="table-row__content">
+              <span class="table-row__content__title">Text Label</span>
+              <span class="table-row__content__body">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</span>
+            </div>
+          </div>
+        </section>
+      </template>
+    </demo-snippet>
+
+    <h2>Default - Description with Detail Disclosure</h2>
+    <demo-snippet>
+      <template>
+        <section class="table-view table-view--small">
+          <div class="table-row table-row--detail">
+            <div class="table-row__content">
+              <span class="table-row__content__title">Text Label</span>
+              <span class="table-row__content__body">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</span>
+            </div>
+          </div>
+        </section>
+      </template>
+    </demo-snippet>
+
+    <h2>Default with Label - Disclosure Indicator</h2>
+    <demo-snippet>
+      <template>
+        <section class="table-view table-view--small">
+          <div class="table-row table-row--chevron">
+            <span class="table-row__label table-row__label--right">Detail label</span>
+            <span class="table-row__content__title">Text Label</span>
+          </div>
+        </section>
+      </template>
+    </demo-snippet>
+
+    <h2>Default with Label - Detail Disclosure </h2>
+    <demo-snippet>
+      <template>
+        <section class="table-view table-view--small">
+          <div class="table-row table-row--detail">
+            <span class="table-row__label table-row__label--right">Detail Label</span>
+            <span class="table-row__content__title">Text Label</span>
+          </div>
+        </section>
+      </template>
+    </demo-snippet>
+
+    <h2>Default with Switch</h2>
+    <demo-snippet>
+      <template>
+        <section class="table-view table-view--small">
+          <div class="table-row">
+            <div class="table-row__media table-row__media--toggle table-row__media--right">
+              <div class="toggle toggle__table-view-item">
+                <input id="toggle1" class="toggle__input" type="checkbox" checked>
+                <label for="toggle1" class="toggle__label">On</label>
+              </div>
+            </div>
+            <div class="table-row__content">
+              <span class="table-row__content__title">Text Label</span>
+            </div>
+          </div>
+        </section>
+      </template>
+    </demo-snippet>
+
+    <h2>Default - Checkboxes</h2>
+    <demo-snippet>
+      <template>
+        <section class="table-view table-view--small table-view-- u-mb+">
+          <div class="table-row">
+            <label class="table-row__checkbox">
+              <input type="checkbox" name="cb1" value="test1">
+              <div class="table-row__checkbox__checkmark"></div>
+              Checkbox
+            </label>
+          </div>
+          <div class="table-row">
+            <label class="table-row__checkbox">
+              <input type="checkbox" name="cb12" value="test1" checked disabled>
+              <div class="table-row__checkbox__checkmark"></div>
+              Checkbox - Checked
+            </label>
+          </div>
+          <div class="table-row">
+            <label class="table-row__checkbox">
+              <input type="checkbox" name="cb13" value="test1" disabled>
+              <div class="table-row__checkbox__checkmark"></div>
+              Checkbox - Disabled
+            </label>
+          </div>
+        </section>
+      </template>
+    </demo-snippet>
+
+    <h2>Default - No Border Checkboxes</h2>
+    <demo-snippet>
+      <template>
+        <section class="table-view table-view--small table-view-- u-mb+">
+          <div class="table-row">
+            <label class="table-row__checkbox table-row__checkbox--no-border">
+              <input type="checkbox" name="cb2" value="test1">
+              <div class="table-row__checkbox__checkmark "></div>
+              No Border Checkbox
+            </label>
+          </div>
+          <div class="table-row">
+            <label class="table-row__checkbox table-row__checkbox--no-border">
+              <input type="checkbox" name="cb3" value="test1" checked>
+              <div class="table-row__checkbox__checkmark"></div>
+              No Border Checkbox - Checked
+            </label>
+          </div>
+          <div class="table-row">
+            <label class="table-row__checkbox table-row__checkbox--no-border">
+              <input type="checkbox" name="cb4" value="test1" disabled>
+              <div class="table-row__checkbox__checkmark"></div>
+              No Border Checkbox - Disabled
+            </label>
+          </div>
+        </section>
+      </template>
+    </demo-snippet>
+
+    <h2>Default with Swipe - Left Actions</h2>
+    <demo-snippet>
+      <template>
+        <div>
+          <button class="btn btn--full btn-toggle-actions u-mb+">Toggle Actions</button>
+          <section class="table-view table-view--small">
+            <div class="table-row">
+              <div class="table-row__content">
+                <span class="table-row__content__title">Text Label</span>
+              </div>
+              <div class="table-row__actions table-row__actions--left">
+                <button class="table-row__actions__button btn--full btn-more">
+                  More
+                </button>
+                <button class="table-row__actions__button btn--full btn-flag">
+                  Flag
+                </button>
+                <button class="table-row__actions__button btn--full btn-delete">
+                  Delete
+                </button>
+              </div>
+            </div>
+          </section>
+        </div>
+      </template>
+    </demo-snippet>
+
+    <h2>Default with Swipe - Left Actions with Icons</h2>
+    <demo-snippet>
+      <template>
+        <div>
+          <button class="btn btn--full btn-toggle-actions u-mb+">Toggle Actions</button>
+          <section class="table-view table-view--small">
+            <div class="table-row">
+              <div class="table-row__content">
+                <span class="table-row__content__title">Text Label</span>
+              </div>
+              <div class="table-row__actions table-row__actions--left">
+                <button class="table-row__actions__button btn--full btn-more">
+                  <i class="icon ion-ios-more fa-3x"></i>
+                </button>
+                <button class="table-row__actions__button btn--full btn-flag">
+                  <i class="icon ion-ios-flag fa-3x"></i>
+                </button>
+
+                <button class="table-row__actions__button btn--full btn-delete">
+                  <i class="icon ion-ios-trash fa-3x"></i>
+                </button>
+              </div>
+            </div>
+          </section>
+        </div>
+      </template>
+    </demo-snippet>
+
+    <h2>Default with Swipe - Right Actions</h2>
+    <demo-snippet>
+      <template>
+        <div>
+          <button class="btn btn--full btn-toggle-actions u-mb+">Toggle Actions</button>
+          <section class="table-view table-view--small">
+            <div class="table-row">
+              <div class="table-row__content">
+                <span class="table-row__content__title">Text Label</span>
+              </div>
+              <div class="table-row__actions table-row__actions--right">
+                <button class="table-row__actions__button btn--full btn-more">
+                  More
+                </button>
+                <button class="table-row__actions__button btn--full btn-flag">
+                  Flag
+                </button>
+                <button class="table-row__actions__button btn--full btn-delete">
+                  Delete
+                </button>
+              </div>
+            </div>
+          </section>
+        </div>
+      </template>
+    </demo-snippet>
+
+    <h2>Default with Swipe - Right Actions with Icons</h2>
+    <demo-snippet>
+      <template>
+        <div>
+          <button class="btn btn--full btn-toggle-actions u-mb+">Toggle Actions</button>
+          <section class="table-view table-view--small">
+            <div class="table-row">
+              <div class="table-row__content">
+                <span class="table-row__content__title">Text Label</span>
+              </div>
+              <div class="table-row__actions table-row__actions--right table-row__actions--right--is-visible">
+                <button class="table-row__actions__button btn--full btn-more">
+                  <i class="icon ion-ios-more fa-3x"></i>
+                </button>
+                <button class="table-row__actions__button btn--full btn-flag">
+                  <i class="icon ion-ios-flag fa-3x"></i>
+                </button>
+
+                <button class="table-row__actions__button btn--full btn-delete">
+                  <i class="icon ion-ios-trash fa-3x"></i>
+                </button>
+              </div>
+            </div>
+          </section>
+        </div>
+      </template>
+    </demo-snippet>
+
+    <h2>Default - Form Inputs</h2>
+    <demo-snippet>
+      <template>
+        <section class="table-view table-view--small table-view-- u-mb+">
+          <div class="table-row">
+            <input type="text" class="text-input" placeholder="Text Input">
+          </div>
+          <div class="table-row">
+            <input type="email" class="text-input" placeholder="Email Input">
+          </div>
+          <div class="table-row">
+            <input type="password" class="text-input" placeholder="Password Input">
+          </div>
+          <div class="table-row">
+            <input type="number" class="text-input" placeholder="Number Input">
+          </div>
+          <div class="table-row">
+            <input type="range" class="range">
+          </div>
+          <div class="table-row">
+            <input type="date" class="text-input">
+          </div>
+          <div class="table-row">
+            <textarea class="text-input" placeholder="Enter your message.." cols="30" rows="10"></textarea>
+          </div>
+          <div class="table-row">
+            <div class="flex">
+              <button type="reset" class="btn btn--full">Reset</button>
+              <button type="button" class="btn btn--primary btn--full">Submit</button>
+            </div>
+          </div>
+        </section>
+      </template>
+    </demo-snippet>
+
+    <h2>Default - Modifier - Responsive</h2>
+    <demo-snippet>
+      <template>
+        <button class="btn btn--full btn-add-responsive u-mb+">Add Table Row</button>
+        <script type="text/javascript">
+          $('.btn-add-responsive').bind('click', function(e) {
+            $('.table-view--responsive').append(
+              $('.table-view--responsive').find('.table-row:first-child').clone()
+            );
+          });
+        </script>
+        <section class="table-view table-view--small table-view--responsive">
+          <div class="table-row table-row--chevron">
+            <div class="table-row__content">
+              <span class="table-row__content__title">Text Label</span>
+            </div>
+          </div>
+          <div class="table-row table-row--chevron">
+            <div class="table-row__content">
+              <span class="table-row__content__title">Text Label</span>
+            </div>
+          </div>
+          <div class="table-row table-row--chevron">
+            <div class="table-row__content">
+              <span class="table-row__content__title">Text Label</span>
+            </div>
+          </div>
+          <div class="table-row table-row--chevron">
+            <div class="table-row__content">
+              <span class="table-row__content__title">Text Label</span>
+            </div>
+          </div>
+        </section>
+      </template>
+    </demo-snippet>
+
+    <h2>Default - Modifier - Flush</h2>
+    <demo-snippet>
+      <template>
+        <ul class="table-view table-view--flush">
+          <li class="table-row">
+            Text Label
+          </li>
+        </ul>
+      </template>
+    </demo-snippet>
+
+    <h2>Default - Modifier - Tiny</h2>
+    <demo-snippet>
+      <template>
+        <ul class="table-view table-view--tiny">
+          <li class="table-row">
+            Text Label
+          </li>
+        </ul>
+      </template>
+    </demo-snippet>
+
+    <h2>Default - Modifier - Small</h2>
+    <demo-snippet>
+      <template>
+        <ul class="table-view table-view--small">
+          <li class="table-row">
+            Text Label
+          </li>
+        </ul>
+      </template>
+    </demo-snippet>
+
+    <h2>Default - Modifier - Regular</h2>
+    <demo-snippet>
+      <template>
+        <ul class="table-view table-view--regular">
+          <li class="table-row">
+            Text Label
+          </li>
+        </ul>
+      </template>
+    </demo-snippet>
+
+    <h2>Default - Modifier - Large</h2>
+    <demo-snippet>
+      <template>
+        <ul class="table-view table-view--large">
+          <li class="table-row">
+            Text Label
+          </li>
+        </ul>
+      </template>
+    </demo-snippet>
+
+    <h2>Default - Modifier - Huge</h2>
+    <demo-snippet>
+      <template>
+        <ul class="table-view table-view--huge">
+          <li class="table-row">
+            Text Label
+          </li>
+        </ul>
+      </template>
+    </demo-snippet>
+
+    <h2>Default - Modifier - Inset</h2>
+    <demo-snippet>
+      <template>
+        <ul class="table-view table-view--inset">
+          <li class="table-row">
+            Text Label
+          </li>
+        </ul>
+      </template>
+    </demo-snippet>
+
+    <h2>Demo - Iron List</h2>
+    <demo-snippet>
+      <template>
+        <div class="demo" style="height: 500px; overflow:auto;">
+          <template id="tableViewTemplate" is="dom-bind">
+            <iron-ajax url="./demo/data.json" last-response="{{data}}" auto></iron-ajax>
+            <iron-list id="ironList" items="[[data]]" as="item" class="table-view  table-view--small">
+              <template>
+                <div class="table-row table-row--nav-right" on-click="handleSelect">
+                  <div class="table-row__media table-row__media--icon" hidden="{{!item.icon}}">
+                      <i class$="{{item.icon}}"></i>
+                  </div>
+                  <div class="table-row__media table-row__media--image" hidden="{{!item.image}}">
+                    <img src$="{{item.image}}" alt="{{item.title}}"/>
+                  </div>
+                  <div class="table-row__content">
+                    <span class="table-row__content__title">{{item.title}}</span>
+                  </div>
+                </div>
+              </template>
+            </iron-list>
+          </template>
+          <script type="text/javascript">
+            var tmpl = document.getElementById('tableViewTemplate');
+            tmpl.handleSelect = function(e) {
+              console.log('handleSelect', e);
+            };
+            document.addEventListener('WebComponentsReady', function() {
+              setTimeout(function() {
+                document.querySelector('iron-list').fire('iron-resize');
+              }, 50);
+            });
+          </script>
+        </div>
+      </template>
+    </demo-snippet>
+
+  </article>
+
+  <br>
+  <footer>
+    <p>&copy; 2016 GE Digital</p>
+  </footer>
+
+
+  <script src="http://localhost:35729/livereload.js?snipver=1"></script>
 </body>
 
 </html>

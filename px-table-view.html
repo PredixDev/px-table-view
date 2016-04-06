@@ -1,37 +1,34 @@
 <link rel="import" href="../polymer/polymer.html" />
 <link rel="import" href="px-table-view-behavior.html" />
 <link rel="import" href="px-table-row.html" />
-<link rel="stylesheet" href="css/px-table-view.min.css" />
 
 <!--
-## Usage
-To use:
-
 ```
 
 ```
-@element component.html
+@element px-table-view.html
 @blurb px-table-view
 @demo demo.html
 @homepage index.html
 -->
 <dom-module id="px-table-view">
+  <link rel="stylesheet" href="css/px-table-view.css" />
   <style>
     :host {
       display: block;
     }
   </style>
   <template>
-    <ul id="list" class="list-ui list-ui--small">
+    <section class="table-view table-view--small">
       <template is="dom-if" if="{{listData}}">
         <template is="dom-repeat" items="{{listData}}">
-          <li class="list-item list-item--tappable" on-click="handleSelect">
+          <li class="table-row table-row--tappable" on-click="handleSelect">
             <px-table-row item="{{item}}"></px-table-row>
           </li>
         </template>
       </template>
       <content></content>
-    </ul>
+    </section>
   </template>
   <script>
     Polymer({
@@ -55,7 +52,7 @@ To use:
       },
       attached: function() {
         if(this.responsive){
-          this.toggleClass('list-ui--responsive', this.responsive, this.$.list);
+          this.toggleClass('table-view--responsive', this.responsive, this.$.list);
         }
       }
     });

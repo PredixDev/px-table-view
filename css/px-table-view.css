@@ -1,209 +1,3 @@
-@charset "UTF-8";
-/**
-bem model:
-
-  .table-row-ui
-    --inset
-    --small
-    --large
-    --regular
-    .table-row-item
-      --actionable
-
-      .table-row-item__media
-        --left
-        --right
-        __image
-        __icon
-
-      .table-row-item__content
-        .table-row-item__content__title
-          --small
-          --large
-
-        .table-row-item__content__body
-
-        .table-row-item__content__label
-          --left
-          --right
-
-*/
-.table-row {
-  width: 100%;
-  font-size: 1.1rem;
-  position: relative;
-  box-sizing: border-box;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
-  transition: 0.3s;
-  border-color: #ccc; }
-  .table-row h2,
-  .table-row h3,
-  .table-row h4,
-  .table-row h4,
-  .table-row h5,
-  .table-row p {
-    margin: 0;
-    padding: 0;
-    font-weight: 500; }
-  .table-row:active {
-    transition: none; }
-  .table-row:last-child {
-    border-bottom: none; }
-  .table-row:first-child:last-child {
-    border-top: none;
-    border-bottom: none; }
-  .table-row > a {
-    text-decoration: none;
-    color: #111;
-    transition: background-color 0.2s linear; }
-    .table-row > a:active {
-      color: #fff !important;
-      background-color: #0a9ec1;
-      transition: none; }
-    .table-row > a:hover {
-      transition: none; }
-  .table-row__media {
-    display: table-cell;
-    vertical-align: middle;
-    padding-right: 1rem;
-    padding-left: 0.1rem; }
-    .table-row__media--image {
-      padding-right: 1rem;
-      padding-left: 0.1rem; }
-      .table-row__media--image > img {
-        display: block;
-        max-width: 80px;
-        max-height: 80px; }
-    .table-row__media--icon {
-      padding-right: 0.5rem;
-      padding-left: 0.5rem; }
-  .table-row__content {
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
-    display: table-cell;
-    vertical-align: middle;
-    width: 100%; }
-    .table-row__content > :last-child {
-      margin-bottom: 0; }
-    .table-row__content__title {
-      padding: 0;
-      font-size: 1.1rem;
-      -webkit-user-select: none;
-      -moz-user-select: none;
-      -ms-user-select: none;
-      user-select: none; }
-      .table-row__content__title--small {
-        font-size: 0.8rem; }
-      .table-row__content__title--large {
-        font-size: 1.5rem; }
-    .table-row__content__label {
-      color: #d9d9d9;
-      position: absolute;
-      top: 39%;
-      float: right;
-      right: 8%; }
-      .table-row__content__label--right {
-        float: right;
-        right: 8%; }
-      .table-row__content__label--left {
-        float: left;
-        position: relative;
-        left: 0; }
-  .table-row--header {
-    background-color: #bfbfbf;
-    padding-top: 8px;
-    padding-bottom: 8px;
-    min-height: 30px;
-    background-color: #f5f5f5;
-    color: #222;
-    font-weight: 500; }
-  .table-row__icon {
-    padding: 0; }
-    .table-row__icon--left {
-      float: left; }
-    .table-row__icon--right {
-      float: right; }
-  .table-row__reorder-btn {
-    float: right;
-    position: absolute;
-    right: 5%;
-    top: 25%; }
-  .table-row--tappable {
-    transition: background-color 0.2s linear; }
-    .table-row--tappable:active {
-      color: #fff !important;
-      background-color: #0a9ec1;
-      transition: none; }
-    .table-row--tappable:hover {
-      transition: none; }
-  .table-row--chevron {
-    transition: background-color 0.2s linear;
-    overflow: hidden;
-    transition: background-color 0.2s linear; }
-    .table-row--chevron:active {
-      background-color: #0a9ec1;
-      transition: none; }
-    .table-row--chevron:before {
-      position: absolute;
-      right: 16px;
-      top: 50%;
-      color: #ccc;
-      line-height: 28px;
-      height: 28px;
-      -webkit-transform: translateY(-50%);
-      transform: translateY(-50%);
-      font-size: 28px;
-      font-family: Ionicons;
-      font-style: normal;
-      font-weight: normal;
-      content: ""; }
-    .table-row--chevron:hover {
-      transition: none; }
-    .table-row--chevron:active {
-      color: #fff !important;
-      background-color: #0a9ec1;
-      transition: none; }
-    .table-row--chevron:hover {
-      transition: none; }
-  .table-row--actionable__content {
-    transition: 0.3s;
-    position: relative;
-    z-index: 10; }
-  .table-row__actions {
-    overflow: hidden;
-    -webkit-transform-style: preserve-3d;
-    transform-style: preserve-3d;
-    position: absolute;
-    top: 0;
-    height: 100%;
-    display: -webkit-flex;
-    display: -ms-flexbox;
-    display: flex; }
-    .table-row__actions--left {
-      left: 0;
-      -webkit-transform: translateX(-100%);
-      transform: translateX(-100%); }
-    .table-row__actions--right {
-      right: 0;
-      -webkit-transform: translateX(100%);
-      transform: translateX(100%); }
-    .table-row__actions a {
-      padding: 0 30px;
-      color: #fff;
-      background: #c7c7cc;
-      display: -webkit-flex;
-      display: -ms-flexbox;
-      display: flex;
-      -webkit-align-items: center;
-      -ms-flex-align: center;
-      align-items: center;
-      position: relative;
-      left: 0; }
 
 @charset "UTF-8";
 /*
@@ -311,41 +105,6 @@ Predix branding rules go in my-px-comp-predix.scss, not in this file.
     margin-top: 6px;
     margin-right: 10px; }
 
-/*
-bem:
-
-  .table-view
-    --inset
-    --small
-    --large
-    --regular
-
-    .table-row
-      --actionable
-      --tappable
-      --nav-right
-      --nav-left
-      --disclosure
-
-      .table-row__media
-        --left
-        --right
-        __image
-        __icon
-
-      .table-row__content
-        .table-row__content__title
-          --small
-          --large
-
-        .table-row__content__body
-          --small
-          --large
-
-        .table-row__content__label
-          --left
-          --right
-*/
 .table-view {
   overflow-y: scroll;
   overflow-y: auto;
@@ -395,6 +154,8 @@ bem:
       @media (min-width: 960px) {
         .table-view--responsive .table-row {
           min-width: calc(25% - 0); } }
+    .table-view--responsive > *:last-child {
+      border-bottom: 1px solid #ccc !important; }
   .table-view--inset {
     background-image: none;
     border: 1px solid #ccc;
@@ -466,17 +227,20 @@ bem:
     color: #111;
     transition: background-color 0.2s linear; }
     .table-row > a:active {
-      background-color: #d9d9d9; }
+      color: #fff !important;
+      background-color: #d9d9d9;
+      transition: none; }
     .table-row > a:hover {
-      transition: none;
-      -webkit-transition: none; }
+      transition: none; }
   .table-row__media {
     display: table-cell;
     vertical-align: middle;
     padding-right: 1rem;
-    padding-left: 0.1rem; }
+    padding-left: .1rem; }
     .table-row__media--right {
       float: right !important; }
+      .table-row__media--right > i {
+        margin-top: .7rem; }
     .table-row__media--toggle {
       padding-top: 0.5rem;
       padding-left: 0.5rem; }
@@ -506,15 +270,16 @@ bem:
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
-    -webkit-user-select: none; }
+    -webkit-user-select: none;
+    padding-right: 2rem; }
     .table-row__content__title {
       padding: 0;
       font-size: 1.1rem;
       display: block;
+      -webkit-user-select: none;
       -moz-user-select: none;
       -ms-user-select: none;
-      user-select: none;
-      -webkit-user-select: none; }
+      user-select: none; }
       .table-row__content__title--small {
         font-size: 0.8rem; }
       .table-row__content__title--large {
@@ -525,8 +290,9 @@ bem:
   .table-row__label {
     color: #808080; }
     .table-row__label--right {
-      float: right;
-      margin-right: 6%; }
+      margin-right: 2rem;
+      right: 2%;
+      position: absolute; }
     .table-row__label--left {
       float: left;
       position: relative;
@@ -559,10 +325,11 @@ bem:
   .table-row--tappable {
     transition: background-color 0.2s linear; }
     .table-row--tappable:active {
-      background-color: #d9d9d9; }
+      color: #fff !important;
+      background-color: #d9d9d9;
+      transition: none; }
     .table-row--tappable:hover {
-      transition: none;
-      -webkit-transition: none; }
+      transition: none; }
   .table-row--chevron {
     transition: background-color 0.2s linear;
     overflow: hidden;
@@ -587,10 +354,11 @@ bem:
     .table-row--chevron:hover {
       transition: none; }
     .table-row--chevron:active {
-      background-color: #d9d9d9; }
+      color: #fff !important;
+      background-color: #d9d9d9;
+      transition: none; }
     .table-row--chevron:hover {
-      transition: none;
-      -webkit-transition: none; }
+      transition: none; }
   .table-row--detail {
     transition: background-color 0.2s linear;
     overflow: hidden;
@@ -615,10 +383,11 @@ bem:
     .table-row--detail:hover {
       transition: none; }
     .table-row--detail:active {
-      background-color: #d9d9d9; }
+      color: #fff !important;
+      background-color: #d9d9d9;
+      transition: none; }
     .table-row--detail:hover {
-      transition: none;
-      -webkit-transition: none; }
+      transition: none; }
   .table-row--order {
     transition: background-color 0.2s linear;
     overflow: hidden; }
@@ -666,10 +435,11 @@ bem:
   .table-row--nav {
     transition: background-color 0.2s linear; }
     .table-row--nav:active {
-      background-color: #d9d9d9; }
+      color: #fff !important;
+      background-color: #d9d9d9;
+      transition: none; }
     .table-row--nav:hover {
-      transition: none;
-      -webkit-transition: none; }
+      transition: none; }
     .table-row--nav--left {
       transition: background-color 0.2s linear;
       overflow: hidden; }
@@ -742,11 +512,12 @@ bem:
     width: auto; }
     .table-row__actions__button {
       cursor: pointer;
+      font-size: 1rem;
       margin: 0;
       color: #fff !important;
       border-radius: 0;
       padding: 2px 15px;
-      min-width: 50px; }
+      min-width: 75px; }
       .table-row__actions__button i {
         display: block; }
     .table-row__actions .btn-delete {

@@ -57,6 +57,7 @@
 }
 
 
+
 /// Make a list item clickable
 @mixin tableRowClickable($bg, $font) {
   transition: background-color 0.2s linear;
@@ -71,34 +72,6 @@
   @content;
 }
 
-/// Make a list item have an icon
-@mixin tableRowIcon($icon) {
-  transition: background-color 0.2s linear;
-  overflow: hidden;
-  &:active {
-    //color: $list-item-active-font-color;
-    background-color: $table-row-active-background-color;
-    transition: none;
-  }
-  &:before {
-    position: absolute;
-    right: 16px;
-    top: 50%;
-    color: $table-row-border-color;
-    line-height: 28px;
-    height: 28px;
-    transform: translateY(-50%);
-    font-size: 28px;
-    font-family: Ionicons;
-    font-style: normal;
-    font-weight: normal;
-    content: "#{$icon}";
-  }
-  &:hover {
-    transition: none;
-  }
-  @content;
-}
 
 ///Style an action button
 @mixin actionButton($color) {
@@ -127,7 +100,7 @@
   flex-wrap: wrap;
   margin-left: -$gutter;
   margin-top: -$gutter;
-  .list-item {
+  .table-row {
     flex: 1 0 $min-width;
     margin-left: $gutter;
     margin-top: $gutter;
@@ -148,9 +121,148 @@
 }
 
 
-/// Scrollable mixin
-@mixin scrollable(){
-  overflow-y: scroll; /* has to be scroll, not auto */
-  -webkit-overflow-scrolling: touch;
-  @content;
+
+
+@mixin clearfix() {
+	&:before,
+	&:after {
+		display: table;
+		content: " ";
+	}
+	&:after {
+		clear: both;
+	}
+	@content;
+}
+
+@mixin scrollable() {
+	overflow-y: scroll;
+	overflow-y: auto;
+	-webkit-overflow-scrolling: touch;
+	@content;
+}
+
+
+
+
+@mixin tableRowIcon($icon, $iconColor: $table-row-border-color, $position:'right') {
+	transition: background-color 0.2s linear;
+	overflow: hidden;
+	//	background-color: rgba(0,0,0,.5);
+	&:active {
+		background-color: $table-row-active-background-color;
+		transition: none;
+	}
+	&:before {
+		transform: translateY(-50%);
+		font-style: normal;
+		font-weight: normal;
+		position: absolute;
+    right: 12px;
+		top: 50%;
+		color: $iconColor;
+		line-height: 28px;
+		height: 28px;
+		font-size: 28px;
+		font-family: Ionicons;
+		content: "#{$icon}";
+	}
+	&:hover {
+		transition: none;
+	}
+}
+
+
+
+
+@mixin switch() {
+	.switch {
+		position: relative;
+		display: inline-block;
+		vertical-align: top;
+		box-sizing: border-box;
+		background-clip: padding-box;
+		position: relative;
+		overflow: hidden;
+		font-size: 17px;
+		padding: 0 20px;
+		border: none;
+		overflow: visible;
+		width: 51px;
+		height: 32px;
+		z-index: 0;
+		text-align: left;
+		input {
+			position: absolute;
+			overflow: hidden;
+			right: 0;
+			top: 0;
+			left: 0;
+			bottom: 0;
+			padding: 0;
+			border: 0;
+			opacity: 0.001;
+			z-index: 1;
+			vertical-align: top;
+			outline: none;
+			width: 100%;
+			height: 100%;
+			margin: 0;
+			appearance: none;
+			width: 51px;
+			height: 44px;
+			margin-top: -6px;
+			top: 0;
+			left: 0;
+			transition: all 0.2s linear;
+		}
+
+		@include element('toggle') {
+			background-color: #ddd;
+			position: absolute;
+			top: 0;
+			left: 0;
+			right: 0;
+			bottom: 0;
+			border-radius: 30px;
+			transition-property: all;
+			transition-duration: 0.35s;
+			transition-timing-function: ease-out;
+			&:before {
+				box-sizing: border-box;
+				background-clip: padding-box;
+				position: absolute;
+				content: '';
+				border-radius: 28px;
+				height: 28px;
+				width: 28px;
+				background-color: #fff;
+				left: 2px;
+				top: 2px;
+				transition-property: all;
+				transition-duration: 0.35s;
+				transition-timing-function: cubic-bezier(0.5, 1.6, 0.5, 1);
+			}
+		}
+
+		input:checked + .toggle {
+			background-color: #4cd964;
+		}
+		input:checked + .toggle:before {
+			transform: translateX(18px);
+		}
+		input:not(:checked) + .toggle:before {
+			transform: translateX(0px);
+		}
+		input:disabled + .toggle {
+			opacity: 0.3;
+			cursor: default;
+			pointer-events: none;
+		}
+		&.table-row {
+			float: right;
+			margin-top: 6px;
+			margin-right: 10px;
+		}
+	}
 }

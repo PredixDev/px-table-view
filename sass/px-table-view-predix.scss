@@ -19,306 +19,22 @@
 @import "px-table-view-sketch.scss";
 
 ///Mixins
-//@import "mixins";
+@import "mixins";
 
 ///Variables
-//@import "variables";
-
-
-$red: #FE3F35;
-$blue: #177efb;
-$gray: #c7c7cc;
-$orange: #fd9427;
-$white: #fff;
-$red: #FE3F35;
-$blue: #177efb;
-$gray: #c7c7cc;
-$orange: #fd9427;
-$white: #fff;
-
-///Table View Var
-$list-font-color: #111;
-$list-font-size: 1.1rem;
-$list-border-color: #ccc;
-$list-background-color: #fff;
-$table-row-active-background-color: #d9d9d9;
-$table-row-active-font-color: #fff;
-$table-row-label-color: #808080;
-$table-row-detail-icon-color: #429cfc;
-$table-row-header-background-color: #F2F2F2;
-$table-row-header-font-color: #808080;
-$table-row-header-text-transform: uppercase;
-$table-row-checkbox-font-color: #fff;
-$table-row-checkbox-background-color: #1284ff;
-
-@mixin element($element) {
-	&__#{$element} {
-		@content;
-	}
-}
-
-@mixin modifier($modifier) {
-	&--#{$modifier} {
-		@content;
-	}
-}
-
-@mixin e($element) {
-	@include element($element) {
-		@content;
-	}
-}
-
-@mixin m($modifier) {
-	@include modifier($modifier) {
-		@content;
-	}
-}
-
-@mixin clearfix() {
-	&:before,
-	&:after {
-		display: table;
-		content: " ";
-	}
-	&:after {
-		clear: both;
-	}
-	@content;
-}
-
-@mixin scrollable() {
-	overflow-y: scroll;
-	overflow-y: auto;
-	-webkit-overflow-scrolling: touch;
-	@content;
-}
-
-@mixin listItemClickable($bg, $font) {
-	transition: background-color 0.2s linear;
-	&:active {
-
-		background-color: $table-row-active-background-color;
-	}
-	&:hover {
-		transition: none;
-	 -webkit-transition: none;
-	}
-	@content;
-}
-
-
-@mixin listItemIcon($icon, $iconColor: $list-border-color, $position:'right') {
-	transition: background-color 0.2s linear;
-	overflow: hidden;
-	//	background-color: rgba(0,0,0,.5);
-	&:active {
-		background-color: $table-row-active-background-color;
-		transition: none;
-	}
-	&:before {
-		transform: translateY(-50%);
-		font-style: normal;
-		font-weight: normal;
-		position: absolute;
-    right: 12px;
-		top: 50%;
-		color: $iconColor;
-		line-height: 28px;
-		height: 28px;
-		font-size: 28px;
-		font-family: Ionicons;
-		content: "#{$icon}";
-	}
-	&:hover {
-		transition: none;
-	}
-}
-
-@mixin actionButton($color) {
-	user-select: none;
-	transition: background-color 0.2s linear;
-	background-color: $color;
-	border: none;
-	outline: none;
-	&:active {
-		background-color: darken($color, 20%);
-	}
-	&:hover {
-		background-color: darken($color, 15%);
-	}
-	@content;
-}
-
-@mixin n-columns($min-width, $gutter, $last-equal: false, $max-cols: 6) {
-	display: flex;
-	flex-wrap: wrap;
-	margin-left: -$gutter;
-	margin-top: -$gutter;
-	.table-row {
-		flex: 1 0 $min-width;
-		margin-left: $gutter;
-		margin-top: $gutter;
-		@if $last-equal {
-			@for $i from 2 through $max-cols {
-				$screen-width: ($min-width*$i)+($gutter*$i);
-				$column-width: (100%/$i);
-				@media (min-width: $screen-width) {
-					max-width: calc(#{$column-width} - #{$gutter});
-				}
-			}
-			$column-width: (100%/$max-cols);
-			@media (min-width: $min-width*$max-cols) {
-				min-width: calc(#{$column-width} - #{$gutter});
-			}
-		}
-	}
-}
-
-@mixin switch() {
-	.switch {
-		position: relative;
-		display: inline-block;
-		vertical-align: top;
-		box-sizing: border-box;
-		background-clip: padding-box;
-		position: relative;
-		overflow: hidden;
-		font-size: 17px;
-		padding: 0 20px;
-		border: none;
-		overflow: visible;
-		width: 51px;
-		height: 32px;
-		z-index: 0;
-		text-align: left;
-		input {
-			position: absolute;
-			overflow: hidden;
-			right: 0;
-			top: 0;
-			left: 0;
-			bottom: 0;
-			padding: 0;
-			border: 0;
-			opacity: 0.001;
-			z-index: 1;
-			vertical-align: top;
-			outline: none;
-			width: 100%;
-			height: 100%;
-			margin: 0;
-			appearance: none;
-			width: 51px;
-			height: 44px;
-			margin-top: -6px;
-			top: 0;
-			left: 0;
-			transition: all 0.2s linear;
-		}
-
-		@include element('toggle') {
-			background-color: #ddd;
-			position: absolute;
-			top: 0;
-			left: 0;
-			right: 0;
-			bottom: 0;
-			border-radius: 30px;
-			transition-property: all;
-			transition-duration: 0.35s;
-			transition-timing-function: ease-out;
-			&:before {
-				box-sizing: border-box;
-				background-clip: padding-box;
-				position: absolute;
-				content: '';
-				border-radius: 28px;
-				height: 28px;
-				width: 28px;
-				background-color: #fff;
-				left: 2px;
-				top: 2px;
-				transition-property: all;
-				transition-duration: 0.35s;
-				transition-timing-function: cubic-bezier(0.5, 1.6, 0.5, 1);
-			}
-		}
-
-		input:checked + .toggle {
-			background-color: #4cd964;
-		}
-		input:checked + .toggle:before {
-			transform: translateX(18px);
-		}
-		input:not(:checked) + .toggle:before {
-			transform: translateX(0px);
-		}
-		input:disabled + .toggle {
-			opacity: 0.3;
-			cursor: default;
-			pointer-events: none;
-		}
-		&.table-row {
-			float: right;
-			margin-top: 6px;
-			margin-right: 10px;
-		}
-	}
-}
+@import "variables";
 
 @include switch();
 
 /// -------------------------
 /// Table View
-///
-/*
-bem:
-
-  .table-view
-    --inset
-    --small
-    --large
-    --regular
-
-    .table-row
-      --actionable
-      --tappable
-      --nav-right
-      --nav-left
-      --disclosure
-
-      .table-row__media
-        --left
-        --right
-        __image
-        __icon
-
-      .table-row__content
-        .table-row__content__title
-          --small
-          --large
-
-        .table-row__content__body
-          --small
-          --large
-
-        .table-row__content__label
-          --left
-          --right
-*/
-$table-view-responsive-row-width: 240px;
-$table-view-responsive-row-gutters: 0;
-$table-view-responsive-row-max: 4;
-
-///
 .table-view {
 	@include clearfix();
 	@include scrollable();
 
 	border: none;
 	background: transparent;
-	background-color: $list-background-color;
+	background-color: $table-row-background-color;
 	cursor: default;
 	list-style-type: none;
 	line-height: normal;
@@ -333,11 +49,14 @@ $table-view-responsive-row-max: 4;
 	///.table-view--responsive
 	@include modifier('responsive') {
 		@include n-columns($table-view-responsive-row-width, $table-view-responsive-row-gutters, true, $table-view-responsive-row-max);
+		> *:last-child {
+			border-bottom: 1px solid $table-row-border-color !important;
+		}
 	}
 	///.table-view--inset
 	@include modifier('inset') {
 		background-image: none;
-		border: 1px solid $list-border-color;
+		border: 1px solid $table-row-border-color;
 		border-radius: 4px;
 		margin-left: 8px;
 		margin-right: 8px;
@@ -398,14 +117,15 @@ $table-view-responsive-row-max: 4;
 	}
 }
 
-///
+/// -------------------------
+/// Table Row
 .table-row {
 	@include clearfix();
 	min-height: 44px;
 	line-height: 44px;
 	width: 100%;
-	font-size: $list-font-size;
-	border-color: $list-border-color;
+	font-size: $table-row-font-size;
+	border-color: $table-row-border-color;
 	box-sizing: border-box;
 	background-color: transparent;
 	position: relative;
@@ -427,8 +147,10 @@ $table-view-responsive-row-max: 4;
 		transition: none;
 		background: $table-row-active-background-color;
 	}
+
 	&:first-child {
 	}
+
 	&:last-child {
 		border-bottom: none;
 	}
@@ -437,12 +159,12 @@ $table-view-responsive-row-max: 4;
 		border-bottom: none;
 	}
 	&:not(:last-child) {
-		border-bottom: 1px solid $list-border-color;
+		border-bottom: 1px solid $table-row-border-color;
 	}
 	> a {
 		text-decoration: none;
-		color: $list-font-color;
-		@include listItemClickable($table-row-active-background-color, $table-row-active-font-color);
+		color: $table-row-font-color;
+		@include tableRowClickable($table-row-active-background-color, $table-row-active-font-color);
 	}
 
 	///.table-row__media
@@ -450,19 +172,24 @@ $table-view-responsive-row-max: 4;
 		display: table-cell;
 		vertical-align: middle;
 		padding-right: 1rem;
-		padding-left: 0.1rem;
+		padding-left: .1rem;
 
 		@include modifier('left') {
 			//float: left !important;
+
 		}
 		@include modifier('right') {
 			float: right !important;
+			> i{
+				margin-top: .7rem;
+			}
 		}
 
 		@include modifier('toggle') {
 			padding-top: 0.5rem;
 			padding-left: 0.5rem;
 		}
+
 		@include modifier('image') {
 			//	padding-top: .1rem;
 			padding-right: 1rem;
@@ -508,20 +235,25 @@ $table-view-responsive-row-max: 4;
 		width: 100%;
 		user-select: none;
 		-webkit-user-select: none;
+		padding-right: 2rem;
+
 
 		@include element('title') {
 			padding: 0;
 			font-size: 1.1rem;
 			display: block;
 			user-select: none;
-			-webkit-user-select: none;
+		//	line-height: normal;
+
 			@include modifier('small') {
 				font-size: 0.8rem;
 			}
+
 			@include modifier('large') {
 				font-size: 1.5rem;
 			}
 		}
+
 		@include element('body') {
 			display: block;
 			line-height: normal;
@@ -531,10 +263,14 @@ $table-view-responsive-row-max: 4;
 	///.table-row__label
 	@include element('label') {
 		color: $table-row-label-color;
+
 		@include modifier('right') {
-			float: right;
-			margin-right: 6%;
+			//float: right;
+			margin-right: 2rem;
+			right: 2%;
+			position: absolute;
 		}
+
 		@include modifier('left') {
 			float: left;
 			position: relative;
@@ -545,9 +281,11 @@ $table-view-responsive-row-max: 4;
 	///.table-row__icon
 	@include element('icon') {
 		padding: 0;
+
 		@include modifier('left') {
 			float: left;
 		}
+
 		@include modifier('right') {
 			float: right;
 		}
@@ -582,38 +320,38 @@ $table-view-responsive-row-max: 4;
 
 	///.table-row--tappable
 	@include modifier('tappable') {
-		@include listItemClickable($table-row-active-background-color, $table-row-active-font-color);
+		@include tableRowClickable($table-row-active-background-color, $table-row-active-font-color);
 	}
 
 	///.table-row--chevron
 	@include modifier('chevron') {
-		@include listItemIcon('\f3d3', $list-border-color);
-		@include listItemClickable($table-row-active-background-color, $table-row-active-font-color);
+		@include tableRowIcon('\f3d3', $table-row-border-color);
+		@include tableRowClickable($table-row-active-background-color, $table-row-active-font-color);
 	}
 
 	///.table-row--detail
 	@include modifier('detail') {
-		@include listItemIcon('\f44c', #007aff);
-		@include listItemClickable($table-row-active-background-color, $table-row-active-font-color);
+		@include tableRowIcon('\f44c', #007aff);
+		@include tableRowClickable($table-row-active-background-color, $table-row-active-font-color);
 	}
 
 	///.table-row--order
 	@include modifier('order') {
-		@include listItemIcon('\f421', #888);
+		@include tableRowIcon('\f421', #888);
 	}
 
 	///.table-row--edit
 	@include modifier('edit') {
-		@include listItemIcon('\f464', $red);
+		@include tableRowIcon('\f464', $red);
 	}
 
 	@include modifier('nav') {
-		@include listItemClickable($table-row-active-background-color, $table-row-active-font-color);
+		@include tableRowClickable($table-row-active-background-color, $table-row-active-font-color);
 		@include modifier('left') {
-			@include listItemIcon('\f3d2');
+			@include tableRowIcon('\f3d2');
 		}
 		@include modifier('right') {
-			@include listItemIcon('\f3d3');
+			@include tableRowIcon('\f3d3');
 		}
 	}
 
@@ -645,12 +383,12 @@ $table-view-responsive-row-max: 4;
 		//Button
 		@include element('button') {
 			cursor:pointer;
-
+			font-size: 1rem;
 			margin: 0;
 			color: #fff !important;
 			border-radius: 0;
 			padding: 2px 15px;
-			min-width: 50px;
+			min-width: 75px;
 			i {
 				display: block;
 			}

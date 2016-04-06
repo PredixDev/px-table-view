@@ -32,6 +32,7 @@
     "px-forms-design": "https://github.com/PredixDev/px-forms-design.git#~0.3.11",
     "px-starter-kit-design": "https://github.com/PredixDev/px-starter-kit-design.git#~0.4.9",
     "px-mobile-mixin-designs": "https://github.build.ge.com/PredixComponents/px-mobile-mixin-designs.git",
-    "px-example": "https://github.build.ge.com/PredixComponents/px-example.git"
+    "px-example": "https://github.build.ge.com/PredixComponents/px-example.git",
+    "iron-demo-helpers": "PolymerElements/iron-demo-helpers#~1.2.3"
   }
 }

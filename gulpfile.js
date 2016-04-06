@@ -27,18 +27,18 @@ const sassOptions = {
   }
 };
 
-gulp.task('sassdoc', function() {
+gulp.task('sassdoc', function () {
   return gulp.src('sass/**/*.scss')
     .pipe(sassdoc(sassdocOptions));
 });
 
-gulp.task('clean', function() {
+gulp.task('clean', function () {
   return gulp.src(['.tmp', 'css'], {
     read: false
   }).pipe($.clean());
 });
 
-gulp.task('sass', function() {
+gulp.task('sass', function () {
   return gulp.src('./sass/**/*.scss')
     .pipe($.sass(sassOptions).on('error', $.sass.logError))
     .pipe($.size())
@@ -46,8 +46,8 @@ gulp.task('sass', function() {
     .pipe(gulp.dest('./css'));
 });
 
-gulp.task('autoprefixer', function() {
-  return gulp.src('css/**/*.css')
+gulp.task('autoprefixer', function () {
+  return gulp.src('css/*.css')
     .pipe($.autoprefixer({
       browsers: ['last 2 versions'],
       cascade: false
@@ -56,8 +56,8 @@ gulp.task('autoprefixer', function() {
     .pipe(gulp.dest('css'));
 });
 
-gulp.task('css', function() {
-  return gulp.src('css/**/*.css')
+gulp.task('css', function () {
+  return gulp.src('css/*.css')
     .pipe($.sourcemaps.init())
     .pipe($.cssmin())
     .pipe($.concat(pkg.name + '.css'))
@@ -69,13 +69,16 @@ gulp.task('css', function() {
     .pipe(gulp.dest('css'));
 });
 
-gulp.task('sass:watch', function() {
-  gulp.watch('./sass/**/*.scss', ['sass']);
-});
 
-gulp.task('autoprefixer:watch', function() {
+
+gulp.task('build:styles', gulpSequence('sass', 'autoprefixer'));
+
+
+gulp.task('sass:watch', function () {
+  gulp.watch('./sass/**/*.scss', ['sass']);
   gulp.watch('./css/**/*.css', ['autoprefixer']);
 });
 
-gulp.task('watch', ['sass:watch', 'autoprefixer:watch']);
+
+gulp.task('watch', ['sass:watch']);
 gulp.task('default', gulpSequence('clean', 'sass', 'autoprefixer', 'css', 'sassdoc'));

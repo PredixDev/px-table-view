@@ -1,13 +1,10 @@
-/// For Demo
-///
+/// Table View Vars
+/// --------------------------
 $red: #FE3F35;
 $blue: #177efb;
 $gray: #c7c7cc;
 $orange: #fd9427;
 $white: #fff;
-
-/// Table View Vars
-/// --------------------------
 
 ///
 $table-row-font-color: #111;
@@ -22,13 +19,37 @@ $table-row-border-color: #ccc;
 $table-row-background-color: #fff;
 
 ///
-$table-row-active-background-color: #0a9ec1;
+$table-row-active-background-color: #d9d9d9;
 
 ///
 $table-row-active-font-color: #fff;
 
 ///
-$table-row-label-color: #999;
+$table-row-label-color: #808080;
 
 ///
 $table-row-detail-icon-color: #429cfc;
+
+///
+$table-row-header-background-color: #F2F2F2;
+
+///
+$table-row-header-font-color: #808080;
+
+///
+$table-row-header-text-transform: uppercase;
+
+///
+$table-row-checkbox-font-color: #fff;
+
+///
+$table-row-checkbox-background-color: #1284ff;
+
+///
+$table-view-responsive-row-width: 240px;
+
+///
+$table-view-responsive-row-gutters: 0;
+
+///
+$table-view-responsive-row-max: 4;

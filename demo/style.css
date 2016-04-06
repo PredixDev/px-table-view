@@ -27,7 +27,6 @@
      background: #efeff4;
   }
   .demo{
-
     padding: 10px;
   }
 
@@ -46,6 +45,8 @@
     -ms-user-select: none;
     user-select: none;
   }
+
+
 .green {
   background: lime;
 }
@@ -62,6 +63,15 @@
   background: #FE3F35;
 }
 
+.color-red {
+  color: #FE3F35;
+}
+.color-blue{
+  color: blue;
+}
+.color-orange{
+  color: orange;
+}
 
 /**
 
