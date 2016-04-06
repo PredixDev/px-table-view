@@ -23,6 +23,7 @@
   "dependencies": {
     "polymer": "latest",
     "px-theme": "https://github.com/PredixDev/px-theme.git#~0.4.0",
+    "iron-list": "PolymerElements/iron-list#^1.2.8",
     "iron-swipeable-container": "PolymerElements/iron-swipeable-container#^1.0.2"
   },
   "devDependencies": {
@@ -32,7 +33,6 @@
     "px-forms-design": "https://github.com/PredixDev/px-forms-design.git#~0.3.11",
     "px-starter-kit-design": "https://github.com/PredixDev/px-starter-kit-design.git#~0.4.9",
     "px-mobile-mixin-designs": "https://github.build.ge.com/PredixComponents/px-mobile-mixin-designs.git",
-    "px-example": "https://github.build.ge.com/PredixComponents/px-example.git",
     "iron-demo-helpers": "PolymerElements/iron-demo-helpers#~1.2.3"
   }
 }

@@ -4,7 +4,37 @@
 
 <!--
 ```
-
+<div class="demo" style="height: 500px; overflow:auto;">
+  <template id="tableViewTemplate" is="dom-bind">
+    <iron-ajax url="./demo/data.json" last-response="{{data}}" auto></iron-ajax>
+    <iron-list id="ironList" items="[[data]]" as="item" class="table-view  table-view--small">
+      <template>
+        <div class="table-row table-row--nav-right" on-click="handleSelect">
+          <div class="table-row__media table-row__media--icon" hidden="{{!item.icon}}">
+              <i class$="{{item.icon}}"></i>
+          </div>
+          <div class="table-row__media table-row__media--image" hidden="{{!item.image}}">
+            <img src$="{{item.image}}" alt="{{item.title}}">
+          </div>
+          <div class="table-row__content">
+            <span class="table-row__content__title">{{item.title}}</span>
+          </div>
+        </div>
+      </template>
+    </iron-list>
+  </template>
+  <script type="text/javascript">
+    var tmpl = document.getElementById('tableViewTemplate');
+    tmpl.handleSelect = function(e) {
+      console.log('handleSelect', e);
+    };
+    document.addEventListener('WebComponentsReady', function() {
+      setTimeout(function() {
+        document.querySelector('iron-list').fire('iron-resize');
+      }, 50);
+    });
+  </script>
+</div>
 ```
 @element px-table-view.html
 @blurb px-table-view
