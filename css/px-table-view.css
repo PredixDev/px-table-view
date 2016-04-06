@@ -105,6 +105,9 @@ Predix branding rules go in my-px-comp-predix.scss, not in this file.
     margin-top: 6px;
     margin-right: 10px; }
 
+* {
+  -webkit-tap-highlight-color: transparent; }
+
 .table-view {
   overflow-y: scroll;
   overflow-y: auto;
@@ -197,7 +200,10 @@ Predix branding rules go in my-px-comp-predix.scss, not in this file.
   display: block;
   margin: 0;
   padding: 0 10px 0 10px;
-  transition: background-color 0.2s linear; }
+  transition: background-color 0.2s linear;
+  -webkit-appearance: normal;
+  -moz-appearance: normal;
+  appearance: normal; }
   .table-row:before, .table-row:after {
     display: table;
     content: " "; }
