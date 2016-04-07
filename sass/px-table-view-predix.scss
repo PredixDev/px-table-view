@@ -338,18 +338,18 @@
 
 	///.table-row--detail
 	@include modifier('detail') {
-		@include tableRowIcon('\f44c', #007aff);
+		@include tableRowIcon('\f05a', $blue-light);
 		@include tableRowClickable($table-row-active-background-color, $table-row-active-font-color);
 	}
 
 	///.table-row--order
 	@include modifier('order') {
-		@include tableRowIcon('\f421', #888);
+		@include tableRowIcon('\f0c9', $gray-light);
 	}
 
 	///.table-row--edit
 	@include modifier('edit') {
-		@include tableRowIcon('\f464', $red);
+		@include tableRowIcon('\f056', $red-light);
 	}
 
 	@include modifier('nav') {

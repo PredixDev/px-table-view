@@ -382,12 +382,12 @@ Predix branding rules go in my-px-comp-predix.scss, not in this file.
       position: absolute;
       right: 12px;
       top: 50%;
-      color: #007aff;
+      color: #3693f8;
       line-height: 28px;
       height: 28px;
       font-size: 28px;
       font-family: FontAwesome;
-      content: ""; }
+      content: ""; }
     .table-row--detail:hover {
       transition: none; }
     .table-row--detail:active {
@@ -410,12 +410,12 @@ Predix branding rules go in my-px-comp-predix.scss, not in this file.
       position: absolute;
       right: 12px;
       top: 50%;
-      color: #888;
+      color: #D3D3D3;
       line-height: 28px;
       height: 28px;
       font-size: 28px;
       font-family: FontAwesome;
-      content: ""; }
+      content: ""; }
     .table-row--order:hover {
       transition: none; }
   .table-row--edit {
@@ -432,12 +432,12 @@ Predix branding rules go in my-px-comp-predix.scss, not in this file.
       position: absolute;
       right: 12px;
       top: 50%;
-      color: #e53838;
+      color: #ff5c5c;
       line-height: 28px;
       height: 28px;
       font-size: 28px;
       font-family: FontAwesome;
-      content: ""; }
+      content: ""; }
     .table-row--edit:hover {
       transition: none; }
   .table-row--nav {
