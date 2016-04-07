@@ -4,6 +4,13 @@
 ///Variables
 @import "variables";
 
+
+@mixin pxFonts(){
+  font-family: $font-family-default;
+  font-weight: $font-weight;
+  @content;
+}
+
 ////
 /// Block Element
 /// @access public
@@ -165,7 +172,7 @@
 		line-height: 28px;
 		height: 28px;
 		font-size: 28px;
-		font-family: Ionicons;
+		font-family: FontAwesome;
 		content: "#{$icon}";
 	}
 	&:hover {

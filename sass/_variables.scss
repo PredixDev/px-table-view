@@ -1,55 +1,97 @@
-/// Table View Vars
-/// --------------------------
-$red: #FE3F35;
-$blue: #177efb;
+
+//GE Brand Colors Light
+$black-light: #222;
+$red-light: rgb(255,92,92);
+$blue-light: rgb(54,147,248);
+$green-light: rgb(117,216,53);
+$purple-light: rgb(156,151,255);
+$orange-light: rgb(255,187,102);
+$yellow-light: rgb(255,249,141);
+$gray-light: #D3D3D3;
+$pink-light: #FFB6C1;
+$brown-light: #D2B48C;
+///GE Brand Colors Dark
+$red-dark: rgb(182,18,37);
+$blue-dark: rgb(0,54,110);
+$green-dark: rgb(29,95,17);
+$pink-dark: rgb(182,18,37);
+$purple-dark: rgb(89,81,148);
+$orange-dark: rgb(229,92,0);
+$yellow-dark: rgb(255,207,69);
+//Monochromatic
+$black: rgb(0,0,0);
+$gray10: rgb(36,35,38);
+$gray9: rgb(59,59,63);
+$gray8: rgb(82,81,86);
+$gray7: rgb(124,124,132);
+$gray6: rgb(153,153,163);
+$gray5: rgb(177,177,188);
+$gray4: rgb(209,208,216);
+$gray3: rgb(228,228,234);
+$gray2: rgb(239,239,244);
+$gray1: rgb(247,247,252);
+$white: rgb(255,255,255);
+$graybg: rgb(139,141,143);
+$primary: rgb(62,135,232);
+$primary-hover: rgb(53,115,197);
+$primary-pressed: rgb(43,94,162);
+$select-default: rgb(10,158,193);
+$select-hover: rgb(9,134,164);
+$select-pressed: rgb(8,110,135);
+$alert-red: rgb(229,56,56);
+$alert-orange: rgb(221,107,31);
+$alert-yellow: rgb(232,167,54);
+$alert-blue: rgb(67,100,221);
+
+$red: $alert-red;
+$blue: $alert-blue;
 $gray: #c7c7cc;
-$orange: #fd9427;
-$white: #fff;
+$orange:$alert-orange;
+$white: $white;
+// Type
+// --------------------------------------------------
+$font-family-default: "GE Inspira Sans", sans-serif !default;
+/// Global font size
+/// @access private
+$font-size-default: 1rem !default;
+/// Global font weight
+/// @access private
+$font-weight: 500 !default;
+
+// Table Styles
+// --------------------------------------------------
 
 ///
-$table-row-font-color: #111;
-
+$table-row-font-color: $black;
 ///
 $table-row-font-size: 1.1rem;
-
 ///
-$table-row-border-color: #ccc;
-
+$table-row-border-color:$gray5;
 ///
-$table-row-background-color: #fff;
-
+$table-row-background-color: $white;
 ///
-$table-row-active-background-color: #d9d9d9;
-
+$table-row-active-background-color: $select-default;
+$table-row-hover-background-color: $select-hover;
+$table-row-selected-background-color: $select-pressed;
 ///
 $table-row-active-font-color: #fff;
-
 ///
-$table-row-label-color: #808080;
-
+$table-row-label-color: $gray3;
 ///
-$table-row-detail-icon-color: #429cfc;
-
+$table-row-detail-icon-color: $primary;
 ///
-$table-row-header-background-color: #F2F2F2;
-
+$table-row-header-background-color: $gray3;
 ///
-$table-row-header-font-color: #808080;
-
+$table-row-header-font-color: $black;
 ///
 $table-row-header-text-transform: uppercase;
-
 ///
-$table-row-checkbox-font-color: #fff;
-
+$table-row-checkbox-font-color: $white;
 ///
-$table-row-checkbox-background-color: #1284ff;
-
+$table-row-checkbox-background-color: $primary;
 ///
 $table-view-responsive-row-width: 240px;
-
 ///
 $table-view-responsive-row-gutters: 0;
-
 ///
 $table-view-responsive-row-max: 4;

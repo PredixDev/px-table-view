@@ -36,6 +36,7 @@
 .table-view {
 	@include clearfix();
 	@include scrollable();
+	@include pxFonts();
 
 	border: none;
 	background: transparent;
@@ -331,7 +332,7 @@
 
 	///.table-row--chevron
 	@include modifier('chevron') {
-		@include tableRowIcon('\f3d3', $table-row-border-color);
+		@include tableRowIcon('\f105', $table-row-border-color);
 		@include tableRowClickable($table-row-active-background-color, $table-row-active-font-color);
 	}
 
@@ -354,10 +355,10 @@
 	@include modifier('nav') {
 		@include tableRowClickable($table-row-active-background-color, $table-row-active-font-color);
 		@include modifier('left') {
-			@include tableRowIcon('\f3d2');
+			@include tableRowIcon('\f104');
 		}
 		@include modifier('right') {
-			@include tableRowIcon('\f3d3');
+			@include tableRowIcon('\f105');
 		}
 	}
 

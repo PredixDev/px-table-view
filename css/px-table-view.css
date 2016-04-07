@@ -112,9 +112,11 @@ Predix branding rules go in my-px-comp-predix.scss, not in this file.
   overflow-y: scroll;
   overflow-y: auto;
   -webkit-overflow-scrolling: touch;
+  font-family: "GE Inspira Sans", sans-serif;
+  font-weight: 500;
   border: none;
   background: transparent;
-  background-color: #fff;
+  background-color: white;
   cursor: default;
   list-style-type: none;
   line-height: normal;
@@ -158,10 +160,10 @@ Predix branding rules go in my-px-comp-predix.scss, not in this file.
         .table-view--responsive .table-row {
           min-width: calc(25% - 0); } }
     .table-view--responsive > *:last-child {
-      border-bottom: 1px solid #ccc !important; }
+      border-bottom: 1px solid #b1b1bc !important; }
   .table-view--inset {
     background-image: none;
-    border: 1px solid #ccc;
+    border: 1px solid #b1b1bc;
     border-radius: 4px;
     margin-left: 8px;
     margin-right: 8px; }
@@ -192,7 +194,7 @@ Predix branding rules go in my-px-comp-predix.scss, not in this file.
   line-height: 44px;
   width: 100%;
   font-size: 1.1rem;
-  border-color: #ccc;
+  border-color: #b1b1bc;
   box-sizing: border-box;
   background-color: transparent;
   position: relative;
@@ -220,21 +222,21 @@ Predix branding rules go in my-px-comp-predix.scss, not in this file.
     -webkit-user-select: none; }
   .table-row:active {
     transition: none;
-    background: #d9d9d9; }
+    background: #0a9ec1; }
   .table-row:last-child {
     border-bottom: none; }
   .table-row:first-child:last-child {
     border-top: none;
     border-bottom: none; }
   .table-row:not(:last-child) {
-    border-bottom: 1px solid #ccc; }
+    border-bottom: 1px solid #b1b1bc; }
   .table-row > a {
     text-decoration: none;
-    color: #111;
+    color: black;
     transition: background-color 0.2s linear; }
     .table-row > a:active {
       color: #fff !important;
-      background-color: #d9d9d9;
+      background-color: #0a9ec1;
       transition: none; }
     .table-row > a:hover {
       transition: none; }
@@ -294,7 +296,7 @@ Predix branding rules go in my-px-comp-predix.scss, not in this file.
       display: block;
       line-height: normal; }
   .table-row__label {
-    color: #808080; }
+    color: #e4e4ea; }
     .table-row__label--right {
       margin-right: 2rem;
       right: 2%;
@@ -320,8 +322,8 @@ Predix branding rules go in my-px-comp-predix.scss, not in this file.
     box-sizing: border-box;
     font-size: 15px;
     font-weight: 500;
-    background-color: #F2F2F2;
-    color: #808080;
+    background-color: #e4e4ea;
+    color: black;
     text-transform: uppercase;
     text-shadow: none;
     border-top: none;
@@ -332,7 +334,7 @@ Predix branding rules go in my-px-comp-predix.scss, not in this file.
     transition: background-color 0.2s linear; }
     .table-row--tappable:active {
       color: #fff !important;
-      background-color: #d9d9d9;
+      background-color: #0a9ec1;
       transition: none; }
     .table-row--tappable:hover {
       transition: none; }
@@ -341,7 +343,7 @@ Predix branding rules go in my-px-comp-predix.scss, not in this file.
     overflow: hidden;
     transition: background-color 0.2s linear; }
     .table-row--chevron:active {
-      background-color: #d9d9d9;
+      background-color: #0a9ec1;
       transition: none; }
     .table-row--chevron:before {
       -webkit-transform: translateY(-50%);
@@ -351,17 +353,17 @@ Predix branding rules go in my-px-comp-predix.scss, not in this file.
       position: absolute;
       right: 12px;
       top: 50%;
-      color: #ccc;
+      color: #b1b1bc;
       line-height: 28px;
       height: 28px;
       font-size: 28px;
-      font-family: Ionicons;
-      content: ""; }
+      font-family: FontAwesome;
+      content: ""; }
     .table-row--chevron:hover {
       transition: none; }
     .table-row--chevron:active {
       color: #fff !important;
-      background-color: #d9d9d9;
+      background-color: #0a9ec1;
       transition: none; }
     .table-row--chevron:hover {
       transition: none; }
@@ -370,7 +372,7 @@ Predix branding rules go in my-px-comp-predix.scss, not in this file.
     overflow: hidden;
     transition: background-color 0.2s linear; }
     .table-row--detail:active {
-      background-color: #d9d9d9;
+      background-color: #0a9ec1;
       transition: none; }
     .table-row--detail:before {
       -webkit-transform: translateY(-50%);
@@ -384,13 +386,13 @@ Predix branding rules go in my-px-comp-predix.scss, not in this file.
       line-height: 28px;
       height: 28px;
       font-size: 28px;
-      font-family: Ionicons;
+      font-family: FontAwesome;
       content: ""; }
     .table-row--detail:hover {
       transition: none; }
     .table-row--detail:active {
       color: #fff !important;
-      background-color: #d9d9d9;
+      background-color: #0a9ec1;
       transition: none; }
     .table-row--detail:hover {
       transition: none; }
@@ -398,7 +400,7 @@ Predix branding rules go in my-px-comp-predix.scss, not in this file.
     transition: background-color 0.2s linear;
     overflow: hidden; }
     .table-row--order:active {
-      background-color: #d9d9d9;
+      background-color: #0a9ec1;
       transition: none; }
     .table-row--order:before {
       -webkit-transform: translateY(-50%);
@@ -412,7 +414,7 @@ Predix branding rules go in my-px-comp-predix.scss, not in this file.
       line-height: 28px;
       height: 28px;
       font-size: 28px;
-      font-family: Ionicons;
+      font-family: FontAwesome;
       content: ""; }
     .table-row--order:hover {
       transition: none; }
@@ -420,7 +422,7 @@ Predix branding rules go in my-px-comp-predix.scss, not in this file.
     transition: background-color 0.2s linear;
     overflow: hidden; }
     .table-row--edit:active {
-      background-color: #d9d9d9;
+      background-color: #0a9ec1;
       transition: none; }
     .table-row--edit:before {
       -webkit-transform: translateY(-50%);
@@ -430,11 +432,11 @@ Predix branding rules go in my-px-comp-predix.scss, not in this file.
       position: absolute;
       right: 12px;
       top: 50%;
-      color: #FE3F35;
+      color: #e53838;
       line-height: 28px;
       height: 28px;
       font-size: 28px;
-      font-family: Ionicons;
+      font-family: FontAwesome;
       content: ""; }
     .table-row--edit:hover {
       transition: none; }
@@ -442,7 +444,7 @@ Predix branding rules go in my-px-comp-predix.scss, not in this file.
     transition: background-color 0.2s linear; }
     .table-row--nav:active {
       color: #fff !important;
-      background-color: #d9d9d9;
+      background-color: #0a9ec1;
       transition: none; }
     .table-row--nav:hover {
       transition: none; }
@@ -450,7 +452,7 @@ Predix branding rules go in my-px-comp-predix.scss, not in this file.
       transition: background-color 0.2s linear;
       overflow: hidden; }
       .table-row--nav--left:active {
-        background-color: #d9d9d9;
+        background-color: #0a9ec1;
         transition: none; }
       .table-row--nav--left:before {
         -webkit-transform: translateY(-50%);
@@ -460,19 +462,19 @@ Predix branding rules go in my-px-comp-predix.scss, not in this file.
         position: absolute;
         right: 12px;
         top: 50%;
-        color: #ccc;
+        color: #b1b1bc;
         line-height: 28px;
         height: 28px;
         font-size: 28px;
-        font-family: Ionicons;
-        content: ""; }
+        font-family: FontAwesome;
+        content: ""; }
       .table-row--nav--left:hover {
         transition: none; }
     .table-row--nav--right {
       transition: background-color 0.2s linear;
       overflow: hidden; }
       .table-row--nav--right:active {
-        background-color: #d9d9d9;
+        background-color: #0a9ec1;
         transition: none; }
       .table-row--nav--right:before {
         -webkit-transform: translateY(-50%);
@@ -482,12 +484,12 @@ Predix branding rules go in my-px-comp-predix.scss, not in this file.
         position: absolute;
         right: 12px;
         top: 50%;
-        color: #ccc;
+        color: #b1b1bc;
         line-height: 28px;
         height: 28px;
         font-size: 28px;
-        font-family: Ionicons;
-        content: ""; }
+        font-family: FontAwesome;
+        content: ""; }
       .table-row--nav--right:hover {
         transition: none; }
   .table-row--actionable__content {
@@ -532,39 +534,39 @@ Predix branding rules go in my-px-comp-predix.scss, not in this file.
       -ms-user-select: none;
       user-select: none;
       transition: background-color 0.2s linear;
-      background-color: #FE3F35;
+      background-color: #e53838;
       border: none;
       outline: none; }
       .table-row__actions .btn-delete:active {
-        background-color: #cc0b01; }
+        background-color: #a21515; }
       .table-row__actions .btn-delete:hover {
-        background-color: #e50c01; }
+        background-color: #b81818; }
     .table-row__actions .btn-flag {
       -webkit-user-select: none;
       -moz-user-select: none;
       -ms-user-select: none;
       user-select: none;
       transition: background-color 0.2s linear;
-      background-color: #fd9427;
+      background-color: #dd6b1f;
       border: none;
       outline: none; }
       .table-row__actions .btn-flag:active {
-        background-color: #bc6102; }
+        background-color: #844012; }
       .table-row__actions .btn-flag:hover {
-        background-color: #d66e02; }
+        background-color: #9a4b16; }
     .table-row__actions .btn-more {
       -webkit-user-select: none;
       -moz-user-select: none;
       -ms-user-select: none;
       user-select: none;
       transition: background-color 0.2s linear;
-      background-color: #177efb;
+      background-color: #4364dd;
       border: none;
       outline: none; }
       .table-row__actions .btn-more:active {
-        background-color: #034ea9; }
+        background-color: #1c389e; }
       .table-row__actions .btn-more:hover {
-        background-color: #035ac2; }
+        background-color: #2040b3; }
     .table-row__actions .btn-info {
       -webkit-user-select: none;
       -moz-user-select: none;
@@ -649,10 +651,10 @@ Predix branding rules go in my-px-comp-predix.scss, not in this file.
     height: 0;
     width: 0; }
   .table-row__checkbox input[type="checkbox"]:checked {
-    background: #1284ff; }
+    background: #3e87e8; }
   .table-row__checkbox input[type="checkbox"]:checked + div:before {
-    background: #1284ff;
-    border: 1px solid #1284ff; }
+    background: #3e87e8;
+    border: 1px solid #3e87e8; }
   .table-row__checkbox input[type="checkbox"]:checked + div:after {
     opacity: 1; }
   .table-row__checkbox input[type="checkbox"]:focus + div:before {
@@ -689,7 +691,7 @@ Predix branding rules go in my-px-comp-predix.scss, not in this file.
       width: 24px;
       height: 24px;
       background: transparent;
-      border: 1px solid #1284ff;
+      border: 1px solid #3e87e8;
       border-radius: 16px;
       box-shadow: none;
       left: 0; }
@@ -701,7 +703,7 @@ Predix branding rules go in my-px-comp-predix.scss, not in this file.
       width: 12px;
       height: 6px;
       background: transparent;
-      border: 3px solid #fff;
+      border: 3px solid white;
       border-width: 2px;
       border-top: none;
       border-right: none;
@@ -717,12 +719,12 @@ Predix branding rules go in my-px-comp-predix.scss, not in this file.
       .table-row__checkbox--no-border input[type="checkbox"] + div:before {
         border: none; }
       .table-row__checkbox--no-border input[type="checkbox"] + div:after {
-        border-color: #1284ff; }
+        border-color: #3e87e8; }
       .table-row__checkbox--no-border input[type="checkbox"]:checked + div:before {
         border: none;
         background: transparent; }
       .table-row__checkbox--no-border input[type="checkbox"]:checked + div:after {
-        border-color: #1284ff;
+        border-color: #3e87e8;
         opacity: 1; }
       .table-row__checkbox--no-border input[type="checkbox"]:disabled + div:after {
         opacity: .5; }

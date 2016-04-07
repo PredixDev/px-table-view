@@ -1,6 +1,7 @@
 {
   "name": "px-table-view",
   "version": "0.0.1",
+  "description": "A responsive mobile first table view list.",
   "authors": [
     "Jonnie Spratley <jonnie.spratley@ge.com>"
   ],
