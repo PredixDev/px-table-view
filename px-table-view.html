@@ -42,7 +42,7 @@
 @homepage index.html
 -->
 <dom-module id="px-table-view">
-  <link rel="stylesheet" href="css/px-table-view.min.css" />
+  <link rel="stylesheet" href="css/px-table-view.css" />
   <style>
     :host {
       display: block;
@@ -50,8 +50,8 @@
   </style>
   <template>
     <section class="table-view table-view--small">
-      <template is="dom-if" if="{{listData}}">
-        <template is="dom-repeat" items="{{listData}}">
+      <template is="dom-if" if="{{items}}">
+        <template is="dom-repeat" items="{{items}}">
           <li class="table-row table-row--tappable" on-click="handleSelect">
             <px-table-row item="{{item}}"></px-table-row>
           </li>
@@ -67,9 +67,8 @@
         px.behaviors.TableView
       ],
       properties: {
-        listData: {
-          type: Array,
-          value: []
+        items: {
+          type: Array
         },
         responsive: {
           type: Boolean,
@@ -84,6 +83,10 @@
         if(this.responsive){
           this.toggleClass('table-view--responsive', this.responsive, this.$.list);
         }
+      },
+      handleSelect: function(e){
+        console.log('select', e.model);
+        this.fire('select', e.model);
       }
     });
   </script>

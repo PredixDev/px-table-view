@@ -22,6 +22,26 @@
 THIS FILE SHOULD CONTAIN ONLY ABSTRACT/'SKETCH' THEME RULES, NOT SPECIFIC TO PREDIX BRANDING
 Predix branding rules go in my-px-comp-predix.scss, not in this file.
 */
+.table-view--nested .table-row {
+  transition: -webkit-transform 500ms ease;
+  transition: transform 500ms ease;
+  transition: transform 500ms ease, -webkit-transform 500ms ease; }
+  .table-view--nested .table-row.has-children {
+    line-height: normal;
+    overflow: hidden;
+    max-height: 75px; }
+    .table-view--nested .table-row.has-children .table-view {
+      margin-left: 15px;
+      -webkit-transform: translateX(99%);
+      transform: translateX(99%); }
+    .table-view--nested .table-row.has-children.is-selected {
+      background: transparent;
+      max-height: 100%; }
+      .table-view--nested .table-row.has-children.is-selected > .table-view {
+        display: block;
+        -webkit-transform: translateX(0);
+        transform: translateX(0); }
+
 .switch {
   position: relative;
   display: inline-block;
@@ -167,6 +187,11 @@ Predix branding rules go in my-px-comp-predix.scss, not in this file.
     border-radius: 4px;
     margin-left: 8px;
     margin-right: 8px; }
+  .table-view--ptr > .table-row {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none; }
   .table-view--rev {
     direction: rtl; }
   .table-view--flush {
@@ -205,7 +230,11 @@ Predix branding rules go in my-px-comp-predix.scss, not in this file.
   transition: background-color 0.2s linear;
   -webkit-appearance: normal;
   -moz-appearance: normal;
-  appearance: normal; }
+  appearance: normal;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none; }
   .table-row:before, .table-row:after {
     display: table;
     content: " "; }
@@ -215,11 +244,13 @@ Predix branding rules go in my-px-comp-predix.scss, not in this file.
     margin: 0;
     padding: 0;
     line-height: normal; }
-  .table-row *:not(input), .table-row *:not(textarea), .table-row *:not(select) {
+  .table-row > *:not(input),
+  .table-row > *:not(textarea),
+  .table-row > *:not(select) {
+    -webkit-user-select: none;
     -moz-user-select: none;
     -ms-user-select: none;
-    user-select: none;
-    -webkit-user-select: none; }
+    user-select: none; }
   .table-row:active {
     transition: none;
     background: #0a9ec1; }
@@ -275,10 +306,10 @@ Predix branding rules go in my-px-comp-predix.scss, not in this file.
     display: table-cell;
     vertical-align: middle;
     width: 100%;
+    -webkit-user-select: none;
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
-    -webkit-user-select: none;
     padding-right: 2rem; }
     .table-row__content__title {
       padding: 0;
@@ -296,7 +327,7 @@ Predix branding rules go in my-px-comp-predix.scss, not in this file.
       display: block;
       line-height: normal; }
   .table-row__label {
-    color: #e4e4ea; }
+    color: #9999a3; }
     .table-row__label--right {
       margin-right: 2rem;
       right: 2%;
@@ -382,12 +413,12 @@ Predix branding rules go in my-px-comp-predix.scss, not in this file.
       position: absolute;
       right: 12px;
       top: 50%;
-      color: #007aff;
+      color: #0a9ec1;
       line-height: 28px;
       height: 28px;
       font-size: 28px;
       font-family: FontAwesome;
-      content: ""; }
+      content: ""; }
     .table-row--detail:hover {
       transition: none; }
     .table-row--detail:active {
@@ -410,12 +441,12 @@ Predix branding rules go in my-px-comp-predix.scss, not in this file.
       position: absolute;
       right: 12px;
       top: 50%;
-      color: #888;
+      color: #b1b1bc;
       line-height: 28px;
       height: 28px;
       font-size: 28px;
       font-family: FontAwesome;
-      content: ""; }
+      content: ""; }
     .table-row--order:hover {
       transition: none; }
   .table-row--edit {
@@ -432,12 +463,12 @@ Predix branding rules go in my-px-comp-predix.scss, not in this file.
       position: absolute;
       right: 12px;
       top: 50%;
-      color: #e53838;
+      color: #ff5c5c;
       line-height: 28px;
       height: 28px;
       font-size: 28px;
       font-family: FontAwesome;
-      content: ""; }
+      content: ""; }
     .table-row--edit:hover {
       transition: none; }
   .table-row--nav {
@@ -651,10 +682,10 @@ Predix branding rules go in my-px-comp-predix.scss, not in this file.
     height: 0;
     width: 0; }
   .table-row__checkbox input[type="checkbox"]:checked {
-    background: #3e87e8; }
+    background: #0a9ec1; }
   .table-row__checkbox input[type="checkbox"]:checked + div:before {
-    background: #3e87e8;
-    border: 1px solid #3e87e8; }
+    background: #0a9ec1;
+    border: 1px solid #0a9ec1; }
   .table-row__checkbox input[type="checkbox"]:checked + div:after {
     opacity: 1; }
   .table-row__checkbox input[type="checkbox"]:focus + div:before {
@@ -691,7 +722,7 @@ Predix branding rules go in my-px-comp-predix.scss, not in this file.
       width: 24px;
       height: 24px;
       background: transparent;
-      border: 1px solid #3e87e8;
+      border: 1px solid #0a9ec1;
       border-radius: 16px;
       box-shadow: none;
       left: 0; }
@@ -719,12 +750,12 @@ Predix branding rules go in my-px-comp-predix.scss, not in this file.
       .table-row__checkbox--no-border input[type="checkbox"] + div:before {
         border: none; }
       .table-row__checkbox--no-border input[type="checkbox"] + div:after {
-        border-color: #3e87e8; }
+        border-color: #0a9ec1; }
       .table-row__checkbox--no-border input[type="checkbox"]:checked + div:before {
         border: none;
         background: transparent; }
       .table-row__checkbox--no-border input[type="checkbox"]:checked + div:after {
-        border-color: #3e87e8;
+        border-color: #0a9ec1;
         opacity: 1; }
       .table-row__checkbox--no-border input[type="checkbox"]:disabled + div:after {
         opacity: .5; }

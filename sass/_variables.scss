@@ -45,7 +45,7 @@ $alert-blue: rgb(67,100,221);
 
 $red: $alert-red;
 $blue: $alert-blue;
-$gray: #c7c7cc;
+$gray: $gray4;
 $orange:$alert-orange;
 $white: $white;
 // Type
@@ -76,9 +76,19 @@ $table-row-selected-background-color: $select-pressed;
 ///
 $table-row-active-font-color: #fff;
 ///
-$table-row-label-color: $gray3;
+$table-row-label-color: $gray6;
 ///
-$table-row-detail-icon-color: $primary;
+$table-row-edit-icon: '\f056';
+$table-row-edit-icon-color: $red-light;
+
+$table-row-order-icon: '\f0c9';
+$table-row-order-icon-color: $gray5;
+
+$table-row-chevron-icon: '\f105';
+$table-row-chevron-icon-color: $gray5;
+
+$table-row-detail-icon: '\f05a';
+$table-row-detail-icon-color: $select-default;
 ///
 $table-row-header-background-color: $gray3;
 ///
@@ -88,7 +98,7 @@ $table-row-header-text-transform: uppercase;
 ///
 $table-row-checkbox-font-color: $white;
 ///
-$table-row-checkbox-background-color: $primary;
+$table-row-checkbox-background-color: $select-default;
 ///
 $table-view-responsive-row-width: 240px;
 ///

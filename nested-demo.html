@@ -1,0 +1,112 @@
+<html>
+
+<head>
+  <title>px-table-row demo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <script src="../webcomponentsjs/webcomponents-lite.js"></script>
+
+  <link rel='stylesheet prefetch' href='https://predixdev.github.io/px-library-design/css/style.css'>
+
+  <link rel="stylesheet" href="demo/style.css" />
+
+  <!-- TODO: Component -->
+  <link rel="import" href="../px-view/px-views.html">
+  <link rel="import" href="px-table-view.html" />
+
+  <!-- TODO: iron-list example -->
+  <link rel="import" href="../iron-demo-helpers/demo-snippet.html" />
+  <link rel="import" href="../iron-ajax/iron-ajax.html" />
+  <link rel="import" href="../iron-pages/iron-pages.html" />
+  <link rel="import" href="../iron-selector/iron-selector.html" />
+  <link rel="import" href="../iron-list/iron-list.html" />
+
+  <style>
+      .iron-selected {
+        background: #eee;
+      }
+    </style>
+
+  <style media="screen">
+    body{
+      overflow: hidden;
+      overflow-y: scroll;
+    	overflow-y: auto;
+    	-webkit-overflow-scrolling: touch;
+    }
+  </style>
+
+</head>
+
+<body unresolved>
+
+<h1>Nested List</h1>
+
+  <px-views id="nestedTableViews" theme="dark">
+    <px-view id="list1" dynamic-navbar title="Nested" loop >
+      <px-table-view id="nestedTable"></px-table-view>
+    </px-view>
+    <px-view id="list2" dynamic-navbar>
+      <button type="button" onclick="nestedTableViews.back()">Back</button>
+      <px-table-view id="selectedItemChildrenTable"></px-table-view>
+    </px-view>
+  </px-views>
+
+
+
+<script type="text/javascript">
+function item(label, children){
+  return {
+    title: label,
+    children: children || []
+  }
+}
+  document.addEventListener('WebComponentsReady', function(e){
+    var items = [
+      {
+        title: 'Item 1',
+        children: [
+          {
+            title: 'Item 1-1',
+            children: [
+              {title: 'Item 1-1-1'},
+              {title: 'Item 1-1-2'},
+              {title: 'Item 1-1-3'}
+            ]
+          },
+          {title: 'Item 1-2'},
+          {title: 'Item 1-3'}
+        ]
+      },
+      {
+        title: 'Item 2',
+        children: [
+          {
+            title: 'Item 2-1',
+            children: [
+              {title: 'Item 2-1-1'},
+              {title: 'Item 2-1-2'},
+              {title: 'Item 2-1-3'}
+            ]
+          },
+          {title: 'Item 2-2'},
+          {title: 'Item 2-3'}
+        ]
+      }
+    ]
+    var nestedTableViews = document.getElementById('nestedTableViews');
+    var nestedTable = document.getElementById('nestedTable');
+    var selectedTable = document.getElementById('selectedItemChildrenTable');
+    nestedTable.items = items;
+    nestedTable.addEventListener('select', function(e){
+      console.log('check for children', e.detail.item);
+
+      if(e.detail.item.children){
+        selectedTable.items = e.detail.item.children;
+        nestedTableViews.next();
+      }
+    })
+  });
+</script>
+
+</body>
+</html>

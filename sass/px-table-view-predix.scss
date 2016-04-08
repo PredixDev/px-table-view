@@ -24,6 +24,7 @@
 
 ///Variables
 @import "variables";
+@import "px-table-view--nested";
 
 @include switch();
 
@@ -67,6 +68,28 @@
 		margin-left: 8px;
 		margin-right: 8px;
 	}
+
+	///.table-view--ptr
+	@include modifier('ptr') {
+		> .table-row{
+			user-select:none;
+		}
+
+	}
+
+
+
+
+
+
+
+		///.table-view--nested
+
+
+
+
+
+
 	///.table-view--rev
 	@include modifier('rev') {
 		direction: rtl;
@@ -141,14 +164,16 @@
 	padding: 0 10px 0 10px;
 	transition: background-color 0.2s linear;
 	appearance: normal;
+	user-select: none;
 	h1, h2, h3, h4, h5, h6, p {
 		margin: 0;
 		padding: 0;
 		line-height: normal;
 	}
-	*:not(input), *:not(textarea), *:not(select) {
+	> *:not(input),
+	> *:not(textarea),
+	> *:not(select) {
 		user-select: none;
-		-webkit-user-select: none;
 	}
 	&:active {
 		transition: none;
@@ -241,7 +266,6 @@
 		vertical-align: middle;
 		width: 100%;
 		user-select: none;
-		-webkit-user-select: none;
 		padding-right: 2rem;
 
 
@@ -332,24 +356,24 @@
 
 	///.table-row--chevron
 	@include modifier('chevron') {
-		@include tableRowIcon('\f105', $table-row-border-color);
+		@include tableRowIcon($table-row-chevron-icon, $table-row-chevron-icon-color);
 		@include tableRowClickable($table-row-active-background-color, $table-row-active-font-color);
 	}
 
 	///.table-row--detail
 	@include modifier('detail') {
-		@include tableRowIcon('\f44c', #007aff);
+		@include tableRowIcon($table-row-detail-icon, $table-row-detail-icon-color);
 		@include tableRowClickable($table-row-active-background-color, $table-row-active-font-color);
 	}
 
 	///.table-row--order
 	@include modifier('order') {
-		@include tableRowIcon('\f421', #888);
+		@include tableRowIcon($table-row-order-icon, $table-row-order-icon-color);
 	}
 
 	///.table-row--edit
 	@include modifier('edit') {
-		@include tableRowIcon('\f464', $red);
+		@include tableRowIcon($table-row-edit-icon, $table-row-edit-icon-color);
 	}
 
 	@include modifier('nav') {
