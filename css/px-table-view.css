@@ -471,6 +471,11 @@ Predix branding rules go in my-px-comp-predix.scss, not in this file.
       content: ""; }
     .table-row--edit:hover {
       transition: none; }
+    .table-row--edit:before {
+      left: 5px;
+      right: auto; }
+    .table-row--edit > .table-row__content {
+      padding-left: 25px; }
   .table-row--nav {
     transition: background-color 0.2s linear; }
     .table-row--nav:active {

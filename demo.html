@@ -1,7 +1,7 @@
 <html>
 
 <head>
-  <title>px-table-row demo</title>
+  <title>px-table-view demo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
   <script src="../webcomponentsjs/webcomponents-lite.js"></script>
 
@@ -14,9 +14,10 @@
 
   <!-- TODO: iron-list example -->
   <link rel="import" href="../iron-demo-helpers/demo-snippet.html" />
+
+  <link rel="import" href="../px-example/px-example.html">
   <link rel="import" href="../iron-ajax/iron-ajax.html" />
   <link rel="import" href="../iron-list/iron-list.html" />
-<link rel="import" href="../px-example/px-example.html">
 
   <style media="screen">
     body {
@@ -65,7 +66,11 @@
       <demo-snippet>
         <template>
           <ol class="table-view">
-            <li class="table-row table-row--detail">Text Label</li>
+            <li class="table-row table-row--detail">
+              <div class="table-row__content">
+                <span class="table-row__content__title">Text Label</span>
+              </div>
+            </li>
           </ol>
         </template>
       </demo-snippet>
@@ -76,7 +81,11 @@
       <demo-snippet>
         <template>
           <ol class="table-view">
-            <li class="table-row table-row--order">Item 1</li>
+            <li class="table-row table-row--order">
+              <div class="table-row__content">
+                <span class="table-row__content__title">Text Label</span>
+              </div>
+            </li>
           </ol>
         </template>
       </demo-snippet>
@@ -86,7 +95,11 @@
       <demo-snippet>
         <template>
           <ol class="table-view">
-            <li class="table-row table-row--edit">Item 1</li>
+            <li class="table-row table-row--edit">
+              <div class="table-row__content">
+                <span class="table-row__content__title">Text Label</span>
+              </div>
+            </li>
           </ol>
         </template>
       </demo-snippet>
@@ -96,7 +109,11 @@
       <demo-snippet>
         <template>
           <ol class="table-view">
-            <li class="table-row table-row--order table-row--edit">Item 1</li>
+            <li class="table-row table-row--order table-row--edit">
+              <div class="table-row__content">
+                <span class="table-row__content__title">Text Label</span>
+              </div>
+            </li>
           </ol>
         </template>
       </demo-snippet>
@@ -268,7 +285,7 @@
         </template>
       </demo-snippet>
 
-      <h2>Default with Switch</h2>
+      <h2>Default - Switch</h2>
       <demo-snippet>
         <template>
           <section class="table-view table-view--small">
@@ -351,7 +368,7 @@
           <div>
             <button class="btn btn--full btn-toggle-actions u-mb+">Toggle Actions</button>
             <section class="table-view table-view--small">
-              <div class="table-row">
+              <div class="table-row table-row--actionable">
                 <div class="table-row__content">
                   <span class="table-row__content__title">Text Label</span>
                 </div>
@@ -378,7 +395,7 @@
           <div>
             <button class="btn btn--full btn-toggle-actions u-mb+">Toggle Actions</button>
             <section class="table-view table-view--small">
-              <div class="table-row">
+              <div class="table-row table-row--actionable">
                 <div class="table-row__content">
                   <span class="table-row__content__title">Text Label</span>
                 </div>
@@ -406,7 +423,7 @@
           <div>
             <button class="btn btn--full btn-toggle-actions u-mb+">Toggle Actions</button>
             <section class="table-view table-view--small">
-              <div class="table-row">
+              <div class="table-row table-row--actionable">
                 <div class="table-row__content">
                   <span class="table-row__content__title">Text Label</span>
                 </div>
@@ -433,7 +450,7 @@
           <div>
             <button class="btn btn--full btn-toggle-actions u-mb+">Toggle Actions</button>
             <section class="table-view table-view--small">
-              <div class="table-row">
+              <div class="table-row table-row--actionable">
                 <div class="table-row__content">
                   <span class="table-row__content__title">Text Label</span>
                 </div>
@@ -714,8 +731,8 @@
 
 
 
-<br>
-<hr>
+      <br>
+      <hr>
 
       <px-code-editor id="myEditor" layout="bottom"></px-code-editor>
       <script type="text/javascript">
@@ -741,6 +758,7 @@
 
   <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.2/jquery.min.js'></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/fastclick/1.0.6/fastclick.min.js"></script>
+
   <script type="text/javascript">
     if ('addEventListener' in document) {
       document.addEventListener('DOMContentLoaded', function() {

@@ -373,7 +373,15 @@
 
 	///.table-row--edit
 	@include modifier('edit') {
-		@include tableRowIcon($table-row-edit-icon, $table-row-edit-icon-color);
+		@include tableRowIcon($table-row-edit-icon, $table-row-edit-icon-color){
+			&:before{
+				left: 5px;
+				right: auto;
+			}
+		}
+		> .table-row__content{
+			padding-left: 25px;
+		}
 	}
 
 	@include modifier('nav') {
