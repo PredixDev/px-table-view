@@ -21,7 +21,7 @@
 
 ///Mixins
 @import "mixins";
-
+@import "px-mobile-mixin-designs/mixins";
 ///Variables
 @import "variables";
 @import "px-table-view--nested";
@@ -75,6 +75,13 @@
 			user-select:none;
 		}
 
+	}
+	///.table-view--bare
+	@include modifier('bare') {
+		border: none !important;
+		> .table-row{
+			border: none !important;
+		}
 	}
 
 
@@ -175,10 +182,6 @@
 	> *:not(select) {
 		user-select: none;
 	}
-	&:active {
-		transition: none;
-		background: $table-row-active-background-color;
-	}
 
 	&:first-child {
 	}
@@ -268,16 +271,29 @@
 		user-select: none;
 		padding-right: 2rem;
 
-
+		@include modifier('flush') {
+			line-height: normal;
+		}
 		@include element('title') {
 			padding: 0;
 			font-size: 1.1rem;
 			display: block;
 			user-select: none;
+			white-space: nowrap;
 		//	line-height: normal;
 
+
+
+			@include respond('mobile') {
+				font-size: 1rem;
+	 		}
+
+			@include modifier('flush') {
+				line-height: normal;
+			}
 			@include modifier('small') {
 				font-size: 0.8rem;
+				line-height: normal;
 			}
 
 			@include modifier('large') {
@@ -287,7 +303,10 @@
 
 		@include element('body') {
 			display: block;
-			line-height: normal;
+
+			@include modifier('flush') {
+				line-height: normal;
+			}
 		}
 	}
 
@@ -300,12 +319,19 @@
 			margin-right: 2rem;
 			right: 2%;
 			position: absolute;
+
+
 		}
 
 		@include modifier('left') {
 			float: left;
 			position: relative;
 			margin-left: 5%;
+		}
+
+		@include respond('mobile'){
+			margin-top: 7%;
+			font-size: .9rem;
 		}
 	}
 
@@ -351,11 +377,19 @@
 
 	///.table-row--tappable
 	@include modifier('tappable') {
+		&:active {
+			transition: none;
+			background: $table-row-active-background-color;
+		}
 		@include tableRowClickable($table-row-active-background-color, $table-row-active-font-color);
 	}
 
 	///.table-row--chevron
 	@include modifier('chevron') {
+		&:active {
+			transition: none;
+			background: $table-row-active-background-color;
+		}
 		@include tableRowIcon($table-row-chevron-icon, $table-row-chevron-icon-color);
 		@include tableRowClickable($table-row-active-background-color, $table-row-active-font-color);
 	}
@@ -384,20 +418,21 @@
 		}
 	}
 
-	@include modifier('nav') {
+	@include modifier('nav-left') {
+
 		@include tableRowClickable($table-row-active-background-color, $table-row-active-font-color);
-		@include modifier('left') {
-			@include tableRowIcon('\f104');
-		}
-		@include modifier('right') {
-			@include tableRowIcon('\f105');
-		}
+		@include tableRowIcon('\f104');
+	}
+	@include modifier('nav-right') {
+
+		@include tableRowClickable($table-row-active-background-color, $table-row-active-font-color);
+		@include tableRowIcon('\f105');
 	}
 
 
 	///.table-row--actionable
 	@include modifier('actionable') {
-		@include element('content') {
+		.table-row__content {
 			transition: 0.3s;
 			position: relative;
 			z-index: 10;

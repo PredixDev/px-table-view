@@ -682,6 +682,8 @@
 
 
 
+
+
       <h2>Default - Pull to Refresh</h2>
       <demo-snippet>
         <template>
@@ -731,10 +733,86 @@
 
 
 
+
+
+
+      <h2>Example - Alerts List</h2>
+      <demo-snippet>
+        <template>
+          <ul class="table-view table-view--inset table-view--small">
+            <li class="table-row table-row--nav-right">
+              <div class="table-row__media table-row__media--icon table-row__media--left">
+                <i class="fa fa-lg fa-exclamation-triangle color-red"></i>
+              </div>
+              <div class="table-row__content table-row__content--flush">
+                <span class="table-row__label table-row__label--right">GE-2583</span>
+                <strong class="table-row__content__title">Urgent Alert</strong>
+                <span class="table-row__content__body table-row__content__body-">GE-2583</span>
+              </div>
+            </li>
+          </ul>
+        </template>
+      </demo-snippet>
+
+
+      <h2>Example - Documents List</h2>
+      <demo-snippet>
+        <template>
+          <ul class="table-view table-view--small">
+            <li class="table-row table-row--tappable">
+              <div class="table-row__media table-row__media--icon">
+                <i class="fa fa-lg fa-file"></i>
+              </div>
+              <div class="table-row__content">
+                <span class="table-row__label table-row__label--right">10/01/15 1:32 PM</span>
+                <span class="table-row__content__title"> Time Series Inlet Flow.pdf <small class="muted">534 kb</small> </span>
+              </div>
+            </li>
+          </ul>
+        </template>
+      </demo-snippet>
+
+      <h2>Example - Reports List</h2>
+      <demo-snippet>
+        <template>
+          <ul class="table-view table-view--small table-view--bare">
+           <li class="table-row">
+              <div class="table-row__content">
+                <strong class="table-row__content__title muted">Symptoms</strong>
+                <p class="table-row__content__body">
+                  There was a sustained (non-correcting) step change, Lorem ipsum dolor sit amet, consectetur adipisicing eli
+                  . Minus, ab ducimus sit tempore qui aut, dolorem repellat suscipit molestias dignissimos expedita nisi iure
+                  veniam voluptatibus fugiat.</p>
+              </div>
+            </li>
+          </ul>
+        </template>
+      </demo-snippet>
+
+
+      <h2>Example - Notes List</h2>
+      <demo-snippet>
+        <template>
+          <ul class="table-view table-view--small table-view--bare">
+           <li class="table-row">
+              <div class="table-row__content">
+                <div class="table-row__content__title">
+                	<strong>John Doe</strong>
+                	<small class="muted">11/02/12 1:32 PM</small>
+                </div>
+                <p class="table-row__content__body">
+                  Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minus, ab ducimus sit tempore qui aut, dolorem
+                  repellat suscipit molestias dignissimos expedita nisi iure veniam voluptatibus fugiat.</p>
+              </div>
+            </li>
+          </ul>
+        </template>
+      </demo-snippet>
+
       <br>
       <hr>
 
-      <px-code-editor id="myEditor" layout="bottom"></px-code-editor>
+      <px-code-editor id="myEditor" layout="bottom" style="height: 500px;"></px-code-editor>
       <script type="text/javascript">
         document.addEventListener('WebComponentsReady', function(e) {
           setTimeout(function() {

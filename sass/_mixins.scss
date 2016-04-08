@@ -2,6 +2,7 @@
 /// @group px
 /// @author Jonnie Spratley
 ///Variables
+
 @import "variables";
 
 
@@ -71,8 +72,8 @@
   transition: background-color 0.2s linear;
   &:active {
     color: $font !important;
-    background-color: $bg;
     transition: none;
+    background: $table-row-active-background-color;
   }
   &:hover {
     transition: none;
@@ -274,4 +275,28 @@
 			margin-right: 10px;
 		}
 	}
+}
+
+
+/// @access public
+@mixin respond($media) {
+  @if $media == mobile {
+    @media only screen and (max-width: 320px) {
+      @content;
+    }
+  }
+  @else if $media == tablet {
+    @media only screen and (min-width: 321px) and (max-width: 1024px) {
+      @content;
+    }
+  }
+  @else if $media == desktop {
+    @media only screen and (min-width: 1024px) {
+      @content;
+    }
+  }
+  // If the key doesn't exist in the map
+  @else {
+    @warn "Unfortunately, no value could be retrieved from `#{$media}`. " + "Available breakpoints are: #{map-keys($breakpoints)}.";
+  }
 }

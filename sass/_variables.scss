@@ -1,3 +1,8 @@
+$breakpoints: (
+'mobile': ( min-width: 321px ),
+'small': ( min-width: 767px ),
+'medium': ( min-width: 992px ),
+'large': ( min-width: 1200px ) ) !default;
 
 //GE Brand Colors Light
 $black-light: #222;
