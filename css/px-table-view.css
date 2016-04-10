@@ -193,9 +193,11 @@ Predix branding rules go in my-px-comp-predix.scss, not in this file.
     -ms-user-select: none;
     user-select: none; }
   .table-view--bare {
-    border: none !important; }
+    border: none !important;
+    background: transparent !important; }
     .table-view--bare > .table-row {
-      border: none !important; }
+      border: none !important;
+      background: transparent !important; }
   .table-view--rev {
     direction: rtl; }
   .table-view--flush {
@@ -303,6 +305,8 @@ Predix branding rules go in my-px-comp-predix.scss, not in this file.
   .table-row--image-right .table-row__media--image {
     float: right !important;
     margin-right: 1rem; }
+  .table-row--flush {
+    line-height: normal; }
   .table-row__content {
     display: table-cell;
     vertical-align: middle;

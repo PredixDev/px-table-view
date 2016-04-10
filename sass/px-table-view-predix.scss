@@ -79,8 +79,10 @@
 	///.table-view--bare
 	@include modifier('bare') {
 		border: none !important;
+		background: transparent !important;
 		> .table-row{
 			border: none !important;
+			background: transparent !important;
 		}
 	}
 
@@ -261,6 +263,10 @@
 			float: right !important;
 			margin-right: 1rem;
 		}
+	}
+
+	@include modifier('flush') {
+		line-height: normal;
 	}
 
 	///.table-row__content
