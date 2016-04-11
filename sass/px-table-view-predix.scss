@@ -31,7 +31,7 @@
 
 	/// -------------------------
 	/// Table View
-	.table-view {
+	::shadow .table-view, .table-view {
 	  @include clearfix();
 	  @include scrollable();
 	  @include pxFonts();
