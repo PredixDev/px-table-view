@@ -1,0 +1,463 @@
+///Mixins
+@import "mixins";
+@import "variables";
+@import "px-mobile-mixin-designs/mixins";
+
+/// -------------------------
+/// Table Row
+.table-row {
+  @include clearfix();
+  min-height: 44px;
+  line-height: 44px;
+  width: 100%;
+  font-size: $table-row-font-size;
+  border-color: $table-row-border-color;
+  box-sizing: border-box;
+  background-color: transparent;
+  position: relative;
+  overflow: hidden;
+  display: block;
+  margin: 0;
+  padding: 0 10px;
+  transition: background-color 0.2s linear;
+  appearance: normal;
+  user-select: none;
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  p {
+    margin: 0;
+    padding: 0;
+    line-height: normal;
+  }
+  > *:not(input),
+  > *:not(textarea),
+  > *:not(select) {
+    user-select: none;
+  }
+  &:first-child {}
+  &:last-child {
+    border-bottom: none;
+  }
+  &:first-child:last-child {
+    border-top: none;
+    border-bottom: none;
+  }
+  &:not(:last-child) {
+    border-bottom: 1px solid $table-row-border-color;
+  }
+  > a {
+    text-decoration: none;
+    color: $table-row-font-color;
+    @include tableRowClickable($table-row-active-background-color, $table-row-active-font-color);
+  }
+  ///.table-row__media
+  @include element('media') {
+    display: table-cell;
+    vertical-align: middle;
+    padding-right: 1rem;
+    padding-left: 0.1rem;
+    @include modifier('left') {
+      //float: left !important;
+    }
+    @include modifier('right') {
+      float: right !important;
+      > i {
+        margin-top: 0.7rem;
+      }
+    }
+    @include modifier('toggle') {
+      padding-top: 0.5rem;
+      padding-left: 0.5rem;
+    }
+    @include modifier('image') {
+      //	padding-top: .1rem;
+      padding-right: 1rem;
+      padding-left: 0.1rem;
+      img {
+        display: block;
+        max-width: 80px;
+        max-height: 80px;
+      }
+    }
+    @include modifier('icon') {
+      padding-right: 0.5rem;
+      padding-left: 0.5rem;
+    }
+  }
+  @include modifier('icon-left') {
+    .table-row__media--icon {
+      float: left !important;
+    }
+  }
+  @include modifier('icon-right') {
+    .table-row__media--icon {
+      float: right !important;
+    }
+  }
+  @include modifier('image-left') {
+    .table-row__media--image {
+      float: left !important;
+    }
+  }
+  @include modifier('image-right') {
+    .table-row__media--image {
+      float: right !important;
+      margin-right: 1rem;
+    }
+  }
+  @include modifier('flush') {
+    line-height: normal;
+  }
+  ///.table-row__content
+  @include element('content') {
+    display: table-cell;
+    vertical-align: middle;
+    width: 100%;
+    user-select: none;
+    padding-right: 2rem;
+    @include modifier('flush') {
+      line-height: normal;
+    }
+    @include element('title') {
+      padding: 0;
+      font-size: 1.1rem;
+      display: block;
+      user-select: none;
+      white-space: nowrap;
+      //	line-height: normal;
+      @include respond('mobile') {
+        font-size: 1rem;
+      }
+      @include modifier('flush') {
+        line-height: normal;
+      }
+      @include modifier('small') {
+        font-size: 0.8rem;
+        line-height: normal;
+      }
+      @include modifier('large') {
+        font-size: 1.5rem;
+      }
+    }
+    @include element('body') {
+      display: block;
+      @include modifier('flush') {
+        line-height: normal;
+      }
+    }
+  }
+  ///.table-row__label
+  @include element('label') {
+    color: $table-row-label-color;
+    @include modifier('right') {
+      //float: right;
+      margin-right: 2rem;
+      right: 2%;
+      position: absolute;
+    }
+    @include modifier('left') {
+      float: left;
+      position: relative;
+      margin-left: 5%;
+    }
+    @include respond('mobile') {
+      margin-top: 7%;
+      font-size: 0.9rem;
+    }
+  }
+  ///.table-row__icon
+  @include element('icon') {
+    padding: 0;
+    @include modifier('left') {
+      float: left;
+    }
+    @include modifier('right') {
+      float: right;
+    }
+  }
+  ///.table-row__reorder-btn
+  @include element('reorder-btn') {
+    float: right;
+    //font-size: 1rem;
+    position: absolute;
+    right: 5%;
+    top: 25%;
+  }
+  //.table-row--header
+  @include modifier('header') {
+    padding-top: 15px !important;
+    padding-bottom: 15px !important;
+    box-sizing: border-box;
+    font-size: 15px;
+    font-weight: 500;
+    background-color: $table-row-header-background-color;
+    color: $table-row-header-font-color;
+    text-transform: $table-row-header-text-transform;
+    text-shadow: none;
+    border-top: none;
+    border-bottom: none !important;
+    min-height: 24px !important;
+    line-height: 24px !important;
+  }
+  ///.table-row--tappable
+  @include modifier('tappable') {
+    &:active {
+      transition: none;
+      background: $table-row-active-background-color;
+    }
+    @include tableRowClickable($table-row-active-background-color, $table-row-active-font-color);
+  }
+  ///.table-row--chevron
+  @include modifier('chevron') {
+    &:active {
+      transition: none;
+      background: $table-row-active-background-color;
+    }
+    @include tableRowIcon($table-row-chevron-icon, $table-row-chevron-icon-color);
+    @include tableRowClickable($table-row-active-background-color, $table-row-active-font-color);
+  }
+  ///.table-row--detail
+  @include modifier('detail') {
+    @include tableRowIcon($table-row-detail-icon, $table-row-detail-icon-color);
+    @include tableRowClickable($table-row-active-background-color, $table-row-active-font-color);
+  }
+  ///.table-row--order
+  @include modifier('order') {
+    @include tableRowIcon($table-row-order-icon, $table-row-order-icon-color);
+  }
+  ///.table-row--edit
+  @include modifier('edit') {
+    @include tableRowIcon($table-row-edit-icon, $table-row-edit-icon-color) {
+      &:before {
+        left: 5px;
+        right: auto;
+      }
+    }
+    > .table-row__content {
+      padding-left: 25px;
+    }
+  }
+  @include modifier('nav-left') {
+    @include tableRowClickable($table-row-active-background-color, $table-row-active-font-color);
+    @include tableRowIcon('\f104');
+  }
+  @include modifier('nav-right') {
+    @include tableRowClickable($table-row-active-background-color, $table-row-active-font-color);
+    @include tableRowIcon('\f105');
+  }
+  ///.table-row--actionable
+  @include modifier('actionable') {
+    .table-row__content {
+      transition: 0.3s;
+      position: relative;
+      z-index: 10;
+    }
+  }
+  ///.table-row__actions
+  @include element('actions') {
+    overflow: hidden;
+    transform-style: preserve-3d;
+    position: absolute;
+    top: 0;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    transition: transform 200ms ease-out;
+    will-change: transform;
+    z-index: 0;
+    width: auto;
+    //Button
+    @include element('button') {
+      cursor: pointer;
+      font-size: 1rem;
+      margin: 0;
+      color: #fff !important;
+      border-radius: 0;
+      padding: 2px 15px;
+      min-width: 75px;
+      i {
+        display: block;
+      }
+    }
+    .btn-delete {
+      @include actionButton($red);
+    }
+    .btn-flag {
+      @include actionButton($orange);
+    }
+    .btn-more {
+      @include actionButton($blue);
+    }
+    .btn-info {
+      @include actionButton(#848484);
+    }
+    //left actions
+    @include modifier('left') {
+      left: 0;
+      transform: translateX(-110%);
+      //Visible actions
+      &.is-visible {
+        transform: translateX(0%);
+        .table-row__actions__button {
+          transition: width 300ms ease-out;
+          width: auto;
+        }
+      }
+    }
+    //right actions
+    @include modifier('right') {
+      right: 0;
+      transform: translateX(110%);
+      &.is-visible {
+        transform: translateX(0%);
+      }
+    }
+  }
+}
+
+///Checkbox
+.table-row {
+  &.checkbox {
+    width: 100%;
+    height: 100%;
+    padding: 0;
+    margin: 0;
+    line-height: 44px;
+  }
+  @include element('checkbox') {
+    position: relative;
+    display: inline-block;
+    vertical-align: top;
+    cursor: default;
+    user-select: none;
+    font-weight: 400;
+    font-size: 17px;
+    line-height: 24px;
+    margin: 10px 0;
+    input[type="checkbox"] {
+      position: absolute;
+      overflow: hidden;
+      right: 0;
+      top: 0;
+      left: 0;
+      bottom: 0;
+      padding: 0;
+      border: 0;
+      opacity: 0.001;
+      z-index: 1;
+      vertical-align: top;
+      outline: none;
+      width: 100%;
+      height: 100%;
+      margin: 0;
+      appearance: none;
+      height: 0;
+      width: 0;
+    }
+    input[type="checkbox"]:checked {
+      background: $table-row-checkbox-background-color;
+    }
+    input[type="checkbox"]:checked + div:before {
+      background: $table-row-checkbox-background-color;
+      border: 1px solid $table-row-checkbox-background-color;
+    }
+    input[type="checkbox"]:checked + div:after {
+      opacity: 1;
+    }
+    input[type="checkbox"]:focus + div:before {
+      box-shadow: none;
+    }
+    input[type="checkbox"]:disabled + div {
+      opacity: 0.3;
+      cursor: default;
+      pointer-events: none;
+    }
+    input[type="checkbox"]:disabled:active + div:before {
+      background: transparent;
+      box-shadow: none;
+    }
+    @include element('checkmark') {
+      box-sizing: border-box;
+      background-clip: padding-box;
+      position: relative;
+      display: inline-block;
+      vertical-align: top;
+      cursor: default;
+      user-select: none;
+      font-weight: 400;
+      font-size: 17px;
+      position: relative;
+      overflow: hidden;
+      width: 24px;
+      height: 24px;
+      &:before {
+        content: '';
+        position: absolute;
+        box-sizing: border-box;
+        background-clip: padding-box;
+        width: 24px;
+        height: 24px;
+        background: transparent;
+        border: 1px solid $table-row-checkbox-background-color;
+        border-radius: 16px;
+        box-shadow: none;
+        left: 0;
+      }
+      &:after {
+        content: '';
+        position: absolute;
+        top: 8px;
+        left: 6px;
+        width: 12px;
+        height: 6px;
+        background: transparent;
+        border: 3px solid $table-row-checkbox-font-color;
+        border-width: 2px;
+        border-top: none;
+        border-right: none;
+        border-radius: 0;
+        transform: rotate(-45deg);
+        opacity: 0;
+      }
+    }
+    @include modifier('no-border') {
+      background: transparent;
+      border: none;
+      input[type="checkbox"] {
+        background: transparent;
+        //circle
+        + div:before {
+          border: none;
+        }
+        //check
+        + div:after {
+          //opacity:.5;
+          border-color: $table-row-checkbox-background-color;
+        }
+        &:checked {
+          //Checkbox circle
+          + div:before {
+            border: none;
+            background: transparent;
+          }
+          //Checkbox check
+          + div:after {
+            border-color: $table-row-checkbox-background-color;
+            opacity: 1;
+          }
+        }
+        &:disabled {
+          //check
+          + div:after {
+            opacity: 0.5;
+          }
+        }
+      }
+    }
+  }
+}

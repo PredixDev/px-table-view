@@ -300,3 +300,10 @@
     @warn "Unfortunately, no value could be retrieved from `#{$media}`. " + "Available breakpoints are: #{map-keys($breakpoints)}.";
   }
 }
+
+
+@mixin shadowEl($elName){
+	#{$elName}::shadow{
+		@content;
+	}
+}

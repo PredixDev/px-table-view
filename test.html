@@ -1,0 +1,39 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <script src="../webcomponentsjs/webcomponents-lite.js"></script>
+  <script src="../web-component-tester/browser.js"></script>
+    <link rel="import" href="px-table-view.html">
+</head>
+<body>
+
+  <px-table-view id="fixture"></px-table-view>
+
+    <script>
+      suite('<px-table-view>', function() {
+        var element = document.getElementById('fixture');
+        element.items = [{title: 'Item 1'}];
+
+        test('renders', function() {
+          assert.ok(element);
+        });
+
+        test('has correct # ofg items', function() {
+          assert.ok(element.items[0].title = 'Item 1');
+        });
+
+        test('can add item to element', function() {
+          element.push('items', {title: 'Item 2'});
+          element.push('items', {title: 'Item 3'});
+          assert.ok(element.items.length === 3);
+        });
+
+        test('has correct # of items', function() {
+          assert.ok(element.items.length === 3);
+        });
+
+      });
+    </script>
+</body>
+</html>
