@@ -18,7 +18,7 @@
 @import "mixins";
 @import "variables";
 @import "px-mobile-mixin-designs/mixins";
-@include switch();
+
 
 * {
   -webkit-tap-highlight-color: rgba(0,0,0,0);
@@ -28,10 +28,10 @@
 
 :root{
 
-
 	/// -------------------------
 	/// Table View
-	::shadow .table-view, .table-view {
+	.table-view {
+    @include switch();
 	  @include clearfix();
 	  @include scrollable();
 	  @include pxFonts();

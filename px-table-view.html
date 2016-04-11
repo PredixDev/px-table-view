@@ -41,15 +41,17 @@
 @demo demo.html
 @homepage index.html
 -->
-<link rel="stylesheet" href="css/px-table-view.css" />
+
 <dom-module id="px-table-view">
 
-  <style>
-    :host {
-      display: block;
-    }
-  </style>
-  <template>
+  <template strip-whitespace>
+    <link rel="stylesheet" href="css/px-table-view.css" />
+      <style>
+        :host {
+          display: block;
+          min-height: 50vh;
+        }
+      </style>
     <ul class="table-view table-view--small">
       <template is="dom-if" if="{{items}}">
         <template is="dom-repeat" items="{{items}}">
@@ -58,10 +60,6 @@
           </li>
         </template>
       </template>
-        <template is="dom-if" if="{{!items}}">
-          <content select="*"></content>
-        </template>
-
     </ul>
   </template>
   <script>
