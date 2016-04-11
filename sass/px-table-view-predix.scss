@@ -153,6 +153,20 @@
 			}
 		}
 	}
+
+	.switch {
+		float: right;
+		position: absolute;
+		margin-top: -25px;
+		right: 3%;
+
+	}
+
+	.switch--table-row {
+		float: right;
+		margin-top: 6px;
+		margin-right: 10px;
+	}
 }
 
 /// -------------------------
@@ -517,19 +531,7 @@
 
 }
 
-.switch {
-	float: right;
-	position: absolute;
-	margin-top: -25px;
-	right: 3%;
 
-}
-
-.switch--table-row {
-	float: right;
-	margin-top: 6px;
-	margin-right: 10px;
-}
 
 ///Checkbox
 .table-row {
