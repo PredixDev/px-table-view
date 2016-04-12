@@ -16,7 +16,6 @@
     ".*",
     "npm-debug.log",
     "Gruntfile.js",
-    "sass",
     "bower_components",
     "node_modules",
     "test"
