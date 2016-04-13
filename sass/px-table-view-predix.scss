@@ -17,7 +17,7 @@
 @import "px-table-view-sketch.scss";
 @import "mixins";
 @import "variables";
-@import "px-mobile-mixin-designs/mixins";
+@import "px-mobile-mixin-design/mixins";
 
 
 * {
@@ -71,11 +71,11 @@
 	  }
 	  ///.table-view--bare
 	  @include modifier('bare') {
-	    border: none !important;
-	    background: transparent !important;
+	    border: none;
+	    background: transparent;
 	    > .table-row {
-	      border: none !important;
-	      background: transparent !important;
+	      border: none;
+	      background: transparent;
 	    }
 	  }
 	  ///.table-view--rev

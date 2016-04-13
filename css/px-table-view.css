@@ -12,7 +12,7 @@
   display: block;
   margin: 0;
   padding: 0 10px;
-  transition: background-color 0.2s linear;
+  transition: background-color 0.3s linear;
   -webkit-appearance: normal;
   -moz-appearance: normal;
   appearance: normal;
@@ -65,7 +65,7 @@
     padding-right: 1rem;
     padding-left: 0.1rem; }
     .table-row__media--right {
-      float: right !important; }
+      float: right; }
       .table-row__media--right > i {
         margin-top: 0.7rem; }
     .table-row__media--toggle {
@@ -82,13 +82,13 @@
       padding-right: 0.5rem;
       padding-left: 0.5rem; }
   .table-row--icon-left .table-row__media--icon {
-    float: left !important; }
+    float: left; }
   .table-row--icon-right .table-row__media--icon {
-    float: right !important; }
+    float: right; }
   .table-row--image-left .table-row__media--image {
-    float: left !important; }
+    float: left; }
   .table-row--image-right .table-row__media--image {
-    float: right !important;
+    float: right;
     margin-right: 1rem; }
   .table-row--flush {
     line-height: normal; }
@@ -152,8 +152,8 @@
     right: 5%;
     top: 25%; }
   .table-row--header {
-    padding-top: 15px !important;
-    padding-bottom: 15px !important;
+    padding-top: 15px;
+    padding-bottom: 15px;
     box-sizing: border-box;
     font-size: 15px;
     font-weight: 500;
@@ -162,9 +162,9 @@
     text-transform: uppercase;
     text-shadow: none;
     border-top: none;
-    border-bottom: none !important;
-    min-height: 24px !important;
-    line-height: 24px !important; }
+    border-bottom: none;
+    min-height: 24px;
+    line-height: 24px; }
   .table-row--tappable {
     transition: background-color 0.2s linear; }
     .table-row--tappable:active {
@@ -374,7 +374,7 @@
       cursor: pointer;
       font-size: 1rem;
       margin: 0;
-      color: #fff !important;
+      color: #fff;
       border-radius: 0;
       padding: 2px 15px;
       min-width: 75px; }
@@ -735,19 +735,18 @@ Predix branding rules go in my-px-comp-predix.scss, not in this file.
     background-image: none;
     border: 1px solid #b1b1bc;
     border-radius: 4px;
-    margin-left: 8px;
-    margin-right: 8px; }
+    margin: 8px; }
   :root .table-view--ptr > .table-row {
     -webkit-user-select: none;
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none; }
   :root .table-view--bare {
-    border: none !important;
-    background: transparent !important; }
+    border: none;
+    background: transparent; }
     :root .table-view--bare > .table-row {
-      border: none !important;
-      background: transparent !important; }
+      border: none;
+      background: transparent; }
   :root .table-view--rev {
     direction: rtl; }
   :root .table-view--flush {
@@ -810,7 +809,7 @@ Predix branding rules go in my-px-comp-predix.scss, not in this file.
     display: block;
     margin: 0;
     padding: 0 10px;
-    transition: background-color 0.2s linear;
+    transition: background-color 0.3s linear;
     -webkit-appearance: normal;
     -moz-appearance: normal;
     appearance: normal;
@@ -863,7 +862,7 @@ Predix branding rules go in my-px-comp-predix.scss, not in this file.
       padding-right: 1rem;
       padding-left: 0.1rem; }
       :root .table-view .table-row__media--right {
-        float: right !important; }
+        float: right; }
         :root .table-view .table-row__media--right > i {
           margin-top: 0.7rem; }
       :root .table-view .table-row__media--toggle {
@@ -880,13 +879,13 @@ Predix branding rules go in my-px-comp-predix.scss, not in this file.
         padding-right: 0.5rem;
         padding-left: 0.5rem; }
     :root .table-view .table-row--icon-left .table-row__media--icon {
-      float: left !important; }
+      float: left; }
     :root .table-view .table-row--icon-right .table-row__media--icon {
-      float: right !important; }
+      float: right; }
     :root .table-view .table-row--image-left .table-row__media--image {
-      float: left !important; }
+      float: left; }
     :root .table-view .table-row--image-right .table-row__media--image {
-      float: right !important;
+      float: right;
       margin-right: 1rem; }
     :root .table-view .table-row--flush {
       line-height: normal; }
@@ -950,8 +949,8 @@ Predix branding rules go in my-px-comp-predix.scss, not in this file.
       right: 5%;
       top: 25%; }
     :root .table-view .table-row--header {
-      padding-top: 15px !important;
-      padding-bottom: 15px !important;
+      padding-top: 15px;
+      padding-bottom: 15px;
       box-sizing: border-box;
       font-size: 15px;
       font-weight: 500;
@@ -960,9 +959,9 @@ Predix branding rules go in my-px-comp-predix.scss, not in this file.
       text-transform: uppercase;
       text-shadow: none;
       border-top: none;
-      border-bottom: none !important;
-      min-height: 24px !important;
-      line-height: 24px !important; }
+      border-bottom: none;
+      min-height: 24px;
+      line-height: 24px; }
     :root .table-view .table-row--tappable {
       transition: background-color 0.2s linear; }
       :root .table-view .table-row--tappable:active {
@@ -1172,7 +1171,7 @@ Predix branding rules go in my-px-comp-predix.scss, not in this file.
         cursor: pointer;
         font-size: 1rem;
         margin: 0;
-        color: #fff !important;
+        color: #fff;
         border-radius: 0;
         padding: 2px 15px;
         min-width: 75px; }
