@@ -8,13 +8,57 @@
 
 
   <title>CodePen - pull to refresh</title>
+
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <link rel='stylesheet prefetch' href='../../px-design-system/css/px-design-system.min.css'>
+
+  <script src="../../webcomponentsjs/webcomponents.min.js"></script>
 
 
-  <link rel="stylesheet" href="//codepen.io/assets/reset/normalize.css">
 
-  <link rel='stylesheet prefetch' href='http://predixdev.github.io/px-library-design/css/style.css'>
-  <link rel='stylesheet prefetch' href='https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css'>
+  <!-- TODO: pxm components -->
+  <link rel="import" href="../px-table-view.html">
+  <link rel="import" href="../../px-navbar/px-navbar.html" />
+  <link rel="import" href="../../iron-ajax/iron-ajax.html" />
+  <link rel="import" href="../../iron-list/iron-list.html" />
+
+  <style media="screen">
+    body {
+      overflow: hidden;
+      -webkit-overflow-scrolling: touch;
+      padding-top:65px;
+    }
+    px-navbar{
+      position:fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 200;
+    }
+
+
+    .table-row__media--icon:nth-of-type(even){
+
+    }
+    .table-row__media--icon:nth-child(2n){
+      color: #dd6b1f;
+    }
+
+
+
+
+  </style>
+
+
+
+  <script type="text/javascript">
+    if ('addEventListener' in document) {
+      document.addEventListener('DOMContentLoaded', function() {
+        FastClick.attach(document.body);
+      }, false);
+    }
+  </script>
+
 
   <style>
     #ptr {
@@ -152,7 +196,9 @@
 
 </head>
 
-<body>
+<body unresolved>
+
+  <px-navbar title="px-table-view"></px-navbar>
 
   <div id="ptr">
 
@@ -163,18 +209,44 @@
     </div>
   </div>
 
-  <div id="content">
-    <li class="form-field input-group">
-      <button class="btn input-group__addon" type=button>…</button>
-      <button class="btn input-group__addon" type=button>…</button>
-      <input class=text-input type=…>
-    </li>
-    <span></span>
-    <ul id="list" class="list-ui">
-      <li>Item 1</li>
-      <li>Item 2</li>
-    </ul>
+  <div id="content" class="viewport viewport--full-height">
+
+
+<template id="tableViewTemplate" is="dom-bind">
+  <iron-ajax url="./data.json" last-response="{{data}}" auto></iron-ajax>
+  <iron-list id="ironList" items="[[data]]" as="item" class="table-view  table-view--small">
+    <template>
+      <div class="table-row table-row--nav-right" on-click="handleSelect">
+        <div class="table-row__media table-row__media--image" hidden="{{!item.icon}}">
+          <i class$="{{item.icon}}"></i>
+        </div>
+        <!--
+        <div class="table-row__media table-row__media--image" hidden="{{!item.image}}">
+          <img src$="{{item.image}}" alt="{{item.title}}">
+        </div>-->
+        <div class="table-row__content">
+          <h4 class="table-row__content__title">{{item.title}}</h4>
+          <p class="table-row__content__body">{{item.body}}</p>
+        </div>
+      </div>
+    </template>
+  </iron-list>
+</template>
+<script type="text/javascript">
+  var tmpl = document.getElementById('tableViewTemplate');
+  tmpl.handleSelect = function(e) {
+    console.log('handleSelect', e);
+  };
+  document.addEventListener('WebComponentsReady', function() {
+    setTimeout(function() {
+      document.querySelector('iron-list').fire('iron-resize');
+    }, 50);
+  });
+</script>
+
+
   </div>
+
 
   <script src='//cdnjs.cloudflare.com/ajax/libs/jquery/2.2.2/jquery.min.js'></script>
   <script src='https://cdnjs.cloudflare.com/ajax/libs/hammer.js/2.0.6/hammer.min.js'></script>
