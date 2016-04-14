@@ -1,7 +1,7 @@
 ///Mixins
 @import "mixins";
 @import "variables";
-@import "px-mobile-mixin-designs/mixins";
+@import "px-mobile-mixin-design/mixins";
 
 /// -------------------------
 /// Table Row
@@ -19,7 +19,7 @@
   display: block;
   margin: 0;
   padding: 0 10px;
-  transition: background-color 0.2s linear;
+  transition: background-color 0.3s linear;
   appearance: normal;
   user-select: none;
   h1,
@@ -64,7 +64,7 @@
       //float: left !important;
     }
     @include modifier('right') {
-      float: right !important;
+      float: right ;
       > i {
         margin-top: 0.7rem;
       }
@@ -90,22 +90,22 @@
   }
   @include modifier('icon-left') {
     .table-row__media--icon {
-      float: left !important;
+      float: left ;
     }
   }
   @include modifier('icon-right') {
     .table-row__media--icon {
-      float: right !important;
+      float: right;
     }
   }
   @include modifier('image-left') {
     .table-row__media--image {
-      float: left !important;
+      float: left ;
     }
   }
   @include modifier('image-right') {
     .table-row__media--image {
-      float: right !important;
+      float: right ;
       margin-right: 1rem;
     }
   }
@@ -189,8 +189,8 @@
   }
   //.table-row--header
   @include modifier('header') {
-    padding-top: 15px !important;
-    padding-bottom: 15px !important;
+    padding-top: 15px ;
+    padding-bottom: 15px ;
     box-sizing: border-box;
     font-size: 15px;
     font-weight: 500;
@@ -199,9 +199,9 @@
     text-transform: $table-row-header-text-transform;
     text-shadow: none;
     border-top: none;
-    border-bottom: none !important;
-    min-height: 24px !important;
-    line-height: 24px !important;
+    border-bottom: none ;
+    min-height: 24px;
+    line-height: 24px;
   }
   ///.table-row--tappable
   @include modifier('tappable') {
@@ -276,7 +276,7 @@
       cursor: pointer;
       font-size: 1rem;
       margin: 0;
-      color: #fff !important;
+      color: #fff;
       border-radius: 0;
       padding: 2px 15px;
       min-width: 75px;
