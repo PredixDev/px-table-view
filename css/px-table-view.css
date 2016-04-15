@@ -112,7 +112,7 @@
       -ms-user-select: none;
       user-select: none;
       white-space: nowrap; }
-      @media only screen and (max-width: 320px) {
+      @media (min-width: 320px) {
         .table-row__content__title {
           font-size: 1rem; } }
       .table-row__content__title--flush {
@@ -136,7 +136,7 @@
       float: left;
       position: relative;
       margin-left: 5%; }
-    @media only screen and (max-width: 320px) {
+    @media (min-width: 320px) {
       .table-row__label {
         margin-top: 7%;
         font-size: 0.9rem; } }
@@ -364,11 +364,11 @@
     -webkit-justify-content: space-between;
     -ms-flex-pack: justify;
     justify-content: space-between;
-    transition: -webkit-transform 200ms ease-out;
-    transition: transform 200ms ease-out;
-    transition: transform 200ms ease-out, -webkit-transform 200ms ease-out;
+    transition: -webkit-transform .3s ease-out;
+    transition: transform .3s ease-out;
+    transition: transform .3s ease-out, -webkit-transform .3s ease-out;
     will-change: transform;
-    z-index: 0;
+    z-index: 50;
     width: auto; }
     .table-row__actions__button {
       cursor: pointer;
@@ -570,6 +570,18 @@
       .table-row__checkbox--no-border input[type="checkbox"]:disabled + div:after {
         opacity: 0.5; }
 
+.table-row > input.text-input {
+  margin: 0;
+  min-height: 44px;
+  font-size: 1.3rem;
+  background: transparent;
+  border: none;
+  box-shadow: none; }
+
+.table-row > .btn {
+  outline: none;
+  min-height: 44px; }
+
 @charset "UTF-8";
 /*
  * Copyright (c) 2014 GE Global Research. All rights reserved.
@@ -596,7 +608,7 @@ Predix branding rules go in my-px-comp-predix.scss, not in this file.
 * {
   -webkit-tap-highlight-color: transparent; }
 
-:root .table-view {
+.table-view {
   overflow-y: scroll;
   overflow-y: auto;
   -webkit-overflow-scrolling: touch;
@@ -615,7 +627,7 @@ Predix branding rules go in my-px-comp-predix.scss, not in this file.
   transition: -webkit-transform 500ms ease;
   transition: transform 500ms ease;
   transition: transform 500ms ease, -webkit-transform 500ms ease; }
-  :root .table-view .switch {
+  .table-view .switch {
     position: relative;
     display: inline-block;
     vertical-align: top;
@@ -631,7 +643,7 @@ Predix branding rules go in my-px-comp-predix.scss, not in this file.
     height: 32px;
     z-index: 0;
     text-align: left; }
-    :root .table-view .switch input {
+    .table-view .switch input {
       position: absolute;
       overflow: hidden;
       right: 0;
@@ -656,7 +668,7 @@ Predix branding rules go in my-px-comp-predix.scss, not in this file.
       top: 0;
       left: 0;
       transition: all 0.2s linear; }
-    :root .table-view .switch__toggle {
+    .table-view .switch__toggle {
       background-color: #ddd;
       position: absolute;
       top: 0;
@@ -667,7 +679,7 @@ Predix branding rules go in my-px-comp-predix.scss, not in this file.
       transition-property: all;
       transition-duration: 0.35s;
       transition-timing-function: ease-out; }
-      :root .table-view .switch__toggle:before {
+      .table-view .switch__toggle:before {
         box-sizing: border-box;
         background-clip: padding-box;
         position: absolute;
@@ -681,122 +693,28 @@ Predix branding rules go in my-px-comp-predix.scss, not in this file.
         transition-property: all;
         transition-duration: 0.35s;
         transition-timing-function: cubic-bezier(0.5, 1.6, 0.5, 1); }
-    :root .table-view .switch input:checked + .toggle {
+    .table-view .switch input:checked + .toggle {
       background-color: #4cd964; }
-    :root .table-view .switch input:checked + .toggle:before {
+    .table-view .switch input:checked + .toggle:before {
       -webkit-transform: translateX(18px);
       transform: translateX(18px); }
-    :root .table-view .switch input:not(:checked) + .toggle:before {
+    .table-view .switch input:not(:checked) + .toggle:before {
       -webkit-transform: translateX(0px);
       transform: translateX(0px); }
-    :root .table-view .switch input:disabled + .toggle {
+    .table-view .switch input:disabled + .toggle {
       opacity: 0.3;
       cursor: default;
       pointer-events: none; }
-    :root .table-view .switch.table-row {
+    .table-view .switch.table-row {
       float: right;
       margin-top: 6px;
       margin-right: 10px; }
-  :root .table-view:before, :root .table-view:after {
+  .table-view:before, .table-view:after {
     display: table;
     content: " "; }
-  :root .table-view:after {
+  .table-view:after {
     clear: both; }
-  :root .table-view--responsive {
-    display: -webkit-flex;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-flex-wrap: wrap;
-    -ms-flex-wrap: wrap;
-    flex-wrap: wrap;
-    margin-left: 0;
-    margin-top: 0; }
-    :root .table-view--responsive .table-row {
-      -webkit-flex: 1 0 240px;
-      -ms-flex: 1 0 240px;
-      flex: 1 0 240px;
-      margin-left: 0;
-      margin-top: 0; }
-      @media (min-width: 480px) {
-        :root .table-view--responsive .table-row {
-          max-width: calc(50% - 0); } }
-      @media (min-width: 720px) {
-        :root .table-view--responsive .table-row {
-          max-width: calc(33.33333% - 0); } }
-      @media (min-width: 960px) {
-        :root .table-view--responsive .table-row {
-          max-width: calc(25% - 0); } }
-      @media (min-width: 960px) {
-        :root .table-view--responsive .table-row {
-          min-width: calc(25% - 0); } }
-    :root .table-view--responsive > *:last-child {
-      border-bottom: 1px solid #b1b1bc !important; }
-  :root .table-view--inset {
-    background-image: none;
-    border: 1px solid #b1b1bc;
-    border-radius: 4px;
-    margin: 8px; }
-  :root .table-view--ptr > .table-row {
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none; }
-  :root .table-view--bare {
-    border: none;
-    background: transparent; }
-    :root .table-view--bare > .table-row {
-      border: none;
-      background: transparent; }
-  :root .table-view--rev {
-    direction: rtl; }
-  :root .table-view--flush {
-    padding: 0; }
-  :root .table-view--tiny > .table-row {
-    padding: 0.2rem; }
-  :root .table-view--small > .table-row {
-    padding: 0.5rem; }
-  :root .table-view--flush > .table-row {
-    padding: 0; }
-  :root .table-view--regular > .table-row {
-    padding: 1rem; }
-  :root .table-view--large > .table-row {
-    padding: 1.5rem; }
-  :root .table-view--huge > .table-row {
-    padding: 3rem; }
-  :root .table-view--avatars > .table-row {
-    padding: 0.5rem; }
-    :root .table-view--avatars > .table-row img {
-      height: 32px;
-      border-radius: 6px; }
-  :root .table-view .switch {
-    float: right;
-    position: absolute;
-    margin-top: -25px;
-    right: 3%; }
-  :root .table-view .switch--table-row {
-    float: right;
-    margin-top: 6px;
-    margin-right: 10px; }
-  :root .table-view--nested .table-row {
-    transition: -webkit-transform 500ms ease;
-    transition: transform 500ms ease;
-    transition: transform 500ms ease, -webkit-transform 500ms ease; }
-    :root .table-view--nested .table-row.has-children {
-      line-height: normal;
-      overflow: hidden;
-      max-height: 75px; }
-      :root .table-view--nested .table-row.has-children .table-view {
-        margin-left: 15px;
-        -webkit-transform: translateX(99%);
-        transform: translateX(99%); }
-      :root .table-view--nested .table-row.has-children.is-selected {
-        background: transparent;
-        max-height: 100%; }
-        :root .table-view--nested .table-row.has-children.is-selected > .table-view {
-          display: block;
-          -webkit-transform: translateX(0);
-          transform: translateX(0); }
-  :root .table-view .table-row {
+  .table-view .table-row {
     min-height: 44px;
     line-height: 44px;
     width: 100%;
@@ -817,79 +735,79 @@ Predix branding rules go in my-px-comp-predix.scss, not in this file.
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none; }
-    :root .table-view .table-row:before, :root .table-view .table-row:after {
+    .table-view .table-row:before, .table-view .table-row:after {
       display: table;
       content: " "; }
-    :root .table-view .table-row:after {
+    .table-view .table-row:after {
       clear: both; }
-    :root .table-view .table-row h1,
-    :root .table-view .table-row h2,
-    :root .table-view .table-row h3,
-    :root .table-view .table-row h4,
-    :root .table-view .table-row h5,
-    :root .table-view .table-row h6,
-    :root .table-view .table-row p {
+    .table-view .table-row h1,
+    .table-view .table-row h2,
+    .table-view .table-row h3,
+    .table-view .table-row h4,
+    .table-view .table-row h5,
+    .table-view .table-row h6,
+    .table-view .table-row p {
       margin: 0;
       padding: 0;
       line-height: normal; }
-    :root .table-view .table-row > *:not(input),
-    :root .table-view .table-row > *:not(textarea),
-    :root .table-view .table-row > *:not(select) {
+    .table-view .table-row > *:not(input),
+    .table-view .table-row > *:not(textarea),
+    .table-view .table-row > *:not(select) {
       -webkit-user-select: none;
       -moz-user-select: none;
       -ms-user-select: none;
       user-select: none; }
-    :root .table-view .table-row:last-child {
+    .table-view .table-row:last-child {
       border-bottom: none; }
-    :root .table-view .table-row:first-child:last-child {
+    .table-view .table-row:first-child:last-child {
       border-top: none;
       border-bottom: none; }
-    :root .table-view .table-row:not(:last-child) {
+    .table-view .table-row:not(:last-child) {
       border-bottom: 1px solid #b1b1bc; }
-    :root .table-view .table-row > a {
+    .table-view .table-row > a {
       text-decoration: none;
       color: black;
       transition: background-color 0.2s linear; }
-      :root .table-view .table-row > a:active {
+      .table-view .table-row > a:active {
         color: #fff !important;
         transition: none;
         background: #0a9ec1; }
-      :root .table-view .table-row > a:hover {
+      .table-view .table-row > a:hover {
         transition: none; }
-    :root .table-view .table-row__media {
+    .table-view .table-row__media {
       display: table-cell;
       vertical-align: middle;
       padding-right: 1rem;
       padding-left: 0.1rem; }
-      :root .table-view .table-row__media--right {
+      .table-view .table-row__media--right {
         float: right; }
-        :root .table-view .table-row__media--right > i {
+        .table-view .table-row__media--right > i {
           margin-top: 0.7rem; }
-      :root .table-view .table-row__media--toggle {
+      .table-view .table-row__media--toggle {
         padding-top: 0.5rem;
         padding-left: 0.5rem; }
-      :root .table-view .table-row__media--image {
+      .table-view .table-row__media--image {
         padding-right: 1rem;
         padding-left: 0.1rem; }
-        :root .table-view .table-row__media--image img {
+        .table-view .table-row__media--image img {
           display: block;
           max-width: 80px;
           max-height: 80px; }
-      :root .table-view .table-row__media--icon {
+      .table-view .table-row__media--icon {
         padding-right: 0.5rem;
         padding-left: 0.5rem; }
-    :root .table-view .table-row--icon-left .table-row__media--icon {
+    .table-view .table-row--icon-left .table-row__media--icon {
       float: left; }
-    :root .table-view .table-row--icon-right .table-row__media--icon {
+    .table-view .table-row--icon-right .table-row__media--icon {
       float: right; }
-    :root .table-view .table-row--image-left .table-row__media--image {
+    .table-view .table-row--image-left .table-row__media--image {
       float: left; }
-    :root .table-view .table-row--image-right .table-row__media--image {
+    .table-view .table-row--image-right .table-row__media--image {
       float: right;
       margin-right: 1rem; }
-    :root .table-view .table-row--flush {
+    .table-view .table-row--flush {
       line-height: normal; }
-    :root .table-view .table-row__content {
+    .table-view .table-row__content {
       display: table-cell;
       vertical-align: middle;
       width: 100%;
@@ -898,9 +816,9 @@ Predix branding rules go in my-px-comp-predix.scss, not in this file.
       -ms-user-select: none;
       user-select: none;
       padding-right: 2rem; }
-      :root .table-view .table-row__content--flush {
+      .table-view .table-row__content--flush {
         line-height: normal; }
-      :root .table-view .table-row__content__title {
+      .table-view .table-row__content__title {
         padding: 0;
         font-size: 1.1rem;
         display: block;
@@ -909,46 +827,46 @@ Predix branding rules go in my-px-comp-predix.scss, not in this file.
         -ms-user-select: none;
         user-select: none;
         white-space: nowrap; }
-        @media only screen and (max-width: 320px) {
-          :root .table-view .table-row__content__title {
+        @media (min-width: 320px) {
+          .table-view .table-row__content__title {
             font-size: 1rem; } }
-        :root .table-view .table-row__content__title--flush {
+        .table-view .table-row__content__title--flush {
           line-height: normal; }
-        :root .table-view .table-row__content__title--small {
+        .table-view .table-row__content__title--small {
           font-size: 0.8rem;
           line-height: normal; }
-        :root .table-view .table-row__content__title--large {
+        .table-view .table-row__content__title--large {
           font-size: 1.5rem; }
-      :root .table-view .table-row__content__body {
+      .table-view .table-row__content__body {
         display: block; }
-        :root .table-view .table-row__content__body--flush {
+        .table-view .table-row__content__body--flush {
           line-height: normal; }
-    :root .table-view .table-row__label {
+    .table-view .table-row__label {
       color: #9999a3; }
-      :root .table-view .table-row__label--right {
+      .table-view .table-row__label--right {
         margin-right: 2rem;
         right: 2%;
         position: absolute; }
-      :root .table-view .table-row__label--left {
+      .table-view .table-row__label--left {
         float: left;
         position: relative;
         margin-left: 5%; }
-      @media only screen and (max-width: 320px) {
-        :root .table-view .table-row__label {
+      @media (min-width: 320px) {
+        .table-view .table-row__label {
           margin-top: 7%;
           font-size: 0.9rem; } }
-    :root .table-view .table-row__icon {
+    .table-view .table-row__icon {
       padding: 0; }
-      :root .table-view .table-row__icon--left {
+      .table-view .table-row__icon--left {
         float: left; }
-      :root .table-view .table-row__icon--right {
+      .table-view .table-row__icon--right {
         float: right; }
-    :root .table-view .table-row__reorder-btn {
+    .table-view .table-row__reorder-btn {
       float: right;
       position: absolute;
       right: 5%;
       top: 25%; }
-    :root .table-view .table-row--header {
+    .table-view .table-row--header {
       padding-top: 15px;
       padding-bottom: 15px;
       box-sizing: border-box;
@@ -962,28 +880,28 @@ Predix branding rules go in my-px-comp-predix.scss, not in this file.
       border-bottom: none;
       min-height: 24px;
       line-height: 24px; }
-    :root .table-view .table-row--tappable {
+    .table-view .table-row--tappable {
       transition: background-color 0.2s linear; }
-      :root .table-view .table-row--tappable:active {
+      .table-view .table-row--tappable:active {
         transition: none;
         background: #0a9ec1; }
-      :root .table-view .table-row--tappable:active {
+      .table-view .table-row--tappable:active {
         color: #fff !important;
         transition: none;
         background: #0a9ec1; }
-      :root .table-view .table-row--tappable:hover {
+      .table-view .table-row--tappable:hover {
         transition: none; }
-    :root .table-view .table-row--chevron {
+    .table-view .table-row--chevron {
       transition: background-color 0.2s linear;
       overflow: hidden;
       transition: background-color 0.2s linear; }
-      :root .table-view .table-row--chevron:active {
+      .table-view .table-row--chevron:active {
         transition: none;
         background: #0a9ec1; }
-      :root .table-view .table-row--chevron:active {
+      .table-view .table-row--chevron:active {
         background-color: #0a9ec1;
         transition: none; }
-      :root .table-view .table-row--chevron:before {
+      .table-view .table-row--chevron:before {
         -webkit-transform: translateY(-50%);
         transform: translateY(-50%);
         font-style: normal;
@@ -997,22 +915,22 @@ Predix branding rules go in my-px-comp-predix.scss, not in this file.
         font-size: 28px;
         font-family: FontAwesome;
         content: ""; }
-      :root .table-view .table-row--chevron:hover {
+      .table-view .table-row--chevron:hover {
         transition: none; }
-      :root .table-view .table-row--chevron:active {
+      .table-view .table-row--chevron:active {
         color: #fff !important;
         transition: none;
         background: #0a9ec1; }
-      :root .table-view .table-row--chevron:hover {
+      .table-view .table-row--chevron:hover {
         transition: none; }
-    :root .table-view .table-row--detail {
+    .table-view .table-row--detail {
       transition: background-color 0.2s linear;
       overflow: hidden;
       transition: background-color 0.2s linear; }
-      :root .table-view .table-row--detail:active {
+      .table-view .table-row--detail:active {
         background-color: #0a9ec1;
         transition: none; }
-      :root .table-view .table-row--detail:before {
+      .table-view .table-row--detail:before {
         -webkit-transform: translateY(-50%);
         transform: translateY(-50%);
         font-style: normal;
@@ -1026,21 +944,21 @@ Predix branding rules go in my-px-comp-predix.scss, not in this file.
         font-size: 28px;
         font-family: FontAwesome;
         content: ""; }
-      :root .table-view .table-row--detail:hover {
+      .table-view .table-row--detail:hover {
         transition: none; }
-      :root .table-view .table-row--detail:active {
+      .table-view .table-row--detail:active {
         color: #fff !important;
         transition: none;
         background: #0a9ec1; }
-      :root .table-view .table-row--detail:hover {
+      .table-view .table-row--detail:hover {
         transition: none; }
-    :root .table-view .table-row--order {
+    .table-view .table-row--order {
       transition: background-color 0.2s linear;
       overflow: hidden; }
-      :root .table-view .table-row--order:active {
+      .table-view .table-row--order:active {
         background-color: #0a9ec1;
         transition: none; }
-      :root .table-view .table-row--order:before {
+      .table-view .table-row--order:before {
         -webkit-transform: translateY(-50%);
         transform: translateY(-50%);
         font-style: normal;
@@ -1054,15 +972,15 @@ Predix branding rules go in my-px-comp-predix.scss, not in this file.
         font-size: 28px;
         font-family: FontAwesome;
         content: ""; }
-      :root .table-view .table-row--order:hover {
+      .table-view .table-row--order:hover {
         transition: none; }
-    :root .table-view .table-row--edit {
+    .table-view .table-row--edit {
       transition: background-color 0.2s linear;
       overflow: hidden; }
-      :root .table-view .table-row--edit:active {
+      .table-view .table-row--edit:active {
         background-color: #0a9ec1;
         transition: none; }
-      :root .table-view .table-row--edit:before {
+      .table-view .table-row--edit:before {
         -webkit-transform: translateY(-50%);
         transform: translateY(-50%);
         font-style: normal;
@@ -1076,27 +994,27 @@ Predix branding rules go in my-px-comp-predix.scss, not in this file.
         font-size: 28px;
         font-family: FontAwesome;
         content: ""; }
-      :root .table-view .table-row--edit:hover {
+      .table-view .table-row--edit:hover {
         transition: none; }
-      :root .table-view .table-row--edit:before {
+      .table-view .table-row--edit:before {
         left: 5px;
         right: auto; }
-      :root .table-view .table-row--edit > .table-row__content {
+      .table-view .table-row--edit > .table-row__content {
         padding-left: 25px; }
-    :root .table-view .table-row--nav-left {
+    .table-view .table-row--nav-left {
       transition: background-color 0.2s linear;
       transition: background-color 0.2s linear;
       overflow: hidden; }
-      :root .table-view .table-row--nav-left:active {
+      .table-view .table-row--nav-left:active {
         color: #fff !important;
         transition: none;
         background: #0a9ec1; }
-      :root .table-view .table-row--nav-left:hover {
+      .table-view .table-row--nav-left:hover {
         transition: none; }
-      :root .table-view .table-row--nav-left:active {
+      .table-view .table-row--nav-left:active {
         background-color: #0a9ec1;
         transition: none; }
-      :root .table-view .table-row--nav-left:before {
+      .table-view .table-row--nav-left:before {
         -webkit-transform: translateY(-50%);
         transform: translateY(-50%);
         font-style: normal;
@@ -1110,22 +1028,22 @@ Predix branding rules go in my-px-comp-predix.scss, not in this file.
         font-size: 28px;
         font-family: FontAwesome;
         content: ""; }
-      :root .table-view .table-row--nav-left:hover {
+      .table-view .table-row--nav-left:hover {
         transition: none; }
-    :root .table-view .table-row--nav-right {
+    .table-view .table-row--nav-right {
       transition: background-color 0.2s linear;
       transition: background-color 0.2s linear;
       overflow: hidden; }
-      :root .table-view .table-row--nav-right:active {
+      .table-view .table-row--nav-right:active {
         color: #fff !important;
         transition: none;
         background: #0a9ec1; }
-      :root .table-view .table-row--nav-right:hover {
+      .table-view .table-row--nav-right:hover {
         transition: none; }
-      :root .table-view .table-row--nav-right:active {
+      .table-view .table-row--nav-right:active {
         background-color: #0a9ec1;
         transition: none; }
-      :root .table-view .table-row--nav-right:before {
+      .table-view .table-row--nav-right:before {
         -webkit-transform: translateY(-50%);
         transform: translateY(-50%);
         font-style: normal;
@@ -1139,13 +1057,13 @@ Predix branding rules go in my-px-comp-predix.scss, not in this file.
         font-size: 28px;
         font-family: FontAwesome;
         content: ""; }
-      :root .table-view .table-row--nav-right:hover {
+      .table-view .table-row--nav-right:hover {
         transition: none; }
-    :root .table-view .table-row--actionable .table-row__content {
+    .table-view .table-row--actionable .table-row__content {
       transition: 0.3s;
       position: relative;
       z-index: 10; }
-    :root .table-view .table-row__actions {
+    .table-view .table-row__actions {
       overflow: hidden;
       -webkit-transform-style: preserve-3d;
       transform-style: preserve-3d;
@@ -1161,13 +1079,13 @@ Predix branding rules go in my-px-comp-predix.scss, not in this file.
       -webkit-justify-content: space-between;
       -ms-flex-pack: justify;
       justify-content: space-between;
-      transition: -webkit-transform 200ms ease-out;
-      transition: transform 200ms ease-out;
-      transition: transform 200ms ease-out, -webkit-transform 200ms ease-out;
+      transition: -webkit-transform .3s ease-out;
+      transition: transform .3s ease-out;
+      transition: transform .3s ease-out, -webkit-transform .3s ease-out;
       will-change: transform;
-      z-index: 0;
+      z-index: 50;
       width: auto; }
-      :root .table-view .table-row__actions__button {
+      .table-view .table-row__actions__button {
         cursor: pointer;
         font-size: 1rem;
         margin: 0;
@@ -1175,9 +1093,9 @@ Predix branding rules go in my-px-comp-predix.scss, not in this file.
         border-radius: 0;
         padding: 2px 15px;
         min-width: 75px; }
-        :root .table-view .table-row__actions__button i {
+        .table-view .table-row__actions__button i {
           display: block; }
-      :root .table-view .table-row__actions .btn-delete {
+      .table-view .table-row__actions .btn-delete {
         -webkit-user-select: none;
         -moz-user-select: none;
         -ms-user-select: none;
@@ -1186,11 +1104,11 @@ Predix branding rules go in my-px-comp-predix.scss, not in this file.
         background-color: #e53838;
         border: none;
         outline: none; }
-        :root .table-view .table-row__actions .btn-delete:active {
+        .table-view .table-row__actions .btn-delete:active {
           background-color: #a21515; }
-        :root .table-view .table-row__actions .btn-delete:hover {
+        .table-view .table-row__actions .btn-delete:hover {
           background-color: #b81818; }
-      :root .table-view .table-row__actions .btn-flag {
+      .table-view .table-row__actions .btn-flag {
         -webkit-user-select: none;
         -moz-user-select: none;
         -ms-user-select: none;
@@ -1199,11 +1117,11 @@ Predix branding rules go in my-px-comp-predix.scss, not in this file.
         background-color: #dd6b1f;
         border: none;
         outline: none; }
-        :root .table-view .table-row__actions .btn-flag:active {
+        .table-view .table-row__actions .btn-flag:active {
           background-color: #844012; }
-        :root .table-view .table-row__actions .btn-flag:hover {
+        .table-view .table-row__actions .btn-flag:hover {
           background-color: #9a4b16; }
-      :root .table-view .table-row__actions .btn-more {
+      .table-view .table-row__actions .btn-more {
         -webkit-user-select: none;
         -moz-user-select: none;
         -ms-user-select: none;
@@ -1212,11 +1130,11 @@ Predix branding rules go in my-px-comp-predix.scss, not in this file.
         background-color: #4364dd;
         border: none;
         outline: none; }
-        :root .table-view .table-row__actions .btn-more:active {
+        .table-view .table-row__actions .btn-more:active {
           background-color: #1c389e; }
-        :root .table-view .table-row__actions .btn-more:hover {
+        .table-view .table-row__actions .btn-more:hover {
           background-color: #2040b3; }
-      :root .table-view .table-row__actions .btn-info {
+      .table-view .table-row__actions .btn-info {
         -webkit-user-select: none;
         -moz-user-select: none;
         -ms-user-select: none;
@@ -1225,34 +1143,34 @@ Predix branding rules go in my-px-comp-predix.scss, not in this file.
         background-color: #848484;
         border: none;
         outline: none; }
-        :root .table-view .table-row__actions .btn-info:active {
+        .table-view .table-row__actions .btn-info:active {
           background-color: #515151; }
-        :root .table-view .table-row__actions .btn-info:hover {
+        .table-view .table-row__actions .btn-info:hover {
           background-color: #5e5e5e; }
-      :root .table-view .table-row__actions--left {
+      .table-view .table-row__actions--left {
         left: 0;
         -webkit-transform: translateX(-110%);
         transform: translateX(-110%); }
-        :root .table-view .table-row__actions--left.is-visible {
+        .table-view .table-row__actions--left.is-visible {
           -webkit-transform: translateX(0%);
           transform: translateX(0%); }
-          :root .table-view .table-row__actions--left.is-visible .table-row__actions__button {
+          .table-view .table-row__actions--left.is-visible .table-row__actions__button {
             transition: width 300ms ease-out;
             width: auto; }
-      :root .table-view .table-row__actions--right {
+      .table-view .table-row__actions--right {
         right: 0;
         -webkit-transform: translateX(110%);
         transform: translateX(110%); }
-        :root .table-view .table-row__actions--right.is-visible {
+        .table-view .table-row__actions--right.is-visible {
           -webkit-transform: translateX(0%);
           transform: translateX(0%); }
-  :root .table-view .table-row.checkbox {
+  .table-view .table-row.checkbox {
     width: 100%;
     height: 100%;
     padding: 0;
     margin: 0;
     line-height: 44px; }
-  :root .table-view .table-row__checkbox {
+  .table-view .table-row__checkbox {
     position: relative;
     display: inline-block;
     vertical-align: top;
@@ -1265,7 +1183,7 @@ Predix branding rules go in my-px-comp-predix.scss, not in this file.
     font-size: 17px;
     line-height: 24px;
     margin: 10px 0; }
-    :root .table-view .table-row__checkbox input[type="checkbox"] {
+    .table-view .table-row__checkbox input[type="checkbox"] {
       position: absolute;
       overflow: hidden;
       right: 0;
@@ -1286,23 +1204,23 @@ Predix branding rules go in my-px-comp-predix.scss, not in this file.
       appearance: none;
       height: 0;
       width: 0; }
-    :root .table-view .table-row__checkbox input[type="checkbox"]:checked {
+    .table-view .table-row__checkbox input[type="checkbox"]:checked {
       background: #0a9ec1; }
-    :root .table-view .table-row__checkbox input[type="checkbox"]:checked + div:before {
+    .table-view .table-row__checkbox input[type="checkbox"]:checked + div:before {
       background: #0a9ec1;
       border: 1px solid #0a9ec1; }
-    :root .table-view .table-row__checkbox input[type="checkbox"]:checked + div:after {
+    .table-view .table-row__checkbox input[type="checkbox"]:checked + div:after {
       opacity: 1; }
-    :root .table-view .table-row__checkbox input[type="checkbox"]:focus + div:before {
+    .table-view .table-row__checkbox input[type="checkbox"]:focus + div:before {
       box-shadow: none; }
-    :root .table-view .table-row__checkbox input[type="checkbox"]:disabled + div {
+    .table-view .table-row__checkbox input[type="checkbox"]:disabled + div {
       opacity: 0.3;
       cursor: default;
       pointer-events: none; }
-    :root .table-view .table-row__checkbox input[type="checkbox"]:disabled:active + div:before {
+    .table-view .table-row__checkbox input[type="checkbox"]:disabled:active + div:before {
       background: transparent;
       box-shadow: none; }
-    :root .table-view .table-row__checkbox__checkmark {
+    .table-view .table-row__checkbox__checkmark {
       box-sizing: border-box;
       background-clip: padding-box;
       position: relative;
@@ -1319,7 +1237,7 @@ Predix branding rules go in my-px-comp-predix.scss, not in this file.
       overflow: hidden;
       width: 24px;
       height: 24px; }
-      :root .table-view .table-row__checkbox__checkmark:before {
+      .table-view .table-row__checkbox__checkmark:before {
         content: '';
         position: absolute;
         box-sizing: border-box;
@@ -1331,7 +1249,7 @@ Predix branding rules go in my-px-comp-predix.scss, not in this file.
         border-radius: 16px;
         box-shadow: none;
         left: 0; }
-      :root .table-view .table-row__checkbox__checkmark:after {
+      .table-view .table-row__checkbox__checkmark:after {
         content: '';
         position: absolute;
         top: 8px;
@@ -1347,23 +1265,127 @@ Predix branding rules go in my-px-comp-predix.scss, not in this file.
         -webkit-transform: rotate(-45deg);
         transform: rotate(-45deg);
         opacity: 0; }
-    :root .table-view .table-row__checkbox--no-border {
+    .table-view .table-row__checkbox--no-border {
       background: transparent;
       border: none; }
-      :root .table-view .table-row__checkbox--no-border input[type="checkbox"] {
+      .table-view .table-row__checkbox--no-border input[type="checkbox"] {
         background: transparent; }
-        :root .table-view .table-row__checkbox--no-border input[type="checkbox"] + div:before {
+        .table-view .table-row__checkbox--no-border input[type="checkbox"] + div:before {
           border: none; }
-        :root .table-view .table-row__checkbox--no-border input[type="checkbox"] + div:after {
+        .table-view .table-row__checkbox--no-border input[type="checkbox"] + div:after {
           border-color: #0a9ec1; }
-        :root .table-view .table-row__checkbox--no-border input[type="checkbox"]:checked + div:before {
+        .table-view .table-row__checkbox--no-border input[type="checkbox"]:checked + div:before {
           border: none;
           background: transparent; }
-        :root .table-view .table-row__checkbox--no-border input[type="checkbox"]:checked + div:after {
+        .table-view .table-row__checkbox--no-border input[type="checkbox"]:checked + div:after {
           border-color: #0a9ec1;
           opacity: 1; }
-        :root .table-view .table-row__checkbox--no-border input[type="checkbox"]:disabled + div:after {
+        .table-view .table-row__checkbox--no-border input[type="checkbox"]:disabled + div:after {
           opacity: 0.5; }
+  .table-view .table-row > input.text-input {
+    margin: 0;
+    min-height: 44px;
+    font-size: 1.3rem;
+    background: transparent;
+    border: none;
+    box-shadow: none; }
+  .table-view .table-row > .btn {
+    outline: none;
+    min-height: 44px; }
+  .table-view--responsive {
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-flex-wrap: wrap;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    margin-left: 0;
+    margin-top: 0; }
+    .table-view--responsive .table-row {
+      -webkit-flex: 1 0 240px;
+      -ms-flex: 1 0 240px;
+      flex: 1 0 240px;
+      margin-left: 0;
+      margin-top: 0; }
+      @media (min-width: 480px) {
+        .table-view--responsive .table-row {
+          max-width: calc(50% - 0); } }
+      @media (min-width: 720px) {
+        .table-view--responsive .table-row {
+          max-width: calc(33.33333% - 0); } }
+      @media (min-width: 960px) {
+        .table-view--responsive .table-row {
+          max-width: calc(25% - 0); } }
+      @media (min-width: 960px) {
+        .table-view--responsive .table-row {
+          min-width: calc(25% - 0); } }
+    .table-view--responsive > *:last-child {
+      border-bottom: 1px solid #b1b1bc !important; }
+  .table-view--inset {
+    background-image: none;
+    border: 1px solid #b1b1bc;
+    border-radius: 4px;
+    margin: 8px; }
+  .table-view--ptr > .table-row {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none; }
+  .table-view--bare {
+    border: none;
+    background: transparent; }
+    .table-view--bare > .table-row {
+      border: none;
+      background: transparent; }
+  .table-view--rev {
+    direction: rtl; }
+  .table-view--flush {
+    padding: 0; }
+  .table-view--tiny .table-row {
+    padding: 0.2rem; }
+  .table-view--small .table-row {
+    padding: 0.5rem; }
+  .table-view--flush .table-row {
+    padding: 0; }
+  .table-view--regular .table-row {
+    padding: 1rem; }
+  .table-view--large .table-row {
+    padding: 2rem; }
+  .table-view--huge .table-row {
+    padding: 3rem; }
+  .table-view--avatars > .table-row {
+    padding: 0.5rem; }
+    .table-view--avatars > .table-row img {
+      height: 32px;
+      border-radius: 6px; }
+  .table-view .switch {
+    float: right;
+    position: absolute;
+    margin-top: -25px;
+    right: 3%; }
+  .table-view .switch--table-row {
+    float: right;
+    margin-top: 6px;
+    margin-right: 10px; }
+  .table-view--nested .table-row {
+    transition: -webkit-transform 500ms ease;
+    transition: transform 500ms ease;
+    transition: transform 500ms ease, -webkit-transform 500ms ease; }
+    .table-view--nested .table-row.has-children {
+      line-height: normal;
+      overflow: hidden;
+      max-height: 75px; }
+      .table-view--nested .table-row.has-children .table-view {
+        margin-left: 15px;
+        -webkit-transform: translateX(99%);
+        transform: translateX(99%); }
+      .table-view--nested .table-row.has-children.is-selected {
+        background: transparent;
+        max-height: 100%; }
+        .table-view--nested .table-row.has-children.is-selected > .table-view {
+          display: block;
+          -webkit-transform: translateX(0);
+          transform: translateX(0); }
 
 /*
  * Copyright (c) 2016 GE Global Research. All rights reserved.

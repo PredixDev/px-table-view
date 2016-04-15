@@ -26,7 +26,7 @@
 
 
 
-:root{
+
 
 	/// -------------------------
 	/// Table View
@@ -35,6 +35,8 @@
 	  @include clearfix();
 	  @include scrollable();
 	  @include pxFonts();
+    //todo - table row styles
+    @import "px-table-row-predix";
 	  border: none;
 	  background: transparent;
 	  background-color: $table-row-background-color;
@@ -88,37 +90,37 @@
 	  }
 	  ///.table-view--tiny
 	  @include modifier('tiny') {
-	    > .table-row {
+	     .table-row {
 	      padding: 0.2rem;
 	    }
 	  }
 	  ///.table-view--small
 	  @include modifier('small') {
-	    > .table-row {
+	     .table-row {
 	      padding: 0.5rem;
 	    }
 	  }
 	  ///.table-view--flush
 	  @include modifier('flush') {
-	    > .table-row {
+	     .table-row {
 	      padding: 0;
 	    }
 	  }
 	  ///.table-view--regular
 	  @include modifier('regular') {
-	    > .table-row {
+	     .table-row {
 	      padding: 1rem;
 	    }
 	  }
 	  ///.table-view--large
 	  @include modifier('large') {
-	    > .table-row {
-	      padding: 1.5rem;
+	     .table-row {
+	      padding: 2rem;
 	    }
 	  }
 	  ///.table-view--huge
 	  @include modifier('huge') {
-	    > .table-row {
+	     .table-row {
 	      padding: 3rem;
 	    }
 	  }
@@ -167,10 +169,5 @@
 	    }
 	  }
 
-    //todo - table row styles
-    @import "px-table-row-predix";
+
 	}
-
-
-
-}

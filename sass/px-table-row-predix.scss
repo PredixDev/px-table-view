@@ -267,9 +267,9 @@
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    transition: transform 200ms ease-out;
+    transition: transform .3s ease-out;
     will-change: transform;
-    z-index: 0;
+    z-index: 50;
     width: auto;
     //Button
     @include element('button') {
@@ -320,7 +320,9 @@
   }
 }
 
-///Checkbox
+
+///---------------------------
+///Checkbox styles
 .table-row {
   &.checkbox {
     width: 100%;
@@ -459,5 +461,24 @@
         }
       }
     }
+  }
+}
+
+
+///---------------------------
+/// Text Input Overrides
+///
+.table-row{
+    > input.text-input {
+      margin: 0;
+      min-height: 44px;
+      font-size: 1.3rem;
+      background: transparent;
+      border: none;
+      box-shadow: none;
+  }
+  > .btn{
+    outline: none;
+    min-height: 44px;
   }
 }
