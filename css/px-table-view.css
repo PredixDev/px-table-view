@@ -112,7 +112,7 @@
       -ms-user-select: none;
       user-select: none;
       white-space: nowrap; }
-      @media (min-width: 320px) {
+      @media (max-width: 320px) {
         .table-row__content__title {
           font-size: 1rem; } }
       .table-row__content__title--flush {
@@ -123,7 +123,8 @@
       .table-row__content__title--large {
         font-size: 1.5rem; }
     .table-row__content__body {
-      display: block; }
+      display: block;
+      line-height: normal; }
       .table-row__content__body--flush {
         line-height: normal; }
   .table-row__label {
@@ -136,7 +137,7 @@
       float: left;
       position: relative;
       margin-left: 5%; }
-    @media (min-width: 320px) {
+    @media (max-width: 320px) {
       .table-row__label {
         margin-top: 7%;
         font-size: 0.9rem; } }
@@ -827,7 +828,7 @@ Predix branding rules go in my-px-comp-predix.scss, not in this file.
         -ms-user-select: none;
         user-select: none;
         white-space: nowrap; }
-        @media (min-width: 320px) {
+        @media (max-width: 320px) {
           .table-view .table-row__content__title {
             font-size: 1rem; } }
         .table-view .table-row__content__title--flush {
@@ -838,7 +839,8 @@ Predix branding rules go in my-px-comp-predix.scss, not in this file.
         .table-view .table-row__content__title--large {
           font-size: 1.5rem; }
       .table-view .table-row__content__body {
-        display: block; }
+        display: block;
+        line-height: normal; }
         .table-view .table-row__content__body--flush {
           line-height: normal; }
     .table-view .table-row__label {
@@ -851,7 +853,7 @@ Predix branding rules go in my-px-comp-predix.scss, not in this file.
         float: left;
         position: relative;
         margin-left: 5%; }
-      @media (min-width: 320px) {
+      @media (max-width: 320px) {
         .table-view .table-row__label {
           margin-top: 7%;
           font-size: 0.9rem; } }

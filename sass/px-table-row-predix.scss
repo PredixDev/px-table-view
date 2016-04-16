@@ -145,6 +145,7 @@
     }
     @include element('body') {
       display: block;
+      line-height: normal;
       @include modifier('flush') {
         line-height: normal;
       }

@@ -52,7 +52,7 @@ To use:
 
       <!-- table-row__actions -->
       <div class="table-row__actions--underlay">
-       
+
         <!-- table-row__delete-btn -->
         <template is="dom-if" if="{{editMode}}">
           <button class="btn btn--bare table-row__delete-btn" on-click="_handleRemoveItem">
@@ -62,16 +62,16 @@ To use:
       </div>
 
       <!-- image -->
-      <template is="dom-if" if="{{item.image}}">
+      <template is="dom-if" if="{{image}}">
         <div class="table-row__media table-row__media--image">
-          <img src$="{{item.image}}" alt="{{item.title}}">
+          <img src$="{{image}}" alt="{{title}}">
         </div>
       </template>
 
       <!-- icon -->
-      <template is="dom-if" if="{{item.icon}}">
+      <template is="dom-if" if="{{icon}}">
         <div class="table-row__media table-row__media--icon">
-          <i class$="{{item.icon}}"></i>
+          <i class$="{{icon}}"></i>
         </div>
       </template>
 
@@ -79,23 +79,23 @@ To use:
       <div class="table-row__content">
 
         <!-- label2 -->
-        <template is="dom-if" if="{{item.label2}}">
-          <span class="table-row__content__label table-row__content__label--left">{{item.label2}}</span>
+        <template is="dom-if" if="{{label2}}">
+          <span class="table-row__content__label table-row__content__label--left">{{label2}}</span>
         </template>
 
         <!-- title -->
-        <template is="dom-if" if="{{item.title}}">
-          <div class="table-row__content__title">{{item.title}}</div>
+        <template is="dom-if" if="{{title}}">
+          <div class="table-row__content__title">{{title}}</div>
         </template>
 
         <!-- body -->
-        <template is="dom-if" if="{{item.body}}">
-          <div class="table-row__content__body">{{item.body}}</div>
+        <template is="dom-if" if="{{body}}">
+          <div class="table-row__content__body">{{body}}</div>
         </template>
 
         <!-- label1 -->
-        <template is="dom-if" if="{{item.label1}}">
-          <span class="table-row__content__label table-row__content__label--right">{{item.label1}}</span>
+        <template is="dom-if" if="{{label1}}">
+          <span class="table-row__content__label table-row__content__label--right">{{label1}}</span>
         </template>
 
       </div>
@@ -152,8 +152,10 @@ To use:
         }
       },
       attached: function() {
+        /*
         if (this.title) {
-          this.set('item.title', this.title);
+          this.item.title = this.title;
+        //  this.set('item.title', this.title);
         }
         if (this.body) {
           this.set('item.body', this.body);
@@ -167,6 +169,7 @@ To use:
         if (this.actionable) {
           //this.parent.toggleClass('table-row--actionable');
         }
+        */
       },
       _handleRemoveItem: function(e) {
         e.preventDefault();
