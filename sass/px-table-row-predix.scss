@@ -60,19 +60,24 @@
     vertical-align: middle;
     padding-right: 1rem;
     padding-left: 0.1rem;
+
+    ///
     @include modifier('left') {
       //float: left !important;
     }
+    ///
     @include modifier('right') {
       float: right ;
       > i {
         margin-top: 0.7rem;
       }
     }
+    ///
     @include modifier('toggle') {
       padding-top: 0.5rem;
       padding-left: 0.5rem;
     }
+    ///
     @include modifier('image') {
       //	padding-top: .1rem;
       padding-right: 1rem;
@@ -83,32 +88,39 @@
         max-height: 80px;
       }
     }
+    ///
     @include modifier('icon') {
       padding-right: 0.5rem;
       padding-left: 0.5rem;
     }
   }
+  ///
   @include modifier('icon-left') {
     .table-row__media--icon {
-      float: left ;
+      float: left;
     }
   }
+  ///
   @include modifier('icon-right') {
     .table-row__media--icon {
       float: right;
     }
   }
+  ///
   @include modifier('image-left') {
     .table-row__media--image {
       float: left ;
     }
   }
+  ///
   @include modifier('image-right') {
     .table-row__media--image {
       float: right ;
       margin-right: 1rem;
     }
   }
+
+  ///.table-row--flush
   @include modifier('flush') {
     line-height: normal;
   }
@@ -119,33 +131,43 @@
     width: 100%;
     user-select: none;
     padding-right: 2rem;
+
+    ///
     @include modifier('flush') {
       line-height: normal;
     }
+
+    ///
     @include element('title') {
       padding: 0;
       font-size: 1.1rem;
       display: block;
       user-select: none;
       white-space: nowrap;
-      //	line-height: normal;
+
+      ///
       @include respond('mobile') {
         font-size: 1rem;
       }
+      ///
       @include modifier('flush') {
         line-height: normal;
       }
+      ///
       @include modifier('small') {
         font-size: 0.8rem;
         line-height: normal;
       }
+      ///
       @include modifier('large') {
         font-size: 1.5rem;
       }
     }
+    ///
     @include element('body') {
       display: block;
       line-height: normal;
+      ///
       @include modifier('flush') {
         line-height: normal;
       }
@@ -154,32 +176,40 @@
   ///.table-row__label
   @include element('label') {
     color: $table-row-label-color;
+
+    ///
     @include modifier('right') {
       //float: right;
       margin-right: 2rem;
       right: 2%;
       position: absolute;
     }
+    ///
     @include modifier('left') {
       float: left;
       position: relative;
       margin-left: 5%;
     }
+    ///
     @include respond('mobile') {
-      margin-top: 7%;
+      margin-top: 1%;
       font-size: 0.9rem;
     }
   }
+
   ///.table-row__icon
   @include element('icon') {
     padding: 0;
+    ///
     @include modifier('left') {
       float: left;
     }
+    ///
     @include modifier('right') {
       float: right;
     }
   }
+
   ///.table-row__reorder-btn
   @include element('reorder-btn') {
     float: right;
@@ -242,10 +272,13 @@
       padding-left: 25px;
     }
   }
+
+  ///
   @include modifier('nav-left') {
     @include tableRowClickable($table-row-active-background-color, $table-row-active-font-color);
     @include tableRowIcon('\f104');
   }
+  ///
   @include modifier('nav-right') {
     @include tableRowClickable($table-row-active-background-color, $table-row-active-font-color);
     @include tableRowIcon('\f105');
@@ -332,6 +365,8 @@
     margin: 0;
     line-height: 44px;
   }
+
+  ///
   @include element('checkbox') {
     position: relative;
     display: inline-block;
@@ -340,7 +375,7 @@
     user-select: none;
     font-weight: 400;
     font-size: 17px;
-    line-height: 24px;
+    line-height: 25px;
     margin: 10px 0;
     input[type="checkbox"] {
       position: absolute;

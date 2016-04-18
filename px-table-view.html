@@ -1,5 +1,6 @@
 <link rel="import" href="../polymer/polymer.html" />
 <link rel="import" href="px-table-view-behavior.html" />
+<link rel="import" href="px-table-row-checkbox.html" />
 <link rel="import" href="px-table-row.html" />
 
 <!--
@@ -41,25 +42,27 @@
 @demo demo.html
 @homepage index.html
 -->
-<link rel="stylesheet" href="css/px-table-view.css" />
+
 <dom-module id="px-table-view">
-
+  <link rel="stylesheet" href="css/px-table-view.css" is="custom-style"/>
   <template strip-whitespace>
-
       <style>
         :host {
           display: block;
-          min-height: 50vh;
+          min-height: 20vh;
+        }
+        :host ul{
+          margin: 0;
+          padding: 0;
         }
       </style>
     <ul class="table-view table-view--small">
       <template is="dom-if" if="{{items}}">
         <template is="dom-repeat" items="{{items}}">
-          <li class="table-row table-row--tappable" on-click="handleSelect">
-            <px-table-row item="{{item}}"></px-table-row>
-          </li>
+          <px-table-row item="{{item}}" on-click="handleSelect"></px-table-row>
         </template>
       </template>
+      <content select="*"></content>
     </ul>
   </template>
   <script>
@@ -78,7 +81,7 @@
         }
       },
       created: function() {
-       // console.log('Created', this.tagName);
+        console.log('Created', this.tagName);
        // console.dir(this);
       },
       attached: function() {
