@@ -3,34 +3,44 @@
 
   <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
     <title>px-table-view MVP (Phase 1)</title>
-    <link rel="stylesheet" href="https://predixdev.github.io/px-library-design/css/style.css">
-
+    <link rel="stylesheet" href="http://predixdev.github.io/px-library-design/css/style.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/webcomponentsjs/0.7.21/webcomponents.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fastclick/1.0.6/fastclick.min.js"></script>
     <link rel="import" href="px-table-view.html">
     <link rel="import" href="../px-card/px-card.html">
 
-  </head>
-
-  <body>
 
     <style>
+    /* Disable certain interactions on touch devices */
+    
+    body {
+      -webkit-touch-callout: none;
+      -webkit-text-size-adjust: none;
+      -webkit-user-select: none;
+      -webkit-highlight: none;
+      -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+    }
+    
     px-card {
       border: 1px solid #b1b1bc;
-      margin: 5px;
+      margin: .2rem;
+      padding: .5rem;
       flex: 1 1 300px;
-      margin-right: 5px;
     }
-
+    
     px-card ul {
       padding: 0px !important;
       margin: 0px !important;
     }
 
-
     </style>
+  </head>
+
+  <body class="u-bg--gray9">
+
     <h2>TableView - MVP FEATURES (PHASE I)</h2>
     <div class="flex flex--row flex--wrap flex--spaced u-bg--gray7 u-padding-10">
 
@@ -49,68 +59,54 @@
 
       <px-card header-text="Component Usage">
         <px-table-view>
-          <px-table-row title="Test">
-            This is conten
+          <px-table-row title="Test" type="nav-right">
+            <div>
+              This is content in between the element.
+            </div>
           </px-table-row>
-          <px-table-row title="Test" label1="Detail Label"></px-table-row>
-          <px-table-row title="Text Label" body="This is the table view description"></px-table-row>
+          <px-table-row title="Test" type="nav-right" badge="4"></px-table-row>
+          <px-table-row title="Test" type="nav-right" label1="Detail Label"></px-table-row>
+          <px-table-row title="Text Label" type="nav-right" body="This is the table view description"></px-table-row>
         </px-table-view>
       </px-card>
 
-      <px-card header-text="Table View Basic">
+      <px-card header-text="1. Basic Table View">
         <ul class="table-view">
-          <px-table-row title="Text Label" type="tappable"></px-table-row>
-          <px-table-row title="Text Label" type="tappable"></px-table-row>
-          <px-table-row title="Text Label" type="tappable"></px-table-row>
+          <px-table-row title="Text Label" type="nav-right"></px-table-row>
+          <px-table-row title="Text Label" type="info"></px-table-row>
+          <px-table-row title="Text Label" type="detail"></px-table-row>
           <px-table-row title="Text Label" type="tappable"></px-table-row>
         </ul>
       </px-card>
 
-      <px-card header-text="Icons">
+      <px-card header-text="2. Icons">
         <ul class="table-view">
-          <px-table-row title="Text Label" type="tappable" icon="fa fa-gear"></px-table-row>
-          <px-table-row title="Text Label" type="tappable" icon="fa fa-gear"></px-table-row>
-
+          <px-table-row title="Text Label" type="nav-right" icon="fa fa-home"></px-table-row>
+          <px-table-row title="Text Label" type="nav-right" icon="fa fa-dashboard"></px-table-row>
+          <px-table-row title="Text Label" type="nav-right" icon="fa fa-home" media-pos="right"></px-table-row>
+          <px-table-row title="Text Label" type="nav-right" icon="fa fa-dashboard" media-pos="right"></px-table-row>
         </ul>
       </px-card>
 
-      <px-card header-text="Images">
+      <px-card header-text="3. Images">
         <ul class="table-view table-view--small">
-          <li class="table-row table-row--tappable">
-            <div class="table-row__media table-row__media--image table-row__media--left">
-              <img src="https://placehold.it/44">
-            </div>
-            <div class="table-row__content">
-              <span class="table-row__content__title">Text Label</span>
-            </div>
-          </li>
-          <li class="table-row table-row--tappable">
-            <div class="table-row__media table-row__media--image table-row__media--right">
-              <img src="https://placehold.it/44">
-            </div>
-            <div class="table-row__content">
-              <span class="table-row__content__title">Text Label</span>
-            </div>
-          </li>
-          <li class="table-row table-row--tappable">
-            <div class="table-row__media table-row__media--image table-row__media--left">
-              <img src="https://placehold.it/44">
-            </div>
-            <div class="table-row__content">
-              <span class="table-row__content__title">Text Label</span>
-            </div>
-          </li>
+          <px-table-row title="Text Label" type="nav-right" image="https://placehold.it/44"></px-table-row>
+          <px-table-row title="Text Label" type="nav-right" image="https://placehold.it/44"></px-table-row>
+          <px-table-row title="Text Label" type="nav-right" image="https://placehold.it/44"></px-table-row>
+          <px-table-row title="Text Label" type="nav-right" image="https://placehold.it/44"></px-table-row>
         </ul>
       </px-card>
 
-      <px-card header-text="Label">
+      <px-card header-text="4. Labels">
         <ul class="table-view table-view--small">
-          <px-table-row title="Text Label" label1="Detail label" type="tappable"></px-table-row>
-          <px-table-row title="Text Label" label1="Detail label" type="tappable"></px-table-row>
-          <px-table-row title="Text Label" label1="Detail label" type="tappable"></px-table-row>
+          <px-table-row title="Text Label" label1="Detail label" type="nav-right"></px-table-row>
+          <px-table-row title="Text Label" label1="Detail label" type="nav-right"></px-table-row>
+          <px-table-row title="Text Label" label1="Detail label" type="nav-right"></px-table-row>
+          <px-table-row title="Text Label" label1="Detail label" type="nav-right"></px-table-row>
         </ul>
       </px-card>
-      <px-card header-text="Description">
+
+      <px-card header-text="5. Description">
         <section class="table-view table-view--small">
           <px-table-row title="Text Label" body="Lorem ipsum dolor sit amet, consectetur adipisicing elit,
     sed do eiusmod tempor incididunt ut labore et dolore magna aliqua." type="nav-right"></px-table-row>
@@ -119,57 +115,7 @@
         </section>
       </px-card>
 
-
-      <px-card header-text="Checkbox">
-        <ul class="table-view table-view--small table-view-- u-mb+">
-
-          <li class="table-row table-row--tappable">
-            <px-table-row-checkbox name="cb0" label="Checkbox 0" type="no-border"></px-table-row-checkbox>
-          </li>
-          <li class="table-row table-row--tappable">
-            <px-table-row-checkbox name="cb1" label="Checkbox 1"></px-table-row-checkbox>
-          </li>
-          <li class="table-row table-row--tappable">
-            <px-table-row-checkbox name="cb2" label="Checkbox 2"></px-table-row-checkbox>
-          </li>
-          <li class="table-row table-row--tappable">
-            <label class="table-row__checkbox">
-              <input type="checkbox" name="cb2" value="test1" disabled>
-              <div class="table-row__checkbox__checkmark"></div>
-              Disabled Checkbox
-            </label>
-          </li>
-        </ul>
-      </px-card>
-
-      <px-card header-text="Switch">
-        <ul class="table-view table-view--small">
-          <li class="table-row">
-            <div class="table-row__media table-row__media--toggle table-row__media--right">
-              <div class="toggle toggle__table-view-item">
-                <input id="toggle1" class="toggle__input" type="checkbox" checked>
-                <label for="toggle1" class="toggle__label">On</label>
-              </div>
-            </div>
-            <div class="table-row__content">
-              <span class="table-row__content__title">Text Label</span>
-            </div>
-          </li>
-          <li class="table-row">
-            <div class="table-row__media table-row__media--toggle table-row__media--right">
-              <div class="toggle toggle__table-view-item">
-                <input id="toggle2" class="toggle__input" type="checkbox">
-                <label for="toggle2" class="toggle__label">On</label>
-              </div>
-            </div>
-            <div class="table-row__content">
-              <span class="table-row__content__title">Text Label</span>
-            </div>
-          </li>
-        </ul>
-      </px-card>
-
-      <px-card header-text="Inset">
+      <px-card header-text="6. Inset">
         <ul class="table-view table-view--inset u-m">
           <px-table-row title="Text Label" type="nav-right"></px-table-row>
           <px-table-row title="Text Label" type="nav-right"></px-table-row>
@@ -177,8 +123,61 @@
         </ul>
       </px-card>
 
-    </div>
+      <px-card header-text="7. Checkboxes">
+        <ul class="table-view table-view--small table-view-- u-mb+">
+          <li class="table-row table-row--tappable">
+            <px-table-row-checkbox name="cb0" label="No Border Checked" type="no-border" checked></px-table-row-checkbox>
+          </li>
+          <li class="table-row table-row--tappable">
+            <px-table-row-checkbox name="cb01" label="No Border Checked (Disabled)" type="no-border" checked disabled></px-table-row-checkbox>
+          </li>
+          <li class="table-row table-row--tappable">
+            <px-table-row-checkbox name="cb02" label="Bordered Checkbox"></px-table-row-checkbox>
+          </li>
+          <li class="table-row tabl">
+            <px-table-row-checkbox name="cb03" label="Border Checked (Disabled)" checked disabled></px-table-row-checkbox>
+          </li>
+          <li class="table-row">
+            <px-table-row-checkbox name="cb04" label="Checkbox 3" disabled></px-table-row-checkbox>
+          </li>
+        </ul>
+      </px-card>
 
+      <px-card header-text="8. Switches">
+        <ul class="table-view table-view--small">
+          <li class="table-row">
+            <div class="table-row__media table-row__media--toggle table-row__media--right">
+              <div class="toggle toggle__table-view-item">
+                <input id="toggle1" class="toggle__input" type="checkbox" checked>
+                <label for="toggle1" class="toggle__label needsclick">On</label>
+              </div>
+            </div>
+            <div class="table-row__content">
+              <span class="table-row__content__title">Text Label</span>
+            </div>
+          </li>
+          <li class="table-row">
+            <div class="table-row__media table-row__media--toggle table-row__media--right">
+              <div class="toggle toggle__table-view-item">
+                <input id="toggle2" class="toggle__input needsclick" type="checkbox">
+                <label for="toggle2" class="toggle__label ">On</label>
+              </div>
+            </div>
+            <div class="table-row__content">
+              <span class="table-row__content__title">Text Label</span>
+            </div>
+          </li>
+        </ul>
+      </px-card>
+
+
+    </div>
+    <script type="text/javascript">
+    window.addEventListener('load', function() {
+      new FastClick(document.body);
+    }, false);
+
+    </script>
   </body>
 
 </html>

@@ -1,98 +1,100 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/hammer.js/2.0.6/hammer.min.js"></script>
 <script type="text/javascript">
 var reqAnimationFrame = (function() {
-	return window[Hammer.prefixed(window, "requestAnimationFrame")] || function(callback) {
-		setTimeout(callback, 1000 / 60);
-	};
+  return window[Hammer.prefixed(window, "requestAnimationFrame")] || function(callback) {
+    setTimeout(callback, 1000 / 60);
+  };
 })();
 
 function dirProp(direction, hProp, vProp) {
-	return (direction & Hammer.DIRECTION_HORIZONTAL) ? hProp : vProp;
+  return (direction & Hammer.DIRECTION_HORIZONTAL) ? hProp : vProp;
 }
 
-  /**
-  Swipe List Item Actions
-  */
-  function SwipeActions(container, direction) {
-    this.container = container;
-    this.direction = direction;
-    this.actions = container.querySelector('.table-row__actions');
-    this.panes = Array.prototype.slice.call(this.container.children, 0);
-    this.containerSize = this.container[dirProp(direction, 'offsetWidth', 'offsetHeight')];
-    this.actionsSize = this.actions[dirProp(direction, 'offsetWidth', 'offsetHeight')];
-    this.currentIndex = 0;
-    this.hammer = new Hammer.Manager(this.container);
-    this.hammer.add(new Hammer.Pan({
-      direction: this.direction,
-      threshold: 20
-    }));
-    this.hammer.on("panstart panmove panend pancancel", Hammer.bindFn(this.onPan, this));
-    console.log('SwipeActions', this);
 
-		console.warn('Actions size', this.actionsSize);
-  }
+/**
+Swipe List Item Actions
+*/
+function SwipeActions(container, direction) {
+  this.container = container;
+  this.direction = direction;
+  this.actions = container.querySelector('.table-row__actions');
+  this.panes = Array.prototype.slice.call(this.container.children, 0);
+  this.containerSize = this.container[dirProp(direction, 'offsetWidth', 'offsetHeight')];
+  this.actionsSize = this.actions[dirProp(direction, 'offsetWidth', 'offsetHeight')];
+  this.currentIndex = 0;
+  this.hammer = new Hammer.Manager(this.container);
+  this.hammer.add(new Hammer.Pan({
+    direction: this.direction,
+    threshold: 20
+  }));
+  this.hammer.on("panstart panmove panend pancancel", Hammer.bindFn(this.onPan, this));
+  console.log('SwipeActions', this);
 
-  SwipeActions.prototype = {
-    show: function(showIndex, percent, animate) {
+  console.warn('Actions size', this.actionsSize);
+}
 
-      showIndex = Math.max(0, Math.min(showIndex, this.panes.length - 1));
-      percent = percent || 0;
-      var className = this.container.className;
+SwipeActions.prototype = {
+  show: function(showIndex, percent, animate) {
 
-      if (animate) {
-        if (className.indexOf('animate') === -1) {
-          this.container.className += ' animate';
-        }
+    showIndex = Math.max(0, Math.min(showIndex, this.panes.length - 1));
+    percent = percent || 0;
+    var className = this.container.className;
+
+    if (animate) {
+      if (className.indexOf('animate') === -1) {
+        this.container.className += ' animate';
+      }
+    } else {
+      if (className.indexOf('animate') !== -1) {
+        this.container.className = className.replace('animate', '').trim();
+      }
+    }
+
+    var paneIndex, pos, translate;
+
+    for (paneIndex = 0; paneIndex < this.panes.length; paneIndex++) {
+      pos = (this.actionsSize / 100) * (((paneIndex - showIndex) * 100) + percent);
+      console.warn('pos', pos);
+      if (this.direction & Hammer.DIRECTION_HORIZONTAL) {
+        translate = 'translate3d(' + pos + 'px, 0, 0)';
       } else {
-        if (className.indexOf('animate') !== -1) {
-          this.container.className = className.replace('animate', '').trim();
-        }
+        translate = 'translate3d(0, ' + pos + 'px, 0)';
       }
-
-      var paneIndex, pos, translate;
-
-      for (paneIndex = 0; paneIndex < this.panes.length; paneIndex++) {
-        pos = (this.actionsSize / 100) * (((paneIndex - showIndex) * 100) + percent);
-				console.warn('pos', pos);
-        if (this.direction & Hammer.DIRECTION_HORIZONTAL) {
-          translate = 'translate3d(' + pos + 'px, 0, 0)';
-        } else {
-          translate = 'translate3d(0, ' + pos + 'px, 0)';
-        }
-        this.panes[paneIndex].style.transform = translate;
-        this.panes[paneIndex].style.mozTransform = translate;
-        this.panes[paneIndex].style.webkitTransform = translate;
-      }
+      this.panes[paneIndex].style.transform = translate;
+      this.panes[paneIndex].style.mozTransform = translate;
+      this.panes[paneIndex].style.webkitTransform = translate;
+    }
     //  console.log('translate', translate);
     //  console.log('show', showIndex, percent, animate);
 
-      this.currentIndex = showIndex;
+    this.currentIndex = showIndex;
 
-      console.log('SwipeActions.show',showIndex, pos, percent, animate);
-    },
-    onPan: function(ev) {
-      var delta = dirProp(this.direction, ev.deltaX, ev.deltaY);
-      var percent = (100 / this.containerSize) * delta;
-      var animate = false;
+    console.log('SwipeActions.show', showIndex, pos, percent, animate);
+  },
+  onPan: function(ev) {
+    var delta = dirProp(this.direction, ev.deltaX, ev.deltaY);
+    var percent = (100 / this.containerSize) * delta;
+    var animate = false;
 
-      if (ev.type == 'panend' || ev.type == 'pancancel') {
-        if (Math.abs(percent) > 15 && ev.type == 'panend') {
-          this.currentIndex += (percent < 0) ? 1 : -1;
-        }
-        percent = 0;
-        animate = true;
+    if (ev.type == 'panend' || ev.type == 'pancancel') {
+      if (Math.abs(percent) > 15 && ev.type == 'panend') {
+        this.currentIndex += (percent < 0) ? 1 : -1;
       }
-      console.log('SwipeActions.onPan', 'delta = ', delta, 'percent =', percent, animate);
-      this.show(this.currentIndex, percent, animate);
+      percent = 0;
+      animate = true;
     }
-  };
+    console.log('SwipeActions.onPan', 'delta = ', delta, 'percent =', percent, animate);
+    this.show(this.currentIndex, percent, animate);
+  }
+};
 
-  document.addEventListener('WebComponentsReady', function(){
-console.log('WebComponentsReady');
-    Hammer.each(document.querySelectorAll(".table-row--actionable"), function(container) {
-      var actions = new SwipeActions(container, Hammer.DIRECTION_HORIZONTAL);
-      //outer.hammer.get('pan').requireFailure(actions.hammer.get('pan'));
-      console.log('Adding Hammer', actions);
-    });
+document.addEventListener('WebComponentsReady', function() {
+  console.log('WebComponentsReady');
+  Hammer.each(document.querySelectorAll(".table-row--actionable"), function(container) {
+    var actions = new SwipeActions(container, Hammer.DIRECTION_HORIZONTAL);
+    //outer.hammer.get('pan').requireFailure(actions.hammer.get('pan'));
+    console.log('Adding Hammer', actions);
   });
+});
+
 </script>

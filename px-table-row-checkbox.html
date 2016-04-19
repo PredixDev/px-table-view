@@ -1,4 +1,16 @@
 <link rel="import" href="../polymer/polymer.html" />
+<!--
+To use this component:
+
+```
+<li class="table-row">
+  <px-table-row-checkbox name="cb0" label="No Border Checked" type="no-border" checked></px-table-row-checkbox>
+</li>
+```
+@element px-table-row-checkbox.html
+@demo demo/checkboxes.html
+@homepage index.html
+-->
 <dom-module id="px-table-row-checkbox">
   <style>
   :host {
@@ -7,8 +19,8 @@
 
   </style>
   <template>
-    <label id="checkboxLabel" class="table-row__checkbox">
-      <input type="checkbox" name$="{{name}}" value$="{{value}}">
+    <label class="table-row__checkbox needsclick" for$="{{name}}">
+      <input id$="{{name}}" type="checkbox" name$="{{name}}" value$="{{value}}">
       <div class="table-row__checkbox__checkmark "></div>
       <span>{{label}}</span>
     </label>
@@ -25,13 +37,33 @@
       },
       type: {
         type: String
+      },
+      checked: {
+        type: Boolean
+      },
+      disabled: {
+        type: Boolean
       }
     },
     attached: function() {
       console.warn(this.tagName, 'attached', this);
       if (this.type) {
-        this.toggleClass('table-row__checkbox--' + this.type, true, this.$.checkboxLabel);
+        this.toggleClass('table-row__checkbox--' + this.type, true, this.$$('label'));
       }
+      if (this.checked) {
+        this.$$('input').checked = true;
+      }
+      if (this.disabled) {
+        this.$$('input').disabled = true;
+      }
+      //this.listen(this.$.myButton, 'tap', 'onTap');
+      this.listen(this.$$('label'), 'tap', 'handleTap');
+    },
+    handleTap: function(e) {
+      if (this.disabled) {
+        return;
+      }
+      //this.$$('input').checked = !this.$$('input').checked;
     }
   });
 

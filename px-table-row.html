@@ -4,188 +4,217 @@
 <link rel="import" href="px-table-row-swipe-actions-behavior.html" />
 
 <!--
-## Usage
-To use:
-
+To use this element you can do the following:
 ```
 <px-table-row title="Item Label"></px-table-row>
 ```
-@element component.html
-@blurb pxm-table-row
-@demo demo.html
+
+To style this component you can do the following:
+
+```
+:root {
+  --table-row-border-color: red;
+  --table-row-background-color: green;
+}
+```
+
+@element px-table-row.html
+@demo mobile-demo.html
 @homepage index.html
 -->
 <dom-module id="px-table-row">
   <style>
-    :host{
-      display:block;
-      width: 100%;
-    }
-    :host  .flex {
-      position: relative;
-      display: -ms-flexbox;
-      display: -webkit-flex;
-      display: flex;
-    }
-    :host .table-row__actions--underlay {
-      position: absolute;
-      right: 0;
-      width: 100%;
-      height: 100%;
-      display: flex;
-      flex-direction: row;
-      flex-direction: row-reverse;
-    }
-    :host .swipe-content {
-      width: 100%;
-      transform-style: preserve-3d;
-      backface-visibility: hidden;
-    }
-    :host .cubic-bezier {
-      -webkit-transition: -webkit-transform .8s cubic-bezier(.10, .70, .10, 1) .5s;
-      transition: transform .8s cubic-bezier(.10, .70, .10, 1) .5s;
-    }
+  :host {
+    display: block;
+    width: 100%;
+  }
+  
+  :host .flex {
+    position: relative;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+  }
+  
+  :host .table-row__actions--underlay {
+    position: absolute;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    flex-direction: row-reverse;
+  }
+  
+  :host .swipe-content {
+    width: 100%;
+    transform-style: preserve-3d;
+    backface-visibility: hidden;
+  }
+  
+  :host .cubic-bezier {
+    -webkit-transition: -webkit-transform .8s cubic-bezier(.10, .70, .10, 1) .5s;
+    transition: transform .8s cubic-bezier(.10, .70, .10, 1) .5s;
+  }
+
   </style>
   <template>
 
-    
-      <!-- table-row__actions -->
-      <div class="table-row__actions--underlay">
 
-        <!-- table-row__delete-btn -->
-        <template is="dom-if" if="{{editMode}}">
-          <button class="btn btn--bare table-row__delete-btn" on-click="_handleRemoveItem">
-            <i class="fa fa-minus-circle fa-lg color-red"></i>
-          </button>
-        </template>
+    <!-- table-row__actions -->
+    <div class="table-row__actions--underlay">
 
-      </div>
-
-      <!-- image -->
-      <template is="dom-if" if="{{image}}">
-        <div class="table-row__media table-row__media--image">
-          <img src$="{{image}}" alt="{{title}}">
-        </div>
-      </template>
-
-      <!-- icon -->
-      <template is="dom-if" if="{{icon}}">
-        <div class="table-row__media table-row__media--icon">
-          <i class$="{{icon}}"></i>
-        </div>
-      </template>
-
-      <!-- label1 -->
-      <template is="dom-if" if="{{label1}}">
-        <span class="table-row__label table-row__label--right">{{label1}}</span>
-      </template>
-
-      <!-- label2 -->
-      <template is="dom-if" if="{{label2}}">
-        <span class="table-row__label table-row__label--left">{{label2}}</span>
-      </template>
-
-      <!-- List Item Content -->
-      <div class="table-row__content">
-
-        <!-- title -->
-        <template is="dom-if" if="{{title}}">
-          <div class="table-row__content__title">{{title}}</div>
-        </template>
-
-        <!-- body -->
-        <template is="dom-if" if="{{body}}">
-          <div class="table-row__content__body">{{body}}</div>
-        </template>
-      </div>
-
-      <!-- reorder -->
-      <template is="dom-if" if="{{orderMode}}">
-        <button class="btn btn--bare table-row__reorder-btn" on-click="_handleReorderItem">
-          <i class="fa fa-move muted"></i>
+      <!-- table-row__delete-btn -->
+      <template is="dom-if" if="{{editMode}}">
+        <button class="btn btn--bare table-row__delete-btn" on-click="_handleRemoveItem">
+          <i class="fa fa-minus-circle fa-lg color-red"></i>
         </button>
       </template>
 
-      <!-- content -->
-      <content id="content" select="*"></content>
+    </div>
+
+    <!-- image -->
+    <template is="dom-if" if="{{image}}">
+      <div class="table-row__media table-row__media--image">
+        <img src$="{{image}}" alt="{{title}}">
+      </div>
+    </template>
+
+    <!-- icon -->
+    <template is="dom-if" if="{{icon}}">
+      <div class="table-row__media table-row__media--icon">
+        <i class$="{{icon}}"></i>
+      </div>
+    </template>
+
+    <!-- label1 -->
+    <template is="dom-if" if="{{label1}}">
+      <span class="table-row__label table-row__label--right">{{label1}}</span>
+    </template>
+
+    <!-- label2 -->
+    <template is="dom-if" if="{{label2}}">
+      <span class="table-row__label table-row__label--left">{{label2}}</span>
+    </template>
+
+    <!-- List Item Content -->
+    <div class="table-row__content">
+
+      <!-- title -->
+      <template is="dom-if" if="{{title}}">
+        <div class="table-row__content__title">{{title}}</div>
+      </template>
+
+      <!-- body -->
+      <template is="dom-if" if="{{body}}">
+        <div class="table-row__content__body">{{body}}</div>
+      </template>
+    </div>
+
+    <!-- reorder -->
+    <template is="dom-if" if="{{orderMode}}">
+      <button class="btn btn--bare table-row__reorder-btn" on-click="_handleReorderItem">
+        <i class="fa fa-move muted"></i>
+      </button>
+    </template>
+
+    <!-- content -->
+    <content id="content" select="*"></content>
 
 
 
   </template>
   <script>
-    Polymer({
-      is: 'px-table-row',
-      behaviors: [
-        //TableRowSwipeBehavior
-      ],
-      properties: {
-        //The list item object.
-        item: {
-          type: Object,
-          value: {}
-        },
-        //The title to set on the list item.
-        title: {
-          type: String
-        },
-        //The body to set on the list item.
-        body: {
-          type: String
-        },
-        //The image to set on the list item.
-        image: {
-          type: String
-        },
-        //The icon to set on the list item.
-        icon: {
-          type: String
-        },
-        //The type of list item (tappable, info, nav-right, chevron)
-        type: {
-          type: String
-        },
-        //If editMode is true then this item displays a delete icon.
-        editMode: {
-          type: Boolean
-        },
-        //If orderMode is true then this item displays a order icon.
-        orderMode: {
-          type: Boolean
-        },
-        //If actionable is true then this item responds to swipeleft/swiperight events.
-        actionable: {
-          type: Boolean
-        }
+  Polymer({
+    is: 'px-table-row',
+    behaviors: [
+      //TableRowSwipeBehavior
+    ],
+    properties: {
+      //The list item object.
+      item: {
+        type: Object,
+        value: {}
       },
-      attached: function() {
-        this.toggleClass('table-row');
-        if(this.type){
-          this.toggleClass('table-row--' + this.type);
-        }
-        if(this.item){
-          var item = this.item;
-          for(var prop in item){
-            this[prop] = item[prop];
-            console.log('Adding property', prop);
-          }
-        }
-
-        if (this.actionable) {
-          this.toggleClass('table-row--actionable');
-        }
-
-        console.log(this.tagName, 'attached');
+      //The title to set on the list item.
+      title: {
+        type: String
       },
-      _handleRemoveItem: function(e) {
-        e.preventDefault();
-        console.log('handleRemoveItem', e);
-        return false;
+      //The label to place on the right side of the item.
+      label1: {
+        type: String
       },
-      _handleReorderItem: function(e) {
-        e.preventDefault();
-        console.log('handleReorderItem', e);
-        return false;
+      //The label to place on the left side of the item.
+      label2: {
+        type: String
+      },
+      //The body to set on the list item.
+      body: {
+        type: String
+      },
+      //The image to set on the list item.
+      image: {
+        type: String
+      },
+      //The icon to set on the list item.
+      icon: {
+        type: String
+      },
+      //The media position (left or right);
+      mediaPos: {
+        type: String,
+        value: 'left'
+      },
+      //The type of list item (tappable, info, nav-right, chevron)
+      type: {
+        type: String
+      },
+      //If editMode is true then this item displays a delete icon.
+      editMode: {
+        type: Boolean
+      },
+      //If orderMode is true then this item displays a order icon.
+      orderMode: {
+        type: Boolean
+      },
+      //If actionable is true then this item responds to swipeleft/swiperight events.
+      actionable: {
+        type: Boolean
       }
-    });
+    },
+    attached: function() {
+      this.toggleClass('table-row');
+      if (this.type) {
+        this.toggleClass('table-row--' + this.type);
+      }
+      if (this.mediaPos) {
+        this.toggleClass('table-row__media--' + this.mediaPos, true, this.$$('.table-row__media'));
+      }
+      if (this.item) {
+        var item = this.item;
+        for (var prop in item) {
+          this[prop] = item[prop];
+          console.log('Adding property', prop);
+        }
+      }
+
+      if (this.actionable) {
+        this.toggleClass('table-row--actionable');
+      }
+
+      console.log(this.tagName, 'attached');
+    },
+    _handleRemoveItem: function(e) {
+      e.preventDefault();
+      console.log('handleRemoveItem', e);
+      return false;
+    },
+    _handleReorderItem: function(e) {
+      e.preventDefault();
+      console.log('handleReorderItem', e);
+      return false;
+    }
+  });
+
   </script>
 </dom-module>

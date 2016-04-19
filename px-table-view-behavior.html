@@ -1,26 +1,31 @@
 <script type="text/javascript">
-  var px = window.px || {};
-  px.behaviors = px.behaviors || {};
-  px.behaviors.TableView = {
-    attached: function() {
-      console.warn('Created', this.tagName);
-    },
-    _clearSelected: function() {
-      var children = this.querySelectorAll('px-table-row');
-      for (var i = 0; i < children.length; i++) {
-        //children[i].removeClass('selected');
-        //console.log('Clear', children[i]);
-      }
-    },
-    handleSelect: function(event) {
-      var el = Polymer.dom(event).localTarget;
-      console.log('handleSelect', event.type, event.model, el);
-      this._clearSelected(event);
-      this.fire('px:list:select', event);
-    },
-    addItem: function(o) {
-      console.log('addItem', o);
-      return this.push('listData', o);
+var px = window.px || {};
+px.behaviors = px.behaviors || {};
+px.behaviors.TableView = {
+  created: function() {
+    console.log('Created', this.tagName);
+    // console.dir(this);
+  },
+  attached: function() {
+    if (this.responsive) {
+      this.toggleClass('table-view--responsive', this.responsive, this.$.list);
     }
-  };
+  },
+  handleSelect: function(e) {
+    console.log('select', e.model);
+    this.fire('select', e.model);
+  },
+  _clearSelected: function() {
+    var children = this.querySelectorAll('px-table-row');
+    for (var i = 0; i < children.length; i++) {
+      //children[i].removeClass('selected');
+      //console.log('Clear', children[i]);
+    }
+  },
+  addItem: function(o) {
+    console.log('addItem', o);
+    return this.push('listData', o);
+  }
+};
+
 </script>

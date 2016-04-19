@@ -4,6 +4,16 @@
 <link rel="import" href="px-table-row.html" />
 
 <!--
+To style this component you can do the following:
+
+```
+:root {
+  --table-view-border-color: red;
+  --table-view-background-color: green;
+}
+```
+
+To use this component with iron list you can do the following:
 ```
 <div class="demo" style="height: 500px; overflow:auto;">
   <template id="tableViewTemplate" is="dom-bind">
@@ -38,24 +48,25 @@
 </div>
 ```
 @element px-table-view.html
-@blurb px-table-view
 @demo demo.html
 @homepage index.html
 -->
 
 <dom-module id="px-table-view">
-  <link rel="stylesheet" href="css/px-table-view.css" is="custom-style"/>
+  <link rel="stylesheet" href="css/px-table-view.css" is="custom-style" />
   <template strip-whitespace>
-      <style>
-        :host {
-          display: block;
-          min-height: 20vh;
-        }
-        :host ul{
-          margin: 0;
-          padding: 0;
-        }
-      </style>
+    <style>
+    :host {
+      display: block;
+      min-height: 20vh;
+    }
+    
+    :host ul {
+      margin: 0;
+      padding: 0;
+    }
+
+    </style>
     <ul class="table-view table-view--small">
       <template is="dom-if" if="{{items}}">
         <template is="dom-repeat" items="{{items}}">
@@ -66,33 +77,21 @@
     </ul>
   </template>
   <script>
-    Polymer({
-      is: 'px-table-view',
-      behaviors: [
-        px.behaviors.TableView
-      ],
-      properties: {
-        items: {
-          type: Array
-        },
-        responsive: {
-          type: Boolean,
-          value: false
-        }
+  Polymer({
+    is: 'px-table-view',
+    behaviors: [
+      px.behaviors.TableView
+    ],
+    properties: {
+      items: {
+        type: Array
       },
-      created: function() {
-        console.log('Created', this.tagName);
-       // console.dir(this);
-      },
-      attached: function() {
-        if(this.responsive){
-          this.toggleClass('table-view--responsive', this.responsive, this.$.list);
-        }
-      },
-      handleSelect: function(e){
-        console.log('select', e.model);
-        this.fire('select', e.model);
+      responsive: {
+        type: Boolean,
+        value: false
       }
-    });
+    }
+  });
+
   </script>
 </dom-module>

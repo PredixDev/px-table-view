@@ -1,12 +1,10 @@
-@charset "utf-8";
 ///
-/// Sass for the Predix notion of the my-px-comp component
-/// THIS FILE SHOULD CONTAIN ONLY RULES SPECIFIC TO PREDIX BRANDING
-/// common/abstract rules go in my-px-comp-sketch.scss, not in this file.
-/// @group px
 /// @author Jonnie Spratley
+/// @group px-table-view
+///
+@charset "utf-8";
 /*
- * Copyright (c) 2014 GE Global Research. All rights reserved.
+ * Copyright (c) 2016 GE Global Research. All rights reserved.
  *
  * The copyright to the computer software herein is the property of
  * GE Global Research. The software may be used and/or copied only
@@ -14,160 +12,192 @@
  * with the terms and conditions stipulated in the agreement/contract
  * under which the software has been supplied.
  */
-@import "px-table-view-sketch.scss";
+
+///
 @import "mixins";
+
+///
 @import "variables";
+
+///
 @import "px-mobile-mixin-design/mixins";
 
-
+///
+/// @group px-table-view
 * {
-  -webkit-tap-highlight-color: rgba(0,0,0,0);
+  -webkit-touch-callout      : none;
+  -webkit-text-size-adjust   : none;
+  -webkit-user-select        : none;
+  -webkit-highlight          : none;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
 
+/// -------------------------
+/// Table View
+/// @group px-table-view
+/// @example html
+///
+/// <section class="table-view table-view--small">
+///   <div class="table-row table-row--tappable">
+///     <div class="table-row__media table-row__media--image table-row__media--left">
+///       <img src="http://placehold.it/44">
+///     </div>
+///     <div class="table-row__content">
+///       <span class="table-row__content__title">Text Label</span>
+///     </div>
+///   </div>
+/// </section>
+.table-view {
+  @import "px-table-row-predix";
+  @include switch();
+  @include clearfix();
+  @include scrollable();
+  @include pxFonts();
 
+  border          : none;
+  background      : transparent;
+  background-color: var(--table-view-background-color, $table-row-background-color);
+  cursor          : default;
+  list-style-type : none;
+  line-height     : normal;
+  margin          : 0;
+  padding         : 0;
+  position        : relative;
+  text-align      : left;
 
+  > div {
+    line-height: normal;
+  }
+  /// Modifiers
+  ///--------------------------------
+  ///.table-view--responsive
+  @include modifier ('responsive') {
+    @include n-columns($table-view-responsive-row-width, $table-view-responsive-row-gutters, true, $table-view-responsive-row-max);
 
+    > *:last-child {
+      border-bottom: 1px solid !important;
+      border-color : var(--table-view-border-color, $table-row-border-color);
+    }
+  }
+  ///.table-view--inset
+  @include modifier ('inset') {
+    background-image: none;
+    border          : 1px solid;
+    border-color    : var(--table-view-border-color, $table-row-border-color);
+    border-radius   : 0;
+    //margin          : .5rem;
+  }
+  ///.table-view--ptr
+  @include modifier ('ptr') {
+    > .table-row {
+      user-select: none;
+    }
+  }
+  ///.table-view--bare
+  @include modifier ('bare') {
+    border    : none;
+    background: transparent;
 
-	/// -------------------------
-	/// Table View
-	.table-view {
-    @include switch();
-	  @include clearfix();
-	  @include scrollable();
-	  @include pxFonts();
-    //todo - table row styles
-    @import "px-table-row-predix";
-	  border: none;
-	  background: transparent;
-	  background-color: $table-row-background-color;
-	  cursor: default;
-	  list-style-type: none;
-	  line-height: normal;
-	  margin: 0;
-	  padding: 0;
-	  position: relative;
-	  text-align: left;
-	  transition: transform 500ms ease;
-	  /// Modifiers
-	  ///--------------------------------
-	  ///.table-view--responsive
-	  @include modifier('responsive') {
-	    @include n-columns($table-view-responsive-row-width, $table-view-responsive-row-gutters, true, $table-view-responsive-row-max);
-	    > *:last-child {
-	      border-bottom: 1px solid $table-row-border-color !important;
-	    }
-	  }
-	  ///.table-view--inset
-	  @include modifier('inset') {
-	    background-image: none;
-	    border: 1px solid $table-row-border-color;
-	    border-radius: 4px;
-	    margin: 8px;
+    .table-row {
+      border       : none;
+      border-bottom: none !important;
+      background   : transparent;
+    }
+  }
+  ///.table-view--rev
+  @include modifier ('rev') {
+    direction: rtl;
+  }
+  ///.table-view--flush
+  @include modifier ('flush') {
+    padding: 0;
+  }
+  ///.table-view--tiny
+  @include modifier ('tiny') {
+    .table-row {
+      padding: .2rem;
+    }
+  }
+  ///.table-view--small
+  @include modifier ('small') {
+    .table-row {
+      padding: .5rem;
+    }
+  }
+  ///.table-view--flush
+  @include modifier ('flush') {
+    .table-row {
+      padding: 0;
+    }
+  }
+  ///.table-view--regular
+  @include modifier ('regular') {
+    .table-row {
+      padding: 1rem;
+    }
+  }
+  ///.table-view--large
+  @include modifier ('large') {
+    .table-row {
+      padding: 2rem;
+    }
+  }
+  ///.table-view--huge
+  @include modifier ('huge') {
+    .table-row {
+      padding: 3rem;
+    }
+  }
+  ///.table-view--avatars
+  @include modifier ('avatars') {
+    > .table-row {
+      padding: .5rem;
 
-	  }
-	  ///.table-view--ptr
-	  @include modifier('ptr') {
-	    > .table-row {
-	      user-select: none;
-	    }
-	  }
-	  ///.table-view--bare
-	  @include modifier('bare') {
-	    border: none;
-	    background: transparent;
-	    > .table-row {
-	      border: none;
-	      background: transparent;
-	    }
-	  }
-	  ///.table-view--rev
-	  @include modifier('rev') {
-	    direction: rtl;
-	  }
-	  ///.table-view--flush
-	  @include modifier('flush') {
-	    padding: 0;
-	  }
-	  ///.table-view--tiny
-	  @include modifier('tiny') {
-	     .table-row {
-	      padding: 0.2rem;
-	    }
-	  }
-	  ///.table-view--small
-	  @include modifier('small') {
-	     .table-row {
-	      padding: 0.5rem;
-	    }
-	  }
-	  ///.table-view--flush
-	  @include modifier('flush') {
-	     .table-row {
-	      padding: 0;
-	    }
-	  }
-	  ///.table-view--regular
-	  @include modifier('regular') {
-	     .table-row {
-	      padding: 1rem;
-	    }
-	  }
-	  ///.table-view--large
-	  @include modifier('large') {
-	     .table-row {
-	      padding: 2rem;
-	    }
-	  }
-	  ///.table-view--huge
-	  @include modifier('huge') {
-	     .table-row {
-	      padding: 3rem;
-	    }
-	  }
-	  ///.table-view--avatars
-	  @include modifier('avatars') {
-	    > .table-row {
-	      padding: 0.5rem;
-	      img {
-	        height: 32px;
-	        border-radius: 6px;
-	      }
-	    }
-	  }
-	  .switch {
-	    float: right;
-	    position: absolute;
-	    margin-top: -25px;
-	    right: 3%;
-	  }
+      img {
+        height       : 32px;
+        border-radius: 50%;
+      }
+    }
+  }
 
-	  .switch--table-row {
-	    float: right;
-	    margin-top: 6px;
-	    margin-right: 10px;
-	  }
-	  @include modifier('nested') {
-	    .table-row {
-	      transition: transform 500ms ease;
-	      &.has-children {
-	        line-height: normal;
-	        overflow: hidden;
-	        max-height: 75px;
-	        .table-view {
-	          margin-left: 15px;
-	          transform: translateX(99%);
-	        }
-	        &.is-selected {
-	          background: transparent;
-	          max-height: 100%;
-	          > .table-view {
-	            display: block;
-	            transform: translateX(0);
-	          }
-	        }
-	      }
-	    }
-	  }
+  .switch {
+    float     : right;
+    position  : absolute;
+    margin-top: -25px;
+    right     : 3%;
+  }
 
+  .switch--table-row {
+    float       : right;
+    margin-top  : 6px;
+    margin-right: 10px;
+  }
 
-	}
+  @include modifier ('nested') {
+    .table-row {
+      transition: transform 500ms ease;
+
+      &.has-children {
+        line-height: normal;
+        overflow   : hidden;
+        max-height : 75px;
+
+        .table-view {
+          margin-left: 15px;
+          transform  : translateX(99%);
+        }
+
+        &.is-selected {
+          background: transparent;
+          max-height: 100%;
+
+          > .table-view {
+            display  : block;
+            transform: translateX(0);
+          }
+        }
+      }
+    }
+  }
+
+}
