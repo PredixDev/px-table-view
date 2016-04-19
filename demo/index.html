@@ -12,12 +12,17 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
   <link rel='stylesheet prefetch' href='../../px-design-system/css/px-design-system.min.css'>
 
-  <script src="../../webcomponentsjs/webcomponents.min.js"></script>
 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/webcomponentsjs/0.7.21/webcomponents.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/fastclick/1.0.6/fastclick.min.js"></script>
+
+     <script src='https://cdnjs.cloudflare.com/ajax/libs/hammer.js/2.0.6/hammer.min.js'></script>
 
 
   <!-- TODO: pxm components -->
   <link rel="import" href="../px-table-view.html">
+  <link rel="import" href="../px-table-row-swipe-actions-behavior.html">
   <link rel="import" href="../../px-navbar/px-navbar.html" />
   <link rel="import" href="../../iron-ajax/iron-ajax.html" />
   <link rel="import" href="../../iron-list/iron-list.html" />
@@ -26,27 +31,22 @@
     body {
       overflow: hidden;
       -webkit-overflow-scrolling: touch;
-      padding-top:65px;
+      padding-top: 65px;
     }
-    px-navbar{
-      position:fixed;
+
+    px-navbar {
+      position: fixed;
       top: 0;
       left: 0;
       right: 0;
       z-index: 200;
     }
 
+    .table-row__media--icon:nth-of-type(even) {}
 
-    .table-row__media--icon:nth-of-type(even){
-
-    }
-    .table-row__media--icon:nth-child(2n){
+    .table-row__media--icon:nth-child(2n) {
       color: #dd6b1f;
     }
-
-
-
-
   </style>
 
 
@@ -63,17 +63,17 @@
   <style>
     #ptr {
       position: absolute;
-      top: 0;
+      top: 45px;
       left: 0;
       width: 100%;
       color: #fff;
-      z-index: 10;
+      z-index: auto;
       text-align: center;
       height: 50px;
     }
 
     #ptr .icon {
-      background: #222;
+      background-color: #3e87e8;
       opacity: .6;
       font-size: 34px;
       width: auto;
@@ -112,8 +112,8 @@
       -webkit-transform: scale(0.3);
       transform: scale(0.3);
       border-radius: 50%;
-      -webkit-animation: ptr-loading 0.4s infinite alternate;
-      animation: ptr-loading 0.4s infinite alternate;
+      -webkit-animation: ptr-loading 0.3s infinite alternate;
+      animation: ptr-loading 0.3s infinite alternate;
     }
 
     .ptr-loading .loading {
@@ -144,7 +144,7 @@
       100% {
         -webkit-transform: scale(1);
         transform: scale(1);
-        background-color: #444;
+        background: #3e87e8;
         opacity: 1;
       }
     }
@@ -158,7 +158,7 @@
       100% {
         -webkit-transform: scale(1);
         transform: scale(1);
-        background-color: #444;
+background: #3e87e8;
         opacity: 1;
       }
     }
@@ -168,7 +168,6 @@
       z-index: 20;
       -webkit-backface-visibility: hidden;
       -webkit-perspective: 1000;
-      color: #555;
       box-sizing: border-box;
     }
 
@@ -196,12 +195,11 @@
 
 </head>
 
-<body unresolved>
+<body unresolved class="viewport viewport--full-height">
 
   <px-navbar title="px-table-view"></px-navbar>
 
   <div id="ptr">
-
     <div class="loading">
       <span id="l1"></span>
       <span id="l2"></span>
@@ -209,47 +207,79 @@
     </div>
   </div>
 
-  <div id="content" class="viewport viewport--full-height">
+  <div id="content" class="">
 
 
-<template id="tableViewTemplate" is="dom-bind">
-  <iron-ajax url="./data.json" last-response="{{data}}" auto></iron-ajax>
-  <iron-list id="ironList" items="[[data]]" as="item" class="table-view  table-view--small">
-    <template>
-      <div class="table-row table-row--nav-right" on-click="handleSelect">
-        <div class="table-row__media table-row__media--image" hidden="{{!item.icon}}">
-          <i class$="{{item.icon}}"></i>
-        </div>
-        <!--
-        <div class="table-row__media table-row__media--image" hidden="{{!item.image}}">
-          <img src$="{{item.image}}" alt="{{item.title}}">
-        </div>-->
-        <div class="table-row__content">
-          <h4 class="table-row__content__title">{{item.title}}</h4>
-          <p class="table-row__content__body">{{item.body}}</p>
-        </div>
-      </div>
+    <template id="tableViewTemplate" is="dom-bind">
+      <iron-ajax url="./data.json" last-response="{{data}}" auto></iron-ajax>
+      <iron-list id="ironList" items="[[data]]" as="item" class="table-view  table-view--small">
+        <template>
+          <div class="table-row table-row--tappable table-row--actionable" on-tap="handleSelect">
+
+
+
+          <div class="">
+            <div class="table-row__media table-row__media--icon" hidden="{{!item.icon}}">
+              <i class$="{{item.icon}}"></i>
+            </div>
+
+            <div class="table-row__content">
+
+              <h4 class="table-row__content__title">{{item.title}}</h4>
+
+            </div>
+
+          </div>
+            <div class="table-row__actions table-row__actions--right">
+
+                            <button on-tap="handleFlag" class="table-row__actions__button btn--full btn-flag">
+                                <i class="fa fa-flag fa-lg"></i>
+                              Flag
+                            </button>
+
+              <button  on-tap="handleMore" class="table-row__actions__button btn--full btn-more">
+                More
+              </button>
+
+              <button   on-tap="handleDelete" class="table-row__actions__button btn--full btn-delete">
+                Delete
+              </button>
+            </div>
+          </div>
+        </template>
+      </iron-list>
     </template>
-  </iron-list>
-</template>
-<script type="text/javascript">
-  var tmpl = document.getElementById('tableViewTemplate');
-  tmpl.handleSelect = function(e) {
-    console.log('handleSelect', e);
-  };
-  document.addEventListener('WebComponentsReady', function() {
-    setTimeout(function() {
-      document.querySelector('iron-list').fire('iron-resize');
-    }, 50);
-  });
-</script>
+    <script type="text/javascript">
+      var tmpl = document.getElementById('tableViewTemplate');
+      tmpl.handleSelect = function(e) {
+        console.log('handleSelect', e);
+      };
+      tmpl.handleMore = function(e) {
+        console.log('handleMore', e);
+      };
+      tmpl.handleFlag = function(e) {
+        console.log('handleFlag', e);
+        $(e.currentTarget).parents('.table-row').toggleClass('flaged');
+      };
+      tmpl.handleDelete = function(e) {
+        console.log('handleDelete', e);
+        $(e.currentTarget).parents('.table-row').toggleClass('deleted');
+      };
+      document.addEventListener('WebComponentsReady', function() {
+        setTimeout(function() {
+          document.querySelector('iron-list').fire('iron-resize');
+          Hammer.each(document.querySelectorAll(".table-row--actionable"), function(container) {
+            var actions = new SwipeActions(container, Hammer.DIRECTION_HORIZONTAL);
+      //outer.hammer.get('pan').requireFailure(actions.hammer.get('pan'));
+      console.log('Adding Hammer', actions);
+    });
+        }, 50);
+      });
+    </script>
 
 
   </div>
 
-
-  <script src='//cdnjs.cloudflare.com/ajax/libs/jquery/2.2.2/jquery.min.js'></script>
-  <script src='https://cdnjs.cloudflare.com/ajax/libs/hammer.js/2.0.6/hammer.min.js'></script>
 
   <script>
     var WebPullToRefresh = (function() {
@@ -481,14 +511,10 @@
     var exampleLoadingFunction = function() {
 
       return new Promise(function(resolve, reject) {
-        var $list = $('#list');
-        var $item = $('<li/>');
-
-        $item.text('Item #');
-        $list.append($item);
 
         if (true) {
-          resolve($item);
+
+          resolve(document.getElementById('ironList').push('items', {title: 'Test ' + Date.now()}));
         } else {
           reject();
         }

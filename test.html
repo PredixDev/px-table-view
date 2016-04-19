@@ -2,6 +2,7 @@
 <html>
 <head>
   <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
   <script src="../webcomponentsjs/webcomponents.js"></script>
   <script src="../web-component-tester/browser.js"></script>
     <link rel="import" href="px-table-view.html">
@@ -19,13 +20,13 @@
           assert.ok(element);
         });
 
-        test('has correct # ofg items', function() {
+        test('has correct # of items', function() {
           assert.ok(element.items[0].title = 'Item 1');
         });
 
         test('can add item to element', function() {
-          element.push('items', {title: 'Item 2'});
-          element.push('items', {title: 'Item 3'});
+          element.push('items', {title: 'Item 2', href:'#'});
+          element.push('items', {title: 'Item 3', href:'#'});
           assert.ok(element.items.length === 3);
         });
 

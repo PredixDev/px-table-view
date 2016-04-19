@@ -24,10 +24,12 @@ function dirProp(direction, hProp, vProp) {
     this.hammer = new Hammer.Manager(this.container);
     this.hammer.add(new Hammer.Pan({
       direction: this.direction,
-      threshold: 10
+      threshold: 20
     }));
     this.hammer.on("panstart panmove panend pancancel", Hammer.bindFn(this.onPan, this));
     console.log('SwipeActions', this);
+
+		console.warn('Actions size', this.actionsSize);
   }
 
   SwipeActions.prototype = {
@@ -50,8 +52,8 @@ function dirProp(direction, hProp, vProp) {
       var paneIndex, pos, translate;
 
       for (paneIndex = 0; paneIndex < this.panes.length; paneIndex++) {
-        pos = (this.containerSize / 100) * (((paneIndex - showIndex) * 100) + percent);
-
+        pos = (this.actionsSize / 100) * (((paneIndex - showIndex) * 100) + percent);
+				console.warn('pos', pos);
         if (this.direction & Hammer.DIRECTION_HORIZONTAL) {
           translate = 'translate3d(' + pos + 'px, 0, 0)';
         } else {
@@ -61,12 +63,12 @@ function dirProp(direction, hProp, vProp) {
         this.panes[paneIndex].style.mozTransform = translate;
         this.panes[paneIndex].style.webkitTransform = translate;
       }
-      console.log('translate', translate);
-      console.log('show', showIndex, percent, animate);
+    //  console.log('translate', translate);
+    //  console.log('show', showIndex, percent, animate);
 
       this.currentIndex = showIndex;
 
-      console.log('SwipeActions.show', this.panes, showIndex, percent, animate);
+      console.log('SwipeActions.show',showIndex, pos, percent, animate);
     },
     onPan: function(ev) {
       var delta = dirProp(this.direction, ev.deltaX, ev.deltaY);
@@ -74,7 +76,7 @@ function dirProp(direction, hProp, vProp) {
       var animate = false;
 
       if (ev.type == 'panend' || ev.type == 'pancancel') {
-        if (Math.abs(percent) > 20 && ev.type == 'panend') {
+        if (Math.abs(percent) > 15 && ev.type == 'panend') {
           this.currentIndex += (percent < 0) ? 1 : -1;
         }
         percent = 0;
@@ -86,6 +88,7 @@ function dirProp(direction, hProp, vProp) {
   };
 
   document.addEventListener('WebComponentsReady', function(){
+console.log('WebComponentsReady');
     Hammer.each(document.querySelectorAll(".table-row--actionable"), function(container) {
       var actions = new SwipeActions(container, Hammer.DIRECTION_HORIZONTAL);
       //outer.hammer.get('pan').requireFailure(actions.hammer.get('pan'));

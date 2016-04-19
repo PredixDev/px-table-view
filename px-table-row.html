@@ -48,72 +48,76 @@ To use:
   </style>
   <template>
 
-    <!-- table-row__actions -->
-    <div class="table-row__actions--underlay">
+    
+      <!-- table-row__actions -->
+      <div class="table-row__actions--underlay">
 
-      <!-- table-row__delete-btn -->
-      <template is="dom-if" if="{{editMode}}">
-        <button class="btn btn--bare table-row__delete-btn" on-click="_handleRemoveItem">
-          <i class="fa fa-minus-circle fa-lg color-red"></i>
+        <!-- table-row__delete-btn -->
+        <template is="dom-if" if="{{editMode}}">
+          <button class="btn btn--bare table-row__delete-btn" on-click="_handleRemoveItem">
+            <i class="fa fa-minus-circle fa-lg color-red"></i>
+          </button>
+        </template>
+
+      </div>
+
+      <!-- image -->
+      <template is="dom-if" if="{{image}}">
+        <div class="table-row__media table-row__media--image">
+          <img src$="{{image}}" alt="{{title}}">
+        </div>
+      </template>
+
+      <!-- icon -->
+      <template is="dom-if" if="{{icon}}">
+        <div class="table-row__media table-row__media--icon">
+          <i class$="{{icon}}"></i>
+        </div>
+      </template>
+
+      <!-- label1 -->
+      <template is="dom-if" if="{{label1}}">
+        <span class="table-row__label table-row__label--right">{{label1}}</span>
+      </template>
+
+      <!-- label2 -->
+      <template is="dom-if" if="{{label2}}">
+        <span class="table-row__label table-row__label--left">{{label2}}</span>
+      </template>
+
+      <!-- List Item Content -->
+      <div class="table-row__content">
+
+        <!-- title -->
+        <template is="dom-if" if="{{title}}">
+          <div class="table-row__content__title">{{title}}</div>
+        </template>
+
+        <!-- body -->
+        <template is="dom-if" if="{{body}}">
+          <div class="table-row__content__body">{{body}}</div>
+        </template>
+      </div>
+
+      <!-- reorder -->
+      <template is="dom-if" if="{{orderMode}}">
+        <button class="btn btn--bare table-row__reorder-btn" on-click="_handleReorderItem">
+          <i class="fa fa-move muted"></i>
         </button>
       </template>
 
-    </div>
+      <!-- content -->
+      <content id="content" select="*"></content>
 
-    <!-- image -->
-    <template is="dom-if" if="{{image}}">
-      <div class="table-row__media table-row__media--image">
-        <img src$="{{image}}" alt="{{title}}">
-      </div>
-    </template>
-
-    <!-- icon -->
-    <template is="dom-if" if="{{icon}}">
-      <div class="table-row__media table-row__media--icon">
-        <i class$="{{icon}}"></i>
-      </div>
-    </template>
-
-    <!-- label1 -->
-    <template is="dom-if" if="{{label1}}">
-      <span class="table-row__label table-row__label--right">{{label1}}</span>
-    </template>
-
-    <!-- label2 -->
-    <template is="dom-if" if="{{label2}}">
-      <span class="table-row__label table-row__label--left">{{label2}}</span>
-    </template>
-
-    <!-- List Item Content -->
-    <div class="table-row__content">
-
-      <!-- title -->
-      <template is="dom-if" if="{{title}}">
-        <div class="table-row__content__title">{{title}}</div>
-      </template>
-
-      <!-- body -->
-      <template is="dom-if" if="{{body}}">
-        <div class="table-row__content__body">{{body}}</div>
-      </template>
-    </div>
-
-    <!-- reorder -->
-    <template is="dom-if" if="{{orderMode}}">
-      <button class="btn btn--bare table-row__reorder-btn" on-click="_handleReorderItem">
-        <i class="fa fa-move muted"></i>
-      </button>
-    </template>
-
-    <!-- content -->
-    <content></content>
 
 
   </template>
   <script>
     Polymer({
       is: 'px-table-row',
-      //behaviors: [px.behaviors.ListViewItemSwiper],
+      behaviors: [
+        //TableRowSwipeBehavior
+      ],
       properties: {
         //The list item object.
         item: {
@@ -158,24 +162,18 @@ To use:
         if(this.type){
           this.toggleClass('table-row--' + this.type);
         }
-        /*
-        if (this.title) {
-          this.item.title = this.title;
-        //  this.set('item.title', this.title);
+        if(this.item){
+          var item = this.item;
+          for(var prop in item){
+            this[prop] = item[prop];
+            console.log('Adding property', prop);
+          }
         }
-        if (this.body) {
-          this.set('item.body', this.body);
-        }
-        if (this.image) {
-          this.set('item.image', this.image);
-        }
-        if (this.icon) {
-          this.set('item.icon', this.icon);
-        }
+
         if (this.actionable) {
-          //this.parent.toggleClass('table-row--actionable');
+          this.toggleClass('table-row--actionable');
         }
-        */
+
         console.log(this.tagName, 'attached');
       },
       _handleRemoveItem: function(e) {

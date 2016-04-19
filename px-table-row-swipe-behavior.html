@@ -34,7 +34,7 @@
 	};
 	var px = window.px || {};
 	px.behaviors = px.behaviors || {};
-	px.behaviors.TableRowSwipeBehavior = {
+	var TableRowSwipeBehavior = {
 		properties: {
 			/**
 			 * If true, the content will be opened by default
@@ -137,9 +137,10 @@
 		onMove: function(e) {
 			var p = this.point;
 			if (p) {
+				log('onMove', p.distance());
 				p.update(e.detail.x);
 				this.translate3d(this.open ? this.offset - this.$.content.clientWidth + p.distance() + "px" : p.distance() + "px", 0, 0, this.$.content);
-				log('onMove', p.distance());
+
 			}
 		},
 		onUp: function(e) {
@@ -186,7 +187,8 @@
 			this.setScrollDirection('y');
 		},
 		attached: function() {
-			//console.log(this.tagName, 'attached');
+			console.log(this.tagName, 'attached');
+			this.listen( this.$.tableRow, 'track', 'handleTrack');
 		},
 		detached: function() {
 			this.removeGestureListeners();

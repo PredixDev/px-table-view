@@ -59,7 +59,7 @@
     <ul class="table-view table-view--small">
       <template is="dom-if" if="{{items}}">
         <template is="dom-repeat" items="{{items}}">
-          <px-table-row item="{{item}}" on-click="handleSelect"></px-table-row>
+          <px-table-row item="{{item}}" on-tap="handleSelect"></px-table-row>
         </template>
       </template>
       <content select="*"></content>
