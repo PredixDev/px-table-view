@@ -10,7 +10,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/webcomponentsjs/0.7.21/webcomponents.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/fastclick/1.0.6/fastclick.min.js"></script>
 
-    <link rel="import" href="sortable-list.html">
     <link rel="import" href="px-table-view.html">
     <link rel="import" href="../px-card/px-card.html">
 
@@ -18,19 +17,10 @@
     <style>
     /* Disable certain interactions on touch devices */
     
-    body {
-      -webkit-touch-callout: none;
-      -webkit-text-size-adjust: none;
-      -webkit-user-select: none;
-      -webkit-highlight: none;
-      -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
-    }
-    
     px-card {
       border: 1px solid #b1b1bc;
-      margin: .2rem;
+      margin: .5rem;
       padding: 0;
-      flex: 1 1 300px;
     }
     
     px-card .u-mb.px-card-header {
@@ -41,35 +31,6 @@
     px-card ul {
       padding: 0px !important;
       margin: 0px !important;
-    }
-    
-    h3 {
-      margin: 0 0 10px;
-      text-align: center;
-    }
-    
-    .demo {
-      min-width: 250px;
-    }
-    
-    sortable-list {
-      margin: 15px;
-    }
-    
-    sortable-list > div {
-      background: white;
-      border: 1px solid #ddd;
-      border-radius: 3px;
-      padding: 6px 12px;
-      margin-bottom: 3px;
-    }
-    
-    #grouped-a div {
-      background: #dfd;
-    }
-    
-    #grouped-b div {
-      background: #ddf;
     }
 
     </style>
