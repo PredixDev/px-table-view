@@ -2,38 +2,37 @@
 
 <html>
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="google" value="notranslate">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="google" value="notranslate">
 
 
-  <title>CodePen - pull to refresh</title>
+    <title>CodePen - pull to refresh</title>
 
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-  <link rel='stylesheet prefetch' href='../../px-design-system/css/px-design-system.min.css'>
-
-
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/webcomponentsjs/0.7.21/webcomponents.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/fastclick/1.0.6/fastclick.min.js"></script>
-
-     <script src='https://cdnjs.cloudflare.com/ajax/libs/hammer.js/2.0.6/hammer.min.js'></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <link rel='stylesheet prefetch' href='../../px-design-system/css/px-design-system.min.css'>
 
 
-  <!-- TODO: pxm components -->
-  <link rel="import" href="../px-table-view.html">
-  <link rel="import" href="../px-table-row-swipe-actions-behavior.html">
-  <link rel="import" href="../../px-navbar/px-navbar.html" />
-  <link rel="import" href="../../iron-ajax/iron-ajax.html" />
-  <link rel="import" href="../../iron-list/iron-list.html" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/webcomponentsjs/0.7.21/webcomponents.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fastclick/1.0.6/fastclick.min.js"></script>
 
-  <style media="screen">
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/hammer.js/2.0.6/hammer.min.js'></script>
+
+
+    <!-- TODO: pxm components -->
+    <link rel="import" href="../px-table-view.html">
+    <link rel="import" href="../px-table-row-swipe-actions-behavior.html">
+    <link rel="import" href="../../px-navbar/px-navbar.html" />
+    <link rel="import" href="../../iron-ajax/iron-ajax.html" />
+    <link rel="import" href="../../iron-list/iron-list.html" />
+
+    <style media="screen">
     body {
-      overflow: hidden;
       -webkit-overflow-scrolling: touch;
       padding-top: 65px;
     }
-
+    
     px-navbar {
       position: fixed;
       top: 0;
@@ -41,26 +40,40 @@
       right: 0;
       z-index: 200;
     }
-
+    
+    #content {
+      overflow-x: auto;
+    }
+    
+    .flagged {
+      background-color: orange !important;
+    }
+    
+    .deleted {
+      background-color: red !important;
+    }
+    
     .table-row__media--icon:nth-of-type(even) {}
-
+    
     .table-row__media--icon:nth-child(2n) {
       color: #dd6b1f;
     }
-  </style>
+
+    </style>
 
 
 
-  <script type="text/javascript">
+    <script type="text/javascript">
     if ('addEventListener' in document) {
       document.addEventListener('DOMContentLoaded', function() {
         FastClick.attach(document.body);
       }, false);
     }
-  </script>
+
+    </script>
 
 
-  <style>
+    <style>
     #ptr {
       position: absolute;
       top: 45px;
@@ -71,7 +84,7 @@
       text-align: center;
       height: 50px;
     }
-
+    
     #ptr .icon {
       background-color: #3e87e8;
       opacity: .6;
@@ -84,17 +97,17 @@
       transform: rotate(90deg);
       margin-top: 5px;
     }
-
+    
     .ptr-refresh #ptr .icon {
       -webkit-transform: rotate(270deg);
       transform: rotate(270deg);
     }
-
+    
     .ptr-loading #ptr .icon,
     .ptr-reset #ptr .icon {
       display: none;
     }
-
+    
     .loading {
       display: inline-block;
       text-align: center;
@@ -102,7 +115,7 @@
       margin: 12px 0 0 5px;
       display: none;
     }
-
+    
     .loading span {
       display: inline-block;
       vertical-align: middle;
@@ -115,26 +128,26 @@
       -webkit-animation: ptr-loading 0.3s infinite alternate;
       animation: ptr-loading 0.3s infinite alternate;
     }
-
+    
     .ptr-loading .loading {
       display: block;
     }
-
+    
     #l1 {
       -webkit-animation-delay: 0;
       animation-delay: 0;
     }
-
+    
     #l2 {
       -webkit-animation-delay: 0.2s;
       animation-delay: 0.2s;
     }
-
+    
     #l3 {
       -webkit-animation-delay: 0.3s;
       animation-delay: 0.3s;
     }
-
+    
     @-webkit-keyframes ptr-loading {
       0% {
         -webkit-transform: translateY(0) scale(0.3);
@@ -148,7 +161,7 @@
         opacity: 1;
       }
     }
-
+    
     @keyframes ptr-loading {
       0% {
         -webkit-transform: translateY(0) scale(0.3);
@@ -158,11 +171,11 @@
       100% {
         -webkit-transform: scale(1);
         transform: scale(1);
-background: #3e87e8;
+        background: #3e87e8;
         opacity: 1;
       }
     }
-
+    
     #content {
       min-height: 100%;
       z-index: 20;
@@ -170,7 +183,7 @@ background: #3e87e8;
       -webkit-perspective: 1000;
       box-sizing: border-box;
     }
-
+    
     .ptr-loading #content,
     .ptr-reset #content,
     .ptr-loading #ptr,
@@ -178,78 +191,78 @@ background: #3e87e8;
       -webkit-transition: all .25s ease;
       transition: all .25s ease;
     }
-
+    
     .ptr-reset #content {
       -webkit-transform: translate3d(0, 0, 0);
       transform: translate3d(0, 0, 0);
     }
-
+    
     .ptr-loading #content {
       -webkit-transform: translate3d(0, 50px, 0);
       transform: translate3d(0, 50px, 0);
     }
-  </style>
+
+    </style>
 
 
 
 
-</head>
+  </head>
 
-<body unresolved class="viewport viewport--full-height">
+  <body unresolved class="viewport viewport--full-height">
 
-  <px-navbar title="px-table-view"></px-navbar>
+    <px-navbar title="px-table-view"></px-navbar>
 
-  <div id="ptr">
-    <div class="loading">
-      <span id="l1"></span>
-      <span id="l2"></span>
-      <span id="l3"></span>
+    <div id="ptr">
+      <div class="loading">
+        <span id="l1"></span>
+        <span id="l2"></span>
+        <span id="l3"></span>
+      </div>
     </div>
-  </div>
 
-  <div id="content" class="">
-
-
-    <template id="tableViewTemplate" is="dom-bind">
-      <iron-ajax url="./data.json" last-response="{{data}}" auto></iron-ajax>
-      <iron-list id="ironList" items="[[data]]" as="item" class="table-view  table-view--small">
-        <template>
-          <div class="table-row table-row--tappable table-row--actionable" on-tap="handleSelect">
+    <div id="content" class="">
 
 
+      <template id="tableViewTemplate" is="dom-bind">
+        <iron-ajax url="./data.json" last-response="{{data}}" auto></iron-ajax>
+        <iron-list id="ironList" items="[[data]]" as="item" class="table-view  table-view--small">
+          <template>
+            <div class="table-row table-row--tappable table-row--actionable" on-tap="handleSelect">
 
-          <div class="">
-            <div class="table-row__media table-row__media--icon" hidden="{{!item.icon}}">
-              <i class$="{{item.icon}}"></i>
+
+
+              <div class="">
+                <div class="table-row__media table-row__media--icon" hidden="{{!item.icon}}">
+                  <i class$="{{item.icon}}"></i>
+                </div>
+
+                <div class="table-row__content">
+
+                  <h4 class="table-row__content__title">{{item.title}}</h4>
+
+                </div>
+
+              </div>
+              <div class="table-row__actions table-row__actions--right">
+
+                <button on-tap="handleFlag" class="table-row__actions__button btn--full btn-flag">
+                  <i class="fa fa-flag fa-lg"></i> Flag
+                </button>
+
+                <button on-tap="handleMore" class="table-row__actions__button btn--full btn-more">
+                  More
+                </button>
+
+                <button on-tap="handleDelete" class="table-row__actions__button btn--full btn-delete">
+                  Delete
+                </button>
+              </div>
             </div>
-
-            <div class="table-row__content">
-
-              <h4 class="table-row__content__title">{{item.title}}</h4>
-
-            </div>
-
-          </div>
-            <div class="table-row__actions table-row__actions--right">
-
-                            <button on-tap="handleFlag" class="table-row__actions__button btn--full btn-flag">
-                                <i class="fa fa-flag fa-lg"></i>
-                              Flag
-                            </button>
-
-              <button  on-tap="handleMore" class="table-row__actions__button btn--full btn-more">
-                More
-              </button>
-
-              <button   on-tap="handleDelete" class="table-row__actions__button btn--full btn-delete">
-                Delete
-              </button>
-            </div>
-          </div>
-        </template>
-      </iron-list>
-    </template>
-    <script type="text/javascript">
+          </template>
+        </iron-list>
+      </template>
+      <script type="text/javascript">
       var tmpl = document.getElementById('tableViewTemplate');
       tmpl.handleSelect = function(e) {
         console.log('handleSelect', e);
@@ -259,7 +272,7 @@ background: #3e87e8;
       };
       tmpl.handleFlag = function(e) {
         console.log('handleFlag', e);
-        $(e.currentTarget).parents('.table-row').toggleClass('flaged');
+        $(e.currentTarget).parents('.table-row').toggleClass('flagged');
       };
       tmpl.handleDelete = function(e) {
         console.log('handleDelete', e);
@@ -270,18 +283,19 @@ background: #3e87e8;
           document.querySelector('iron-list').fire('iron-resize');
           Hammer.each(document.querySelectorAll(".table-row--actionable"), function(container) {
             var actions = new SwipeActions(container, Hammer.DIRECTION_HORIZONTAL);
-      //outer.hammer.get('pan').requireFailure(actions.hammer.get('pan'));
-      console.log('Adding Hammer', actions);
-    });
+            //outer.hammer.get('pan').requireFailure(actions.hammer.get('pan'));
+            console.log('Adding Hammer', actions);
+          });
         }, 50);
       });
-    </script>
+
+      </script>
 
 
-  </div>
+    </div>
 
 
-  <script>
+    <script>
     var WebPullToRefresh = (function() {
       'use strict';
 
@@ -500,7 +514,7 @@ background: #3e87e8;
 
 
 
-    window.onload = function() {
+    window._onload = function() {
       WebPullToRefresh.init({
         loadingFunction: exampleLoadingFunction
       });
@@ -514,18 +528,21 @@ background: #3e87e8;
 
         if (true) {
 
-          resolve(document.getElementById('ironList').push('items', {title: 'Test ' + Date.now()}));
+          resolve(document.getElementById('ironList').push('items', {
+            title: 'Test ' + Date.now()
+          }));
         } else {
           reject();
         }
       });
     };
     //@ sourceURL=pen.js
-  </script>
+
+    </script>
 
 
 
 
-</body>
+  </body>
 
 </html>
