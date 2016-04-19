@@ -1,34 +1,37 @@
 <html>
 
-<head>
-  <title>px-table-row demo</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-  <script src="../webcomponentsjs/webcomponents-lite.js"></script>
+  <head>
+    <title>px-table-row demo</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/webcomponentsjs/0.7.21/webcomponents.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fastclick/1.0.6/fastclick.min.js"></script>
 
-  <link rel='stylesheet prefetch' href='https://predixdev.github.io/px-library-design/css/style.css'>
+    <link rel='stylesheet prefetch' href='https://predixdev.github.io/px-library-design/css/style.css'>
 
-  <link rel="stylesheet" href="demo/style.css" />
+    <link rel="stylesheet" href="style.css" />
 
-  <!-- TODO: Component -->
-  <link rel="import" href="../px-navbar/px-navbar.html">
-  <link rel="import" href="../px-tab-bar/px-tab-bar.html">
-  <link rel="import" href="../px-view/px-views.html">
-  <link rel="import" href="px-table-view.html" />
+    <!-- TODO: Component -->
+    <link rel="import" href="../../px-navbar/px-navbar.html">
+    <link rel="import" href="../../px-tab-bar/px-tab-bar.html">
+    <link rel="import" href="../../px-view/px-views.html">
+    <link rel="import" href="../px-table-view.html" />
 
-  <!-- TODO: iron-list example -->
-  <link rel="import" href="../iron-demo-helpers/demo-snippet.html" />
-  <link rel="import" href="../iron-ajax/iron-ajax.html" />
-  <link rel="import" href="../iron-pages/iron-pages.html" />
-  <link rel="import" href="../iron-selector/iron-selector.html" />
-  <link rel="import" href="../iron-list/iron-list.html" />
+    <!-- TODO: iron-list example -->
+    <link rel="import" href="../../iron-demo-helpers/demo-snippet.html" />
+    <link rel="import" href="../../iron-ajax/iron-ajax.html" />
+    <link rel="import" href="../../iron-pages/iron-pages.html" />
+    <link rel="import" href="../../iron-selector/iron-selector.html" />
+    <link rel="import" href="../../iron-list/iron-list.html" />
 
-  <style>
+    <style>
     .iron-selected {
       background: #eee;
     }
-  </style>
 
-  <style media="screen">
+    </style>
+
+    <style media="screen">
     body {
       overflow: hidden;
       overflow-y: scroll;
@@ -36,23 +39,24 @@
       -webkit-overflow-scrolling: touch;
       padding-top: 55px;
     }
-
+    
     px-views px-view:nth-child(2n+1) {
       background-color: blue;
     }
-
+    
     px-views px-view:nth-child(2n+1) {
       background-color: red;
     }
-
+    
     px-views px-view:nth-of-type(2n+1) {
       background-color: lime;
     }
-  </style>
 
-</head>
+    </style>
 
-<body unresolved>
+  </head>
+
+  <body unresolved>
 
 
     <px-navbar title="Tests" fixed view-container="nestedTableViews">
@@ -89,38 +93,37 @@
 
 
     <script>
-      document.addEventListener('WebComponentsReady', function() {
-        console.warn('WebComponentsReady');
-        var navItems = [{
-          label: 'Alerts',
-          icon: 'fa fa-exclamation-triangle',
-          view: 'alerts',
-          hash: '#alerts'
-        }, {
-          label: 'Cases',
-          icon: 'fa fa-briefcase',
-          path: '#cases'
-        }, {
-          label: 'Analysis',
-          icon: 'fa fa-bar-chart',
-          path: '#analysis'
-        }, {
-          label: 'Dashboards',
-          icon: 'fa fa-dashboard',
-          path: '#dashboards'
-        },
-        {
-         label: 'More',
-         icon: 'fa fa-navicon',
-         path: '#'
-       }
-      ];
-    //    document.getElementById('appTabs').navItems = navItems;
-      });
+    document.addEventListener('WebComponentsReady', function() {
+      console.warn('WebComponentsReady');
+      var navItems = [{
+        label: 'Alerts',
+        icon: 'fa fa-exclamation-triangle',
+        view: 'alerts',
+        hash: '#alerts'
+      }, {
+        label: 'Cases',
+        icon: 'fa fa-briefcase',
+        path: '#cases'
+      }, {
+        label: 'Analysis',
+        icon: 'fa fa-bar-chart',
+        path: '#analysis'
+      }, {
+        label: 'Dashboards',
+        icon: 'fa fa-dashboard',
+        path: '#dashboards'
+      }, {
+        label: 'More',
+        icon: 'fa fa-navicon',
+        path: '#'
+      }];
+      //    document.getElementById('appTabs').navItems = navItems;
+    });
+
     </script>
-  <template id="app" is="dom-bind">
-  </template>
-  <script type="text/javascript">
+    <template id="app" is="dom-bind">
+    </template>
+    <script type="text/javascript">
     var app = document.getElementById('app');
     app.title = 'Nested Views';
 
@@ -204,16 +207,14 @@
           console.log('found view', viewId);
         } else {
 
-            navItems.push(
-            {
-              id: 'test-view-' + Date.now(),
-              href: '#test-view-' + Date.now(),
-              label: e.detail.item.title,
-              title: e.detail.item.title,
-              dynamicNavbar: true,
-              theme: 'dark'
-            }
-          );
+          navItems.push({
+            id: 'test-view-' + Date.now(),
+            href: '#test-view-' + Date.now(),
+            label: e.detail.item.title,
+            title: e.detail.item.title,
+            dynamicNavbar: true,
+            theme: 'dark'
+          });
 
 
 
@@ -229,8 +230,9 @@
 
       }
     });
-  </script>
 
-</body>
+    </script>
+
+  </body>
 
 </html>

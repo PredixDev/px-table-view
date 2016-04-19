@@ -1,6 +1,7 @@
 <link rel="import" href="../polymer/polymer.html" />
 <link rel="import" href="px-table-view-behavior.html" />
 <link rel="import" href="px-table-row-checkbox.html" />
+<link rel="import" href="sortable-list.html" />
 <link rel="import" href="px-table-row.html" />
 
 <!--
@@ -67,14 +68,15 @@ To use this component with iron list you can do the following:
     }
 
     </style>
-    <ul class="table-view table-view--small">
+    <div class="table-view table-view--small">
       <template is="dom-if" if="{{items}}">
         <template is="dom-repeat" items="{{items}}">
           <px-table-row item="{{item}}" on-tap="handleSelect"></px-table-row>
         </template>
       </template>
+
       <content select="*"></content>
-    </ul>
+    </div>
   </template>
   <script>
   Polymer({
@@ -83,10 +85,20 @@ To use this component with iron list you can do the following:
       px.behaviors.TableView
     ],
     properties: {
+      //The list items data
       items: {
         type: Array
       },
+      //The mode for the table view.
+      mode: {
+        type: String
+      },
+      //To make the list items responsive
       responsive: {
+        type: Boolean,
+        value: false
+      },
+      sortable: {
         type: Boolean,
         value: false
       }

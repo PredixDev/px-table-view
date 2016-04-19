@@ -59,8 +59,10 @@
   }
   ///
   &:not(:last-child) {
-    border-bottom: 1px solid;
-    border-color : var(--table-row-border-color, $table-row-border-color);
+    border-bottom-style: solid;
+    border-bottom-width: 1px;
+    border-bottom-color: var(--table-row-border-color, $table-row-border-color);
+
   }
   ///
   &:active {

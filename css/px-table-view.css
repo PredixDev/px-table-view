@@ -79,8 +79,9 @@
       border-top: none;
       border-bottom: none; }
     .table-view .table-row:not(:last-child) {
-      border-bottom: 1px solid;
-      border-color: var(--table-row-border-color, #b1b1bc); }
+      border-bottom-style: solid;
+      border-bottom-width: 1px;
+      border-bottom-color: var(--table-row-border-color, #b1b1bc); }
     .table-view .table-row:active .table-row__label {
       color: #fff !important; }
     .table-view .table-row > a {

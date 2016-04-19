@@ -44,6 +44,7 @@ To style this component you can do the following:
     display: flex;
     flex-direction: row;
     flex-direction: row-reverse;
+    margin: 0 1rem;
   }
   
   :host .swipe-content {
@@ -70,9 +71,14 @@ To style this component you can do the following:
           <i class="fa fa-minus-circle fa-lg color-red"></i>
         </button>
       </template>
+      <!-- reorder -->
+      <template is="dom-if" if="{{orderMode}}">
+        <button class="btn btn--bare table-row__reorder-btn" on-click="_handleReorderItem">
+          <i class="fa fa-bars muted"></i>
+        </button>
+      </template>
 
     </div>
-
     <!-- image -->
     <template is="dom-if" if="{{image}}">
       <div class="table-row__media table-row__media--image">
@@ -111,15 +117,12 @@ To style this component you can do the following:
       </template>
     </div>
 
-    <!-- reorder -->
-    <template is="dom-if" if="{{orderMode}}">
-      <button class="btn btn--bare table-row__reorder-btn" on-click="_handleReorderItem">
-        <i class="fa fa-move muted"></i>
-      </button>
-    </template>
 
     <!-- content -->
     <content id="content" select="*"></content>
+
+
+
 
 
 
@@ -207,11 +210,14 @@ To style this component you can do the following:
     _handleRemoveItem: function(e) {
       e.preventDefault();
       console.log('handleRemoveItem', e);
+      this.fire('remove', e);
+      this.remove();
       return false;
     },
     _handleReorderItem: function(e) {
       e.preventDefault();
       console.log('handleReorderItem', e);
+      this.fire('reorder', e);
       return false;
     }
   });

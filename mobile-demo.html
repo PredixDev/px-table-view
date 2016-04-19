@@ -9,6 +9,8 @@
     <link rel="stylesheet" href="http://predixdev.github.io/px-library-design/css/style.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/webcomponentsjs/0.7.21/webcomponents.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/fastclick/1.0.6/fastclick.min.js"></script>
+
+    <link rel="import" href="sortable-list.html">
     <link rel="import" href="px-table-view.html">
     <link rel="import" href="../px-card/px-card.html">
 
@@ -27,22 +29,107 @@
     px-card {
       border: 1px solid #b1b1bc;
       margin: .2rem;
-      padding: .5rem;
+      padding: 0;
       flex: 1 1 300px;
+    }
+    
+    px-card .u-mb.px-card-header {
+      padding: .5rem;
+      margin-bottom: 0 !important;
     }
     
     px-card ul {
       padding: 0px !important;
       margin: 0px !important;
     }
+    
+    h3 {
+      margin: 0 0 10px;
+      text-align: center;
+    }
+    
+    .demo {
+      min-width: 250px;
+    }
+    
+    sortable-list {
+      margin: 15px;
+    }
+    
+    sortable-list > div {
+      background: white;
+      border: 1px solid #ddd;
+      border-radius: 3px;
+      padding: 6px 12px;
+      margin-bottom: 3px;
+    }
+    
+    #grouped-a div {
+      background: #dfd;
+    }
+    
+    #grouped-b div {
+      background: #ddf;
+    }
 
     </style>
   </head>
 
   <body class="u-bg--gray9">
+    <h2 align="center"><b>sortable-list</b> <small>(open console to see event logs)</small></h2>
 
+    <div id="demos" horizontal layout wrap>
+      <div class="demo">
+        <h3>Basic Demo</h3>
+
+        <sortable-list id="basic-demo">
+          <div>First</div>
+          <div>Second</div>
+          <div>Third</div>
+          <div>Fourth</div>
+          <div>Fifth</div>
+          <div>Sixth</div>
+        </sortable-list>
+      </div>
+
+      <div class="demo">
+        <h3>Animated Sorting</h3>
+
+        <sortable-list id="animated-demo" animation="150">
+          <div>First</div>
+          <div>Second</div>
+          <div>Third</div>
+          <div>Fourth</div>
+          <div>Fifth</div>
+          <div>Sixth</div>
+        </sortable-list>
+      </div>
+
+      <div class="demo">
+        <h3>Grouped Lists</h3>
+        <sortable-list id="grouped-a" group="grouped" animation="150">
+          <div>First</div>
+          <div>Second</div>
+          <div>Third</div>
+        </sortable-list>
+
+        <sortable-list id="grouped-b" group="grouped" animation="150">
+          <div>Fourth</div>
+          <div>Fifth</div>
+          <div>Sixth</div>
+        </sortable-list>
+      </div>
+    </div>
+    <script>
+    ['sort-start', 'sort-end', 'sort-add', 'sort-update', 'sort-change', 'sort-remove', 'sort-filter'].forEach(function(ev) {
+      document.addEventListener(ev, function(e) {
+        console.log(ev, e.target.id, e.detail);
+      });
+    });
+
+    </script>
     <h2>TableView - MVP FEATURES (PHASE I)</h2>
-    <div class="flex flex--row flex--wrap flex--spaced u-bg--gray7 u-padding-10">
+    <div class="flex flex--col flex--wrap flex--spaced u-bg--gray7 u-padding-10">
 
       <px-card id="card9" header-text="px-table-view mvp">
         <ol>
@@ -70,12 +157,24 @@
         </px-table-view>
       </px-card>
 
+      <px-card header-text="1. Re-Order Table View">
+        <px-table-view id="table1" mode="sort" sortable>
+          <px-table-row title="Reorder Item"></px-table-row>
+          <px-table-row title="Reorder Item"></px-table-row>
+          <px-table-row title="Reorder Item"></px-table-row>
+          <px-table-row title="Reorder Item"></px-table-row>
+        </px-table-view>
+      </px-card>
+
+
       <px-card header-text="1. Basic Table View">
-        <ul class="table-view">
-          <px-table-row title="Text Label" type="nav-right"></px-table-row>
-          <px-table-row title="Text Label" type="info"></px-table-row>
-          <px-table-row title="Text Label" type="detail"></px-table-row>
-          <px-table-row title="Text Label" type="tappable"></px-table-row>
+        <ul id="table2" class="table-view">
+          <px-table-row title="Text Label"></px-table-row>
+          <px-table-row title="Nav Right Item" type="nav-right"></px-table-row>
+          <px-table-row title="Detail Item" type="detail"></px-table-row>
+          <px-table-row title="Tappable Item" type="tappable"></px-table-row>
+          <px-table-row title="Edit Mode Item" edit-mode></px-table-row>
+          <px-table-row title="Edit Mode Item" edit-mode></px-table-row>
         </ul>
       </px-card>
 
@@ -117,6 +216,8 @@
 
       <px-card header-text="6. Inset">
         <ul class="table-view table-view--inset u-m">
+          <px-table-row title="Text Label" type="nav-right"></px-table-row>
+          <px-table-row title="Text Label" type="nav-right"></px-table-row>
           <px-table-row title="Text Label" type="nav-right"></px-table-row>
           <px-table-row title="Text Label" type="nav-right"></px-table-row>
           <px-table-row title="Text Label" type="nav-right"></px-table-row>
