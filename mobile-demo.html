@@ -6,12 +6,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
     <title>px-table-view MVP (Phase 1)</title>
-
     <script src="https://cdnjs.cloudflare.com/ajax/libs/webcomponentsjs/0.7.21/webcomponents.min.js"></script>
+    <link rel='stylesheet prefetch' href='https://github.build.ge.com/pages/PXd/px-library-design/css/style.css'>
 
-    <link rel="stylesheet" href="https://github.build.ge.com/pages/PredixComponents/px-design-system/bower_components/px-example/px.css">
-    <link rel="import" href="px-table-view.html">
     <link rel="import" href="../px-card/px-card.html">
+    <link rel="import" href="px-table-view.html">
+
 
 
     <style>
@@ -92,7 +92,7 @@
 
     </script>
   -->
-    <h2>TableView - MVP FEATURES (PHASE I)</h2>
+    <h2>px-table-view - PHASE 1</h2>
     <div class="flex flex--col flex--wrap flex--spaced u-bg--gray7 u-padding-10">
 
       <px-card id="card9" header-text="px-table-view mvp">
@@ -121,14 +121,6 @@
         </px-table-view>
       </px-card>
 
-      <px-card header-text="1. Re-Order Table View">
-        <px-table-view id="table1" mode="sort" sortable>
-          <px-table-row title="Reorder Item"></px-table-row>
-          <px-table-row title="Reorder Item"></px-table-row>
-          <px-table-row title="Reorder Item"></px-table-row>
-          <px-table-row title="Reorder Item"></px-table-row>
-        </px-table-view>
-      </px-card>
 
 
       <px-card header-text="1. Basic Table View">
@@ -201,7 +193,7 @@
             <px-table-row-checkbox name="cb03" label="Border Checked (Disabled)" checked disabled></px-table-row-checkbox>
           </li>
           <li class="table-row">
-            <px-table-row-checkbox name="cb04" label="Checkbox 3" disabled></px-table-row-checkbox>
+            <px-table-row-checkbox name="cb04" label="Border (Disabled)" disabled></px-table-row-checkbox>
           </li>
         </ul>
       </px-card>
@@ -209,27 +201,18 @@
       <px-card header-text="8. Switches">
         <ul class="table-view table-view--small">
           <li class="table-row">
-            <div class="table-row__media table-row__media--toggle table-row__media--right">
-              <div class="toggle toggle__table-view-item">
-                <input id="toggle1" class="toggle__input" type="checkbox" checked>
-                <label for="toggle1" class="toggle__label needsclick">On</label>
-              </div>
-            </div>
-            <div class="table-row__content">
-              <span class="table-row__content__title">Text Label</span>
-            </div>
+            <px-table-row-switch name="cb05" label="Switch"></px-table-row-switch>
           </li>
           <li class="table-row">
-            <div class="table-row__media table-row__media--toggle table-row__media--right">
-              <div class="toggle toggle__table-view-item">
-                <input id="toggle2" class="toggle__input needsclick" type="checkbox">
-                <label for="toggle2" class="toggle__label ">On</label>
-              </div>
-            </div>
-            <div class="table-row__content">
-              <span class="table-row__content__title">Text Label</span>
-            </div>
+            <px-table-row-switch name="cb06" label="Checked Switch" checked></px-table-row-switch>
           </li>
+          <li class="table-row">
+            <px-table-row-switch name="cb07" label="Switch (Disabled)" disabled></px-table-row-switch>
+          </li>
+          <li class="table-row">
+            <px-table-row-switch name="cb08" label="Checked Switch (Disabled)" disabled checked></px-table-row-switch>
+          </li>
+
         </ul>
       </px-card>
       <px-card header-text="Editable Rows">
@@ -240,6 +223,17 @@
           <px-table-row title="Edit Mode Item" edit-mode></px-table-row>
         </ul>
       </px-card>
+      <!--
+      <px-card header-text="1. Re-Order Table View">
+        <px-table-view id="table1" mode="sort" sortable>
+          <px-table-row title="Reorder Item"></px-table-row>
+          <px-table-row title="Reorder Item"></px-table-row>
+          <px-table-row title="Reorder Item"></px-table-row>
+          <px-table-row title="Reorder Item"></px-table-row>
+        </px-table-view>
+      </px-card>
+    -->
+
 
 
     </div>

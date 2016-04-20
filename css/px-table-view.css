@@ -35,9 +35,12 @@
     min-height: 44px;
     line-height: 44px;
     width: 100%;
+    font-size: 1.1rem;
     font-size: var(--table-row-font-size, 1.1rem);
+    border-color: #b1b1bc;
     border-color: var(--table-row-border-color, #b1b1bc);
     box-sizing: border-box;
+    background-color: transparent;
     background-color: var(--table-row-background-color, transparent);
     position: relative;
     overflow: hidden;
@@ -81,6 +84,7 @@
     .table-view .table-row:not(:last-child) {
       border-bottom-style: solid;
       border-bottom-width: 1px;
+      border-bottom-color: #b1b1bc;
       border-bottom-color: var(--table-row-border-color, #b1b1bc); }
     .table-view .table-row:active .table-row__label {
       color: #fff !important; }
@@ -529,16 +533,17 @@
       background: #0a9ec1; }
     .table-view .table-row__checkbox input[type="checkbox"]:checked + div:before {
       background: #0a9ec1;
-      border: 1px solid #0a9ec1; }
+      border: 1px solid #086e87;
+      transition: background .4s; }
     .table-view .table-row__checkbox input[type="checkbox"]:checked + div:after {
       opacity: 1; }
     .table-view .table-row__checkbox input[type="checkbox"]:focus + div:before {
       box-shadow: none; }
     .table-view .table-row__checkbox input[type="checkbox"]:disabled + div {
-      opacity: .3;
+      opacity: .5;
       cursor: default;
       pointer-events: none; }
-    .table-view .table-row__checkbox input[type="checkbox"]:disabled:active + div:before {
+    .table-view .table-row__checkbox input[type="checkbox"]:disabled:focus + div:before {
       pointer-events: none;
       background: transparent;
       box-shadow: none; }
@@ -567,8 +572,8 @@
         width: 24px;
         height: 24px;
         background: transparent;
-        border: 1px solid #0a9ec1;
-        border-radius: 16px;
+        border: 1px solid #b1b1bc;
+        border-radius: 0;
         box-shadow: none;
         left: 0; }
       .table-view .table-row__checkbox__checkmark:after {
@@ -740,10 +745,12 @@
           min-width: calc(16.66667% - 0); } }
     .table-view--responsive > *:last-child {
       border-bottom: 1px solid !important;
+      border-color: #b1b1bc;
       border-color: var(--table-view-border-color, #b1b1bc); }
   .table-view--inset {
     background-image: none;
     border: 1px solid;
+    border-color: #b1b1bc;
     border-color: var(--table-view-border-color, #b1b1bc);
     border-radius: 0; }
   .table-view--ptr > .table-row {

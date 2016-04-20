@@ -27,6 +27,7 @@
     "iron-swipeable-container": "PolymerElements/iron-swipeable-container#^1.0.2"
   },
   "devDependencies": {
+    "px-card": "latest",
     "iron-component-page": "PolymerElements/iron-component-page#~v1.1.0",
     "px-meta-buttons-design": "https://github.com/PredixDev/px-meta-buttons-design.git#~0.5.2",
     "px-meta-lists-design": "https://github.com/PredixDev/px-meta-lists-design.git#~0.3.2",

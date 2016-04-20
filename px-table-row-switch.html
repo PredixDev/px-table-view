@@ -11,7 +11,7 @@ To use this component:
 @demo demo/checkboxes.html
 @homepage index.html
 -->
-<dom-module id="px-table-row-checkbox">
+<dom-module id="px-table-row-switch">
   <style>
   :host {
     display: block;
@@ -19,29 +19,35 @@ To use this component:
 
   </style>
   <template>
-    <label class="table-row__checkbox needsclick" for$="{{name}}">
-      <input id$="{{name}}" type="checkbox" name$="{{name}}" value$="{{value}}">
-      <div class="table-row__checkbox__checkmark "></div>
-      <span>{{label}}</span>
-    </label>
+    <div class="table-row__media table-row__media--toggle table-row__media--right">
+      <div class="toggle toggle__table-view-item">
+        <input id$="{{name}}" class="toggle__input" type="checkbox" name$="{{name}}" value$="{{value}}">
+        <label for$="{{name}}" class="toggle__label needsclick">
+          <span>{{label}}</span>
+        </label>
+      </div>
+    </div>
+    <div class="table-row__content">
+      <span class="table-row__content__title">{{label}}</span>
+    </div>
   </template>
   <script>
   Polymer({
-    is: 'px-table-row-checkbox',
+    is: 'px-table-row-switch',
     properties: {
-      //The input name for the checkbox
+      //The label for the switch
+      label: {
+        type: String
+      },
+      //The input name for the switch
       name: {
         type: String
       },
-      //The input value for the checkbox
+      //The input value for the switch
       value: {
         type: String
       },
-      //The type of checkbox (no-border)
-      type: {
-        type: String
-      },
-      //The checked state
+      //The switch state
       checked: {
         type: Boolean
       },
@@ -51,10 +57,6 @@ To use this component:
       }
     },
     attached: function() {
-      console.warn(this.tagName, 'attached', this);
-      if (this.type) {
-        this.toggleClass('table-row__checkbox--' + this.type, true, this.$$('label'));
-      }
       if (this.checked) {
         this.$$('input').checked = true;
       }
@@ -68,13 +70,11 @@ To use this component:
       if (this.disabled) {
         return;
       }
-
       // TODO: IOS and FastClick have an issue where the label does not trigger the event.
       var iOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
       if (iOS) {
         this.$$('input').checked = !this.$$('input').checked;
       }
-
     }
   });
 

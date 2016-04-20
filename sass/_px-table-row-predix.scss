@@ -17,9 +17,12 @@
   min-height      : 44px;
   line-height     : 44px;
   width           : 100%;
+  font-size       : $table-row-font-size;
   font-size       : var(--table-row-font-size, $table-row-font-size);
+  border-color    : $table-row-border-color;
   border-color    : var(--table-row-border-color, $table-row-border-color);
   box-sizing      : border-box;
+  background-color: $table-row-background-color;
   background-color: var(--table-row-background-color, $table-row-background-color);
   position        : relative;
   overflow        : hidden;
@@ -61,6 +64,7 @@
   &:not(:last-child) {
     border-bottom-style: solid;
     border-bottom-width: 1px;
+    border-bottom-color: $table-row-border-color;
     border-bottom-color: var(--table-row-border-color, $table-row-border-color);
 
   }
@@ -411,7 +415,8 @@
 
     input[type="checkbox"]:checked + div:before {
       background: $table-row-checkbox-background-color;
-      border    : 1px solid $table-row-checkbox-background-color;
+      border    : 1px solid $table-row-checkbox-checked-border-color;
+      transition: background .4s;
     }
 
     &:active {
@@ -430,12 +435,12 @@
     }
 
     input[type="checkbox"]:disabled + div {
-      opacity       : .3;
+      opacity       : .5;
       cursor        : default;
       pointer-events: none;
     }
 
-    input[type="checkbox"]:disabled:active + div:before {
+    input[type="checkbox"]:disabled:focus + div:before {
       pointer-events: none;
       background    : transparent;
       box-shadow    : none;
@@ -464,8 +469,8 @@
         width          : 24px;
         height         : 24px;
         background     : transparent;
-        border         : 1px solid $table-row-checkbox-background-color;
-        border-radius  : 16px;
+        border         : 1px solid $table-row-checkbox-border-color;
+        border-radius  : 0;
         box-shadow     : none;
         left           : 0;
       }
