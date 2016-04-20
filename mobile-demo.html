@@ -6,9 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
     <title>px-table-view MVP (Phase 1)</title>
-    <link rel="stylesheet" href="http://predixdev.github.io/px-library-design/css/style.css">
+    <link rel="import" href="../px-design-system/px-design-system-theme.html">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/webcomponentsjs/0.7.21/webcomponents.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/fastclick/1.0.6/fastclick.min.js"></script>
+
 
     <link rel="import" href="px-table-view.html">
     <link rel="import" href="../px-card/px-card.html">
@@ -34,6 +34,7 @@
     }
 
     </style>
+
   </head>
 
   <body class="u-bg--gray9">
@@ -136,8 +137,6 @@
           <px-table-row title="Nav Right Item" type="nav-right"></px-table-row>
           <px-table-row title="Detail Item" type="detail"></px-table-row>
           <px-table-row title="Tappable Item" type="tappable"></px-table-row>
-          <px-table-row title="Edit Mode Item" edit-mode></px-table-row>
-          <px-table-row title="Edit Mode Item" edit-mode></px-table-row>
         </ul>
       </px-card>
 
@@ -233,10 +232,20 @@
           </li>
         </ul>
       </px-card>
+      <px-card header-text="Editable Rows">
+        <ul class="table-view table-view--small">
+          <px-table-row title="Edit Mode Item" edit-mode></px-table-row>
+          <px-table-row title="Edit Mode Item" edit-mode></px-table-row>
+          <px-table-row title="Edit Mode Item" edit-mode></px-table-row>
+          <px-table-row title="Edit Mode Item" edit-mode></px-table-row>
+        </ul>
+      </px-card>
 
 
     </div>
-    <script type="text/javascript">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fastclick/1.0.6/fastclick.min.js"></script>
+    <script>
     window.addEventListener('load', function() {
       new FastClick(document.body);
     }, false);
