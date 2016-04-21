@@ -16,18 +16,18 @@
 
     <style>
     /* Disable certain interactions on touch devices */
-    
+
     px-card {
       border: 1px solid #b1b1bc;
       margin: .5rem;
       padding: 0;
     }
-    
+
     px-card .u-mb.px-card-header {
       padding: .5rem;
       margin-bottom: 0 !important;
     }
-    
+
     px-card ul {
       padding: 0px !important;
       margin: 0px !important;
@@ -234,6 +234,50 @@
           <px-table-row title="Edit Mode Item" edit-mode></px-table-row>
           <px-table-row title="Edit Mode Item" edit-mode></px-table-row>
         </ul>
+      </px-card>
+      <px-card header-text="Actionable">
+        <px-table-view id="table1" mode="sort" sortable>
+          <px-table-row title="Action Item" type="" actionable>
+            <div class="table-row__actions table-row__actions--right">
+              <button class="table-row__actions__button btn--full btn-more">
+                More
+              </button>
+              <button class="table-row__actions__button btn--full btn-flag">
+                Flag
+              </button>
+              <button class="table-row__actions__button btn--full btn-delete">
+                Delete
+              </button>
+            </div>
+          </px-table-row>
+          <px-table-row title="Action Item" type="" actionable>
+            <div class="table-row__actions table-row__actions--right">
+              <button class="table-row__actions__button btn--full btn-more">
+                More
+              </button>
+              <button class="table-row__actions__button btn--full btn-flag">
+                Flag
+              </button>
+              <button class="table-row__actions__button btn--full btn-delete">
+                Delete
+              </button>
+            </div>
+          </px-table-row>
+          <px-table-row title="Action Item" type="" actionable>
+            <div class="table-row__actions table-row__actions--right">
+              <button class="table-row__actions__button btn--full btn-more">
+                More
+              </button>
+              <button class="table-row__actions__button btn--full btn-flag">
+                Flag
+              </button>
+              <button class="table-row__actions__button btn--full btn-delete">
+                Delete
+              </button>
+            </div>
+          </px-table-row>
+
+        </px-table-view>
       </px-card>
       <!--
       <px-card header-text="1. Re-Order Table View">

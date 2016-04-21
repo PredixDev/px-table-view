@@ -49,7 +49,7 @@ document.addEventListener('WebComponentsReady', function() {
   console.warn('WebComponentsReady');
   createTOC();
   createToggleHeadings();
-  createDemoItems(3);
+  //createDemoItems(3);
   var collapsed = false;
 
 

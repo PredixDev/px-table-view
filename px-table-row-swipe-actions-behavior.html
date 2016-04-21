@@ -25,12 +25,11 @@ function SwipeActions(container, direction) {
   this.hammer = new Hammer.Manager(this.container);
   this.hammer.add(new Hammer.Pan({
     direction: this.direction,
-    threshold: 20
+    threshold: 10
   }));
   this.hammer.on("panstart panmove panend pancancel", Hammer.bindFn(this.onPan, this));
-  console.log('SwipeActions', this);
-
-  console.warn('Actions size', this.actionsSize);
+  //console.log('SwipeActions', this);
+  //console.warn('Actions size', this.actionsSize);
 }
 
 SwipeActions.prototype = {
@@ -41,6 +40,7 @@ SwipeActions.prototype = {
     var className = this.container.className;
 
     if (animate) {
+
       if (className.indexOf('animate') === -1) {
         this.container.className += ' animate';
       }
@@ -54,7 +54,8 @@ SwipeActions.prototype = {
 
     for (paneIndex = 0; paneIndex < this.panes.length; paneIndex++) {
       pos = (this.actionsSize / 100) * (((paneIndex - showIndex) * 100) + percent);
-      console.warn('pos', pos);
+      pos = Math.round(pos);
+    //  console.warn('pos', pos);
       if (this.direction & Hammer.DIRECTION_HORIZONTAL) {
         translate = 'translate3d(' + pos + 'px, 0, 0)';
       } else {
@@ -73,28 +74,44 @@ SwipeActions.prototype = {
   },
   onPan: function(ev) {
     var delta = dirProp(this.direction, ev.deltaX, ev.deltaY);
-    var percent = (100 / this.containerSize) * delta;
+    var percent = (100 / this.actionsSize) * delta;
     var animate = false;
 
     if (ev.type == 'panend' || ev.type == 'pancancel') {
-      if (Math.abs(percent) > 15 && ev.type == 'panend') {
+      if (Math.abs(percent) > 5 && ev.type == 'panend') {
         this.currentIndex += (percent < 0) ? 1 : -1;
       }
       percent = 0;
       animate = true;
     }
-    console.log('SwipeActions.onPan', 'delta = ', delta, 'percent =', percent, animate);
+  //  console.log('SwipeActions.onPan', 'delta = ', delta, 'percent =', percent, animate);
     this.show(this.currentIndex, percent, animate);
   }
 };
 
-document.addEventListener('WebComponentsReady', function() {
-  console.log('WebComponentsReady');
+/*
+setTimeout(function(){
+  console.log('Setting Up Hammer');
   Hammer.each(document.querySelectorAll(".table-row--actionable"), function(container) {
     var actions = new SwipeActions(container, Hammer.DIRECTION_HORIZONTAL);
     //outer.hammer.get('pan').requireFailure(actions.hammer.get('pan'));
     console.log('Adding Hammer', actions);
   });
-});
+}, 2000);
+*/
+var TableRowActionsSwipeBehavior = {
+  created: function(){
+    if(this.actionable){
+      console.log('Before swipe handlers');
+    }
+  },
+  attached: function(){
+    if(this.actionable){
+      console.log('Adding swipe handlers');
+      this._actions = new SwipeActions(this, Hammer.DIRECTION_HORIZONTAL);
+    }
+
+  }
+};
 
 </script>

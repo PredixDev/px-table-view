@@ -51,7 +51,6 @@ To use this component:
       }
     },
     attached: function() {
-      console.warn(this.tagName, 'attached', this);
       if (this.type) {
         this.toggleClass('table-row__checkbox--' + this.type, true, this.$$('label'));
       }
@@ -61,14 +60,12 @@ To use this component:
       if (this.disabled) {
         this.$$('input').disabled = true;
       }
-      //this.listen(this.$.myButton, 'tap', 'onTap');
       this.listen(this.$$('label'), 'tap', 'handleTap');
     },
     handleTap: function(e) {
       if (this.disabled) {
         return;
       }
-
       // TODO: IOS and FastClick have an issue where the label does not trigger the event.
       var iOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
       if (iOS) {

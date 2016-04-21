@@ -32,8 +32,8 @@
 
 <body unresolved>
   <div class="viewport viewport--full-height">
-    <section class="box u-mb+">
-      <h1>Table View Examples</h1>
+    <section class=" u-mb+">
+      <h1 class="beta">px-table-view</h1>
       <p>The following are the different variations of the table view.</p>
       <ol id="toc" class="list listbare"></ol>
       <button class="btn-collapse-all btn btn--full"><span>Collapse</span> Examples</button>
@@ -661,7 +661,12 @@
         </template>
       </demo-snippet>
 
-      <h2>Demo - Iron List</h2>
+
+
+
+<h1 class="beta">Examples</h1>
+
+      <h2>Example - Iron List</h2>
       <demo-snippet>
         <template>
           <div class="demo" style="height: 500px; overflow:auto;">
@@ -707,7 +712,7 @@
 
 
 
-      <h2>Default - Pull to Refresh</h2>
+      <h2>Example - Pull to Refresh</h2>
       <demo-snippet>
         <template>
           <div class="table-view table-view--ptr table-view--small">
@@ -718,7 +723,7 @@
         </template>
       </demo-snippet>
 
-      <h2>Default - Nested Children</h2>
+      <h2>Example - Nested Children</h2>
       <demo-snippet>
         <template>
           <ul class="table-view table-view--inset table-view--nested table-view--small">
@@ -826,6 +831,18 @@
               </div>
             </li>
           </ul>
+        </template>
+      </demo-snippet>
+      <h2>Example - Nav List</h2>
+      <demo-snippet>
+        <template>
+          <ul class="table-view table-view--bare">
+  					<px-table-row title="Home" icon="fa fa-home" type="tappable" href="#home"></px-table-row>
+  					<px-table-row title="Dashboard" icon="fa fa-dashboard" type="tappable" href="#dashboard"></px-table-row>
+  					<px-table-row title="Alerts" icon="fa fa-exclamation-triangle" type="tappable" href="#alerts"></px-table-row>
+  					<px-table-row title="Cases" icon="fa fa-briefcase" type="tappable" href="#cases"></px-table-row>
+  					<px-table-row title="Analysis" icon="fa fa-bar-chart" type="tappable" href="#analysis"></px-table-row>
+  				</ul>
         </template>
       </demo-snippet>
 
