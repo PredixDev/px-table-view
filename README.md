@@ -19,6 +19,11 @@ $ bower install px-table-view
   </ul>
 ```
 
+> Note: For full CSS/HTML examples visit demo.html
+
+> Note: For component examples visit mobile-demo.html
+
+
 ### Options
 N/A
 
@@ -54,6 +59,8 @@ The following is how to develop on this component.
   ```
   $ npm start
   ```
+
+  > Note: If issues with `polyserve` just install it globally and run it.
 
 4. Compile styles
 

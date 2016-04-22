@@ -3,13 +3,14 @@
   "version": "0.0.1",
   "description": "A px mobile web component.",
   "keywords": [
-    "px",
-    "px-mobile"
-  ],
+		"px",
+		"px-mobile"
+	],
   "author": "Jonnie Spratley",
   "scripts": {
     "postinstall": "bower install",
     "serve": "polyserve .",
+    "build": "gulp",
     "start": "polyserve",
     "test": "gulp test:local",
     "watch": "gulp watch"

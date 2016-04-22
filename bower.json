@@ -30,11 +30,7 @@
     "px-card": "latest",
     "iron-component-page": "PolymerElements/iron-component-page#~v1.1.0",
     "iron-ajax": "PolymerElements/iron-ajax#^1.0.0",
-    "px-meta-buttons-design": "https://github.com/PredixDev/px-meta-buttons-design.git#~0.5.2",
-    "px-meta-lists-design": "https://github.com/PredixDev/px-meta-lists-design.git#~0.3.2",
-    "px-forms-design": "https://github.com/PredixDev/px-forms-design.git#~0.3.11",
-    "px-starter-kit-design": "https://github.com/PredixDev/px-starter-kit-design.git#~0.4.9",
-    "px-mobile-mixin-designs": "https://github.build.ge.com/PredixComponents/px-mobile-mixin-designs.git",
+    "px-mobile-mixin-design": "https://github.build.ge.com/PredixComponents/px-mobile-mixin-design.git",
     "iron-demo-helpers": "PolymerElements/iron-demo-helpers#~1.2.3"
   }
 }

@@ -46,7 +46,7 @@
     overflow: hidden;
     display: block;
     margin: 0;
-    padding: 0 0.5rem;
+    padding: 0 .5rem;
     -webkit-appearance: normal;
     -moz-appearance: normal;
     appearance: normal;
@@ -303,7 +303,7 @@
       .table-view .table-row--nav-right .table-row__media--right {
         margin-right: 1rem; }
     .table-view .table-row--actionable .table-row__content {
-      transition: 0.3s;
+      transition: .3s;
       position: relative;
       z-index: 10; }
     .table-view .table-row__content {
@@ -326,13 +326,13 @@
         -ms-user-select: none;
         user-select: none;
         white-space: nowrap; }
-        @media (min-width: 321px) {
+        @media only screen and (max-device-width: 640px), only screen and (max-device-width: 667px), only screen and (max-width: 480px) {
           .table-view .table-row__content__title {
             font-size: 1rem; } }
         .table-view .table-row__content__title--flush {
           line-height: normal; }
         .table-view .table-row__content__title--small {
-          font-size: 0.8rem;
+          font-size: .8rem;
           line-height: normal; }
         .table-view .table-row__content__title--large {
           font-size: 1.5rem; }
@@ -351,10 +351,10 @@
         float: left;
         position: relative;
         margin-left: 5%; }
-      @media (min-width: 321px) {
+      @media only screen and (max-device-width: 640px), only screen and (max-device-width: 667px), only screen and (max-width: 480px) {
         .table-view .table-row__label {
           margin-top: 1%;
-          font-size: 0.9rem; } }
+          font-size: .9rem; } }
     .table-view .table-row__icon {
       padding: 0; }
       .table-view .table-row__icon--left {
@@ -370,24 +370,24 @@
       display: table-cell;
       vertical-align: middle;
       padding-right: 1rem;
-      padding-left: 0.1rem; }
+      padding-left: .1rem; }
       .table-view .table-row__media--right {
         float: right; }
         .table-view .table-row__media--right > i {
-          margin-top: 0.7rem; }
+          margin-top: .7rem; }
       .table-view .table-row__media--toggle {
-        padding-top: 0.5rem;
-        padding-left: 0.5rem; }
+        padding-top: .5rem;
+        padding-left: .5rem; }
       .table-view .table-row__media--image {
         padding-right: 1rem;
-        padding-left: 0.1rem; }
+        padding-left: .1rem; }
         .table-view .table-row__media--image img {
           display: block;
           max-width: 80px;
           max-height: 80px; }
       .table-view .table-row__media--icon {
-        padding-right: 0.5rem;
-        padding-left: 0.5rem; }
+        padding-right: .5rem;
+        padding-left: .5rem; }
     .table-view .table-row__actions {
       overflow: hidden;
       -webkit-transform-style: preserve-3d;
@@ -404,9 +404,9 @@
       -webkit-justify-content: space-between;
       -ms-flex-pack: justify;
       justify-content: space-between;
-      transition: -webkit-transform 0.3s ease-out;
-      transition: transform 0.3s ease-out;
-      transition: transform 0.3s ease-out, -webkit-transform 0.3s ease-out;
+      transition: -webkit-transform .3s ease-out;
+      transition: transform .3s ease-out;
+      transition: transform .3s ease-out, -webkit-transform .3s ease-out;
       will-change: transform;
       z-index: 50;
       width: auto; }
@@ -426,39 +426,39 @@
           -ms-user-select: none;
           user-select: none;
           transition: background-color .2s linear;
-          background-color: #e53838;
+          background-color: #DE2533;
           border: none;
           outline: none; }
           .table-view .table-row__actions__button--delete:active {
-            background-color: #a21515; }
+            background-color: #88151d; }
           .table-view .table-row__actions__button--delete:hover {
-            background-color: #b81818; }
+            background-color: #9f1822; }
         .table-view .table-row__actions__button--flag {
           -webkit-user-select: none;
           -moz-user-select: none;
           -ms-user-select: none;
           user-select: none;
           transition: background-color .2s linear;
-          background-color: #dd6b1f;
+          background-color: #F8A725;
           border: none;
           outline: none; }
           .table-view .table-row__actions__button--flag:active {
-            background-color: #844012; }
+            background-color: #b16f06; }
           .table-view .table-row__actions__button--flag:hover {
-            background-color: #9a4b16; }
+            background-color: #ca7f06; }
         .table-view .table-row__actions__button--more {
           -webkit-user-select: none;
           -moz-user-select: none;
           -ms-user-select: none;
           user-select: none;
           transition: background-color .2s linear;
-          background-color: #4364dd;
+          background-color: #3693F8;
           border: none;
           outline: none; }
           .table-view .table-row__actions__button--more:active {
-            background-color: #1c389e; }
+            background-color: #0760c1; }
           .table-view .table-row__actions__button--more:hover {
-            background-color: #2040b3; }
+            background-color: #086cda; }
         .table-view .table-row__actions__button--info {
           -webkit-user-select: none;
           -moz-user-select: none;
@@ -517,7 +517,7 @@
       bottom: 0;
       padding: 0;
       border: 0;
-      opacity: 0.001;
+      opacity: .001;
       z-index: 1;
       vertical-align: top;
       outline: none;
@@ -534,13 +534,13 @@
     .table-view .table-row__checkbox input[type="checkbox"]:checked + div:before {
       background: #0a9ec1;
       border: 1px solid #086e87;
-      transition: background 0.4s; }
+      transition: background .4s; }
     .table-view .table-row__checkbox input[type="checkbox"]:checked + div:after {
       opacity: 1; }
     .table-view .table-row__checkbox input[type="checkbox"]:focus + div:before {
       box-shadow: none; }
     .table-view .table-row__checkbox input[type="checkbox"]:disabled + div {
-      opacity: 0.5;
+      opacity: .5;
       cursor: default;
       pointer-events: none; }
     .table-view .table-row__checkbox input[type="checkbox"]:disabled:focus + div:before {
@@ -584,7 +584,7 @@
         width: 12px;
         height: 6px;
         background: transparent;
-        border: 3px solid white;
+        border: 3px solid #FFFFFF;
         border-width: 2px;
         border-top: none;
         border-right: none;
@@ -610,7 +610,7 @@
         .table-view .table-row__checkbox--no-border input[type="checkbox"]:disabled {
           pointer-events: none; }
           .table-view .table-row__checkbox--no-border input[type="checkbox"]:disabled + div:after {
-            opacity: 0.5; }
+            opacity: .5; }
   .table-view .table-row .text-input {
     margin: 0;
     min-height: 44px;

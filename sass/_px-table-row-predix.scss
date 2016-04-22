@@ -10,23 +10,23 @@
 /// @access public
 .table-row {
   @include clearfix();
-  min-height: 44px;
-  line-height: 44px;
-  width: 100%;
-  font-size: $table-row-font-size;
-  font-size: var(--table-row-font-size, $table-row-font-size);
-  border-color: $table-row-border-color;
-  border-color: var(--table-row-border-color, $table-row-border-color);
-  box-sizing: border-box;
+  min-height      : 44px;
+  line-height     : 44px;
+  width           : 100%;
+  font-size       : $table-row-font-size;
+  font-size       : var(--table-row-font-size, $table-row-font-size);
+  border-color    : $table-row-border-color;
+  border-color    : var(--table-row-border-color, $table-row-border-color);
+  box-sizing      : border-box;
   background-color: $table-row-background-color;
   background-color: var(--table-row-background-color, $table-row-background-color);
-  position: relative;
-  overflow: hidden;
-  display: block;
-  margin: 0;
-  padding: 0 0.5rem;
-  appearance: normal;
-  user-select: none;
+  position        : relative;
+  overflow        : hidden;
+  display         : block;
+  margin          : 0;
+  padding         : 0 .5rem;
+  appearance      : normal;
+  user-select     : none;
   ///
   h1,
   h2,
@@ -35,13 +35,13 @@
   h5,
   h6,
   p {
-    margin: 0;
-    padding: 0;
+    margin     : 0;
+    padding    : 0;
     line-height: normal;
   }
   ///
-  > *:not(select),
-  > *:not(textarea),
+   > *:not(select),
+   > *:not(textarea),
   > *:not(input) {
     user-select: none;
   }
@@ -53,7 +53,7 @@
   }
   ///
   &:first-child:last-child {
-    border-top: none;
+    border-top   : none;
     border-bottom: none;
   }
   ///
@@ -72,7 +72,7 @@
   ///
   > a {
     text-decoration: none;
-    color: $table-row-font-color;
+    color          : $table-row-font-color;
     @include tableRowClickable($table-row-active-background-color, $table-row-active-font-color);
   }
   ///.table-row--flush
@@ -82,19 +82,19 @@
   ///---------------------------------------------------------------------------
   //.table-row--header
   @include modifier ('header') {
-    padding-top: 15px;
-    padding-bottom: 15px;
-    box-sizing: border-box;
-    font-size: 15px;
-    font-weight: 500;
+    padding-top     : 15px;
+    padding-bottom  : 15px;
+    box-sizing      : border-box;
+    font-size       : 15px;
+    font-weight     : 500;
     background-color: $table-row-header-background-color;
-    color: $table-row-header-font-color;
-    text-transform: $table-row-header-text-transform;
-    text-shadow: none;
-    border-top: none;
-    border-bottom: none;
-    min-height: 24px;
-    line-height: 24px;
+    color           : $table-row-header-font-color;
+    text-transform  : $table-row-header-text-transform;
+    text-shadow     : none;
+    border-top      : none;
+    border-bottom   : none;
+    min-height      : 24px;
+    line-height     : 24px;
   }
   ///.table-row--tappable
   @include modifier ('tappable') {
@@ -130,10 +130,11 @@
   @include modifier ('edit') {
     @include tableRowIcon($table-row-edit-icon, $table-row-edit-icon-color) {
       &:before {
-        left: 5px;
+        left : 5px;
         right: auto;
       }
     }
+
     > .table-row__content {
       padding-left: 25px;
     }
@@ -147,6 +148,7 @@
   @include modifier ('nav-right') {
     @include tableRowClickable($table-row-active-background-color, $table-row-active-font-color);
     @include tableRowIcon( $table-row-nav-right-icon );
+
     .table-row__media--right {
       margin-right: 1rem;
     }
@@ -154,9 +156,9 @@
   ///.table-row--actionable
   @include modifier ('actionable') {
     .table-row__content {
-      transition: 0.3s;
-      position: relative;
-      z-index: 10;
+      transition: .3s;
+      position  : relative;
+      z-index   : 10;
     }
   }
   ///---------------------------------------------------------------------------
@@ -167,11 +169,11 @@
   ///---------------------------------------------------------------------------
   ///.table-row__content
   @include element ('content') {
-    display: table-cell;
+    display       : table-cell;
     vertical-align: middle;
-    width: 100%;
-    user-select: none;
-    padding-right: 2rem;
+    width         : 100%;
+    user-select   : none;
+    padding-right : 2rem;
     ///.table-row__content--flush
     @include modifier ('flush') {
       line-height: normal;
@@ -179,12 +181,13 @@
     ///---------------------------------------------------------------------------
     ///.table-row__content__title
     @include element ('title') {
-      padding: 0;
-      font-size: 1.1rem;
-      display: block;
+      padding    : 0;
+      font-size  : 1.1rem;
+      display    : block;
       user-select: none;
       white-space: nowrap;
-      @include respond ('mobile') {
+
+      @include respond ('small') {
         font-size: 1rem;
       }
       ///.table-row__content__title--flush
@@ -193,7 +196,7 @@
       }
       ///.table-row__content__title--small
       @include modifier ('small') {
-        font-size: 0.8rem;
+        font-size  : .8rem;
         line-height: normal;
       }
       ///.table-row__content__title--large
@@ -203,7 +206,7 @@
     }
     ///.table-row__content__body
     @include element ('body') {
-      display: block;
+      display    : block;
       line-height: normal;
       ///.table-row__content__body--flush
       @include modifier ('flush') {
@@ -219,19 +222,19 @@
     @include modifier ('right') {
       //float: right;
       margin-right: 2rem;
-      right: 2%;
-      position: absolute;
+      right       : 2%;
+      position    : absolute;
     }
     ///
     @include modifier ('left') {
-      float: left;
-      position: relative;
+      float      : left;
+      position   : relative;
       margin-left: 5%;
     }
     ///
-    @include respond ('mobile') {
+    @include respond ('small') {
       margin-top: 1%;
-      font-size: 0.9rem;
+      font-size : .9rem;
     }
   }
   ///.table-row__icon
@@ -248,18 +251,18 @@
   }
   ///.table-row__reorder-btn
   @include element ('reorder-btn') {
-    float: right;
+    float   : right;
     position: absolute;
-    right: 5%;
-    top: 25%;
+    right   : 5%;
+    top     : 25%;
   }
   ///---------------------------------------------------------------------------
   ///.table-row__media
   @include element ('media') {
-    display: table-cell;
+    display       : table-cell;
     vertical-align: middle;
-    padding-right: 1rem;
-    padding-left: 0.1rem;
+    padding-right : 1rem;
+    padding-left  : .1rem;
     ///.table-row__media--left
     @include modifier ('left') {
       //float: left !important;
@@ -267,88 +270,97 @@
     ///.table-row__media--right
     @include modifier ('right') {
       float: right;
+
       > i {
-        margin-top: 0.7rem;
+        margin-top: .7rem;
       }
     }
     ///.table-row__media--toggle
     @include modifier ('toggle') {
-      padding-top: 0.5rem;
-      padding-left: 0.5rem;
+      padding-top : .5rem;
+      padding-left: .5rem;
     }
     ///.table-row__media--image
     @include modifier ('image') {
       padding-right: 1rem;
-      padding-left: 0.1rem;
+      padding-left : .1rem;
+
       img {
-        display: block;
-        max-width: 80px;
+        display   : block;
+        max-width : 80px;
         max-height: 80px;
       }
     }
     ///.table-row__media--icon
     @include modifier ('icon') {
-      padding-right: 0.5rem;
-      padding-left: 0.5rem;
+      padding-right: .5rem;
+      padding-left : .5rem;
     }
   }
   ///---------------------------------------------------------------------------
   ///.table-row__actions
   @include element ('actions') {
-    overflow: hidden;
+    overflow       : hidden;
     transform-style: preserve-3d;
-    position: absolute;
-    top: 0;
-    height: 100%;
-    display: flex;
-    flex-direction: row;
+    position       : absolute;
+    top            : 0;
+    height         : 100%;
+    display        : flex;
+    flex-direction : row;
     justify-content: space-between;
-    transition: transform 0.3s ease-out;
-    will-change: transform;
-    z-index: 50;
-    width: auto;
+    transition     : transform .3s ease-out;
+    will-change    : transform;
+    z-index        : 50;
+    width          : auto;
     //Button
     @include element ('button') {
-      cursor: pointer;
-      font-size: 1rem;
-      margin: 0;
-      color: #fff;
+      cursor       : pointer;
+      font-size    : 1rem;
+      margin       : 0;
+      color        : #fff;
       border-radius: 0;
-      padding: 2px 15px;
-      min-width: 75px;
+      padding      : 2px 15px;
+      min-width    : 75px;
+
       i {
         display: block;
       }
+
       @include modifier ('delete') {
         @include actionButton($red);
       }
+
       @include modifier ('flag') {
         @include actionButton($orange);
       }
+
       @include modifier ('more') {
         @include actionButton($blue);
       }
+
       @include modifier ('info') {
         @include actionButton($gray5);
       }
     }
     //left actions
     @include modifier ('left') {
-      left: 0;
+      left     : 0;
       transform: translateX(-110%);
       //Visible actions
       &.is-visible {
         transform: translateX(0%);
+
         .table-row__actions__button {
           transition: width 300ms ease-out;
-          width: auto;
+          width     : auto;
         }
       }
     }
     //right actions
     @include modifier ('right') {
-      right: 0;
+      right    : 0;
       transform: translateX(110%);
+
       &.is-visible {
         transform: translateX(0%);
       }
@@ -362,122 +374,133 @@
 /// @group px-table-row
 .table-row {
   &.checkbox {
-    width: 100%;
-    height: 100%;
-    padding: 0;
-    margin: 0;
+    width      : 100%;
+    height     : 100%;
+    padding    : 0;
+    margin     : 0;
     line-height: 44px;
   }
   ///.table-row__checkbox
   @include element ('checkbox') {
-    position: relative;
-    display: inline-block;
+    position      : relative;
+    display       : inline-block;
     vertical-align: top;
-    cursor: default;
-    user-select: none;
-    font-weight: 400;
-    font-size: 17px;
-    line-height: 25px;
-    margin: 10px 0;
+    cursor        : default;
+    user-select   : none;
+    font-weight   : 400;
+    font-size     : 17px;
+    line-height   : 25px;
+    margin        : 10px 0;
+
     input[type="checkbox"] {
-      position: absolute;
-      overflow: hidden;
-      right: 0;
-      top: 0;
-      left: 0;
-      bottom: 0;
-      padding: 0;
-      border: 0;
-      opacity: 0.001;
-      z-index: 1;
+      position      : absolute;
+      overflow      : hidden;
+      right         : 0;
+      top           : 0;
+      left          : 0;
+      bottom        : 0;
+      padding       : 0;
+      border        : 0;
+      opacity       : .001;
+      z-index       : 1;
       vertical-align: top;
-      outline: none;
-      width: 100%;
-      height: 100%;
-      margin: 0;
-      appearance: none;
-      height: 0;
-      width: 0;
+      outline       : none;
+      width         : 100%;
+      height        : 100%;
+      margin        : 0;
+      appearance    : none;
+      height        : 0;
+      width         : 0;
     }
+
     input[type="checkbox"]:checked {
       background: $table-row-checkbox-background-color;
     }
+
     input[type="checkbox"]:checked + div:before {
       background: $table-row-checkbox-background-color;
-      border: 1px solid $table-row-checkbox-checked-border-color;
-      transition: background 0.4s;
+      border    : 1px solid $table-row-checkbox-checked-border-color;
+      transition: background .4s;
     }
+
     &:active {
       input[type="checkbox"] + div:before,
       input[type="checkbox"]:checked + div:before {
         //  border: 1px solid $table-row-active-font-color;
       }
     }
+
     input[type="checkbox"]:checked + div:after {
       opacity: 1;
     }
+
     input[type="checkbox"]:focus + div:before {
       box-shadow: none;
     }
+
     input[type="checkbox"]:disabled + div {
-      opacity: 0.5;
-      cursor: default;
+      opacity       : .5;
+      cursor        : default;
       pointer-events: none;
     }
+
     input[type="checkbox"]:disabled:focus + div:before {
       pointer-events: none;
-      background: transparent;
-      box-shadow: none;
+      background    : transparent;
+      box-shadow    : none;
     }
     ///.table-row__checkbox__checkmark
     @include element ('checkmark') {
-      box-sizing: border-box;
+      box-sizing     : border-box;
       background-clip: padding-box;
-      position: relative;
-      display: inline-block;
-      vertical-align: top;
-      cursor: default;
-      user-select: none;
-      font-weight: 400;
-      font-size: 17px;
-      position: relative;
-      overflow: hidden;
-      width: 24px;
-      height: 24px;
+      position       : relative;
+      display        : inline-block;
+      vertical-align : top;
+      cursor         : default;
+      user-select    : none;
+      font-weight    : 400;
+      font-size      : 17px;
+      position       : relative;
+      overflow       : hidden;
+      width          : 24px;
+      height         : 24px;
+
       &:before {
-        content: '';
-        position: absolute;
-        box-sizing: border-box;
+        content        : '';
+        position       : absolute;
+        box-sizing     : border-box;
         background-clip: padding-box;
-        width: 24px;
-        height: 24px;
-        background: transparent;
-        border: 1px solid $table-row-checkbox-border-color;
-        border-radius: 0;
-        box-shadow: none;
-        left: 0;
+        width          : 24px;
+        height         : 24px;
+        background     : transparent;
+        border         : 1px solid $table-row-checkbox-border-color;
+        border-radius  : 0;
+        box-shadow     : none;
+        left           : 0;
       }
+
       &:after {
-        content: '';
-        position: absolute;
-        top: 8px;
-        left: 6px;
-        width: 12px;
-        height: 6px;
-        background: transparent;
-        border: 3px solid $table-row-checkbox-font-color;
-        border-width: 2px;
-        border-top: none;
-        border-right: none;
+        content      : '';
+        position     : absolute;
+        top          : 8px;
+        left         : 6px;
+        width        : 12px;
+        height       : 6px;
+        background   : transparent;
+        border       : 3px solid $table-row-checkbox-font-color;
+        border-width : 2px;
+        border-top   : none;
+        border-right : none;
         border-radius: 0;
-        transform: rotate(-45deg);
-        opacity: 0;
+        transform    : rotate(-45deg);
+        opacity      : 0;
       }
     }
     ///.table-row__checkbox--no-border
     @include modifier ('no-border') {
       background: transparent;
-      border: none;
+      border    : none;
+
       input[type="checkbox"] {
         background: transparent;
         //circle
@@ -489,23 +512,25 @@
           //opacity:.5;
           border-color: $table-row-checkbox-background-color;
         }
+
         &:checked {
           //Checkbox circle
           + div:before {
-            border: none;
+            border    : none;
             background: transparent;
           }
           //Checkbox check
           + div:after {
             border-color: $table-row-checkbox-background-color;
-            opacity: 1;
+            opacity     : 1;
           }
         }
+
         &:disabled {
           pointer-events: none;
           //check
           + div:after {
-            opacity: 0.5;
+            opacity: .5;
           }
         }
       }
@@ -519,15 +544,16 @@
 ///---------------------------
 .table-row {
   .text-input {
-    margin: 0;
+    margin    : 0;
     min-height: 44px;
-    font-size: 1.3rem;
+    font-size : 1.3rem;
     background: transparent;
-    border: none;
+    border    : none;
     box-shadow: none;
   }
+
   .btn {
-    outline: none;
+    outline   : none;
     min-height: 44px;
   }
 }
