@@ -5,7 +5,7 @@ const $ = require('gulp-load-plugins')();
 const gulpSequence = require('gulp-sequence');
 const sassdoc = require('sassdoc');
 const importOnce = require('node-sass-import-once');
-
+require('web-component-tester').gulp.init(gulp);
 const sassdocOptions = {
   dest: 'docs',
   verbose: true,
