@@ -105,7 +105,7 @@ To style this component you can do the following:
 
     </div>
 
-          <content select=".table-row__actions"></content>
+          <content select="*"></content>
 
 
 
@@ -172,7 +172,11 @@ To style this component you can do the following:
       attached: function() {
         this.toggleClass('table-row', true);
         if (this.type) {
-          this.toggleClass('table-row--' + this.type);
+          var types = this.type.split(' ');
+          for (var i = 0; i < types.length; i++) {
+            this.toggleClass('table-row--' + types[i]);
+          }
+
         }
         if (this.actionable) {
           this.toggleClass('table-row--actionable');
