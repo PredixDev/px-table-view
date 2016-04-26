@@ -12,19 +12,14 @@
  * with the terms and conditions stipulated in the agreement/contract
  * under which the software has been supplied.
  */
-
 ///
 @import "mixins";
-
 ///
 @import "variables";
-
 ///
 @import "px-mobile-mixin-design/mixins";
-
 ///
 /// @group px-table-view
-
 /// -------------------------
 /// Table View
 /// @group px-table-view
@@ -46,26 +41,23 @@
   @include clearfix();
   @include scrollable();
   @include pxFonts();
-
-  border          : none;
-  background      : transparent;
+  border: none;
+  background: transparent;
   background-color: var(--table-view-background-color, $table-row-background-color);
-  cursor          : default;
-  list-style-type : none;
-  line-height     : normal;
-  margin          : 0;
-  padding         : 0;
-  position        : relative;
-  text-align      : left;
-
+  cursor: default;
+  list-style-type: none;
+  line-height: normal;
+  margin: 0;
+  padding: 0;
+  position: relative;
+  text-align: left;
   * {
-    -webkit-touch-callout      : none;
-    -webkit-text-size-adjust   : none;
-    -webkit-user-select        : none;
-    -webkit-highlight          : none;
+    -webkit-touch-callout: none;
+    -webkit-text-size-adjust: none;
+    -webkit-user-select: none;
+    -webkit-highlight: none;
     -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
   }
-
   > div {
     line-height: normal;
   }
@@ -74,20 +66,19 @@
   ///.table-view--responsive
   @include modifier ('responsive') {
     @include n-columns($table-view-responsive-row-width, $table-view-responsive-row-gutters, true, $table-view-responsive-row-max);
-
     > *:last-child {
       border-bottom: 1px solid $table-row-border-color !important;
-      border-color : $table-row-border-color;
-      border-color : var(--table-view-border-color, $table-row-border-color);
+      border-color: $table-row-border-color;
+      border-color: var(--table-view-border-color, $table-row-border-color);
     }
   }
   ///.table-view--inset
   @include modifier ('inset') {
     background-image: none;
-    border          : 1px solid;
-    border-color    : $table-row-border-color;
-    border-color    : var(--table-view-border-color, $table-row-border-color);
-    border-radius   : 0;
+    border: 1px solid;
+    border-color: $table-row-border-color;
+    border-color: var(--table-view-border-color, $table-row-border-color);
+    border-radius: 0;
     //margin          : .5rem;
   }
   ///.table-view--ptr
@@ -98,13 +89,12 @@
   }
   ///.table-view--bare
   @include modifier ('bare') {
-    border    : none;
+    border: none;
     background: transparent;
-
     .table-row {
-      border       : none;
+      border: none;
       border-bottom: none !important;
-      background   : transparent;
+      background: transparent;
     }
   }
   ///.table-view--rev
@@ -118,13 +108,13 @@
   ///.table-view--tiny
   @include modifier ('tiny') {
     .table-row {
-      padding: .2rem;
+      padding: 0.2rem;
     }
   }
   ///.table-view--small
   @include modifier ('small') {
     .table-row {
-      padding: .5rem;
+      padding: 0.5rem;
     }
   }
   ///.table-view--flush
@@ -133,6 +123,10 @@
       padding: 0;
     }
   }
+  // TODO:
+  // TODO: Use calculateRem
+  //Use px-functions-design
+  //Use px-default-design
   ///.table-view--regular
   @include modifier ('regular') {
     .table-row {
@@ -154,53 +148,44 @@
   ///.table-view--avatars
   @include modifier ('avatars') {
     > .table-row {
-      padding: .5rem;
-
+      padding: 0.5rem;
       img {
-        height       : 32px;
+        height: 32px;
         border-radius: 50%;
       }
     }
   }
-
   .switch {
-    float     : right;
-    position  : absolute;
+    float: right;
+    position: absolute;
     margin-top: -25px;
-    right     : 3%;
+    right: 3%;
   }
-
   .switch--table-row {
-    float       : right;
-    margin-top  : 6px;
+    float: right;
+    margin-top: 6px;
     margin-right: 10px;
   }
-
   @include modifier ('nested') {
     .table-row {
       transition: transform 500ms ease;
-
       &.has-children {
         line-height: normal;
-        overflow   : hidden;
-        max-height : 75px;
-
+        overflow: hidden;
+        max-height: 75px;
         .table-view {
           margin-left: 15px;
-          transform  : translateX(99%);
+          transform: translateX(99%);
         }
-
         &.is-selected {
           background: transparent;
           max-height: 100%;
-
           > .table-view {
-            display  : block;
+            display: block;
             transform: translateX(0);
           }
         }
       }
     }
   }
-
 }

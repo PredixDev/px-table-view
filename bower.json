@@ -30,6 +30,7 @@
     "px-card": "latest",
     "iron-component-page": "PolymerElements/iron-component-page#~v1.1.0",
     "iron-ajax": "PolymerElements/iron-ajax#^1.0.0",
+    "px-mobile-design": "https://github.build.ge.com/PredixComponents/px-mobile-design.git",
     "px-mobile-mixin-design": "https://github.build.ge.com/PredixComponents/px-mobile-mixin-design.git",
     "iron-demo-helpers": "PolymerElements/iron-demo-helpers#~1.2.3"
   }

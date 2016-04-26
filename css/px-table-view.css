@@ -775,9 +775,9 @@
   .table-view--flush {
     padding: 0; }
   .table-view--tiny .table-row {
-    padding: .2rem; }
+    padding: 0.2rem; }
   .table-view--small .table-row {
-    padding: .5rem; }
+    padding: 0.5rem; }
   .table-view--flush .table-row {
     padding: 0; }
   .table-view--regular .table-row {
@@ -787,7 +787,7 @@
   .table-view--huge .table-row {
     padding: 3rem; }
   .table-view--avatars > .table-row {
-    padding: .5rem; }
+    padding: 0.5rem; }
     .table-view--avatars > .table-row img {
       height: 32px;
       border-radius: 50%; }
