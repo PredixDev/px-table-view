@@ -6,9 +6,7 @@
   <script src="../webcomponentsjs/webcomponents-lite.js"></script>
 
   <link rel='stylesheet prefetch' href='https://predixdev.github.io/px-library-design/css/style.css'>
-  <!-- TODO: iron-list example -->
-  <link rel="import" href="../iron-demo-helpers/demo-snippet.html" />
-  <link rel="stylesheet" href="demo/style.css" />
+
 
   <!-- TODO: Component -->
   <link rel="import" href="px-table-view.html" />
@@ -18,9 +16,12 @@
   <link rel="import" href="../px-example/px-example.html">
   <link rel="import" href="../iron-ajax/iron-ajax.html" />
   <link rel="import" href="../iron-list/iron-list.html" />
-
+  <!-- TODO: iron-list example -->
+  <link rel="import" href="../iron-demo-helpers/demo-snippet.html" />
+  <link rel="stylesheet" href="demo/style.css" />
   <style media="screen">
     body {
+      background: #efeff4;
       overflow: hidden;
       overflow-y: scroll;
       overflow-y: auto;
@@ -35,6 +36,9 @@
     <section class=" u-mb+">
       <h1 class="beta">px-table-view</h1>
       <p>The following are the different variations of the table view.</p>
+      <p>
+        For Table Row examples <a href="mobile-demo.html">visit here.</a>
+      </p>
       <ol id="toc" class="list listbare"></ol>
       <button class="btn-collapse-all btn btn--full"><span>Collapse</span> Examples</button>
     </section>
@@ -867,6 +871,61 @@
           </ul>
         </template>
       </demo-snippet>
+
+
+
+      <h2>Example - Actionable Rows</h2>
+      <demo-snippet>
+        <template>
+          <px-table-view id="table-actions">
+            <px-table-row title="Action Item 1" type="" actionable>
+
+              <div class="table-row__actions table-row__actions--right">
+                <button class="table-row__actions__button table-row__actions__button--more">
+                  More
+                </button>
+                <button class="table-row__actions__button table-row__actions__button--flag">
+                  Flag
+                </button>
+                <button class="table-row__actions__button table-row__actions__button--delete">
+                  Delete
+                </button>
+              </div>
+            </px-table-row>
+            <px-table-row title="Action Item 2" type="" actionable>
+              <div class="table-row__actions table-row__actions--right">
+                <button class="table-row__actions__button table-row__actions__button--more">
+                  More
+                </button>
+                <button class="table-row__actions__button table-row__actions__button--flag">
+                  Flag
+                </button>
+                <button class="table-row__actions__button table-row__actions__button--delete">
+                  Delete
+                </button>
+              </div>
+            </px-table-row>
+            <px-table-row title="Action Item 3" type="" actionable>
+              <div class="table-row__actions table-row__actions--right">
+                <button class="table-row__actions__button table-row__actions__button--more">
+                  More
+                </button>
+                <button class="table-row__actions__button table-row__actions__button--flag">
+                  Flag
+                </button>
+                <button class="table-row__actions__button table-row__actions__button--delete">
+                  Delete
+                </button>
+              </div>
+            </px-table-row>
+
+
+          </px-table-view>
+        </template>
+      </demo-snippet>
+
+
+
 
       <br>
       <hr>

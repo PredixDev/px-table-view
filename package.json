@@ -3,16 +3,24 @@
   "version": "0.0.1",
   "description": "A px mobile web component.",
   "keywords": [
+<<<<<<< HEAD
     "px",
     "px-mobile"
   ],
   "license": "ISC",
+=======
+		"px",
+		"px-mobile"
+	],
+>>>>>>> 1ad6b648d0d44d21d55bebc1cf137f180462c4e1
   "author": "Jonnie Spratley",
   "scripts": {
     "postinstall": "bower install",
-    "test": "gulp test",
-    "watch": "gulp watch",
-    "start": "gulp"
+    "serve": "polyserve .",
+    "build": "gulp",
+    "start": "polyserve",
+    "test": "gulp test:local",
+    "watch": "gulp watch"
   },
   "devDependencies": {
     "bower": "*",
@@ -28,7 +36,13 @@
     "gulp-size": "^2.1.0",
     "gulp-sourcemaps": "^1.6.0",
     "node-sass-import-once": "^1.2.0",
+<<<<<<< HEAD
     "polyserve": "^0.7.1",
     "sassdoc": "^2.1.20"
+=======
+    "polyserve": "^0.8.0",
+    "sassdoc": "^2.1.20",
+    "web-component-tester": "^4.2.2"
+>>>>>>> 1ad6b648d0d44d21d55bebc1cf137f180462c4e1
   }
 }
