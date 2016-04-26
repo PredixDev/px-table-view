@@ -41,9 +41,9 @@
     line-height: normal;
   }
   ///
-   > *:not(select),
+   > *:not(input),
    > *:not(textarea),
-  > *:not(input) {
+  > *:not(select) {
     user-select: none;
   }
   ///
@@ -213,6 +213,7 @@
     @include element ('body') {
       display    : block;
       line-height: normal;
+      white-space: normal;
       ///.table-row__content__body--flush
       @include modifier ('flush') {
         line-height: normal;

@@ -63,9 +63,9 @@
       margin: 0;
       padding: 0;
       line-height: normal; }
-    .table-view .table-row > *:not(select),
+    .table-view .table-row > *:not(input),
     .table-view .table-row > *:not(textarea),
-    .table-view .table-row > *:not(input) {
+    .table-view .table-row > *:not(select) {
       -webkit-user-select: none;
       -moz-user-select: none;
       -ms-user-select: none;
@@ -332,7 +332,8 @@
           font-size: 1.5rem; }
       .table-view .table-row__content__body {
         display: block;
-        line-height: normal; }
+        line-height: normal;
+        white-space: normal; }
         .table-view .table-row__content__body--flush {
           line-height: normal; }
     .table-view .table-row__label {
