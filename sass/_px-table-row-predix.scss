@@ -10,6 +10,7 @@
 /// @access public
 .table-row {
   @include clearfix();
+  font-size       : 1.2rem;
   min-height      : 44px;
   line-height     : 44px;
   width           : 100%;
@@ -75,17 +76,18 @@
     color          : $table-row-font-color;
     @include tableRowClickable($table-row-active-background-color, $table-row-active-font-color);
   }
+
   ///.table-row--flush
   @include modifier ('flush') {
     line-height: normal;
   }
-  ///---------------------------------------------------------------------------
+
+  ///---------------------------------------------------------------
   //.table-row--header
   @include modifier ('header') {
-    padding-top     : 15px;
-    padding-bottom  : 15px;
+    padding         : $table-row-header-padding;
     box-sizing      : border-box;
-    font-size       : 15px;
+    font-size       : $table-row-header-font-size;
     font-weight     : 500;
     background-color: $table-row-header-background-color;
     color           : $table-row-header-font-color;
@@ -114,7 +116,7 @@
       &:active {
         color: $table-row-active-font-color;
       }
-    };
+    }
     @include tableRowClickable($table-row-active-background-color, $table-row-active-font-color);
   }
   ///.table-row--detail
@@ -156,15 +158,15 @@
   ///.table-row--actionable
   @include modifier ('actionable') {
     .table-row__content {
-      transition: .3s;
+      transition: all .5s;
       position  : relative;
       z-index   : 10;
     }
   }
+
   ///---------------------------------------------------------------------------
   ///---------------------------------------------------------------------------
   ///Elements
-  ///---------------------------------------------------------------------------
   ///---------------------------------------------------------------------------
   ///---------------------------------------------------------------------------
   ///.table-row__content
@@ -174,15 +176,18 @@
     width         : 100%;
     user-select   : none;
     padding-right : 2rem;
+    white-space   : nowrap;
+
     ///.table-row__content--flush
     @include modifier ('flush') {
       line-height: normal;
     }
+
     ///---------------------------------------------------------------------------
     ///.table-row__content__title
     @include element ('title') {
       padding    : 0;
-      font-size  : 1.1rem;
+      font-size  : 1.2rem;
       display    : block;
       user-select: none;
       white-space: nowrap;
@@ -214,6 +219,7 @@
       }
     }
   }
+
   ///---------------------------------------------------------------------------
   ///.table-row__label
   @include element ('label') {
@@ -237,6 +243,7 @@
       font-size : .9rem;
     }
   }
+  ///---------------------------------------------------------------------------
   ///.table-row__icon
   @include element ('icon') {
     padding: 0;
@@ -249,6 +256,7 @@
       float: right;
     }
   }
+  ///---------------------------------------------------------------------------
   ///.table-row__reorder-btn
   @include element ('reorder-btn') {
     float   : right;
@@ -256,6 +264,7 @@
     right   : 5%;
     top     : 25%;
   }
+
   ///---------------------------------------------------------------------------
   ///.table-row__media
   @include element ('media') {
@@ -297,6 +306,7 @@
       padding-left : .5rem;
     }
   }
+
   ///---------------------------------------------------------------------------
   ///.table-row__actions
   @include element ('actions') {
@@ -368,10 +378,9 @@
   }
 }
 ///---------------------------------------------------------------------------
-///---------------------------
-///---------------------------
 ///Checkbox styles
 /// @group px-table-row
+///---------------------------------------------------------------------------
 .table-row {
   &.checkbox {
     width      : 100%;
@@ -391,6 +400,7 @@
     font-size     : 17px;
     line-height   : 25px;
     margin        : 10px 0;
+    white-space   : nowrap;
 
     input[type="checkbox"] {
       position      : absolute;
@@ -462,6 +472,8 @@
       font-size      : 17px;
       position       : relative;
       overflow       : hidden;
+      margin-right   : .5rem;
+
       width          : 24px;
       height         : 24px;
 

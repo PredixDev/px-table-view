@@ -25,6 +25,7 @@
   position: relative;
   text-align: left; }
   .table-view .table-row {
+    font-size: 1.2rem;
     min-height: 44px;
     line-height: 44px;
     width: 100%;
@@ -93,10 +94,9 @@
     .table-view .table-row--flush {
       line-height: normal; }
     .table-view .table-row--header {
-      padding-top: 15px;
-      padding-bottom: 15px;
+      padding: 0.5rem 0;
       box-sizing: border-box;
-      font-size: 15px;
+      font-size: 16px;
       font-weight: 500;
       background-color: #e4e4ea;
       color: black;
@@ -296,7 +296,7 @@
       .table-view .table-row--nav-right .table-row__media--right {
         margin-right: 1rem; }
     .table-view .table-row--actionable .table-row__content {
-      transition: .3s;
+      transition: all .5s;
       position: relative;
       z-index: 10; }
     .table-view .table-row__content {
@@ -307,12 +307,13 @@
       -moz-user-select: none;
       -ms-user-select: none;
       user-select: none;
-      padding-right: 2rem; }
+      padding-right: 2rem;
+      white-space: nowrap; }
       .table-view .table-row__content--flush {
         line-height: normal; }
       .table-view .table-row__content__title {
         padding: 0;
-        font-size: 1.1rem;
+        font-size: 1.2rem;
         display: block;
         -webkit-user-select: none;
         -moz-user-select: none;
@@ -500,7 +501,8 @@
     font-weight: 400;
     font-size: 17px;
     line-height: 25px;
-    margin: 10px 0; }
+    margin: 10px 0;
+    white-space: nowrap; }
     .table-view .table-row__checkbox input[type="checkbox"] {
       position: absolute;
       overflow: hidden;
@@ -555,6 +557,7 @@
       font-size: 17px;
       position: relative;
       overflow: hidden;
+      margin-right: .5rem;
       width: 24px;
       height: 24px; }
       .table-view .table-row__checkbox__checkmark:before {
@@ -743,7 +746,7 @@
         .table-view--responsive .table-row {
           min-width: calc(16.66667% - 0); } }
     .table-view--responsive > *:last-child {
-      border-bottom: 1px solid !important;
+      border-bottom: 1px solid #b1b1bc !important;
       border-color: #b1b1bc;
       border-color: var(--table-view-border-color, #b1b1bc); }
   .table-view--inset {

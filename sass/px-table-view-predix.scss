@@ -76,7 +76,7 @@
     @include n-columns($table-view-responsive-row-width, $table-view-responsive-row-gutters, true, $table-view-responsive-row-max);
 
     > *:last-child {
-      border-bottom: 1px solid !important;
+      border-bottom: 1px solid $table-row-border-color !important;
       border-color : $table-row-border-color;
       border-color : var(--table-view-border-color, $table-row-border-color);
     }
