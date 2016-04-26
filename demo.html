@@ -5,6 +5,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
     <script src="../webcomponentsjs/webcomponents-lite.js"></script>
     <link rel='stylesheet prefetch' href='https://predixdev.github.io/px-library-design/css/style.css'>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.2/jquery.min.js'></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fastclick/1.0.6/fastclick.min.js"></script>
+    <script type="text/javascript">
+    if ('addEventListener' in document) {
+      document.addEventListener('DOMContentLoaded', function() {
+        FastClick.attach(document.body);
+      }, false);
+    }
+    </script>
+
     <!-- TODO: Component -->
     <link rel="import" href="px-table-view.html" />
     <link rel="import" href="../px-example/px-example.html">
@@ -426,25 +436,25 @@
             });
             </script>
             <section id="table-responsive" class="table-view table-view--small table-view--responsive">
-              <div class="table-row">
+              <div class="table-row table-row--tappable">
                 <div class="table-row__content">
                   <h3 class="table-row__content__title epsilon">Lorem Ipsum</h3>
                   <div class="table-row__content__body"> <span class="beta">123.4</span> <span class="delta muted">AB</span> </div>
                 </div>
               </div>
-              <div class="table-row">
+              <div class="table-row table-row--tappable">
                 <div class="table-row__content">
                   <h3 class="table-row__content__title epsilon">Lorem Ipsum</h3>
                   <div class="table-row__content__body"> <span class="beta">123.4</span> <span class="delta muted">AB</span> </div>
                 </div>
               </div>
-              <div class="table-row">
+              <div class="table-row table-row--tappable">
                 <div class="table-row__content">
                   <h3 class="table-row__content__title epsilon">Lorem Ipsum</h3>
                   <div class="table-row__content__body"> <span class="beta">123.4</span> <span class="delta muted">AB</span> </div>
                 </div>
               </div>
-              <div class="table-row">
+              <div class="table-row table-row--tappable">
                 <div class="table-row__content">
                   <h3 class="table-row__content__title epsilon">Lorem Ipsum</h3>
                   <div class="table-row__content__body"> <span class="beta">123.4</span> <span class="delta muted">AB</span> </div>
@@ -754,15 +764,7 @@
         <p>&copy; 2016 GE Digital</p>
       </footer>
     </div>
-    <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.2/jquery.min.js'></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/fastclick/1.0.6/fastclick.min.js"></script>
-    <script type="text/javascript">
-    if ('addEventListener' in document) {
-      document.addEventListener('DOMContentLoaded', function() {
-        FastClick.attach(document.body);
-      }, false);
-    }
-    </script>
+
     <script src="demo/script.js"></script>
   </body>
 

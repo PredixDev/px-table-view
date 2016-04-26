@@ -39,11 +39,12 @@
     margin     : 0;
     padding    : 0;
     line-height: normal;
+    white-space: normal;
   }
   ///
-   > *:not(input),
+   > *:not(select),
    > *:not(textarea),
-  > *:not(select) {
+  > *:not(input) {
     user-select: none;
   }
   ///
@@ -211,9 +212,12 @@
     }
     ///.table-row__content__body
     @include element ('body') {
-      display    : block;
-      line-height: normal;
-      white-space: normal;
+      display: block;
+
+      &p {
+        line-height: normal;
+        white-space: normal;
+      }
       ///.table-row__content__body--flush
       @include modifier ('flush') {
         line-height: normal;

@@ -62,10 +62,11 @@
     .table-view .table-row p {
       margin: 0;
       padding: 0;
-      line-height: normal; }
-    .table-view .table-row > *:not(input),
+      line-height: normal;
+      white-space: normal; }
+    .table-view .table-row > *:not(select),
     .table-view .table-row > *:not(textarea),
-    .table-view .table-row > *:not(select) {
+    .table-view .table-row > *:not(input) {
       -webkit-user-select: none;
       -moz-user-select: none;
       -ms-user-select: none;
@@ -331,9 +332,10 @@
         .table-view .table-row__content__title--large {
           font-size: 1.5rem; }
       .table-view .table-row__content__body {
-        display: block;
-        line-height: normal;
-        white-space: normal; }
+        display: block; }
+        .table-view .table-row__content__bodyp {
+          line-height: normal;
+          white-space: normal; }
         .table-view .table-row__content__body--flush {
           line-height: normal; }
     .table-view .table-row__label {
