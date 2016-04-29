@@ -430,6 +430,38 @@
     transition: all 0.5s;
     position: relative;
     z-index: 10; }
+  .table-row--collapsable {
+    transition: background-color .2s linear;
+    overflow: hidden; }
+    .table-row--collapsable:active {
+      color: #fff !important;
+      transition: none;
+      background: #0a9ec1; }
+    .table-row--collapsable:hover {
+      transition: none; }
+    .table-row--collapsable:before {
+      transform: translateY(-50%);
+      font-style: normal;
+      font-weight: normal;
+      position: absolute;
+      right: 12px;
+      top: 50%;
+      color: #b1b1bc;
+      line-height: 28px;
+      height: 28px;
+      font-size: 28px;
+      font-family: FontAwesome;
+      content: ""; }
+    .table-row--collapsable:active {
+      background-color: #0a9ec1;
+      transition: none; }
+      .table-row--collapsable:active:before {
+        color: #fff; }
+    .table-row--collapsable:hover {
+      transition: none; }
+    .table-row--collapsable .table-row__body {
+      transition: all 0.5s;
+      height: 0; }
 
 .table-row__content {
   display: flex;

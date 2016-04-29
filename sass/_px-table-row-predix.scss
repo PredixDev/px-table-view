@@ -161,6 +161,15 @@
       z-index: 10;
     }
   }
+  ///.table-row--collapsable
+  @include modifier ('collapsable') {
+    @include tableRowClickable($table-row-active-background-color, $table-row-active-font-color);
+    @include tableRowIcon( '\f107' );
+    .table-row__body {
+      transition: all 0.5s;
+      height: 0;
+    }
+  }
 }
 .table-row {
   ///---------------------------------------------------------------------------
