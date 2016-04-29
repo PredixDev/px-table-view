@@ -43,9 +43,9 @@
     white-space: normal;
   }
   ///
-   > *:not(select),
+   > *:not(input),
    > *:not(textarea),
-  > *:not(input) {
+  > *:not(select) {
     user-select: none;
   }
   ///
@@ -157,7 +157,6 @@
     @include tableRowIcon( '\f107');
 
     .table-row__content__body {
-
       height  : 0;
       overflow: hidden;
     }
@@ -188,7 +187,7 @@
   ///.table-row--actionable
   @include modifier ('actionable') {
     .table-row__content {
-      transition: all .5s;
+      transition: all 0.5s;
       position  : relative;
       z-index   : 10;
     }
@@ -197,9 +196,10 @@
   @include modifier ('collapsable') {
     @include tableRowClickable($table-row-active-background-color, $table-row-active-font-color);
     @include tableRowIcon( '\f107' );
+
     .table-row__body {
       transition: all 0.5s;
-      height: 0;
+      height    : 0;
     }
   }
 }
@@ -327,7 +327,7 @@
     display        : flex;
     flex-direction : row;
     justify-content: space-between;
-    transition     : transform .3s ease-out;
+    transition     : transform 0.3s ease-out;
     will-change    : transform;
     z-index        : 50;
     width          : auto;
@@ -403,7 +403,6 @@
     cursor        : default;
     user-select   : none;
     font-weight   : 400;
-    font-size     : 17px;
     line-height   : 25px;
     margin        : 10px 0;
     white-space   : nowrap;
@@ -417,7 +416,7 @@
       bottom        : 0;
       padding       : 0;
       border        : 0;
-      opacity       : .001;
+      opacity       : 0.001;
       z-index       : 1;
       vertical-align: top;
       outline       : none;
@@ -436,7 +435,7 @@
     input[type="checkbox"]:checked + div:before {
       background: $table-row-checkbox-background-color;
       border    : 1px solid $table-row-checkbox-checked-border-color;
-      transition: background .4s;
+      transition: background 0.4s;
     }
 
     &:active {
@@ -455,7 +454,7 @@
     }
 
     input[type="checkbox"]:disabled + div {
-      opacity       : .5;
+      opacity       : 0.5;
       cursor        : default;
       pointer-events: none;
     }
@@ -475,10 +474,10 @@
       cursor         : default;
       user-select    : none;
       font-weight    : 400;
-      font-size      : 17px;
+
       position       : relative;
       overflow       : hidden;
-      margin-right   : .5rem;
+      margin-right   : 0.5rem;
       width          : 24px;
       height         : 24px;
 
@@ -547,7 +546,7 @@
           pointer-events: none;
           //check
           + div:after {
-            opacity: .5;
+            opacity: 0.5;
           }
         }
       }

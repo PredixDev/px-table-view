@@ -25,7 +25,8 @@
     "px-theme": "https://github.com/PredixDev/px-theme.git#~0.4.0",
     "iron-list": "PolymerElements/iron-list#^1.2.8",
     "iron-swipeable-container": "PolymerElements/iron-swipeable-container#^1.0.2",
-    "px-spacing-responsive-design": "^0.3.7"
+    "px-spacing-responsive-design": "^0.3.7",
+    "polymer-font-awesome": "https://github.com/mdwragg/polymer-font-awesome.git#^0.0.5"
   },
   "devDependencies": {
     "px-card": "latest",
@@ -34,5 +35,9 @@
     "px-mobile-design": "https://github.com/PredixDev/px-mobile-design.git",
     "px-mobile-mixin-design": "https://github.com/PredixDev/px-mobile-mixin-design.git",
     "iron-demo-helpers": "PolymerElements/iron-demo-helpers#~1.2.3"
+  },
+  "resolutions": {
+    "px-theme": "~0.7.0",
+    "polymer": "~v1.4.0"
   }
 }

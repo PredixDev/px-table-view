@@ -1,8 +1,12 @@
 'use strict';
 
 var pkg = require('./package.json');
-module.exports = function (grunt) {
+module.exports = function(grunt) {
+  // Time grunt tasks
+  require('time-grunt')(grunt);
 
+  // Load all grunt tasks
+  //  require('load-grunt-tasks')(grunt);
   var importOnce = require('node-sass-import-once');
   // Project configuration.
   grunt.initConfig({
@@ -53,9 +57,9 @@ module.exports = function (grunt) {
 
     jshint: {
       all: [
-				'Gruntfile.js',
-				'js/**/*.js'
-			],
+        'Gruntfile.js',
+        'js/**/*.js'
+      ],
       options: {
         jshintrc: '.jshintrc'
       }
@@ -102,28 +106,31 @@ module.exports = function (grunt) {
     }
   });
 
+
+
+  /*  */
   grunt.loadNpmTasks('grunt-sass');
   grunt.loadNpmTasks('grunt-shell');
   grunt.loadNpmTasks('grunt-contrib-clean');
   grunt.loadNpmTasks('grunt-contrib-jshint');
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-dep-serve');
-  grunt.loadNpmTasks('webdriver-support');
   grunt.loadNpmTasks('grunt-autoprefixer');
   grunt.loadNpmTasks('grunt-concurrent');
+  grunt.loadNpmTasks('webdriver-support');
 
   // Default task.
   grunt.registerTask('default', 'Basic build', [
-		'sass',
-		'autoprefixer'
-	]);
+    'sass',
+    'autoprefixer'
+  ]);
 
   grunt.registerTask('devmode', 'Development Mode', [
-		'concurrent:devmode'
-	]);
+    'concurrent:devmode'
+  ]);
 
   // First run task.
-  grunt.registerTask('firstrun', 'Basic first run', function () {
+  grunt.registerTask('firstrun', 'Basic first run', function() {
     grunt.config.set('depserveOpenUrl', '/index.html');
     grunt.task.run('default');
     grunt.task.run('depserve');
@@ -131,15 +138,15 @@ module.exports = function (grunt) {
 
   // Default task.
   grunt.registerTask('test', 'Test', [
-		'jshint',
-		'webdriver'
-	]);
+    'jshint',
+    'webdriver'
+  ]);
 
   grunt.registerTask('release', 'Release', [
-		'clean',
-		'shell:bower',
-		'default',
-		'test'
-	]);
+    'clean',
+    'shell:bower',
+    'default',
+    'test'
+  ]);
 
 };

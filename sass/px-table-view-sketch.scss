@@ -4,20 +4,24 @@
 @import "variables";
 ///
 @import "px-mobile-mixin-design/mixins";
+
 // Generic
 //@import "px-normalize-design/_generic.normalize.scss";
 //@import "px-box-sizing-design/_generic.box-sizing.scss";
 //@import "px-helpers-design/_generic.helpers.scss";
+
 // Base
 //@import "px-flexbox-design/_base.flexbox.scss";
 //@import "px-viewport-design/_base.viewport.scss";
 //@import "px-forms-design/_base.forms.scss";
 //@import "px-meta-lists-design/_meta.lists.scss";
 //@import "px-meta-buttons-design/_meta.buttons.scss";
+
 // Trumps
 //@import "inuit-clearfix/_trumps.clearfix.scss";
 //@import "px-spacing-responsive-design/_trumps.spacing-responsive.scss";
 //@import "px-widths-responsive-design/_trumps.widths-responsive.scss";
+
 // TODO:
 // TODO: Use calculateRem
 //Use px-functions-design
@@ -30,8 +34,8 @@
   background-color: var(--table-view-background-color, $table-row-background-color);
   ///.table-view--bare
   @include modifier ('bare') {
-    border    : none;
-    background: transparent;
+    border          : none;
+    background-color: transparent;
 
     .table-row {
       border       : none;
@@ -42,9 +46,8 @@
   ///.table-view--responsive
   @include modifier ('responsive') {
     > *:last-child {
-      border-bottom: 1px solid $table-row-border-color !important;
-
-      border-color : var(--table-view-border-color, $table-row-border-color);
+      //border-bottom: 1px solid $table-row-border-color !important;
+      //border-color : var(--table-view-border-color, $table-row-border-color);
     }
   }
   ///.table-view--inset
