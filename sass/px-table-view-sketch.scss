@@ -25,33 +25,34 @@
 @import 'px-table-view-predix';
 // TODO: Colors
 .table-view {
-  border: none;
-  background: transparent;
+  border          : none;
+  background      : transparent;
   background-color: var(--table-view-background-color, $table-row-background-color);
   ///.table-view--bare
   @include modifier ('bare') {
-    border: none;
+    border    : none;
     background: transparent;
+
     .table-row {
-      border: none;
+      border       : none;
       border-bottom: none !important;
-      background: transparent;
+      background   : transparent;
     }
   }
   ///.table-view--responsive
   @include modifier ('responsive') {
     > *:last-child {
       border-bottom: 1px solid $table-row-border-color !important;
-      border-color: $table-row-border-color;
-      border-color: var(--table-view-border-color, $table-row-border-color);
+
+      border-color : var(--table-view-border-color, $table-row-border-color);
     }
   }
   ///.table-view--inset
   @include modifier ('inset') {
     background-image: none;
-    border: 1px solid;
-    border-color: $table-row-border-color;
-    border-color: var(--table-view-border-color, $table-row-border-color);
-    border-radius: 0;
+    border          : 1px solid;
+    border-color    : $table-row-border-color;
+    border-color    : var(--table-view-border-color, $table-row-border-color);
+    border-radius   : 0;
   }
 }

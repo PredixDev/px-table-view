@@ -225,7 +225,12 @@
         <demo-snippet>
           <template>
             <section class="table-view table-view--small">
-              <div class="table-row table-row--detail"> <span class="table-row__label table-row__label--right">Detail Label</span> <span class="table-row__content__title">Text Label</span> </div>
+              <div class="table-row table-row--detail">
+                <div class="table-row__content">
+                  <span class="table-row__content__title">Text Label</span>
+                  <span class="table-row__label table-row__label--right">Detail Label</span>
+                </div>
+              </div>
             </section>
           </template>
         </demo-snippet>
@@ -234,7 +239,7 @@
         <demo-snippet>
           <template>
             <section class="table-view table-view--small">
-              <div class="table-row">
+              <div class="table-row table-row--switch">
                 <div class="table-row__media table-row__media--toggle table-row__media--right">
                   <div class="toggle toggle__table-view-item">
                     <input id="toggle1" class="toggle__input" type="checkbox" checked>
@@ -423,6 +428,52 @@
 
         <!-- TODO: Modifiers -->
         <h1 class="beta">Modifiers</h1>
+        <h2>Table View Modifiers</h2>
+        <div class="">
+
+          <table class="table">
+            <thead>
+              <tr>
+                <th>Name </th>
+                <th> Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><code>--responsive</code> </td>
+                <td> Enables flexbox row wrapping up to 6 columns</td>
+              </tr>
+              <tr>
+                <td><code>--flush</code> </td>
+                <td> Enables no padding</td>
+              </tr>
+              <tr>
+                <td><code>--tiny</code> </td>
+                <td> Enables tiny padding</td>
+              </tr>
+              <tr>
+                <td><code>--small</code> </td>
+                <td> Enables small padding</td>
+              </tr>
+              <tr>
+                <td><code>--large</code> </td>
+                <td> Enables large padding</td>
+              </tr>
+              <tr>
+                <td><code>--huge</code> </td>
+                <td> Enables huge padding</td>
+              </tr>
+              <tr>
+                <td><code>--inset</code> </td>
+                <td> Enables margin and border</td>
+              </tr>
+              <tr>
+                <td><code>--bare</code> </td>
+                <td> Removes all borders / background colors</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
 
         <!-- TODO: Responsive -->
         <h2>Default - Modifier - Responsive</h2>
@@ -641,9 +692,6 @@
           </template>
         </demo-snippet>
 
-
-
-
         <!-- TODO: Notes List -->
         <h2>Example - Notes List</h2>
         <demo-snippet>
@@ -658,7 +706,6 @@
             </ul>
           </template>
         </demo-snippet>
-
 
         <!-- TODO: Nav List -->
         <h2>Example - Nav List</h2>
@@ -688,18 +735,20 @@
             </div>
           </template>
         </demo-snippet>
+
         <!-- TODO: Widget Grid -->
         <h2>Example - Widget Grid</h2>
         <demo-snippet>
           <template>
             <link rel="import" href="../px-card/px-card.html">
             <style media="screen">
-            #widget-table{
+            #widget-table {
               background: blue;
             }
-              px-card{
-                width: 100%;
-              }
+
+            px-card {
+              width: 100%;
+            }
             </style>
             <ul id="widget-table" class="table-view table-view--bare table-view--responsive">
               <li class="table-row u-m">
@@ -734,6 +783,7 @@
             </ul>
           </template>
         </demo-snippet>
+
         <!-- TODO: Actionable -->
         <h2>Example - Actionable Rows</h2>
         <demo-snippet>
@@ -764,8 +814,6 @@
           </template>
         </demo-snippet>
 
-
-
         <!-- TODO: Login List -->
         <h2>Example - Login Form</h2>
         <demo-snippet>
@@ -790,6 +838,31 @@
                 </form>
               </div>
             </div>
+          </template>
+        </demo-snippet>
+
+        <!-- TODO: Reports List -->
+        <h2>Example - Collapasble List</h2>
+        <demo-snippet>
+          <template>
+            <ul class="table-view table-view--small table-view--">
+              <li class="table-row table-row--collapsable">
+                <div class="table-row__content">
+                  <div class="table-row__content__title">
+                    Collapsable Row
+                  </div>
+                  <p class="table-row__content__body">
+                    This row body should be hidden by default. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
+                    ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                  </p>
+                </div>
+              </li>
+            </ul>
+            <script type="text/javascript">
+            $('.table-row--collapsable').on('click', function(e) {
+              $(e.currentTarget).toggleClass('table-row--collapsable--is-open');
+            });
+            </script>
           </template>
         </demo-snippet>
         <br>

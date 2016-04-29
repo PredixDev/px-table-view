@@ -18,6 +18,7 @@
 @import "variables";
 ///
 @import "px-mobile-mixin-design/mixins";
+@import "px-table-row-predix";
 ///
 /// @group px-table-view
 /// -------------------------
@@ -35,25 +36,27 @@
 ///     </div>
 ///   </div>
 /// </section>
-@include block('table-view') {
+@include block ('table-view') {
   @include switch();
   @include clearfix();
   @include scrollable();
   @include pxFonts();
-  cursor: default;
+  cursor         : default;
   list-style-type: none;
-  line-height: normal;
-  margin: 0;
-  padding: 0;
-  position: relative;
-  text-align: left;
+  line-height    : normal;
+  margin         : 0;
+  padding        : 0;
+  position       : relative;
+  text-align     : left;
+
   * {
-    -webkit-touch-callout: none;
-    -webkit-text-size-adjust: none;
-    -webkit-user-select: none;
-    -webkit-highlight: none;
+    -webkit-touch-callout      : none;
+    -webkit-text-size-adjust   : none;
+    -webkit-user-select        : none;
+    -webkit-highlight          : none;
     -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
   }
+
   > div {
     line-height: normal;
   }
@@ -103,38 +106,45 @@
   @include modifier ('avatars') {
     > .table-row {
       img {
-        height: 32px;
+        height       : 32px;
         border-radius: 50%;
       }
     }
   }
+
   .switch {
-    float: right;
-    position: absolute;
+    float     : right;
+    position  : absolute;
     margin-top: -25px;
-    right: 3%;
+    right     : 3%;
   }
+
   .switch--table-row {
-    float: right;
-    margin-top: 6px;
+    float       : right;
+    margin-top  : 6px;
     margin-right: 10px;
   }
+
   @include modifier ('nested') {
     .table-row {
       transition: transform 500ms ease;
+
       &.has-children {
         line-height: normal;
-        overflow: hidden;
-        max-height: 75px;
+        overflow   : hidden;
+        max-height : 75px;
+
         .table-view {
           margin-left: 15px;
-          transform: translateX(99%);
+          transform  : translateX(99%);
         }
+
         &.is-selected {
           background: transparent;
           max-height: 100%;
+
           > .table-view {
-            display: block;
+            display  : block;
             transform: translateX(0);
           }
         }
@@ -142,4 +152,3 @@
     }
   }
 }
-@import "px-table-row-predix";
