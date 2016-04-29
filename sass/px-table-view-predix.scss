@@ -35,15 +35,11 @@
 ///     </div>
 ///   </div>
 /// </section>
-.table-view {
-  @import "px-table-row-predix";
+@include block('table-view') {
   @include switch();
   @include clearfix();
   @include scrollable();
   @include pxFonts();
-  border: none;
-  background: transparent;
-  background-color: var(--table-view-background-color, $table-row-background-color);
   cursor: default;
   list-style-type: none;
   line-height: normal;
@@ -66,20 +62,6 @@
   ///.table-view--responsive
   @include modifier ('responsive') {
     @include n-columns($table-view-responsive-row-width, $table-view-responsive-row-gutters, true, $table-view-responsive-row-max);
-    > *:last-child {
-      border-bottom: 1px solid $table-row-border-color !important;
-      border-color: $table-row-border-color;
-      border-color: var(--table-view-border-color, $table-row-border-color);
-    }
-  }
-  ///.table-view--inset
-  @include modifier ('inset') {
-    background-image: none;
-    border: 1px solid;
-    border-color: $table-row-border-color;
-    border-color: var(--table-view-border-color, $table-row-border-color);
-    border-radius: 0;
-    //margin          : .5rem;
   }
   ///.table-view--ptr
   @include modifier ('ptr') {
@@ -87,68 +69,39 @@
       user-select: none;
     }
   }
-  ///.table-view--bare
-  @include modifier ('bare') {
-    border: none;
-    background: transparent;
-    .table-row {
-      border: none;
-      border-bottom: none !important;
-      background: transparent;
-    }
-  }
   ///.table-view--rev
   @include modifier ('rev') {
     direction: rtl;
   }
   ///.table-view--flush
-  @include modifier ('flush') {
-    padding: 0;
-  }
+  @include modifier ('flush') {}
   ///.table-view--tiny
   @include modifier ('tiny') {
-    .table-row {
-      padding: 0.2rem;
-    }
+    .table-row {}
   }
   ///.table-view--small
   @include modifier ('small') {
-    .table-row {
-      padding: 0.5rem;
-    }
+    .table-row {}
   }
   ///.table-view--flush
   @include modifier ('flush') {
-    .table-row {
-      padding: 0;
-    }
+    .table-row {}
   }
-  // TODO:
-  // TODO: Use calculateRem
-  //Use px-functions-design
-  //Use px-default-design
   ///.table-view--regular
   @include modifier ('regular') {
-    .table-row {
-      padding: 1rem;
-    }
+    .table-row {}
   }
   ///.table-view--large
   @include modifier ('large') {
-    .table-row {
-      padding: 2rem;
-    }
+    .table-row {}
   }
   ///.table-view--huge
   @include modifier ('huge') {
-    .table-row {
-      padding: 3rem;
-    }
+    .table-row {}
   }
   ///.table-view--avatars
   @include modifier ('avatars') {
     > .table-row {
-      padding: 0.5rem;
       img {
         height: 32px;
         border-radius: 50%;
@@ -189,3 +142,4 @@
     }
   }
 }
+@import "px-table-row-predix";

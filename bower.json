@@ -24,7 +24,8 @@
     "polymer": "latest",
     "px-theme": "https://github.com/PredixDev/px-theme.git#~0.4.0",
     "iron-list": "PolymerElements/iron-list#^1.2.8",
-    "iron-swipeable-container": "PolymerElements/iron-swipeable-container#^1.0.2"
+    "iron-swipeable-container": "PolymerElements/iron-swipeable-container#^1.0.2",
+    "px-spacing-responsive-design": "^0.3.7"
   },
   "devDependencies": {
     "px-card": "latest",

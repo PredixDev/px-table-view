@@ -641,6 +641,9 @@
           </template>
         </demo-snippet>
 
+
+
+
         <!-- TODO: Notes List -->
         <h2>Example - Notes List</h2>
         <demo-snippet>
@@ -655,6 +658,8 @@
             </ul>
           </template>
         </demo-snippet>
+
+
         <!-- TODO: Nav List -->
         <h2>Example - Nav List</h2>
         <demo-snippet>
@@ -687,35 +692,45 @@
         <h2>Example - Widget Grid</h2>
         <demo-snippet>
           <template>
-            <ul class="table-view table-view--responsive">
-              <li class="table-row">
-                <div class="table-row__content">
-                  <div class="table-row__content__title">
-                    <h3 class="epsilon">Lorem Ipsum</h3> </div>
-                  <div class="table-row__content__body"> <span class="beta">124</span> <span class="delta muted">AB</span> </div>
-                </div>
+            <link rel="import" href="../px-card/px-card.html">
+            <style media="screen">
+            #widget-table{
+              background: blue;
+            }
+              px-card{
+                width: 100%;
+              }
+            </style>
+            <ul id="widget-table" class="table-view table-view--bare table-view--responsive">
+              <li class="table-row u-m">
+                <px-card header-text="Widget 1">
+                  <p>
+                    Content
+                  </p>
+                </px-card>
               </li>
-              <li class="table-row">
-                <div class="table-row__content">
-                  <div class="table-row__content__title">
-                    <h3 class="epsilon">Lorem Ipsum</h3> </div>
-                  <div class="table-row__content__body"> <span class="beta">124</span> <span class="delta muted">AB</span> </div>
-                </div>
+              <li class="table-row u-m">
+                <px-card header-text="Widget 2">
+                  <p>
+                    Content
+                  </p>
+                </px-card>
               </li>
-              <li class="table-row">
-                <div class="table-row__content">
-                  <div class="table-row__content__title">
-                    <h3 class="epsilon">Lorem Ipsum</h3> </div>
-                  <div class="table-row__content__body"> <span class="beta">124</span> <span class="delta muted">AB</span> </div>
-                </div>
+              <li class="table-row u-m">
+                <px-card header-text="Widget 3">
+                  <p>
+                    Content
+                  </p>
+                </px-card>
               </li>
-              <li class="table-row">
-                <div class="table-row__content">
-                  <div class="table-row__content__title">
-                    <h3 class="epsilon">Lorem Ipsum</h3> </div>
-                  <div class="table-row__content__body"> <span class="beta">124</span> <span class="delta muted">AB</span> </div>
-                </div>
+              <li class="table-row u-m">
+                <px-card header-text="Widget 4">
+                  <p>
+                    Content
+                  </p>
+                </px-card>
               </li>
+
             </ul>
           </template>
         </demo-snippet>
@@ -746,6 +761,35 @@
                 </div>
               </px-table-row>
             </px-table-view>
+          </template>
+        </demo-snippet>
+
+
+
+        <!-- TODO: Login List -->
+        <h2>Example - Login Form</h2>
+        <demo-snippet>
+          <template>
+            <div class="login">
+              <div class="box box--tiny">
+                <h1 class="gamma text--center">Predix</h1>
+                <form action="">
+                  <ul class="table-view">
+                    <li class="table-row form-field">
+                      <input type="email" class="text-input" placeholder="E-mail" required="">
+                    </li>
+                    <li class="table-row form-field">
+                      <input type="password" class="text-input" placeholder="Password" required="">
+                    </li>
+                    <li class="table-row form-field">
+                      <button class="btn btn--primary btn--full">
+                        Sign in
+                      </button>
+                    </li>
+                  </ul>
+                </form>
+              </div>
+            </div>
           </template>
         </demo-snippet>
         <br>

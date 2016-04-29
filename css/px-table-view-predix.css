@@ -8,15 +8,6 @@
  * with the terms and conditions stipulated in the agreement/contract
  * under which the software has been supplied.
  */
-/*
- * Copyright (c) 2016 GE Global Research. All rights reserved.
- *
- * The copyright to the computer software herein is the property of
- * GE Global Research. The software may be used and/or copied only
- * with the written permission of GE Global Research or in accordance
- * with the terms and conditions stipulated in the agreement/contract
- * under which the software has been supplied.
- */
 .table-view {
   overflow-y: scroll;
   overflow-y: auto;
@@ -809,25 +800,3 @@
 .table-row .btn {
   outline: none;
   min-height: 44px; }
-
-.table-view {
-  border: none;
-  background: transparent;
-  background-color: var(--table-view-background-color, transparent); }
-  .table-view--bare {
-    border: none;
-    background: transparent; }
-    .table-view--bare .table-row {
-      border: none;
-      border-bottom: none !important;
-      background: transparent; }
-  .table-view--responsive > *:last-child {
-    border-bottom: 1px solid #b1b1bc !important;
-    border-color: #b1b1bc;
-    border-color: var(--table-view-border-color, #b1b1bc); }
-  .table-view--inset {
-    background-image: none;
-    border: 1px solid;
-    border-color: #b1b1bc;
-    border-color: var(--table-view-border-color, #b1b1bc);
-    border-radius: 0; }
