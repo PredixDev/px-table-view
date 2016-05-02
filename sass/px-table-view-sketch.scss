@@ -34,13 +34,13 @@
   background-color: var(--table-view-background-color, $table-row-background-color);
   ///.table-view--bare
   @include modifier ('bare') {
-    border          : none;
-    background-color: transparent;
+    border    : none;
+    background: transparent;
 
     .table-row {
-      border       : none;
-      border-bottom: none !important;
-      background   : transparent;
+      border    : none;
+      background: transparent;
+
     }
   }
   ///.table-view--responsive

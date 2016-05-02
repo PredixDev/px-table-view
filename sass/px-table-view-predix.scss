@@ -111,6 +111,12 @@
       }
     }
   }
+  ///.table-view--drilldown
+  @include modifier ('drilldown') {
+    > .table-row {
+      background: red;
+    }
+  }
 
   .switch {
     float     : right;

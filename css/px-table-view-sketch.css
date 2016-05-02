@@ -886,6 +886,8 @@
   .table-view--avatars > .table-row img {
     height: 32px;
     border-radius: 50%; }
+  .table-view--drilldown > .table-row {
+    background: red; }
   .table-view .switch {
     float: right;
     position: absolute;
@@ -920,10 +922,9 @@
   background-color: var(--table-view-background-color, transparent); }
   .table-view--bare {
     border: none;
-    background-color: transparent; }
+    background: transparent; }
     .table-view--bare .table-row {
       border: none;
-      border-bottom: none !important;
       background: transparent; }
   .table-view--inset {
     background-image: none;
