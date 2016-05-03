@@ -1,40 +1,43 @@
 <!doctype html>
 <html>
-<head>
-  <meta charset="UTF-8">
+  <head>
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-  <script src="../webcomponentsjs/webcomponents.js"></script>
-  <script src="../web-component-tester/browser.js"></script>
+    <script src="../webcomponentsjs/webcomponents.js"></script>
+    <script src="../web-component-tester/browser.js"></script>
     <link rel="import" href="px-table-view.html">
-</head>
-<body>
-
-  <px-table-view id="fixture"></px-table-view>
-
+  </head>
+  <body>
+    <px-table-view id="fixture"></px-table-view>
     <script>
-      suite('<px-table-view>', function() {
+      suite('<px-table-view>', function () {
         var element = document.getElementById('fixture');
-        element.items = [{title: 'Item 1'}];
-
-        test('renders', function() {
+        element.items = [
+          {
+            title: 'Item 1'
+          }
+        ];
+        test('renders', function () {
           assert.ok(element);
         });
-
-        test('has correct # of items', function() {
+        test('has correct # of items', function () {
           assert.ok(element.items[0].title = 'Item 1');
         });
-
-        test('can add item to element', function() {
-          element.push('items', {title: 'Item 2', href:'#'});
-          element.push('items', {title: 'Item 3', href:'#'});
+        test('can add item to element', function () {
+          element.push('items', {
+            title: 'Item 2',
+            href: '#'
+          });
+          element.push('items', {
+            title: 'Item 3',
+            href: '#'
+          });
           assert.ok(element.items.length === 3);
         });
-
-        test('has correct # of items', function() {
+        test('has correct # of items', function () {
           assert.ok(element.items.length === 3);
         });
-
       });
     </script>
-</body>
+  </body>
 </html>
