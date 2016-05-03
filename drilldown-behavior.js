@@ -23,6 +23,12 @@ function transitionend($elem) {
   }
 }
 
+/**
+ * Drill Down
+ * @param element
+ * @param options
+ * @constructor
+ */
 function Drilldown(element, options) {
   this.$element = $(element);
   this.$list = $(element).find('.drilldown__list');

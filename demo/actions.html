@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <title>px-table-row-action-button</title>
+  <link rel="stylesheet" href="https://predixdev.github.io/px-library-design/css/style.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/webcomponentsjs/0.7.21/webcomponents.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/fastclick/1.0.6/fastclick.min.js"></script>
+  <link rel="import" href="../px-table-view.html">
+
+  <link rel="import" href="../../iron-demo-helpers/demo-snippet.html"/>
+  <style>
+
+  </style>
+</head>
+
+<body>
+<div class="viewport">
+  <demo-snippet>
+    <template>
+      <button class="table-row__actions__button table-row__actions__button--more"> More</button>
+      <button class="table-row__actions__button table-row__actions__button--flag"> Flag</button>
+      <button class="table-row__actions__button table-row__actions__button--delete"> Delete</button>
+    </template>
+  </demo-snippet>
+  <demo-snippet>
+    <template>
+      <section class="table-view table-view--small">
+        <div class="table-row table-row--actionable table-row--actions-is-visible">
+          <div class="table-row__content"><span class="table-row__content__title">Text Label</span></div>
+          <div class="table-row__actions table-row__actions--right is-visible">
+            <button class="table-row__actions__button btn--full table-row__actions__button--more"><i
+              class="fa fa-ellipsis-h fa-lg"></i></button>
+            <button class="table-row__actions__button btn--full table-row__actions__button--flag"><i
+              class="fa fa-flag fa-lg"></i></button>
+            <button class="table-row__actions__button btn--full table-row__actions__button--delete"><i
+              class="fa fa-trash-o fa-lg"></i></button>
+          </div>
+        </div>
+      </section>
+    </template>
+  </demo-snippet>
+
+  <demo-snippet>
+    <template>
+      <px-table-view>
+        <px-table-row title="Swipe Actions" actionable>
+          <px-table-row-actions position="right">
+            <px-table-row-action-button type="delete" label="Delete"></px-table-row-action-button>
+            <px-table-row-action-button type="more" label="More"></px-table-row-action-button>
+          </px-table-row-actions>
+        </px-table-row>
+      </px-table-view>
+    </template>
+  </demo-snippet>
+
+</div>
+</body>
+
+</html>

@@ -11,7 +11,7 @@ To use this component:
 @demo demo/actions.html
 @homepage index.html
 -->
-<dom-module id="px-table-row-action-button">
+<dom-module id="px-table-row-actions">
 
   <template>
     <style>
@@ -21,19 +21,19 @@ To use this component:
 
     </style>
 
-      <template is="dom-if" if="{{label}}">
-        <span>{{label}}</span>
-      </template>
-      <content select="*"></content>
+    <div id="actions">
+      <content select=".table-row__actions__button, px-table-row-action-button"></content>
+    </div>
+
 
   </template>
 </dom-module>
 <script>
   Polymer({
-    is: "px-table-row-action-button",
+    is: "px-table-row-actions",
     properties: {
-      //The action button label
-      label: {
+      //The position of the actions
+      position: {
         type: String
       },
       //The action button type
@@ -44,8 +44,8 @@ To use this component:
     attached: function () {
       var self = this;
       this.async(function () {
-        self.toggleClass('table-row__actions__button');
-        self.toggleClass('table-row__actions__button--' + this.type, true);
+        self.toggleClass('table-row__actions');
+        self.toggleClass('table-row__actions--' + this.position, true);
       });
     }
   });
