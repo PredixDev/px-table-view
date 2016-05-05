@@ -46,7 +46,7 @@ $gray: #ccc;
   }
 
   .disabled {
-    opacity: .5;
+    opacity: 0.5;
     cursor : disabled;
   }
 
@@ -60,7 +60,7 @@ $gray: #ccc;
 /// @group drilldown
 ////
 /// Transition property to use for animating menus.
-$drilldown-transition: transform .14s linear !default;
+$drilldown-transition: transform 0.14s linear !default;
 /// Adds arrows to drilldown items with submenus
 $drilldown-arrows: true !default;
 /// Sets drilldown arrow color if arrow is used.
@@ -71,7 +71,7 @@ $drilldown-list-background-color: crimson;
 
 .table-view {
   @include modifier ('drilldown') {
-    transition    : all .4s;
+    transition    : all 0.4s;
     border-top    : none;
     display       : flex;
     flex-direction: column;
@@ -112,7 +112,7 @@ $drilldown-list-background-color: crimson;
     // Applied to the Menu container
     .is-drilldown {
       position: relative;
-      overflow: auto;
+      overflow: initial;
       width   : 100%;
 
       .js-drilldown-back a:before {
@@ -175,7 +175,7 @@ $drilldown-list-background-color: crimson;
         border-left-width: 0;
         display          : inline-block;
         vertical-align   : middle;
-        margin-right     : .75rem;
+        margin-right     : 0.75rem;
       }
     }
 

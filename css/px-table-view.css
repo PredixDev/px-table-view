@@ -62,14 +62,14 @@
   content: ''; }
 
 .breadcrumbs .disabled {
-  opacity: .5;
+  opacity: 0.5;
   cursor: disabled; }
 
 .breadcrumbs .show-for-sr {
   display: none; }
 
 .table-view--drilldown {
-  transition: all .4s;
+  transition: all 0.4s;
   border-top: none;
   display: flex;
   flex-direction: column; }
@@ -118,7 +118,7 @@
       content: ""; }
   .table-view--drilldown .is-drilldown {
     position: relative;
-    overflow: auto;
+    overflow: initial;
     width: 100%; }
     .table-view--drilldown .is-drilldown .js-drilldown-back a:before {
       content: '';
@@ -172,7 +172,7 @@
     border-left-width: 0;
     display: inline-block;
     vertical-align: middle;
-    margin-right: .75rem; }
+    margin-right: 0.75rem; }
 
 /*
  * Copyright (c) 2016 GE Global Research. All rights reserved.
