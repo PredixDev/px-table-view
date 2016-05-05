@@ -94,16 +94,16 @@ To style this component you can do the following:
 
     <div class="table-row__content">
       <template is="dom-if" if="{{title}}">
-        <div class="table-row__content__title">{{title}}</div>
+        <div class="table-row__title">{{title}}</div>
       </template>
 
       <template is="dom-if" if="{{body}}">
-        <div class="table-row__content__body">{{body}}</div>
+        <div class="table-row__body">{{body}}</div>
       </template>
 
+      <content id="content" select="*"></content>
 
     </div>
-
     <content id="actions" select=".table-row__actions, px-table-row-actions"></content>
   </template>
   <script>

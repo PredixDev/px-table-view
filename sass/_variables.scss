@@ -11,7 +11,7 @@ $font-weight                            : 500 !default;
 ///
 $table-row-font-color                   : $black;
 ///
-$table-row-font-size                    : calculateRem(16px);
+$table-row-font-size                    : calculateRem(17px);
 ///
 $table-row-border-color                 : $gray5;
 ///
@@ -49,7 +49,7 @@ $table-row-header-background-color      : $gray3;
 ///
 $table-row-header-font-color            : $black;
 ///
-$table-row-header-font-size             : calculateRem(17px);
+$table-row-header-font-size             : calculateRem(20px);
 ///
 $table-row-header-padding               : $inuit-base-spacing-unit--tiny;
 ///
@@ -68,3 +68,16 @@ $table-view-responsive-row-width        : calculateRem(200px);
 $table-view-responsive-row-gutters      : 0;
 ///
 $table-view-responsive-row-max          : 6;
+
+$table-view-padding--tiny               : $inuit-base-spacing-unit--tiny;
+$table-view-padding--small              : $inuit-base-spacing-unit--small;
+$table-view-padding--default            : $inuit-base-spacing-unit;
+$table-view-padding--large              : $inuit-base-spacing-unit--large;
+$table-view-padding--huge               : $inuit-base-spacing-unit--huge;
+
+$table-row-image-padding:  $inuit-base-spacing-unit--tiny;
+$table-row-image-margin: 0  $inuit-base-spacing-unit--tiny 0 0;
+
+$table-row-icon-padding:  $inuit-base-spacing-unit--tiny;
+$table-row-icon-margin: 0;
+

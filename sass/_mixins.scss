@@ -17,9 +17,14 @@
 /// @access public
 @mixin tableRowClickable($bg:$table-row-active-background-color, $font:$table-row-active-font-color) {
   &:active {
-    color     : $font !important;
+    color     : $font;
     transition: none;
     background: $bg;
+  }
+  .table-row__title{
+    &:active{
+      color     : $font;
+    }
   }
 
   &:hover {
