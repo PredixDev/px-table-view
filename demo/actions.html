@@ -6,57 +6,221 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
   <title>px-table-row-action-button</title>
-  <link rel="stylesheet" href="https://predixdev.github.io/px-library-design/css/style.css">
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/webcomponentsjs/0.7.21/webcomponents.min.js"></script>
+
+
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.2/jquery.min.js'></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/fastclick/1.0.6/fastclick.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hammer.js/2.0.6/hammer.min.js"></script>
+
+  <script src="../../fastclick/lib/fastclick.js"></script>
+
   <link rel="import" href="../px-table-view.html">
 
   <link rel="import" href="../../iron-demo-helpers/demo-snippet.html"/>
   <style>
 
   </style>
+  <script type="text/javascript">
+    document.addEventListener('WebComponentsReady', function(){
+
+
+    });
+    $(function(){
+      $('.btn-collapse-all').bind('click', function(e) {
+        collapsed = !collapsed;
+        $(this).find('span').text((collapsed ? 'Expand' : 'Collapse'));
+        $('h2').trigger('click');
+      });
+
+
+
+      $('.btn-toggle-actions').bind('click', function(e) {
+        $(this).next('.table-view')
+          .find('.table-row')
+          .toggleClass('table-row--actions-is-visible')
+          .find('.table-row__actions')
+          .toggleClass('is-visible');
+      });
+    });
+  </script>
 </head>
 
-<body>
+<body unresolved>
 <div class="viewport">
+
+  <h2>Action Button HTML</h2>
   <demo-snippet>
     <template>
-      <button class="table-row__actions__button table-row__actions__button--more"> More</button>
-      <button class="table-row__actions__button table-row__actions__button--flag"> Flag</button>
-      <button class="table-row__actions__button table-row__actions__button--delete"> Delete</button>
+      <button class="table-row__button table-row__button--more"> More</button>
+      <button class="table-row__button table-row__button--flag"> Flag</button>
+      <button class="table-row__button table-row__button--delete"> Delete</button>
     </template>
   </demo-snippet>
+
+  <h2>Action Button Component</h2>
   <demo-snippet>
     <template>
-      <section class="table-view table-view--small">
-        <div class="table-row table-row--actionable table-row--actions-is-visible">
-          <div class="table-row__content"><span class="table-row__content__title">Text Label</span></div>
-          <div class="table-row__actions table-row__actions--right is-visible">
-            <button class="table-row__actions__button btn--full table-row__actions__button--more"><i
-              class="fa fa-ellipsis-h fa-lg"></i></button>
-            <button class="table-row__actions__button btn--full table-row__actions__button--flag"><i
-              class="fa fa-flag fa-lg"></i></button>
-            <button class="table-row__actions__button btn--full table-row__actions__button--delete"><i
-              class="fa fa-trash-o fa-lg"></i></button>
-          </div>
-        </div>
-      </section>
+      <px-table-row id="tablerow1" title="Action Item" actionable>
+      <px-table-row-actions id="actions1" position="left">
+        <px-table-row-action-button label="More" type="more"></px-table-row-action-button>
+        <px-table-row-action-button label="Flag" type="flag"></px-table-row-action-button>
+        <px-table-row-action-button label="Delete" type="delete"></px-table-row-action-button>
+      </px-table-row-actions>
+      </px-table-row>
     </template>
   </demo-snippet>
 
   <demo-snippet>
     <template>
       <px-table-view>
-        <px-table-row title="Swipe Actions" actionable>
-          <px-table-row-actions position="right">
-            <px-table-row-action-button type="delete" label="Delete"></px-table-row-action-button>
-            <px-table-row-action-button type="more" label="More"></px-table-row-action-button>
+        <px-table-row id="tablerow2" title="Action Item" actionable>
+          <px-table-row-actions id="actions2" position="left">
+            <px-table-row-action-button label="More" type="more"></px-table-row-action-button>
+            <px-table-row-action-button label="Flag" type="flag"></px-table-row-action-button>
+            <px-table-row-action-button label="Delete" type="delete"></px-table-row-action-button>
           </px-table-row-actions>
         </px-table-row>
       </px-table-view>
     </template>
   </demo-snippet>
 
+  <h2>Default with Swipe - Left Actions</h2>
+  <demo-snippet>
+    <template>
+      <div>
+        <button class="btn btn--full btn-toggle-actions u-mb+">Toggle Actions</button>
+        <section class="table-view table-view--small">
+          <px-table-row title="Action Item" actionable>
+            <px-table-row-actions id="actions3" position="left">
+              <px-table-row-action-button label="More" type="more"></px-table-row-action-button>
+              <px-table-row-action-button label="Flag" type="flag"></px-table-row-action-button>
+              <px-table-row-action-button label="Delete" type="delete"></px-table-row-action-button>
+            </px-table-row-actions>
+          </px-table-row>
+          <px-table-row title="Action Item" actionable>
+            <px-table-row-actions position="left">
+              <px-table-row-action-button label="More" type="more"></px-table-row-action-button>
+              <px-table-row-action-button label="Flag" type="flag"></px-table-row-action-button>
+              <px-table-row-action-button label="Delete" type="delete"></px-table-row-action-button>
+            </px-table-row-actions>
+          </px-table-row>
+          <px-table-row title="Action Item" actionable>
+            <px-table-row-actions position="left">
+              <px-table-row-action-button label="More" type="more"></px-table-row-action-button>
+              <px-table-row-action-button label="Flag" type="flag"></px-table-row-action-button>
+              <px-table-row-action-button label="Delete" type="delete"></px-table-row-action-button>
+            </px-table-row-actions>
+          </px-table-row>
+        </section>
+      </div>
+    </template>
+  </demo-snippet>
+
+  <h2>Default with Swipe - Left Actions with Icons</h2>
+  <demo-snippet>
+    <template>
+      <div>
+        <button class="btn btn--full btn-toggle-actions u-mb+">Toggle Actions</button>
+        <ul class="table-view table-view--small">
+          <li class="table-row table-row--actionable">
+            <div class="table-row__content"><span class="table-row__title">Text Label</span></div>
+            <div class="table-row__actions table-row__actions--left">
+              <button class="table-row__button btn--full table-row__button--more"><i
+                class="fa fa-ellipsis-h fa-lg"></i></button>
+              <button class="table-row__button btn--full table-row__button--flag"><i
+                class="fa fa-flag fa-lg"></i></button>
+              <button class="table-row__button btn--full table-row__button--delete"><i
+                class="fa fa-trash-o fa-lg"></i></button>
+            </div>
+          </li>
+          <px-table-row title="Action Item" actionable>
+            <px-table-row-actions position="left">
+              <px-table-row-action-button icon="fa fa-ellipsis-h" type="more"></px-table-row-action-button>
+              <px-table-row-action-button icon="fa fa-flag" type="flag"></px-table-row-action-button>
+              <px-table-row-action-button icon="fa fa-trash" type="delete"></px-table-row-action-button>
+            </px-table-row-actions>
+          </px-table-row>
+          <px-table-row title="Action Item" actionable>
+            <px-table-row-actions position="left">
+              <px-table-row-action-button icon="fa fa-ellipsis-h" type="more"></px-table-row-action-button>
+              <px-table-row-action-button icon="fa fa-flag" type="flag"></px-table-row-action-button>
+              <px-table-row-action-button icon="fa fa-trash" type="delete"></px-table-row-action-button>
+            </px-table-row-actions>
+          </px-table-row>
+        </ul>
+      </div>
+    </template>
+  </demo-snippet>
+
+  <h2>Default with Swipe - Right Actions</h2>
+  <demo-snippet>
+    <template>
+      <div>
+        <button class="btn btn--full btn-toggle-actions u-mb+">Toggle Actions</button>
+        <section class="table-view table-view--small">
+          <px-table-row title="Action Item" actionable>
+            <px-table-row-actions position="right">
+              <button class="table-row__button btn--full table-row__button--more"> More</button>
+              <button class="table-row__button btn--full table-row__button--flag"> Flag</button>
+              <button class="table-row__button btn--full table-row__button--delete"> Delete</button>
+            </px-table-row-actions>
+          </px-table-row>
+          <px-table-row title="Action Item" actionable>
+            <px-table-row-actions position="right">
+              <button class="table-row__button btn--full table-row__button--more"> More</button>
+              <button class="table-row__button btn--full table-row__button--flag"> Flag</button>
+              <button class="table-row__button btn--full table-row__button--delete"> Delete</button>
+            </px-table-row-actions>
+          </px-table-row>
+
+          <px-table-row title="Correct Action Item" actionable>
+            <px-table-row-actions position="right">
+              <button class="table-row__button btn--full table-row__button--more"> More</button>
+              <button class="table-row__button btn--full table-row__button--flag"> Flag</button>
+              <button class="table-row__button btn--full table-row__button--delete"> Delete</button>
+            </px-table-row-actions>
+          </px-table-row>
+
+        </section>
+      </div>
+    </template>
+  </demo-snippet>
+
+  <h2>Default with Swipe - Right Actions with Icons</h2>
+  <demo-snippet>
+    <template>
+      <div>
+        <button class="btn btn--full btn-toggle-actions u-mb+">Toggle Actions</button>
+        <section class="table-view table-view--small">
+          <div class="table-row table-row--actionable">
+            <div class="table-row__content"><span class="table-row__title">Text Label</span></div>
+            <div class="table-row__actions table-row__actions--right table-row__actions--right--is-visible">
+              <button class="table-row__button btn--full table-row__button--more"><i
+                class="fa fa-ellipsis-h fa-lg"></i></button>
+              <button class="table-row__button btn--full table-row__button--flag"><i
+                class="fa fa-flag fa-lg"></i></button>
+              <button class="table-row__button btn--full table-row__button--delete"><i
+                class="fa fa-trash-o fa-lg"></i></button>
+            </div>
+          </div>
+          <px-table-row title="Action Item" actionable>
+            <px-table-row-actions position="right">
+              <px-table-row-action-button icon="fa fa-ellipsis-h" type="more"></px-table-row-action-button>
+              <px-table-row-action-button icon="fa fa-flag" type="flag"></px-table-row-action-button>
+              <px-table-row-action-button icon="fa fa-trash" type="delete"></px-table-row-action-button>
+            </px-table-row-actions>
+          </px-table-row>
+          <px-table-row title="Action Item" actionable>
+            <px-table-row-actions position="right">
+              <button class="table-row__button btn--full table-row__button--more"><i class="fa fa-ellipsis-h fa-lg"></i></button>
+        <button class="table-row__button btn--full table-row__button--flag"><i class="fa fa-flag fa-lg"></i></button>
+        <button class="table-row__button btn--full table-row__button--delete"><i class="fa fa-trash-o fa-lg"></i></button>
+            </px-table-row-actions>
+          </px-table-row>
+        </section>
+      </div>
+    </template>
+  </demo-snippet>
 </div>
 </body>
 

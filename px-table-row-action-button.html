@@ -16,15 +16,19 @@ To use this component:
   <template>
     <style>
       :host {
-
+        min-height: 44px;
+        min-width: 44px;
       }
 
     </style>
-
+    <div type="button" name="button">
+      <template is="dom-if" if="{{icon}}">
+        <i class$="{{icon}}"></i>
+      </template>
       <template is="dom-if" if="{{label}}">
         <span>{{label}}</span>
       </template>
-      <content select="*"></content>
+    </div>
 
   </template>
 </dom-module>
@@ -36,6 +40,10 @@ To use this component:
       label: {
         type: String
       },
+      //The action button icon
+      icon: {
+        type: String
+      },
       //The action button type
       type: {
         type: String
@@ -44,8 +52,8 @@ To use this component:
     attached: function () {
       var self = this;
       this.async(function () {
-        self.toggleClass('table-row__actions__button');
-        self.toggleClass('table-row__actions__button--' + this.type, true);
+        self.toggleClass('table-row__button');
+        self.toggleClass('table-row__button--' + this.type, true);
       });
     }
   });

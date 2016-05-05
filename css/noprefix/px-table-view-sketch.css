@@ -183,6 +183,90 @@
  * with the terms and conditions stipulated in the agreement/contract
  * under which the software has been supplied.
  */
+.table-row__actions {
+  overflow: hidden;
+  transform-style: preserve-3d;
+  position: absolute;
+  top: 0;
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  transition: all 0.4s;
+  z-index: 50;
+  width: auto;
+  align-self: stretch;
+  align-items: stretch; }
+  .table-row__actions--left {
+    order: 0;
+    transform: translateX(-125%); }
+    .table-row__actions--left.is-visible {
+      width: auto;
+      transform: translateX(0%); }
+      .table-row__actions--left.is-visible .table-row__actions__button {
+        transition: width 300ms ease-out;
+        width: auto; }
+  .table-row__actions--right {
+    order: 10; }
+    .table-row__actions--right.is-visible {
+      width: auto;
+      transform: translateX(-100%); }
+
+.table-row__button {
+  cursor: pointer;
+  margin: 0;
+  border-radius: 0;
+  min-width: 44px;
+  outline: 0;
+  user-select: none;
+  margin: 0;
+  padding: 0.6666666667rem;
+  color: white;
+  font-size: 1.0666666667rem;
+  transition: all 0.4s; }
+  .table-row__button i {
+    display: block; }
+  .table-row__button--delete {
+    user-select: none;
+    transition: background-color 0.2s linear;
+    background-color: #e32533;
+    border: none;
+    outline: none; }
+    .table-row__button--delete:active {
+      background-color: #90121c; }
+    .table-row__button--delete:hover {
+      background-color: #a61520; }
+  .table-row__button--flag {
+    user-select: none;
+    transition: background-color 0.2s linear;
+    background-color: #ff9821;
+    border: none;
+    outline: none; }
+    .table-row__button--flag:active {
+      background-color: #ba6400; }
+    .table-row__button--flag:hover {
+      background-color: #d47100; }
+  .table-row__button--more {
+    user-select: none;
+    transition: background-color 0.2s linear;
+    background-color: #005cb9;
+    border: none;
+    outline: none; }
+    .table-row__button--more:active {
+      background-color: #002953; }
+    .table-row__button--more:hover {
+      background-color: #00366d; }
+  .table-row__button--info {
+    user-select: none;
+    transition: background-color 0.2s linear;
+    background-color: #b1b1bc;
+    border: none;
+    outline: none; }
+    .table-row__button--info:active {
+      background-color: #7a7a8d; }
+    .table-row__button--info:hover {
+      background-color: #888899; }
+
 .table-row {
   min-height: 44px;
   align-self: center;
@@ -219,9 +303,9 @@
     padding: 0;
     line-height: normal;
     white-space: normal; }
-  .table-row > *:not(input),
+  .table-row > *:not(select),
   .table-row > *:not(textarea),
-  .table-row > *:not(select) {
+  .table-row > *:not(input) {
     user-select: none; }
   .table-row:last-child {
     border-bottom: none; }
@@ -233,12 +317,6 @@
     border-bottom-width: 1px;
     border-bottom-color: #b1b1bc;
     border-bottom-color: var(--table-row-border-color, #b1b1bc); }
-  .table-row:active .table-row__label {
-    color: #fff; }
-  .table-row:active .table-row__title {
-    color: #fff !important; }
-  .table-row:active .table-row__body {
-    color: #fff !important; }
   .table-row > a {
     text-decoration: none;
     color: black; }
@@ -246,8 +324,6 @@
       color: #fff;
       transition: none;
       background: #0a9ec1; }
-    .table-row > a .table-row__title:active {
-      color: #fff; }
     .table-row > a:hover {
       transition: none; }
   .table-row--flush {
@@ -272,12 +348,16 @@
     color: #fff;
     transition: none;
     background: #0a9ec1; }
-  .table-row--tappable .table-row__title:active {
-    color: #fff; }
   .table-row--tappable:hover {
     transition: none; }
+  .table-row--tappable:active .table-row__label {
+    color: #fff; }
+  .table-row--tappable:active .table-row__title {
+    color: #fff !important; }
+  .table-row--tappable:active .table-row__body {
+    color: #fff !important; }
   .table-row--chevron {
-    transition: background-color .2s linear;
+    transition: background-color 0.2s linear;
     overflow: hidden; }
     .table-row--chevron:active {
       transition: none;
@@ -308,12 +388,10 @@
       color: #fff;
       transition: none;
       background: #0a9ec1; }
-    .table-row--chevron .table-row__title:active {
-      color: #fff; }
     .table-row--chevron:hover {
       transition: none; }
   .table-row--detail {
-    transition: background-color .2s linear;
+    transition: background-color 0.2s linear;
     overflow: hidden; }
     .table-row--detail:before {
       transform: translateY(-50%);
@@ -341,8 +419,6 @@
       color: #fff;
       transition: none;
       background: #0a9ec1; }
-    .table-row--detail .table-row__title:active {
-      color: #fff; }
     .table-row--detail:hover {
       transition: none; }
     .table-row--detail:active {
@@ -350,7 +426,7 @@
   .table-row--switch .table-row__content {
     flex-direction: row; }
   .table-row--order {
-    transition: background-color .2s linear;
+    transition: background-color 0.2s linear;
     overflow: hidden; }
     .table-row--order:before {
       transform: translateY(-50%);
@@ -373,7 +449,7 @@
     .table-row--order:hover {
       transition: none; }
   .table-row--edit {
-    transition: background-color .2s linear;
+    transition: background-color 0.2s linear;
     overflow: hidden; }
     .table-row--edit:before {
       transform: translateY(-50%);
@@ -399,14 +475,12 @@
       left: 5px;
       right: auto; }
   .table-row--collapsable {
-    transition: background-color .2s linear;
+    transition: background-color 0.2s linear;
     overflow: hidden; }
     .table-row--collapsable:active {
       color: #fff;
       transition: none;
       background: #0a9ec1; }
-    .table-row--collapsable .table-row__title:active {
-      color: #fff; }
     .table-row--collapsable:hover {
       transition: none; }
     .table-row--collapsable:before {
@@ -433,7 +507,7 @@
       height: 0;
       overflow: hidden; }
     .table-row--collapsable--is-open {
-      transition: background-color .2s linear;
+      transition: background-color 0.2s linear;
       overflow: hidden; }
       .table-row--collapsable--is-open:before {
         transform: translateY(-50%);
@@ -458,14 +532,12 @@
       .table-row--collapsable--is-open .table-row__body {
         height: auto; }
   .table-row--nav-left {
-    transition: background-color .2s linear;
+    transition: background-color 0.2s linear;
     overflow: hidden; }
     .table-row--nav-left:active {
       color: #fff;
       transition: none;
       background: #0a9ec1; }
-    .table-row--nav-left .table-row__title:active {
-      color: #fff; }
     .table-row--nav-left:hover {
       transition: none; }
     .table-row--nav-left:before {
@@ -489,14 +561,12 @@
     .table-row--nav-left:hover {
       transition: none; }
   .table-row--nav-right {
-    transition: background-color .2s linear;
+    transition: background-color 0.2s linear;
     overflow: hidden; }
     .table-row--nav-right:active {
       color: #fff;
       transition: none;
       background: #0a9ec1; }
-    .table-row--nav-right .table-row__title:active {
-      color: #fff; }
     .table-row--nav-right:hover {
       transition: none; }
     .table-row--nav-right:before {
@@ -524,14 +594,12 @@
     position: relative;
     z-index: 10; }
   .table-row--collapsable {
-    transition: background-color .2s linear;
+    transition: background-color 0.2s linear;
     overflow: hidden; }
     .table-row--collapsable:active {
       color: #fff;
       transition: none;
       background: #0a9ec1; }
-    .table-row--collapsable .table-row__title:active {
-      color: #fff; }
     .table-row--collapsable:hover {
       transition: none; }
     .table-row--collapsable:before {
@@ -556,10 +624,9 @@
       transition: none; }
     .table-row--collapsable .table-row__body {
       transition: all 0.5s;
-      height: 0; }
-
-.table-row:active .table-row__title {
-  color: #fff !important; }
+      display: none; }
+    .table-row--collapsable--is-open .table-row__body {
+      display: block; }
 
 .table-row__content {
   transition: all 4s;
@@ -629,84 +696,8 @@
   .table-row__media--icon {
     flex: 1 0 auto;
     align-self: baseline;
-    padding: 0.3333333333rem;
+    padding: 0.6666666667rem;
     margin: 0; }
-
-.table-row__actions {
-  overflow: hidden;
-  transform-style: preserve-3d;
-  position: absolute;
-  top: 0;
-  height: 100%;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  transition: transform 0.3s ease-out;
-  will-change: transform;
-  z-index: 50;
-  width: auto;
-  align-self: stretch;
-  align-items: stretch; }
-  .table-row__actions--left {
-    order: 0;
-    width: 0; }
-    .table-row__actions--left.is-visible {
-      width: auto; }
-      .table-row__actions--left.is-visible .table-row__actions__button {
-        transition: width 300ms ease-out;
-        width: auto; }
-  .table-row__actions--right {
-    order: 10;
-    width: 0; }
-    .table-row__actions--right.is-visible {
-      width: auto; }
-
-.table-row__button {
-  cursor: pointer;
-  margin: 0;
-  border-radius: 0; }
-  .table-row__button i {
-    display: block; }
-  .table-row__button--delete {
-    user-select: none;
-    transition: background-color .2s linear;
-    background-color: #e32533;
-    border: none;
-    outline: none; }
-    .table-row__button--delete:active {
-      background-color: #90121c; }
-    .table-row__button--delete:hover {
-      background-color: #a61520; }
-  .table-row__button--flag {
-    user-select: none;
-    transition: background-color .2s linear;
-    background-color: #ff9821;
-    border: none;
-    outline: none; }
-    .table-row__button--flag:active {
-      background-color: #ba6400; }
-    .table-row__button--flag:hover {
-      background-color: #d47100; }
-  .table-row__button--more {
-    user-select: none;
-    transition: background-color .2s linear;
-    background-color: #005cb9;
-    border: none;
-    outline: none; }
-    .table-row__button--more:active {
-      background-color: #002953; }
-    .table-row__button--more:hover {
-      background-color: #00366d; }
-  .table-row__button--info {
-    user-select: none;
-    transition: background-color .2s linear;
-    background-color: #b1b1bc;
-    border: none;
-    outline: none; }
-    .table-row__button--info:active {
-      background-color: #7a7a8d; }
-    .table-row__button--info:hover {
-      background-color: #888899; }
 
 .table-row.checkbox {
   width: 100%;

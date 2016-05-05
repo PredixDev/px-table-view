@@ -1,0 +1,90 @@
+/// @group px-table-view
+/// Mixins
+@import "mixins";
+///
+@import "variables";
+///
+@import "px-mobile-mixin-design/mixins";
+
+@include block ('table-row') {
+  ///---------------------------------------------------------------------------
+  ///.table-row__actions
+  @include element ('actions') {
+    overflow       : hidden;
+    transform-style: preserve-3d;
+    position       : absolute;
+    top            : 0;
+    height         : 100%;
+    display        : flex;
+    flex-direction : row;
+    justify-content: space-between;
+    transition     : $table-row-actions-transition;
+    //will-change    : transform;
+    z-index        : 50;
+    width          : auto;
+    align-self     : stretch;
+    align-items    : stretch;
+
+    //left actions
+    @include modifier ('left') {
+      order    : 0;
+      //  width    : 0;
+      transform: translateX(-125%);
+      //Visible actions
+      &.is-visible {
+        width    : auto;
+        transform: translateX(0%);
+
+        .table-row__actions__button {
+          transition: width 300ms ease-out;
+          width     : auto;
+        }
+      }
+    }
+    //right actions
+    @include modifier ('right') {
+      order: 10;
+      //  width: 0;
+      //  transform: translateX(100%);
+
+      &.is-visible {
+        width    : auto;
+        transform: translateX(-100%);
+      }
+    }
+  }
+  //Button
+  @include element ('button') {
+    cursor       : pointer;
+    margin       : 0;
+    border-radius: 0;
+    min-width    : 44px;
+    outline      : 0;
+    user-select  : none;
+    margin       : $table-row-button-margin;
+    padding      : $table-row-button-padding;
+    color        : $table-row-button-font-color;
+    font-size    : $table-row-button-font-size;
+    transition   : $table-row-button-transition;
+
+    i {
+      display: block;
+    }
+
+    @include modifier ('delete') {
+      @include actionButton($red);
+    }
+
+    @include modifier ('flag') {
+      @include actionButton($orange);
+    }
+
+    @include modifier ('more') {
+      @include actionButton($blue);
+    }
+
+    @include modifier ('info') {
+      @include actionButton($gray5);
+    }
+  }
+}

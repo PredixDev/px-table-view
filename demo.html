@@ -8,6 +8,7 @@
   <link rel='stylesheet prefetch' href='https://predixdev.github.io/px-library-design/css/style.css'>
   <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.2/jquery.min.js'></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/fastclick/1.0.6/fastclick.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hammer.js/2.0.6/hammer.min.js"></script>
   <script type="text/javascript">
     if ('addEventListener' in document) {
       document.addEventListener('DOMContentLoaded', function () {
@@ -339,6 +340,20 @@
                 <button class="table-row__button btn--full table-row__button--delete"> Delete</button>
               </div>
             </div>
+            <px-table-row title="Action Item" actionable>
+              <px-table-row-actions position="left">
+                <px-table-row-action-button label="More" type="more"></px-table-row-action-button>
+                <px-table-row-action-button label="Flag" type="flag"></px-table-row-action-button>
+                <px-table-row-action-button label="Delete" type="delete"></px-table-row-action-button>
+              </px-table-row-actions>
+            </px-table-row>
+            <px-table-row title="Action Item" actionable>
+              <px-table-row-actions position="left">
+                <px-table-row-action-button label="More" type="more"></px-table-row-action-button>
+                <px-table-row-action-button label="Flag" type="flag"></px-table-row-action-button>
+                <px-table-row-action-button label="Delete" type="delete"></px-table-row-action-button>
+              </px-table-row-actions>
+            </px-table-row>
           </section>
         </div>
       </template>
@@ -361,6 +376,20 @@
                   class="fa fa-trash-o fa-lg"></i></button>
               </div>
             </li>
+            <px-table-row title="Action Item" actionable>
+              <px-table-row-actions position="left">
+                <px-table-row-action-button icon="fa fa-ellipsis-h" type="more"></px-table-row-action-button>
+                <px-table-row-action-button icon="fa fa-flag" type="flag"></px-table-row-action-button>
+                <px-table-row-action-button icon="fa fa-trash" type="delete"></px-table-row-action-button>
+              </px-table-row-actions>
+            </px-table-row>
+            <px-table-row title="Action Item" actionable>
+              <px-table-row-actions position="left">
+                <px-table-row-action-button icon="fa fa-ellipsis-h" type="more"></px-table-row-action-button>
+                <px-table-row-action-button icon="fa fa-flag" type="flag"></px-table-row-action-button>
+                <px-table-row-action-button icon="fa fa-trash" type="delete"></px-table-row-action-button>
+              </px-table-row-actions>
+            </px-table-row>
           </ul>
         </div>
       </template>
@@ -380,6 +409,36 @@
                 <button class="table-row__button btn--full table-row__button--delete"> Delete</button>
               </div>
             </div>
+            <px-table-row title="Action Item" actionable>
+              <px-table-row-actions position="right">
+                <div class="table-row__actions table-row__actions--right">
+                  <button class="table-row__button btn--full table-row__button--more"> More</button>
+                  <button class="table-row__button btn--full table-row__button--flag"> Flag</button>
+                  <button class="table-row__button btn--full table-row__button--delete"> Delete</button>
+                </div>
+              </px-table-row-actions>
+            </px-table-row>
+            <px-table-row title="Action Item" actionable>
+              <px-table-row-actions position="right">
+                <px-table-row-action-button label="More" type="more"></px-table-row-action-button>
+                <px-table-row-action-button label="Flag" type="flag"></px-table-row-action-button>
+                <px-table-row-action-button label="Delete" type="delete"></px-table-row-action-button>
+              </px-table-row-actions>
+            </px-table-row>
+            <px-table-row title="Correct Action Item" actionable>
+              <px-table-row-actions position="right">
+                <button class="table-row__button btn--full table-row__button--more"> More</button>
+                <button class="table-row__button btn--full table-row__button--flag"> Flag</button>
+                <button class="table-row__button btn--full table-row__button--delete"> Delete</button>
+              </px-table-row-actions>
+            </px-table-row>
+            <px-table-row title="Action Item" actionable>
+              <px-table-row-actions position="right">
+                <button class="table-row__button btn--full table-row__button--more"> More</button>
+                <button class="table-row__button btn--full table-row__button--flag"> Flag</button>
+                <button class="table-row__button btn--full table-row__button--delete"> Delete</button>
+              </px-table-row-actions>
+            </px-table-row>
           </section>
         </div>
       </template>
@@ -402,6 +461,20 @@
                   class="fa fa-trash-o fa-lg"></i></button>
               </div>
             </div>
+            <px-table-row title="Action Item" actionable>
+              <px-table-row-actions position="right">
+                <px-table-row-action-button icon="fa fa-ellipsis-h" type="more"></px-table-row-action-button>
+                <px-table-row-action-button icon="fa fa-flag" type="flag"></px-table-row-action-button>
+                <px-table-row-action-button icon="fa fa-trash" type="delete"></px-table-row-action-button>
+              </px-table-row-actions>
+            </px-table-row>
+            <px-table-row title="Action Item" actionable>
+              <px-table-row-actions position="right">
+                <button class="table-row__button btn--full table-row__button--more"><i class="fa fa-ellipsis-h fa-lg"></i></button>
+          <button class="table-row__button btn--full table-row__button--flag"><i class="fa fa-flag fa-lg"></i></button>
+          <button class="table-row__button btn--full table-row__button--delete"><i class="fa fa-trash-o fa-lg"></i></button>
+              </px-table-row-actions>
+            </px-table-row>
           </section>
         </div>
       </template>
@@ -518,35 +591,28 @@
         <script type="text/javascript">
           $('.btn-add-responsive').bind('click', function (e) {
             var $table = $('#table-responsive');
-            $table.append($table.find('.table-row:first-child').clone());
+            $table.append($table.find('#row1').clone());
           });
         </script>
-        <section id="table-responsive" class="table-view table-view--small table-view--responsive">
-          <div class="table-row table-row--tappable">
-            <div class="table-row__content">
+        <ul id="table-responsive" class="table-view table-view--small table-view--responsive">
+
+          <li id="row1"><px-table-row  type="tappable">
+            <h3 class="table-row__title epsilon">Lorem Ipsum</h3>
+            <div class="table-row__body"><span class="beta">123.4</span> <span class="delta muted">AB</span></div>
+          </px-table-row></li>
+          <li>
+            <px-table-row type="tappable">
               <h3 class="table-row__title epsilon">Lorem Ipsum</h3>
               <div class="table-row__body"><span class="beta">123.4</span> <span class="delta muted">AB</span></div>
-            </div>
-          </div>
-          <div class="table-row table-row--tappable">
-            <div class="table-row__content">
+            </px-table-row>
+          </li>
+          <li>
+            <px-table-row type="tappable">
               <h3 class="table-row__title epsilon">Lorem Ipsum</h3>
               <div class="table-row__body"><span class="beta">123.4</span> <span class="delta muted">AB</span></div>
-            </div>
-          </div>
-          <div class="table-row table-row--tappable">
-            <div class="table-row__content">
-              <h3 class="table-row__title epsilon">Lorem Ipsum</h3>
-              <div class="table-row__body"><span class="beta">123.4</span> <span class="delta muted">AB</span></div>
-            </div>
-          </div>
-          <div class="table-row table-row--tappable">
-            <div class="table-row__content">
-              <h3 class="table-row__title epsilon">Lorem Ipsum</h3>
-              <div class="table-row__body"><span class="beta">123.4</span> <span class="delta muted">AB</span></div>
-            </div>
-          </div>
-        </section>
+            </px-table-row>
+          </li>
+        </ul>
       </template>
     </demo-snippet>
     <h2>Default - Modifier - Flush</h2>
@@ -554,6 +620,7 @@
       <template>
         <ul class="table-view table-view--flush">
           <li class="table-row table-row--tappable"> Text Label</li>
+          <px-table-row title="Text Label" type="tappable"></px-table-row>
         </ul>
       </template>
     </demo-snippet>
@@ -562,6 +629,7 @@
       <template>
         <ul class="table-view table-view--tiny">
           <li class="table-row table-row--tappable"> Text Label</li>
+          <px-table-row title="Text Label" type="tappable"></px-table-row>
         </ul>
       </template>
     </demo-snippet>
@@ -570,6 +638,7 @@
       <template>
         <ul class="table-view table-view--small">
           <li class="table-row table-row--tappable"> Text Label</li>
+          <px-table-row title="Text Label" type="tappable"></px-table-row>
         </ul>
       </template>
     </demo-snippet>
@@ -578,6 +647,7 @@
       <template>
         <ul class="table-view table-view--regular">
           <li class="table-row table-row--tappable"> Text Label</li>
+          <px-table-row title="Text Label" type="tappable"></px-table-row>
         </ul>
       </template>
     </demo-snippet>
@@ -586,6 +656,7 @@
       <template>
         <ul class="table-view table-view--large">
           <li class="table-row table-row--tappable"> Text Label</li>
+          <px-table-row title="Text Label" type="tappable"></px-table-row>
         </ul>
       </template>
     </demo-snippet>
@@ -594,6 +665,7 @@
       <template>
         <ul class="table-view table-view--huge">
           <li class="table-row table-row--tappable"> Text Label</li>
+          <px-table-row title="Text Label"></px-table-row>
         </ul>
       </template>
     </demo-snippet>
@@ -602,6 +674,7 @@
       <template>
         <ul class="table-view table-view--inset">
           <li class="table-row"> Text Label</li>
+          <px-table-row title="Text Label"></px-table-row>
         </ul>
       </template>
     </demo-snippet>
@@ -700,6 +773,7 @@
               <strong class="table-row__title">Urgent Alert</strong> <span
                 class="table-row__body table-row__body-">GE-2583</span></div>
           </li>
+          <px-table-row title="Urgent Alert" body="GE-2483" label1="01/21/16"></px-table-row>
         </ul>
       </template>
     </demo-snippet>
@@ -710,13 +784,15 @@
       <template>
         <ul class="table-view table-view--small">
           <li class="table-row table-row--tappable">
-            <div class="table-row__media table-row__media--icon"><i class="fa fa-lg fa-file"></i></div>
+            <div class="table-row__media table-row__media--icon"><i class="fa fa-file"></i></div>
             <span class="table-row__label table-row__label--right">10/01/15 1:32 PM</span>
             <div class="table-row__content">
 
-              <span
-              class="table-row__title"> Time Series Inlet Flow.pdf <small class="muted">534 kb</small> </span></div>
+              <span class="table-row__title"> Time Series Inlet Flow.pdf <small class="muted">534 kb</small> </span></div>
           </li>
+          <px-table-row label1="10/01/15 1:32 PM" icon="fa fa-file" type="tappable">
+            <span class="table-row__title"> Time Series Inlet Flow.pdf <small class="muted">534 kb</small> </span>
+          </px-table-row>
         </ul>
       </template>
     </demo-snippet>

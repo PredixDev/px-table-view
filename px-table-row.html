@@ -1,6 +1,8 @@
 <link rel="import" href="../polymer/polymer.html"/>
+<link rel="import" href="px-table-row-actions.html">
 <link rel="import" href="px-table-row-action-button.html">
-<link rel="import" href="px-table-row-swipe-behavior.html"/>
+<link rel="import" href="px-table-row-switch.html" />
+<link rel="import" href="px-table-row-checkbox.html" />
 <link rel="import" href="px-table-row-swipe-actions-behavior.html"/>
 
 <!--
@@ -101,17 +103,17 @@ To style this component you can do the following:
         <div class="table-row__body">{{body}}</div>
       </template>
 
-      <content id="content" select="*"></content>
 
+  <content id="content" select=".table-row__content"></content>
     </div>
-    <content id="actions" select=".table-row__actions, px-table-row-actions"></content>
+
+    <content id="actions" select="px-table-row-actions"></content>
   </template>
   <script>
     Polymer({
       is: 'px-table-row',
       behaviors: [
         TableRowActionsSwipeBehavior
-        //TableRowSwipeBehavior
       ],
       properties: {
         //The list item object.

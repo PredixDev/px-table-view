@@ -21,11 +21,6 @@
     transition: none;
     background: $bg;
   }
-  .table-row__title{
-    &:active{
-      color     : $font;
-    }
-  }
 
   &:hover {
     transition: none;
@@ -37,7 +32,7 @@
 /// @group px-table-view
 @mixin actionButton($color) {
   user-select     : none;
-  transition      : background-color .2s linear;
+  transition      : background-color 0.2s linear;
   background-color: $color;
   //	border-color: darken($color, 25%);
   border          : none;
@@ -102,7 +97,7 @@
 /// Scrollable solution
 /// @group px-table-view
 @mixin scrollable() {
-//  overflow-y                : scroll;
+  //  overflow-y                : scroll;
   overflow-y                : auto;
   -webkit-overflow-scrolling: touch;
   @content;
@@ -111,7 +106,7 @@
 /// Add a icon to the end of a table row.
 /// @group px-table-view
 @mixin tableRowIcon($icon, $iconColor: $table-row-border-color, $position:'right') {
-  transition: background-color .2s linear;
+  transition: background-color 0.2s linear;
   overflow  : hidden;
   //	background-color: rgba(0,0,0,.5);
   &:before {
@@ -173,7 +168,7 @@
       bottom        : 0;
       padding       : 0;
       border        : 0;
-      opacity       : .001;
+      opacity       : 0.001;
       z-index       : 1;
       vertical-align: top;
       outline       : none;
@@ -186,7 +181,7 @@
       margin-top    : -6px;
       top           : 0;
       left          : 0;
-      transition    : all .2s linear;
+      transition    : all 0.2s linear;
     }
     ///
     @include element ('toggle') {
@@ -198,7 +193,7 @@
       bottom                    : 0;
       border-radius             : 30px;
       transition-property       : all;
-      transition-duration       : .35s;
+      transition-duration       : 0.35s;
       transition-timing-function: ease-out;
       ///
       &:before {
@@ -213,7 +208,7 @@
         left                      : 2px;
         top                       : 2px;
         transition-property       : all;
-        transition-duration       : .35s;
+        transition-duration       : 0.35s;
         transition-timing-function: cubic-bezier(0.5, 1.6, 0.5, 1);
       }
     }
@@ -231,7 +226,7 @@
     }
 
     input:disabled + .toggle {
-      opacity       : .3;
+      opacity       : 0.3;
       cursor        : default;
       pointer-events: none;
     }

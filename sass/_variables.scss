@@ -75,9 +75,16 @@ $table-view-padding--default            : $inuit-base-spacing-unit;
 $table-view-padding--large              : $inuit-base-spacing-unit--large;
 $table-view-padding--huge               : $inuit-base-spacing-unit--huge;
 
-$table-row-image-padding:  $inuit-base-spacing-unit--tiny;
-$table-row-image-margin: 0  $inuit-base-spacing-unit--tiny 0 0;
+$table-row-image-padding                : $inuit-base-spacing-unit--tiny;
+$table-row-image-margin                 : 0 $inuit-base-spacing-unit--tiny 0 0;
 
-$table-row-icon-padding:  $inuit-base-spacing-unit--tiny;
-$table-row-icon-margin: 0;
+$table-row-icon-padding                 : $inuit-base-spacing-unit--small;
+$table-row-icon-margin                  : 0;
 
+$table-row-button-padding               : $inuit-base-spacing-unit--small;
+$table-row-button-margin                : 0;
+
+$table-row-button-font-color            : $white;
+$table-row-button-font-size             : calculateRem(16px);
+$table-row-actions-transition           : all 0.4s;
+$table-row-button-transition            : all 0.4s;

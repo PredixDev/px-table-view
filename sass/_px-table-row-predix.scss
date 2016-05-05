@@ -5,30 +5,31 @@
 @import "variables";
 ///
 @import "px-mobile-mixin-design/mixins";
+@import "px-table-row--actions";
 /// Table Row
 /// @group px-table-row
 /// @access public
 @include block ('table-row') {
   @include clearfix();
-  min-height: 44px;
-  align-self: center;
-  line-height: 44px;
-  width: 100%;
-  font-size: $table-row-font-size;
-  font-size: var(--table-row-font-size, $table-row-font-size);
-  border-color: $table-row-border-color;
-  border-color: var(--table-row-border-color, $table-row-border-color);
-  box-sizing: border-box;
+  min-height      : 44px;
+  align-self      : center;
+  line-height     : 44px;
+  width           : 100%;
+  font-size       : $table-row-font-size;
+  font-size       : var(--table-row-font-size, $table-row-font-size);
+  border-color    : $table-row-border-color;
+  border-color    : var(--table-row-border-color, $table-row-border-color);
+  box-sizing      : border-box;
   background-color: $table-row-background-color;
   background-color: var(--table-row-background-color, $table-row-background-color);
-  position: relative;
-  overflow: hidden;
-  display: flex;
-  flex-direction: row;
-  margin: 0;
-  padding: 0;
-  appearance: normal;
-  user-select: none;
+  position        : relative;
+  overflow        : hidden;
+  display         : flex;
+  flex-direction  : row;
+  margin          : 0;
+  padding         : 0;
+  appearance      : normal;
+  user-select     : none;
   ///
   h1,
   h2,
@@ -37,27 +38,26 @@
   h5,
   h6,
   p {
-    margin: 0;
-    padding: 0;
+    margin     : 0;
+    padding    : 0;
     line-height: normal;
     white-space: normal;
   }
   ///
-  > *:not(input),
-  > *:not(textarea),
-  > *:not(select) {
+   > *:not(select),
+   > *:not(textarea),
+  > *:not(input) {
     user-select: none;
   }
   ///
-  &:first-child {
-  }
+  &:first-child {}
   ///
   &:last-child {
     border-bottom: none;
   }
   ///
   &:first-child:last-child {
-    border-top: none;
+    border-top   : none;
     border-bottom: none;
   }
   ///
@@ -68,21 +68,11 @@
     border-bottom-color: var(--table-row-border-color, $table-row-border-color);
   }
   ///
-  &:active {
-    .table-row__label {
-      color: $table-row-active-font-color;
-    }
-    .table-row__title{
-        color: $table-row-active-font-color !important;
-    }
-    .table-row__body{
-        color: $table-row-active-font-color !important;
-    }
-  }
+
   ///
   > a {
     text-decoration: none;
-    color: $table-row-font-color;
+    color          : $table-row-font-color;
     @include tableRowClickable($table-row-active-background-color, $table-row-active-font-color);
   }
   ///.table-row--flush
@@ -92,18 +82,18 @@
   ///---------------------------------------------------------------
   //.table-row--header
   @include modifier ('header') {
-    padding: $table-row-header-padding;
-    box-sizing: border-box;
-    font-size: $table-row-header-font-size;
-    font-weight: 500;
+    padding         : $table-row-header-padding;
+    box-sizing      : border-box;
+    font-size       : $table-row-header-font-size;
+    font-weight     : 500;
     background-color: $table-row-header-background-color;
-    color: $table-row-header-font-color;
-    text-transform: $table-row-header-text-transform;
-    text-shadow: none;
-    border-top: none;
-    border-bottom: none;
-    min-height: 24px;
-    line-height: 24px;
+    color           : $table-row-header-font-color;
+    text-transform  : $table-row-header-text-transform;
+    text-shadow     : none;
+    border-top      : none;
+    border-bottom   : none;
+    min-height      : 24px;
+    line-height     : 24px;
   }
   ///.table-row--tappable
   @include modifier ('tappable') {
@@ -112,6 +102,20 @@
       background: $table-row-active-background-color;
     }
     @include tableRowClickable($table-row-active-background-color, $table-row-active-font-color);
+
+    &:active {
+      .table-row__label {
+        color: $table-row-active-font-color;
+      }
+
+      .table-row__title {
+        color: $table-row-active-font-color !important;
+      }
+
+      .table-row__body {
+        color: $table-row-active-font-color !important;
+      }
+    }
   }
   ///.table-row--chevron
   @include modifier ('chevron') {
@@ -129,15 +133,14 @@
   ///.table-row--detail
   @include modifier ('detail') {
     .table-row__content {
-     // flex-direction: row;
+      // flex-direction: row;
     }
-
-    @include tableRowIcon($table-row-detail-icon, $table-row-detail-icon-color){
+    @include tableRowIcon($table-row-detail-icon, $table-row-detail-icon-color) {
       &:active {
         color: $table-row-active-font-color;
       }
     }
-    @include tableRowClickable($table-row-active-background-color, $table-row-active-font-color){
+    @include tableRowClickable($table-row-active-background-color, $table-row-active-font-color) {
       &:active {
         color: $table-row-active-font-color;
       }
@@ -157,7 +160,7 @@
   @include modifier ('edit') {
     @include tableRowIcon($table-row-edit-icon, $table-row-edit-icon-color) {
       &:before {
-        left: 5px;
+        left : 5px;
         right: auto;
       }
     }
@@ -170,15 +173,15 @@
   ///.table-row--collapsable
   @include modifier ('collapsable') {
     @include tableRowClickable($table-row-active-background-color, $table-row-active-font-color);
-    @include tableRowIcon('\f107');
+    @include tableRowIcon( '\f107');
 
     .table-row__body {
-      height: 0;
+      height  : 0;
       overflow: hidden;
     }
 
     @include modifier ('is-open') {
-      @include tableRowIcon('\f106');
+      @include tableRowIcon( '\f106');
 
       .table-row__body {
         height: auto;
@@ -189,7 +192,7 @@
   ///.table-row--nav-left
   @include modifier ('nav-left') {
     @include tableRowClickable($table-row-active-background-color, $table-row-active-font-color);
-    @include tableRowIcon('\f104');
+    @include tableRowIcon( '\f104');
   }
   ///.table-row--nav-right
   @include modifier ('nav-right') {
@@ -204,18 +207,25 @@
   @include modifier ('actionable') {
     .table-row__content {
       transition: all 0.5s;
-      position: relative;
-      z-index: 10;
+      position  : relative;
+      z-index   : 10;
     }
   }
   ///.table-row--collapsable
   @include modifier ('collapsable') {
     @include tableRowClickable($table-row-active-background-color, $table-row-active-font-color);
-    @include tableRowIcon('\f107');
+    @include tableRowIcon( '\f107');
 
     .table-row__body {
       transition: all 0.5s;
-      height: 0;
+      display   : none;
+    }
+
+    @include modifier ('is-open') {
+      .table-row__body {
+
+        display: block;
+      }
     }
   }
 }
@@ -226,24 +236,17 @@
 ///---------------------------------------------------------------------------
 ///---------------------------------------------------------------------------
 @include block ('table-row') {
-  &:active {
-    .table-row__title{
-      color: $table-row-active-font-color !important;
-    }
-
-  }
-
 
   ///.table-row__content
   @include element ('content') {
-    transition: all 4s;
-    display: flex;
+    transition    : all 4s;
+    display       : flex;
     flex-direction: column;
-    align-self: center;
-    order: 2;
-    width: 100%;
-    user-select: none;
-    white-space: nowrap;
+    align-self    : center;
+    order         : 2;
+    width         : 100%;
+    user-select   : none;
+    white-space   : nowrap;
     ///.table-row__content--flush
     @include modifier ('row') {
       flex-direction: row;
@@ -265,61 +268,57 @@
   ///---------------------------------------------------------------------------
   ///.table-row__content__title
   @include element ('title') {
-    order: 3;
-    align-self: flex-start;
+    order      : 3;
+    align-self : flex-start;
     user-select: none;
     white-space: nowrap;
     line-height: normal;
-    flex: 1;
+    flex       : 1;
   }
   ///.table-row__content__body
   @include element ('body') {
     line-height: normal;
     white-space: normal;
-    order: 4;
-    align-self: flex-start;
-    flex: 1 0 auto;
+    order      : 4;
+    align-self : flex-start;
+    flex       : 1 0 auto;
     ///.table-row__content__body--flush
-    @include modifier ('flush') {
-    }
+    @include modifier ('flush') {}
   }
   ///---------------------------------------------------------------------------
   ///.table-row__label
   @include element ('label') {
-    order: 0;
-    color: $table-row-label-color;
-    flex: 1 0 auto;
+    order     : 0;
+    color     : $table-row-label-color;
+    flex      : 1 0 auto;
     align-self: center;
     ///
     @include modifier ('right') {
-      order: 4;
+      order       : 4;
       margin-right: $inuit-base-spacing-unit--small;
     }
     ///
-    @include modifier ('left') {
-    }
+    @include modifier ('left') {}
     ///
-    @include respond ('small') {
-    }
+    @include respond ('small') {}
   }
   ///---------------------------------------------------------------------------
   ///.table-row__icon
-  @include element ('icon') {
-  }
+  @include element ('icon') {}
   ///---------------------------------------------------------------------------
   ///.table-row__reorder-btn
   @include element ('reorder-btn') {
-    float: right;
+    float   : right;
     position: absolute;
-    right: 5%;
-    top: 25%;
+    right   : 5%;
+    top     : 25%;
   }
   ///---------------------------------------------------------------------------
   ///.table-row__media
   @include element ('media') {
-    order: 1;
-    display: flex;
-    align-self: center;
+    order          : 1;
+    display        : flex;
+    align-self     : center;
     justify-content: space-around;
     ///.table-row__media--left
     @include modifier ('left') {
@@ -330,95 +329,28 @@
       order: 9;
     }
     ///.table-row__media--toggle
-    @include modifier ('toggle') {
-    }
+    @include modifier ('toggle') {}
     ///.table-row__media--image
     @include modifier ('image') {
-      flex: 1 0 auto;
+      flex   : 1 0 auto;
       padding: $table-row-image-padding;
-      margin: $table-row-image-margin;
+      margin : $table-row-image-margin;
+
       img {
-        display: block;
-        max-width: 80px;
+        display   : block;
+        max-width : 80px;
         max-height: 80px;
       }
     }
     ///.table-row__media--icon
     @include modifier ('icon') {
-      flex: 1 0 auto;
+      flex      : 1 0 auto;
       align-self: baseline;
-      padding: $table-row-icon-padding;
-      margin: $table-row-icon-margin;
+      padding   : $table-row-icon-padding;
+      margin    : $table-row-icon-margin;
     }
   }
-  ///---------------------------------------------------------------------------
-  ///.table-row__actions
-  @include element ('actions') {
-    overflow: hidden;
-    transform-style: preserve-3d;
-    position: absolute;
-    top: 0;
-    height: 100%;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    transition: transform 0.3s ease-out;
-    will-change: transform;
-    z-index: 50;
-    width: auto;
-    align-self: stretch;
-    align-items: stretch;
 
-    //left actions
-    @include modifier ('left') {
-      order: 0;
-      width: 0;
-      //Visible actions
-      &.is-visible {
-        width: auto;
-        //transform: translateX(0%);
-        .table-row__actions__button {
-          transition: width 300ms ease-out;
-          width: auto;
-        }
-      }
-    }
-    //right actions
-    @include modifier ('right') {
-      order: 10;
-      width: 0;
-
-      &.is-visible {
-        width: auto;
-      }
-    }
-  }
-  //Button
-  @include element ('button') {
-    cursor: pointer;
-    margin: 0;
-    border-radius: 0;
-
-    i {
-      display: block;
-    }
-
-    @include modifier ('delete') {
-      @include actionButton($red);
-    }
-
-    @include modifier ('flag') {
-      @include actionButton($orange);
-    }
-
-    @include modifier ('more') {
-      @include actionButton($blue);
-    }
-
-    @include modifier ('info') {
-      @include actionButton($gray5);
-    }
-  }
 }
 
 ///---------------------------------------------------------------------------
@@ -427,43 +359,43 @@
 ///---------------------------------------------------------------------------
 .table-row {
   &.checkbox {
-    width: 100%;
-    height: 100%;
-    padding: 0;
-    margin: 0;
+    width      : 100%;
+    height     : 100%;
+    padding    : 0;
+    margin     : 0;
     line-height: 44px;
   }
   ///.table-row__checkbox
   @include element ('checkbox') {
-    position: relative;
-    display: inline-block;
+    position      : relative;
+    display       : inline-block;
     vertical-align: top;
-    cursor: default;
-    user-select: none;
-    font-weight: 400;
-    line-height: 25px;
-    margin: 10px 0;
-    white-space: nowrap;
+    cursor        : default;
+    user-select   : none;
+    font-weight   : 400;
+    line-height   : 25px;
+    margin        : 10px 0;
+    white-space   : nowrap;
 
     input[type="checkbox"] {
-      position: absolute;
-      overflow: hidden;
-      right: 0;
-      top: 0;
-      left: 0;
-      bottom: 0;
-      padding: 0;
-      border: 0;
-      opacity: 0.001;
-      z-index: 1;
+      position      : absolute;
+      overflow      : hidden;
+      right         : 0;
+      top           : 0;
+      left          : 0;
+      bottom        : 0;
+      padding       : 0;
+      border        : 0;
+      opacity       : 0.001;
+      z-index       : 1;
       vertical-align: top;
-      outline: none;
-      width: 100%;
-      height: 100%;
-      margin: 0;
-      appearance: none;
-      height: 0;
-      width: 0;
+      outline       : none;
+      width         : 100%;
+      height        : 100%;
+      margin        : 0;
+      appearance    : none;
+      height        : 0;
+      width         : 0;
     }
 
     input[type="checkbox"]:checked {
@@ -472,7 +404,7 @@
 
     input[type="checkbox"]:checked + div:before {
       background: $table-row-checkbox-background-color;
-      border: 1px solid $table-row-checkbox-checked-border-color;
+      border    : 1px solid $table-row-checkbox-checked-border-color;
       transition: background 0.4s;
     }
 
@@ -492,68 +424,68 @@
     }
 
     input[type="checkbox"]:disabled + div {
-      opacity: 0.5;
-      cursor: default;
+      opacity       : 0.5;
+      cursor        : default;
       pointer-events: none;
     }
 
     input[type="checkbox"]:disabled:focus + div:before {
       pointer-events: none;
-      background: transparent;
-      box-shadow: none;
+      background    : transparent;
+      box-shadow    : none;
     }
     ///.table-row__checkbox__checkmark
     @include element ('checkmark') {
-      box-sizing: border-box;
+      box-sizing     : border-box;
       background-clip: padding-box;
-      position: relative;
-      display: inline-block;
-      vertical-align: top;
-      cursor: default;
-      user-select: none;
-      font-weight: 400;
+      position       : relative;
+      display        : inline-block;
+      vertical-align : top;
+      cursor         : default;
+      user-select    : none;
+      font-weight    : 400;
 
-      position: relative;
-      overflow: hidden;
-      margin-right: 0.5rem;
-      width: 24px;
-      height: 24px;
+      position       : relative;
+      overflow       : hidden;
+      margin-right   : 0.5rem;
+      width          : 24px;
+      height         : 24px;
 
       &:before {
-        content: '';
-        position: absolute;
-        box-sizing: border-box;
+        content        : '';
+        position       : absolute;
+        box-sizing     : border-box;
         background-clip: padding-box;
-        width: 24px;
-        height: 24px;
-        background: transparent;
-        border: 1px solid $table-row-checkbox-border-color;
-        border-radius: 0;
-        box-shadow: none;
-        left: 0;
+        width          : 24px;
+        height         : 24px;
+        background     : transparent;
+        border         : 1px solid $table-row-checkbox-border-color;
+        border-radius  : 0;
+        box-shadow     : none;
+        left           : 0;
       }
 
       &:after {
-        content: '';
-        position: absolute;
-        top: 8px;
-        left: 6px;
-        width: 12px;
-        height: 6px;
-        background: transparent;
-        border: 3px solid $table-row-checkbox-font-color;
-        border-width: 2px;
-        border-top: none;
-        border-right: none;
+        content      : '';
+        position     : absolute;
+        top          : 8px;
+        left         : 6px;
+        width        : 12px;
+        height       : 6px;
+        background   : transparent;
+        border       : 3px solid $table-row-checkbox-font-color;
+        border-width : 2px;
+        border-top   : none;
+        border-right : none;
         border-radius: 0;
-        transform: rotate(-45deg);
-        opacity: 0;
+        transform    : rotate(-45deg);
+        opacity      : 0;
       }
     }
     ///.table-row__checkbox--no-border
     @include modifier ('no-border') {
       background: transparent;
-      border: none;
+      border    : none;
 
       input[type="checkbox"] {
         background: transparent;
@@ -570,13 +502,13 @@
         &:checked {
           //Checkbox circle
           + div:before {
-            border: none;
+            border    : none;
             background: transparent;
           }
           //Checkbox check
           + div:after {
             border-color: $table-row-checkbox-background-color;
-            opacity: 1;
+            opacity     : 1;
           }
         }
 
@@ -599,16 +531,16 @@
 ///---------------------------
 .table-row {
   .text-input {
-    margin: 0;
+    margin    : 0;
     min-height: 44px;
-    font-size: 1.3rem;
+    font-size : 1.3rem;
     background: transparent;
-    border: none;
+    border    : none;
     box-shadow: none;
   }
 
   .btn {
-    outline: none;
+    outline   : none;
     min-height: 44px;
   }
 }
