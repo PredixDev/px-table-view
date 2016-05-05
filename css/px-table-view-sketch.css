@@ -55,6 +55,147 @@
  * with the terms and conditions stipulated in the agreement/contract
  * under which the software has been supplied.
  */
+.breadcrumbs li:after {
+  content: ' > '; }
+
+.breadcrumbs li:last-child:after {
+  content: ''; }
+
+.breadcrumbs .disabled {
+  opacity: .5;
+  cursor: disabled; }
+
+.breadcrumbs .show-for-sr {
+  display: none; }
+
+.table-view--drilldown {
+  transition: all .4s;
+  border-top: none;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+      -ms-flex-direction: column;
+          flex-direction: column; }
+  .table-view--drilldown.is-open .drilldown__context:before {
+    -webkit-transform: translateY(-50%);
+            transform: translateY(-50%);
+    font-style: normal;
+    font-weight: normal;
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    color: #ccc;
+    line-height: 28px;
+    height: 28px;
+    font-size: 28px;
+    font-family: FontAwesome;
+    content: ""; }
+  .table-view--drilldown.is-open .drilldown__menu {
+    background-color: crimson;
+    opacity: 1; }
+  .table-view--drilldown .table-view__menu {
+    opacity: 0; }
+    .table-view--drilldown .table-view__menu a {
+      line-height: 44px; }
+  .table-view--drilldown .table-view__context {
+    position: relative;
+    padding: 1rem;
+    background: #eee;
+    border-bottom: 1px solid #ccc;
+    cursor: pointer;
+    display: block;
+    box-sizing: border-box;
+    overflow: hidden;
+    -webkit-user-select: none;
+       -moz-user-select: none;
+        -ms-user-select: none;
+            user-select: none; }
+    .table-view--drilldown .table-view__context:before {
+      -webkit-transform: translateY(-50%);
+              transform: translateY(-50%);
+      font-style: normal;
+      font-weight: normal;
+      position: absolute;
+      right: 12px;
+      top: 50%;
+      color: #ccc;
+      line-height: 28px;
+      height: 28px;
+      font-size: 28px;
+      font-family: FontAwesome;
+      content: ""; }
+  .table-view--drilldown .is-drilldown {
+    position: relative;
+    overflow: auto;
+    width: 100%; }
+    .table-view--drilldown .is-drilldown .js-drilldown-back a:before {
+      content: '';
+      left: 0; }
+    .table-view--drilldown .is-drilldown li {
+      display: block !important;
+      cursor: pointer;
+      margin: 0;
+      padding: 0; }
+      .table-view--drilldown .is-drilldown li a {
+        position: relative;
+        display: block;
+        width: 100%;
+        margin: 0;
+        padding: 0; }
+        .table-view--drilldown .is-drilldown li a:before {
+          -webkit-transform: translateY(-50%);
+                  transform: translateY(-50%);
+          font-style: normal;
+          font-weight: normal;
+          position: absolute;
+          right: 12px;
+          top: 50%;
+          color: #ccc;
+          line-height: 28px;
+          height: 28px;
+          font-size: 28px;
+          font-family: FontAwesome;
+          content: ""; }
+  .table-view--drilldown .is-drilldown-submenu {
+    position: absolute;
+    top: 0;
+    left: 100%;
+    z-index: -1;
+    height: 100%;
+    width: 100%;
+    background: #fff;
+    transition: -webkit-transform 0.14s linear;
+    transition: transform 0.14s linear; }
+    .table-view--drilldown .is-drilldown-submenu.is-active {
+      z-index: 1;
+      display: block;
+      -webkit-transform: translateX(-100%);
+              transform: translateX(-100%); }
+    .table-view--drilldown .is-drilldown-submenu.is-closing {
+      -webkit-transform: translateX(100%);
+              transform: translateX(100%); }
+  .table-view--drilldown .is-drilldown-submenu-parent > a {
+    position: relative; }
+    .table-view--drilldown .is-drilldown-submenu-parent > a::after {
+      position: absolute;
+      top: 50%;
+      margin-top: -6px; }
+  .table-view--drilldown .js-drilldown-back > a::before {
+    border-left-width: 0;
+    display: inline-block;
+    vertical-align: middle;
+    margin-right: .75rem; }
+
+/*
+ * Copyright (c) 2016 GE Global Research. All rights reserved.
+ *
+ * The copyright to the computer software herein is the property of
+ * GE Global Research. The software may be used and/or copied only
+ * with the written permission of GE Global Research or in accordance
+ * with the terms and conditions stipulated in the agreement/contract
+ * under which the software has been supplied.
+ */
 .table-row {
   min-height: 44px;
   -webkit-align-self: center;
