@@ -1,24 +1,27 @@
-@import 'px-mobile-design/sass/_variables';
+//@import 'px-mobile-design/sass/_variables';
+@import 'px-spacing-design/_trumps.spacing.scss';
+@import 'px-colors-design/_settings.colors.scss';
+@import "px-functions-design/_tools.functions.scss";
 /// Type
 $font-family-default                    : "GE Inspira Sans", sans-serif !default;
 /// @access private
-$font-size-default                      : 1rem !default;
+$font-size-default                      : calculateRem(16px) !default;
 /// @access private
 $font-weight                            : 500 !default;
 ///
 $table-row-font-color                   : $black;
 ///
-$table-row-font-size                    : 1.1rem;
+$table-row-font-size                    : calculateRem(16px);
 ///
 $table-row-border-color                 : $gray5;
 ///
 $table-row-background-color             : transparent;
 ///
-$table-row-active-background-color      : $select-default;
+$table-row-active-background-color      : $select-blue-default;
 ///
-$table-row-hover-background-color       : $select-hover;
+$table-row-hover-background-color       : $select-blue-hover;
 ///
-$table-row-selected-background-color    : $select-pressed;
+$table-row-selected-background-color    : $select-blue-pressed;
 ///
 $table-row-nav-right-icon               : '\f105';
 ///
@@ -40,15 +43,15 @@ $table-row-chevron-icon-color           : $gray5;
 ///
 $table-row-detail-icon                  : '\f05a';
 ///
-$table-row-detail-icon-color            : $select-default;
+$table-row-detail-icon-color            : $select-blue-default;
 ///
 $table-row-header-background-color      : $gray3;
 ///
 $table-row-header-font-color            : $black;
 ///
-$table-row-header-font-size             : 16px;
+$table-row-header-font-size             : calculateRem(17px);
 ///
-$table-row-header-padding               : 0.5rem 0;
+$table-row-header-padding               : $inuit-base-spacing-unit--tiny;
 ///
 $table-row-header-text-transform        : uppercase;
 ///
@@ -56,11 +59,11 @@ $table-row-checkbox-font-color          : $white;
 ///
 $table-row-checkbox-border-color        : $gray5;
 ///
-$table-row-checkbox-checked-border-color: $select-pressed;
+$table-row-checkbox-checked-border-color: $select-blue-pressed;
 ///
-$table-row-checkbox-background-color    : $select-default;
+$table-row-checkbox-background-color    : $select-blue-default;
 ///
-$table-view-responsive-row-width        : 200px;
+$table-view-responsive-row-width        : calculateRem(200px);
 ///
 $table-view-responsive-row-gutters      : 0;
 ///

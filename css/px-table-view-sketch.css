@@ -1,4 +1,51 @@
 @charset "UTF-8";
+/**
+ * Margin and padding helper classes. Use these to tweak layout on a micro
+ * level.
+ *
+ * `.u-(m|p)(t|r|b|l|h|v)(-|+|0) {}` = utility - margin/padding top/right/bottom/left/horizontal/vertical less/more/none
+ */
+/*------------------------------------*    #PX-COLORS-DESIGN
+\*------------------------------------*/
+/**
+ * Brand Colors
+ */
+/**
+     * Primary
+     */
+/**
+     * Light
+     */
+/**
+     * Dark
+     */
+/**
+ * Monochromatic (gray10 is darkest, gray1 is lightest)
+ */
+/**
+ * Define grey = gray to avoid dev typos
+ */
+/**
+ * Buttons
+ */
+/**
+ * Selection
+ */
+/**
+ * Alerts
+ */
+/**
+ * Data Visualization
+ */
+/**
+     * Basic
+     */
+/**
+     * Light
+     */
+/**
+     * Dark
+     */
 /*
  * Copyright (c) 2016 GE Global Research. All rights reserved.
  *
@@ -15,8 +62,8 @@
           align-self: center;
   line-height: 44px;
   width: 100%;
-  font-size: 1.1rem;
-  font-size: var(--table-row-font-size, 1.1rem);
+  font-size: 1.0666666667rem;
+  font-size: var(--table-row-font-size, 1.0666666667rem);
   border-color: #b1b1bc;
   border-color: var(--table-row-border-color, #b1b1bc);
   box-sizing: border-box;
@@ -84,9 +131,9 @@
   .table-row--flush {
     line-height: normal; }
   .table-row--header {
-    padding: 0.5rem 0;
+    padding: 0.3333333333rem;
     box-sizing: border-box;
-    font-size: 16px;
+    font-size: 1.1333333333rem;
     font-weight: 500;
     background-color: #e4e4ea;
     color: black;
@@ -536,39 +583,39 @@
           -ms-user-select: none;
               user-select: none;
       transition: background-color .2s linear;
-      background-color: #DE2533;
+      background-color: #e32533;
       border: none;
       outline: none; }
       .table-row__actions__button--delete:active {
-        background-color: #88151d; }
+        background-color: #90121c; }
       .table-row__actions__button--delete:hover {
-        background-color: #9f1822; }
+        background-color: #a61520; }
     .table-row__actions__button--flag {
       -webkit-user-select: none;
          -moz-user-select: none;
           -ms-user-select: none;
               user-select: none;
       transition: background-color .2s linear;
-      background-color: #F8A725;
+      background-color: #ff9821;
       border: none;
       outline: none; }
       .table-row__actions__button--flag:active {
-        background-color: #b16f06; }
+        background-color: #ba6400; }
       .table-row__actions__button--flag:hover {
-        background-color: #ca7f06; }
+        background-color: #d47100; }
     .table-row__actions__button--more {
       -webkit-user-select: none;
          -moz-user-select: none;
           -ms-user-select: none;
               user-select: none;
       transition: background-color .2s linear;
-      background-color: #3693F8;
+      background-color: #005cb9;
       border: none;
       outline: none; }
       .table-row__actions__button--more:active {
-        background-color: #0760c1; }
+        background-color: #002953; }
       .table-row__actions__button--more:hover {
-        background-color: #086cda; }
+        background-color: #00366d; }
     .table-row__actions__button--info {
       -webkit-user-select: none;
          -moz-user-select: none;
@@ -696,7 +743,7 @@
       width: 12px;
       height: 6px;
       background: transparent;
-      border: 3px solid #FFFFFF;
+      border: 3px solid white;
       border-width: 2px;
       border-top: none;
       border-right: none;
@@ -773,7 +820,7 @@
       bottom: 0;
       padding: 0;
       border: 0;
-      opacity: .001;
+      opacity: 0.001;
       z-index: 1;
       vertical-align: top;
       outline: none;
@@ -788,7 +835,7 @@
       margin-top: -6px;
       top: 0;
       left: 0;
-      transition: all .2s linear; }
+      transition: all 0.2s linear; }
     .table-view .switch__toggle {
       background-color: #ddd;
       position: absolute;
@@ -798,7 +845,7 @@
       bottom: 0;
       border-radius: 30px;
       transition-property: all;
-      transition-duration: .35s;
+      transition-duration: 0.35s;
       transition-timing-function: ease-out; }
       .table-view .switch__toggle:before {
         box-sizing: border-box;
@@ -812,7 +859,7 @@
         left: 2px;
         top: 2px;
         transition-property: all;
-        transition-duration: .35s;
+        transition-duration: 0.35s;
         transition-timing-function: cubic-bezier(0.5, 1.6, 0.5, 1); }
     .table-view .switch input:checked + .toggle {
       background-color: #4cd964; }
@@ -823,7 +870,7 @@
       -webkit-transform: translateX(0px);
               transform: translateX(0px); }
     .table-view .switch input:disabled + .toggle {
-      opacity: .3;
+      opacity: 0.3;
       cursor: default;
       pointer-events: none; }
     .table-view .switch.table-row {
@@ -853,27 +900,27 @@
     margin-left: 0;
     margin-top: 0; }
     .table-view--responsive .table-row {
-      -webkit-flex: 1 0 200px;
-          -ms-flex: 1 0 200px;
-              flex: 1 0 200px;
+      -webkit-flex: 1 0 13.3333333333rem;
+          -ms-flex: 1 0 13.3333333333rem;
+              flex: 1 0 13.3333333333rem;
       margin-left: 0;
       margin-top: 0; }
-      @media (min-width: 400px) {
+      @media (min-width: 26.6666666667rem) {
         .table-view--responsive .table-row {
           max-width: calc(50% - 0); } }
-      @media (min-width: 600px) {
+      @media (min-width: 40rem) {
         .table-view--responsive .table-row {
           max-width: calc(33.3333333333% - 0); } }
-      @media (min-width: 800px) {
+      @media (min-width: 53.3333333333rem) {
         .table-view--responsive .table-row {
           max-width: calc(25% - 0); } }
-      @media (min-width: 1000px) {
+      @media (min-width: 66.6666666667rem) {
         .table-view--responsive .table-row {
           max-width: calc(20% - 0); } }
-      @media (min-width: 1200px) {
+      @media (min-width: 80rem) {
         .table-view--responsive .table-row {
           max-width: calc(16.6666666667% - 0); } }
-      @media (min-width: 1200px) {
+      @media (min-width: 80rem) {
         .table-view--responsive .table-row {
           min-width: calc(16.6666666667% - 0); } }
   .table-view--ptr > .table-row {
