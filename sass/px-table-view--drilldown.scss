@@ -112,7 +112,7 @@ $drilldown-list-background-color: crimson;
     // Applied to the Menu container
     .is-drilldown {
       position: relative;
-      overflow: initial;
+      overflow: hidden;
       width   : 100%;
 
       .js-drilldown-back a:before {
