@@ -28,7 +28,8 @@
     "px-spacing-responsive-design": "^0.3.7",
     "polymer-font-awesome": "https://github.com/mdwragg/polymer-font-awesome.git#^0.0.5",
     "fastclick": "^1.0.6",
-    "hammerjs": "^2.0.8"
+    "hammerjs": "^2.0.8",
+    "iron-selector": "PolymerElements/iron-selector#^1.5.1"
   },
   "devDependencies": {
     "px-card": "latest",
