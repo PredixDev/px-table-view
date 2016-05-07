@@ -358,9 +358,9 @@
     padding: 0;
     line-height: normal;
     white-space: normal; }
-  .table-row > *:not(select),
+  .table-row > *:not(input),
   .table-row > *:not(textarea),
-  .table-row > *:not(input) {
+  .table-row > *:not(select) {
     -webkit-user-select: none;
        -moz-user-select: none;
         -ms-user-select: none;
@@ -399,21 +399,27 @@
     border-bottom: none;
     min-height: 24px;
     line-height: 24px; }
-  .table-row--tappable:active {
-    transition: none;
-    background: #0a9ec1; }
-  .table-row--tappable:active {
-    color: #fff;
-    transition: none;
-    background: #0a9ec1; }
-  .table-row--tappable:hover {
-    transition: none; }
-  .table-row--tappable:active .table-row__label {
-    color: #fff; }
-  .table-row--tappable:active .table-row__title {
-    color: #fff !important; }
-  .table-row--tappable:active .table-row__body {
-    color: #fff !important; }
+  .table-row--tappable {
+    cursor: pointer;
+    -webkit-user-select: none;
+       -moz-user-select: none;
+        -ms-user-select: none;
+            user-select: none; }
+    .table-row--tappable:active {
+      transition: none;
+      background: #0a9ec1; }
+    .table-row--tappable:active {
+      color: #fff;
+      transition: none;
+      background: #0a9ec1; }
+    .table-row--tappable:hover {
+      transition: none; }
+    .table-row--tappable:active .table-row__label {
+      color: #fff; }
+    .table-row--tappable:active .table-row__title {
+      color: #fff !important; }
+    .table-row--tappable:active .table-row__body {
+      color: #fff !important; }
   .table-row--chevron {
     transition: background-color 0.2s linear;
     overflow: hidden; }

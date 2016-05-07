@@ -44,9 +44,9 @@
     white-space: normal;
   }
   ///
-   > *:not(select),
+   > *:not(input),
    > *:not(textarea),
-  > *:not(input) {
+  > *:not(select) {
     user-select: none;
   }
   ///
@@ -97,6 +97,9 @@
   }
   ///.table-row--tappable
   @include modifier ('tappable') {
+    cursor     : pointer;
+    user-select: none;
+
     &:active {
       transition: none;
       background: $table-row-active-background-color;
