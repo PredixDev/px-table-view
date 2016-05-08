@@ -704,7 +704,6 @@
       display: block; }
 
 .table-row__content {
-  transition: all 4s;
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;

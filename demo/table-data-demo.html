@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+
+  <title>px-table-view / table-data-demo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <link rel='stylesheet prefetch' href='//predixdev.github.io/px-library-design/css/style.css'>
+
+  <script src="../../webcomponentsjs/webcomponents.js"></script>
+
+  <!-- TODO: pxm components -->
+  <link rel="import" href="../px-table-view.html">
+
+  <link rel="import" href="../../px-navbar/px-navbar.html" />
+  <link rel="import" href="../../iron-ajax/iron-ajax.html" />
+  <link rel="import" href="../../iron-list/iron-list.html" />
+
+  <style media="screen">
+    body {
+      padding-top: 65px;
+    }
+
+    px-navbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 200;
+    }
+
+    #content {
+      overflow-x: auto;
+    }
+
+    .flagged {
+      background-color: orange !important;
+    }
+
+    .deleted {
+      background-color: red !important;
+    }
+
+    .table-row__media--icon:nth-of-type(even) {}
+
+    .table-row__media--icon:nth-child(2n) {
+      color: #dd6b1f;
+    }
+
+    .color-red {
+      color: #da2839 !important;
+    }
+
+    .color-blue {
+      color: #0d5fb7 !important;
+    }
+
+    iron-list {
+      overflow-y: scroll;
+      /* has to be scroll, not auto */
+      -webkit-overflow-scrolling: touch;
+    }
+  </style>
+
+
+</head>
+
+<body unresolved class="viewport viewport--full-height">
+
+  <div id="content" class="">
+    <template id="tableViewTemplate" is="dom-bind">
+      <px-navbar title="iron-list / px-table-view"></px-navbar>
+      <iron-ajax url="./data.json" last-response="{{data}}" auto></iron-ajax>
+      <iron-list id="ironList" items="[[data]]" as="item" class="table-view table-view--small">
+        <template>
+          <px-table-row icon="{{item.icon}}" type="nav-right" title="{{item.title}}"></px-table-row>
+        </template>
+      </iron-list>
+    </template>
+    <script type="text/javascript">
+      var tmpl = document.getElementById('tableViewTemplate');
+      tmpl.handleSelect = function(e) {
+        console.log('handleSelect', e);
+      };
+      tmpl.handleMore = function(e) {
+        console.log('handleMore', e);
+      };
+      tmpl.handleFlag = function(e) {
+        console.log('handleFlag', e);
+        $(e.currentTarget).parents('.table-row').toggleClass('flagged');
+      };
+      tmpl.handleDelete = function(e) {
+        console.log('handleDelete', e);
+        $(e.currentTarget).parents('.table-row').toggleClass('deleted');
+      };
+      document.addEventListener('WebComponentsReady', function() {
+        console.log('WebComponentsReady');
+        setTimeout(function() {
+          console.log('trigging resize');
+          document.querySelector('iron-list').fire('iron-resize');
+
+        }, 100);
+      });
+    </script>
+  </div>
+</body>
+
+</html>

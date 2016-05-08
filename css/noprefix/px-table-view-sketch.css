@@ -632,7 +632,6 @@
       display: block; }
 
 .table-row__content {
-  transition: all 4s;
   display: flex;
   flex-direction: column;
   align-self: center;

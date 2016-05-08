@@ -1,9 +1,19 @@
 <link rel="import" href="../polymer/polymer.html" />
+<link rel="import" href="../iron-list/iron-list.html">
 <link rel="import" href="../iron-selector/iron-multi-selectable.html">
 <link rel="import" href="px-table-view-behavior.html" />
 <link rel="import" href="px-table-view-drilldown-behavior.html" />
 <link rel="import" href="px-table-row.html" />
 
+<script src="../fastclick/lib/fastclick.js"></script>
+<script type="text/javascript">
+  if ('addEventListener' in document) {
+    document.addEventListener('DOMContentLoaded', function() {
+      FastClick.attach(document.body);
+      console.warn('table-view', 'attaching fastclick!');
+    }, false);
+  }
+</script>
 <!--
 To style this component you can do the following:
 
@@ -67,7 +77,13 @@ To use this component with iron list you can do the following:
         padding: 0;
       }
     </style>
-
+    <template id="ironList" is="dom-if" if="{{tableData}}">
+      <iron-list id="ironList" items="[[tableData]]" as="item">
+        <template>
+          <content select="px-table-row"></content>
+        </template>
+      </iron-list>
+    </template>
     <content select="*"></content>
   </template>
   <script>
