@@ -13,6 +13,7 @@
   <!-- TODO: pxm components -->
   <link rel="import" href="../px-table-view.html">
 
+  <link rel="import" href="//predixdev.github.io/px-design-system/bower_components/px-design-system/px-design-system-theme.html" />
   <link rel="import" href="../../px-navbar/px-navbar.html" />
   <link rel="import" href="../../iron-ajax/iron-ajax.html" />
   <link rel="import" href="../../iron-list/iron-list.html" />
@@ -61,22 +62,39 @@
       /* has to be scroll, not auto */
       -webkit-overflow-scrolling: touch;
     }
+
+    .box {
+      flex: 1 0 300px;
+      background: #fff;
+    }
   </style>
 
 
 </head>
 
-<body unresolved class="viewport viewport--full-height">
+<body unresolved class=" viewport--full-height">
 
-  <div id="content" class="">
+  <div id="content" class="flex flex--col flex--stretch">
     <template id="tableViewTemplate" is="dom-bind">
       <px-navbar title="iron-list / px-table-view"></px-navbar>
       <iron-ajax url="./data.json" last-response="{{data}}" auto></iron-ajax>
-      <iron-list id="ironList" items="[[data]]" as="item" class="table-view table-view--small">
-        <template>
-          <px-table-row icon="{{item.icon}}" type="nav-right" title="{{item.title}}"></px-table-row>
-        </template>
-      </iron-list>
+
+      <div class="flex flex--row flex--stretch">
+        <div class="box">
+          <iron-list id="ironList" items="[[data]]" as="item" class="table-view table-view--small">
+            <template>
+              <px-table-row icon="{{item.icon}}" type="nav-right" title="{{item.title}}"></px-table-row>
+            </template>
+          </iron-list>
+        </div>
+        <div class="box">
+          <px-table-view id="tableview2" table-data="[[data]]">
+
+            <px-table-row icon="{{item.icon}}" type="nav-right" title="{{item.title}}"></px-table-row>
+
+            <px-table-view>
+        </div>
+      </div>
     </template>
     <script type="text/javascript">
       var tmpl = document.getElementById('tableViewTemplate');
