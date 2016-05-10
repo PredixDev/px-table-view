@@ -77,14 +77,19 @@ To use this component with iron list you can do the following:
         padding: 0;
       }
     </style>
-    <!--
+
     <template id="ironList" is="dom-if" if="{{tableData}}">
+      <template id="tableRowTemplate" items="{{tableData}}" is="dom-repeat">
+        <px-table-row item="{{item}}"></px-table-row>
+      </template>
+      <!--
       <iron-list id="ironList" items="[[tableData]]" as="item">
         <template>
           <content select="px-table-row"></content>
         </template>
       </iron-list>
-    </template>-->
+    -->
+    </template>
     <content select="*"></content>
   </template>
   <script>

@@ -615,30 +615,33 @@
           <script type="text/javascript">
             $('.btn-add-responsive').bind('click', function(e) {
               var $table = $('#table-responsive');
-              $table.append($table.find('#row1').clone());
+              $table.append($table.find(':first-child').clone());
             });
           </script>
-          <ul id="table-responsive" class="table-view table-view--small table-view--responsive">
+          <div id="table-responsive" class="table-view table-view--small table-view--responsive">
 
-            <li id="row1">
-              <px-table-row type="tappable">
+
+            <px-table-row type="tappable">
+              <div class="table-row__content">
                 <h3 class="table-row__title epsilon">Lorem Ipsum</h3>
                 <div class="table-row__body"><span class="beta">123.4</span> <span class="delta muted">AB</span></div>
-              </px-table-row>
-            </li>
-            <li>
-              <px-table-row type="tappable">
+              </div>
+            </px-table-row>
+            <px-table-row type="tappable">
+              <div class="table-row__content">
                 <h3 class="table-row__title epsilon">Lorem Ipsum</h3>
                 <div class="table-row__body"><span class="beta">123.4</span> <span class="delta muted">AB</span></div>
-              </px-table-row>
-            </li>
-            <li>
-              <px-table-row type="tappable">
+              </div>
+            </px-table-row>
+            <px-table-row type="tappable">
+              <div class="table-row__content">
                 <h3 class="table-row__title epsilon">Lorem Ipsum</h3>
                 <div class="table-row__body"><span class="beta">123.4</span> <span class="delta muted">AB</span></div>
-              </px-table-row>
-            </li>
-          </ul>
+              </div>
+            </px-table-row>
+
+
+          </div>
         </template>
       </demo-snippet>
       <h2>Default - Modifier - Flush</h2>
@@ -851,9 +854,10 @@
                 <p class="table-row__body"> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minus, ab ducimus sit tempore qui aut, dolorem repellat suscipit molestias dignissimos expedita nisi iure veniam voluptatibus fugiat.
                 </p>
               </div>
-              <px-table-row title="John Doe" label1="11/02/12 1:32 PM" body="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minus, ab ducimus sit tempore qui aut, dolorem repellat suscipit molestias dignissimos expedita nisi iure veniam voluptatibus fugiat.">
-              </px-table-row>
+
             </li>
+            <px-table-row title="John Doe" label1="11/02/12 1:32 PM" body="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minus, ab ducimus sit tempore qui aut, dolorem repellat suscipit molestias dignissimos expedita nisi iure veniam voluptatibus fugiat.">
+            </px-table-row>
           </ul>
         </template>
       </demo-snippet>

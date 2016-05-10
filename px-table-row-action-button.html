@@ -1,4 +1,4 @@
-<link rel="import" href="../polymer/polymer.html"/>
+<link rel="import" href="../polymer/polymer.html" />
 <!--
 To use this component:
 
@@ -19,7 +19,6 @@ To use this component:
         min-height: 44px;
         min-width: 44px;
       }
-
     </style>
     <div type="button" name="button">
       <template is="dom-if" if="{{icon}}">
@@ -28,8 +27,8 @@ To use this component:
       <template is="dom-if" if="{{label}}">
         <span>{{label}}</span>
       </template>
+      <content select="*"></content>
     </div>
-
   </template>
 </dom-module>
 <script>
@@ -49,13 +48,12 @@ To use this component:
         type: String
       }
     },
-    attached: function () {
+    attached: function() {
       var self = this;
-      this.async(function () {
+      this.async(function() {
         self.toggleClass('table-row__button');
         self.toggleClass('table-row__button--' + this.type, true);
       });
     }
   });
-
 </script>

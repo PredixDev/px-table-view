@@ -1,4 +1,4 @@
-<link rel="import" href="../polymer/polymer.html"/>
+<link rel="import" href="../polymer/polymer.html" />
 <!--
 To use this component:
 
@@ -16,9 +16,8 @@ To use this component:
   <template>
     <style>
       :host {
-
+        display: block;
       }
-
     </style>
     <content select=".table-row__button, px-table-row-action-button"></content>
   </template>
@@ -36,13 +35,12 @@ To use this component:
         type: String
       }
     },
-    attached: function () {
+    attached: function() {
       var self = this;
-      this.async(function () {
+      this.async(function() {
         self.toggleClass('table-row__actions');
         self.toggleClass('table-row__actions--' + this.position, true);
       });
     }
   });
-
 </script>
