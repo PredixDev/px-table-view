@@ -6,16 +6,17 @@
   if (!window.Hammer) {
     throw new Error('Must provide hammer.js');
   }
-  var reqAnimationFrame = (function() {
-    return window[Hammer.prefixed(window, "requestAnimationFrame")] || function(callback) {
+  var reqAnimationFrame = (function () {
+    return window[Hammer.prefixed(window, "requestAnimationFrame")] || function (callback) {
       setTimeout(callback, 1000 / 60);
     };
   })();
 
   function dirProp(direction, hProp, vProp) {
-    return (direction & Hammer.DIRECTION_HORIZONTAL) ? hProp : vProp;
+    return (direction & Hammer.DIRECTION_HORIZONTAL)
+      ? hProp
+      : vProp;
   }
-
 
   /**
   Swipe List Item Actions
@@ -28,8 +29,6 @@
     console.log('SwipeActions.constructor', container, direction);
 
     console.log('Container children', container.children);
-
-
 
     this.actions = container.queryEffectiveChildren('px-table-row-actions');
     console.warn('SwipeActions', 'actions', this.actions);
@@ -46,12 +45,7 @@
 
     this.currentIndex = 0;
     this.hammer = new Hammer.Manager(this.container);
-    this.hammer.add(new Hammer.Pan({
-      direction: this.direction,
-      threshold: 10
-    }));
-
-
+    this.hammer.add(new Hammer.Pan({direction: this.direction, threshold: 10}));
 
     this.hammer.on("panstart panmove panend pancancel", Hammer.bindFn(this.onPan, this));
     console.log('SwipeActions', this);
@@ -59,7 +53,7 @@
   }
 
   SwipeActions.prototype = {
-    show: function(showIndex, percent, animate) {
+    show: function (showIndex, percent, animate) {
       if (!this.panes.length) {
         this.panes.length = 2;
       }
@@ -78,7 +72,9 @@
         }
       }
 
-      var paneIndex, pos, translate;
+      var paneIndex,
+        pos,
+        translate;
 
       for (paneIndex = 0; paneIndex < this.panes.length; paneIndex++) {
         pos = (this.actionsSize / 100) * (((paneIndex - showIndex) * 100) + percent);
@@ -92,32 +88,26 @@
 
         //this.container.transform(translate);
         this.actions.transform(translate);
-        //this.panes[paneIndex].style.transform = translate;
-        //this.panes[paneIndex].style.mozTransform = translate;
-        //this.panes[paneIndex].style.webkitTransform = translate;
+        //this.panes[paneIndex].style.transform = translate; this.panes[paneIndex].style.mozTransform = translate; this.panes[paneIndex].style.webkitTransform = translate;
 
       }
       //console.log('translate', translate);
 
-
-
       this.currentIndex = showIndex;
 
-      console.log('SwipeActions.show',
-        'translate',
-        translate,
-        'showIndex', showIndex,
-        'positino', pos, 'percent', percent, 'animate', animate);
+      console.log('SwipeActions.show', 'translate', translate, 'showIndex', showIndex, 'positino', pos, 'percent', percent, 'animate', animate);
 
     },
-    onPan: function(ev) {
+    onPan: function (ev) {
       var delta = dirProp(this.direction, ev.deltaX, ev.deltaY);
       var percent = (100 / this.actionsSize) * delta;
       var animate = false;
 
       if (ev.type == 'panend' || ev.type == 'pancancel') {
         if (Math.abs(percent) > 5 && ev.type == 'panend') {
-          this.currentIndex += (percent < 0) ? 1 : -1;
+          this.currentIndex += (percent < 0)
+            ? 1
+            : -1;
         }
         percent = 0;
         animate = true;
@@ -137,13 +127,19 @@
     });
   }, 2000);
   */
-  var TableRowActionsSwipeBehavior = {
-    created: function() {
+
+  /**
+   * Behavior that manages the swipe actions
+   *
+   * @polymerBehavior
+   */
+  var pxTableRowActionsSwipeBehavior = {
+    created: function () {
       if (this.actionable) {
         console.log('Before swipe handlers');
       }
     },
-    attached: function() {
+    attached: function () {
       if (this.actionable) {
         console.log('Adding swipe handlers');
         this._actions = new SwipeActions(this, Hammer.DIRECTION_HORIZONTAL);
@@ -151,7 +147,4 @@
 
     }
   };
-  var px = window.px || {};
-  px.behaviors = px.behaviors || {};
-  px.behaviors.TableRowActionsSwipeBehavior = TableRowActionsSwipeBehavior;
 </script>

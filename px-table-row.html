@@ -1,8 +1,8 @@
 <link rel="import" href="../polymer/polymer.html"/>
 <link rel="import" href="px-table-row-actions.html">
 <link rel="import" href="px-table-row-action-button.html">
-<link rel="import" href="px-table-row-switch.html" />
-<link rel="import" href="px-table-row-checkbox.html" />
+<link rel="import" href="px-table-row-switch.html"/>
+<link rel="import" href="px-table-row-checkbox.html"/>
 <link rel="import" href="px-table-row-swipe-actions-behavior.html"/>
 
 <!--
@@ -56,10 +56,11 @@ To style this component you can do the following:
     }
 
     :host .animate {
-      -webkit-transition: -webkit-transform .4s cubic-bezier(.10, .70, .10, 1) .5s;
-      transition: transform .4s cubic-bezier(.10, .70, .10, 1) .5s;
+      -webkit-transition: -webkit-transform 0.4s cubic-bezier(.10, .70, .10, 1) 0.5s;
+      transition: transform 0.4s cubic-bezier(.10, .70, .10, 1) 0.5s;
       will-change: translate;
     }
+
   </style>
   <template>
     <template is="dom-if" if="{{editMode}}">
@@ -103,8 +104,7 @@ To style this component you can do the following:
         <div class="table-row__body">{{body}}</div>
       </template>
 
-
-  <content id="content" select=".table-row__content"></content>
+      <content id="content" select=".table-row__content"></content>
     </div>
 
     <content id="actions" select="px-table-row-actions"></content>
@@ -112,9 +112,7 @@ To style this component you can do the following:
   <script>
     Polymer({
       is: 'px-table-row',
-      behaviors: [
-        TableRowActionsSwipeBehavior
-      ],
+      behaviors: [pxTableRowActionsSwipeBehavior],
       properties: {
         //The list item object.
         item: {
