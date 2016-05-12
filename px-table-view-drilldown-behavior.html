@@ -331,12 +331,8 @@ $(function() {
 	var dd = new Drilldown('.drilldown__menu');
 });
 */
-</script>
-<script type="text/javascript">
-var px = window.px || {};
-px.behaviors = px.behaviors || {};
 
-var pxTableRowDrilldownBehavior = {
+var pxTableViewDrilldownBehavior = {
   ready: function() {
     console.warn(this.tagName, 'pxTableRowDrilldownBehavior created!', this);
   },
@@ -347,5 +343,5 @@ var pxTableRowDrilldownBehavior = {
     console.warn(this.tagName, 'pxTableRowDrilldownBehavior detached!', this);
   }
 };
-px.behaviors.TableViewDrilldownBehavior = pxTableRowDrilldownBehavior;
+
 </script>

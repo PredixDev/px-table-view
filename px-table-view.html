@@ -1,11 +1,15 @@
 <script src="../fastclick/lib/fastclick.js"></script>
+
 <link rel="import" href="../polymer/polymer.html"/>
 <link rel="import" href="../iron-list/iron-list.html">
 <link rel="import" href="../iron-selector/iron-multi-selectable.html">
+
 <link rel="import" href="px-table-view-behavior.html"/>
+<link rel="import" href="px-table-view-drilldown-behavior.html" />
+
 <link rel="import" href="px-table-row.html"/>
 <!--
-<link rel="import" href="px-table-view-drilldown-behavior.html" />
+
 -->
 
 <script type="text/javascript">
@@ -99,8 +103,9 @@ To use this component with iron list you can do the following:
     Polymer({
       is: 'px-table-view',
       behaviors: [
-        Polymer.IronMultiSelectableBehavior, pxTableViewBehavior
-        //pxTableViewDrilldownBehavior
+        Polymer.IronMultiSelectableBehavior,
+        pxTableViewBehavior,
+        pxTableViewDrilldownBehavior
       ],
       properties: {
         //The list items data

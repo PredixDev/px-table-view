@@ -1,10 +1,10 @@
 <!--
 <script src="https://cdnjs.cloudflare.com/ajax/libs/hammer.js/2.0.6/hammer.min.js"></script>
 -->
-<script src="../hammerjs/hammer.js"></script>
+<script src="../hammerjs/hammer.min.js"></script>
 <script type="text/javascript">
   if (!window.Hammer) {
-    throw new Error('Must provide hammer.js');
+    console.error('Must provide hammer.js');
   }
   var reqAnimationFrame = (function () {
     return window[Hammer.prefixed(window, "requestAnimationFrame")] || function (callback) {
