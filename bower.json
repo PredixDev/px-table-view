@@ -21,7 +21,7 @@
     "test"
   ],
   "dependencies": {
-    "polymer": "latest",
+    "polymer": "~1.4.0",
     "px-theme": "https://github.com/PredixDev/px-theme.git#~0.4.0",
     "iron-list": "PolymerElements/iron-list#^1.2.8",
     "iron-swipeable-container": "PolymerElements/iron-swipeable-container#^1.0.2",
