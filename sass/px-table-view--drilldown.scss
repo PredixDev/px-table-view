@@ -13,9 +13,9 @@
  * under which the software has been supplied.
  */
 ///
+@import "variables";
 @import "mixins";
 ///
-@import "variables";
 @mixin icon($icon) {
   &:before {
     transform  : translateY(-50%);

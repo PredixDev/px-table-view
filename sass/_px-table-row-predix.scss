@@ -1,8 +1,9 @@
 /// @group px-table-view
 /// Mixins
+@import "variables";
 @import "mixins";
 ///
-@import "variables";
+
 ///
 @import "px-table-row--actions";
 /// Table Row
@@ -43,9 +44,9 @@
     white-space: normal;
   }
   ///
-   > *:not(input),
+   > *:not(select),
    > *:not(textarea),
-  > *:not(select) {
+  > *:not(input) {
     user-select: none;
   }
   ///

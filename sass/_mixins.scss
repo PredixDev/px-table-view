@@ -1,10 +1,9 @@
 /// @group px-table-view
-@charset "utf-8";
 
 ///Variables
 /// @group px-table-view
-@import "variables";
-@import "px-mobile-mixin-design/mixins";
+@import "_variables.scss";
+@import "px-mobile-design/sass/_mixins.scss";
 /// @access public
 /// @group px-table-view
 @mixin pxFonts() {

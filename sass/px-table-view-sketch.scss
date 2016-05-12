@@ -1,9 +1,10 @@
 @charset "utf-8";
+@import "_variables.scss";
 @import "mixins";
 ///
-@import "variables";
+
 ///
-@import "px-mobile-mixin-design/mixins";
+@import "px-mobile-design/sass/index.scss";
 
 // Generic
 //@import "px-normalize-design/_generic.normalize.scss";
