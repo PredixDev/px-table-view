@@ -74,17 +74,14 @@ To use this component with iron list you can do the following:
   <template strip-whitespace>
     <style>
       :host {
-        display: block;
-        min-height: 20vh;
-      }
 
+      }
       :host ul {
         margin: 0;
         padding: 0;
       }
 
     </style>
-
     <template id="ironList" is="dom-if" if="{{tableData}}">
       <template id="tableRowTemplate" items="{{tableData}}" is="dom-repeat">
         <px-table-row item="{{item}}"></px-table-row>
@@ -97,7 +94,10 @@ To use this component with iron list you can do the following:
       </iron-list>
     -->
     </template>
-    <content select="*"></content>
+
+
+    <content id="content" select="template"></content>
+
   </template>
   <script>
     Polymer({
@@ -125,6 +125,13 @@ To use this component with iron list you can do the following:
           type: Boolean,
           value: false
         }
+      },
+      attached: function(){
+        var children = this.children;
+        console.log('tableview children', children);
+
+        console.log('Content children', this.getEffectiveChildren());
+        console.log('Content children', this.$.content.children);
       }
     });
   </script>

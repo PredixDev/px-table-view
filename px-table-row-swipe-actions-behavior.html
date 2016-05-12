@@ -136,12 +136,12 @@
   var pxTableRowActionsSwipeBehavior = {
     created: function () {
       if (this.actionable) {
-        console.log('Before swipe handlers');
+      //  console.log('Before swipe handlers');
       }
     },
     attached: function () {
       if (this.actionable) {
-        console.log('Adding swipe handlers');
+      //  console.log('Adding swipe handlers');
         this._actions = new SwipeActions(this, Hammer.DIRECTION_HORIZONTAL);
       }
 
