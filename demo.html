@@ -1,1051 +1,1173 @@
 <html>
 
-<head>
-  <title>px-table-view demo</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-  <script src="../webcomponentsjs/webcomponents.js"></script>
-  <link rel="import" href="../iron-demo-helpers/demo-snippet.html" />
-  <link rel='stylesheet prefetch' href='https://predixdev.github.io/px-library-design/css/style.css'>
-  <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.2/jquery.min.js'></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/fastclick/1.0.6/fastclick.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/hammer.js/2.0.6/hammer.min.js"></script>
-  <script type="text/javascript">
-    if ('addEventListener' in document) {
-      document.addEventListener('DOMContentLoaded', function() {
-        FastClick.attach(document.body);
-      }, false);
-    }
-  </script>
+  <head>
+    <title>px-table-view demo</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <script src="../webcomponentsjs/webcomponents.js"></script>
+    <link rel="import" href="../iron-demo-helpers/demo-snippet.html"/>
 
-  <!-- TODO: Component -->
-  <link rel="import" href="px-table-view.html" />
-  <link rel="import" href="../px-demo-helpers/px-example.html">
-  <link rel="import" href="../iron-ajax/iron-ajax.html" />
-  <link rel="import" href="../iron-list/iron-list.html" />
+    <link rel='stylesheet prefetch' href='https://predixdev.github.io/px-library-design/css/style.css'>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.2/jquery.min.js'></script>
 
-  <!-- TODO: iron-list example -->
 
-  <link rel="stylesheet" href="demo/style.css" />
-  <style media="screen">
-    body {
-      background: #efeff4;
-      overflow: hidden;
-      overflow-y: scroll;
-      overflow-y: auto;
-      -webkit-overflow-scrolling: touch;
-    }
-  </style>
-</head>
 
-<body unresolved>
-  <div class="viewport viewport--full-height">
+    <!-- TODO: Component -->
+    <link rel="import" href="px-table-view.html"/>
+    <link rel="import" href="../px-demo-helpers/px-example.html">
+    <link rel="import" href="../iron-ajax/iron-ajax.html"/>
+    <link rel="import" href="../iron-list/iron-list.html"/>
 
-    <section class="u-mb+">
-      <h1 class="beta">px-table-view</h1>
-      <p>The following are the different variations of the table view.</p>
-      <p> For Table Row examples <a href="mobile-demo.html">visit here.</a></p>
+    <!-- TODO: iron-list example -->
 
-      <ol id="toc" class="list listbare"></ol>
-      <button class="btn-collapse-all btn btn--full"><span>Collapse</span> Examples</button>
-    </section>
+    <link rel="stylesheet" href="demo/style.css"/>
+    <style media="screen">
+      body {
+        background: #efeff4;
+        overflow: hidden;
+        overflow-y: scroll;
+        overflow-y: auto;
+        -webkit-overflow-scrolling: touch;
+      }
 
-    <article class="examples">
-      <h2>Default - Text Label</h2>
-      <demo-snippet>
-        <template>
-          <ol class="table-view">
-            <px-table-row title="Text Label"></px-table-row>
-          </ol>
-        </template>
-      </demo-snippet>
+    </style>
+  </head>
 
-      <h2>Default - Disclosure Indicator</h2>
-      <demo-snippet>
-        <template>
-          <div class="table-view">
-            <px-table-row title="Text Label" type="nav-right"></px-table-row>
-          </div>
-        </template>
-      </demo-snippet>
+  <body unresolved>
+    <div class="viewport viewport--full-height">
 
-      <h2>Default - Detail Disclosure</h2>
-      <demo-snippet>
-        <template>
-          <div class="table-view">
-            <px-table-row title="Text Label" type="detail"></px-table-row>
-          </div>
-        </template>
-      </demo-snippet>
+      <section class="u-mb+">
+        <h1 class="beta">px-table-view</h1>
+        <p>The following are the different variations of the table view.</p>
+        <p>
+          For Table Row examples
+          <a href="mobile-demo.html">visit here.</a>
+        </p>
 
-      <h2>Default - Row Order</h2>
-      <demo-snippet>
-        <template>
-          <div class="table-view">
-            <px-table-row title="Text Label" type="order"></px-table-row>
-          </div>
-        </template>
-      </demo-snippet>
+        <ol id="toc" class="list listbare"></ol>
+        <button class="btn-collapse-all btn btn--full">
+          <span>Collapse</span>
+          Examples</button>
+      </section>
 
-      <h2>Default - Row Delete</h2>
-      <demo-snippet>
-        <template>
-          <ol class="table-view">
-            <li class="table-row table-row--edit">
-              <div class="table-row__content"><span class="table-row__title">Text Label</span></div>
-            </li>
-          </ol>
-        </template>
-      </demo-snippet>
+      <article class="examples">
+        <h2>Default - Text Label</h2>
+        <demo-snippet>
+          <template>
+            <ol class="table-view">
+              <px-table-row title="Text Label"></px-table-row>
+            </ol>
+          </template>
+        </demo-snippet>
 
-      <h2>Default - Delete and Row Order</h2>
-      <demo-snippet>
-        <template>
-          <ol class="table-view">
-            <li class="table-row table-row--order table-row--edit">
-              <div class="table-row__content"><span class="table-row__title">Text Label</span></div>
-            </li>
-          </ol>
-        </template>
-      </demo-snippet>
-
-      <h2>Default - Icon Right</h2>
-      <demo-snippet>
-        <template>
-          <ul class="table-view">
-            <li class="table-row table-row--tappable">
-              <div class="table-row__media table-row__media--icon table-row__media--right"><i class="fa fa-lg fa-info"></i></div>
-              <div class="table-row__content"><span class="table-row__title">Text Label</span></div>
-            </li>
-          </ul>
-        </template>
-      </demo-snippet>
-
-      <h2>Default - Icon Left</h2>
-      <demo-snippet>
-        <template>
-          <ul class="table-view">
-            <li class="table-row table-row--tappable">
-              <div class="table-row__media table-row__media--icon table-row__media--left"><i class="fa fa-lg fa-gear"></i></div>
-              <div class="table-row__content"><span class="table-row__title">Text Label</span></div>
-            </li>
-          </ul>
-        </template>
-      </demo-snippet>
-
-      <h2>Default - Image Left</h2>
-      <demo-snippet>
-        <template>
-          <section class="table-view table-view--small">
-            <div class="table-row table-row--tappable">
-              <div class="table-row__media table-row__media--image table-row__media--left"><img src="http://placehold.it/44" />
-              </div>
-              <div class="table-row__content"><span class="table-row__title">Text Label</span></div>
+        <h2>Default - Disclosure Indicator</h2>
+        <demo-snippet>
+          <template>
+            <div class="table-view">
+              <px-table-row title="Text Label" type="nav-right"></px-table-row>
             </div>
-          </section>
-        </template>
-      </demo-snippet>
+          </template>
+        </demo-snippet>
 
-      <h2>Default - Image Right</h2>
-      <demo-snippet>
-        <template>
-          <ul class="table-view table-view--small">
-            <li class="table-row table-row--tappable">
-              <div class="table-row__media table-row__media--image table-row__media--right"><img src="http://placehold.it/44" />
-              </div>
-              <div class="table-row__content"><span class="table-row__title">Text Label</span></div>
-            </li>
-          </ul>
-        </template>
-      </demo-snippet>
-
-      <h2>Default - Image with Disclosure Indicator</h2>
-      <demo-snippet>
-        <template>
-          <ul class="table-view table-view--small">
-            <li class="table-row table-row--chevron">
-              <div class="table-row__media table-row__media--image"><img src="http://placehold.it/60x60&text=img" /></div>
-              <div class="table-row__content"><span class="table-row__title">Text Label</span></div>
-            </li>
-          </ul>
-        </template>
-      </demo-snippet>
-      <h2>Default - Image with Detail Disclosure</h2>
-      <demo-snippet>
-        <template>
-          <ul class="table-view table-view--small">
-            <li class="table-row table-row--detail">
-              <div class="table-row__media table-row__media--image"><img src="http://placehold.it/60x60&text=img" /></div>
-              <div class="table-row__content"><span class="table-row__title">Text Label</span></div>
-            </li>
-          </ul>
-        </template>
-      </demo-snippet>
-
-      <h2>Default - Image with Description</h2>
-      <demo-snippet>
-        <template>
-          <ul class="table-view table-view--small">
-            <li class="table-row table-row--detail">
-              <div class="table-row__media table-row__media--image"><img src="http://placehold.it/80x80&text=img" /></div>
-              <div class="table-row__content table-row__content--col">
-                <span class="table-row__title">Text Label</span>
-                <span class="table-row__body">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</span>
-              </div>
-            </li>
-          </ul>
-        </template>
-      </demo-snippet>
-
-      <h2>Default - Description with Disclosure Indicator</h2>
-      <demo-snippet>
-        <template>
-          <ul class="table-view table-view--small">
-            <li class="table-row table-row--chevron">
-              <div class="table-row__content table-row__content--col"><span class="table-row__title">Text Label</span> <span class="table-row__body">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</span>
-              </div>
-            </li>
-            <px-table-row type="nav-right" title="Text Label" body="Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."></px-table-row>
-          </ul>
-        </template>
-      </demo-snippet>
-
-      <h2>Default - Description with Detail Disclosure</h2>
-      <demo-snippet>
-        <template>
-          <ul class="table-view table-view--small">
-            <li class="table-row table-row--detail">
-              <div class="table-row__content">
-                <span class="table-row__title">Text Label</span> <span class="table-row__body">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</span>
-              </div>
-            </li>
-            <px-table-row type="detail" title="Text Label" body="Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."></px-table-row>
-          </ul>
-        </template>
-      </demo-snippet>
-
-      <h2>Default with Label - Disclosure Indicator</h2>
-      <demo-snippet>
-        <template>
-          <ul class="table-view table-view--small">
-            <li class="table-row table-row--chevron">
-              <span class="table-row__label table-row__label--right">Detail label</span>
-              <div class="table-row__content">
-
-                <span class="table-row__title">Text Label</span>
-              </div>
-            </li>
-            <px-table-row type="nav-right" title="Text Label" label1="Detail Label"></px-table-row>
-          </ul>
-        </template>
-      </demo-snippet>
-
-      <h2>Default with Label - Detail Disclosure </h2>
-      <demo-snippet>
-        <template>
-          <ul class="table-view table-view--small">
-            <li class="table-row table-row--detail">
-              <span class="table-row__label table-row__label--right">Detail Label</span>
-              <div class="table-row__content">
-                <span class="table-row__title">Text Label</span>
-              </div>
-            </li>
-            <px-table-row type="detail" title="Text Label" label1="Detail Label"></px-table-row>
-          </ul>
-        </template>
-      </demo-snippet>
-
-      <h2>Default - Switch</h2>
-      <demo-snippet>
-        <template>
-          <ul class="table-view table-view--small">
-            <li class="table-row table-row--switch">
-              <div class="table-row__media table-row__media--toggle table-row__media--right">
-                <div class="toggle toggle__table-view-item">
-                  <input id="toggle1" class="toggle__input" type="checkbox" checked>
-                  <label for="toggle1" class="toggle__label">On</label>
-                </div>
-              </div>
-              <div class="table-row__content"><span class="table-row__title">Text Label</span></div>
-            </li>
-            <px-table-row>
-              <px-table-row-switch name="cb05" label="Switch"></px-table-row-switch>
-            </px-table-row>
-            <px-table-row>
-              <px-table-row-switch name="cb06" label="Checked Switch" checked></px-table-row-switch>
-            </px-table-row>
-            <px-table-row>
-              <px-table-row-switch name="cb07" label="Switch (Disabled)" disabled></px-table-row-switch>
-            </px-table-row>
-            <px-table-row>
-              <px-table-row-switch name="cb08" label="Checked Switch (Disabled)" disabled checked></px-table-row-switch>
-            </px-table-row>
-          </ul>
-        </template>
-      </demo-snippet>
-
-      <h2>Default - Checkboxes</h2>
-      <demo-snippet>
-        <template>
-          <ul class="table-view table-view--small table-view-- u-mb+">
-            <li class="table-row">
-              <label class="table-row__checkbox">
-                <input type="checkbox" name="cb1" value="test1">
-                <div class="table-row__checkbox__checkmark"></div>
-                Checkbox </label>
-            </li>
-            <li class="table-row">
-              <label class="table-row__checkbox">
-                <input type="checkbox" name="cb12" value="test1" checked disabled>
-                <div class="table-row__checkbox__checkmark"></div>
-                Checkbox - Checked - Disabled </label>
-            </li>
-            <li class="table-row">
-              <label class="table-row__checkbox">
-                <input type="checkbox" name="cb13" value="test1" disabled>
-                <div class="table-row__checkbox__checkmark"></div>
-                Checkbox - Disabled </label>
-            </li>
-            <li class="table-row table-row--tappable">
-              <px-table-row-checkbox name="cb0" label="No Border Checked" type="no-border" checked></px-table-row-checkbox>
-            </li>
-            <li class="table-row table-row--tappable">
-              <px-table-row-checkbox name="cb01" label="No Border Checked (Disabled)" type="no-border" checked disabled></px-table-row-checkbox>
-            </li>
-            <li class="table-row table-row--tappable">
-              <px-table-row-checkbox name="cb02" label="Bordered Checkbox"></px-table-row-checkbox>
-            </li>
-            <li class="table-row tabl">
-              <px-table-row-checkbox name="cb03" label="Border Checked (Disabled)" checked disabled></px-table-row-checkbox>
-            </li>
-            <li class="table-row">
-              <px-table-row-checkbox name="cb04" label="Border (Disabled)" disabled></px-table-row-checkbox>
-            </li>
-          </ul>
-        </template>
-      </demo-snippet>
-
-      <h2>Default - No Border Checkboxes</h2>
-      <demo-snippet>
-        <template>
-          <section class="table-view table-view--small table-view-- u-mb+">
-            <div class="table-row">
-              <label class="table-row__checkbox table-row__checkbox--no-border">
-                <input type="checkbox" name="cb2" value="test1">
-                <div class="table-row__checkbox__checkmark "></div>
-                No Border Checkbox </label>
+        <h2>Default - Detail Disclosure</h2>
+        <demo-snippet>
+          <template>
+            <div class="table-view">
+              <px-table-row title="Text Label" type="detail"></px-table-row>
             </div>
-            <div class="table-row">
-              <label class="table-row__checkbox table-row__checkbox--no-border">
-                <input type="checkbox" name="cb3" value="test1" checked>
-                <div class="table-row__checkbox__checkmark"></div>
-                No Border Checkbox - Checked </label>
-            </div>
-            <div class="table-row">
-              <label class="table-row__checkbox table-row__checkbox--no-border">
-                <input type="checkbox" name="cb4" value="test1" disabled>
-                <div class="table-row__checkbox__checkmark"></div>
-                No Border Checkbox - Disabled </label>
-            </div>
-          </section>
-        </template>
-      </demo-snippet>
+          </template>
+        </demo-snippet>
 
-      <h2>Default with Swipe - Left Actions</h2>
-      <demo-snippet>
-        <template>
-          <div>
-            <button class="btn btn--full btn-toggle-actions u-mb+">Toggle Actions</button>
-            <section class="table-view table-view--small">
-              <div class="table-row table-row--actionable">
-                <div class="table-row__content"><span class="table-row__title">Text Label</span></div>
-                <div class="table-row__actions table-row__actions--left">
-                  <button class="table-row__button btn--full table-row__button--more"> More</button>
-                  <button class="table-row__button btn--full table-row__button--flag"> Flag</button>
-                  <button class="table-row__button btn--full table-row__button--delete"> Delete</button>
-                </div>
-              </div>
-              <px-table-row title="Action Item" actionable>
-                <px-table-row-actions position="left">
-                  <px-table-row-action-button label="More" type="more"></px-table-row-action-button>
-                  <px-table-row-action-button label="Flag" type="flag"></px-table-row-action-button>
-                  <px-table-row-action-button label="Delete" type="delete"></px-table-row-action-button>
-                </px-table-row-actions>
-              </px-table-row>
-              <px-table-row title="Action Item" actionable>
-                <px-table-row-actions position="left">
-                  <px-table-row-action-button label="More" type="more"></px-table-row-action-button>
-                  <px-table-row-action-button label="Flag" type="flag"></px-table-row-action-button>
-                  <px-table-row-action-button label="Delete" type="delete"></px-table-row-action-button>
-                </px-table-row-actions>
-              </px-table-row>
-            </section>
-          </div>
-        </template>
-      </demo-snippet>
+        <h2>Default - Row Order</h2>
+        <demo-snippet>
+          <template>
+            <div class="table-view">
+              <px-table-row title="Text Label" type="order"></px-table-row>
+            </div>
+          </template>
+        </demo-snippet>
 
-      <h2>Default with Swipe - Left Actions with Icons</h2>
-      <demo-snippet>
-        <template>
-          <div>
-            <button class="btn btn--full btn-toggle-actions u-mb+">Toggle Actions</button>
-            <ul class="table-view table-view--small">
-              <li class="table-row table-row--actionable">
-                <div class="table-row__content"><span class="table-row__title">Text Label</span></div>
-                <div class="table-row__actions table-row__actions--left">
-                  <button class="table-row__button btn--full table-row__button--more"><i class="fa fa-ellipsis-h fa-lg"></i></button>
-                  <button class="table-row__button btn--full table-row__button--flag"><i class="fa fa-flag fa-lg"></i></button>
-                  <button class="table-row__button btn--full table-row__button--delete"><i class="fa fa-trash-o fa-lg"></i></button>
+        <h2>Default - Row Delete</h2>
+        <demo-snippet>
+          <template>
+            <ol class="table-view">
+              <li class="table-row table-row--edit">
+                <div class="table-row__content">
+                  <span class="table-row__title">Text Label</span>
                 </div>
               </li>
-              <px-table-row title="Action Item" actionable>
-                <px-table-row-actions position="left">
-                  <px-table-row-action-button icon="fa fa-ellipsis-h" type="more"></px-table-row-action-button>
-                  <px-table-row-action-button icon="fa fa-flag" type="flag"></px-table-row-action-button>
-                  <px-table-row-action-button icon="fa fa-trash" type="delete"></px-table-row-action-button>
-                </px-table-row-actions>
+            </ol>
+          </template>
+        </demo-snippet>
+
+        <h2>Default - Delete and Row Order</h2>
+        <demo-snippet>
+          <template>
+            <ol class="table-view">
+              <li class="table-row table-row--order table-row--edit">
+                <div class="table-row__content">
+                  <span class="table-row__title">Text Label</span>
+                </div>
+              </li>
+            </ol>
+          </template>
+        </demo-snippet>
+
+        <h2>Default - Icon Right</h2>
+        <demo-snippet>
+          <template>
+            <ul class="table-view">
+              <li class="table-row table-row--tappable">
+                <div class="table-row__media table-row__media--icon table-row__media--right">
+                  <i class="fa fa-lg fa-info"></i>
+                </div>
+                <div class="table-row__content">
+                  <span class="table-row__title">Text Label</span>
+                </div>
+              </li>
+            </ul>
+          </template>
+        </demo-snippet>
+
+        <h2>Default - Icon Left</h2>
+        <demo-snippet>
+          <template>
+            <ul class="table-view">
+              <li class="table-row table-row--tappable">
+                <div class="table-row__media table-row__media--icon table-row__media--left">
+                  <i class="fa fa-lg fa-gear"></i>
+                </div>
+                <div class="table-row__content">
+                  <span class="table-row__title">Text Label</span>
+                </div>
+              </li>
+            </ul>
+          </template>
+        </demo-snippet>
+
+        <h2>Default - Image Left</h2>
+        <demo-snippet>
+          <template>
+            <section class="table-view table-view--small">
+              <div class="table-row table-row--tappable">
+                <div class="table-row__media table-row__media--image table-row__media--left"><img src="http://placehold.it/44"/>
+                </div>
+                <div class="table-row__content">
+                  <span class="table-row__title">Text Label</span>
+                </div>
+              </div>
+            </section>
+          </template>
+        </demo-snippet>
+
+        <h2>Default - Image Right</h2>
+        <demo-snippet>
+          <template>
+            <ul class="table-view table-view--small">
+              <li class="table-row table-row--tappable">
+                <div class="table-row__media table-row__media--image table-row__media--right"><img src="http://placehold.it/44"/>
+                </div>
+                <div class="table-row__content">
+                  <span class="table-row__title">Text Label</span>
+                </div>
+              </li>
+            </ul>
+          </template>
+        </demo-snippet>
+
+        <h2>Default - Image with Disclosure Indicator</h2>
+        <demo-snippet>
+          <template>
+            <ul class="table-view table-view--small">
+              <li class="table-row table-row--chevron">
+                <div class="table-row__media table-row__media--image"><img src="http://placehold.it/60x60&text=img"/></div>
+                <div class="table-row__content">
+                  <span class="table-row__title">Text Label</span>
+                </div>
+              </li>
+            </ul>
+          </template>
+        </demo-snippet>
+        <h2>Default - Image with Detail Disclosure</h2>
+        <demo-snippet>
+          <template>
+            <ul class="table-view table-view--small">
+              <li class="table-row table-row--detail">
+                <div class="table-row__media table-row__media--image"><img src="http://placehold.it/60x60&text=img"/></div>
+                <div class="table-row__content">
+                  <span class="table-row__title">Text Label</span>
+                </div>
+              </li>
+            </ul>
+          </template>
+        </demo-snippet>
+
+        <h2>Default - Image with Description</h2>
+        <demo-snippet>
+          <template>
+            <ul class="table-view table-view--small">
+              <li class="table-row table-row--detail">
+                <div class="table-row__media table-row__media--image"><img src="http://placehold.it/80x80&text=img"/></div>
+                <div class="table-row__content table-row__content--col">
+                  <span class="table-row__title">Text Label</span>
+                  <span class="table-row__body">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</span>
+                </div>
+              </li>
+            </ul>
+          </template>
+        </demo-snippet>
+
+        <h2>Default - Description with Disclosure Indicator</h2>
+        <demo-snippet>
+          <template>
+            <ul class="table-view table-view--small">
+              <li class="table-row table-row--chevron">
+                <div class="table-row__content table-row__content--col">
+                  <span class="table-row__title">Text Label</span>
+                  <span class="table-row__body">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</span>
+                </div>
+              </li>
+              <px-table-row type="nav-right" title="Text Label" body="Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."></px-table-row>
+            </ul>
+          </template>
+        </demo-snippet>
+
+        <h2>Default - Description with Detail Disclosure</h2>
+        <demo-snippet>
+          <template>
+            <ul class="table-view table-view--small">
+
+              <px-table-row type="detail" title="Text Label" body="Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."></px-table-row>
+              <px-table-row type="detail" title="Text Label" body="Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."></px-table-row>
+            </ul>
+          </template>
+        </demo-snippet>
+
+        <h2>Default with Label - Disclosure Indicator</h2>
+        <demo-snippet>
+          <template>
+            <ul class="table-view table-view--small">
+
+              <px-table-row type="nav-right" title="Text Label" label1="Detail Label"></px-table-row>
+              <px-table-row type="nav-right" title="Text Label" label1="Detail Label"></px-table-row>
+            </ul>
+          </template>
+        </demo-snippet>
+
+        <h2>Default with Label - Detail Disclosure
+        </h2>
+        <demo-snippet>
+          <template>
+            <ul class="table-view table-view--small">
+
+              <px-table-row type="detail" title="Text Label" label1="Detail Label"></px-table-row>
+              <px-table-row type="detail" title="Text Label" label1="Detail Label"></px-table-row>
+            </ul>
+          </template>
+        </demo-snippet>
+
+        <h2>Default - Switch</h2>
+        <demo-snippet>
+          <template>
+            <ul class="table-view table-view--small">
+              <li class="table-row table-row--switch">
+                <div class="table-row__media table-row__media--toggle table-row__media--right">
+                  <div class="toggle toggle__table-view-item">
+                    <input id="toggle1" class="toggle__input" type="checkbox" checked>
+                    <label for="toggle1" class="toggle__label">On</label>
+                  </div>
+                </div>
+                <div class="table-row__content">
+                  <span class="table-row__title">Text Label</span>
+                </div>
+              </li>
+              <px-table-row>
+                <px-table-row-switch name="cb05" label="Switch"></px-table-row-switch>
               </px-table-row>
-              <px-table-row title="Action Item" actionable>
-                <px-table-row-actions position="left">
-                  <px-table-row-action-button icon="fa fa-ellipsis-h" type="more"></px-table-row-action-button>
-                  <px-table-row-action-button icon="fa fa-flag" type="flag"></px-table-row-action-button>
-                  <px-table-row-action-button icon="fa fa-trash" type="delete"></px-table-row-action-button>
-                </px-table-row-actions>
+              <px-table-row>
+                <px-table-row-switch name="cb06" label="Checked Switch" checked></px-table-row-switch>
+              </px-table-row>
+              <px-table-row>
+                <px-table-row-switch name="cb07" label="Switch (Disabled)" disabled></px-table-row-switch>
+              </px-table-row>
+              <px-table-row>
+                <px-table-row-switch name="cb08" label="Checked Switch (Disabled)" disabled checked></px-table-row-switch>
               </px-table-row>
             </ul>
-          </div>
-        </template>
-      </demo-snippet>
+          </template>
+        </demo-snippet>
 
-      <h2>Default with Swipe - Right Actions</h2>
-      <demo-snippet>
-        <template>
-          <div>
-            <button class="btn btn--full btn-toggle-actions u-mb+">Toggle Actions</button>
-            <section class="table-view table-view--small">
-              <div class="table-row table-row--actionable">
-                <div class="table-row__content"><span class="table-row__title">Text Label</span></div>
-                <div class="table-row__actions table-row__actions--right">
-                  <button class="table-row__button btn--full table-row__button--more"> More</button>
-                  <button class="table-row__button btn--full table-row__button--flag"> Flag</button>
-                  <button class="table-row__button btn--full table-row__button--delete"> Delete</button>
-                </div>
+        <h2>Default - Checkboxes</h2>
+        <demo-snippet>
+          <template>
+            <ul class="table-view table-view--small table-view-- u-mb+">
+              <li class="table-row">
+                <label class="table-row__checkbox">
+                  <input type="checkbox" name="cb1" value="test1">
+                  <div class="table-row__checkbox__checkmark"></div>
+                  Checkbox
+                </label>
+              </li>
+              <li class="table-row">
+                <label class="table-row__checkbox">
+                  <input type="checkbox" name="cb12" value="test1" checked disabled>
+                  <div class="table-row__checkbox__checkmark"></div>
+                  Checkbox - Checked - Disabled
+                </label>
+              </li>
+              <li class="table-row">
+                <label class="table-row__checkbox">
+                  <input type="checkbox" name="cb13" value="test1" disabled>
+                  <div class="table-row__checkbox__checkmark"></div>
+                  Checkbox - Disabled
+                </label>
+              </li>
+              <li class="table-row table-row--tappable">
+                <px-table-row-checkbox name="cb0" label="No Border Checked" type="no-border" checked></px-table-row-checkbox>
+              </li>
+              <li class="table-row table-row--tappable">
+                <px-table-row-checkbox name="cb01" label="No Border Checked (Disabled)" type="no-border" checked disabled></px-table-row-checkbox>
+              </li>
+              <li class="table-row table-row--tappable">
+                <px-table-row-checkbox name="cb02" label="Bordered Checkbox"></px-table-row-checkbox>
+              </li>
+              <li class="table-row tabl">
+                <px-table-row-checkbox name="cb03" label="Border Checked (Disabled)" checked disabled></px-table-row-checkbox>
+              </li>
+              <li class="table-row">
+                <px-table-row-checkbox name="cb04" label="Border (Disabled)" disabled></px-table-row-checkbox>
+              </li>
+            </ul>
+          </template>
+        </demo-snippet>
+
+        <h2>Default - No Border Checkboxes</h2>
+        <demo-snippet>
+          <template>
+            <section class="table-view table-view--small table-view-- u-mb+">
+              <div class="table-row">
+                <label class="table-row__checkbox table-row__checkbox--no-border">
+                  <input type="checkbox" name="cb2" value="test1">
+                  <div class="table-row__checkbox__checkmark "></div>
+                  No Border Checkbox
+                </label>
               </div>
-              <px-table-row title="Action Item" actionable>
-                <px-table-row-actions position="right">
+              <div class="table-row">
+                <label class="table-row__checkbox table-row__checkbox--no-border">
+                  <input type="checkbox" name="cb3" value="test1" checked>
+                  <div class="table-row__checkbox__checkmark"></div>
+                  No Border Checkbox - Checked
+                </label>
+              </div>
+              <div class="table-row">
+                <label class="table-row__checkbox table-row__checkbox--no-border">
+                  <input type="checkbox" name="cb4" value="test1" disabled>
+                  <div class="table-row__checkbox__checkmark"></div>
+                  No Border Checkbox - Disabled
+                </label>
+              </div>
+            </section>
+          </template>
+        </demo-snippet>
+
+        <h2>Default with Swipe - Left Actions</h2>
+        <demo-snippet>
+          <template>
+            <div>
+              <button class="btn btn--full btn-toggle-actions u-mb+">Toggle Actions</button>
+              <section class="table-view table-view--small">
+                <div class="table-row table-row--actionable">
+                  <div class="table-row__content">
+                    <span class="table-row__title">Text Label</span>
+                  </div>
+                  <div class="table-row__actions table-row__actions--left">
+                    <button class="table-row__button btn--full table-row__button--more">
+                      More</button>
+                    <button class="table-row__button btn--full table-row__button--flag">
+                      Flag</button>
+                    <button class="table-row__button btn--full table-row__button--delete">
+                      Delete</button>
+                  </div>
+                </div>
+                <px-table-row title="Action Item" actionable>
+                  <px-table-row-actions position="left">
+                    <px-table-row-action-button label="More" type="more"></px-table-row-action-button>
+                    <px-table-row-action-button label="Flag" type="flag"></px-table-row-action-button>
+                    <px-table-row-action-button label="Delete" type="delete"></px-table-row-action-button>
+                  </px-table-row-actions>
+                </px-table-row>
+                <px-table-row title="Action Item" actionable>
+                  <px-table-row-actions position="left">
+                    <px-table-row-action-button label="More" type="more"></px-table-row-action-button>
+                    <px-table-row-action-button label="Flag" type="flag"></px-table-row-action-button>
+                    <px-table-row-action-button label="Delete" type="delete"></px-table-row-action-button>
+                  </px-table-row-actions>
+                </px-table-row>
+              </section>
+            </div>
+          </template>
+        </demo-snippet>
+
+        <h2>Default with Swipe - Left Actions with Icons</h2>
+        <demo-snippet>
+          <template>
+            <div>
+              <button class="btn btn--full btn-toggle-actions u-mb+">Toggle Actions</button>
+              <ul class="table-view table-view--small">
+                <li class="table-row table-row--actionable">
+                  <div class="table-row__content">
+                    <span class="table-row__title">Text Label</span>
+                  </div>
+                  <div class="table-row__actions table-row__actions--left">
+                    <button class="table-row__button btn--full table-row__button--more">
+                      <i class="fa fa-ellipsis-h fa-lg"></i>
+                    </button>
+                    <button class="table-row__button btn--full table-row__button--flag">
+                      <i class="fa fa-flag fa-lg"></i>
+                    </button>
+                    <button class="table-row__button btn--full table-row__button--delete">
+                      <i class="fa fa-trash-o fa-lg"></i>
+                    </button>
+                  </div>
+                </li>
+                <px-table-row title="Action Item" actionable>
+                  <px-table-row-actions position="left">
+                    <px-table-row-action-button icon="fa fa-ellipsis-h" type="more"></px-table-row-action-button>
+                    <px-table-row-action-button icon="fa fa-flag" type="flag"></px-table-row-action-button>
+                    <px-table-row-action-button icon="fa fa-trash" type="delete"></px-table-row-action-button>
+                  </px-table-row-actions>
+                </px-table-row>
+                <px-table-row title="Action Item" actionable>
+                  <px-table-row-actions position="left">
+                    <px-table-row-action-button icon="fa fa-ellipsis-h" type="more"></px-table-row-action-button>
+                    <px-table-row-action-button icon="fa fa-flag" type="flag"></px-table-row-action-button>
+                    <px-table-row-action-button icon="fa fa-trash" type="delete"></px-table-row-action-button>
+                  </px-table-row-actions>
+                </px-table-row>
+              </ul>
+            </div>
+          </template>
+        </demo-snippet>
+
+        <h2>Default with Swipe - Right Actions</h2>
+        <demo-snippet>
+          <template>
+            <div>
+              <button class="btn btn--full btn-toggle-actions u-mb+">Toggle Actions</button>
+              <section class="table-view table-view--small">
+                <div class="table-row table-row--actionable">
+                  <div class="table-row__content">
+                    <span class="table-row__title">Text Label</span>
+                  </div>
                   <div class="table-row__actions table-row__actions--right">
-                    <button class="table-row__button btn--full table-row__button--more"> More</button>
-                    <button class="table-row__button btn--full table-row__button--flag"> Flag</button>
-                    <button class="table-row__button btn--full table-row__button--delete"> Delete</button>
+                    <button class="table-row__button btn--full table-row__button--more">
+                      More</button>
+                    <button class="table-row__button btn--full table-row__button--flag">
+                      Flag</button>
+                    <button class="table-row__button btn--full table-row__button--delete">
+                      Delete</button>
                   </div>
-                </px-table-row-actions>
-              </px-table-row>
-              <px-table-row title="Action Item" actionable>
-                <px-table-row-actions position="right">
-                  <px-table-row-action-button label="More" type="more"></px-table-row-action-button>
-                  <px-table-row-action-button label="Flag" type="flag"></px-table-row-action-button>
-                  <px-table-row-action-button label="Delete" type="delete"></px-table-row-action-button>
-                </px-table-row-actions>
-              </px-table-row>
-              <px-table-row title="Correct Action Item" actionable>
-                <px-table-row-actions position="right">
-                  <button class="table-row__button btn--full table-row__button--more"> More</button>
-                  <button class="table-row__button btn--full table-row__button--flag"> Flag</button>
-                  <button class="table-row__button btn--full table-row__button--delete"> Delete</button>
-                </px-table-row-actions>
-              </px-table-row>
-              <px-table-row title="Action Item" actionable>
-                <px-table-row-actions position="right">
-                  <button class="table-row__button btn--full table-row__button--more"> More</button>
-                  <button class="table-row__button btn--full table-row__button--flag"> Flag</button>
-                  <button class="table-row__button btn--full table-row__button--delete"> Delete</button>
-                </px-table-row-actions>
-              </px-table-row>
-            </section>
-          </div>
-        </template>
-      </demo-snippet>
+                </div>
+                <px-table-row title="Action Item" actionable>
+                  <px-table-row-actions position="right">
+                    <div class="table-row__actions table-row__actions--right">
+                      <button class="table-row__button btn--full table-row__button--more">
+                        More</button>
+                      <button class="table-row__button btn--full table-row__button--flag">
+                        Flag</button>
+                      <button class="table-row__button btn--full table-row__button--delete">
+                        Delete</button>
+                    </div>
+                  </px-table-row-actions>
+                </px-table-row>
+                <px-table-row title="Action Item" actionable>
+                  <px-table-row-actions position="right">
+                    <px-table-row-action-button label="More" type="more"></px-table-row-action-button>
+                    <px-table-row-action-button label="Flag" type="flag"></px-table-row-action-button>
+                    <px-table-row-action-button label="Delete" type="delete"></px-table-row-action-button>
+                  </px-table-row-actions>
+                </px-table-row>
+                <px-table-row title="Correct Action Item" actionable>
+                  <px-table-row-actions position="right">
+                    <button class="table-row__button btn--full table-row__button--more">
+                      More</button>
+                    <button class="table-row__button btn--full table-row__button--flag">
+                      Flag</button>
+                    <button class="table-row__button btn--full table-row__button--delete">
+                      Delete</button>
+                  </px-table-row-actions>
+                </px-table-row>
+                <px-table-row title="Action Item" actionable>
+                  <px-table-row-actions position="right">
+                    <button class="table-row__button btn--full table-row__button--more">
+                      More</button>
+                    <button class="table-row__button btn--full table-row__button--flag">
+                      Flag</button>
+                    <button class="table-row__button btn--full table-row__button--delete">
+                      Delete</button>
+                  </px-table-row-actions>
+                </px-table-row>
+              </section>
+            </div>
+          </template>
+        </demo-snippet>
 
-      <h2>Default with Swipe - Right Actions with Icons</h2>
-      <demo-snippet>
-        <template>
-          <div>
-            <button class="btn btn--full btn-toggle-actions u-mb+">Toggle Actions</button>
-            <section class="table-view table-view--small">
-              <div class="table-row table-row--actionable">
-                <div class="table-row__content"><span class="table-row__title">Text Label</span></div>
-                <div class="table-row__actions table-row__actions--right table-row__actions--right--is-visible">
-                  <button class="table-row__button btn--full table-row__button--more"><i class="fa fa-ellipsis-h fa-lg"></i></button>
-                  <button class="table-row__button btn--full table-row__button--flag"><i class="fa fa-flag fa-lg"></i></button>
-                  <button class="table-row__button btn--full table-row__button--delete"><i class="fa fa-trash-o fa-lg"></i></button>
+        <h2>Default with Swipe - Right Actions with Icons</h2>
+        <demo-snippet>
+          <template>
+            <div>
+              <button class="btn btn--full btn-toggle-actions u-mb+">Toggle Actions</button>
+              <section class="table-view table-view--small">
+                <div class="table-row table-row--actionable">
+                  <div class="table-row__content">
+                    <span class="table-row__title">Text Label</span>
+                  </div>
+                  <div class="table-row__actions table-row__actions--right table-row__actions--right--is-visible">
+                    <button class="table-row__button btn--full table-row__button--more">
+                      <i class="fa fa-ellipsis-h fa-lg"></i>
+                    </button>
+                    <button class="table-row__button btn--full table-row__button--flag">
+                      <i class="fa fa-flag fa-lg"></i>
+                    </button>
+                    <button class="table-row__button btn--full table-row__button--delete">
+                      <i class="fa fa-trash-o fa-lg"></i>
+                    </button>
+                  </div>
+                </div>
+                <px-table-row title="Action Item" actionable>
+                  <px-table-row-actions position="right">
+                    <px-table-row-action-button icon="fa fa-ellipsis-h" type="more"></px-table-row-action-button>
+                    <px-table-row-action-button icon="fa fa-flag" type="flag"></px-table-row-action-button>
+                    <px-table-row-action-button icon="fa fa-trash" type="delete"></px-table-row-action-button>
+                  </px-table-row-actions>
+                </px-table-row>
+                <px-table-row title="Action Item" actionable>
+                  <px-table-row-actions position="right">
+                    <button class="table-row__button btn--full table-row__button--more">
+                      <i class="fa fa-ellipsis-h fa-lg"></i>
+                    </button>
+                    <button class="table-row__button btn--full table-row__button--flag">
+                      <i class="fa fa-flag fa-lg"></i>
+                    </button>
+                    <button class="table-row__button btn--full table-row__button--delete">
+                      <i class="fa fa-trash-o fa-lg"></i>
+                    </button>
+                  </px-table-row-actions>
+                </px-table-row>
+              </section>
+            </div>
+          </template>
+        </demo-snippet>
+
+        <h2>Default - Form Inputs</h2>
+        <demo-snippet>
+          <template>
+            <section class="table-view table-view--small table-view-- u-mb+">
+              <div class="table-row">
+                <input type="text" class="text-input" placeholder="Text Input">
+              </div>
+              <div class="table-row">
+                <input type="email" class="text-input" placeholder="Email Input">
+              </div>
+              <div class="table-row">
+                <input type="password" class="text-input" placeholder="Password Input">
+              </div>
+              <div class="table-row">
+                <input type="number" class="text-input" placeholder="Number Input">
+              </div>
+              <div class="table-row">
+                <input type="range" class="range">
+              </div>
+              <div class="table-row">
+                <input type="date" class="text-input">
+              </div>
+              <div class="table-row">
+                <textarea class="text-input" placeholder="Enter your message.." cols="30" rows="10"></textarea>
+              </div>
+              <div class="table-row">
+                <div class="flex">
+                  <button type="reset" class="btn btn--full">Reset</button>
+                  <button type="button" class="btn btn--primary btn--full">Submit</button>
                 </div>
               </div>
-              <px-table-row title="Action Item" actionable>
-                <px-table-row-actions position="right">
-                  <px-table-row-action-button icon="fa fa-ellipsis-h" type="more"></px-table-row-action-button>
-                  <px-table-row-action-button icon="fa fa-flag" type="flag"></px-table-row-action-button>
-                  <px-table-row-action-button icon="fa fa-trash" type="delete"></px-table-row-action-button>
-                </px-table-row-actions>
-              </px-table-row>
-              <px-table-row title="Action Item" actionable>
-                <px-table-row-actions position="right">
-                  <button class="table-row__button btn--full table-row__button--more"><i class="fa fa-ellipsis-h fa-lg"></i></button>
-                  <button class="table-row__button btn--full table-row__button--flag"><i class="fa fa-flag fa-lg"></i></button>
-                  <button class="table-row__button btn--full table-row__button--delete"><i class="fa fa-trash-o fa-lg"></i></button>
-                </px-table-row-actions>
-              </px-table-row>
             </section>
-          </div>
-        </template>
-      </demo-snippet>
+          </template>
+        </demo-snippet>
 
-      <h2>Default - Form Inputs</h2>
-      <demo-snippet>
-        <template>
-          <section class="table-view table-view--small table-view-- u-mb+">
-            <div class="table-row">
-              <input type="text" class="text-input" placeholder="Text Input">
-            </div>
-            <div class="table-row">
-              <input type="email" class="text-input" placeholder="Email Input">
-            </div>
-            <div class="table-row">
-              <input type="password" class="text-input" placeholder="Password Input">
-            </div>
-            <div class="table-row">
-              <input type="number" class="text-input" placeholder="Number Input">
-            </div>
-            <div class="table-row">
-              <input type="range" class="range">
-            </div>
-            <div class="table-row">
-              <input type="date" class="text-input">
-            </div>
-            <div class="table-row">
-              <textarea class="text-input" placeholder="Enter your message.." cols="30" rows="10"></textarea>
-            </div>
-            <div class="table-row">
-              <div class="flex">
-                <button type="reset" class="btn btn--full">Reset</button>
-                <button type="button" class="btn btn--primary btn--full">Submit</button>
+        <!-- TODO: Style Modifiers -->
+        <h1 class="beta">Style Modifiers</h1>
+        <demo-snippet>
+          <template>
+            <style media="screen">
+              #my-table {
+                --table-row-background-color: green;
+                --table-row-border-color: red;
+              }
+
+            </style>
+            <section id="my-table" class="table-view table-view--small">
+              <div class="table-row table-row--tappable">
+                <div class="table-row__media table-row__media--image table-row__media--left"><img src="http://placehold.it/44"/>
+                </div>
+                <div class="table-row__content">
+                  <span class="table-row__title">Text Label</span>
+                </div>
               </div>
-            </div>
-          </section>
-        </template>
-      </demo-snippet>
-
-      <!-- TODO: Style Modifiers -->
-      <h1 class="beta">Style Modifiers</h1>
-      <demo-snippet>
-        <template>
-          <style media="screen">
-            #my-table {
-              --table-row-background-color: green;
-              --table-row-border-color: red;
-            }
-          </style>
-          <section id="my-table" class="table-view table-view--small">
-            <div class="table-row table-row--tappable">
-              <div class="table-row__media table-row__media--image table-row__media--left"><img src="http://placehold.it/44" />
+              <div class="table-row table-row--tappable">
+                <div class="table-row__media table-row__media--image table-row__media--left"><img src="http://placehold.it/44"/>
+                </div>
+                <div class="table-row__content">
+                  <span class="table-row__title">Text Label</span>
+                </div>
               </div>
-              <div class="table-row__content"><span class="table-row__title">Text Label</span></div>
-            </div>
-            <div class="table-row table-row--tappable">
-              <div class="table-row__media table-row__media--image table-row__media--left"><img src="http://placehold.it/44" />
-              </div>
-              <div class="table-row__content"><span class="table-row__title">Text Label</span></div>
-            </div>
-          </section>
-        </template>
-      </demo-snippet>
+            </section>
+          </template>
+        </demo-snippet>
 
-      <!-- TODO: Modifiers -->
-      <h1 class="beta">Modifiers</h1>
-      <h2>Table View Modifiers</h2>
-      <div class="">
+        <!-- TODO: Modifiers -->
+        <h1 class="beta">Modifiers</h1>
+        <h2>Table View Modifiers</h2>
+        <div class="">
 
-        <table class="table">
-          <thead>
-            <tr>
-              <th>Name</th>
-              <th> Description</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td><code>--responsive</code></td>
-              <td> Enables flexbox row wrapping up to 6 columns</td>
-            </tr>
-            <tr>
-              <td><code>--flush</code></td>
-              <td> Enables no padding</td>
-            </tr>
-            <tr>
-              <td><code>--tiny</code></td>
-              <td> Enables tiny padding</td>
-            </tr>
-            <tr>
-              <td><code>--small</code></td>
-              <td> Enables small padding</td>
-            </tr>
-            <tr>
-              <td><code>--large</code></td>
-              <td> Enables large padding</td>
-            </tr>
-            <tr>
-              <td><code>--huge</code></td>
-              <td> Enables huge padding</td>
-            </tr>
-            <tr>
-              <td><code>--inset</code></td>
-              <td> Enables margin and border</td>
-            </tr>
-            <tr>
-              <td><code>--bare</code></td>
-              <td> Removes all borders / background colors</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
+          <table class="table">
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>
+                  Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>
+                  <code>--responsive</code>
+                </td>
+                <td>
+                  Enables flexbox row wrapping up to 6 columns</td>
+              </tr>
+              <tr>
+                <td>
+                  <code>--flush</code>
+                </td>
+                <td>
+                  Enables no padding</td>
+              </tr>
+              <tr>
+                <td>
+                  <code>--tiny</code>
+                </td>
+                <td>
+                  Enables tiny padding</td>
+              </tr>
+              <tr>
+                <td>
+                  <code>--small</code>
+                </td>
+                <td>
+                  Enables small padding</td>
+              </tr>
+              <tr>
+                <td>
+                  <code>--large</code>
+                </td>
+                <td>
+                  Enables large padding</td>
+              </tr>
+              <tr>
+                <td>
+                  <code>--huge</code>
+                </td>
+                <td>
+                  Enables huge padding</td>
+              </tr>
+              <tr>
+                <td>
+                  <code>--inset</code>
+                </td>
+                <td>
+                  Enables margin and border</td>
+              </tr>
+              <tr>
+                <td>
+                  <code>--bare</code>
+                </td>
+                <td>
+                  Removes all borders / background colors</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
 
-      <!-- TODO: Responsive -->
-      <h2>Default - Modifier - Responsive</h2>
-      <demo-snippet>
-        <template>
-          <button class="btn btn--full btn-add-responsive u-mb+">Add Table Row</button>
-          <script type="text/javascript">
-            $('.btn-add-responsive').bind('click', function(e) {
-              var $table = $('#table-responsive');
-              $table.append($table.find(':first-child').clone());
-            });
-          </script>
-          <div id="table-responsive" class="table-view table-view--small table-view--responsive">
-
-
-            <px-table-row type="tappable">
-              <div class="table-row__content">
-                <h3 class="table-row__title epsilon">Lorem Ipsum</h3>
-                <div class="table-row__body"><span class="beta">123.4</span> <span class="delta muted">AB</span></div>
-              </div>
-            </px-table-row>
-            <px-table-row type="tappable">
-              <div class="table-row__content">
-                <h3 class="table-row__title epsilon">Lorem Ipsum</h3>
-                <div class="table-row__body"><span class="beta">123.4</span> <span class="delta muted">AB</span></div>
-              </div>
-            </px-table-row>
-            <px-table-row type="tappable">
-              <div class="table-row__content">
-                <h3 class="table-row__title epsilon">Lorem Ipsum</h3>
-                <div class="table-row__body"><span class="beta">123.4</span> <span class="delta muted">AB</span></div>
-              </div>
-            </px-table-row>
-
-
-          </div>
-        </template>
-      </demo-snippet>
-      <h2>Default - Modifier - Flush</h2>
-      <demo-snippet>
-        <template>
-          <ul class="table-view table-view--flush">
-            <li class="table-row table-row--tappable"> Text Label</li>
-            <px-table-row title="Text Label" type="tappable"></px-table-row>
-          </ul>
-        </template>
-      </demo-snippet>
-      <h2>Default - Modifier - Tiny</h2>
-      <demo-snippet>
-        <template>
-          <ul class="table-view table-view--tiny">
-            <li class="table-row table-row--tappable"> Text Label</li>
-            <px-table-row title="Text Label" type="tappable"></px-table-row>
-          </ul>
-        </template>
-      </demo-snippet>
-      <h2>Default - Modifier - Small</h2>
-      <demo-snippet>
-        <template>
-          <ul class="table-view table-view--small">
-            <li class="table-row table-row--tappable"> Text Label</li>
-            <px-table-row title="Text Label" type="tappable"></px-table-row>
-          </ul>
-        </template>
-      </demo-snippet>
-      <h2>Default - Modifier - Regular</h2>
-      <demo-snippet>
-        <template>
-          <ul class="table-view table-view--regular">
-            <li class="table-row table-row--tappable"> Text Label</li>
-            <px-table-row title="Text Label" type="tappable"></px-table-row>
-          </ul>
-        </template>
-      </demo-snippet>
-      <h2>Default - Modifier - Large</h2>
-      <demo-snippet>
-        <template>
-          <ul class="table-view table-view--large">
-            <li class="table-row table-row--tappable"> Text Label</li>
-            <px-table-row title="Text Label" type="tappable"></px-table-row>
-          </ul>
-        </template>
-      </demo-snippet>
-      <h2>Default - Modifier - Huge</h2>
-      <demo-snippet>
-        <template>
-          <ul class="table-view table-view--huge">
-            <li class="table-row table-row--tappable"> Text Label</li>
-            <px-table-row title="Text Label"></px-table-row>
-          </ul>
-        </template>
-      </demo-snippet>
-      <h2>Default - Modifier - Inset</h2>
-      <demo-snippet>
-        <template>
-          <ul class="table-view table-view--inset">
-            <li class="table-row"> Text Label</li>
-            <px-table-row title="Text Label"></px-table-row>
-          </ul>
-        </template>
-      </demo-snippet>
-
-      <!-- TODO: Examples -->
-      <h1 class="beta">Examples</h1>
-
-      <!-- TODO: Iron List -->
-      <h2>Example - Iron List</h2>
-      <demo-snippet>
-        <template>
-          <link rel="import" href="../iron-ajax/iron-ajax.html" />
-          <link rel="import" href="../iron-list/iron-list.html" />
-          <div class="demo" style="height: 500px; overflow:auto;">
-            <template id="tableViewTemplate" is="dom-bind">
-              <iron-ajax url="./demo/data.json" last-response="{{data}}" auto></iron-ajax>
-              <iron-list id="ironList" items="[[data]]" as="item" class="table-view  table-view--small">
-                <template>
-                  <div class="table-row table-row--nav-right" on-click="handleSelect">
-                    <div class="table-row__media table-row__media--icon" hidden="{{!item.icon}}"><i class$="{{item.icon}}"></i>
-                    </div>
-                    <div class="table-row__media table-row__media--image" hidden="{{!item.image}}"><img src$="{{item.image}}" alt="{{item.title}}" />
-                    </div>
-                    <div class="table-row__content"><span class="table-row__title">{{item.title}}</span></div>
-                  </div>
-                </template>
-              </iron-list>
-            </template>
+        <!-- TODO: Responsive -->
+        <h2>Default - Modifier - Responsive</h2>
+        <demo-snippet>
+          <template>
+            <button class="btn btn--full btn-add-responsive u-mb+">Add Table Row</button>
             <script type="text/javascript">
-              var tmpl = document.getElementById('tableViewTemplate');
-              tmpl.handleSelect = function(e) {
-                console.log('handleSelect', e);
-              };
-              document.addEventListener('WebComponentsReady', function() {
-                setTimeout(function() {
-                  document.querySelector('iron-list').fire('iron-resize');
-                }, 250);
+              $('.btn-add-responsive').bind('click', function (e) {
+                var $table = $('#table-responsive');
+                $table.append($table.find(':first-child').clone());
               });
             </script>
-          </div>
-        </template>
-      </demo-snippet>
-      <!-- TODO: Pull To Refresh -->
-      <h2>Example - Pull to Refresh</h2>
-      <demo-snippet>
-        <template>
-          <div class="table-view table-view--ptr table-view--small"><a class="table-row">
-          Text Label
-        </a></div>
-        </template>
-      </demo-snippet>
+            <div id="table-responsive" class="table-view table-view--small table-view--responsive">
 
-      <!-- TODO: Nested -->
-      <h2>Example - Nested Children</h2>
-      <demo-snippet>
-        <template>
-          <ul class="table-view table-view--inset table-view--nested table-view--small">
-            <li class="table-row has-children"> Level 0
-              <ul class="">
-                <li class="table-row has-children">Level 1
-                  <ul class="">
-                    <li class="table-row has-children">Level 1-1
-                      <ul class="">
-                        <li class="table-row has-children">Level 1-1-1
-                          <ul class="">
-                            <li class="table-row">1-1-1 - Child Text label</li>
-                          </ul>
-                        </li>
-                      </ul>
-                    </li>
-                    <li class="table-row has-children">Level 1-2
-                      <ul class="table-view table-view--nested table-view--small">
-                        <li class="table-row has-children">Level 1-2-1
-                          <ul class="table-view table-view--nested table-view--small">
-                            <li class="table-row">1-2-1 - Child Text label</li>
-                          </ul>
-                        </li>
-                      </ul>
-                    </li>
-                  </ul>
-                </li>
-              </ul>
-            </li>
-          </ul>
-        </template>
-      </demo-snippet>
-
-      <!-- TODO: Alerts List -->
-      <h2>Example - Alerts List</h2>
-      <demo-snippet>
-        <template>
-          <ul class="table-view table-view--inset table-view--small">
-            <li class="table-row table-row--nav-right">
-              <div class="table-row__media table-row__media--icon table-row__media--left"><i class="fa fa-lg fa-exclamation-triangle color-red"></i></div>
-              <div class="table-row__content table-row__content--flush"><span class="table-row__label table-row__label--right">GE-2583</span>
-                <strong class="table-row__title">Urgent Alert</strong> <span class="table-row__body table-row__body-">GE-2583</span></div>
-            </li>
-            <px-table-row title="Urgent Alert" body="GE-2483" label1="01/21/16"></px-table-row>
-          </ul>
-        </template>
-      </demo-snippet>
-
-      <!-- TODO: Documents List -->
-      <h2>Example - Documents List</h2>
-      <demo-snippet>
-        <template>
-          <ul class="table-view table-view--small">
-            <li class="table-row table-row--tappable">
-              <div class="table-row__media table-row__media--icon"><i class="fa fa-file"></i></div>
-              <span class="table-row__label table-row__label--right">10/01/15 1:32 PM</span>
-              <div class="table-row__content">
-
-                <span class="table-row__title"> Time Series Inlet Flow.pdf <small class="muted">534 kb</small> </span></div>
-            </li>
-            <px-table-row label1="10/01/15 1:32 PM" icon="fa fa-file" type="tappable">
-              <span class="table-row__title"> Time Series Inlet Flow.pdf <small class="muted">534 kb</small> </span>
-            </px-table-row>
-          </ul>
-        </template>
-      </demo-snippet>
-
-      <!-- TODO: Reports List -->
-      <h2>Example - Reports List</h2>
-      <demo-snippet>
-        <template>
-          <ul class="table-view table-view--small table-view--bare">
-            <li class="table-row">
-              <div class="table-row__content"><strong class="table-row__title muted">Symptoms</strong>
-                <p class="table-row__body"> There was a sustained (non-correcting) step change, Lorem ipsum dolor sit amet, consectetur adipisicing eli . Minus, ab ducimus sit tempore qui aut, dolorem repellat suscipit molestias dignissimos expedita nisi iure veniam voluptatibus
-                  fugiat.
-                </p>
-              </div>
-            </li>
-          </ul>
-        </template>
-      </demo-snippet>
-
-      <!-- TODO: Notes List -->
-      <h2>Example - Notes List</h2>
-      <demo-snippet>
-        <template>
-          <ul class="table-view table-view--small table-view--bare">
-            <li class="table-row">
-              <div class="table-row__content">
-                <div class="table-row__title"><strong>John Doe</strong>
-                  <small class="muted">11/02/12 1:32 PM</small>
+              <px-table-row type="tappable">
+                <div class="table-row__content">
+                  <h3 class="table-row__title epsilon">Lorem Ipsum</h3>
+                  <div class="table-row__body">
+                    <span class="beta">123.4</span>
+                    <span class="delta muted">AB</span>
+                  </div>
                 </div>
-                <p class="table-row__body"> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minus, ab ducimus sit tempore qui aut, dolorem repellat suscipit molestias dignissimos expedita nisi iure veniam voluptatibus fugiat.
-                </p>
-              </div>
+              </px-table-row>
+              <px-table-row type="tappable">
+                <div class="table-row__content">
+                  <h3 class="table-row__title epsilon">Lorem Ipsum</h3>
+                  <div class="table-row__body">
+                    <span class="beta">123.4</span>
+                    <span class="delta muted">AB</span>
+                  </div>
+                </div>
+              </px-table-row>
+              <px-table-row type="tappable">
+                <div class="table-row__content">
+                  <h3 class="table-row__title epsilon">Lorem Ipsum</h3>
+                  <div class="table-row__body">
+                    <span class="beta">123.4</span>
+                    <span class="delta muted">AB</span>
+                  </div>
+                </div>
+              </px-table-row>
 
-            </li>
-            <px-table-row title="John Doe" label1="11/02/12 1:32 PM" body="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minus, ab ducimus sit tempore qui aut, dolorem repellat suscipit molestias dignissimos expedita nisi iure veniam voluptatibus fugiat.">
-            </px-table-row>
-          </ul>
-        </template>
-      </demo-snippet>
+            </div>
+          </template>
+        </demo-snippet>
+        <h2>Default - Modifier - Flush</h2>
+        <demo-snippet>
+          <template>
+            <div class="table-view table-view--flush">
+              <px-table-row title="Text Label" type="tappable"></px-table-row>
+              <px-table-row title="Text Label" type="tappable"></px-table-row>
+            </div>
+          </template>
+        </demo-snippet>
+        <h2>Default - Modifier - Tiny</h2>
+        <demo-snippet>
+          <template>
+            <div class="table-view table-view--tiny">
+              <px-table-row title="Text Label" type="tappable"></px-table-row>
+              <px-table-row title="Text Label" type="tappable"></px-table-row>
+            </div>
+          </template>
+        </demo-snippet>
+        <h2>Default - Modifier - Small</h2>
+        <demo-snippet>
+          <template>
+            <div class="table-view table-view--small">
+              <px-table-row title="Text Label" type="tappable"></px-table-row>
+              <px-table-row title="Text Label" type="tappable"></px-table-row>
+            </div>
+          </template>
+        </demo-snippet>
+        <h2>Default - Modifier - Regular</h2>
+        <demo-snippet>
+          <template>
+            <div class="table-view table-view--regular">
+              <px-table-row title="Text Label" type="tappable"></px-table-row>
+              <px-table-row title="Text Label" type="tappable"></px-table-row>
+            </div>
+          </template>
+        </demo-snippet>
+        <h2>Default - Modifier - Large</h2>
+        <demo-snippet>
+          <template>
+            <ul class="table-view table-view--large">
 
-      <!-- TODO: Nav List -->
-      <h2>Example - Nav List</h2>
-      <demo-snippet>
-        <template>
-          <div class="table-view table-view--tiny">
-            <px-table-row title="Dashboard" type="tappable" icon="fa fa-dashboard"></px-table-row>
-            <px-table-row title="Alerts" type="tappable" icon="fa fa-exclamation-triangle"></px-table-row>
-            <px-table-row title="Cases" type="tappable" icon="fa fa-briefcase"></px-table-row>
-            <px-table-row title="Analysis" type="tappable" icon="fa fa-bar-chart"></px-table-row>
-            <px-table-row title="Settings" type="tappable" icon="fa fa-gear"></px-table-row>
-          </div>
-        </template>
-      </demo-snippet>
+              <px-table-row title="Text Label" type="tappable"></px-table-row>
+              <px-table-row title="Text Label" type="tappable"></px-table-row>
+            </ul>
+          </template>
+        </demo-snippet>
+        <h2>Default - Modifier - Huge</h2>
+        <demo-snippet>
+          <template>
+            <ul class="table-view table-view--huge">
+              <px-table-row title="Text Label" type="tappable"></px-table-row>
+              <px-table-row title="Text Label" type="tappable"></px-table-row>
+            </ul>
+          </template>
+        </demo-snippet>
+        <h2>Default - Modifier - Inset</h2>
+        <demo-snippet>
+          <template>
+            <ul class="table-view table-view--inset">
+              <px-table-row title="Text Label" type="tappable"></px-table-row>
+              <px-table-row title="Text Label" type="tappable"></px-table-row>
+            </ul>
+          </template>
+        </demo-snippet>
 
-      <!-- TODO: Widget Grid -->
-      <h2>Example - Widget Grid</h2>
-      <demo-snippet>
-        <template>
-          <link rel="import" href="../px-card/px-card.html">
-          <style media="screen">
-            #widget-table {
-              background: crimson;
-            }
+        <!-- TODO: Examples -->
+        <h1 class="beta">Examples</h1>
 
-            px-card {
-              width: 100%;
-            }
-          </style>
-          <ul id="widget-table" class="table-view table-view--bare table-view--responsive">
-            <li class="table-row">
-              <px-card header-text="Widget 1">
-                <p>
-                  Content
-                </p>
-              </px-card>
-            </li>
-            <li class="table-row">
-              <px-card header-text="Widget 2">
-                <p>
-                  Content
-                </p>
-              </px-card>
-            </li>
-            <li class="table-row">
-              <px-card header-text="Widget 3">
-                <p>
-                  Content
-                </p>
-              </px-card>
-            </li>
-            <li class="table-row">
-              <px-card header-text="Widget 4">
-                <p>
-                  Content
-                </p>
-              </px-card>
-            </li>
-            <li class="table-row">
-              <px-card header-text="Widget 5">
-                <p>
-                  Content
-                </p>
-              </px-card>
-            </li>
-            <li class="table-row">
-              <px-card header-text="Widget 6">
-                <p>
-                  Content
-                </p>
-              </px-card>
-            </li>
+        <!-- TODO: Iron List -->
+        <h2>Example - Iron List</h2>
+        <demo-snippet>
+          <template>
+            <link rel="import" href="../iron-ajax/iron-ajax.html"/>
+            <link rel="import" href="../iron-list/iron-list.html"/>
+            <div class="demo" style="height: 500px; overflow:auto;">
+              <template id="tableViewTemplate" is="dom-bind">
+                <iron-ajax url="./demo/data.json" last-response="{{data}}" auto></iron-ajax>
+                <iron-list id="ironList" items="[[data]]" as="item" class="table-view  table-view--small">
+                  <template>
+                    <div class="table-row table-row--nav-right" on-click="handleSelect">
+                      <div class="table-row__media table-row__media--icon" hidden="{{!item.icon}}">
+                        <i class$="{{item.icon}}"></i>
+                      </div>
+                      <div class="table-row__media table-row__media--image" hidden="{{!item.image}}"><img src$="{{item.image}}" alt="{{item.title}}"/>
+                      </div>
+                      <div class="table-row__content">
+                        <span class="table-row__title">{{item.title}}</span>
+                      </div>
+                    </div>
+                  </template>
+                </iron-list>
+              </template>
+              <script type="text/javascript">
+                var tmpl = document.getElementById('tableViewTemplate');
+                tmpl.handleSelect = function (e) {
+                  console.log('handleSelect', e);
+                };
+                document.addEventListener('WebComponentsReady', function () {
+                  setTimeout(function () {
+                    document.querySelector('iron-list').fire('iron-resize');
+                  }, 250);
+                });
+              </script>
+            </div>
+          </template>
+        </demo-snippet>
 
-          </ul>
-        </template>
-      </demo-snippet>
 
-      <!-- TODO: Actionable -->
-      <h2>Example - Actionable Rows</h2>
-      <demo-snippet>
-        <template>
-          <px-table-view id="table-actions">
-            <px-table-row title="Action Item 1" actionable>
-              <div class="table-row__actions table-row__actions--right">
-                <button class="table-row__button table-row__button--more"> More</button>
-                <button class="table-row__button table-row__button--flag"> Flag</button>
-                <button class="table-row__button table-row__button--delete"> Delete</button>
-              </div>
-            </px-table-row>
-            <px-table-row title="Action Item 2" actionable>
-              <div class="table-row__actions table-row__actions--right">
-                <button class="table-row__button table-row__button--more"> More</button>
-                <button class="table-row__button table-row__button--flag"> Flag</button>
-                <button class="table-row__button table-row__button--delete"> Delete</button>
-              </div>
-            </px-table-row>
-            <px-table-row title="Action Item 3" actionable>
-              <div class="table-row__actions table-row__actions--right">
-                <button class="table-row__button table-row__button--more"> More</button>
-                <button class="table-row__button table-row__button--flag"> Flag</button>
-                <button class="table-row__button table-row__button--delete"> Delete</button>
-              </div>
-            </px-table-row>
-          </px-table-view>
-        </template>
-      </demo-snippet>
+        <!-- TODO: Pull To Refresh -->
+        <h2>Example - Pull to Refresh</h2>
+        <demo-snippet>
+          <template>
+            <div class="table-view table-view--ptr table-view--small">
+              <a class="table-row">
+                Text Label
+              </a>
+            </div>
+          </template>
+        </demo-snippet>
 
-      <!-- TODO: Login List -->
-      <h2>Example - Login Form</h2>
-      <demo-snippet>
-        <template>
-          <style media="screen">
-            .login {
-              max-width: 330px;
-              margin: 0 auto;
-            }
-          </style>
-          <div class="login">
-            <div class="box box--small">
-              <h1 class="gamma text--center">Predix</h1>
-              <form action="">
-                <ul class="table-view table-view--tiny table-view--bare">
-                  <li class="table-row form-field">
-                    <input type="email" class="text-input" placeholder="E-mail" required="">
-                  </li>
-                  <li class="table-row form-field">
-                    <input type="password" class="text-input" placeholder="Password" required="">
-                  </li>
-                  <li class="table-row table-row--tappable">
-                    <px-table-row-checkbox name="userinfo" label="Remember Info"></px-table-row-checkbox>
-                  </li>
-                  <li class="table-row form-field">
-                    <button class="btn btn--primary btn--full">
-                      Sign in
-                    </button>
+        <!-- TODO: Nested -->
+        <h2>Example - Nested Children</h2>
+        <demo-snippet>
+          <template>
+            <ul class="table-view table-view--inset table-view--nested table-view--small">
+              <li class="table-row has-children is-selected">
+                <a href="#level-1-children">Level 0</a>
+                <ul id="level-1-children" class="">
+                  <li class="table-row has-children">
+                    <a href="#level-1-1-children">Level 1</a>
+                    <ul class="level-1-1-children">
+                      <li class="table-row has-children">Level 1-1
+                        <ul class="">
+                          <li class="table-row has-children">Level 1-1-1
+                            <ul class="">
+                              <li class="table-row">1-1-1 - Child Text label</li>
+                            </ul>
+                          </li>
+                        </ul>
+                      </li>
+                      <li class="table-row has-children">Level 1-2
+                        <ul class="table-view table-view--nested table-view--small">
+                          <li class="table-row has-children">Level 1-2-1
+                            <ul class="table-view table-view--nested table-view--small">
+                              <li class="table-row">1-2-1 - Child Text label</li>
+                            </ul>
+                          </li>
+                        </ul>
+                      </li>
+                    </ul>
                   </li>
                 </ul>
-              </form>
-            </div>
-          </div>
-        </template>
-      </demo-snippet>
+              </li>
+            </ul>
+          </template>
+        </demo-snippet>
 
-      <!-- TODO: Reports List -->
-      <h2>Example - Collapasble List</h2>
-      <demo-snippet>
-        <template>
-          <ul class="table-view table-view--small table-view--">
-            <li class="table-row table-row--collapsable">
-              <div class="table-row__content">
-                <div class="table-row__title">
-                  Collapsable Row
+        <!-- TODO: Alerts List -->
+        <h2>Example - Alerts List</h2>
+        <demo-snippet>
+          <template>
+            <ul class="table-view table-view--inset table-view--small">
+
+              <px-table-row
+                icon="fa fa-lg fa-exclamation-triangle color-red"
+                type="tappable"
+                title="Urgent Alert" body="GE-2483" label1="01/21/16"></px-table-row>
+              <px-table-row
+                icon="fa fa-lg fa-exclamation-triangle color-red"
+                type="tappable"
+                title="Urgent Alert" body="GE-2483" label1="01/21/16"></px-table-row>
+            </ul>
+          </template>
+        </demo-snippet>
+
+        <!-- TODO: Documents List -->
+        <h2>Example - Documents List</h2>
+        <demo-snippet>
+          <template>
+            <ul class="table-view table-view--small">
+
+              <px-table-row
+                title="Time Series Inlet Flow.pdf"
+                label1="534 kb" icon="fa fa-file" type="tappable">
+              </px-table-row>
+
+              <px-table-row
+                title="Time Series Inlet Flow.pdf"
+                label1="534 kb" icon="fa fa-file" type="tappable">
+              </px-table-row>
+            </ul>
+          </template>
+        </demo-snippet>
+
+        <!-- TODO: Reports List -->
+        <h2>Example - Reports List</h2>
+        <demo-snippet>
+          <template>
+            <ul class="table-view table-view--small table-view--bare">
+              <li class="table-row">
+                <div class="table-row__content">
+                  <strong class="table-row__title muted">Symptoms</strong>
+                  <p class="table-row__body">
+                    There was a sustained (non-correcting) step change, Lorem ipsum dolor sit amet, consectetur adipisicing eli . Minus, ab ducimus sit tempore qui aut, dolorem repellat suscipit molestias dignissimos expedita nisi iure veniam voluptatibus fugiat.
+                  </p>
                 </div>
-                <p class="table-row__body">
-                  This row body should be hidden by default. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-                  ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-                </p>
-              </div>
-            </li>
-          </ul>
-          <script type="text/javascript">
-            $('.table-row--collapsable').on('click', function(e) {
-              $(e.currentTarget).toggleClass('table-row--collapsable--is-open');
-            });
-          </script>
-        </template>
-      </demo-snippet>
-      <br>
-      <hr>
-      <px-code-editor id="myEditor" layout="bottom" style="height: 500px;"></px-code-editor>
-      <script type="text/javascript">
-        document.addEventListener('WebComponentsReady', function(e) {
-          setTimeout(function() {
-            document.getElementById('myEditor').code = '<h2>Hello</h2>';
-          }, 500);
-        });
-      </script>
-    </article>
-    <br>
-    <footer>
-      <p>&copy; 2016 GE Digital</p>
-    </footer>
-  </div>
+              </li>
+            </ul>
+          </template>
+        </demo-snippet>
 
-  <script src="demo/script.js"></script>
-</body>
+        <!-- TODO: Notes List -->
+        <h2>Example - Notes List</h2>
+        <demo-snippet>
+          <template>
+            <div class="table-view table-view--small table-view--bare">
+
+              <px-table-row
+                title="John Doe"
+                label1="11/02/12 1:32 PM"
+                body="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minus, ab ducimus sit tempore qui aut, dolorem repellat suscipit molestias dignissimos expedita nisi iure veniam voluptatibus fugiat."></px-table-row>
+
+              <px-table-row
+                title="John Doe"
+                label1="11/02/12 1:32 PM"
+                body="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minus, ab ducimus sit tempore qui aut, dolorem repellat suscipit molestias dignissimos expedita nisi iure veniam voluptatibus fugiat."></px-table-row>
+            </div>
+          </template>
+        </demo-snippet>
+
+        <!-- TODO: Nav List -->
+        <h2>Example - Nav List</h2>
+        <demo-snippet>
+          <template>
+            <div class="table-view table-view--tiny">
+              <px-table-row title="Dashboard" type="tappable" icon="fa fa-dashboard"></px-table-row>
+              <px-table-row title="Alerts" type="tappable" icon="fa fa-exclamation-triangle"></px-table-row>
+              <px-table-row title="Cases" type="tappable" icon="fa fa-briefcase"></px-table-row>
+              <px-table-row title="Analysis" type="tappable" icon="fa fa-bar-chart"></px-table-row>
+              <px-table-row title="Settings" type="tappable" icon="fa fa-gear"></px-table-row>
+            </div>
+          </template>
+        </demo-snippet>
+
+        <!-- TODO: Widget Grid -->
+        <h2>Example - Widget Grid</h2>
+        <demo-snippet>
+          <template>
+            <link rel="import" href="../px-card/px-card.html">
+            <style media="screen">
+              #widget-table {
+                background: crimson;
+              }
+
+              px-card {
+                width: 100%;
+              }
+
+            </style>
+            <ul id="widget-table" class="table-view table-view--bare table-view--responsive">
+              <li class="table-row">
+                <px-card header-text="Widget 1">
+                  <p>
+                    Content
+                  </p>
+                </px-card>
+              </li>
+              <li class="table-row">
+                <px-card header-text="Widget 2">
+                  <p>
+                    Content
+                  </p>
+                </px-card>
+              </li>
+              <li class="table-row">
+                <px-card header-text="Widget 3">
+                  <p>
+                    Content
+                  </p>
+                </px-card>
+              </li>
+              <li class="table-row">
+                <px-card header-text="Widget 4">
+                  <p>
+                    Content
+                  </p>
+                </px-card>
+              </li>
+              <li class="table-row">
+                <px-card header-text="Widget 5">
+                  <p>
+                    Content
+                  </p>
+                </px-card>
+              </li>
+              <li class="table-row">
+                <px-card header-text="Widget 6">
+                  <p>
+                    Content
+                  </p>
+                </px-card>
+              </li>
+
+            </ul>
+          </template>
+        </demo-snippet>
+
+        <!-- TODO: Actionable -->
+        <h2>Example - Actionable Rows</h2>
+        <demo-snippet>
+          <template>
+            <px-table-view id="table-actions">
+              <px-table-row title="Action Item 1" actionable>
+                <div class="table-row__actions table-row__actions--right">
+                  <button class="table-row__button table-row__button--more">
+                    More</button>
+                  <button class="table-row__button table-row__button--flag">
+                    Flag</button>
+                  <button class="table-row__button table-row__button--delete">
+                    Delete</button>
+                </div>
+              </px-table-row>
+              <px-table-row title="Action Item 2" actionable>
+                <div class="table-row__actions table-row__actions--right">
+                  <button class="table-row__button table-row__button--more">
+                    More</button>
+                  <button class="table-row__button table-row__button--flag">
+                    Flag</button>
+                  <button class="table-row__button table-row__button--delete">
+                    Delete</button>
+                </div>
+              </px-table-row>
+              <px-table-row title="Action Item 3" actionable>
+                <div class="table-row__actions table-row__actions--right">
+                  <button class="table-row__button table-row__button--more">
+                    More</button>
+                  <button class="table-row__button table-row__button--flag">
+                    Flag</button>
+                  <button class="table-row__button table-row__button--delete">
+                    Delete</button>
+                </div>
+              </px-table-row>
+            </px-table-view>
+          </template>
+        </demo-snippet>
+
+        <!-- TODO: Login List -->
+        <h2>Example - Login Form</h2>
+        <demo-snippet>
+          <template>
+            <style media="screen">
+              .login {
+                max-width: 330px;
+                margin: 0 auto;
+              }
+
+            </style>
+            <div class="login">
+              <div class="box box--small">
+                <h1 class="gamma text--center">Predix</h1>
+                <form action="">
+                  <ul class="table-view table-view--tiny table-view--bare">
+                    <li class="table-row form-field">
+                      <input type="email" class="text-input" placeholder="E-mail" required="">
+                    </li>
+                    <li class="table-row form-field">
+                      <input type="password" class="text-input" placeholder="Password" required="">
+                    </li>
+                    <li class="table-row table-row--tappable">
+                      <px-table-row-checkbox name="userinfo" label="Remember Info"></px-table-row-checkbox>
+                    </li>
+                    <li class="table-row form-field">
+                      <button class="btn btn--primary btn--full">
+                        Sign in
+                      </button>
+                    </li>
+                  </ul>
+                </form>
+              </div>
+            </div>
+          </template>
+        </demo-snippet>
+
+        <!-- TODO: Reports List -->
+        <h2>Example - Collapasble List</h2>
+        <demo-snippet>
+          <template>
+            <ul class="table-view table-view--small table-view--">
+              <li class="table-row table-row--collapsable">
+                <div class="table-row__content">
+                  <div class="table-row__title">
+                    Collapsable Row
+                  </div>
+                  <p class="table-row__body">
+                    This row body should be hidden by default. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
+                    ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                  </p>
+                </div>
+              </li>
+            </ul>
+            <script type="text/javascript">
+              $('.table-row--collapsable').on('click', function (e) {
+                $(e.currentTarget).toggleClass('table-row--collapsable--is-open');
+              });
+            </script>
+          </template>
+        </demo-snippet>
+        <br>
+        <hr>
+        <px-code-editor id="myEditor" layout="bottom" style="height: 500px;"></px-code-editor>
+        <script type="text/javascript">
+          document.addEventListener('WebComponentsReady', function (e) {
+            setTimeout(function () {
+              document.getElementById('myEditor').code = '<h2>Hello</h2>';
+            }, 500);
+          });
+        </script>
+      </article>
+      <br>
+      <footer>
+        <p>&copy; 2016 GE Digital</p>
+      </footer>
+    </div>
+    <script>
+      document.write('<script src="http://' + (location.host || 'localhost').split(':')[0] + ':35724/livereload.js?snipver=1"></script>')
+    </script>
+    <script src="demo/script.js"></script>
+  </body>
 
 </html>
