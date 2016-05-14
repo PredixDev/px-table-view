@@ -49,6 +49,13 @@ $table-row-header-background-color      : $gray3;
 ///
 $table-row-header-font-color            : $black;
 ///
+$table-row-title-font-size             : calculateRem(17px);
+$table-row-title-font-color             : $black;
+$table-row-subtitle-font-color             : $gray6;
+$table-row-subtitle-font-size             : calculateRem(14px);
+$table-row-body-font-color             : $gray7;
+$table-row-body-font-size             : calculateRem(16px);
+
 $table-row-header-font-size             : calculateRem(20px);
 ///
 $table-row-header-padding               : $inuit-base-spacing-unit--tiny;
@@ -79,7 +86,7 @@ $table-row-image-padding                : $inuit-base-spacing-unit--tiny;
 $table-row-image-margin                 : 0 $inuit-base-spacing-unit--tiny 0 0;
 
 $table-row-icon-padding                 : $inuit-base-spacing-unit--small;
-$table-row-icon-margin                  : 0;
+$table-row-icon-margin                  : $inuit-base-spacing-unit;
 
 $table-row-button-padding               : $inuit-base-spacing-unit--small;
 $table-row-button-margin                : 0;

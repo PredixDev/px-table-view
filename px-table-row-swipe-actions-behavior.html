@@ -71,10 +71,11 @@
           this.container.className = className.replace('animate', '').trim();
         }
       }
-
+      var width = this.container.offsetWidth;
       var paneIndex,
         pos,
         translate;
+
 
       for (paneIndex = 0; paneIndex < this.panes.length; paneIndex++) {
         pos = (this.actionsSize / 100) * (((paneIndex - showIndex) * 100) + percent);
@@ -90,8 +91,12 @@
         this.actions.transform(translate);
         //this.panes[paneIndex].style.transform = translate; this.panes[paneIndex].style.mozTransform = translate; this.panes[paneIndex].style.webkitTransform = translate;
 
+        console.log(className, 'translate', translate);
+
       }
-      //console.log('translate', translate);
+
+
+
 
       this.currentIndex = showIndex;
 
@@ -136,12 +141,12 @@
   var pxTableRowActionsSwipeBehavior = {
     created: function () {
       if (this.actionable) {
-      //  console.log('Before swipe handlers');
+        console.log('Before swipe handlers');
       }
     },
     attached: function () {
       if (this.actionable) {
-      //  console.log('Adding swipe handlers');
+       console.log('Adding swipe handlers');
         this._actions = new SwipeActions(this, Hammer.DIRECTION_HORIZONTAL);
       }
 

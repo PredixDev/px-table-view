@@ -10,7 +10,8 @@
     <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.2/jquery.min.js'></script>
 
 
-
+    <link rel="import" href="../px-theme/px-app.html">
+    <link rel="import" href="../px-theme/px-theme.html">
     <!-- TODO: Component -->
     <link rel="import" href="px-table-view.html"/>
     <link rel="import" href="../px-demo-helpers/px-example.html">
@@ -115,32 +116,43 @@
         <h2>Default - Icon Right</h2>
         <demo-snippet>
           <template>
-            <ul class="table-view">
-              <li class="table-row table-row--tappable">
-                <div class="table-row__media table-row__media--icon table-row__media--right">
-                  <i class="fa fa-lg fa-info"></i>
-                </div>
-                <div class="table-row__content">
-                  <span class="table-row__title">Text Label</span>
-                </div>
-              </li>
-            </ul>
+            <div class="table-view">
+              <px-table-row
+              	icon="fa fa-square"
+                media-pos="right"
+              	type="tappable"
+              	title="Single-line item"></px-table-row>
+              <px-table-row
+              	icon="fa fa-square"
+                media-pos="right"
+              	type="tappable"
+              	title="Single-line item"></px-table-row>
+              <px-table-row
+              	icon="fa fa-square"
+                media-pos="right"
+              	type="tappable"
+              	title="Single-line item"></px-table-row>
+              </div>
           </template>
         </demo-snippet>
 
         <h2>Default - Icon Left</h2>
         <demo-snippet>
           <template>
-            <ul class="table-view">
-              <li class="table-row table-row--tappable">
-                <div class="table-row__media table-row__media--icon table-row__media--left">
-                  <i class="fa fa-lg fa-gear"></i>
-                </div>
-                <div class="table-row__content">
-                  <span class="table-row__title">Text Label</span>
-                </div>
-              </li>
-            </ul>
+            <div class="table-view">
+              <px-table-row
+    	icon="fa fa-square"
+    	type="tappable"
+    	title="Single-line item"></px-table-row>
+    <px-table-row
+    	icon="fa fa-square"
+    	type="tappable"
+    	title="Single-line item"></px-table-row>
+    <px-table-row
+    	icon="fa fa-square"
+    	type="tappable"
+    	title="Single-line item"></px-table-row>
+    </div>
           </template>
         </demo-snippet>
 
@@ -1164,9 +1176,7 @@
         <p>&copy; 2016 GE Digital</p>
       </footer>
     </div>
-    <script>
-      document.write('<script src="http://' + (location.host || 'localhost').split(':')[0] + ':35724/livereload.js?snipver=1"></script>')
-    </script>
+
     <script src="demo/script.js"></script>
   </body>
 

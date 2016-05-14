@@ -30,6 +30,10 @@
   padding         : 0;
   appearance      : normal;
   user-select     : none;
+  border-bottom-style: solid;
+  border-bottom-width: 1px;
+  border-bottom-color: $table-row-border-color;
+  border-bottom-color: var(--table-row-border-color, $table-row-border-color);
   ///
   h1,
   h2,
@@ -62,10 +66,7 @@
   }
   ///
   &:not(:last-child) {
-    border-bottom-style: solid;
-    border-bottom-width: 1px;
-    border-bottom-color: $table-row-border-color;
-    border-bottom-color: var(--table-row-border-color, $table-row-border-color);
+
   }
   ///
 
@@ -74,6 +75,33 @@
     text-decoration: none;
     color          : $table-row-font-color;
     @include tableRowClickable($table-row-active-background-color, $table-row-active-font-color);
+  }
+
+  ///.table-view--flush
+  @include modifier ('flush') {
+
+      padding: 0 !important;
+
+  }
+  ///.table-view--tiny
+  @include modifier ('tiny') {
+
+      padding: $table-view-padding--tiny !important;
+
+  }
+  ///.table-view--small
+  @include modifier ('small') {
+      padding: $table-view-padding--small !important;
+  }
+
+  ///.table-view--large
+  @include modifier ('large') {
+      padding: $table-view-padding--large !important;
+  }
+  ///.table-view--huge
+  @include modifier ('huge') {
+      padding: $table-view-padding--huge !important;
+
   }
   ///.table-row--flush
   @include modifier ('flush') {
@@ -208,6 +236,7 @@
   }
   ///.table-row--actionable
   @include modifier ('actionable') {
+    padding-right: 0 !important;
     .table-row__content {
       transition: all 0.5s;
       position  : relative;
@@ -249,6 +278,7 @@
     width         : 100%;
     user-select   : none;
     white-space   : nowrap;
+    margin-left: $inuit-base-spacing-unit--small;
     ///.table-row__content--flush
     @include modifier ('row') {
       flex-direction: row;
@@ -262,26 +292,39 @@
       line-height: normal;
     }
 
-    @include modifier ('flush') {
-      line-height: normal;
-    }
   }
   ///---------------------------------------------------------------------------
   ///.table-row__title
   @include element ('title') {
+    font-size: $table-row-title-font-size;
+    color: $table-row-title-font-color;
     order      : 3;
-    align-self : flex-start;
+    align-self : stretch;
     user-select: none;
+    white-space: nowrap;
+    line-height: normal;
+    flex       : 1;
+  }
+  ///---------------------------------------------------------------------------
+  ///.table-row__title
+  @include element ('subtitle') {
+    font-size: $table-row-subtitle-font-size;
+    color: $table-row-subtitle-font-color;
+    order      : 4;
+    align-self : stretch;
     white-space: nowrap;
     line-height: normal;
     flex       : 1;
   }
   ///.table-row__body
   @include element ('body') {
+    color: $table-row-body-font-color;
+    font-size: $table-row-body-font-size;
+    order      : 5;
     line-height: normal;
     white-space: normal;
-    order      : 4;
-    align-self : flex-start;
+
+    align-self : stretch;
     flex       : 1 0 auto;
     ///.table-row__content__body--flush
     @include modifier ('flush') {}
@@ -291,17 +334,23 @@
   @include element ('label') {
     order     : 0;
     color     : $table-row-label-color;
-    flex      : 1 0 auto;
+    flex      : 1 0 6em;
     align-self: center;
+    //padding: $inuit-base-spacing-unit--tiny;
+    text-align: right;
+    //
+    margin-right: $inuit-base-spacing-unit--small;
     ///
     @include modifier ('right') {
       order       : 4;
-      margin-right: $inuit-base-spacing-unit--small;
+      margin-left: $inuit-base-spacing-unit--small;
     }
     ///
-    @include modifier ('left') {}
+    @include modifier ('left') {
+      margin-right: 0;
+    }
     ///
-    @include respond ('small') {}
+    @include media-breakpoint-up ('small') {}
   }
   ///---------------------------------------------------------------------------
   ///.table-row__icon
@@ -335,7 +384,7 @@
     @include modifier ('image') {
       flex   : 1 0 auto;
       padding: $table-row-image-padding;
-      margin : $table-row-image-margin;
+
 
       img {
         display   : block;
@@ -347,8 +396,9 @@
     @include modifier ('icon') {
       flex      : 1 0 auto;
       align-self: baseline;
-      padding   : $table-row-icon-padding;
-      margin    : $table-row-icon-margin;
+      padding: $inuit-base-spacing-unit--tiny;
+    //  margin-left: $inuit-base-spacing-unit--small;
+
     }
   }
 

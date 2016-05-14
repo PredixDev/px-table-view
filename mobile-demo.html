@@ -270,6 +270,13 @@
       <template id="">
         <px-card header-text="Actionable">
           <px-table-view id="table1" mode="sort" sortable>
+            <px-table-row title="Action Item" actionable>
+              <px-table-row-actions position="right">
+                <px-table-row-action-button label="More" type="more"></px-table-row-action-button>
+                <px-table-row-action-button label="Flag" type="flag"></px-table-row-action-button>
+                <px-table-row-action-button label="Delete" type="delete"></px-table-row-action-button>
+              </px-table-row-actions>
+            </px-table-row>
             <px-table-row title="Action Item" type="" actionable>
               <div class="table-row__actions table-row__actions--right">
                 <button class="table-row__actions__button btn--full btn-more">

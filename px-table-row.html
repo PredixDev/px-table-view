@@ -28,6 +28,7 @@ To style this component you can do the following:
   <style>
     :host {
       display: block;
+      position: relative;
       width: 100%;
     }
 
@@ -54,6 +55,7 @@ To style this component you can do the following:
       transform-style: preserve-3d;
       backface-visibility: hidden;
     }
+
 
     :host .animate {
       -webkit-transition: -webkit-transform 0.4s cubic-bezier(.10, .70, .10, 1) 0.5s;
@@ -84,14 +86,24 @@ To style this component you can do the following:
         <i class$="{{icon}}"></i>
       </div>
     </template>
+    <template is="dom-if" if="{{iconLeft}}">
+      <div class="table-row__media table-row__media--icon table-row__media--left">
+        <i class$="{{iconLeft}}"></i>
+      </div>
+    </template>
+    <template is="dom-if" if="{{iconRight}}">
+      <div class="table-row__media table-row__media--icon table-row__media--right">
+        <i class$="{{iconRight}}"></i>
+      </div>
+    </template>
 
     <template is="dom-if" if="{{label1}}">
-      <span class="table-row__label table-row__label--right">{{label1}}</span>
+      <span class="table-row__label table-row__label--right u-mr">{{label1}}</span>
     </template>
 
     <template is="dom-if" if="{{orderMode}}">
       <button class="btn btn--bare table-row__reorder-btn" on-click="_handleReorderItem">
-        <i class="fa fa-bars muted"></i>
+        <i class="fa fa-bars "></i>
       </button>
     </template>
 
@@ -99,13 +111,17 @@ To style this component you can do the following:
       <template is="dom-if" if="{{title}}">
         <div class="table-row__title">{{title}}</div>
       </template>
-
-      <template is="dom-if" if="{{body}}">
-        <div class="table-row__body">{{body}}</div>
+      <template is="dom-if" if="{{subtitle}}">
+        <div class="table-row__subtitle">{{subtitle}}</div>
       </template>
 
-      <content id="content" select=".table-row__content"></content>
+      <template is="dom-if" if="{{body}}">
+        <div class="table-row__body ">{{body}}</div>
+      </template>
+
+      <content id="content" select=".table-row__content, px-table-row-switch, px-table-row-checkbox"></content>
     </div>
+
 
     <content id="actions" select="px-table-row-actions"></content>
 
@@ -115,13 +131,17 @@ To style this component you can do the following:
       is: 'px-table-row',
       behaviors: [pxTableRowActionsSwipeBehavior],
       properties: {
-        //The list item object.
+        //The table-row object.
         item: {
           type: Object,
           value: {}
         },
-        //The title to set on the list item.
+        //The title to set on the table-row.
         title: {
+          type: String
+        },
+        //The sub title to set on the table-row.
+        subtitle: {
           type: String
         },
         //The label to place on the right side of the item.
@@ -132,16 +152,28 @@ To style this component you can do the following:
         label2: {
           type: String
         },
-        //The body to set on the list item.
+        //The body to set on the table-row.
         body: {
           type: String
         },
-        //The image to set on the list item.
+        //The image to set on the table-row.
         image: {
           type: String
         },
-        //The icon to set on the list item.
+        //The icon to set on the table-row.
         icon: {
+          type: String
+        },
+        //The left icon to set on the table-row.
+        iconLeft: {
+          type: String
+        },
+        //The right icon to set on the table-row.
+        iconRight: {
+          type: String
+        },
+        //The size to set on the table-row.
+        size: {
           type: String
         },
         //The media position (left or right);
@@ -149,7 +181,7 @@ To style this component you can do the following:
           type: String,
           value: 'left'
         },
-        //The type of list item (tappable, info, nav-right, chevron)
+        //The type of table-row (tappable, info, nav-right, chevron)
         type: {
           type: String
         },
@@ -173,6 +205,9 @@ To style this component you can do the following:
           for (var i = 0; i < types.length; i++) {
             this.toggleClass('table-row--' + types[i]);
           }
+        }
+        if (this.size) {
+          this.toggleClass('table-row--' + this.size);
         }
         if (this.actionable) {
           this.toggleClass('table-row--actionable');
