@@ -1,4 +1,5 @@
 'use strict';
+const path = require('path');
 const gulp = require('gulp');
 const pkg = require('./package.json');
 const $ = require('gulp-load-plugins')();
@@ -28,12 +29,7 @@ const sassOptions = {
   }
 };
 
-gulp.task('sassdoc', function() {
-  return gulp.src('sass/**/*.scss')
-    //  .pipe($.filelog())
-    .pipe(sassdoc(sassdocOptions))
-    .pipe($.filelog());
-});
+
 
 gulp.task('clean', function() {
   return gulp.src(['.tmp', 'css'], {
@@ -43,19 +39,35 @@ gulp.task('clean', function() {
     .pipe($.clean());
 });
 
+
+///-------------------------------------------------------------------------
+/// Styles Tasks
+///-------------------------------------------------------------------------
+
+
+/// 1. Compile styles
 gulp.task('sass', function() {
-  return gulp.src('./sass/**/*.scss')
-    //  .pipe($.filelog())
+  return gulp.src(`./sass/${pkg.name}-sketch.scss`)
+    .pipe($.filelog())
     .pipe($.sass(sassOptions).on('error', $.sass.logError))
     .pipe($.size())
-    .pipe($.concat(pkg.name + '.css'))
+    //  .pipe($.concat(pkg.name + '.css'))
+    .pipe($.rename(`${pkg.name}.css`))
     .pipe(gulp.dest('./css'))
     .pipe($.filelog());
 });
 
+/// 2. Document styles
+gulp.task('sassdoc', function() {
+  return gulp.src('sass/**/*.scss')
+    .pipe(sassdoc(sassdocOptions))
+    .pipe($.filelog());
+});
+
+/// 3. Prefix styles
 gulp.task('autoprefixer', function() {
   return gulp.src('css/*.css')
-    //  .pipe($.filelog())
+    .pipe($.filelog())
     .pipe($.autoprefixer({
       browsers: ['last 2 versions'],
       cascade: false
@@ -65,18 +77,36 @@ gulp.task('autoprefixer', function() {
     .pipe($.filelog());
 });
 
-gulp.task('css', function() {
+/// 4. Minify styles
+gulp.task('cssmin', function() {
   return gulp.src('css/*.css')
     .pipe($.sourcemaps.init())
     .pipe($.cssmin())
     .pipe($.filelog())
-    .pipe($.concat(pkg.name + '.css'))
+    //.pipe($.concat(pkg.name + '.css'))
     .pipe($.sourcemaps.write('.'))
     .pipe($.rename({
       suffix: '.min'
     }))
     .pipe($.size())
     .pipe(gulp.dest('css'))
+    .pipe($.filelog());
+});
+
+
+/// 5. Create Polymer styles module
+const stylemod = require('gulp-style-modules');
+gulp.task('poly-styles', function() {
+  gulp.src(`./css/${pkg.name}.css`)
+    .pipe($.filelog())
+    .pipe(stylemod({
+      filename: 'styles',
+      moduleId: function(file) {
+        return path.basename(file.path, path.extname(file.path)) + '-css';
+      }
+    }))
+    .pipe($.rename(`${pkg.name}-styles.html`))
+    .pipe(gulp.dest('.'))
     .pipe($.filelog());
 });
 
@@ -91,5 +121,6 @@ gulp.task('sass:watch', function() {
 });
 
 
+gulp.task('styles', gulpSequence('sass', 'autoprefixer', 'poly-styles', 'cssmin', 'sassdoc'));
 gulp.task('watch', ['sass:watch']);
-gulp.task('default', gulpSequence('clean', 'sass', 'autoprefixer', 'css', 'sassdoc'));
+gulp.task('default', ['clean', 'styles']);

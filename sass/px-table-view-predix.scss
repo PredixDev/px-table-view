@@ -63,19 +63,18 @@
     -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
   }
 
-
-  .table-row {
-    padding: $table-view-padding--default;
-  }
-
-  > div {
+  > * {
     line-height: normal;
   }
   /// Modifiers
   ///--------------------------------
   ///.table-view--responsive
   @include modifier ('responsive') {
-    @include n-columns($table-view-responsive-row-width, $table-view-responsive-row-gutters, true, $table-view-responsive-row-max);
+    @include n-columns(
+    $table-view-responsive-row-width,
+    $table-view-responsive-row-gutters,
+    true,
+    $table-view-responsive-row-max);
   }
   ///.table-view--ptr
   @include modifier ('ptr') {
@@ -112,6 +111,7 @@
       padding: $table-view-padding--large;
     }
   }
+
   ///.table-view--huge
   @include modifier ('huge') {
     .table-row {

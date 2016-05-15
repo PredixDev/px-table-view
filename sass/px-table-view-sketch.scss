@@ -34,16 +34,44 @@
   border          : none;
   background      : transparent;
   background-color: var(--table-view-background-color, $table-row-background-color);
+
+  .table-row {
+    font-size          : $table-row-font-size;
+    font-size          : var(--table-row-font-size, $table-row-font-size);
+
+    background-color   : $table-row-background-color;
+    background-color   : var(--table-row-background-color, $table-row-background-color);
+
+    ///
+    &:first-child {
+      border-bottom: none;
+    }
+    ///
+    &:last-child {
+      border-bottom: none;
+    }
+    ///
+    &:first-child:last-child {
+      border-top   : none;
+      border-bottom: none;
+    }
+    ///
+    &:not(:last-child) {
+      border-bottom-style: solid;
+      border-bottom-width: 1px;
+      border-bottom-color: $table-row-border-color;
+      border-bottom-color: var(--table-row-border-color, $table-row-border-color);
+    }
+  }
+
   ///.table-view--bare
   @include modifier ('bare') {
-    border    : none;
-    background: transparent;
-
     .table-row {
-      border-bottom: none;
+      border-bottom: none !important;
       //background: transparent;
     }
   }
+
   ///.table-view--responsive
   @include modifier ('responsive') {
     > *:last-child {

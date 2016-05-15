@@ -11,29 +11,22 @@
 /// @access public
 @include block ('table-row') {
   @include clearfix();
-  min-height      : 44px;
-  align-self      : center;
-  line-height     : 44px;
-  width           : 100%;
-  font-size       : $table-row-font-size;
-  font-size       : var(--table-row-font-size, $table-row-font-size);
-  border-color    : $table-row-border-color;
-  border-color    : var(--table-row-border-color, $table-row-border-color);
-  box-sizing      : border-box;
-  background-color: $table-row-background-color;
-  background-color: var(--table-row-background-color, $table-row-background-color);
-  position        : relative;
-  overflow        : hidden;
-  display         : flex;
-  flex-direction  : row;
-  margin          : 0;
-  padding         : 0;
-  appearance      : normal;
-  user-select     : none;
-  border-bottom-style: solid;
-  border-bottom-width: 1px;
-  border-bottom-color: $table-row-border-color;
-  border-bottom-color: var(--table-row-border-color, $table-row-border-color);
+  @include noselect();
+  min-height    : 44px;
+  align-self    : center;
+  line-height   : 44px;
+  width         : 100%;
+
+  box-sizing    : border-box;
+
+  position      : relative;
+  overflow      : hidden;
+  display       : flex;
+  flex-direction: row;
+  margin        : 0;
+  padding       : 0;
+  appearance    : normal;
+  user-select   : none;
   ///
   h1,
   h2,
@@ -48,26 +41,12 @@
     white-space: normal;
   }
   ///
-   > *:not(select),
+   > *:not(input),
    > *:not(textarea),
-  > *:not(input) {
+  > *:not(select) {
     user-select: none;
   }
-  ///
-  &:first-child {}
-  ///
-  &:last-child {
-    border-bottom: none;
-  }
-  ///
-  &:first-child:last-child {
-    border-top   : none;
-    border-bottom: none;
-  }
-  ///
-  &:not(:last-child) {
 
-  }
   ///
 
   ///
@@ -80,27 +59,27 @@
   ///.table-view--flush
   @include modifier ('flush') {
 
-      padding: 0 !important;
+    padding: 0 !important;
 
   }
   ///.table-view--tiny
   @include modifier ('tiny') {
 
-      padding: $table-view-padding--tiny !important;
+    padding: $table-view-padding--tiny !important;
 
   }
   ///.table-view--small
   @include modifier ('small') {
-      padding: $table-view-padding--small !important;
+    padding: $table-view-padding--small !important;
   }
 
   ///.table-view--large
   @include modifier ('large') {
-      padding: $table-view-padding--large !important;
+    padding: $table-view-padding--large !important;
   }
   ///.table-view--huge
   @include modifier ('huge') {
-      padding: $table-view-padding--huge !important;
+    padding: $table-view-padding--huge !important;
 
   }
   ///.table-row--flush
@@ -125,18 +104,23 @@
   }
   ///.table-row--tappable
   @include modifier ('tappable') {
+    @include tableRowClickable($table-row-active-background-color, $table-row-active-font-color);
+    @include noselect();
     cursor     : pointer;
     user-select: none;
 
     &:active {
-      transition: none;
-      background: $table-row-active-background-color;
+      transition      : none;
+      background-color: $table-row-active-background-color !important;
     }
-    @include tableRowClickable($table-row-active-background-color, $table-row-active-font-color);
 
     &:active {
       .table-row__label {
         color: $table-row-active-font-color;
+      }
+
+      .table-row__content {
+        color: $table-row-active-font-color !important;
       }
 
       .table-row__title {
@@ -237,6 +221,7 @@
   ///.table-row--actionable
   @include modifier ('actionable') {
     padding-right: 0 !important;
+
     .table-row__content {
       transition: all 0.5s;
       position  : relative;
@@ -278,7 +263,7 @@
     width         : 100%;
     user-select   : none;
     white-space   : nowrap;
-    margin-left: $inuit-base-spacing-unit--small;
+    margin-left   : $inuit-base-spacing-unit--small;
     ///.table-row__content--flush
     @include modifier ('row') {
       flex-direction: row;
@@ -296,8 +281,8 @@
   ///---------------------------------------------------------------------------
   ///.table-row__title
   @include element ('title') {
-    font-size: $table-row-title-font-size;
-    color: $table-row-title-font-color;
+    font-size  : $table-row-title-font-size;
+    color      : $table-row-title-font-color;
     order      : 3;
     align-self : stretch;
     user-select: none;
@@ -308,8 +293,8 @@
   ///---------------------------------------------------------------------------
   ///.table-row__title
   @include element ('subtitle') {
-    font-size: $table-row-subtitle-font-size;
-    color: $table-row-subtitle-font-color;
+    font-size  : $table-row-subtitle-font-size;
+    color      : $table-row-subtitle-font-color;
     order      : 4;
     align-self : stretch;
     white-space: nowrap;
@@ -318,8 +303,8 @@
   }
   ///.table-row__body
   @include element ('body') {
-    color: $table-row-body-font-color;
-    font-size: $table-row-body-font-size;
+    color      : $table-row-body-font-color;
+    font-size  : $table-row-body-font-size;
     order      : 5;
     line-height: normal;
     white-space: normal;
@@ -332,21 +317,23 @@
   ///---------------------------------------------------------------------------
   ///.table-row__label
   @include element ('label') {
-    order     : 0;
-    color     : $table-row-label-color;
-    flex      : 1 0 6em;
-    align-self: center;
+    order       : 0;
+    color       : $table-row-label-color;
+    flex        : 1 0 6em;
+    align-self  : center;
     //padding: $inuit-base-spacing-unit--tiny;
-    text-align: right;
+
     //
     margin-right: $inuit-base-spacing-unit--small;
     ///
     @include modifier ('right') {
-      order       : 4;
+      text-align : left;
+      order      : 4;
       margin-left: $inuit-base-spacing-unit--small;
     }
     ///
     @include modifier ('left') {
+      text-align  : right;
       margin-right: 0;
     }
     ///
@@ -374,17 +361,20 @@
     @include modifier ('left') {
       order: 0;
     }
+    ///---------------------------------------------------------------------------
     ///.table-row__media--right
     @include modifier ('right') {
       order: 9;
     }
+    ///---------------------------------------------------------------------------
     ///.table-row__media--toggle
     @include modifier ('toggle') {}
+
+    ///---------------------------------------------------------------------------
     ///.table-row__media--image
     @include modifier ('image') {
       flex   : 1 0 auto;
       padding: $table-row-image-padding;
-
 
       img {
         display   : block;
@@ -392,13 +382,15 @@
         max-height: 80px;
       }
     }
+
+    ///---------------------------------------------------------------------------
     ///.table-row__media--icon
     @include modifier ('icon') {
-      flex      : 1 0 auto;
-      align-self: baseline;
-      padding: $inuit-base-spacing-unit--tiny;
-    //  margin-left: $inuit-base-spacing-unit--small;
-
+      flex       : 1 0 auto;
+      align-self : center;
+      padding    : $inuit-base-spacing-unit--tiny;
+      //margin-left: $inuit-base-spacing-unit--small;
+      text-align : center;
     }
   }
 

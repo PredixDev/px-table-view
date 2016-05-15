@@ -1160,6 +1160,170 @@
             </script>
           </template>
         </demo-snippet>
+
+
+
+<h2>Table View Specs</h2>
+
+        <div class="box">
+
+
+<p>A table-view consists of a single continuous column of tessellated sub-divisions of equal width called rows
+that function as containers for tiles.
+
+Tiles hold content, and can vary in height within a table-view.</p>
+
+
+<br/>
+<style>
+	.debug *  {
+    border: 1px solid red;
+	}
+</style>
+<div class="box box--flush table-view table-view--">
+  <px-table-row
+  	class="debug"
+  	title="Title"
+  	subtitle="Subtitle"
+  	body="Body"
+  	label1="label 1"
+  	label2="label 2"
+  	type="tappable"></px-table-row>
+
+</div>
+
+
+
+
+
+
+<hr/>
+<br/>
+<legend>Single-line</legend>
+<div class="box box--flush table-view table-view--">
+  <px-table-row
+  	type="tappable"
+  	title="Single-line item"></px-table-row>
+
+</div>
+<br/>
+<legend>Single-line with icon</legend>
+<div class="box box--flush table-view">
+  <px-table-row
+  	icon="fa fa-square fa-lg"
+  	type="tappable"
+  	title="Single-line item"></px-table-row>
+
+</div>
+
+
+<br/>
+<legend>Single-line with avatar</legend>
+<div class="box box--flush table-view table-view--tiny">
+  <px-table-row
+  	icon="fa fa-circle fa-3x"
+  	type="tappable"
+  	title="Single-line item"></px-table-row>
+</div>
+<br/>
+<legend>Single-line with avatar and icon</legend>
+<div class="box box--flush table-view table-view--tiny">
+  <px-table-row
+  	icon-left="fa fa-circle fa-3x"
+  	icon-right="fa fa-square fa-lg"
+  	type="tappable"
+  	title="Single-line item"></px-table-row>
+</div>
+
+<br/>
+<hr/>
+<br/>
+<br/>
+
+<legend>Two-line</legend>
+<div class="box box--flush table-view">
+  <px-table-row
+  	type="tappable"
+  	title="Two-line item"
+  	body="Secondary text"></px-table-row>
+</div>
+<br/>
+<legend>Two-line with icon</legend>
+<div class="box box--flush table-view">
+  <px-table-row
+  icon="fa fa-square fa-2x"
+  	type="tappable"
+  	title="Two-line item"
+  	body="Secondary text"></px-table-row>
+</div>
+
+
+<br/>
+<legend>Two-line with avatar</legend>
+<div class="box box--flush table-view">
+  <px-table-row
+  icon="fa fa-circle fa-3x"
+  	type="tappable"
+  	title="Two-line item"
+  	body="Secondary text"></px-table-row>
+</div>
+<br/>
+<legend>Two-line with avatar and icon</legend>
+<div class="box box--flush table-view">
+  <px-table-row
+ 		icon-left="fa fa-circle fa-3x"
+  	icon-right="fa fa-square fa-lg"
+
+  	type="tappable"
+  	title="Two-line item"
+  	body="Secondary text"></px-table-row>
+</div>
+
+
+<br/>
+<hr/>
+<br/>
+<br/>
+<legend>Three-line</legend>
+<div class="box box--flush table-view">
+  <px-table-row
+  	type="tappable"
+  	title="Three-line item"
+  	subtitle="John doez"
+  	body="Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."></px-table-row>
+</div>
+<br/>
+<legend>Three-line with icon</legend>
+<div class="box box--flush table-view">
+  <px-table-row
+  	type="tappable"
+  	icon="fa fa-square fa-2x"
+  	title="Three-line item"
+  	body="Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."></px-table-row>
+</div>
+
+<br/>
+<legend>Three-line with avatar</legend>
+<div class="box box--flush table-view">
+  <px-table-row
+  	type="tappable"
+  	icon="fa fa-circle fa-3x"
+  	title="Three-line item"
+  	body="Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."></px-table-row>
+</div>
+
+<br/>
+<legend>Three-line with avatar and icon</legend>
+<div class="box box--flush table-view">
+  <px-table-row
+  	type="tappable"
+  	icon-left="fa fa-circle fa-3x"
+  	icon-right="fa fa-square fa-2x"
+  	title="Three-line item"
+  	body="Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."></px-table-row>
+</div>
+</div>
+
         <br>
         <hr>
         <px-code-editor id="myEditor" layout="bottom" style="height: 500px;"></px-code-editor>

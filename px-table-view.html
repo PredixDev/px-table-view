@@ -4,6 +4,7 @@
 <link rel="import" href="../iron-list/iron-list.html">
 <link rel="import" href="../iron-selector/iron-multi-selectable.html">
 
+<link rel="stylesheet" href="css/px-table-view.css">
 <link rel="import" href="px-table-view-behavior.html"/>
 <link rel="import" href="px-table-view-drilldown-behavior.html" />
 
@@ -78,18 +79,11 @@ To use this component with iron list you can do the following:
 -->
 
 <dom-module id="px-table-view">
-  <link rel="stylesheet" href="css/px-table-view.css" is="custom-style"/>
+
+<style include="px-table-view-css"></style>
+
   <template strip-whitespace>
-    <style>
-      :host {
 
-      }
-      :host ul {
-        margin: 0;
-        padding: 0;
-      }
-
-    </style>
     <template id="ironList" is="dom-if" if="{{tableData}}">
       <template id="tableRowTemplate" items="{{tableData}}" is="dom-repeat">
         <px-table-row item="{{item}}"></px-table-row>
