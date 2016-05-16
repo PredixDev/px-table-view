@@ -52,6 +52,7 @@
   }
   //Button
   @include element ('button') {
+    @include noselect();
     cursor       : pointer;
     margin       : 0;
     border-radius: 0;
@@ -63,8 +64,11 @@
     color        : $table-row-button-font-color;
     font-size    : $table-row-button-font-size;
     transition   : $table-row-button-transition;
+    display: flex;
+    align-items: center;
 
     i {
+      align-self: center;
       display: block;
     }
 

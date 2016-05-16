@@ -16,11 +16,10 @@ To use this component:
   <template>
     <style>
       :host {
-        min-height: 44px;
-        min-width: 44px;
+        display: block;
       }
     </style>
-    <div type="button" name="button">
+
       <template is="dom-if" if="{{icon}}">
         <i class$="{{icon}}"></i>
       </template>
@@ -28,7 +27,7 @@ To use this component:
         <span>{{label}}</span>
       </template>
       <content select="*"></content>
-    </div>
+
   </template>
 </dom-module>
 <script>

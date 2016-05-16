@@ -244,6 +244,19 @@
               transform: translateX(-100%); }
 
 .table-row__button {
+  -webkit-touch-callout: none;
+  /* iOS Safari */
+  -webkit-user-select: none;
+  /* Chrome/Safari/Opera */
+  -khtml-user-select: none;
+  /* Konqueror */
+  -moz-user-select: none;
+  /* Firefox */
+  -ms-user-select: none;
+  /* Internet Explorer/Edge */
+  user-select: none;
+  /* Non-prefixed version, currently
+                                 not supported by any browser */
   cursor: pointer;
   margin: 0;
   border-radius: 0;
@@ -257,8 +270,17 @@
   padding: 0.6666666667rem;
   color: white;
   font-size: 1.0666666667rem;
-  transition: all 0.4s; }
+  transition: all 0.4s;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center; }
   .table-row__button i {
+    -webkit-align-self: center;
+        -ms-flex-item-align: center;
+            align-self: center;
     display: block; }
   .table-row__button--delete {
     -webkit-user-select: none;
