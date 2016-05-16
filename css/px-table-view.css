@@ -892,7 +892,7 @@
   cursor: default;
   list-style-type: none;
   line-height: normal;
-  margin: 0;
+  margin: 0 !important;
   padding: 0;
   position: relative;
   text-align: left; }
@@ -979,8 +979,6 @@
     content: ' '; }
   .table-view:after {
     clear: both; }
-  .table-viewul {
-    margin: 0 !important; }
   .table-view * {
     -webkit-touch-callout: none;
     -webkit-text-size-adjust: none;

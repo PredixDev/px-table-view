@@ -1,5 +1,5 @@
 <link rel="import" href="../polymer/polymer.html"/>
-
+<link rel="import" href="../paper-swipe/paper-swipe.html"/>
 
 <link rel="import" href="px-table-row-actions.html">
 <link rel="import" href="px-table-row-action-button.html">
@@ -27,7 +27,7 @@ To style this component you can do the following:
 @homepage index.html
 -->
 <dom-module id="px-table-row">
-  	<style include="px-table-view-css"></style>
+  <style include="px-table-view-css"></style>
   <style>
     :host {
       display: block;
@@ -59,7 +59,6 @@ To style this component you can do the following:
       backface-visibility: hidden;
     }
 
-
     :host .animate {
       -webkit-transition: -webkit-transform 0.4s cubic-bezier(.10, .70, .10, 1) 0.5s;
       transition: transform 0.4s cubic-bezier(.10, .70, .10, 1) 0.5s;
@@ -68,6 +67,7 @@ To style this component you can do the following:
 
   </style>
   <template>
+
     <template is="dom-if" if="{{editMode}}">
       <button class="btn btn--bare table-row__delete-btn" on-click="_handleRemoveItem">
         <i class="fa fa-minus-circle fa-lg color-red"></i>
@@ -121,18 +121,15 @@ To style this component you can do the following:
       <template is="dom-if" if="{{body}}">
         <div class="table-row__body ">{{body}}</div>
       </template>
-
       <content id="content" select=".table-row__content, px-table-row-switch, px-table-row-checkbox"></content>
     </div>
-
-
     <content id="actions" select="px-table-row-actions"></content>
 
   </template>
   <script>
     Polymer({
       is: 'px-table-row',
-      behaviors: [pxTableRowActionsSwipeBehavior],
+      // behaviors: [pxTableRowActionsSwipeBehavior],
       properties: {
         //The table-row object.
         item: {

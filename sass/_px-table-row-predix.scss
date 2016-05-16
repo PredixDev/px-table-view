@@ -337,7 +337,7 @@
       margin-right: 0;
     }
     ///
-    @include media-breakpoint-up ('small') {}
+    @include media-breakpoint-up (sm) {}
   }
   ///---------------------------------------------------------------------------
   ///.table-row__icon

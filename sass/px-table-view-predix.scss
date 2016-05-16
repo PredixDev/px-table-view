@@ -44,16 +44,13 @@
   cursor         : default;
   list-style-type: none;
   line-height    : normal;
-  margin         : 0;
+  margin: 0 !important;
   padding        : 0;
   position       : relative;
   text-align     : left;
 //  display: flex;
   //flex-direction: column;
 
-  &ul{
-    margin: 0 !important;
-  }
 
   * {
     -webkit-touch-callout      : none;
