@@ -567,11 +567,11 @@
             <script type="text/javascript">
               $('.btn-add-responsive').bind('click', function (e) {
                 var $table = $('#table-responsive');
-                $table.append($table.find(':first-child').clone());
+                $table.append($table.find('#table-row-1').clone());
               });
             </script>
-            <div id="table-responsive" class="table-view table-view--small table-view--responsive">
-              <px-table-row type="tappable">
+            <div id="table-responsive" class="table-view table-view--bare table-view--responsive">
+              <px-table-row id="table-row-1" type="tappable">
                 <div class="table-row__content">
                   <h3 class="table-row__title epsilon">Lorem Ipsum</h3>
                   <div class="table-row__body">
