@@ -26,8 +26,11 @@ function transitionend($elem) {
 }
 
 function Drilldown(element, options) {
-	this.$element = $(element);
-	this.$list = $(element).find('.drilldown__list');
+	console.log('drilldown', this);
+
+
+	this.$element = element;
+	this.$list = this.$element.querySelector('.drilldown__list');
 	this.defaults = {
 		el: '[data-drilldown]',
 		/**
@@ -72,19 +75,13 @@ function Drilldown(element, options) {
 			_this._getMaxDims();
 		});
 
-		$(element).each(function(i, o) {
-			console.log('Found drilldown', i);
 
-			$(o)
-				.addClass('is-drilldown')
-				.find('[data-submenu]')
-				.addClass('is-drilldown-submenu');
 
-			$(o).find('a')
-				.parent()
-				.addClass('is-drilldown-submenu-parent')
-		});
-		this.$submenuAnchors = this.$element.find('li.is-drilldown-submenu-parent').children('a');
+		this.$element.toggleClass('is-drilldown', true)
+		this.$element.toggleClass('is-drilldown-submenu', true, this.$element.querySelectorAll('[data-submenu]'));
+
+		this.$element.toggleClass('is-drilldown-submenu-parent', true, this.$element.querySelectorAll('a'));
+		this.$submenuAnchors = this.$element.querySelectorAll('li.is-drilldown-submenu-parent a');
 		this.$submenus = this.$submenuAnchors.parent('li').children('[data-submenu]');
 		this.$menuItems = this.$element.find('li').not('.js-drilldown-back').attr('role', 'menuitem').find('a');
 
@@ -334,13 +331,14 @@ $(function() {
 
 var pxTableViewDrilldownBehavior = {
   ready: function() {
-  ///  console.warn(this.tagName, 'pxTableRowDrilldownBehavior created!', this);
+   console.warn(this.tagName, 'pxTableRowDrilldownBehavior created!', this);
   },
   attached: function() {
-  //  console.warn(this.tagName, 'pxTableRowDrilldownBehavior attached!', this);
+  console.warn(this.tagName, 'pxTableRowDrilldownBehavior attached!', this);
+
   },
   detached: function() {
-  //  console.warn(this.tagName, 'pxTableRowDrilldownBehavior detached!', this);
+    console.warn(this.tagName, 'pxTableRowDrilldownBehavior detached!', this);
   }
 };
 

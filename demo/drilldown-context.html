@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>px-table-view / context browser</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <link rel='stylesheet' href='//predixdev.github.io/px-library-design/css/style.css'>
+
+    <script src="../../webcomponentsjs/webcomponents.min.js"></script>
+
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/lodash.js/4.6.1/lodash.min.js"></script>
+
+    <link rel="import" href="../../iron-demo-helpers/demo-snippet.html"/>
+    <link rel="import" href="../px-table-view.html">
+    <link rel="import" href="../../px-navbar/px-navbar.html"/>
+    <link rel="import" href="../../px-theme/px-app.html">
+    <link rel="import" href="../../px-theme/px-theme.html">
+    <link rel="import" href="../../iron-ajax/iron-ajax.html"/>
+    <link rel="import" href="../../iron-list/iron-list.html"/>
+    <style media="screen">
+      body,
+      html {
+        background: #fff;
+      }
+      .drilldown,
+      iron-list {
+        overflow-y: scroll;
+        -webkit-overflow-scrolling: touch;
+      }
+
+    </style>
+  </head>
+  <body>
+
+    <template id="app" is="dom-bind">
+      <div class="viewport">
+
+        <div class="flex flex--column flex--stretch">
+          <div class="flex__item border-rght">
+
+            <!-- TODO: Current Context -->
+            <div class="context-browser table-view table-view--drilldown">
+              <button class="context-browser__selector u-p">
+                <span class="u-mr">Select Context</span>
+                <i class="fa fa-caret-down"></i>
+              </button>
+              <nav class="context-browser__crumbs" role="navigation">
+                <ul class="list-inline list-inline--delimited breadcrumbs">
+                  <li>
+                    <a href="#">United States</a>
+                  </li>
+                  <li>California</li>
+                  <li>Sacramento</li>
+                  <li>Building 1</li>
+                </ul>
+              </nav>
+              <px-drilldown-list id="dd" list-data="{{nodes}}"></px-drilldown-list>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </template>
+
+    <script type="text/javascript">
+      function createItem(name, count) {
+        var o = {
+          id: name.replace(/\W/g, '-').toLowerCase(),
+          label: name,
+          children: null,
+          href: '#' + name.replace(/\W/g, '-').toLowerCase()
+        };
+        if (count) {
+          o.children = [];
+          _.times(count, function (i) {
+            o.children.push(createItem('File -' + i));
+          });
+        }
+        return o;
+      }
+      document.addEventListener('WebComponentsReady', function () {
+        var app = document.getElementById('app');
+
+        var nodes = [
+          createItem('My Documents', 5),
+          createItem('My Movies', 5),
+          createItem('My Music', 5),
+          createItem('My Photos', 25)
+        ];
+
+        app.nodes = nodes;
+      });
+    </script>
+
+    <!-- TODO: Drill Down List -->
+    <dom-module id="px-drilldown-list">
+      <style>
+        :host {
+          display: block;
+        }
+
+      </style>
+      <template>
+        <ul id="drilldown" class="list-ui list-ui--small drilldown__menu  " data-drilldown>
+          <template is="dom-if" if="{{items}}"></template>
+          <template id="nodes" is="dom-repeat" items="{{listData}}">
+            <li class="table-row table-row--">
+              <px-drilldown-item item-data="{{item}}"></px-drilldown-item>
+            </li>
+          </template>
+        </ul>
+      </template>
+      <script>
+        Polymer({
+          is: 'px-drilldown-list',
+          properties: {
+            listData: {
+              type: Array
+            }
+          },
+          ready: function () {
+            //console.warn(this.tagName, ' created!', this);
+          },
+          attached: function () {
+            console.warn(this.tagName, ' attached!');
+             this._dd = new Drilldown(this).bind(this);
+          },
+          detached: function () {
+            console.warn(this.tagName, ' detached!', this);
+          }
+        });
+      </script>
+    </dom-module>
+
+    <!-- TODO: Drill Down Item -->
+    <dom-module id="px-drilldown-item">
+      <style>
+        :host {
+          display: block;
+          width: 100%;
+        }
+
+      </style>
+      <template strip-whitespace>
+
+        <a href$="#{{itemData.id}}">
+          <i class="fa fa-folder"></i>
+          <span>{{itemData.label}}</span>
+        </a>
+        <template is="dom-if" if="{{itemData.children}}">
+          <ul class="drilldown__sub-menu list-ui list-ui--small " data-submenu>
+            <template is="dom-repeat" items="{{itemData.children}}">
+
+              <!-- child node-->
+              <li class="table-row table-row--nav-right is-drilldown-submenu-parent ">
+                <px-drilldown-item item-data="{{item}}"></px-drilldown-item>
+              </li>
+              <!--/ child node-->
+            </template>
+
+          </ul>
+        </template>
+
+      </template>
+      <script>
+        Polymer({
+          is: 'px-drilldown-item',
+          properties: {
+            itemData: {
+              type: Object
+            }
+          },
+          ready: function () {
+            console.warn(this.tagName, 'created!', this);
+          },
+          attached: function () {
+            console.warn(this.tagName, 'attached!', this.itemData);
+
+          },
+          detached: function () {
+            console.warn(this.tagName, 'detached!', this);
+          }
+        });
+      </script>
+    </dom-module>
+
+    <script id="tmpl" type="text/template">
+
+        <li class="tappable" data-id="<%- item.id %>">
+          <a href=$"#{{item.id}}">
+            <i class="fa fa-folder"></i>
+            <span>{{item.label}}</span>
+          </a>
+          <template is="dom-if" if="{{item.children}}">
+            <ul class="drilldown__sub-menu list-ui list-ui--small" data-submenu>
+              <template is="dom-repeat" items="{{item.children}}">
+                <!-- child node-->
+                <px-drilldown-item item="{{item}}"></px-drilldown-item>
+                <!--/ child node-->
+              </template>
+          </ul>
+        </template>
+
+      </li>
+
+  </script>
+
+  <script src="//localhost:35724/livereload.js?snipver=1"></script>
+
+</body>
+
+</html>

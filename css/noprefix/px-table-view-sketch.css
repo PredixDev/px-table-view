@@ -300,7 +300,6 @@
   min-height: 44px;
   align-self: center;
   line-height: 44px;
-  width: 100%;
   box-sizing: border-box;
   position: relative;
   overflow: hidden;
@@ -309,7 +308,11 @@
   margin: 0;
   padding: 0;
   appearance: normal;
-  user-select: none; }
+  user-select: none;
+  font-size: 1.1333333333rem;
+  font-size: var(--table-row-font-size, 1.1333333333rem);
+  background-color: transparent;
+  background-color: var(--table-row-background-color, transparent); }
   .table-row:after, .table-row:before {
     display: table;
     content: ' '; }
@@ -378,13 +381,12 @@
     user-select: none;
     /* Non-prefixed version, currently
                                  not supported by any browser */
-    cursor: pointer;
-    user-select: none; }
-    .table-row--tappable:active {
+    cursor: pointer; }
+    .table-row--tappable:active:active {
       color: #fff;
       transition: none;
       background: #0a9ec1; }
-    .table-row--tappable:hover {
+    .table-row--tappable:active:hover {
       transition: none; }
     .table-row--tappable:active {
       transition: none;
@@ -398,11 +400,27 @@
     .table-row--tappable:active .table-row__body {
       color: #fff !important; }
   .table-row--chevron {
+    -webkit-touch-callout: none;
+    /* iOS Safari */
+    -webkit-user-select: none;
+    /* Chrome/Safari/Opera */
+    -khtml-user-select: none;
+    /* Konqueror */
+    -moz-user-select: none;
+    /* Firefox */
+    -ms-user-select: none;
+    /* Internet Explorer/Edge */
+    user-select: none;
+    /* Non-prefixed version, currently
+                                 not supported by any browser */
     transition: background-color 0.2s linear;
     overflow: hidden; }
-    .table-row--chevron:active {
+    .table-row--chevron:active:active {
+      color: #fff;
       transition: none;
       background: #0a9ec1; }
+    .table-row--chevron:active:hover {
+      transition: none; }
     .table-row--chevron:before {
       transform: translateY(-50%);
       font-style: normal;
@@ -602,14 +620,21 @@
     .table-row--nav-left:hover {
       transition: none; }
   .table-row--nav-right {
+    -webkit-touch-callout: none;
+    /* iOS Safari */
+    -webkit-user-select: none;
+    /* Chrome/Safari/Opera */
+    -khtml-user-select: none;
+    /* Konqueror */
+    -moz-user-select: none;
+    /* Firefox */
+    -ms-user-select: none;
+    /* Internet Explorer/Edge */
+    user-select: none;
+    /* Non-prefixed version, currently
+                                 not supported by any browser */
     transition: background-color 0.2s linear;
     overflow: hidden; }
-    .table-row--nav-right:active {
-      color: #fff;
-      transition: none;
-      background: #0a9ec1; }
-    .table-row--nav-right:hover {
-      transition: none; }
     .table-row--nav-right:before {
       transform: translateY(-50%);
       font-style: normal;
@@ -629,6 +654,12 @@
       .table-row--nav-right:active:before {
         color: #fff; }
     .table-row--nav-right:hover {
+      transition: none; }
+    .table-row--nav-right:active:active {
+      color: #fff;
+      transition: none;
+      background: #0a9ec1; }
+    .table-row--nav-right:active:hover {
       transition: none; }
   .table-row--actionable {
     padding-right: 0 !important; }
@@ -885,8 +916,6 @@
   min-height: 44px; }
 
 .table-view {
-  overflow-y: auto;
-  -webkit-overflow-scrolling: touch;
   font-family: "GE Inspira Sans", sans-serif;
   font-weight: 500;
   cursor: default;
@@ -1059,26 +1088,19 @@
           transform: translateX(0); }
 
 .table-view {
-  border: none;
-  background: transparent;
-  background-color: var(--table-view-background-color, transparent); }
-  .table-view .table-row {
-    font-size: 1.1333333333rem;
-    font-size: var(--table-row-font-size, 1.1333333333rem);
-    background-color: transparent;
-    background-color: var(--table-row-background-color, transparent); }
-    .table-view .table-row:first-child {
-      border-bottom: none; }
-    .table-view .table-row:last-child {
-      border-bottom: none; }
-    .table-view .table-row:first-child:last-child {
-      border-top: none;
-      border-bottom: none; }
-    .table-view .table-row:not(:last-child) {
-      border-bottom-style: solid;
-      border-bottom-width: 1px;
-      border-bottom-color: #b1b1bc;
-      border-bottom-color: var(--table-row-border-color, #b1b1bc); }
+  border: none; }
+  .table-view .table-row:first-child {
+    border-bottom: none; }
+  .table-view .table-row:last-child {
+    border-bottom: none; }
+  .table-view .table-row:first-child:last-child {
+    border-top: none;
+    border-bottom: none; }
+  .table-view .table-row:not(:last-child) {
+    border-bottom-style: solid;
+    border-bottom-width: 1px;
+    border-bottom-color: #b1b1bc;
+    border-bottom-color: var(--table-row-border-color, #b1b1bc); }
   .table-view--bare .table-row {
     border-bottom: none !important; }
   .table-view--inset {

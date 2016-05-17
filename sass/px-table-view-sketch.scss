@@ -32,15 +32,11 @@
 // TODO: Colors
 .table-view {
   border          : none;
-  background      : transparent;
-  background-color: var(--table-view-background-color, $table-row-background-color);
+  //background      : transparent;
+  //background-color: var(--table-view-background-color, $table-row-background-color);
 
   .table-row {
-    font-size          : $table-row-font-size;
-    font-size          : var(--table-row-font-size, $table-row-font-size);
-
-    background-color   : $table-row-background-color;
-    background-color   : var(--table-row-background-color, $table-row-background-color);
+  
 
     ///
     &:first-child {

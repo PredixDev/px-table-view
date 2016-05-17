@@ -39,7 +39,7 @@
 @include block ('table-view') {
   @include switch();
   @include clearfix();
-  @include scrollable();
+  //@include scrollable();
   @include pxFonts();
   cursor         : default;
   list-style-type: none;

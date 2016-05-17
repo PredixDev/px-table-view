@@ -15,7 +15,7 @@
   min-height    : 44px;
   align-self    : center;
   line-height   : 44px;
-  width         : 100%;
+  //width         : 100%;
 
   box-sizing    : border-box;
 
@@ -27,6 +27,11 @@
   padding       : 0;
   appearance    : normal;
   user-select   : none;
+  font-size          : $table-row-font-size;
+  font-size          : var(--table-row-font-size, $table-row-font-size);
+
+  background-color   : $table-row-background-color;
+  background-color   : var(--table-row-background-color, $table-row-background-color);
   ///
   h1,
   h2,
@@ -55,6 +60,7 @@
     color          : $table-row-font-color;
     @include tableRowClickable($table-row-active-background-color, $table-row-active-font-color);
   }
+
 
   ///.table-view--flush
   @include modifier ('flush') {
@@ -104,10 +110,11 @@
   }
   ///.table-row--tappable
   @include modifier ('tappable') {
-    @include tableRowClickable($table-row-active-background-color, $table-row-active-font-color);
+    &:active{
+      @include tableRowClickable($table-row-active-background-color, $table-row-active-font-color);
+    }
     @include noselect();
     cursor     : pointer;
-    user-select: none;
 
     &:active {
       transition      : none;
@@ -134,10 +141,10 @@
   }
   ///.table-row--chevron
   @include modifier ('chevron') {
-    &:active {
-      transition: none;
-      background: $table-row-active-background-color;
+    &:active{
+      @include tableRowClickable($table-row-active-background-color, $table-row-active-font-color);
     }
+    @include noselect();
     @include tableRowIcon($table-row-chevron-icon, $table-row-chevron-icon-color) {
       &:active {
         color: $table-row-active-font-color;
@@ -211,8 +218,12 @@
   }
   ///.table-row--nav-right
   @include modifier ('nav-right') {
-    @include tableRowClickable($table-row-active-background-color, $table-row-active-font-color);
+
+    @include noselect();
     @include tableRowIcon($table-row-nav-right-icon);
+    &:active{
+      @include tableRowClickable($table-row-active-background-color, $table-row-active-font-color);
+    }
 
     .table-row__media--right {
       //  margin-right: 1rem;
