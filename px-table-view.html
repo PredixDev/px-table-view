@@ -79,11 +79,7 @@ To use this component with iron list you can do the following:
 -->
 
 <dom-module id="px-table-view">
-
-<style include="px-table-view-css"></style>
-
   <template strip-whitespace>
-
     <template id="ironList" is="dom-if" if="{{tableData}}">
       <template id="tableRowTemplate" items="{{tableData}}" is="dom-repeat">
         <px-table-row item="{{item}}"></px-table-row>
@@ -96,9 +92,7 @@ To use this component with iron list you can do the following:
       </iron-list>
     -->
     </template>
-
     <content id="content" select="*"></content>
-
   </template>
   <script>
     Polymer({

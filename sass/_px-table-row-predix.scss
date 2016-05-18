@@ -12,26 +12,26 @@
 @include block ('table-row') {
   @include clearfix();
   @include noselect();
-  min-height    : 44px;
-  align-self    : center;
-  line-height   : 44px;
+  min-height      : 44px;
+  align-self      : center;
+  line-height     : 44px;
   //width         : 100%;
 
-  box-sizing    : border-box;
+  box-sizing      : border-box;
 
-  position      : relative;
-  overflow      : hidden;
-  display       : flex;
-  flex-direction: row;
-  margin        : 0;
-  padding       : 0;
-  appearance    : normal;
-  user-select   : none;
-  font-size          : $table-row-font-size;
-  font-size          : var(--table-row-font-size, $table-row-font-size);
+  position        : relative;
+  overflow        : hidden;
+  display         : flex;
+  flex-direction  : row;
+  //margin          : 0;
+  padding         : 0;
+  appearance      : normal;
+  user-select     : none;
+  font-size       : $table-row-font-size;
+  font-size       : var(--table-row-font-size, $table-row-font-size);
 
-  background-color   : $table-row-background-color;
-  background-color   : var(--table-row-background-color, $table-row-background-color);
+  background-color: $table-row-background-color;
+  background-color: var(--table-row-background-color, $table-row-background-color);
   ///
   h1,
   h2,
@@ -46,10 +46,16 @@
     white-space: normal;
   }
   ///
-   > *:not(input),
+   > *:not(select),
    > *:not(textarea),
-  > *:not(select) {
-    user-select: none;
+  > *:not(input) {
+
+    //-webkit-touch-callout      : none;
+    -webkit-text-size-adjust   : none;
+  //  -webkit-user-select        : none;
+    -webkit-highlight          : none;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+
   }
 
   ///
@@ -60,7 +66,6 @@
     color          : $table-row-font-color;
     @include tableRowClickable($table-row-active-background-color, $table-row-active-font-color);
   }
-
 
   ///.table-view--flush
   @include modifier ('flush') {
@@ -110,11 +115,11 @@
   }
   ///.table-row--tappable
   @include modifier ('tappable') {
-    &:active{
+    &:active {
       @include tableRowClickable($table-row-active-background-color, $table-row-active-font-color);
     }
     @include noselect();
-    cursor     : pointer;
+    cursor: pointer;
 
     &:active {
       transition      : none;
@@ -141,7 +146,7 @@
   }
   ///.table-row--chevron
   @include modifier ('chevron') {
-    &:active{
+    &:active {
       @include tableRowClickable($table-row-active-background-color, $table-row-active-font-color);
     }
     @include noselect();
@@ -218,10 +223,10 @@
   }
   ///.table-row--nav-right
   @include modifier ('nav-right') {
-
     @include noselect();
     @include tableRowIcon($table-row-nav-right-icon);
-    &:active{
+
+    &:active {
       @include tableRowClickable($table-row-active-background-color, $table-row-active-font-color);
     }
 
@@ -234,7 +239,7 @@
     padding-right: 0 !important;
 
     .table-row__content {
-      transition: all 0.5s;
+      transition: all .5s;
       position  : relative;
       z-index   : 10;
     }
@@ -245,7 +250,7 @@
     @include tableRowIcon( '\f107');
 
     .table-row__body {
-      transition: all 0.5s;
+      transition: all .5s;
       display   : none;
     }
 
@@ -397,11 +402,11 @@
     ///---------------------------------------------------------------------------
     ///.table-row__media--icon
     @include modifier ('icon') {
-      flex       : 1 0 auto;
-      align-self : center;
-      padding    : $inuit-base-spacing-unit--tiny;
+      flex      : 1 0 auto;
+      align-self: center;
+      padding   : $inuit-base-spacing-unit--tiny;
       //margin-left: $inuit-base-spacing-unit--small;
-      text-align : center;
+      text-align: center;
     }
   }
 
@@ -440,7 +445,7 @@
       bottom        : 0;
       padding       : 0;
       border        : 0;
-      opacity       : 0.001;
+      opacity       : .001;
       z-index       : 1;
       vertical-align: top;
       outline       : none;
@@ -459,7 +464,7 @@
     input[type="checkbox"]:checked + div:before {
       background: $table-row-checkbox-background-color;
       border    : 1px solid $table-row-checkbox-checked-border-color;
-      transition: background 0.4s;
+      transition: background .4s;
     }
 
     &:active {
@@ -478,7 +483,7 @@
     }
 
     input[type="checkbox"]:disabled + div {
-      opacity       : 0.5;
+      opacity       : .5;
       cursor        : default;
       pointer-events: none;
     }
@@ -501,7 +506,7 @@
 
       position       : relative;
       overflow       : hidden;
-      margin-right   : 0.5rem;
+      margin-right   : .5rem;
       width          : 24px;
       height         : 24px;
 
@@ -570,7 +575,7 @@
           pointer-events: none;
           //check
           + div:after {
-            opacity: 0.5;
+            opacity: .5;
           }
         }
       }
@@ -588,13 +593,14 @@
     margin    : 0;
     min-height: 44px;
     font-size : 1.3rem;
-    background: transparent;
-    border    : none;
+    //  background: transparent;
+    //  border    : none;
     box-shadow: none;
   }
 
   .btn {
     outline   : none;
     min-height: 44px;
+    width     : 100%;
   }
 }
