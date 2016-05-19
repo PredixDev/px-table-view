@@ -5,13 +5,14 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
-    <title>px-table-view - switches</title>
+    <title>px-table-row - demo</title>
     <link rel="stylesheet" href="//predixdev.github.io/px-library-design/css/style.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/webcomponentsjs/0.7.21/webcomponents.min.js"></script>
     <link rel="import" href="../px-table-view.html">
     <link rel="import" href="../../px-theme/px-app.html">
     <link rel="import" href="../../px-theme/px-theme.html">
     <link rel="import" href="../../px-card/px-card.html">
+    
 
     <style>
       /* Disable certain interactions on touch devices */
@@ -24,10 +25,10 @@
         -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 
       }
-      html, body{
+      body,
+      html {
         background: #ccc;
       }
-
 
       px-card {
         border: 1px solid #b1b1bc;
@@ -47,164 +48,98 @@
   <body>
     <div class="box">
 
-<h2>Table View Specs</h2>
-<p>A table-view consists of a single continuous column of tessellated sub-divisions of equal width called rows
-that function as containers for tiles.
+      <h2>Table View Specs</h2>
+      <p>A table-view consists of a single continuous column of tessellated sub-divisions of equal width called rows that function as containers for tiles. Tiles hold content, and can vary in height within a table-view.</p>
 
-Tiles hold content, and can vary in height within a table-view.</p>
+      <br/>
+      <style>
+        .debug * {
+          border: 1px solid red;
+        }
 
+      </style>
+      <div class="box box--flush table-view table-view--">
+        <px-table-row class="debug" title="Title" subtitle="Subtitle" body="Body" label1="label 1" label2="label 2" type="tappable"></px-table-row>
 
-<br/>
-<style>
-	.debug *  {
-    border: 1px solid red;
-	}
-</style>
-<div class="box box--flush table-view table-view--">
-  <px-table-row
-  	class="debug"
-  	title="Title"
-  	subtitle="Subtitle"
-  	body="Body"
-  	label1="label 1"
-  	label2="label 2"
-  	type="tappable"></px-table-row>
+      </div>
 
-</div>
+      <hr/>
+      <br/>
+      <legend>Single-line</legend>
+      <div class="box box--flush table-view u-mb">
+        <px-table-row type="tappable" title="Single-line item"></px-table-row>
 
+      </div>
+      <br/>
+      <legend>Single-line with icon</legend>
+      <div class="box box--flush table-view">
+        <px-table-row icon="fa fa-square fa-lg" type="tappable" title="Single-line item"></px-table-row>
 
+      </div>
 
+      <br/>
+      <legend>Single-line with avatar</legend>
+      <div class="box box--flush table-view table-view--tiny">
+        <px-table-row icon="fa fa-circle fa-3x" type="tappable" title="Single-line item"></px-table-row>
+      </div>
+      <br/>
+      <legend>Single-line with avatar and icon</legend>
+      <div class="box box--flush table-view table-view--tiny">
+        <px-table-row icon-left="fa fa-circle fa-3x" icon-right="fa fa-square fa-lg" type="tappable" title="Single-line item"></px-table-row>
+      </div>
 
+      <br/>
+      <hr/>
+      <br/>
+      <br/>
 
+      <legend>Two-line</legend>
+      <div class="box box--flush table-view">
+        <px-table-row type="tappable" title="Two-line item" body="Secondary text"></px-table-row>
+      </div>
+      <br/>
+      <legend>Two-line with icon</legend>
+      <div class="box box--flush table-view">
+        <px-table-row icon="fa fa-square fa-2x" type="tappable" title="Two-line item" body="Secondary text"></px-table-row>
+      </div>
 
+      <br/>
+      <legend>Two-line with avatar</legend>
+      <div class="box box--flush table-view">
+        <px-table-row icon="fa fa-circle fa-3x" type="tappable" title="Two-line item" body="Secondary text"></px-table-row>
+      </div>
+      <br/>
+      <legend>Two-line with avatar and icon</legend>
+      <div class="box box--flush table-view">
+        <px-table-row icon-left="fa fa-circle fa-3x" icon-right="fa fa-square fa-lg" type="tappable" title="Two-line item" body="Secondary text"></px-table-row>
+      </div>
 
-<hr/>
-<br/>
-<legend>Single-line</legend>
-<div class="box box--flush table-view u-mb">
-  <px-table-row
-  	type="tappable"
-  	title="Single-line item"></px-table-row>
+      <br/>
+      <hr/>
+      <br/>
+      <br/>
+      <legend>Three-line</legend>
+      <div class="box box--flush table-view">
+        <px-table-row type="tappable" title="Three-line item" subtitle="John doez" body="Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."></px-table-row>
+      </div>
+      <br/>
+      <legend>Three-line with icon</legend>
+      <div class="box box--flush table-view">
+        <px-table-row type="tappable" icon="fa fa-square fa-2x" title="Three-line item" body="Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."></px-table-row>
+      </div>
 
-</div>
-<br/>
-<legend>Single-line with icon</legend>
-<div class="box box--flush table-view">
-  <px-table-row
-  	icon="fa fa-square fa-lg"
-  	type="tappable"
-  	title="Single-line item"></px-table-row>
+      <br/>
+      <legend>Three-line with avatar</legend>
+      <div class="box box--flush table-view">
+        <px-table-row type="tappable" icon="fa fa-circle fa-3x" title="Three-line item" body="Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."></px-table-row>
+      </div>
 
-</div>
-
-
-<br/>
-<legend>Single-line with avatar</legend>
-<div class="box box--flush table-view table-view--tiny">
-  <px-table-row
-  	icon="fa fa-circle fa-3x"
-  	type="tappable"
-  	title="Single-line item"></px-table-row>
-</div>
-<br/>
-<legend>Single-line with avatar and icon</legend>
-<div class="box box--flush table-view table-view--tiny">
-  <px-table-row
-  	icon-left="fa fa-circle fa-3x"
-  	icon-right="fa fa-square fa-lg"
-  	type="tappable"
-  	title="Single-line item"></px-table-row>
-</div>
-
-<br/>
-<hr/>
-<br/>
-<br/>
-
-<legend>Two-line</legend>
-<div class="box box--flush table-view">
-  <px-table-row
-  	type="tappable"
-  	title="Two-line item"
-  	body="Secondary text"></px-table-row>
-</div>
-<br/>
-<legend>Two-line with icon</legend>
-<div class="box box--flush table-view">
-  <px-table-row
-  icon="fa fa-square fa-2x"
-  	type="tappable"
-  	title="Two-line item"
-  	body="Secondary text"></px-table-row>
-</div>
-
-
-<br/>
-<legend>Two-line with avatar</legend>
-<div class="box box--flush table-view">
-  <px-table-row
-  icon="fa fa-circle fa-3x"
-  	type="tappable"
-  	title="Two-line item"
-  	body="Secondary text"></px-table-row>
-</div>
-<br/>
-<legend>Two-line with avatar and icon</legend>
-<div class="box box--flush table-view">
-  <px-table-row
- 		icon-left="fa fa-circle fa-3x"
-  	icon-right="fa fa-square fa-lg"
-
-  	type="tappable"
-  	title="Two-line item"
-  	body="Secondary text"></px-table-row>
-</div>
-
-
-<br/>
-<hr/>
-<br/>
-<br/>
-<legend>Three-line</legend>
-<div class="box box--flush table-view">
-  <px-table-row
-  	type="tappable"
-  	title="Three-line item"
-  	subtitle="John doez"
-  	body="Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."></px-table-row>
-</div>
-<br/>
-<legend>Three-line with icon</legend>
-<div class="box box--flush table-view">
-  <px-table-row
-  	type="tappable"
-  	icon="fa fa-square fa-2x"
-  	title="Three-line item"
-  	body="Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."></px-table-row>
-</div>
-
-<br/>
-<legend>Three-line with avatar</legend>
-<div class="box box--flush table-view">
-  <px-table-row
-  	type="tappable"
-  	icon="fa fa-circle fa-3x"
-  	title="Three-line item"
-  	body="Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."></px-table-row>
-</div>
-
-<br/>
-<legend>Three-line with avatar and icon</legend>
-<div class="box box--flush table-view">
-  <px-table-row
-  	type="tappable"
-  	icon-left="fa fa-circle fa-3x"
-  	icon-right="fa fa-square fa-2x"
-  	title="Three-line item"
-  	body="Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."></px-table-row>
-</div>
-</div>
-
+      <br/>
+      <legend>Three-line with avatar and icon</legend>
+      <div class="box box--flush table-view">
+        <px-table-row type="tappable" icon-left="fa fa-circle fa-3x" icon-right="fa fa-square fa-2x" title="Three-line item" body="Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."></px-table-row>
+      </div>
+    </div>
 
   </body>
 

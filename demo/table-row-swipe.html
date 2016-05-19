@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    <title>px-table-row - swipe</title>
+    <link rel="stylesheet" href="//predixdev.github.io/px-library-design/css/style.css">
+    <script src="../../webcomponentsjs/webcomponents.js"></script>
+    <link rel="import" href="../px-table-view.html">
+    
+    <link rel="import" href="../../px-card/px-card.html">
+    <link rel="import" href="../../polymer/polymer.html">
+
+    <style>
+      /* Disable certain interactions on touch devices */
+
+      body {
+        -webkit-touch-callout: none;
+        -webkit-text-size-adjust: none;
+        -webkit-user-select: none;
+        -webkit-highlight: none;
+        -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+      }
+
+      px-card {
+        border: 1px solid #b1b1bc;
+        margin: 0.2rem;
+        padding: 0.5rem;
+        flex: 1 1 300px;
+      }
+
+      px-card ul {
+        padding: 0 !important;
+        margin: 0 !important;
+      }
+      paper-swipe {
+        height: 50px;
+        background: #fff;
+      }
+
+
+    </style>
+  </head>
+
+  <body>
+    <link rel="import" href="../../paper-swipe/paper-swipe.html">
+
+    <ul class="table-view table-view--small">
+      <li class="table-row">
+        <paper-swipe on-edge="resetPanel" on-tap-underlay="disablePanel">
+            <div underlay>Click to reset the panel from the edge to its origin...</div>
+            <div content>Swipe to remove the panel...</div>
+        </paper-swipe>
+      </li>
+      <li class="table-row">
+        <paper-swipe on-edge="resetPanel">
+            <div underlay on-click="disablePanel">Click to reset the panel from the edge to its origin...</div>
+            <div content>Swipe to remove the panel...</div>
+        </paper-swipe>
+
+      </li>
+    </ul>
+
+
+
+
+    <h2>Swipe Demo</h2>
+    <div class="box">
+
+
+    </div>
+
+
+
+    <px-card header-text="Swipe">
+
+
+
+
+
+      <ul class="table-view table-view--small">
+        <li class="table-row table-row--switch">
+          <div class="table-row__media table-row__media--toggle table-row__media--right">
+            <div class="toggle toggle__table-view-item">
+              <input id="toggle1" class="toggle__input" type="checkbox" checked>
+              <label for="toggle1" class="toggle__label">On</label>
+            </div>
+          </div>
+          <div class="table-row__content">
+            <span class="table-row__title">Text Label</span>
+          </div>
+        </li>
+        <px-table-row>
+          <px-table-row-switch name="cb05" label="Switch"></px-table-row-switch>
+        </px-table-row>
+        <px-table-row>
+          <px-table-row-switch name="cb06" label="Checked Switch" checked></px-table-row-switch>
+        </px-table-row>
+        <px-table-row>
+          <px-table-row-switch name="cb07" label="Switch (Disabled)" disabled></px-table-row-switch>
+        </px-table-row>
+        <px-table-row>
+          <px-table-row-switch name="cb08" label="Checked Switch (Disabled)" disabled checked></px-table-row-switch>
+        </px-table-row>
+      </ul>
+    </px-card>
+
+  </body>
+
+</html>
