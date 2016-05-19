@@ -213,7 +213,8 @@
       -ms-flex-pack: justify;
           justify-content: space-between;
   transition: all 0.4s;
-  z-index: 50;
+  will-change: transform;
+  z-index: -1;
   width: auto;
   -webkit-align-self: stretch;
       -ms-flex-item-align: stretch;
@@ -221,10 +222,13 @@
   -webkit-align-items: stretch;
       -ms-flex-align: stretch;
           align-items: stretch; }
+  .table-row__actions.is-visible {
+    z-index: 50; }
   .table-row__actions--left {
     -webkit-order: 0;
         -ms-flex-order: 0;
             order: 0;
+    width: 0;
     -webkit-transform: translateX(-125%);
             transform: translateX(-125%); }
     .table-row__actions--left.is-visible {
@@ -260,7 +264,7 @@
   cursor: pointer;
   margin: 0;
   border-radius: 0;
-  min-width: 44px;
+  min-width: 80px;
   outline: 0;
   -webkit-user-select: none;
      -moz-user-select: none;
@@ -276,7 +280,13 @@
   display: flex;
   -webkit-align-items: center;
       -ms-flex-align: center;
-          align-items: center; }
+          align-items: center;
+  -webkit-flex-direction: column;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-justify-content: center;
+      -ms-flex-pack: center;
+          justify-content: center; }
   .table-row__button i {
     -webkit-align-self: center;
         -ms-flex-item-align: center;
@@ -1046,6 +1056,9 @@
         pointer-events: none; }
         .table-row__checkbox--no-border input[type="checkbox"]:disabled + div:after {
           opacity: .5; }
+
+.table-row input {
+  width: 100%; }
 
 .table-row .text-input {
   margin: 0;
