@@ -1,57 +1,59 @@
 <!DOCTYPE html>
 <html>
 
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
-  <title>px-table-view MVP (Phase 1)</title>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/webcomponentsjs/0.7.21/webcomponents.min.js"></script>
-  <link rel='stylesheet prefetch' href='https://github.build.ge.com/pages/PXd/px-library-design/css/style.css'>
+    <title>px-table-view MVP (Phase 1)</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/webcomponentsjs/0.7.21/webcomponents.min.js"></script>
+    <link rel='stylesheet prefetch' href='https://github.build.ge.com/pages/PXd/px-library-design/css/style.css'>
 
-  <link rel="import" href="../px-card/px-card.html">
-  <link rel="import" href="px-table-view.html">
+    <link rel="import" href="../px-card/px-card.html">
+    <link rel="import" href="px-table-view.html">
 
-  <!-- TODO: iron-list example -->
-  <link rel="import" href="../iron-demo-helpers/demo-snippet.html"/>
-  <link rel="stylesheet" href="demo/style.css"/>
-  <style media="screen">
-    body {
-      background: #efeff4;
-      overflow: hidden;
-      overflow-y: scroll;
-      overflow-y: auto;
-      -webkit-overflow-scrolling: touch;
-    }
-  </style>
+    <!-- TODO: iron-list example -->
+    <link rel="import" href="../iron-demo-helpers/demo-snippet.html"/>
+    <link rel="stylesheet" href="demo/style.css"/>
+    <style media="screen">
+      body {
+        background: #efeff4;
+        overflow: hidden;
+        overflow-y: scroll;
+        overflow-y: auto;
+        -webkit-overflow-scrolling: touch;
+      }
 
-  <style>
-    /* Disable certain interactions on touch devices */
+    </style>
 
-    px-card {
-      margin: .5rem;
-      padding: 0;
-    }
+    <style>
+      /* Disable certain interactions on touch devices */
 
-    px-card .u-mb.px-card-header {
-      padding: .5rem;
-      margin-bottom: 0 !important;
-    }
+      px-card {
+        margin: 0.5rem;
+        padding: 0;
+      }
 
-    px-card ul {
-      padding: 0px !important;
-      margin: 0px !important;
-    }
+      px-card .u-mb.px-card-header {
+        padding: 0.5rem;
+        margin-bottom: 0 !important;
+      }
 
-    demo-snippet {
-      margin-bottom: 3rem;
-    }
-  </style>
+      px-card ul {
+        padding: 0 !important;
+        margin: 0 !important;
+      }
 
-</head>
+      demo-snippet {
+        margin-bottom: 3rem;
+      }
 
-<body class="u-bg--gray9">
-<!--
+    </style>
+
+  </head>
+
+  <body class="u-bg--gray9">
+    <!--
 <h2 align="center"><b>sortable-list</b> <small>(open console to see event logs)</small></h2>
 
 <div id="demos" horizontal layout wrap>
@@ -106,25 +108,27 @@
 </script>
 -->
 
-<div class="viewport viewport-full-height ">
+    <div class="viewport viewport-full-height ">
 
-  <div class="flex flex--col flex--wrap flex--spaced u-bg--gray7 u-padding-10">
+      <div class="flex flex--col flex--wrap flex--spaced u-bg--gray7 u-padding-10">
 
-    <px-card id="card9" header-text="px-table-view mvp">
-      <ol>
-        <li>Basic Table View</li>
-        <li>Icons - Left/Right</li>
-        <li>Thumbnails - Left/Right</li>
-        <li>Detail Label</li>
-        <li>Description</li>
-        <li>Inset</li>
-        <li>Checkbox</li>
-        <li>Switch</li>
-        <li><a href="./demo">Iron List Demo</a></li>
-      </ol>
-    </px-card>
+        <px-card id="card9" header-text="px-table-view mvp">
+          <ol>
+            <li>Basic Table View</li>
+            <li>Icons - Left/Right</li>
+            <li>Thumbnails - Left/Right</li>
+            <li>Detail Label</li>
+            <li>Description</li>
+            <li>Inset</li>
+            <li>Checkbox</li>
+            <li>Switch</li>
+            <li>
+              <a href="./demo">Iron List Demo</a>
+            </li>
+          </ol>
+        </px-card>
 
-    <!--
+        <!--
     <px-table-view>
       <px-table-row title="Test" type="nav-right">
         <div>
@@ -136,100 +140,99 @@
       <px-table-row title="Text Label" type="nav-right" body="This is the table view description"></px-table-row>
     </px-table-view>
     -->
-    </px-card>
+      </px-card>
 
-    <demo-snippet>
-      <template id="">
-        <px-card header-text="1. Basic Table View">
-          <ul id="table2" class="table-view">
-            <px-table-row title="Text Label"></px-table-row>
-            <px-table-row title="Nav Right Item" type="nav-right"></px-table-row>
-            <px-table-row title="Detail Item" type="detail"></px-table-row>
-            <px-table-row title="Tappable Item" type="tappable"></px-table-row>
-          </ul>
-        </px-card>
+      <demo-snippet>
+        <template id="">
+          <px-card header-text="1. Basic Table View">
+            <px-table-view>
+              <px-table-row title="Text Label"></px-table-row>
+              <px-table-row title="Nav Right Item" type="nav-right"></px-table-row>
+              <px-table-row title="Detail Item" type="detail"></px-table-row>
+              <px-table-row title="Tappable Item" type="tappable"></px-table-row>
+            </px-table-view>
+          </px-card>
 
-      </template>
-    </demo-snippet>
+        </template>
+      </demo-snippet>
 
-    <demo-snippet>
-      <template id="">
-        <px-card header-text="2. Icons">
-          <ul class="table-view">
-            <px-table-row title="Text Label" type="nav-right" icon="fa fa-home"></px-table-row>
-            <px-table-row title="Text Label" type="nav-right" icon="fa fa-dashboard"></px-table-row>
-            <px-table-row title="Text Label" type="nav-right" icon="fa fa-home" media-pos="right"></px-table-row>
-            <px-table-row title="Text Label" type="nav-right" icon="fa fa-dashboard" media-pos="right"></px-table-row>
-          </ul>
-        </px-card>
-      </template>
-    </demo-snippet>
+      <demo-snippet>
+        <template id="">
+          <px-card header-text="2. Icons">
+            <px-table-view>
+              <px-table-row title="Text Label" type="nav-right" icon="fa fa-home"></px-table-row>
+              <px-table-row title="Text Label" type="nav-right" icon="fa fa-dashboard"></px-table-row>
+              <px-table-row title="Text Label" type="nav-right" icon="fa fa-home" media-pos="right"></px-table-row>
+              <px-table-row title="Text Label" type="nav-right" icon="fa fa-dashboard" media-pos="right"></px-table-row>
+            </px-table-view>
+          </px-card>
+        </template>
+      </demo-snippet>
 
-    <demo-snippet>
-      <template id="">
-        <px-card header-text="3. Images">
-          <ul class="table-view table-view--small">
-            <px-table-row title="Text Label" type="nav-right" image="https://placehold.it/44"></px-table-row>
-            <px-table-row title="Text Label" type="nav-right" image="https://placehold.it/44"></px-table-row>
-            <px-table-row title="Text Label" type="nav-right" image="https://placehold.it/44" media-pos="right"></px-table-row>
-            <px-table-row title="Text Label" type="nav-right" image="https://placehold.it/44" media-pos="right"></px-table-row>
-          </ul>
-        </px-card>
-      </template>
-    </demo-snippet>
-    <demo-snippet>
-      <template id="">
+      <demo-snippet>
+        <template id="">
+          <px-card header-text="3. Images">
+            <px-table-view modifiers="small">
+              <px-table-row title="Text Label" type="nav-right" image="https://placehold.it/44"></px-table-row>
+              <px-table-row title="Text Label" type="nav-right" image="https://placehold.it/44"></px-table-row>
+              <px-table-row title="Text Label" type="nav-right" image="https://placehold.it/44" media-pos="right"></px-table-row>
+              <px-table-row title="Text Label" type="nav-right" image="https://placehold.it/44" media-pos="right"></px-table-row>
+            </px-table-view>
+          </px-card>
+        </template>
+      </demo-snippet>
+      <demo-snippet>
+        <template id="">
 
-        <px-card header-text="4. Labels">
-          <ul class="table-view table-view--small">
-            <px-table-row title="Text Label" label1="Detail label" type="nav-right"></px-table-row>
-            <px-table-row title="Text Label" label1="Detail label" type="nav-right"></px-table-row>
-            <px-table-row title="Text Label" label1="Detail label" type="nav-right"></px-table-row>
-            <px-table-row title="Text Label" label1="Detail label" type="nav-right"></px-table-row>
-          </ul>
-        </px-card>
+          <px-card header-text="4. Labels">
+            <px-table-view>
+              <px-table-row title="Text Label" label1="Detail label" type="nav-right"></px-table-row>
+              <px-table-row title="Text Label" label1="Detail label" type="nav-right"></px-table-row>
+              <px-table-row title="Text Label" label1="Detail label" type="nav-right"></px-table-row>
+              <px-table-row title="Text Label" label1="Detail label" type="nav-right"></px-table-row>
+            </px-table-view>
+          </px-card>
 
-      </template>
-    </demo-snippet>
-    <demo-snippet>
-      <template id="">
-        <px-card header-text="5. Description">
-          <section class="table-view table-view--small">
-            <px-table-row title="Text Label" body="Lorem ipsum dolor sit amet, consectetur adipisicing elit,
-    sed do eiusmod tempor incididunt ut labore et dolore magna aliqua." type="nav-right"></px-table-row>
-            <px-table-row title="Text Label" body="Lorem ipsum dolor sit amet, consectetur adipisicing elit,
-    sed do eiusmod tempor incididunt ut labore et dolore magna aliqua." type="nav-right"></px-table-row>
-          </section>
-        </px-card>
+        </template>
+      </demo-snippet>
+      <demo-snippet>
+        <template id="">
+          <px-card header-text="5. Description">
+            <px-table-view>
+              <px-table-row title="Text Label" body="Lorem ipsum dolor sit amet, consectetur adipisicing elit,
+          sed do eiusmod tempor incididunt ut labore et dolore magna aliqua." type="nav-right"></px-table-row>
+              <px-table-row title="Text Label" body="Lorem ipsum dolor sit amet, consectetur adipisicing elit,
+          sed do eiusmod tempor incididunt ut labore et dolore magna aliqua." type="nav-right"></px-table-row>
+            </px-table-view>
+          </px-card>
 
-      </template>
-    </demo-snippet>
+        </template>
+      </demo-snippet>
 
-    <demo-snippet>
-      <template id="">
-        <px-card header-text="6. Inset">
-          <ul class="table-view table-view--inset u-m">
-            <px-table-row title="Text Label" type="nav-right"></px-table-row>
-            <px-table-row title="Text Label" type="nav-right"></px-table-row>
-            <px-table-row title="Text Label" type="nav-right"></px-table-row>
-            <px-table-row title="Text Label" type="nav-right"></px-table-row>
-            <px-table-row title="Text Label" type="nav-right"></px-table-row>
-          </ul>
-        </px-card>
-      </template>
-    </demo-snippet>
+      <demo-snippet>
+        <template id="">
+          <px-card header-text="6. Inset">
+            <px-table-view>
+              <px-table-row title="Text Label" type="nav-right"></px-table-row>
+              <px-table-row title="Text Label" type="nav-right"></px-table-row>
+              <px-table-row title="Text Label" type="nav-right"></px-table-row>
+              <px-table-row title="Text Label" type="nav-right"></px-table-row>
+              <px-table-row title="Text Label" type="nav-right"></px-table-row>
+            </px-table-view>
+          </px-card>
+        </template>
+      </demo-snippet>
 
-    <demo-snippet>
-      <template id="">
+      <demo-snippet>
+        <template id="">
 
-        <px-card header-text="7. Checkboxes">
-          <ul class="table-view table-view--small table-view-- u-mb+">
+          <px-card header-text="7. Checkboxes">
+            <px-table-view>
+            <px-table-row>
+<px-table-row-checkbox name="cb0" label="No Border Checked" type="no-border" checked></px-table-row-checkbox>
+            </px-table-row>
             <li class="table-row table-row--tappable">
-              <px-table-row-checkbox name="cb0" label="No Border Checked" type="no-border" checked></px-table-row-checkbox>
-            </li>
-            <li class="table-row table-row--tappable">
-              <px-table-row-checkbox name="cb01" label="No Border Checked (Disabled)" type="no-border" checked
-                                     disabled></px-table-row-checkbox>
+              <px-table-row-checkbox name="cb01" label="No Border Checked (Disabled)" type="no-border" checked disabled></px-table-row-checkbox>
             </li>
             <li class="table-row table-row--tappable">
               <px-table-row-checkbox name="cb02" label="Bordered Checkbox"></px-table-row-checkbox>
@@ -240,7 +243,7 @@
             <li class="table-row">
               <px-table-row-checkbox name="cb04" label="Border (Disabled)" disabled></px-table-row-checkbox>
             </li>
-          </ul>
+          </px-table-view>
         </px-card>
       </template>
     </demo-snippet>
@@ -325,12 +328,12 @@
     <demo-snippet>
       <template id="">
         <px-card header-text="Editable Rows">
-          <ul class="table-view table-view--small">
+          <px-table-view>
             <px-table-row title="Edit Mode Item" edit-mode></px-table-row>
             <px-table-row title="Edit Mode Item" edit-mode></px-table-row>
             <px-table-row title="Edit Mode Item" edit-mode></px-table-row>
             <px-table-row title="Edit Mode Item" edit-mode></px-table-row>
-          </ul>
+          </px-table-view>
         </px-card>
 
       </template>

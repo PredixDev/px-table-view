@@ -4,17 +4,11 @@
 <link rel="import" href="../iron-list/iron-list.html">
 <link rel="import" href="../iron-selector/iron-multi-selectable.html">
 
-<link rel="stylesheet" href="css/px-table-view.css">
 <link rel="import" href="px-table-view-behavior.html"/>
 <link rel="import" href="px-table-view-drilldown-behavior.html" />
 
 <link rel="import" href="px-swipe.html"/>
 <link rel="import" href="px-table-row.html"/>
-<link rel="import" href="px-table-row-checkbox.html"/>
-<link rel="import" href="px-table-row-switch.html"/>
-<!--
-
--->
 
 <script type="text/javascript">
   if ('addEventListener' in document) {
@@ -80,6 +74,13 @@ To use this component with iron list you can do the following:
 -->
 
 <dom-module id="px-table-view">
+  <link rel="import" type="css" href="css/px-table-view.css">
+  <style media="screen">
+    :host {
+      display: block;
+      position: relative;
+    }
+  </style>
   <template strip-whitespace>
     <template id="ironList" is="dom-if" if="{{tableData}}">
       <template id="tableRowTemplate" items="{{tableData}}" is="dom-repeat">
@@ -93,7 +94,9 @@ To use this component with iron list you can do the following:
       </iron-list>
     -->
     </template>
-    <content id="content" select="*"></content>
+    <div class="table-view">
+      <content id="content" select="px-table-row"></content>
+    </div>
   </template>
   <script>
     Polymer({
@@ -112,6 +115,10 @@ To use this component with iron list you can do the following:
         mode: {
           type: String
         },
+        //The modifiers for the table view.
+        modifiers: {
+          type: String
+        },
         //To make the list items responsive
         responsive: {
           type: Boolean,
@@ -121,10 +128,6 @@ To use this component with iron list you can do the following:
           type: Boolean,
           value: false
         }
-      },
-      attached: function(){
-        var children = this.children;
-      
       }
     });
   </script>

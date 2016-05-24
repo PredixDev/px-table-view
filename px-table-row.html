@@ -28,7 +28,7 @@ To style this component you can do the following:
 @homepage index.html
 -->
 <dom-module id="px-table-row">
-
+  <link rel="import" type="css" href="css/px-table-view.css">
   <style>
     :host {
       display: block;
@@ -68,158 +68,210 @@ To style this component you can do the following:
 
   </style>
   <template>
+    <div class="table-row">
 
-    <template is="dom-if" if="{{editMode}}">
-      <button class="btn btn--bare table-row__delete-btn" on-click="_handleRemoveItem">
-        <i class="fa fa-minus-circle fa-lg color-red"></i>
-      </button>
-    </template>
-
-    <template is="dom-if" if="{{label2}}">
-      <span class="table-row__label table-row__label--left">{{label2}}</span>
-    </template>
-
-    <template is="dom-if" if="{{image}}">
-      <div class="table-row__media table-row__media--image">
-        <img src$="{{image}}" alt="{{title}}">
-      </div>
-    </template>
-
-    <template is="dom-if" if="{{icon}}">
-      <div class="table-row__media table-row__media--icon">
-        <i class$="{{icon}}"></i>
-      </div>
-    </template>
-    <template is="dom-if" if="{{iconLeft}}">
-      <div class="table-row__media table-row__media--icon table-row__media--left">
-        <i class$="{{iconLeft}}"></i>
-      </div>
-    </template>
-    <template is="dom-if" if="{{iconRight}}">
-      <div class="table-row__media table-row__media--icon table-row__media--right">
-        <i class$="{{iconRight}}"></i>
-      </div>
-    </template>
-
-    <template is="dom-if" if="{{label1}}">
-      <span class="table-row__label table-row__label--right u-mr">{{label1}}</span>
-    </template>
-
-    <template is="dom-if" if="{{orderMode}}">
-      <button class="btn btn--bare table-row__reorder-btn" on-click="_handleReorderItem">
-        <i class="fa fa-bars "></i>
-      </button>
-    </template>
-
-    <div class="table-row__content">
-      <template is="dom-if" if="{{title}}">
-        <div class="table-row__title">{{title}}</div>
-      </template>
-      <template is="dom-if" if="{{subtitle}}">
-        <div class="table-row__subtitle">{{subtitle}}</div>
+      <template is="dom-if" if="{{editMode}}">
+        <button class="btn btn--bare table-row__delete-btn" on-click="_handleRemoveItem">
+          <i class="fa fa-minus-circle fa-lg color-red"></i>
+        </button>
       </template>
 
-      <template is="dom-if" if="{{body}}">
-        <div class="table-row__body ">{{body}}</div>
+      <template is="dom-if" if="{{label2}}">
+        <span class="table-row__label table-row__label--left">{{label2}}</span>
       </template>
-      <content id="content" select=".table-row__content, px-table-row-switch, px-table-row-checkbox"></content>
+
+      <template is="dom-if" if="{{image}}">
+        <div class="table-row__media table-row__media--image">
+          <img src$="{{image}}" alt="{{title}}">
+        </div>
+      </template>
+
+      <template is="dom-if" if="{{icon}}">
+        <div class="table-row__media table-row__media--icon">
+          <i class$="{{icon}}"></i>
+        </div>
+      </template>
+      <template is="dom-if" if="{{iconLeft}}">
+        <div class="table-row__media table-row__media--icon table-row__media--left">
+          <i class$="{{iconLeft}}"></i>
+        </div>
+      </template>
+      <template is="dom-if" if="{{iconRight}}">
+        <div class="table-row__media table-row__media--icon table-row__media--right">
+          <i class$="{{iconRight}}"></i>
+        </div>
+      </template>
+
+      <template is="dom-if" if="{{label1}}">
+        <span class="table-row__label table-row__label--right">{{label1}}</span>
+      </template>
+
+      <template is="dom-if" if="{{orderMode}}">
+        <button class="btn btn--bare table-row__reorder-btn" on-click="_handleReorderItem">
+          <i class="fa fa-bars "></i>
+        </button>
+      </template>
+
+      <div class="table-row__content">
+        <template is="dom-if" if="{{title}}">
+          <div class="table-row__title">{{title}}</div>
+        </template>
+        <template is="dom-if" if="{{subtitle}}">
+          <div class="table-row__subtitle">{{subtitle}}</div>
+        </template>
+        <template is="dom-if" if="{{body}}">
+          <div class="table-row__body">{{body}}</div>
+        </template>
+        <content id="content" select="[content], px-table-row-switch, px-table-row-checkbox"></content>
+      </div>
+      <content id="swiper" select="px-swipe"></content>
+      <content id="actions" select="px-table-row-actions"></content>
     </div>
-    <content id="swiper" select="px-swipe"></content>
-    <content id="actions" select="px-table-row-actions"></content>
   </template>
   <script>
     Polymer({
       is: 'px-table-row',
       // behaviors: [pxTableRowActionsSwipeBehavior],
       properties: {
-        //The table-row object.
+        /**
+        * The table-row object.
+        */
         item: {
           type: Object,
           value: {}
         },
-        //The title to set on the table-row.
+        /**
+        * The title to set on the table-row.
+        */
         title: {
           type: String
         },
-        //The sub title to set on the table-row.
+        /**
+        * The sub title to set on the table-row.
+        */
         subtitle: {
           type: String
         },
-        //The label to place on the right side of the item.
+        /**
+        * The label to place on the right side of the item.
+        */
         label1: {
           type: String
         },
-        //The label to place on the left side of the item.
+        /**
+        * The label to place on the left side of the item.
+        */
         label2: {
           type: String
         },
-        //The body to set on the table-row.
+        /**
+        * The body to set on the table-row.
+        */
         body: {
           type: String
         },
-        //The image to set on the table-row.
+        /**
+        * The image to set on the table-row.
+        */
         image: {
           type: String
         },
-        //The icon to set on the table-row.
+        /**
+        * The icon to set on the table-row.
+        */
         icon: {
           type: String
         },
-        //The left icon to set on the table-row.
+        /**
+        * The left icon to set on the table-row.
+        */
         iconLeft: {
           type: String
         },
-        //The right icon to set on the table-row.
+        /**
+        * The right icon to set on the table-row.
+        */
         iconRight: {
           type: String
         },
-        //The size to set on the table-row.
+        /**
+        * The size to set on the table-row.
+        */
         size: {
           type: String
         },
-        //The media position (left or right);
+        /**
+        * The media position (left or right);
+        */
         mediaPos: {
-          type: String,
-          value: 'left'
-        },
-        //The type of table-row (tappable, info, nav-right, chevron)
-        type: {
           type: String
         },
-        //If editMode is true then this item displays a delete icon.
+        /**
+         * The modifiers to apply to the table-row (tappable, info, nav-right, chevron)
+         */
+        modifier: {
+          type: String
+        },
+        /**
+        * If editMode is true then this item displays a delete icon.
+        */
         editMode: {
           type: Boolean
         },
-        //If orderMode is true then this item displays a order icon.
+        /**
+        * If orderMode is true then this item displays a order icon.
+        */
         orderMode: {
           type: Boolean
         },
-        //If actionable is true then this item responds to swipeleft/swiperight events.
+        /**
+        * If actionable is true then this item responds to swipeleft/swiperight events.
+        */
         actionable: {
           type: Boolean
         }
       },
       attached: function () {
-        this.toggleClass('table-row');
-        if (this.type) {
-          var types = this.type.split(' ');
+        //  console.log(this.tagName, 'ready');
+        this._init();
+      },
+      created: function () {
+        //  console.log(this.tagName, 'created');
+      },
+      detached: function () {
+        //  console.log(this.tagName, 'attached');
+      },
+      _init: function () {
+        var _this = this;
+
+        if (_this.modifier) {
+          var types = _this.modifier.split(' ');
           for (var i = 0; i < types.length; i++) {
-            this.toggleClass('table-row--' + types[i]);
+            _this.toggleClass('table-row--' + types[i], true, _this.$$('.table-row'));
           }
         }
-        if (this.size) {
-          this.toggleClass('table-row--' + this.size);
+        if (_this.size) {
+          _this.toggleClass('table-row--' + _this.size, true, _this.$$('.table-row'));
         }
-        if (this.actionable) {
-          this.toggleClass('table-row--actionable');
+        if (_this.actionable) {
+          _this.toggleClass('table-row--actionable', true, _this.$$('.table-row'));
         }
-        if (this.mediaPos) {
-          this.toggleClass('table-row__media--' + this.mediaPos, true, this.$$('.table-row__media'));
+        if (_this.iconPos) {
+          _this.toggleClass('table-row__media--' + _this.iconPos, true, _this.$$('.table-row__media--icon'));
         }
-        if (this.item) {
-          var item = this.item;
+        if (_this.imagePos) {
+          _this.toggleClass('table-row__media--' + _this.imagePos, true, _this.$$('.table-row__media--image'));
+        }
+        if (_this.mediaPos) {
+          _this.toggleClass('table-row__media--' + _this.mediaPos, true, _this.$$('.table-row__media'));
+          if (_this.mediaPos === 'right') {
+            _this.toggleClass('u-mr++', true, _this.$$('.table-row__media'));
+          }
+        }
+        if (_this.item) {
+          var item = _this.item;
           for (var prop in item) {
-            this[prop] = item[prop];
+            _this[prop] = item[prop];
           }
         }
       },

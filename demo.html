@@ -13,6 +13,7 @@
     <link rel="import" href="../px-theme/px-theme.html">
     <!-- TODO: Component -->
     <link rel="import" href="px-table-view.html"/>
+    <link rel="import" href="px-table-row.html"/>
     <link rel="import" href="../px-demo-helpers/px-example.html">
     <link rel="import" href="../iron-ajax/iron-ajax.html"/>
     <link rel="import" href="../iron-list/iron-list.html"/>
@@ -53,49 +54,48 @@
         <h2>Text Label</h2>
         <demo-snippet>
           <template>
-            <ol class="table-view">
+            <px-table-view>
               <px-table-row title="Text Label"></px-table-row>
-            </ol>
+            </px-table-view>
           </template>
         </demo-snippet>
 
         <h2>Disclosure Indicator</h2>
         <demo-snippet>
           <template>
-            <div class="table-view">
-              <px-table-row title="Text Label" type="nav-right"></px-table-row>
-            </div>
+              <px-table-view>
+                <px-table-row title="Text Label" modifier="nav-right"></px-table-row>
+              </px-table-view>
+
+
           </template>
         </demo-snippet>
 
         <h2>Detail Disclosure</h2>
         <demo-snippet>
           <template>
-            <div class="table-view">
-              <px-table-row title="Text Label" type="detail"></px-table-row>
-            </div>
+            <px-table-view>
+              <px-table-row title="Text Label" modifier="detail"></px-table-row>
+            </px-table-view>
           </template>
         </demo-snippet>
 
         <h2>Row Order</h2>
         <demo-snippet>
           <template>
-            <div class="table-view">
-              <px-table-row title="Text Label" type="order"></px-table-row>
-            </div>
+            <px-table-view>
+              <px-table-row title="Text Label" modifier="order"></px-table-row>
+            </px-table-view>
           </template>
         </demo-snippet>
 
         <h2>Row Delete</h2>
         <demo-snippet>
           <template>
-            <ol class="table-view">
-              <li class="table-row table-row--edit">
-                <div class="table-row__content">
-                  <span class="table-row__title">Text Label</span>
-                </div>
-              </li>
-            </ol>
+            <px-table-view>
+              <px-table-row title="Text Label" type="edit"></px-table-row>
+            </px-table-view>
+
           </template>
         </demo-snippet>
 
@@ -115,94 +115,75 @@
         <h2>Icon Right</h2>
         <demo-snippet>
           <template>
-            <div class="table-view">
+            <px-table-view>
               <px-table-row icon="fa fa-square" media-pos="right" type="tappable" title="Single-line item"></px-table-row>
               <px-table-row icon="fa fa-square" media-pos="right" type="tappable" title="Single-line item"></px-table-row>
               <px-table-row icon="fa fa-square" media-pos="right" type="tappable" title="Single-line item"></px-table-row>
-            </div>
+            </px-table-view>
           </template>
         </demo-snippet>
 
         <h2>Icon Left</h2>
         <demo-snippet>
           <template>
-            <div class="table-view">
+            <px-table-view>
               <px-table-row icon="fa fa-square" type="tappable" title="Single-line item"></px-table-row>
               <px-table-row icon="fa fa-square" type="tappable" title="Single-line item"></px-table-row>
               <px-table-row icon="fa fa-square" type="tappable" title="Single-line item"></px-table-row>
-            </div>
+            </px-table-view>
           </template>
         </demo-snippet>
 
         <h2>Image Left</h2>
         <demo-snippet>
           <template>
-            <section class="table-view table-view--small">
-              <div class="table-row table-row--tappable">
-                <div class="table-row__media table-row__media--image table-row__media--left"><img src="http://placehold.it/44"/>
-                </div>
-                <div class="table-row__content">
-                  <span class="table-row__title">Text Label</span>
-                </div>
-              </div>
-            </section>
+            <px-table-view>
+              <px-table-row title="Text Label" image="http://placehold.it/60x60&text=img">
+              </px-table-row>
+            </px-table-view>
           </template>
         </demo-snippet>
 
         <h2>Image Right</h2>
         <demo-snippet>
           <template>
-            <ul class="table-view table-view--small">
-              <li class="table-row table-row--tappable">
-                <div class="table-row__media table-row__media--image table-row__media--right"><img src="http://placehold.it/44"/>
-                </div>
-                <div class="table-row__content">
-                  <span class="table-row__title">Text Label</span>
-                </div>
-              </li>
-            </ul>
+            <px-table-view>
+              <px-table-row media-pos="right" title="Text Label" image="http://placehold.it/60x60&text=img">
+              </px-table-row>
+            </px-table-view>
           </template>
         </demo-snippet>
 
         <h2>Image with Disclosure Indicator</h2>
         <demo-snippet>
           <template>
-            <ul class="table-view table-view--small">
-              <li class="table-row table-row--chevron">
-                <div class="table-row__media table-row__media--image"><img src="http://placehold.it/60x60&text=img"/></div>
-                <div class="table-row__content">
-                  <span class="table-row__title">Text Label</span>
-                </div>
-              </li>
-            </ul>
+            <px-table-view>
+              <px-table-row type="chevron" title="Text Label" image="http://placehold.it/60x60&text=img">
+              </px-table-row>
+            </px-table-view>
           </template>
         </demo-snippet>
+
         <h2>Image with Detail Disclosure</h2>
         <demo-snippet>
           <template>
-            <ul class="table-view table-view--small">
-              <li class="table-row table-row--detail">
-                <div class="table-row__media table-row__media--image"><img src="http://placehold.it/60x60&text=img"/></div>
-                <div class="table-row__content">
-                  <span class="table-row__title">Text Label</span>
-                </div>
-              </li>
-            </ul>
+            <px-table-view>
+              <px-table-row type="detail" title="Text Label" image="http://placehold.it/60x60&text=img">
+              </px-table-row>
+            </px-table-view>
           </template>
         </demo-snippet>
 
         <h2>Image with Description</h2>
         <demo-snippet>
           <template>
-            <ul class="table-view table-view--small">
-              <li class="table-row table-row--detail">
-                <div class="table-row__media table-row__media--image"><img src="http://placehold.it/80x80&text=img"/></div>
-                <div class="table-row__content table-row__content--col">
-                  <span class="table-row__title">Text Label</span>
-                  <span class="table-row__body">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</span>
-                </div>
-              </li>
-            </ul>
+            <px-table-view modifiers="small">
+              <px-table-row
+                title="Text Label"
+                modifiers="detail"
+                body="Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+                image="http://placehold.it/80x80&text=img"></px-table-row>
+            </px-table-view>
           </template>
         </demo-snippet>
 

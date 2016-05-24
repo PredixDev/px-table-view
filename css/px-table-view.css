@@ -89,11 +89,11 @@
   .table-view--drilldown.is-open .drilldown__menu {
     background-color: crimson;
     opacity: 1; }
-  .table-view--drilldown .table-view__menu {
+  .table-view--drilldown {
     opacity: 0; }
-    .table-view--drilldown .table-view__menu a {
+    .table-view--drilldown a {
       line-height: 44px; }
-  .table-view--drilldown .table-view__context {
+  .table-view--drilldown {
     position: relative;
     padding: 1rem;
     background: #eee;
@@ -103,7 +103,7 @@
     box-sizing: border-box;
     overflow: hidden;
     user-select: none; }
-    .table-view--drilldown .table-view__context:before {
+    .table-view--drilldown:before {
       transform: translateY(-50%);
       font-style: normal;
       font-weight: normal;
@@ -933,7 +933,9 @@
   margin: 0;
   padding: 0;
   position: relative;
-  text-align: left; }
+  text-align: left;
+  display: flex;
+  flex-direction: column; }
   .table-view .switch {
     position: relative;
     display: inline-block;
@@ -1046,7 +1048,7 @@
       @media (min-width: 80rem) {
         .table-view--responsive > * {
           min-width: calc(16.6666666667% - 0); } }
-  .table-view--ptr > .table-row {
+  .table-view--ptr .table-row {
     user-select: none; }
   .table-view--rev {
     direction: rtl; }
@@ -1060,10 +1062,10 @@
     padding: 1.3333333333rem; }
   .table-view--huge .table-row {
     padding: 2rem; }
-  .table-view--avatars > .table-row img {
+  .table-view--avatars .table-row img {
     height: 32px;
     border-radius: 50%; }
-  .table-view--drilldown > .table-row {
+  .table-view--drilldown .table-row {
     background: red; }
   .table-view .switch {
     float: right;
@@ -1092,19 +1094,23 @@
 
 .table-view {
   border: none; }
-  .table-view .table-row:first-child {
+  .table-view .table-row:first-child,
+  .table-view ::content .table-row:first-child {
     border-bottom: none; }
-  .table-view .table-row:last-child {
+  .table-view .table-row:last-child,
+  .table-view ::content .table-row:last-child {
     border-bottom: none; }
-  .table-view .table-row:first-child:last-child {
+  .table-view .table-row:first-child:last-child,
+  .table-view ::content .table-row:first-child:last-child {
     border-top: none;
     border-bottom: none; }
-  .table-view .table-row:not(:last-child) {
+  .table-view .table-row:not(:last-child),
+  .table-view ::content .table-row:not(:last-child) {
     border-bottom-style: solid;
     border-bottom-width: 1px;
     border-bottom-color: #b1b1bc;
     border-bottom-color: var(--table-row-border-color, #b1b1bc); }
-  .table-view--bare .table-row {
+  .table-view--bare .table-row, .table-view--bare ::content .table-row {
     border-bottom: none !important; }
   .table-view--inset {
     background-image: none;

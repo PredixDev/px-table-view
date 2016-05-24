@@ -58,9 +58,6 @@
 
   }
 
-  ///
-
-  ///
   > a {
     text-decoration: none;
     color          : $table-row-font-color;
@@ -69,16 +66,14 @@
 
   ///.table-view--flush
   @include modifier ('flush') {
-
     padding: 0 !important;
 
   }
   ///.table-view--tiny
   @include modifier ('tiny') {
-
     padding: $table-view-padding--tiny !important;
-
   }
+
   ///.table-view--small
   @include modifier ('small') {
     padding: $table-view-padding--small !important;
@@ -173,7 +168,7 @@
       }
     }
   }
-
+  
   @include modifier ('switch') {
     .table-row__content {
       flex-direction: row;
@@ -268,7 +263,7 @@
 ///Elements
 ///---------------------------------------------------------------------------
 ///---------------------------------------------------------------------------
-@include block ('table-row') {
+@include block('table-row'){
 
   ///.table-row__content
   @include element ('content') {
@@ -280,6 +275,7 @@
     user-select   : none;
     white-space   : nowrap;
     margin-left   : $inuit-base-spacing-unit--small;
+
     ///.table-row__content--flush
     @include modifier ('row') {
       flex-direction: row;

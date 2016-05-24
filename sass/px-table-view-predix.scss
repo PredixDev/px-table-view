@@ -15,10 +15,9 @@
 ///
 @import "variables";
 @import "mixins";
+@import '_px-table-row-predix.scss';
 ///
 
-///
-@import "_px-table-row-predix.scss";
 ///
 /// @group px-table-view
 /// -------------------------
@@ -37,6 +36,7 @@
 ///   </div>
 /// </section>
 @include block ('table-view') {
+
   @include switch();
   @include clearfix();
   //@include scrollable();
@@ -44,15 +44,14 @@
   cursor         : default;
   list-style-type: none;
   line-height    : normal;
-  margin: 0;
+  margin         : 0;
   padding        : 0;
   position       : relative;
   text-align     : left;
-//  display: flex;
+  display: flex;
+  flex-direction: column;
+  //  display: flex;
   //flex-direction: column;
-
-
-
   > * {
     line-height: normal;
   }
@@ -60,15 +59,11 @@
   ///--------------------------------
   ///.table-view--responsive
   @include modifier ('responsive') {
-    @include n-columns(
-    $table-view-responsive-row-width,
-    $table-view-responsive-row-gutters,
-    true,
-    $table-view-responsive-row-max);
+    @include n-columns( $table-view-responsive-row-width, $table-view-responsive-row-gutters, true, $table-view-responsive-row-max);
   }
   ///.table-view--ptr
   @include modifier ('ptr') {
-    > .table-row {
+    .table-row{
       user-select: none;
     }
   }
@@ -78,40 +73,40 @@
   }
   ///.table-view--flush
   @include modifier ('flush') {
-    .table-row {
+    .table-row{
       padding: 0 !important;
     }
   }
   ///.table-view--tiny
   @include modifier ('tiny') {
-    .table-row {
+    .table-row{
       padding: $table-view-padding--tiny;
     }
   }
   ///.table-view--small
   @include modifier ('small') {
-    .table-row {
+    .table-row{
       padding: $table-view-padding--small;
     }
   }
 
   ///.table-view--large
   @include modifier ('large') {
-    .table-row {
+    .table-row{
       padding: $table-view-padding--large;
     }
   }
 
   ///.table-view--huge
   @include modifier ('huge') {
-    .table-row {
+    .table-row{
       padding: $table-view-padding--huge;
     }
   }
 
   ///.table-view--avatars
   @include modifier ('avatars') {
-    > .table-row {
+    .table-row{
       img {
         height       : 32px;
         border-radius: 50%;
@@ -120,7 +115,7 @@
   }
   ///.table-view--drilldown
   @include modifier ('drilldown') {
-    > .table-row {
+    .table-row{
       background: red;
     }
   }

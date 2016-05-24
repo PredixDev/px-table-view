@@ -30,14 +30,13 @@
 @import 'px-table-view--drilldown';
 @import 'px-table-view-predix';
 // TODO: Colors
-.table-view {
+@include b('table-view') {
   border          : none;
   //background      : transparent;
   //background-color: var(--table-view-background-color, $table-row-background-color);
 
-  .table-row {
-  
-
+  .table-row,
+  ::content .table-row {
     ///
     &:first-child {
       border-bottom: none;
@@ -52,7 +51,7 @@
       border-bottom: none;
     }
     ///
-    &:not(:last-child) {
+    &:not(:last-child){
       border-bottom-style: solid;
       border-bottom-width: 1px;
       border-bottom-color: $table-row-border-color;
@@ -62,7 +61,7 @@
 
   ///.table-view--bare
   @include modifier ('bare') {
-    .table-row {
+    .table-row,::content .table-row {
       border-bottom: none !important;
       //background: transparent;
     }

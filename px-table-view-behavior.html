@@ -1,21 +1,25 @@
 <script type="text/javascript">
   /**
- * Behavior that manages the px-table-view
- *
- * @polymerBehavior
- */
+   * Behavior that manages the px-table-view
+   *
+   * @polymerBehavior
+   */
   var pxTableViewBehavior = {
-    created: function () {
-      console.log('Created', this.tagName);
-      // console.dir(this);
-    },
     attached: function () {
       if (this.responsive) {
-        this.toggleClass('table-view--responsive', this.responsive, this.$.list);
+        this.toggleClass('table-view--responsive', this.responsive, _this.$$('.table-view'));
+      }
+      var _this = this;
+      var children = this.children;
+      if (_this.modifiers) {
+        var types = _this.modifiers.split(' ');
+        for (var i = 0; i < types.length; i++) {
+          _this.toggleClass('table-view--' + types[i], true, _this.$$('.table-view'));
+        }
       }
     },
     handleSelect: function (e) {
-      console.log('select', e.model);
+      //  console.log('select', e.model);
       this.fire('select', e.model);
     },
     _clearSelected: function () {
@@ -25,8 +29,8 @@
       }
     },
     addItem: function (o) {
-      console.log('addItem', o);
-      return this.push('listData', o);
+      //  console.log('addItem', o);
+      return this.push('tableData', o);
     }
   };
 </script>
