@@ -11,8 +11,8 @@
       }
       var _this = this;
       var children = this.children;
-      if (_this.modifiers) {
-        var types = _this.modifiers.split(' ');
+      if (_this.modifier) {
+        var types = _this.modifier.split(' ');
         for (var i = 0; i < types.length; i++) {
           _this.toggleClass('table-view--' + types[i], true, _this.$$('.table-view'));
         }
