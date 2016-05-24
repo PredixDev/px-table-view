@@ -20,7 +20,7 @@
   if ('addEventListener' in document) {
     document.addEventListener('DOMContentLoaded', function () {
       FastClick.attach(document.body);
-      console.warn('table-view', 'attaching fastclick!');
+
     }, false);
   }
 </script>
@@ -124,10 +124,7 @@ To use this component with iron list you can do the following:
       },
       attached: function(){
         var children = this.children;
-        console.log('tableview children', children);
-
-        console.log('Content children', this.getEffectiveChildren());
-        console.log('Content children', this.$.content.children);
+      
       }
     });
   </script>
