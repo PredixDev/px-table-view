@@ -24,15 +24,13 @@
     "polymer": "~1.4.0",
     "px-theme": "https://github.com/PredixDev/px-theme.git#~0.4.0",
     "iron-list": "PolymerElements/iron-list#^1.2.8",
-    "iron-swipeable-container": "PolymerElements/iron-swipeable-container#^1.0.2",
-    "px-mobile-design": "https://github.com/PredixDev/px-mobile-design.git",
     "polymer-font-awesome": "https://github.com/mdwragg/polymer-font-awesome.git#^0.0.5",
     "fastclick": "^1.0.6",
     "hammerjs": "~2.0.8",
-    "iron-selector": "PolymerElements/iron-selector#^1.5.1",
-    "paper-swipe": "^1.0.2"
+    "iron-selector": "PolymerElements/iron-selector#^1.5.1"
   },
   "devDependencies": {
+    "px-mobile-design": "https://github.com/PredixDev/px-mobile-design.git",
     "px-card": "latest",
     "px-spacing-responsive-design": "^0.3.7",
     "iron-component-page": "PolymerElements/iron-component-page#~v1.1.0",
