@@ -440,29 +440,24 @@
         <h1 class="beta">Style Modifiers</h1>
         <demo-snippet>
           <template>
-            <style media="screen">
+             <style>
               #my-table {
-                --table-row-background-color: green;
-                --table-row-border-color: red;
+                --px-table-row-font-size: 2rem;
+                --px-table-row-font-color: crimson;
+                --px-table-row-background-color: green;
+                --px-table-row-border-color: red;
               }
 
             </style>
-            <section id="my-table" class="table-view table-view--small">
-              <div class="table-row table-row--tappable">
-                <div class="table-row__media table-row__media--image table-row__media--left"><img src="http://placehold.it/44"/>
-                </div>
-                <div class="table-row__content">
-                  <span class="table-row__title">Text Label</span>
-                </div>
-              </div>
-              <div class="table-row table-row--tappable">
-                <div class="table-row__media table-row__media--image table-row__media--left"><img src="http://placehold.it/44"/>
-                </div>
-                <div class="table-row__content">
-                  <span class="table-row__title">Text Label</span>
-                </div>
-              </div>
-            </section>
+            <px-table-view id="my-table">
+              <px-table-row title="Text Label" modifier="nav-right">
+              </px-table-row>
+              <px-table-row title="Text Label" modifier="nav-right">
+              </px-table-row>
+              <px-table-row title="Text Label" modifier="nav-right">
+              </px-table-row>
+            </px-table-view>
+
           </template>
         </demo-snippet>
 

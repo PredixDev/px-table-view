@@ -28,10 +28,10 @@
   appearance      : normal;
   user-select     : none;
   font-size       : $table-row-font-size;
-  font-size       : var(--table-row-font-size, $table-row-font-size);
+
 
   background-color: $table-row-background-color;
-  background-color: var(--table-row-background-color, $table-row-background-color);
+
   ///
   h1,
   h2,
@@ -46,13 +46,13 @@
     white-space: normal;
   }
   ///
-   > *:not(select),
+   > *:not(input),
    > *:not(textarea),
-  > *:not(input) {
+  > *:not(select) {
 
     //-webkit-touch-callout      : none;
     -webkit-text-size-adjust   : none;
-  //  -webkit-user-select        : none;
+    //  -webkit-user-select        : none;
     -webkit-highlight          : none;
     -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 
@@ -168,7 +168,7 @@
       }
     }
   }
-  
+
   @include modifier ('switch') {
     .table-row__content {
       flex-direction: row;
@@ -234,7 +234,7 @@
     padding-right: 0 !important;
 
     .table-row__content {
-      transition: all .5s;
+      transition: all 0.5s;
       position  : relative;
       z-index   : 10;
     }
@@ -245,7 +245,7 @@
     @include tableRowIcon( '\f107');
 
     .table-row__body {
-      transition: all .5s;
+      transition: all 0.5s;
       display   : none;
     }
 
@@ -263,7 +263,7 @@
 ///Elements
 ///---------------------------------------------------------------------------
 ///---------------------------------------------------------------------------
-@include block('table-row'){
+@include block ('table-row') {
 
   ///.table-row__content
   @include element ('content') {
@@ -295,6 +295,7 @@
   @include element ('title') {
     font-size  : $table-row-title-font-size;
     color      : $table-row-title-font-color;
+
     order      : 3;
     align-self : stretch;
     user-select: none;
@@ -305,8 +306,8 @@
   ///---------------------------------------------------------------------------
   ///.table-row__title
   @include element ('subtitle') {
-    font-size  : $table-row-subtitle-font-size;
-    color      : $table-row-subtitle-font-color;
+
+
     order      : 4;
     align-self : stretch;
     white-space: nowrap;
@@ -317,6 +318,7 @@
   @include element ('body') {
     color      : $table-row-body-font-color;
     font-size  : $table-row-body-font-size;
+
     order      : 5;
     line-height: normal;
     white-space: normal;
@@ -330,7 +332,7 @@
   ///.table-row__label
   @include element ('label') {
     order       : 0;
-    color       : $table-row-label-color;
+
     flex        : 1 0 6em;
     align-self  : center;
     //padding: $inuit-base-spacing-unit--tiny;
@@ -441,7 +443,7 @@
       bottom        : 0;
       padding       : 0;
       border        : 0;
-      opacity       : .001;
+      opacity       : 0.001;
       z-index       : 1;
       vertical-align: top;
       outline       : none;
@@ -460,7 +462,7 @@
     input[type="checkbox"]:checked + div:before {
       background: $table-row-checkbox-background-color;
       border    : 1px solid $table-row-checkbox-checked-border-color;
-      transition: background .4s;
+      transition: background 0.4s;
     }
 
     &:active {
@@ -479,7 +481,7 @@
     }
 
     input[type="checkbox"]:disabled + div {
-      opacity       : .5;
+      opacity       : 0.5;
       cursor        : default;
       pointer-events: none;
     }
@@ -502,7 +504,7 @@
 
       position       : relative;
       overflow       : hidden;
-      margin-right   : .5rem;
+      margin-right   : 0.5rem;
       width          : 24px;
       height         : 24px;
 
@@ -571,7 +573,7 @@
           pointer-events: none;
           //check
           + div:after {
-            opacity: .5;
+            opacity: 0.5;
           }
         }
       }
@@ -585,9 +587,10 @@
 ///---------------------------
 ///---------------------------
 @include block ('table-row') {
-  input{
+  input {
     width: 100%;
   }
+
   .text-input {
     margin    : 0;
     min-height: 44px;

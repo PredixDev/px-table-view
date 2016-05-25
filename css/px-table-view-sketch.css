@@ -380,9 +380,7 @@
       -ms-user-select: none;
           user-select: none;
   font-size: 1.1333333333rem;
-  font-size: var(--table-row-font-size, 1.1333333333rem);
-  background-color: transparent;
-  background-color: var(--table-row-background-color, transparent); }
+  background-color: transparent; }
   .table-row:after, .table-row:before {
     display: table;
     content: ' '; }
@@ -399,9 +397,9 @@
     padding: 0;
     line-height: normal;
     white-space: normal; }
-  .table-row > *:not(select),
+  .table-row > *:not(input),
   .table-row > *:not(textarea),
-  .table-row > *:not(input) {
+  .table-row > *:not(select) {
     -webkit-text-size-adjust: none;
     -webkit-highlight: none;
     -webkit-tap-highlight-color: transparent; }
@@ -746,7 +744,7 @@
   .table-row--actionable {
     padding-right: 0 !important; }
     .table-row--actionable .table-row__content {
-      transition: all .5s;
+      transition: all 0.5s;
       position: relative;
       z-index: 10; }
   .table-row--collapsable {
@@ -780,7 +778,7 @@
     .table-row--collapsable:hover {
       transition: none; }
     .table-row--collapsable .table-row__body {
-      transition: all .5s;
+      transition: all 0.5s;
       display: none; }
     .table-row--collapsable--is-open .table-row__body {
       display: block; }
@@ -836,8 +834,6 @@
           flex: 1; }
 
 .table-row__subtitle {
-  font-size: 0.9333333333rem;
-  color: #9999a3;
   -webkit-order: 4;
       -ms-flex-order: 4;
           order: 4;
@@ -869,7 +865,6 @@
   -webkit-order: 0;
       -ms-flex-order: 0;
           order: 0;
-  color: #9999a3;
   -webkit-flex: 1 0 6em;
       -ms-flex: 1 0 6em;
           flex: 1 0 6em;
@@ -962,7 +957,7 @@
     bottom: 0;
     padding: 0;
     border: 0;
-    opacity: .001;
+    opacity: 0.001;
     z-index: 1;
     vertical-align: top;
     outline: none;
@@ -979,13 +974,13 @@
   .table-row__checkbox input[type="checkbox"]:checked + div:before {
     background: #0a9ec1;
     border: 1px solid #086e87;
-    transition: background .4s; }
+    transition: background 0.4s; }
   .table-row__checkbox input[type="checkbox"]:checked + div:after {
     opacity: 1; }
   .table-row__checkbox input[type="checkbox"]:focus + div:before {
     box-shadow: none; }
   .table-row__checkbox input[type="checkbox"]:disabled + div {
-    opacity: .5;
+    opacity: 0.5;
     cursor: default;
     pointer-events: none; }
   .table-row__checkbox input[type="checkbox"]:disabled:focus + div:before {
@@ -1006,7 +1001,7 @@
     font-weight: 400;
     position: relative;
     overflow: hidden;
-    margin-right: .5rem;
+    margin-right: 0.5rem;
     width: 24px;
     height: 24px; }
     .table-row__checkbox__checkmark:before {
@@ -1055,7 +1050,7 @@
       .table-row__checkbox--no-border input[type="checkbox"]:disabled {
         pointer-events: none; }
         .table-row__checkbox--no-border input[type="checkbox"]:disabled + div:after {
-          opacity: .5; }
+          opacity: 0.5; }
 
 .table-row input {
   width: 100%; }
@@ -1070,6 +1065,24 @@
   outline: none;
   min-height: 44px;
   width: 100%; }
+
+:host .table-row {
+  font-size: var(--px-table-row-font-size, 1.1333333333rem);
+  background-color: var(--px-table-row-background-color, transparent); }
+  :host .table-row__title {
+    font-size: var(--px-table-row-title-font-size, 1.1333333333rem);
+    color: var(--px-table-row-title-font-color, black); }
+  :host .table-row__subtitle {
+    font-size: 0.9333333333rem;
+    color: #9999a3;
+    font-size: var(--px-table-row-subtitle-font-size, 0.9333333333rem);
+    color: var(--px-table-row-subtitle-font-color, #9999a3); }
+  :host .table-row__body {
+    font-size: var(--px-table-row-body-font-size, 1.0666666667rem);
+    color: var(--px-table-row-body-font-color, #7c7c84); }
+  :host .table-row__label {
+    font-size: var(--px-table-row-label-font-size, 1.0666666667rem);
+    color: var(--px-table-row-label-font-color, #9999a3); }
 
 .table-view {
   font-family: "GE Inspira Sans", sans-serif;
