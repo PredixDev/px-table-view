@@ -11,12 +11,7 @@
     <h2>Default Table View</h2>
     <px-table-view id="px_table_view_1"></px-table-view>
 
-    <h2>Table View with Template</h2>
-    <px-table-view id="px_table_view_2">
-      <template id="tb1">
-        <px-table-row id="{{$index}}" title="{{title}}" type="nav-right"></px-table-row>
-      </template>
-    </px-table-view>
+
     <script>
       suite('<px-table-view>', function () {
         var element = document.getElementById('px_table_view_1');
@@ -37,10 +32,12 @@
         test('can add item to element', function () {
           element.push('tableData', {
             title: 'Item 2',
+            modifier: 'nav-right',
             href: '#'
           });
           element.push('tableData', {
             title: 'Item 3',
+            modifier: 'nav-right',
             href: '#'
           });
           assert.ok(element.tableData.length === 3);
@@ -51,12 +48,7 @@
         });
       });
 
-      suite('<px-table-view#2>', function(){
-        test('repeats template with tableData', function(){
-          var element = document.getElementById('px_table_view_2');
-          element.tableData = [{title: 'Single Line Item'}];
-        });
-      });
+
     </script>
   </body>
 </html>

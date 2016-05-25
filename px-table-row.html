@@ -233,7 +233,10 @@ To style this component you can do the following:
       },
       attached: function () {
         //  console.log(this.tagName, 'ready');
-        this._init();
+        var _this = this;
+        this.async(function(){
+          _this._init();
+        });
       },
       created: function () {
         //  console.log(this.tagName, 'created');
