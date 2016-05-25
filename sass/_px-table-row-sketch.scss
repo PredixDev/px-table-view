@@ -1,29 +1,31 @@
 @import 'variables';
 @import 'mixins';
 @import '_px-table-row-predix.scss';
-:host{
-  @include b('table-row'){
-    font-size       : var(--px-table-row-font-size, $table-row-font-size);
-    background-color: var(--px-table-row-background-color, $table-row-background-color);
-    @include e('title'){
-      font-size  : var(--px-table-row-title-font-size, $table-row-title-font-size);
-      color      : var(--px-table-row-title-font-color, $table-row-title-font-color);
-    }
-    @include e('subtitle'){
-      font-size  : $table-row-subtitle-font-size;
-      color      : $table-row-subtitle-font-color;
-      font-size  : var(--px-table-row-subtitle-font-size, $table-row-subtitle-font-size);
-      color      : var(--px-table-row-subtitle-font-color, $table-row-subtitle-font-color);
-    }
-    @include e('body'){
-      font-size  : var(--px-table-row-body-font-size, $table-row-body-font-size);
-      color      : var(--px-table-row-body-font-color, $table-row-body-font-color);
-    }
-    @include e('label'){
-      font-size  : var(--px-table-row-label-font-size, $table-row-label-font-size);
-      color      : var(--px-table-row-label-font-color, $table-row-label-font-color);
-    }
 
+@include b ('table-row') {
+  font-size       : var(--px-table-row-font-size, $table-row-font-size);
+  background-color: var(--px-table-row-background-color, $table-row-background-color);
+
+  @include e ('title') {
+    font-size: var(--px-table-row-title-font-size, $table-row-title-font-size);
+    color    : var(--px-table-row-title-font-color, $table-row-title-font-color);
+  }
+
+  @include e ('subtitle') {
+    font-size: $table-row-subtitle-font-size;
+    color    : $table-row-subtitle-font-color;
+    font-size: var(--px-table-row-subtitle-font-size, $table-row-subtitle-font-size);
+    color    : var(--px-table-row-subtitle-font-color, $table-row-subtitle-font-color);
+  }
+
+  @include e ('body') {
+    font-size: var(--px-table-row-body-font-size, $table-row-body-font-size);
+    color    : var(--px-table-row-body-font-color, $table-row-body-font-color);
+  }
+
+  @include e ('label') {
+    font-size: var(--px-table-row-label-font-size, $table-row-label-font-size);
+    color    : var(--px-table-row-label-font-color, $table-row-label-font-color);
   }
 
 }

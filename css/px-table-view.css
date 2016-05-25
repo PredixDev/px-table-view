@@ -347,6 +347,22 @@
       background: #0a9ec1; }
     .table-row > a:hover {
       transition: none; }
+  .table-row--selected, .table-row.iron-selected {
+    background-color: #0a9ec1;
+    color: #fff;
+    -webkit-touch-callout: none;
+    /* iOS Safari */
+    -webkit-user-select: none;
+    /* Chrome/Safari/Opera */
+    -khtml-user-select: none;
+    /* Konqueror */
+    -moz-user-select: none;
+    /* Firefox */
+    -ms-user-select: none;
+    /* Internet Explorer/Edge */
+    user-select: none;
+    /* Non-prefixed version, currently
+                                 not supported by any browser */ }
   .table-row--flush {
     padding: 0 !important; }
   .table-row--tiny {
@@ -373,6 +389,7 @@
     min-height: 24px;
     line-height: 24px; }
   .table-row--tappable {
+    cursor: pointer;
     -webkit-touch-callout: none;
     /* iOS Safari */
     -webkit-user-select: none;
@@ -385,8 +402,7 @@
     /* Internet Explorer/Edge */
     user-select: none;
     /* Non-prefixed version, currently
-                                 not supported by any browser */
-    cursor: pointer; }
+                                 not supported by any browser */ }
     .table-row--tappable:active:active {
       color: #fff;
       transition: none;
@@ -919,21 +935,21 @@
   min-height: 44px;
   width: 100%; }
 
-:host .table-row {
+.table-row {
   font-size: var(--px-table-row-font-size, 1.1333333333rem);
   background-color: var(--px-table-row-background-color, transparent); }
-  :host .table-row__title {
+  .table-row__title {
     font-size: var(--px-table-row-title-font-size, 1.1333333333rem);
     color: var(--px-table-row-title-font-color, black); }
-  :host .table-row__subtitle {
+  .table-row__subtitle {
     font-size: 0.9333333333rem;
     color: #9999a3;
     font-size: var(--px-table-row-subtitle-font-size, 0.9333333333rem);
     color: var(--px-table-row-subtitle-font-color, #9999a3); }
-  :host .table-row__body {
+  .table-row__body {
     font-size: var(--px-table-row-body-font-size, 1.0666666667rem);
     color: var(--px-table-row-body-font-color, #7c7c84); }
-  :host .table-row__label {
+  .table-row__label {
     font-size: var(--px-table-row-label-font-size, 1.0666666667rem);
     color: var(--px-table-row-label-font-color, #9999a3); }
 

@@ -64,10 +64,17 @@
     @include tableRowClickable($table-row-active-background-color, $table-row-active-font-color);
   }
 
-  ///.table-view--flush
+  ///.table-row--selected
+  &--selected,
+  &.iron-selected {
+    background-color: $table-row-active-background-color;
+    color: $table-row-active-font-color;
+    @include noselect();
+  }
+
+
   @include modifier ('flush') {
     padding: 0 !important;
-
   }
   ///.table-view--tiny
   @include modifier ('tiny') {
@@ -108,13 +115,16 @@
     min-height      : 24px;
     line-height     : 24px;
   }
+
+
   ///.table-row--tappable
   @include modifier ('tappable') {
+    cursor: pointer;
     &:active {
       @include tableRowClickable($table-row-active-background-color, $table-row-active-font-color);
     }
     @include noselect();
-    cursor: pointer;
+
 
     &:active {
       transition      : none;
