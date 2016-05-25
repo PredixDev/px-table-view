@@ -23,22 +23,128 @@
 //@import "px-spacing-responsive-design/_trumps.spacing-responsive.scss";
 //@import "px-widths-responsive-design/_trumps.widths-responsive.scss";
 
-// TODO:
-// TODO: Use calculateRem
-//Use px-functions-design
-//Use px-default-design
 @import 'px-table-view--drilldown';
-@import 'px-table-view-predix';
 
+///
 
+///
+/// @group px-table-view
+/// -------------------------
+/// Table View
+/// @group px-table-view
+/// @example html
+///
+/// <section class="table-view table-view--small">
+///   <div class="table-row table-row--tappable">
+///     <div class="table-row__media table-row__media--image table-row__media--left">
+///       <img src="http://placehold.it/44">
+///     </div>
+///     <div class="table-row__content">
+///       <span class="table-row__content__title">Text Label</span>
+///     </div>
+///   </div>
+/// </section>
+@include b ('table-view') {
+  @include switch();
+  @include clearfix();
+  @include pxFonts();
+  cursor         : default;
+  list-style-type: none;
+  line-height    : normal;
+  margin         : 0;
+  padding        : 0;
+  position       : relative;
+  text-align     : left;
+  display        : flex;
+  flex-direction : column;
+  //  display: flex;
+  //flex-direction: column;
+  > * {
+    line-height: normal;
+  }
+  /// Modifiers
+  ///--------------------------------
+  ///.table-view--responsive
+  @include modifier ('responsive') {
+    @include n-columns( $table-view-responsive-row-width, $table-view-responsive-row-gutters, true, $table-view-responsive-row-max);
+  }
+  ///.table-view--ptr
+  @include modifier ('ptr') {
+    @include c('.table-row') {
+      user-select: none;
+    }
+  }
+  ///.table-view--rev
+  @include modifier ('rev') {
+    direction: rtl;
+  }
+  ///.table-view--flush
+  @include modifier ('flush') {
+    @include c('.table-row') {
+      padding: 0 !important;
+    }
+  }
+  ///.table-view--tiny
+  @include modifier ('tiny') {
+    @include c('.table-row') {
+      padding: $table-view-padding--tiny;
+    }
+  }
+  ///.table-view--small
+  @include modifier ('small') {
+    @include c('.table-row') {
+      padding: $table-view-padding--small;
+    }
+  }
+  ///.table-view--large
+  @include modifier ('large') {
+    @include c('.table-row') {
+      padding: $table-view-padding--large;
+    }
+  }
+  ///.table-view--huge
+  @include modifier ('huge') {
+    @include c('.table-row') {
+      padding: $table-view-padding--huge;
+    }
+  }
+  ///.table-view--avatars
+  @include modifier ('avatars') {
+    @include c('.table-row') {
+      img {
+        height       : 32px;
+        border-radius: 50%;
+      }
+    }
+  }
+  ///.table-view--drilldown
+  @include modifier ('drilldown') {
+    @include c('.table-row') {
+      background: red;
+    }
+  }
 
-// TODO: Colors
-@include b('table-view') {
-  border          : none;
   //background      : transparent;
   //background-color: var(--table-view-background-color, $table-row-background-color);
-  .table-row,
-  ::content .table-row {
+  @include c('.iron-selected') {
+    @include noselect();
+    background-color: $table-row-active-background-color;
+    color           : $table-row-active-font-color;
+
+    .table-row__title,
+    .table-row__subtitle,
+    .table-row__body,
+    .table-row__label{
+      color           : $table-row-active-font-color;
+    }
+
+    .table-row:before{
+      color           : $table-row-active-font-color;
+    }
+
+  }
+
+  @include c('.table-row') {
     ///
     &:first-child {
       border-bottom: none;
@@ -53,21 +159,23 @@
       border-bottom: none;
     }
     ///
-    &:not(:last-child){
+    &:not(:last-child) {
       border-bottom-style: solid;
       border-bottom-width: 1px;
       border-bottom-color: $table-row-border-color;
       border-bottom-color: var(--px-table-row-border-color, $table-row-border-color);
     }
+
   }
 
   ///.table-view--bare
   @include modifier ('bare') {
-    .table-row,
-    ::content .table-row {
-      border-bottom: none !important;
-      //background: transparent;
+    @include c('.table-row'){
+      &:not(:last-child){
+        border-bottom: none;
+      }
     }
+
   }
 
   ///.table-view--responsive
@@ -82,7 +190,47 @@
     background-image: none;
     border          : 1px solid;
     border-color    : $table-row-border-color;
-    border-color    : var(--table-view-border-color, $table-row-border-color);
+    border-color    : var(--px-table-view-border-color, $table-row-border-color);
     border-radius   : 0;
+  }
+
+  .switch {
+    float     : right;
+    position  : absolute;
+    margin-top: -25px;
+    right     : 3%;
+  }
+
+  .switch--table-row {
+    float       : right;
+    margin-top  : 6px;
+    margin-right: 10px;
+  }
+
+  @include modifier ('nested') {
+    .table-row {
+      transition: transform 500ms ease;
+
+      &.has-children {
+        line-height: normal;
+        overflow   : hidden;
+        max-height : 75px;
+
+        .table-view {
+          margin-left: 15px;
+          transform  : translateX(99%);
+        }
+
+        &.is-selected {
+          background: transparent;
+          max-height: 100%;
+
+          > .table-view {
+            display  : block;
+            transform: translateX(0);
+          }
+        }
+      }
+    }
   }
 }

@@ -1,11 +1,7 @@
-/// @group px-table-view
-/// Mixins
-@import "variables";
-@import "mixins";
-///
+@import 'variables';
+@import 'mixins';
+@import '_px-table-row--actions.scss';
 
-///
-@import "px-table-row--actions";
 /// Table Row
 /// @group px-table-row
 /// @access public
@@ -13,45 +9,24 @@
   @include clearfix();
   @include noselect();
 
-  align-self      : center;
+  align-self    : center;
   //width         : 100%;
+  box-sizing    : border-box;
+  position      : relative;
+  overflow      : hidden;
+  display       : flex;
+  flex-direction: row;
+  margin        : 0;
+  padding       : 0;
+  appearance    : normal;
+  user-select   : none;
+  //font-size       : $table-row-font-size;
+  //background-color: $table-row-background-color;
 
-  box-sizing      : border-box;
-
-  position        : relative;
-  overflow        : hidden;
-  display         : flex;
-  flex-direction  : row;
-  //margin          : 0;
-  padding         : 0;
-  appearance      : normal;
-  user-select     : none;
-  font-size       : $table-row-font-size;
-
-
-  background-color: $table-row-background-color;
-
-  ///
-  h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6,
-  p {
-    margin     : 0;
-    padding    : 0;
-    line-height: normal;
-    white-space: normal;
-  }
-  ///
    > *:not(input),
    > *:not(textarea),
   > *:not(select) {
-
-    //-webkit-touch-callout      : none;
     -webkit-text-size-adjust   : none;
-    //  -webkit-user-select        : none;
     -webkit-highlight          : none;
     -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 
@@ -62,19 +37,19 @@
   }
   ///.table-row--tiny
   @include modifier ('tiny') {
-    padding: $table-view-padding--tiny !important;
+    padding: $table-view-padding--tiny;
   }
   ///.table-row--small
   @include modifier ('small') {
-    padding: $table-view-padding--small !important;
+    padding: $table-view-padding--small;
   }
   ///.table-row--large
   @include modifier ('large') {
-    padding: $table-view-padding--large !important;
+    padding: $table-view-padding--large;
   }
   ///.table-row--huge
   @include modifier ('huge') {
-    padding: $table-view-padding--huge !important;
+    padding: $table-view-padding--huge;
 
   }
   ///.table-row--flush
@@ -98,36 +73,29 @@
     line-height     : 24px;
   }
 
-
   ///.table-row--tappable
   @include modifier ('tappable') {
-    cursor: pointer;
-    &:active {
-      @include tableRowClickable($table-row-active-background-color, $table-row-active-font-color);
-    }
     @include noselect();
+    @include tableRowClickable($table-row-active-background-color, $table-row-active-font-color){
+      &:active {
+        transition      : none;
+        background-color: $table-row-active-background-color !important;
 
+        .table-row__label {
+          color: $table-row-active-font-color;
+        }
 
-    &:active {
-      transition      : none;
-      background-color: $table-row-active-background-color !important;
-    }
+        .table-row__content {
+          color: $table-row-active-font-color !important;
+        }
 
-    &:active {
-      .table-row__label {
-        color: $table-row-active-font-color;
-      }
+        .table-row__title {
+          color: $table-row-active-font-color !important;
+        }
 
-      .table-row__content {
-        color: $table-row-active-font-color !important;
-      }
-
-      .table-row__title {
-        color: $table-row-active-font-color !important;
-      }
-
-      .table-row__body {
-        color: $table-row-active-font-color !important;
+        .table-row__body {
+          color: $table-row-active-font-color !important;
+        }
       }
     }
   }
@@ -248,14 +216,12 @@
       }
     }
   }
-}
 
-///---------------------------------------------------------------------------
-///---------------------------------------------------------------------------
-///Elements
-///---------------------------------------------------------------------------
-///---------------------------------------------------------------------------
-@include block ('table-row') {
+  ///---------------------------------------------------------------------------
+  ///---------------------------------------------------------------------------
+  ///Elements
+  ///---------------------------------------------------------------------------
+  ///---------------------------------------------------------------------------
 
   ///.table-row__content
   @include element ('content') {
@@ -298,7 +264,6 @@
   ///---------------------------------------------------------------------------
   ///.table-row__title
   @include element ('subtitle') {
-
 
     order      : 4;
     align-self : stretch;
@@ -400,13 +365,10 @@
     }
   }
 
-}
+  ///---------------------------------------------------------------------------
+  ///Checkbox styles
+  /// @group px-table-row
 
-///---------------------------------------------------------------------------
-///Checkbox styles
-/// @group px-table-row
-///---------------------------------------------------------------------------
-@include block ('table-row') {
   &.checkbox {
     width      : 100%;
     height     : 100%;
@@ -571,14 +533,13 @@
       }
     }
   }
-}
 
-///---------------------------
-///---------------------------
-/// Input
-///---------------------------
-///---------------------------
-@include block ('table-row') {
+  ///---------------------------
+  ///---------------------------
+  /// Input
+  ///---------------------------
+  ///---------------------------
+
   input {
     width: 100%;
   }

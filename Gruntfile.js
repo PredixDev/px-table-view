@@ -27,8 +27,14 @@ module.exports = function(grunt) {
       },
       dist: {
         files: {
-          'css/<%= pkg.name %>.css': 'sass/<%= pkg.name %>-sketch.scss',
-          'css/noprefix/<%= pkg.name %>-sketch.css': 'sass/<%= pkg.name %>-sketch.scss'
+          'css/noprefix/px-table-view-sketch.css': 'sass/px-table-view-sketch.scss',
+          'css/noprefix/px-table-view.css': 'sass/px-table-view-predix.scss'
+        }
+      },
+      distrows: {
+        files: {
+          'css/noprefix/px-table-row-sketch.css': 'sass/px-table-row-sketch.scss',
+          'css/noprefix/px-table-row.css': 'sass/px-table-row-predix.scss'
         }
       }
     },

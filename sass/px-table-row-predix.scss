@@ -1,42 +1,38 @@
 @import 'variables';
 @import 'mixins';
-@import '_px-table-row-predix.scss';
+@import 'px-table-row-sketch.scss';
 
-@include b ('table-row') {
-  min-height      : $table-row-min-height;
-  line-height     : $table-row-line-height;
 
+:host.iron-selected {
+    @include noselect();
+    background-color: $table-row-active-background-color;
+    color           : $table-row-active-font-color;
+
+    .table-row__title,
+    .table-row__subtitle,
+    .table-row__body,
+    .table-row__label{
+      color           : $table-row-active-font-color;
+    }
+
+    .table-row:before{
+      color           : $table-row-active-font-color;
+    }
+
+}
+
+/// @group px-table-row
+/// @access public
+.table-row {
   min-height      : var(--px-table-row-min-height, $table-row-min-height);
   line-height     : var(--px-table-row-line-height, $table-row-line-height);
   font-size       : var(--px-table-row-font-size, $table-row-font-size);
   background-color: var(--px-table-row-background-color, $table-row-background-color);
 
-  ///
-  &:first-child {
-    border-bottom: none;
-  }
-  ///
-  &:last-child {
-    border-bottom: none;
-  }
-  ///
-  &:first-child:last-child {
-    border-top   : none;
-    border-bottom: none;
-  }
-  ///
-  &:not(:last-child){
-    border-bottom-style: solid;
-    border-bottom-width: 1px;
-    border-bottom-color: $table-row-border-color;
-    border-bottom-color: var(--px-table-row-border-color, $table-row-border-color);
-  }
-
   ///.table-row--selected
-  &--selected,
-  &.iron-selected {
-    background-color: $table-row-active-background-color;
-    color: $table-row-active-font-color;
+  &--selected {
+    background-color: var(--px-table-row-selected-background-color, $table-row-active-background-color);
+    color           : var(--px-table-row-selected-font-color, $table-row-active-font-color);
     @include noselect();
   }
 
@@ -49,26 +45,26 @@
 
   ///.table-row__title
   @include e ('title') {
-    font-size: $table-row-title-font-size;
-    color    : $table-row-title-font-color;
+    //font-size: $table-row-title-font-size;
+    //color    : $table-row-title-font-color;
     font-size: var(--px-table-row-title-font-size, $table-row-title-font-size);
     color    : var(--px-table-row-title-font-color, $table-row-title-font-color);
   }
 
   ///.table-row__subtitle
   @include e ('subtitle') {
-    font-size: $table-row-subtitle-font-size;
-    color    : $table-row-subtitle-font-color;
+    //font-size: $table-row-subtitle-font-size;
+    //color    : $table-row-subtitle-font-color;
     font-size: var(--px-table-row-subtitle-font-size, $table-row-subtitle-font-size);
     color    : var(--px-table-row-subtitle-font-color, $table-row-subtitle-font-color);
   }
 
-
+  ///.table-row__body
   @include e ('body') {
     font-size: var(--px-table-row-body-font-size, $table-row-body-font-size);
     color    : var(--px-table-row-body-font-color, $table-row-body-font-color);
   }
-
+  ///.table-row__label
   @include e ('label') {
     font-size: var(--px-table-row-label-font-size, $table-row-label-font-size);
     color    : var(--px-table-row-label-font-color, $table-row-label-font-color);
