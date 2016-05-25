@@ -11,6 +11,43 @@
   font-size       : var(--px-table-row-font-size, $table-row-font-size);
   background-color: var(--px-table-row-background-color, $table-row-background-color);
 
+  ///
+  &:first-child {
+    border-bottom: none;
+  }
+  ///
+  &:last-child {
+    border-bottom: none;
+  }
+  ///
+  &:first-child:last-child {
+    border-top   : none;
+    border-bottom: none;
+  }
+  ///
+  &:not(:last-child){
+    border-bottom-style: solid;
+    border-bottom-width: 1px;
+    border-bottom-color: $table-row-border-color;
+    border-bottom-color: var(--px-table-row-border-color, $table-row-border-color);
+  }
+
+  ///.table-row--selected
+  &--selected,
+  &.iron-selected {
+    background-color: $table-row-active-background-color;
+    color: $table-row-active-font-color;
+    @include noselect();
+  }
+
+  ///.table-row > a
+  > a {
+    text-decoration: none;
+    color          : $table-row-font-color;
+    @include tableRowClickable($table-row-active-background-color, $table-row-active-font-color);
+  }
+
+  ///.table-row__title
   @include e ('title') {
     font-size: $table-row-title-font-size;
     color    : $table-row-title-font-color;
@@ -18,12 +55,14 @@
     color    : var(--px-table-row-title-font-color, $table-row-title-font-color);
   }
 
+  ///.table-row__subtitle
   @include e ('subtitle') {
     font-size: $table-row-subtitle-font-size;
     color    : $table-row-subtitle-font-color;
     font-size: var(--px-table-row-subtitle-font-size, $table-row-subtitle-font-size);
     color    : var(--px-table-row-subtitle-font-color, $table-row-subtitle-font-color);
   }
+
 
   @include e ('body') {
     font-size: var(--px-table-row-body-font-size, $table-row-body-font-size);

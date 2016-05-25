@@ -12,7 +12,7 @@
 @include block ('table-row') {
   @include clearfix();
   @include noselect();
-  
+
   align-self      : center;
   //width         : 100%;
 
@@ -57,39 +57,22 @@
 
   }
 
-  > a {
-    text-decoration: none;
-    color          : $table-row-font-color;
-    @include tableRowClickable($table-row-active-background-color, $table-row-active-font-color);
-  }
-
-  ///.table-row--selected
-  &--selected,
-  &.iron-selected {
-    background-color: $table-row-active-background-color;
-    color: $table-row-active-font-color;
-    @include noselect();
-  }
-
-
   @include modifier ('flush') {
     padding: 0 !important;
   }
-  ///.table-view--tiny
+  ///.table-row--tiny
   @include modifier ('tiny') {
     padding: $table-view-padding--tiny !important;
   }
-
-  ///.table-view--small
+  ///.table-row--small
   @include modifier ('small') {
     padding: $table-view-padding--small !important;
   }
-
-  ///.table-view--large
+  ///.table-row--large
   @include modifier ('large') {
     padding: $table-view-padding--large !important;
   }
-  ///.table-view--huge
+  ///.table-row--huge
   @include modifier ('huge') {
     padding: $table-view-padding--huge !important;
 

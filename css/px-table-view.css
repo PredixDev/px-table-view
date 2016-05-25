@@ -336,31 +336,6 @@
     -webkit-text-size-adjust: none;
     -webkit-highlight: none;
     -webkit-tap-highlight-color: transparent; }
-  .table-row > a {
-    text-decoration: none;
-    color: black; }
-    .table-row > a:active {
-      color: #fff;
-      transition: none;
-      background: #0a9ec1; }
-    .table-row > a:hover {
-      transition: none; }
-  .table-row--selected, .table-row.iron-selected {
-    background-color: #0a9ec1;
-    color: #fff;
-    -webkit-touch-callout: none;
-    /* iOS Safari */
-    -webkit-user-select: none;
-    /* Chrome/Safari/Opera */
-    -khtml-user-select: none;
-    /* Konqueror */
-    -moz-user-select: none;
-    /* Firefox */
-    -ms-user-select: none;
-    /* Internet Explorer/Edge */
-    user-select: none;
-    /* Non-prefixed version, currently
-                                 not supported by any browser */ }
   .table-row--flush {
     padding: 0 !important; }
   .table-row--tiny {
@@ -940,6 +915,43 @@
   line-height: var(--px-table-row-line-height, 2.9333333333rem);
   font-size: var(--px-table-row-font-size, 1.1333333333rem);
   background-color: var(--px-table-row-background-color, transparent); }
+  .table-row:first-child {
+    border-bottom: none; }
+  .table-row:last-child {
+    border-bottom: none; }
+  .table-row:first-child:last-child {
+    border-top: none;
+    border-bottom: none; }
+  .table-row:not(:last-child) {
+    border-bottom-style: solid;
+    border-bottom-width: 1px;
+    border-bottom-color: #b1b1bc;
+    border-bottom-color: var(--px-table-row-border-color, #b1b1bc); }
+  .table-row--selected, .table-row.iron-selected {
+    background-color: #0a9ec1;
+    color: #fff;
+    -webkit-touch-callout: none;
+    /* iOS Safari */
+    -webkit-user-select: none;
+    /* Chrome/Safari/Opera */
+    -khtml-user-select: none;
+    /* Konqueror */
+    -moz-user-select: none;
+    /* Firefox */
+    -ms-user-select: none;
+    /* Internet Explorer/Edge */
+    user-select: none;
+    /* Non-prefixed version, currently
+                                 not supported by any browser */ }
+  .table-row > a {
+    text-decoration: none;
+    color: black; }
+    .table-row > a:active {
+      color: #fff;
+      transition: none;
+      background: #0a9ec1; }
+    .table-row > a:hover {
+      transition: none; }
   .table-row__title {
     font-size: 1.1333333333rem;
     color: black;
@@ -1142,8 +1154,9 @@
     border-bottom-style: solid;
     border-bottom-width: 1px;
     border-bottom-color: #b1b1bc;
-    border-bottom-color: var(--table-row-border-color, #b1b1bc); }
-  .table-view--bare .table-row, .table-view--bare ::content .table-row {
+    border-bottom-color: var(--px-table-row-border-color, #b1b1bc); }
+  .table-view--bare .table-row,
+  .table-view--bare ::content .table-row {
     border-bottom: none !important; }
   .table-view--inset {
     background-image: none;

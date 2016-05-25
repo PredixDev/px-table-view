@@ -29,12 +29,14 @@
 //Use px-default-design
 @import 'px-table-view--drilldown';
 @import 'px-table-view-predix';
+
+
+
 // TODO: Colors
 @include b('table-view') {
   border          : none;
   //background      : transparent;
   //background-color: var(--table-view-background-color, $table-row-background-color);
-
   .table-row,
   ::content .table-row {
     ///
@@ -55,13 +57,14 @@
       border-bottom-style: solid;
       border-bottom-width: 1px;
       border-bottom-color: $table-row-border-color;
-      border-bottom-color: var(--table-row-border-color, $table-row-border-color);
+      border-bottom-color: var(--px-table-row-border-color, $table-row-border-color);
     }
   }
 
   ///.table-view--bare
   @include modifier ('bare') {
-    .table-row,::content .table-row {
+    .table-row,
+    ::content .table-row {
       border-bottom: none !important;
       //background: transparent;
     }
