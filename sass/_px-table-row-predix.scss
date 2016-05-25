@@ -12,9 +12,8 @@
 @include block ('table-row') {
   @include clearfix();
   @include noselect();
-  min-height      : 44px;
+  
   align-self      : center;
-  line-height     : 44px;
   //width         : 100%;
 
   box-sizing      : border-box;

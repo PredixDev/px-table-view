@@ -27,9 +27,11 @@ $table-row-nav-right-icon               : '\f105';
 ///
 $table-row-active-font-color            : #fff;
 ///
-$table-row-label-font-color                  : $gray6;
+$table-row-label-font-color             : $gray6;
 ///
-$table-row-label-font-size             : calculateRem(16px);
+$table-row-label-font-size              : calculateRem(16px);
+$table-row-min-height                   : calculateRem(44px);
+$table-row-line-height                  : calculateRem(44px);
 ///
 $table-row-edit-icon                    : '\f056';
 ///
@@ -51,17 +53,17 @@ $table-row-header-background-color      : $gray3;
 ///
 $table-row-header-font-color            : $black;
 ///
-$table-row-title-font-size             : calculateRem(17px);
+$table-row-title-font-size              : calculateRem(17px);
 ///
 $table-row-title-font-color             : $black;
 ///
-$table-row-subtitle-font-color             : $gray6;
+$table-row-subtitle-font-color          : $gray6;
 ///
-$table-row-subtitle-font-size             : calculateRem(14px);
+$table-row-subtitle-font-size           : calculateRem(14px);
 ///
-$table-row-body-font-color             : $gray7;
+$table-row-body-font-color              : $gray7;
 ///
-$table-row-body-font-size             : calculateRem(16px);
+$table-row-body-font-size               : calculateRem(16px);
 
 $table-row-header-font-size             : calculateRem(20px);
 ///
