@@ -104,7 +104,7 @@
 
 /// Add a icon to the end of a table row.
 /// @group px-table-view
-@mixin tableRowIcon($icon, $iconColor: $table-row-border-color, $position:'right') {
+@mixin tableRowIcon($icon, $iconColor: 'inherit', $position:'right') {
   transition: background-color 0.2s linear;
   overflow  : hidden;
   //	background-color: rgba(0,0,0,.5);

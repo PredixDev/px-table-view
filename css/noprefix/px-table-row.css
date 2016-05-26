@@ -270,7 +270,7 @@
       position: absolute;
       right: 12px;
       top: 50%;
-      color: #b1b1bc;
+      color: "inherit";
       line-height: 28px;
       height: 28px;
       font-size: 28px;
@@ -311,7 +311,7 @@
       position: absolute;
       right: 12px;
       top: 50%;
-      color: #b1b1bc;
+      color: "inherit";
       line-height: 28px;
       height: 28px;
       font-size: 28px;
@@ -419,7 +419,7 @@
     min-height: 44px;
     width: 100%; }
 
-:host.iron-selected {
+:host.selected {
   -webkit-touch-callout: none;
   /* iOS Safari */
   -webkit-user-select: none;
@@ -433,15 +433,15 @@
   user-select: none;
   /* Non-prefixed version, currently
                                  not supported by any browser */
-  background-color: #0a9ec1;
-  color: #fff; }
-  :host.iron-selected .table-row__body,
-  :host.iron-selected .table-row__label,
-  :host.iron-selected .table-row__subtitle,
-  :host.iron-selected .table-row__title {
-    color: #fff; }
-  :host.iron-selected .table-row:before {
-    color: #fff; }
+  background-color: var(--px-table-row-selected-background-color, #0a9ec1);
+  color: var(--px-table-row-selected-color, #fff); }
+  :host.selected .table-row__body,
+  :host.selected .table-row__label,
+  :host.selected .table-row__subtitle,
+  :host.selected .table-row__title {
+    color: var(--px-table-row-selected-color, #fff); }
+  :host.selected .table-row:before {
+    color: var(--px-table-row-selected-color, #fff); }
 
 .table-row {
   border-bottom-style: var(--px-table-row-border-style, solid);
@@ -697,7 +697,7 @@
       transition: none; }
   .table-row__title {
     font-size: var(--px-table-row-title-font-size, 1.1333333333rem);
-    color: var(--px-table-row-title-color, black); }
+    color: var(--px-table-row-title-color); }
   .table-row__subtitle {
     font-size: var(--px-table-row-subtitle-font-size, 0.9333333333rem);
     color: var(--px-table-row-subtitle-color, #9999a3); }

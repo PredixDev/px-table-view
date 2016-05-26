@@ -8,14 +8,18 @@
     <title>px-table-view MVP (Phase 2)</title>
     <script src="../webcomponentsjs/webcomponents-lite.js"></script>
 
-    <link rel='stylesheet prefetch' href='//predixdev.github.io/px-library-design/css/style.css'>
+    <link rel='stylesheet prefetch' href='/px.css'>
 
     <link rel="import" href="px-table-view.html">
 
     <!-- TODO: iron-list example -->
     <link rel="import" href="../iron-demo-helpers/demo-snippet.html"/>
 
+
     <style media="screen">
+    .box{
+      background: #fff;
+    }
       body {
         background: #efeff4;
         overflow: hidden;
@@ -52,7 +56,7 @@
   <body class="u-bg--gray9">
 
     <div class="viewport viewport-full-height">
-      <div class="">
+      <div class="box u-mb u-mt">
         <h1 class="beta">MVP2</h1>
         <ul>
           <li>
@@ -93,45 +97,79 @@
 
       </div>
       <div class="flex flex--col flex--wrap flex--spaced u-bg--gray7 u-padding-10">
+        <demo-snippet>
 
+          <template id="">
+            <h2>CSS Vars Test</h2>
 
-          <h2>CSS Vars Test</h2>
-          <style>
-          :root{
-          	--px-table-row-border-color: red;
-          	--px-table-row-background-color: pink;
-          	--px-table-row-title-font-size: 2rem;
-          	--px-table-row-body-font-size: 1rem;
-          	--px-table-row-body-font-color: black;
-          }
+            <style>
+              :host {
+                --px-table-row-border-color: red;
+                --px-table-row-background-color: pink;
+                --px-table-row-title-font-size: 2rem;
+                --px-table-row-body-font-size: 1rem;
+                --px-table-row-body-font-color: black;
+              }
+            </style>
 
-          </style>
-          <div class="container">
-            <px-table-row class="a" title="Item A"></px-table-row>
-            <px-table-row class="b" title="Item B"></px-table-row>
-            <px-table-row class="c" title="Item C"></px-table-row>
-          </div>
+            <px-table-view id="cssvartest" modifer="small">
+              <px-table-row id="row1" title="Item 1"></px-table-row>
+              <px-table-row class="a" title="Item 2"></px-table-row>
+              <px-table-row class="a" title="Item 3"></px-table-row>
+              <px-table-row title="Item 4"></px-table-row>
+            </px-table-view>
+          </template>
+        </demo-snippet>
 
-          <px-table-row title="Item 3"></px-table-row>
-          <px-table-row title="Item 4"></px-table-row>
-          <px-table-view id="cssvartest" modifer="small">
-            <px-table-row id="row1" title="Item 1"></px-table-row>
-            <px-table-row class="a" title="Item 2"></px-table-row>
-            <px-table-row class="a" title="Item 3"></px-table-row>
-            <px-table-row title="Item 4"></px-table-row>
-          </px-table-view>
+        <demo-snippet>
+          <template id="">
+            <h2>Selected Item Test</h2>
+            <template id="tmpl1" is="dom-bind">
+              <style media="screen">
+                .custom-selected{
+                  background: crimson;
+                  color: white;
+                }
+              </style>
+              <h4>{{selected}}</h4>
+              <px-table-view modifer="small" attr-for-selected="name" selected="{{selected}}" selected-class="custom-selected">
+                <px-table-row verbose name="item-1" title="Item A" icon="fa fa-bars fa-lg" modifier="nav-right"></px-table-row>
+                <px-table-row name="item-2" title="Item B" icon-left="polymer-font-awesome:fa-bars" modifier="nav-right"></px-table-row>
+                <px-table-row name="item-3" title="Item C"></px-table-row>
+              </px-table-view>
+            </template>
+            <script type="text/javascript">
+              var tmpl = document.getElementById('tmpl1');
+              tmpl.selected = 'item-1';
+            </script>
+          </template>
+        </demo-snippet>
 
+        <demo-snippet>
+          <template id="">
+            <h2>Non Selected Item Test</h2>
+            <template id="tmpl1" is="dom-bind">
+              <h4>{{selected}}</h4>
+              <px-table-view modifer="small" attr-for-selected="name" selected="{{selected}}" >
+                <px-table-row name="item-1" title="Item A" ></px-table-row>
+                <px-table-row name="item-2" title="Item B"></px-table-row>
+                <px-table-row name="item-3" title="Item C"></px-table-row>
+              </px-table-view>
+            </template>
+            <script type="text/javascript">
+              var tmpl = document.getElementById('tmpl1');
+              tmpl.selected = 'item-1';
+            </script>
+          </template>
+        </demo-snippet>
 
         <demo-snippet>
           <template id="">
             <h2>Shadow Dom Icon Test</h2>
-
-            <iron-icon icon="polymer-font-awesome:fa-bars"></iron-icon>
-
             <px-table-view modifer="small">
-              <px-table-row title="Font Awesome" icon="fa fa-bars fa-lg"></px-table-row>
+              <px-table-row title="Font Awesome Icon" icon="fa fa-bars fa-lg"></px-table-row>
               <px-table-row title="Polymer Font Awesome" icon-left="polymer-font-awesome:fa-bars"></px-table-row>
-              <px-table-row title="Polymer Font Awesome" icon-right="polymer-font-awesome:fa-bars"></px-table-row>
+              <px-table-row title="Polymer Font Awesome" icon-right="polymer-font-awesome:fa-eye"></px-table-row>
             </px-table-view>
           </template>
         </demo-snippet>

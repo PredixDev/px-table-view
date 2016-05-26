@@ -2,20 +2,20 @@
 @import 'mixins';
 @import 'px-table-row-sketch.scss';
 
-:host.iron-selected {
+:host.selected {
   @include noselect();
-  background-color: $table-row-active-background-color;
-  color           : $table-row-active-font-color;
+  background-color: var(--px-table-row-selected-background-color, $table-row-active-background-color);
+  color           : var(--px-table-row-selected-color, $table-row-active-font-color);
 
   .table-row__body,
   .table-row__label,
   .table-row__subtitle,
   .table-row__title {
-    color: $table-row-active-font-color;
+    color           : var(--px-table-row-selected-color, $table-row-active-font-color);
   }
 
   .table-row:before {
-    color: $table-row-active-font-color;
+    color           : var(--px-table-row-selected-color, $table-row-active-font-color);
   }
 
 }
@@ -64,7 +64,7 @@
   ///.table-row__title
   @include e ('title') {
     font-size: var(--px-table-row-title-font-size, $table-row-title-font-size);
-    color    : var(--px-table-row-title-color, $table-row-title-font-color);
+    color    : var(--px-table-row-title-color);
   }
 
   ///.table-row__subtitle

@@ -122,6 +122,13 @@ To use this component with iron list you can do the following:
         modifier: {
           type: String
         },
+        /**
+        * The class to set on elements when selected
+        */
+        selectedClass: {
+          type: String,
+          value: 'selected'
+        },
         //To make the list items responsive
         responsive: {
           type: Boolean,
@@ -130,7 +137,8 @@ To use this component with iron list you can do the following:
         sortable: {
           type: Boolean,
           value: false
-        }
+        },
+
       }
     });
   </script>
