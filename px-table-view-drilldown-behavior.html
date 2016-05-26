@@ -30,7 +30,8 @@ function Drilldown(element, options) {
 
 
 	this.$element = element;
-	this.$list = this.$element.querySelector('.drilldown__list');
+	console.log(element);
+	this.$list = this.$element.$$('.drilldown__list');
 	this.defaults = {
 		el: '[data-drilldown]',
 		/**
@@ -334,7 +335,8 @@ var pxTableViewDrilldownBehavior = {
    //console.warn(this.tagName, 'pxTableRowDrilldownBehavior created!', this);
   },
   attached: function() {
-  //console.warn(this.tagName, 'pxTableRowDrilldownBehavior attached!', this);
+	//	var dd = new Drilldown(this);
+  console.warn(this.tagName, 'pxTableRowDrilldownBehavior attached!', this);
 
   },
   detached: function() {

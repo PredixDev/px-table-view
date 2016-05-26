@@ -12,14 +12,16 @@ To use this component:
 @homepage index.html
 -->
 <dom-module id="px-table-row-actions">
-
+  <link rel="import" type="css" href="css/px-table-row.css">
   <template>
     <style>
       :host {
         display: block;
       }
     </style>
-    <content select=".table-row__button, px-table-row-action-button"></content>
+    <div class="table-row__actions">
+      <content select=".table-row__button, px-table-row-action-button"></content>
+    </div>
   </template>
 </dom-module>
 <script>
@@ -37,10 +39,7 @@ To use this component:
     },
     attached: function() {
       var self = this;
-      this.async(function() {
-        self.toggleClass('table-row__actions');
-        self.toggleClass('table-row__actions--' + this.position, true);
-      });
+      self.toggleClass('table-row__actions--' + this.position, true, self.$$('table-row__actions'));
     }
   });
 </script>

@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    <title>px-table-view MVP (Phase 2)</title>
+    <script src="../webcomponentsjs/webcomponents-lite.js"></script>
+
+    <link rel='stylesheet prefetch' href='//predixdev.github.io/px-library-design/css/style.css'>
+
+    <link rel="import" href="px-table-view.html">
+
+    <!-- TODO: iron-list example -->
+    <link rel="import" href="../iron-demo-helpers/demo-snippet.html"/>
+    <link rel="stylesheet" href="demo/style.css"/>
+    <style media="screen">
+      body {
+        background: #efeff4;
+        overflow: hidden;
+        overflow-y: scroll;
+        overflow-y: auto;
+        -webkit-overflow-scrolling: touch;
+      }
+
+      /* Disable certain interactions on touch devices */
+
+      px-card {
+        margin: 0.5rem;
+        padding: 0;
+      }
+
+      px-card .u-mb.px-card-header {
+        padding: 0.5rem;
+        margin-bottom: 0 !important;
+      }
+
+      px-card ul {
+        padding: 0 !important;
+        margin: 0 !important;
+      }
+
+      demo-snippet {
+        margin-bottom: 3rem;
+      }
+
+    </style>
+
+  </head>
+
+  <body class="u-bg--gray9">
+
+    <div class="viewport viewport-full-height">
+      <div class="">
+        <h1 class="beta">MVP2</h1>
+        <ul>
+          <li>
+            <strong>Table View Types</strong>
+
+            <ul>
+              <li>Horizontal</li>
+              <li>Tiles</li>
+            </ul>
+          </li>
+          <li>
+            <strong>Visual Variations &amp; Additions</strong>
+
+            <ul>
+              <li>Drill Down</li>
+              <li>Collapsable</li>
+              <li>Nested</li>
+            </ul>
+          </li>
+          <li>
+            <strong>Interactions</strong>
+
+            <ul>
+              <li>Swipes
+
+                <ul>
+                  <li>Left Actions</li>
+                  <li>Right Actions</li>
+                  <li>With and Without Icons</li>
+                </ul>
+              </li>
+              <li>Refresh Swipe</li>
+              <li>Reorder item(s)</li>
+              <li>Remove item(s)</li>
+            </ul>
+          </li>
+        </ul>
+
+      </div>
+      <div class="flex flex--col flex--wrap flex--spaced u-bg--gray7 u-padding-10">
+
+        <demo-snippet>
+          <template id="">
+            <px-card header-text="Actionable">
+              <px-table-view id="table1" mode="sort" sortable>
+                <px-table-row title="Action Item" actionable>
+                  <px-table-row-actions position="right">
+                    <px-table-row-action-button label="More" modifier="more"></px-table-row-action-button>
+                    <px-table-row-action-button label="Flag" modifier="flag"></px-table-row-action-button>
+                    <px-table-row-action-button label="Delete" modifier="delete"></px-table-row-action-button>
+                  </px-table-row-actions>
+                </px-table-row>
+                <px-table-row title="Action Item" modifier="" actionable>
+                  <div class="table-row__actions table-row__actions--right">
+                    <button class="table-row__actions__button btn--full btn-more">
+                      More
+                    </button>
+                    <button class="table-row__actions__button btn--full btn-flag">
+                      Flag
+                    </button>
+                    <button class="table-row__actions__button btn--full btn-delete">
+                      Delete
+                    </button>
+                  </div>
+                </px-table-row>
+                <px-table-row title="Action Item" modifier="" actionable>
+                  <div class="table-row__actions table-row__actions--right">
+                    <button class="table-row__actions__button btn--full btn-more">
+                      More
+                    </button>
+                    <button class="table-row__actions__button btn--full btn-flag">
+                      Flag
+                    </button>
+                    <button class="table-row__actions__button btn--full btn-delete">
+                      Delete
+                    </button>
+                  </div>
+                </px-table-row>
+                <px-table-row title="Action Item" modifier="" actionable>
+                  <div class="table-row__actions table-row__actions--right">
+                    <button class="table-row__actions__button btn--full btn-more">
+                      More
+                    </button>
+                    <button class="table-row__actions__button btn--full btn-flag">
+                      Flag
+                    </button>
+                    <button class="table-row__actions__button btn--full btn-delete">
+                      Delete
+                    </button>
+                  </div>
+                </px-table-row>
+
+              </px-table-view>
+            </px-card>
+          </template>
+        </demo-snippet>
+
+        <demo-snippet>
+          <template id="">
+            <px-card header-text="Editable Rows">
+              <px-table-view>
+                <px-table-row title="Edit Mode Item" edit-mode></px-table-row>
+                <px-table-row title="Edit Mode Item" edit-mode></px-table-row>
+                <px-table-row title="Edit Mode Item" edit-mode></px-table-row>
+                <px-table-row title="Edit Mode Item" edit-mode></px-table-row>
+              </px-table-view>
+            </px-card>
+          </template>
+        </demo-snippet>
+
+        <demo-snippet>
+          <template id="">
+            <px-card header-text="1. Re-Order Table View">
+              <px-table-view id="table1" mode="sort" sortable>
+                <px-table-row title="Reorder Item"></px-table-row>
+                <px-table-row title="Reorder Item"></px-table-row>
+                <px-table-row title="Reorder Item"></px-table-row>
+                <px-table-row title="Reorder Item"></px-table-row>
+              </px-table-view>
+            </px-card>
+          </template>
+        </demo-snippet>
+
+
+
+
+    <h2 align="center"><b>sortable-list</b> <small>(open console to see event logs)</small></h2>
+
+    <div id="demos" horizontal layout wrap>
+      <div class="demo">
+        <h3>Basic Demo</h3>
+
+        <sortable-list id="basic-demo">
+          <div>First</div>
+          <div>Second</div>
+          <div>Third</div>
+          <div>Fourth</div>
+          <div>Fifth</div>
+          <div>Sixth</div>
+        </sortable-list>
+      </div>
+
+      <div class="demo">
+        <h3>Animated Sorting</h3>
+
+        <sortable-list id="animated-demo" animation="150">
+          <div>First</div>
+          <div>Second</div>
+          <div>Third</div>
+          <div>Fourth</div>
+          <div>Fifth</div>
+          <div>Sixth</div>
+        </sortable-list>
+      </div>
+
+      <div class="demo">
+        <h3>Grouped Lists</h3>
+        <sortable-list id="grouped-a" group="grouped" animation="150">
+          <div>First</div>
+          <div>Second</div>
+          <div>Third</div>
+        </sortable-list>
+
+        <sortable-list id="grouped-b" group="grouped" animation="150">
+          <div>Fourth</div>
+          <div>Fifth</div>
+          <div>Sixth</div>
+        </sortable-list>
+      </div>
+    </div>
+    <script>
+    ['sort-start', 'sort-end', 'sort-add', 'sort-update', 'sort-change', 'sort-remove', 'sort-filter'].forEach(function(ev) {
+      document.addEventListener(ev, function(e) {
+        console.log(ev, e.target.id, e.detail);
+      });
+    });
+
+    </script>
+
+      </div>
+
+    </div>
+
+  </body>
+
+</html>

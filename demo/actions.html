@@ -6,11 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
     <title>px-table-row-action-button</title>
-<script src="//cdnjs.cloudflare.com/ajax/libs/webcomponentsjs/0.7.21/webcomponents.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/webcomponentsjs/0.7.21/webcomponents.min.js"></script>
     <link rel="stylesheet" href="//predixdev.github.io/px-library-design/css/style.css">
     <script src='//cdnjs.cloudflare.com/ajax/libs/jquery/2.2.2/jquery.min.js'></script>
-
-    <script src="../../fastclick/lib/fastclick.js"></script>
 
     <link rel="import" href="../px-table-view.html">
 
@@ -33,9 +31,7 @@
       });
     </script>
     <style media="screen">
-      px-swipe {
-
-      }
+      px-swipe {}
 
     </style>
   </head>
@@ -64,16 +60,18 @@
             </px-table-row>
             <px-table-row>
               <px-swipe on-edge="resetPanel" on-tap-underlay="disablePanel">
-                <div underlay>              <px-table-row-action-button label="More" type="more"></px-table-row-action-button>
-                              <px-table-row-action-button label="Flag" type="flag"></px-table-row-action-button>
-                              <px-table-row-action-button label="Delete" type="delete"></px-table-row-action-button></div>
+                <div underlay>
+                  <px-table-row-action-button label="More" type="more"></px-table-row-action-button>
+                  <px-table-row-action-button label="Flag" type="flag"></px-table-row-action-button>
+                  <px-table-row-action-button label="Delete" type="delete"></px-table-row-action-button>
+                </div>
                 <div content>Swipe to remove the panel...</div>
               </px-swipe>
             </px-table-row>
             <px-table-row>
               <px-swipe on-edge="resetPanel">
-                  <div underlay on-click="disablePanel">Click to reset the panel from the edge to its origin...</div>
-                  <div content>Swipe to remove the panel...</div>
+                <div underlay on-click="disablePanel">Click to reset the panel from the edge to its origin...</div>
+                <div content>Swipe to remove the panel...</div>
               </px-swipe>
             </px-table-row>
           </px-table-view>

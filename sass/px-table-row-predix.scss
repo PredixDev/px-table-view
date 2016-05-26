@@ -23,7 +23,13 @@
 
 /// @group px-table-row
 /// @access public
-.table-row {
+@include b('table-row') {
+
+  ::content {
+    @import 'elements/_table-row__checkbox.scss';
+    @import 'elements/_table-row__actions.scss';
+  }
+
   min-height      : var(--px-table-row-min-height, $table-row-min-height);
   line-height     : var(--px-table-row-line-height, $table-row-line-height);
   font-size       : var(--px-table-row-font-size, $table-row-font-size);

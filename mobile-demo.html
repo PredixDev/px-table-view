@@ -6,10 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
     <title>px-table-view MVP (Phase 1)</title>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/webcomponentsjs/0.7.21/webcomponents.min.js"></script>
-    <link rel='stylesheet prefetch' href='https://github.build.ge.com/pages/PXd/px-library-design/css/style.css'>
+    <script src="../webcomponentsjs/webcomponents-lite.js"></script>
 
-    <link rel="import" href="../px-card/px-card.html">
+    <link rel='stylesheet prefetch' href='//predixdev.github.io/px-library-design/css/style.css'>
+
     <link rel="import" href="px-table-view.html">
 
     <!-- TODO: iron-list example -->
@@ -24,9 +24,6 @@
         -webkit-overflow-scrolling: touch;
       }
 
-    </style>
-
-    <style>
       /* Disable certain interactions on touch devices */
 
       px-card {
@@ -107,26 +104,26 @@
 
 </script>
 -->
-
-    <div class="viewport viewport-full-height ">
-
+    <div class="viewport viewport-full-height">
+      <div class="">
+        <h1 class="beta">MVP1</h1>
+        <ol>
+          <li>Basic Table View</li>
+          <li>Icons - Left/Right</li>
+          <li>Thumbnails - Left/Right</li>
+          <li>Detail Label</li>
+          <li>Description</li>
+          <li>Inset</li>
+          <li>Checkbox</li>
+          <li>Switch</li>
+          <li>
+            <a href="./demo">Iron List Demo</a>
+          </li>
+        </ol>
+      </div>
       <div class="flex flex--col flex--wrap flex--spaced u-bg--gray7 u-padding-10">
 
-        <px-card id="card9" header-text="px-table-view mvp">
-          <ol>
-            <li>Basic Table View</li>
-            <li>Icons - Left/Right</li>
-            <li>Thumbnails - Left/Right</li>
-            <li>Detail Label</li>
-            <li>Description</li>
-            <li>Inset</li>
-            <li>Checkbox</li>
-            <li>Switch</li>
-            <li>
-              <a href="./demo">Iron List Demo</a>
-            </li>
-          </ol>
-        </px-card>
+
 
         <!--
     <px-table-view>
@@ -334,7 +331,6 @@
             <px-table-row title="Edit Mode Item" edit-mode></px-table-row>
           </px-table-view>
         </px-card>
-
       </template>
     </demo-snippet>
 
@@ -355,12 +351,7 @@
 
 </div>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/fastclick/1.0.6/fastclick.min.js"></script>
-<script>
-  window.addEventListener('load', function () {
-    new FastClick(document.body);
-  }, false);
-</script>
+
 </body>
 
 </html>
