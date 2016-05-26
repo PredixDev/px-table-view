@@ -117,8 +117,6 @@ Custom property | Description | Default
       <content id="actions" select="px-table-row-actions"></content>
     </div>
 
-    <!-- Logging -->
-    <locale-storage debug="px-table-row:*"></locale-storage>
   </template>
   <script>
     Polymer({
@@ -206,6 +204,7 @@ Custom property | Description | Default
         modifier: {
           type: String,
           notify: true,
+          reflectToAttribute: true,
           observer: '_handleModifier'
         },
         /**

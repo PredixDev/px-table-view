@@ -28,30 +28,31 @@
 
   min-height: var(--px-table-row-min-height, $table-row-min-height);
   line-height: var(--px-table-row-line-height, $table-row-line-height);
+  color: var(--px-table-row-color);
   font-size: var(--px-table-row-font-size, $table-row-font-size);
   background-color: var(--px-table-row-background-color, $table-row-background-color);
+  border-bottom-style: var(--px-table-row-border-style, solid);
+  border-bottom-width: var(--px-table-row-border-width, $table-row-border-width);
+  border-bottom-color: var(--px-table-row-border-color, $table-row-border-color);
 
   &:active {
     transition: none;
   }
 
   &:first-child {
-    border-bottom: none;
+  
   }
 
   &:last-child {
-    border-bottom: none;
+
   }
 
   &:first-child:last-child {
-    border-top: none;
-    border-bottom: none;
+
   }
 
   &:not(:last-child) {
-    border-bottom-style: var(--px-table-row-border-style, solid);
-    border-bottom-width: var(--px-table-row-border-width, 1px);
-    border-bottom-color: var(--px-table-row-border-color, $table-row-border-color);
+
   }
 
   ///.table-row--selected
@@ -76,7 +77,6 @@
   ///.table-row > a
   > a {
     text-decoration: none;
-    color: $table-row-font-color;
     @include tableRowClickable($table-row-active-background-color, $table-row-active-font-color);
   }
 

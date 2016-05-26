@@ -65,7 +65,8 @@
     },
     _handleModifier: function (newVal, oldVal) {
       var _this = this, klass, types;
-
+      klass = 'table-row--' + oldVal;
+      _this.toggleClass(klass, false, _this.$$('.table-row'));
       if (_this.modifier) {
         types = _this.modifier.split(' ');
         for (var i = 0; i < types.length; i++) {
