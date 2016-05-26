@@ -398,7 +398,10 @@
   line-height: var(--px-table-row-line-height, 2.9333333333rem);
   color: var(--px-table-row-color);
   font-size: var(--px-table-row-font-size, 1.1333333333rem);
-  background-color: var(--px-table-row-background-color, transparent); }
+  background-color: var(--px-table-row-background-color, transparent);
+  border-bottom-style: var(--px-table-row-border-style, solid);
+  border-bottom-width: var(--px-table-row-border-width, 1px);
+  border-bottom-color: var(--px-table-row-border-color, #b1b1bc); }
   .table-row__checkbox {
     font-size: 1.2rem;
     width: 100%;
@@ -619,17 +622,6 @@
         background-color: #888899; }
   .table-row:active {
     transition: none; }
-  .table-row:first-child {
-    border-bottom: none; }
-  .table-row:last-child {
-    border-bottom: none; }
-  .table-row:first-child:last-child {
-    border-top: none;
-    border-bottom: none; }
-  .table-row:not(:last-child) {
-    border-bottom-style: var(--px-table-row-border-style, solid);
-    border-bottom-width: var(--px-table-row-border-width, 1px);
-    border-bottom-color: var(--px-table-row-border-color, #b1b1bc); }
   .table-row--selected {
     -webkit-touch-callout: none;
     /* iOS Safari */
