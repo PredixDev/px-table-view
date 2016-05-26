@@ -1,6 +1,8 @@
 # px-table-view
 This component provides responsive styles for lists.
 
+[![Build Status](https://travis-ci.org/PredixDev/px-table-view.svg?branch=master)](https://travis-ci.org/PredixDev/px-table-view)
+
 ## Usage
 The following is how to use the component.
 
@@ -10,13 +12,7 @@ $ bower install px-table-view
 
 
 ```html
-  <ul class="table-view table-view--bare">
-    <px-table-row title="Home" icon="fa fa-home" type="tappable" href="#home"></px-table-row>
-    <px-table-row title="Dashboard" icon="fa fa-dashboard" type="tappable" href="#dashboard"></px-table-row>
-    <px-table-row title="Alerts" icon="fa fa-exclamation-triangle" type="tappable" href="#alerts"></px-table-row>
-    <px-table-row title="Cases" icon="fa fa-briefcase" type="tappable" href="#cases"></px-table-row>
-    <px-table-row title="Analysis" icon="fa fa-bar-chart" type="tappable" href="#analysis"></px-table-row>
-  </ul>
+
 ```
 
 > Note: For full CSS/HTML examples visit demo.html
@@ -31,7 +27,7 @@ N/A
 N/A
 
 ### Extending styles
-You can change variables in the sass/_variables.scss to change default styles.
+You can change variables in the `sass/_variables.scss` to change default styles.
 
 ### Extending behavior
 N/A
