@@ -24,7 +24,7 @@
     "polymer": "~1.4.0",
     "px-theme": "https://github.com/PredixDev/px-theme.git#~0.4.0",
     "iron-list": "PolymerElements/iron-list#^1.2.8",
-    "polymer-font-awesome": "https://github.com/mdwragg/polymer-font-awesome.git#^0.0.5",
+    "polymer-font-awesome": "https://github.com/mdwragg/polymer-font-awesome.git#^0.1.4",
     "fastclick": "^1.0.6",
     "hammerjs": "~2.0.8",
     "iron-selector": "PolymerElements/iron-selector#^1.5.1"

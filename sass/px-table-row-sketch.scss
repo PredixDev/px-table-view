@@ -1,14 +1,12 @@
 @import 'variables';
 @import 'mixins';
 
-
 /// Table Row
 /// @group px-table-row
 /// @access public
 @include block ('table-row') {
   @include clearfix();
   @include noselect();
-
   align-self    : center;
   //width         : 100%;
   box-sizing    : border-box;
@@ -22,10 +20,9 @@
   user-select   : none;
   //font-size       : $table-row-font-size;
   //background-color: $table-row-background-color;
-
-   > *:not(input),
+   > *:not(select),
    > *:not(textarea),
-  > *:not(select) {
+  > *:not(input) {
     -webkit-text-size-adjust   : none;
     -webkit-highlight          : none;
     -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
@@ -59,43 +56,32 @@
   ///---------------------------------------------------------------
   //.table-row--header
   @include modifier ('header') {
-    padding         : $table-row-header-padding;
     box-sizing      : border-box;
-    font-size       : $table-row-header-font-size;
-    font-weight     : 500;
-    background-color: $table-row-header-background-color;
-    color           : $table-row-header-font-color;
-    text-transform  : $table-row-header-text-transform;
-    text-shadow     : none;
-    border-top      : none;
-    border-bottom   : none;
-    min-height      : 24px;
-    line-height     : 24px;
   }
 
   ///.table-row--tappable
   @include modifier ('tappable') {
     @include noselect();
-    @include tableRowClickable($table-row-active-background-color, $table-row-active-font-color){
-      &:active {
-        transition      : none;
-        background-color: $table-row-active-background-color !important;
+    @include tableRowClickable($table-row-active-background-color, $table-row-active-font-color);
 
-        .table-row__label {
-          color: $table-row-active-font-color;
-        }
+    &:active {
+      transition      : none;
+      background-color: $table-row-active-background-color !important;
 
-        .table-row__content {
-          color: $table-row-active-font-color !important;
-        }
+      .table-row__label {
+        color: $table-row-active-font-color;
+      }
 
-        .table-row__title {
-          color: $table-row-active-font-color !important;
-        }
+      .table-row__content {
+        color: $table-row-active-font-color;
+      }
 
-        .table-row__body {
-          color: $table-row-active-font-color !important;
-        }
+      .table-row__title {
+        color: $table-row-active-font-color;
+      }
+
+      .table-row__body {
+        color: $table-row-active-font-color;
       }
     }
   }
@@ -152,49 +138,19 @@
     }
   }
 
-  ///.table-row--collapsable
-  @include modifier ('collapsable') {
-    @include tableRowClickable($table-row-active-background-color, $table-row-active-font-color);
-    @include tableRowIcon( '\f107');
 
-    .table-row__body {
-      height  : 0;
-      overflow: hidden;
-    }
-
-    @include modifier ('is-open') {
-      @include tableRowIcon( '\f106');
-
-      .table-row__body {
-        height: auto;
-      }
-    }
-  }
-
-  ///.table-row--nav-left
-  @include modifier ('nav-left') {
-    @include tableRowClickable($table-row-active-background-color, $table-row-active-font-color);
-    @include tableRowIcon( '\f104');
-  }
   ///.table-row--nav-right
   @include modifier ('nav-right') {
-    @include noselect();
     @include tableRowIcon($table-row-nav-right-icon);
-
     &:active {
       @include tableRowClickable($table-row-active-background-color, $table-row-active-font-color);
-    }
-
-    .table-row__media--right {
-      //  margin-right: 1rem;
     }
   }
   ///.table-row--actionable
   @include modifier ('actionable') {
-    padding-right: 0 !important;
-
+    padding-right: 0;
     .table-row__content {
-      transition: all 0.5s;
+      transition: var(--px-table-row-actionable-transition, all 0.3s);
       position  : relative;
       z-index   : 10;
     }
@@ -205,7 +161,7 @@
     @include tableRowIcon( '\f107');
 
     .table-row__body {
-      transition: all 0.5s;
+      transition: var(--px-table-row-collapseable-transition, all 0.3s);
       display   : none;
     }
 
@@ -251,8 +207,7 @@
   ///---------------------------------------------------------------------------
   ///.table-row__title
   @include element ('title') {
-    font-size  : $table-row-title-font-size;
-    color      : $table-row-title-font-color;
+
 
     order      : 3;
     align-self : stretch;
@@ -264,7 +219,6 @@
   ///---------------------------------------------------------------------------
   ///.table-row__title
   @include element ('subtitle') {
-
     order      : 4;
     align-self : stretch;
     white-space: nowrap;
@@ -273,42 +227,30 @@
   }
   ///.table-row__body
   @include element ('body') {
-    color      : $table-row-body-font-color;
-    font-size  : $table-row-body-font-size;
-
     order      : 5;
     line-height: normal;
     white-space: normal;
-
     align-self : stretch;
     flex       : 1 0 auto;
-    ///.table-row__content__body--flush
-    @include modifier ('flush') {}
   }
   ///---------------------------------------------------------------------------
   ///.table-row__label
   @include element ('label') {
     order       : 0;
-
     flex        : 1 0 6em;
     align-self  : center;
     //padding: $inuit-base-spacing-unit--tiny;
-
-    //
     margin-right: $inuit-base-spacing-unit--small;
-    ///
+
     @include modifier ('right') {
       text-align : left;
       order      : 4;
       margin-left: $inuit-base-spacing-unit--small;
     }
-    ///
     @include modifier ('left') {
       text-align  : right;
       margin-right: 0;
     }
-    ///
-    @include media-breakpoint-up (sm) {}
   }
   ///---------------------------------------------------------------------------
   ///.table-row__icon
@@ -376,8 +318,6 @@
     margin     : 0;
     line-height: 44px;
   }
-
-
 
   ///---------------------------
   ///---------------------------

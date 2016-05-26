@@ -144,29 +144,7 @@
 
   }
 
-  @include c('.table-row') {
-    ///
-    &:first-child {
-      border-bottom: none;
-    }
-    ///
-    &:last-child {
-      border-bottom: none;
-    }
-    ///
-    &:first-child:last-child {
-      border-top   : none;
-      border-bottom: none;
-    }
-    ///
-    &:not(:last-child) {
-      border-bottom-style: solid;
-      border-bottom-width: 1px;
-      border-bottom-color: $table-row-border-color;
-      border-bottom-color: var(--px-table-row-border-color, $table-row-border-color);
-    }
 
-  }
 
   ///.table-view--bare
   @include modifier ('bare') {

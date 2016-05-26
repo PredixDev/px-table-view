@@ -1,4 +1,5 @@
 <link rel="import" href="../polymer/polymer.html"/>
+<link rel="import" href="../polymer-font-awesome/polymer-font-awesome.html">
 <!--
 <link rel="import" href="../paper-swipe/paper-swipe.html"/>
 -->
@@ -111,12 +112,14 @@ Custom property | Description | Default
       </template>
       <template is="dom-if" if="{{iconLeft}}">
         <div class="table-row__media table-row__media--icon table-row__media--left">
-          <i class$="{{iconLeft}}"></i>
+          <!--<i class$="{{iconLeft}}"></i>-->
+          <iron-icon icon$="{{iconLeft}}"></iron-icon>
         </div>
       </template>
       <template is="dom-if" if="{{iconRight}}">
         <div class="table-row__media table-row__media--icon table-row__media--right">
-          <i class$="{{iconRight}}"></i>
+          <!--<i class$="{{iconRight}}"></i>-->
+          <iron-icon icon$="{{iconRight}}"></iron-icon>
         </div>
       </template>
 

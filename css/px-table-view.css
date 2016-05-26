@@ -393,22 +393,6 @@
     .table-view ::content .iron-selected .table-row:before,
     .table-view .iron-selected .table-row:before {
       color: #fff; }
-  .table-view ::content .table-row:first-child,
-  .table-view .table-row:first-child {
-    border-bottom: none; }
-  .table-view ::content .table-row:last-child,
-  .table-view .table-row:last-child {
-    border-bottom: none; }
-  .table-view ::content .table-row:first-child:last-child,
-  .table-view .table-row:first-child:last-child {
-    border-top: none;
-    border-bottom: none; }
-  .table-view ::content .table-row:not(:last-child),
-  .table-view .table-row:not(:last-child) {
-    border-bottom-style: solid;
-    border-bottom-width: 1px;
-    border-bottom-color: #b1b1bc;
-    border-bottom-color: var(--px-table-row-border-color, #b1b1bc); }
   .table-view--bare ::content .table-row:not(:last-child),
   .table-view--bare .table-row:not(:last-child) {
     border-bottom: none; }
