@@ -396,6 +396,7 @@
 .table-row {
   min-height: var(--px-table-row-min-height, 2.9333333333rem);
   line-height: var(--px-table-row-line-height, 2.9333333333rem);
+  color: var(--px-table-row-color);
   font-size: var(--px-table-row-font-size, 1.1333333333rem);
   background-color: var(--px-table-row-background-color, transparent); }
   .table-row__checkbox {
@@ -654,8 +655,7 @@
     .table-row--selected .table-row:before {
       color: var(--px-table-row-selected-color, #fff); }
   .table-row > a {
-    text-decoration: none;
-    color: black; }
+    text-decoration: none; }
     .table-row > a:active {
       color: #fff;
       transition: none;

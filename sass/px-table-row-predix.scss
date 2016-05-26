@@ -28,6 +28,7 @@
 
   min-height: var(--px-table-row-min-height, $table-row-min-height);
   line-height: var(--px-table-row-line-height, $table-row-line-height);
+  color: var(--px-table-row-color);
   font-size: var(--px-table-row-font-size, $table-row-font-size);
   background-color: var(--px-table-row-background-color, $table-row-background-color);
 
@@ -76,7 +77,6 @@
   ///.table-row > a
   > a {
     text-decoration: none;
-    color: $table-row-font-color;
     @include tableRowClickable($table-row-active-background-color, $table-row-active-font-color);
   }
 

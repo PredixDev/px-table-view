@@ -1191,21 +1191,6 @@ html {
       display: inline-block;
       vertical-align: middle;
       margin-right: 0.75rem; }
-  .table-view--tiny ::content .table-row,
-  .table-view--tiny .table-row {
-    padding: 0.3333333333rem; }
-  .table-view--small ::content .table-row,
-  .table-view--small .table-row {
-    padding: 0.6666666667rem; }
-  .table-view--large ::content .table-row,
-  .table-view--large .table-row {
-    padding: 1.3333333333rem; }
-  .table-view--huge ::content .table-row,
-  .table-view--huge .table-row {
-    padding: 2rem; }
-  .table-view--flush ::content .table-row,
-  .table-view--flush .table-row {
-    padding: 0 !important; }
   .table-view--responsive {
     display: -webkit-flex;
     display: -ms-flexbox;
