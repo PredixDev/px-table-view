@@ -36,7 +36,8 @@
     "px-spacing-responsive-design": "^0.3.7",
     "iron-component-page": "PolymerElements/iron-component-page#~v1.1.0",
     "iron-ajax": "PolymerElements/iron-ajax#^1.0.0",
-    "iron-demo-helpers": "PolymerElements/iron-demo-helpers#~1.2.3"
+    "iron-demo-helpers": "PolymerElements/iron-demo-helpers#~1.2.3",
+    "jquery": "~2.2.4"
   },
   "resolutions": {
     "px-theme": "~0.7.0",

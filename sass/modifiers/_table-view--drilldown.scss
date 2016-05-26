@@ -13,8 +13,8 @@
  * under which the software has been supplied.
  */
 ///
-@import "variables";
-@import "mixins";
+@import "../variables";
+@import "../mixins";
 ///
 @mixin icon($icon) {
   &:before {

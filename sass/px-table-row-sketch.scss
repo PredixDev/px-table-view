@@ -7,65 +7,64 @@
 @include block ('table-row') {
   @include clearfix();
   @include noselect();
-  align-self    : center;
+  align-self: center;
   //width         : 100%;
-  box-sizing    : border-box;
-  position      : relative;
-  overflow      : hidden;
-  display       : flex;
+  box-sizing: border-box;
+  position: relative;
+  overflow: hidden;
+  display: flex;
   flex-direction: row;
-  margin        : 0;
-  padding       : 0;
-  appearance    : normal;
-  user-select   : none;
+  margin: 0;
+  padding: 0;
+  appearance: normal;
+  user-select: none;
   //font-size       : $table-row-font-size;
   //background-color: $table-row-background-color;
-   > *:not(select),
-   > *:not(textarea),
+  > *:not(select),
+  > *:not(textarea),
   > *:not(input) {
-    -webkit-text-size-adjust   : none;
-    -webkit-highlight          : none;
+    -webkit-text-size-adjust: none;
+    -webkit-highlight: none;
     -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
-
   }
-
-  @include modifier ('flush') {
-    padding: 0 !important;
-  }
+  ///---------------------------------------------------------------------------
   ///.table-row--tiny
   @include modifier ('tiny') {
     padding: $table-view-padding--tiny;
   }
+  ///---------------------------------------------------------------------------
   ///.table-row--small
   @include modifier ('small') {
     padding: $table-view-padding--small;
   }
+  ///---------------------------------------------------------------------------
   ///.table-row--large
   @include modifier ('large') {
     padding: $table-view-padding--large;
   }
+  ///---------------------------------------------------------------------------
   ///.table-row--huge
   @include modifier ('huge') {
     padding: $table-view-padding--huge;
-
   }
+  ///---------------------------------------------------------------------------
   ///.table-row--flush
   @include modifier ('flush') {
     line-height: normal;
   }
-  ///---------------------------------------------------------------
+  ///---------------------------------------------------------------------------
   //.table-row--header
   @include modifier ('header') {
-    box-sizing      : border-box;
+    box-sizing: border-box;
   }
-
+  ///---------------------------------------------------------------------------
   ///.table-row--tappable
   @include modifier ('tappable') {
     @include noselect();
     @include tableRowClickable($table-row-active-background-color, $table-row-active-font-color);
 
     &:active {
-      transition      : none;
+      transition: none;
       background-color: $table-row-active-background-color !important;
 
       .table-row__label {
@@ -85,60 +84,23 @@
       }
     }
   }
+
+  ///---------------------------------------------------------------------------
   ///.table-row--chevron
   @include modifier ('chevron') {
-    &:active {
-      @include tableRowClickable($table-row-active-background-color, $table-row-active-font-color);
-    }
     @include noselect();
-    @include tableRowIcon($table-row-chevron-icon, $table-row-chevron-icon-color) {
-      &:active {
-        color: $table-row-active-font-color;
-      }
-    }
+    @include tableRowIcon($table-row-chevron-icon, $table-row-chevron-icon-color);
     @include tableRowClickable($table-row-active-background-color, $table-row-active-font-color);
   }
+  ///---------------------------------------------------------------------------
   ///.table-row--detail
   @include modifier ('detail') {
-    .table-row__content {
-      // flex-direction: row;
-    }
-    @include tableRowIcon($table-row-detail-icon, $table-row-detail-icon-color) {
-      &:active {
-        color: $table-row-active-font-color;
-      }
-    }
-    @include tableRowClickable($table-row-active-background-color, $table-row-active-font-color) {
-      &:active {
-        color: $table-row-active-font-color;
-      }
-    }
-  }
-
-  @include modifier ('switch') {
-    .table-row__content {
-      flex-direction: row;
-    }
-  }
-  ///.table-row--order
-  @include modifier ('order') {
-    @include tableRowIcon($table-row-order-icon, $table-row-order-icon-color);
-  }
-  ///.table-row--edit
-  @include modifier ('edit') {
-    @include tableRowIcon($table-row-edit-icon, $table-row-edit-icon-color) {
-      &:before {
-        left : 5px;
-        right: auto;
-      }
-    }
-
-    > .table-row__content {
-      //  padding-left: 25px;
-    }
+    @include tableRowClickable($table-row-active-background-color, $table-row-active-font-color);
+    @include tableRowIcon($table-row-detail-icon, $table-row-detail-icon-color);
   }
 
 
+  ///---------------------------------------------------------------------------
   ///.table-row--nav-right
   @include modifier ('nav-right') {
     @include tableRowIcon($table-row-nav-right-icon);
@@ -146,129 +108,126 @@
       @include tableRowClickable($table-row-active-background-color, $table-row-active-font-color);
     }
   }
+  ///---------------------------------------------------------------------------
   ///.table-row--actionable
   @include modifier ('actionable') {
     padding-right: 0;
     .table-row__content {
       transition: var(--px-table-row-actionable-transition, all 0.3s);
-      position  : relative;
-      z-index   : 10;
+      position: relative;
+      z-index: 10;
     }
   }
+  ///---------------------------------------------------------------------------
   ///.table-row--collapsable
   @include modifier ('collapsable') {
     @include tableRowClickable($table-row-active-background-color, $table-row-active-font-color);
-    @include tableRowIcon( '\f107');
-
+    @include tableRowIcon('\f107');
     .table-row__body {
       transition: var(--px-table-row-collapseable-transition, all 0.3s);
-      display   : none;
+      display: none;
     }
-
+    ///---------------------------------------------------------------------------
     @include modifier ('is-open') {
       .table-row__body {
-
         display: block;
       }
     }
   }
 
   ///---------------------------------------------------------------------------
-  ///---------------------------------------------------------------------------
   ///Elements
   ///---------------------------------------------------------------------------
-  ///---------------------------------------------------------------------------
 
+  ///---------------------------------------------------------------------------
   ///.table-row__content
   @include element ('content') {
-    display       : flex;
+    display: flex;
     flex-direction: column;
-    align-self    : center;
-    order         : 2;
-    width         : 100%;
-    user-select   : none;
-    white-space   : nowrap;
-    margin-left   : $inuit-base-spacing-unit--small;
-
-    ///.table-row__content--flush
+    align-self: stretch;
+    order: 2;
+    width: 100%;
+    user-select: none;
+    white-space: nowrap;
+    margin-left: $inuit-base-spacing-unit--small;
+    ///---------------------------------------------------------------------------
     @include modifier ('row') {
       flex-direction: row;
     }
-
+    ///---------------------------------------------------------------------------
     @include modifier ('column') {
       flex-direction: column;
     }
-
+    ///---------------------------------------------------------------------------
     @include modifier ('flush') {
       line-height: normal;
     }
-
   }
   ///---------------------------------------------------------------------------
   ///.table-row__title
   @include element ('title') {
-
-
-    order      : 3;
-    align-self : stretch;
-    user-select: none;
+    @include noselect();
+    order: 3;
     white-space: nowrap;
     line-height: normal;
-    flex       : 1;
+    flex: 1;
+    align-self: flex-start;
+    align-items: center;
+    display: flex;
   }
   ///---------------------------------------------------------------------------
   ///.table-row__title
   @include element ('subtitle') {
-    order      : 4;
-    align-self : stretch;
+    order: 4;
+    align-self: stretch;
     white-space: nowrap;
     line-height: normal;
-    flex       : 1;
+    flex: 1;
   }
+  ///---------------------------------------------------------------------------
   ///.table-row__body
   @include element ('body') {
-    order      : 5;
-    line-height: normal;
-    white-space: normal;
-    align-self : stretch;
-    flex       : 1 0 auto;
+    order: 5;
+    align-self: stretch;
+    flex: 1 0 auto;
   }
   ///---------------------------------------------------------------------------
   ///.table-row__label
   @include element ('label') {
-    order       : 0;
-    flex        : 1 0 6em;
-    align-self  : center;
+    order: 0;
+    flex: 1 0 6em;
+    align-self: center;
     //padding: $inuit-base-spacing-unit--tiny;
     margin-right: $inuit-base-spacing-unit--small;
 
     @include modifier ('right') {
-      text-align : left;
-      order      : 4;
+      text-align: left;
+      order: 4;
       margin-left: $inuit-base-spacing-unit--small;
     }
     @include modifier ('left') {
-      text-align  : right;
+      text-align: right;
       margin-right: 0;
     }
   }
   ///---------------------------------------------------------------------------
   ///.table-row__icon
-  @include element ('icon') {}
+  @include element ('icon') {
+  }
   ///---------------------------------------------------------------------------
   ///.table-row__reorder-btn
   @include element ('reorder-btn') {
-    float   : right;
+    float: right;
     position: absolute;
-    right   : 5%;
-    top     : 25%;
+    right: 5%;
+    top: 25%;
   }
   ///---------------------------------------------------------------------------
   ///.table-row__media
   @include element ('media') {
-    order          : 1;
-    display        : flex;
-    align-self     : center;
+    order: 1;
+    display: flex;
+    align-self: center;
     justify-content: space-around;
     ///.table-row__media--left
     @include modifier ('left') {
@@ -281,17 +240,18 @@
     }
     ///---------------------------------------------------------------------------
     ///.table-row__media--toggle
-    @include modifier ('toggle') {}
+    @include modifier ('toggle') {
+    }
 
     ///---------------------------------------------------------------------------
     ///.table-row__media--image
     @include modifier ('image') {
-      flex   : 1 0 auto;
+      flex: 1 0 auto;
       padding: $table-row-image-padding;
 
       img {
-        display   : block;
-        max-width : 80px;
+        display: block;
+        max-width: 80px;
         max-height: 80px;
       }
     }
@@ -299,48 +259,48 @@
     ///---------------------------------------------------------------------------
     ///.table-row__media--icon
     @include modifier ('icon') {
-      flex      : 1 0 auto;
+      flex: 1 0 auto;
       align-self: center;
-      padding   : $inuit-base-spacing-unit--tiny;
+      padding: $inuit-base-spacing-unit--tiny;
       //margin-left: $inuit-base-spacing-unit--small;
       text-align: center;
     }
   }
 
   ///---------------------------------------------------------------------------
-  ///Checkbox styles
-  /// @group px-table-row
+  @include modifier ('switch') {
+    .table-row__content {
+      flex-direction: row;
+    }
+  }
 
   &.checkbox {
-    width      : 100%;
-    height     : 100%;
-    padding    : 0;
-    margin     : 0;
+    width: 100%;
+    height: 100%;
+    padding: 0;
+    margin: 0;
     line-height: 44px;
   }
 
-  ///---------------------------
-  ///---------------------------
-  /// Input
-  ///---------------------------
-  ///---------------------------
-
-  input {
+  ///---------------------------------------------------------------------------
+  /// Inputs
+  ///---------------------------------------------------------------------------
+  @include c('input') {
     width: 100%;
   }
 
   .text-input {
-    margin    : 0;
+    margin: 0;
     min-height: 44px;
-    font-size : 1.3rem;
+    font-size: 1.3rem;
     //  background: transparent;
     //  border    : none;
     box-shadow: none;
   }
 
   .btn {
-    outline   : none;
+    outline: none;
     min-height: 44px;
-    width     : 100%;
+    width: 100%;
   }
 }
