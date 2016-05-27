@@ -1301,6 +1301,8 @@ html {
     .table-view ::content .iron-selected .table-row:before,
     .table-view .iron-selected .table-row:before {
       color: white; }
+  .table-view--swipeable {
+    overflow-x: hidden; }
   .table-view--bare ::content .table-row:not(:last-child),
   .table-view--bare .table-row:not(:last-child) {
     border-bottom: none; }

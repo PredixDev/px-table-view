@@ -19,8 +19,8 @@ To use this component:
         display: block;
       }
     </style>
-    <div class="table-row__actions">
-      <content select=".table-row__button, px-table-row-action-button"></content>
+    <div id="actions" class="table-row__actions">
+      <content id="content" select=".table-row__button, px-table-row-action-button"></content>
     </div>
   </template>
 </dom-module>
@@ -35,11 +35,18 @@ To use this component:
       //The action button type
       type: {
         type: String
+      },
+      opened: {
+        type: Boolean
       }
     },
     attached: function() {
       var self = this;
-      self.toggleClass('table-row__actions--' + this.position, true, self.$$('table-row__actions'));
+      self.toggleClass('table-row__actions--' + this.position, true, self.$$('.table-row__actions'));
+    },
+    toggle: function(){
+      this.opened = !this.opened;
+      this.toggleClass('is-visible', this.opened, this.$$('.table-row__actions'));
     }
   });
 </script>

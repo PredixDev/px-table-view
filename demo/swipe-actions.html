@@ -6,7 +6,7 @@
     <title>swipe actions</title>
     <script src="../../webcomponentsjs/webcomponents-lite.js"></script>
     <link rel='stylesheet' href='/px.css'>
-
+    <link rel="import" href="../polymer/polymer.html">
     <link rel="import" href="../px-table-view.html">
     <link rel="import" href="../px-table-row-swipe-behavior.html">
     <link rel="import" href="../../iron-demo-helpers/demo-snippet.html"/>
@@ -15,11 +15,11 @@
     <style media="screen">
       body,
       html {
-        background: #fff;
+        background: #eee;
       }
       li,
       ul {
-        padding: 0 ;
+        padding: 0;
         margin: 0;
       }
     </style>
@@ -27,18 +27,37 @@
   <body unresolved>
     <div class="viewport">
       <h2>Swipe Action Component</h2>
-      <demo-snippet>
+      <demo-snippet class="u-mb">
         <template>
-          <px-table-row id="tablerow1" title="Action Item" actionable>
-            <px-table-row-actions id="actions1" position="left">
-              <px-table-row-action-button label="More" type="more"></px-table-row-action-button>
-              <px-table-row-action-button label="Flag" type="flag"></px-table-row-action-button>
-              <px-table-row-action-button label="Delete" type="delete"></px-table-row-action-button>
-            </px-table-row-actions>
-          </px-table-row>
+          <px-table-view >
+            <px-table-row id="tablerow1" title="Action Item" actionable>
+              <div content>
+                <h4>Contrent</h4>
+              </div>
+              <px-table-row-actions id="actions1" position="right" underlay>
+                <px-table-row-action-button label="More" type="more"></px-table-row-action-button>
+                <px-table-row-action-button label="Flag" type="flag"></px-table-row-action-button>
+                <px-table-row-action-button label="Delete" type="delete"></px-table-row-action-button>
+              </px-table-row-actions>
+            </px-table-row>
+            <px-table-row id="tablerow1" title="Action Item" actionable>
+              <px-table-row-actions id="actions1" position="right">
+                <px-table-row-action-button label="More" type="more"></px-table-row-action-button>
+                <px-table-row-action-button label="Flag" type="flag"></px-table-row-action-button>
+                <px-table-row-action-button label="Delete" type="delete"></px-table-row-action-button>
+              </px-table-row-actions>
+            </px-table-row>
+            <px-table-row id="tablerow2" title="Action Item" actionable>
+              <px-table-row-actions id="actions2" position="right">
+                <px-table-row-action-button label="More" type="more"></px-table-row-action-button>
+                <px-table-row-action-button label="Flag" type="flag"></px-table-row-action-button>
+                <px-table-row-action-button label="Delete" type="delete"></px-table-row-action-button>
+              </px-table-row-actions>
+            </px-table-row>
+          </px-table-view>
         </template>
       </demo-snippet>
-      <demo-snippet>
+      <demo-snippet class="u-mb">
         <template>
           <h2>Table View Default</h2>
           <ul class="table-view">
@@ -60,7 +79,7 @@
           </ul>
         </template>
       </demo-snippet>
-      <demo-snippet>
+      <demo-snippet class="u-mb">
         <template>
           <template id="app" is="dom-bind">
             <h2>Table View with Actions</h2>
@@ -89,15 +108,15 @@
               </template>
             </px-table-view>
             <h2>Swippable Container</h2>
-            <ul class="list-ui list-ui--large">
+            <ul class="table-view table-view--small table-view--swipeable">
               <template is="dom-repeat" items="{{items}}">
                 <li>
                   <x-element title="Test">
                     <div content>
-                      <span>Content</span>
+                      <h3>Content</h3>
                     </div>
                     <div underlay>
-                      <span>UNDERLAY</span>
+                      <h3>UNDERLAY</h3>
                     </div>
                   </li>
                 </template>
@@ -105,17 +124,8 @@
               <h2>Table View with Swippable Elements</h2>
               <ul class="table-view table-view--small">
                 <template is="dom-repeat" items="{{items}}">
-                  <li>
-                    <x-element title="Test">
-                      <div content>
-                        <h3>Content</h3>
-                      </div>
-                      <div underlay>
-                        <h3>UNDERLAY</h3>
-                      </div>
-                    </li>
-                    <li class="table-row table-row--actionable table-row--nav-right">
-                      <x-element title="Test">
+                    <li class="table-row table-row--actionable table-row--nav-">
+                      <x-element title="Test" swipe-left>
                         <div content>
                           <span class="table-row__title">List Item</span>
                         </div>

@@ -457,22 +457,16 @@
     justify-content: space-between;
     transition: all 0.4s;
     will-change: transform;
-    z-index: -1;
     width: auto;
     align-self: stretch;
     align-items: stretch; }
     .table-row__actions.is-visible {
       z-index: 50; }
     .table-row__actions--left {
-      order: 0;
-      width: 0;
-      transform: translateX(-125%); }
+      order: 0; }
       .table-row__actions--left.is-visible {
         width: auto;
         transform: translateX(0%); }
-        .table-row__actions--left.is-visible .table-row__actions__button {
-          transition: width 300ms ease-out;
-          width: auto; }
     .table-row__actions--right {
       order: 10; }
       .table-row__actions--right.is-visible {
@@ -495,7 +489,7 @@
     cursor: pointer;
     margin: 0;
     border-radius: 0;
-    min-width: 80px;
+    min-width: 60px;
     outline: 0;
     user-select: none;
     margin: 0;

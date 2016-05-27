@@ -85,7 +85,6 @@ At the end of the demo, there is a code generator that allows you to play around
 @element px-swipe
 @demo demo/index.html
 -->
-
 <dom-module id="px-swipe">
   <template strip-whitespace>
     <style>
@@ -94,7 +93,6 @@ At the end of the demo, there is a code generator that allows you to play around
         -moz-user-select: none;
         -ms-user-select: none;
         user-select: none;
-
         display: block;
         position: relative;
         box-sizing: border-box;
@@ -105,7 +103,6 @@ At the end of the demo, there is a code generator that allows you to play around
       *:before {
         box-sizing: inherit;
       }
-
       div.swipeable-container,
       div.swipeable-container > ::content > * {
         width: 100%;
@@ -117,22 +114,17 @@ At the end of the demo, there is a code generator that allows you to play around
       div.swipeable-container {
         @apply(--px-swipe-swipeable-container);
       }
-
       div.swipeable-container > ::content > [underlay] {
         @apply(--px-swipe-underlay);
         background: green;
-
         width: 100vw;
       }
-
       div.swipeable-container > ::content > [content] {
         will-change: transform;
         @apply(--px-swipe-content);
         background: red;
-        
         width: 100vw;
       }
-
       ::content [content].transition {
         transition: -webkit-transform cubic-bezier(.55,0,.1,1) 0.3s;
         transition: -moz-transform cubic-bezier(.55,0,.1,1) 0.3s;
@@ -140,31 +132,22 @@ At the end of the demo, there is a code generator that allows you to play around
         transition: -o-transform cubic-bezier(.55,0,.1,1) 0.3s;
         transition: transform cubic-bezier(.55,0,.1,1) 0.3s;
       }
-
     </style>
-
     <div class="swipeable-container" on-track="_onTrack">
       <content id="underlay" select="[underlay]"></content>
-
       <content id="content" select="[content]"></content>
     </div>
-
   </template>
 </dom-module>
-
 <script>
   (function () {
-
     'use strict';
-
     var sharedPanel = null;
     function log(type, e) {
       console.log(type, e);
     }
-
     Polymer({
       is: 'px-swipe',
-
       properties: {
         /**
          * If true, swiping is disabled
@@ -209,7 +192,6 @@ At the end of the demo, there is a code generator that allows you to play around
           type: Boolean,
           value: false
         },
-
         /**
          * Whether the user is dragging the content interactively
          */
@@ -266,11 +248,9 @@ At the end of the demo, there is a code generator that allows you to play around
           type: Boolean,
           value: false
         },
-
         // Store children object via Polymer's getEffectiveChildren or getDistributedNodes;
         _content: Object
       },
-
       behaviors: [Polymer.IronResizableBehavior],
       /**
        * The `edge` event is fired whenever `_atEdge` is set to true which
@@ -280,14 +260,12 @@ At the end of the demo, there is a code generator that allows you to play around
        * @event edge
        * @detail {{message: String, target: Object::Event}}
        */
-
       /**
        * The 'tap-underlay' event is fired whenever '_tapHandler' is called.
        *
        * @event tap-underlay
        * @detail {{nodeName: Object, target: Object::Event}}
        */
-
       listeners: {
         'track': '_onTrack',
         'down': '_downHandler',
@@ -302,21 +280,17 @@ At the end of the demo, there is a code generator that allows you to play around
           ? 'y'
           : 'all');
       },
-
       attached: function () {
         // on child element attached, inherit the height of the content.
         var _content = Polymer.dom(this.$.content).getDistributedNodes()[0];
         log('content', _content);
-
         this.async(function () {
           // this.style.height = _content.offsetHeight + 'px';
         }, 1);
         // save effective children object.
         this.set('_content', _content);
       },
-
       // Element Behaviorset
-
       _transitionDeltaChanged: function (newValue, oldValue) {
         if (this._swipeAllowed()) {
           /**
@@ -331,7 +305,6 @@ At the end of the demo, there is a code generator that allows you to play around
               ? newValue <= -this.slideOffset
               : newValue >= this.slideOffset;
           }
-
           /**
            * To trigger auto-swipe to the left:-
            * - newValue < oldValue
@@ -344,7 +317,6 @@ At the end of the demo, there is a code generator that allows you to play around
               ? newValue >= this.slideOffset
               : newValue <= -this.slideOffset;
           }
-
           /**
            * To trigger auto-swipe to either side,
            * it basically works the same as [swipeLeft] and
@@ -368,9 +340,8 @@ At the end of the demo, there is a code generator that allows you to play around
           }
         }
       },
-
       _tapHandler: function (event) {
-          log('_tapHandler', event);
+        log('_tapHandler', event);
         // when disableSwipe is true, only click event can be triggered!
         this.fire('tap-underlay', {
           nodeName: 'underlay',
@@ -381,7 +352,6 @@ At the end of the demo, there is a code generator that allows you to play around
           sharedPanel = null;
         }
       },
-
       _onTrack: function (event) {
         log('_onTrack', event);
         if (sharedPanel && this !== sharedPanel) {
@@ -389,7 +359,6 @@ At the end of the demo, there is a code generator that allows you to play around
           sharedPanel = null;
           return;
         }
-
         if (this._swipeAllowed()) {
           switch (event.detail.state) {
             case 'start':
@@ -404,7 +373,6 @@ At the end of the demo, there is a code generator that allows you to play around
           }
         }
       },
-
       _trackStart: function (event) {
         log('_trackStart', event);
         if (this._swipeAllowed()) {
@@ -416,12 +384,11 @@ At the end of the demo, there is a code generator that allows you to play around
           }
         }
       },
-
       _trackX: function (event) {
-        log('_trackX', event);
         if (this._dragging) {
           var dx = event.detail.dx,
             dragDx;
+          log('_trackX', dx);
           this._transitionDelta = dx;
           dragDx = this._atEdge
             ? this._curPos + dx
@@ -430,12 +397,10 @@ At the end of the demo, there is a code generator that allows you to play around
           this._moveDrawer(dragDx);
         }
       },
-
       _trackEnd: function (event) {
         log('_trackEnd', event);
         //reserve for future use.
       },
-
       _downHandler: function (event) {
         log('_downHandler', event);
         if (!this._dragging && !this.disableSwipe && !sharedPanel) {
@@ -445,12 +410,9 @@ At the end of the demo, there is a code generator that allows you to play around
           sharedPanel = this;
         }
       },
-
       _upHandler: function (event) {
-        log('_upHandler', event);
         this._dragging = false;
         this._transition = true;
-
         /**
          * Specialty for when [AtEdge] is asserted, hold it back to the edge.
          */
@@ -460,7 +422,6 @@ At the end of the demo, there is a code generator that allows you to play around
           sharedPanel = null;
           return;
         }
-
         /**
          * tracking must be asserted.
          */
@@ -475,23 +436,22 @@ At the end of the demo, there is a code generator that allows you to play around
            *
            *  else vice versa for swiping to rightmsot edge and/ or either side.
            */
-          var slideTo = this.width - this.peekOffset,
-            offsetLR = this.swipeRight
-              ? slideTo
-              : -slideTo,
-            deltaLR;
+          var slideTo = (this.width - this.peekOffset);
+          var offsetLR = (this.swipeRight
+            ? slideTo
+            : -slideTo);
+          var deltaLR;
           if (!this.swipeLeft) {
-            offsetLR = this._slideLeft
+            offsetLR = (this._slideLeft
               ? -slideTo
-              : slideTo;
+              : slideTo);
           }
           deltaLR = this._validDelta && !this._atEdge
             ? offsetLR
             : null;
-
-          this._curPos = this._atEdge
+          this._curPos = (this._atEdge
             ? null
-            : deltaLR;
+            : deltaLR);
           this._atEdge = !(deltaLR === null);
           if (this._atEdge) {
             this.fire('edge', {
@@ -502,16 +462,16 @@ At the end of the demo, there is a code generator that allows you to play around
           this._validDelta = false;
           this._tracking = false;
           this._moveDrawer(deltaLR);
+          log('_upHandler', deltaLR);
         }
         // release the panel after use.
         sharedPanel = null;
       },
-
       _swipeAllowed: function () {
         return !this.disableSwipe;
       },
-
       _transformForTranslateX: function (translateX) {
+        log('_transformForTranslateX', translateX);
         if (translateX === null) {
           /**
            * return 0 works smoother on mobile than returning '';
@@ -520,29 +480,16 @@ At the end of the demo, there is a code generator that allows you to play around
         }
         return 'translate3d(' + translateX + 'px, 0, 0)';
       },
-
       _moveDrawer: function (translateX) {
-        log('_moveDrawer', translateX);
         var _content = this._content;
-        // if fade is set, transform with fading opacity.
-        if (this.fade) {
-          var _contentOffsetWidth = _content.offsetWidth;
-          var _opacity = Math.max(0, (_contentOffsetWidth - Math.abs(translateX)) / _contentOffsetWidth);
-          // translateX is null which means that swipeable content is returning to its original position hence opacity is '' or 1;
-          _content.style.opacity = translateX === null
-            ? ''
-            : _opacity;
-        }
         // transform swipeable content.
         this.transform(this._transformForTranslateX(translateX), _content);
-
         // apply class while transforming the drawer.
         this.toggleClass('transition', this._transition, _content);
         this.toggleClass('dragging', this._dragging, _content);
         this.toggleClass('swipe-left', this.swipeLeft, _content);
         this.toggleClass('swipe-right', this.swipeRight, _content);
       },
-
       // Reset the position of the swipeable content with the attribute `content` from the edge after being dragged.
       resetPosition: function () {
         // this.transform(this._transformForTranslateX(null), this._content);
@@ -553,7 +500,6 @@ At the end of the demo, there is a code generator that allows you to play around
         // fire event when position is reset.
         this.fire('position-reset');
       },
-
       _onIronResize: function () {
         console.log('px-swipe-resize');
         var _content = this._content;
@@ -564,7 +510,6 @@ At the end of the demo, there is a code generator that allows you to play around
           }, 1);
         }
       }
-
     });
   })();
 </script>

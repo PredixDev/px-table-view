@@ -11,13 +11,11 @@
       setTimeout(callback, 1000 / 60);
     };
   })();
-
   function dirProp(direction, hProp, vProp) {
     return (direction & Hammer.DIRECTION_HORIZONTAL)
       ? hProp
       : vProp;
   }
-
   /**
   Swipe List Item Actions
   */
@@ -25,90 +23,53 @@
     var instance = container;
     this.container = container;
     this.direction = direction;
-
     console.log('SwipeActions.constructor', container, direction);
-
-    console.log('Container children', container.children);
-
-    this.actions = container.queryEffectiveChildren('px-table-row-actions');
-    console.warn('SwipeActions', 'actions', this.actions);
-
+    console.log('SwipeActions.container children', container.children);
+    this.actions = container.queryEffectiveChildren('px-table-row-actions').$.actions;
+    console.warn('SwipeActions.actions', this.actions);
     this.panes = Array.prototype.slice.call(this.container.querySelector('.table-row__content'), 0);
     //this.panes = 1;
-    console.warn('SwipeActions', 'panes', this.panes);
-
+    console.warn('SwipeActions.panes', this.panes);
     this.containerSize = this.container[dirProp(direction, 'offsetWidth', 'offsetHeight')];
-    console.warn('SwipeActions', 'setting containerSize', this.containerSize);
-
+    console.warn('SwipeActions.containerSize', this.containerSize);
     this.actionsSize = this.actions[dirProp(direction, 'offsetWidth', 'offsetHeight')];
-    console.log('SwipeActions', 'setting actionsSize', this.actionsSize);
-
+    console.log('SwipeActions.actionsSize', this.actionsSize);
     this.currentIndex = 0;
     this.hammer = new Hammer.Manager(this.container);
     this.hammer.add(new Hammer.Pan({direction: this.direction, threshold: 10}));
-
     this.hammer.on("panstart panmove panend pancancel", Hammer.bindFn(this.onPan, this));
     console.log('SwipeActions', this);
     //console.warn('Actions size', this.actionsSize);
   }
-
   SwipeActions.prototype = {
-    show: function (showIndex, percent, animate) {
-      if (!this.panes.length) {
-        this.panes.length = 2;
-      }
-      showIndex = Math.max(0, Math.min(showIndex, this.panes.length - 1));
+    show: function (event, showIndex, percent, animate) {
       percent = percent || 0;
       var className = this.container.className;
-
-      if (animate) {
-
-        if (className.indexOf('animate') === -1) {
-          this.container.className += ' animate';
-        }
-      } else {
-        if (className.indexOf('animate') !== -1) {
-          this.container.className = className.replace('animate', '').trim();
-        }
-      }
       var width = this.container.offsetWidth;
-      var paneIndex,
-        pos,
-        translate;
+      var pos = Math.round(dirProp(this.direction, event.deltaX, event.deltaY));
+      var translate;
 
-
-      for (paneIndex = 0; paneIndex < this.panes.length; paneIndex++) {
-        pos = (this.actionsSize / 100) * (((paneIndex - showIndex) * 100) + percent);
-        pos = Math.round(pos);
-        //  console.warn('pos', pos);
-        if (this.direction & Hammer.DIRECTION_HORIZONTAL) {
-          translate = 'translate3d(' + pos + 'px, 0, 0)';
-        } else {
-          translate = 'translate3d(0, ' + pos + 'px, 0)';
-        }
-
-        //this.container.transform(translate);
-        this.actions.transform(translate);
-        //this.panes[paneIndex].style.transform = translate; this.panes[paneIndex].style.mozTransform = translate; this.panes[paneIndex].style.webkitTransform = translate;
-
-        console.log(className, 'translate', translate);
-
+      if(pos > this.actionsSize){
+        pos = this.actionsSize;
+      } else {
+        pos = 0;
       }
 
-
-
-
+      translate = this._transformForTranslateX(pos);
+      this.container.transform(translate, this.container.$.row);
+      console.log(className, 'translate', translate);
       this.currentIndex = showIndex;
-
-      console.log('SwipeActions.show', 'translate', translate, 'showIndex', showIndex, 'positino', pos, 'percent', percent, 'animate', animate);
-
+      this.container.toggleClass('transition', true);
+      console.log('SwipeActions.show', event, 'translate', translate, 'positino', pos, 'percent', percent, 'animate', animate);
     },
     onPan: function (ev) {
       var delta = dirProp(this.direction, ev.deltaX, ev.deltaY);
       var percent = (100 / this.actionsSize) * delta;
       var animate = false;
-
+      this._deltaChanged(delta);
       if (ev.type == 'panend' || ev.type == 'pancancel') {
+        this._dragging = false;
+        this.container.toggleClass('transition', false);
         if (Math.abs(percent) > 5 && ev.type == 'panend') {
           this.currentIndex += (percent < 0)
             ? 1
@@ -117,39 +78,112 @@
         percent = 0;
         animate = true;
       }
-      //  console.log('SwipeActions.onPan', 'delta = ', delta, 'percent =', percent, animate);
-      this.show(this.currentIndex, percent, animate);
+      console.log('_validDelta', this.container._validDelta);
+      console.log('SwipeActions.onPan', 'delta = ', delta, 'percent =', percent, animate);
+      this.show(ev, this.currentIndex, percent, animate);
+    },
+    _transformForTranslateX: function (translateX) {
+      if (translateX === null) {
+        return 'translate3d(0, 0, 0)';
+      }
+      return 'translate3d(' + translateX + 'px, 0, 0)';
+    },
+    _deltaChanged: function (newValue, oldValue) {
+      /**
+       * To trigger auto-swipe to the right:-
+       * - newValue > oldValue
+       * - newValue >= slideOffset
+       *
+       * else return to original position.
+       */
+      if (this.container.swipeRight) {
+        this.container._validDelta = this._atEdge
+          ? newValue <= -this.container.slideOffset
+          : newValue >= this.container.slideOffset;
+      }
+      /**
+       * To trigger auto-swipe to the left:-
+       * - newValue < oldValue
+       * - newValue <= -slideOffset
+       *
+       * else return to original position.
+       */
+      if (this.container.swipeLeft) {
+        this._validDelta = this._atEdge
+          ? newValue >= this.container.slideOffset
+          : newValue <= -this.container.slideOffset;
+      }
+      /**
+       * To trigger auto-swipe to either side,
+       * it basically works the same as [swipeLeft] and
+       * [swipeRight], just that it needs one more
+       * parameter to detect if it's dragging to the left.
+       *
+       * Assert [slideLeft] if the left-dragging is
+       * detected.
+       *
+       * else return to original position.
+       */
+      if (!this.container.swipeLeft && !this.container.swipeRight) {
+        if (newValue > oldValue) {
+          this._slideLeft = false;
+          this._validDelta = newValue >= this.container.slideOffset;
+        }
+        if (newValue < oldValue) {
+          this._slideLeft = true;
+          this._validDelta = newValue <= -this.container.slideOffset;
+        }
+      }
     }
   };
-
-  /*
-  setTimeout(function(){
-    console.log('Setting Up Hammer');
-    Hammer.each(document.querySelectorAll(".table-row--actionable"), function(container) {
-      var actions = new SwipeActions(container, Hammer.DIRECTION_HORIZONTAL);
-      //outer.hammer.get('pan').requireFailure(actions.hammer.get('pan'));
-      console.log('Adding Hammer', actions);
-    });
-  }, 2000);
-  */
-
   /**
    * Behavior that manages the swipe actions
    *
    * @polymerBehavior
    */
   var pxTableRowActionsSwipeBehavior = {
-    created: function () {
-      if (this.actionable) {
-        console.log('Before swipe handlers');
+    properties: {
+      /**
+       * If true, swiping is disabled
+       */
+      disableSwipe: {
+        type: Boolean,
+        value: false
+      },
+      /**
+       * If true, only swiping to the left.
+       */
+      swipeLeft: {
+        type: Boolean,
+        value: false
+      },
+      /**
+       * If true, only swiping to the right.
+       */
+      swipeRight: {
+        type: Boolean,
+        value: false
+      },
+      /**
+       * The number of pixels the swipeable content is peeking at from the screen edge
+       * after being swiped to the screen edge.
+       */
+      peekOffset: {
+        type: Number,
+        value: 30
+      },
+      /**
+       * How many pixels needed to trigger auto-slide to the edge.
+       */
+      slideOffset: {
+        type: Number,
+        value: 80
       }
     },
     attached: function () {
       if (this.actionable) {
-       console.log('Adding swipe handlers');
         this._actions = new SwipeActions(this, Hammer.DIRECTION_HORIZONTAL);
       }
-
     }
   };
 </script>

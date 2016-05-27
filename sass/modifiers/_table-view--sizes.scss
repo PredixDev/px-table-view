@@ -1,6 +1,7 @@
 @import '../variables';
 @import '../mixins';
 
+
 @include c('.table-row') {
   padding: $inuit-base-spacing-unit;
 }
