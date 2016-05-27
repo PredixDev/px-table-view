@@ -1,10 +1,22 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>Title</title>
-</head>
-<body>
+<link rel="import" href="../polymer/polymer.html">
 
-</body>
-</html>
+<dom-module id="px-checkbox">
+  <link rel="import" type="css" href="css/px-table-row.css">
+  <style>
+    :host {
+      display: block;
+    }
+  </style>
+  <template>
+    <fieldset class="x-checkbox">
+      <label class="x-checkbox__checkbox needsclick">
+        <input type="checkbox" checked>
+        <div class="x-checkbox__checkbox__checkmark"></div>
+        <span>X Checkbox</span>
+      </label>
+    </fieldset>
+  </template>
+  <script>
+    Polymer({is: 'px-checkbox'});
+  </script>
+</dom-module>

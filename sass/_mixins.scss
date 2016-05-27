@@ -104,36 +104,28 @@
 
 /// Add a icon to the end of a table row.
 /// @group px-table-view
-@mixin tableRowIcon($icon, $iconColor: 'inherit', $position:'right') {
-  transition: background-color 0.2s linear;
+@mixin tableRowIcon($icon, $iconColor: null, $position:'right') {
   overflow  : hidden;
-  //	background-color: rgba(0,0,0,.5);
   &:before {
     transform  : translateY(-50%);
     font-style : normal;
     font-weight: normal;
     position   : absolute;
-    right      : 12px;
+    right      : calculateRem(5px);
     top        : 50%;
     color      : $iconColor;
-    line-height: 28px;
-    height     : 28px;
-    font-size  : 28px;
+    line-height: calculateRem(28px);
+    height     : calculateRem(28px);
+    font-size  : calculateRem(28px);
     font-family: FontAwesome;
     content    : '#{$icon}';
   }
-
   &:active {
     background-color: $table-row-active-background-color;
     transition      : none;
-
     &:before {
       color: $table-row-active-font-color;
     }
-  }
-
-  &:hover {
-    transition: none;
   }
   @content;
 }

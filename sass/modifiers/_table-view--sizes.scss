@@ -1,31 +1,34 @@
 @import '../variables';
 @import '../mixins';
 
+@include c('.table-row') {
+  padding: $inuit-base-spacing-unit;
+}
 ///.table-view--tiny
 @include modifier ('tiny') {
   @include c('.table-row') {
-    padding: $table-view-padding--tiny;
+    padding: $inuit-base-spacing-unit--tiny;
   }
 }
 
 ///.table-view--small
 @include modifier ('small') {
   @include c('.table-row') {
-    padding: $table-view-padding--small;
+    padding: $inuit-base-spacing-unit--small;
   }
 }
 
 ///.table-view--large
 @include modifier ('large') {
   @include c('.table-row') {
-    padding: $table-view-padding--large;
+    padding: $inuit-base-spacing-unit--large;
   }
 }
 
 ///.table-view--huge
 @include modifier ('huge') {
   @include c('.table-row') {
-    padding: $table-view-padding--huge;
+    padding: $inuit-base-spacing-unit--huge;
   }
 }
 

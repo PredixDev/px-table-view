@@ -8,16 +8,14 @@
   @include clearfix();
   @include noselect();
   align-self: center;
-  //width         : 100%;
-  box-sizing: border-box;
   position: relative;
   overflow: hidden;
   display: flex;
   flex-direction: row;
-  margin: 0;
-  padding: 0;
   appearance: normal;
   user-select: none;
+  flex: 1;
+  box-sizing: border-box;
   //font-size       : $table-row-font-size;
   //background-color: $table-row-background-color;
   > *:not(select),
@@ -147,9 +145,10 @@
     align-self: stretch;
     order: 2;
     width: 100%;
+    flex: 1;
     user-select: none;
-    white-space: nowrap;
-    margin-left: $inuit-base-spacing-unit--small;
+
+    //margin-left: $inuit-base-spacing-unit--small;
     ///---------------------------------------------------------------------------
     @include modifier ('row') {
       flex-direction: row;
@@ -168,11 +167,11 @@
   @include element ('title') {
     @include noselect();
     order: 3;
-    white-space: nowrap;
     line-height: normal;
-    flex: 1;
-    align-self: flex-start;
-    align-items: center;
+    flex: 1 0 auto;
+    align-items: flex-start;
+    align-self: stretch;
+
     display: flex;
   }
   ///---------------------------------------------------------------------------
@@ -182,7 +181,7 @@
     align-self: stretch;
     white-space: nowrap;
     line-height: normal;
-    flex: 1;
+  flex: 1 0 auto;
   }
   ///---------------------------------------------------------------------------
   ///.table-row__body
@@ -190,29 +189,32 @@
     order: 5;
     align-self: stretch;
     flex: 1 0 auto;
+    white-space: normal;
+    line-height: normal;
   }
   ///---------------------------------------------------------------------------
   ///.table-row__label
   @include element ('label') {
     order: 0;
-    flex: 1 0 6em;
+    //flex: 1 0 6em;
     align-self: center;
     //padding: $inuit-base-spacing-unit--tiny;
-    margin-right: $inuit-base-spacing-unit--small;
+
 
     @include modifier ('right') {
       text-align: left;
       order: 4;
-      margin-left: $inuit-base-spacing-unit--small;
+      margin-left: $inuit-base-spacing-unit;
     }
     @include modifier ('left') {
-      text-align: right;
-      margin-right: 0;
+
+      margin-right: $inuit-base-spacing-unit;
     }
   }
   ///---------------------------------------------------------------------------
   ///.table-row__icon
   @include element ('icon') {
+    margin-right: $inuit-base-spacing-unit;
   }
   ///---------------------------------------------------------------------------
   ///.table-row__reorder-btn
@@ -225,6 +227,7 @@
   ///---------------------------------------------------------------------------
   ///.table-row__media
   @include element ('media') {
+    flex: 0 1 auto;
     order: 1;
     display: flex;
     align-self: center;
@@ -246,7 +249,7 @@
     ///---------------------------------------------------------------------------
     ///.table-row__media--image
     @include modifier ('image') {
-      flex: 1 0 auto;
+
       padding: $table-row-image-padding;
 
       img {
@@ -259,7 +262,7 @@
     ///---------------------------------------------------------------------------
     ///.table-row__media--icon
     @include modifier ('icon') {
-      flex: 1 0 auto;
+      margin-right: $inuit-base-spacing-unit;
       align-self: center;
       padding: $inuit-base-spacing-unit--tiny;
       //margin-left: $inuit-base-spacing-unit--small;

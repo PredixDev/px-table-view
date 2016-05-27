@@ -12,7 +12,7 @@
     <link rel="import" href="../../px-theme/px-app.html">
     <link rel="import" href="../../px-theme/px-theme.html">
     <link rel="import" href="../../px-card/px-card.html">
-    
+
 
     <style>
       /* Disable certain interactions on touch devices */
@@ -27,7 +27,7 @@
       }
       body,
       html {
-        background: #ccc;
+        background: #fff;
       }
 
       px-card {
@@ -58,10 +58,13 @@
         }
 
       </style>
-      <div class="box box--flush table-view table-view--">
-        <px-table-row class="debug" title="Title" subtitle="Subtitle" body="Body" label1="label 1" label2="label 2" type="tappable"></px-table-row>
-
-      </div>
+      <px-table-view class="debug">
+        <px-table-row title="Title" subtitle="Subtitle" body="Body"
+        icon="fa fa-square fa-2x"
+         type="tappable"></px-table-row>
+        <px-table-row title="Title" subtitle="Subtitle" body="Body" label1="label 1" label2="label 2" type="nav-right"></px-table-row>
+        <px-table-row title="Title" subtitle="Subtitle" body="Body" label1="label 1" label2="label 2" type="nav-right"></px-table-row>
+      </px-table-view>
 
       <hr/>
       <br/>
