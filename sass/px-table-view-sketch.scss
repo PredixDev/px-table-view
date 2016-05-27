@@ -45,35 +45,26 @@
   @include switch();
   @include clearfix();
   @include pxFonts();
-  cursor         : default;
   list-style-type: none;
-  line-height    : normal;
   margin         : 0;
   padding        : 0;
   position       : relative;
-  text-align     : left;
-  display        : flex;
+  display        : block;
   flex-direction : column;
-  //  display: flex;
-  //flex-direction: column;
-  > * {
-    line-height: normal;
+  &ul{
+    margin: 0 !important;
   }
 
 
   /// Modifiers
   ///--------------------------------
-
-
   @import 'modifiers/_table-view--drilldown';
   @import 'modifiers/_table-view--sizes';
-
 
   ///.table-view--responsive
   @include modifier ('responsive') {
     @include n-columns( $table-view-responsive-row-width, $table-view-responsive-row-gutters, true, $table-view-responsive-row-max);
   }
-
 
   ///.table-view--ptr
   @include modifier ('ptr') {
@@ -81,11 +72,20 @@
       user-select: none;
     }
   }
+  ///.table-view--col
+  @include modifier ('col') {
+    display: flex;
+    flex-direction: column;
+  }
+  @include modifier ('row') {
+    display: flex;
+    flex-direction: row;
+  }
+   
   ///.table-view--rev
   @include modifier ('rev') {
     direction: rtl;
   }
-
 
   ///.table-view--avatars
   @include modifier ('avatars') {
@@ -94,12 +94,6 @@
         height       : 32px;
         border-radius: 50%;
       }
-    }
-  }
-  ///.table-view--drilldown
-  @include modifier ('drilldown') {
-    @include c('.table-row') {
-      background: red;
     }
   }
 
@@ -122,8 +116,6 @@
     }
 
   }
-
-
 
   ///.table-view--bare
   @include modifier ('bare') {
@@ -164,30 +156,5 @@
     margin-right: 10px;
   }
 
-  @include modifier ('nested') {
-    .table-row {
-      transition: transform 500ms ease;
 
-      &.has-children {
-        line-height: normal;
-        overflow   : hidden;
-        max-height : 75px;
-
-        .table-view {
-          margin-left: 15px;
-          transform  : translateX(99%);
-        }
-
-        &.is-selected {
-          background: transparent;
-          max-height: 100%;
-
-          > .table-view {
-            display  : block;
-            transform: translateX(0);
-          }
-        }
-      }
-    }
-  }
 }

@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>swipe actions</title>
+    <script src="../../webcomponentsjs/webcomponents-lite.js"></script>
+    <link rel='stylesheet' href='/px.css'>
+
+    <link rel="import" href="../px-table-view.html">
+    <link rel="import" href="../px-table-row-swipe-behavior.html">
+    <link rel="import" href="../../iron-demo-helpers/demo-snippet.html"/>
+    <link rel="stylesheet" href="../css/px-table-row.css">
+    <link rel="stylesheet" href="../css/px-table-view.css">
+    <style media="screen">
+      body,
+      html {
+        background: #fff;
+      }
+      li,
+      ul {
+        padding: 0 ;
+        margin: 0;
+      }
+    </style>
+  </head>
+  <body unresolved>
+    <div class="viewport">
+      <h2>Swipe Action Component</h2>
+      <demo-snippet>
+        <template>
+          <px-table-row id="tablerow1" title="Action Item" actionable>
+            <px-table-row-actions id="actions1" position="left">
+              <px-table-row-action-button label="More" type="more"></px-table-row-action-button>
+              <px-table-row-action-button label="Flag" type="flag"></px-table-row-action-button>
+              <px-table-row-action-button label="Delete" type="delete"></px-table-row-action-button>
+            </px-table-row-actions>
+          </px-table-row>
+        </template>
+      </demo-snippet>
+      <demo-snippet>
+        <template>
+          <h2>Table View Default</h2>
+          <ul class="table-view">
+            <li class="table-row">Table Row</li>
+            <li class="table-row">Table Row</li>
+            <li class="table-row">Table Row</li>
+          </ul>
+          <h2>Table View - Row</h2>
+          <ul class="table-view table-view--row">
+            <li class="table-row">Table Row</li>
+            <li class="table-row">Table Row</li>
+            <li class="table-row">Table Row</li>
+          </ul>
+          <h2>Table View - Col</h2>
+          <ul class="table-view table-view--col">
+            <li class="table-row">Table Row</li>
+            <li class="table-row">Table Row</li>
+            <li class="table-row">Table Row</li>
+          </ul>
+        </template>
+      </demo-snippet>
+      <demo-snippet>
+        <template>
+          <template id="app" is="dom-bind">
+            <h2>Table View with Actions</h2>
+            <px-table-view>
+              <template is="dom-repeat" items="{{items}}">
+                <px-table-row>
+                  <x-element title="Test" class="table-row__content">
+                    <div content>
+                      <span class="table-row__title">List Item</span>
+                    </div>
+                    <div underlay>
+                      <div class="table-row_actions flex">
+                        <button class="table-row__button table-row__button--info ">
+                          <i class="fa fa-ellipsis-h fa-lg"></i>
+                        </button>
+                        <button class="table-row__button table-row__button--flag">
+                          <i class="fa fa-flag fa-lg"></i>
+                        </button>
+                        <button class="table-row__button table-row__button--delete">
+                          <i class="fa fa-trash fa-lg"></i>
+                        </button>
+                      </div>
+                    </div>
+                  </x-element>
+                </px-table-row>
+              </template>
+            </px-table-view>
+            <h2>Swippable Container</h2>
+            <ul class="list-ui list-ui--large">
+              <template is="dom-repeat" items="{{items}}">
+                <li>
+                  <x-element title="Test">
+                    <div content>
+                      <span>Content</span>
+                    </div>
+                    <div underlay>
+                      <span>UNDERLAY</span>
+                    </div>
+                  </li>
+                </template>
+              </ul>
+              <h2>Table View with Swippable Elements</h2>
+              <ul class="table-view table-view--small">
+                <template is="dom-repeat" items="{{items}}">
+                  <li>
+                    <x-element title="Test">
+                      <div content>
+                        <h3>Content</h3>
+                      </div>
+                      <div underlay>
+                        <h3>UNDERLAY</h3>
+                      </div>
+                    </li>
+                    <li class="table-row table-row--actionable table-row--nav-right">
+                      <x-element title="Test">
+                        <div content>
+                          <span class="table-row__title">List Item</span>
+                        </div>
+                        <div underlay>
+                          <div class="table-row_actions flex flex--right">
+                            <button class="table-row__button table-row__button--info ">
+                              <i class="fa fa-ellipsis-h fa-lg"></i>
+                            </button>
+                            <button class="table-row__button table-row__button--flag">
+                              <i class="fa fa-flag fa-lg"></i>
+                            </button>
+                            <button class="table-row__button table-row__button--delete">
+                              <i class="fa fa-trash fa-lg"></i>
+                            </button>
+                          </div>
+                        </div>
+                      </x-element>
+                    </li>
+                  </template>
+                </ul>
+              </template>
+              <script type="text/javascript">
+                document.addEventListener('WebComponentsReady', function () {
+                  var app = document.getElementById('app');
+                  app.items = [1, 2, 3, 4, 5];
+                });
+              </script>
+            </template>
+          </demo-snippet>
+        </div>
+        <script src="http://localhost:35724/livereload.js?snipver=1"></script>
+      </body>
+    </html>

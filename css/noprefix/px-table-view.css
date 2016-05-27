@@ -696,14 +696,11 @@ html {
 .table-view {
   font-family: "GE Inspira Sans", sans-serif;
   font-weight: 500;
-  cursor: default;
   list-style-type: none;
-  line-height: normal;
   margin: 0;
   padding: 0;
   position: relative;
-  text-align: left;
-  display: flex;
+  display: block;
   flex-direction: column;
   /*
  * Copyright (c) 2016 GE Global Research. All rights reserved.
@@ -797,8 +794,8 @@ html {
     content: ' '; }
   .table-view:after {
     clear: both; }
-  .table-view > * {
-    line-height: normal; }
+  .table-viewul {
+    margin: 0 !important; }
   .table-view .breadcrumbs li:after {
     content: ' > '; }
   .table-view .breadcrumbs li:last-child:after {
@@ -961,15 +958,18 @@ html {
   .table-view--ptr ::content .table-row,
   .table-view--ptr .table-row {
     user-select: none; }
+  .table-view--col {
+    display: flex;
+    flex-direction: column; }
+  .table-view--row {
+    display: flex;
+    flex-direction: row; }
   .table-view--rev {
     direction: rtl; }
   .table-view--avatars ::content .table-row img,
   .table-view--avatars .table-row img {
     height: 32px;
     border-radius: 50%; }
-  .table-view--drilldown ::content .table-row,
-  .table-view--drilldown .table-row {
-    background: red; }
   .table-view ::content .iron-selected,
   .table-view .iron-selected {
     -webkit-touch-callout: none;
@@ -986,7 +986,7 @@ html {
     /* Non-prefixed version, currently
                                  not supported by any browser */
     background-color: #0a9ec1;
-    color: #fff; }
+    color: white; }
     .table-view ::content .iron-selected .table-row__title,
     .table-view ::content .iron-selected .table-row__subtitle,
     .table-view ::content .iron-selected .table-row__body,
@@ -995,10 +995,10 @@ html {
     .table-view .iron-selected .table-row__subtitle,
     .table-view .iron-selected .table-row__body,
     .table-view .iron-selected .table-row__label {
-      color: #fff; }
+      color: white; }
     .table-view ::content .iron-selected .table-row:before,
     .table-view .iron-selected .table-row:before {
-      color: #fff; }
+      color: white; }
   .table-view--bare ::content .table-row:not(:last-child),
   .table-view--bare .table-row:not(:last-child) {
     border-bottom: none; }
@@ -1017,18 +1017,3 @@ html {
     float: right;
     margin-top: 6px;
     margin-right: 10px; }
-  .table-view--nested .table-row {
-    transition: transform 500ms ease; }
-    .table-view--nested .table-row.has-children {
-      line-height: normal;
-      overflow: hidden;
-      max-height: 75px; }
-      .table-view--nested .table-row.has-children .table-view {
-        margin-left: 15px;
-        transform: translateX(99%); }
-      .table-view--nested .table-row.has-children.is-selected {
-        background: transparent;
-        max-height: 100%; }
-        .table-view--nested .table-row.has-children.is-selected > .table-view {
-          display: block;
-          transform: translateX(0); }

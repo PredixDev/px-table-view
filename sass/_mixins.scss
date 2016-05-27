@@ -104,14 +104,14 @@
 
 /// Add a icon to the end of a table row.
 /// @group px-table-view
-@mixin tableRowIcon($icon, $iconColor: null, $position:'right') {
+@mixin tableRowIcon($icon, $iconColor: $gray5, $position:'right') {
   overflow  : hidden;
   &:before {
     transform  : translateY(-50%);
     font-style : normal;
     font-weight: normal;
     position   : absolute;
-    right      : calculateRem(5px);
+    right      : calculateRem(10px);
     top        : 50%;
     color      : $iconColor;
     line-height: calculateRem(28px);

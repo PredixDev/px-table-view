@@ -1,0 +1,29 @@
+@import '../variables';
+@import '../mixins';
+
+@include modifier ('nested') {
+  .table-row {
+    transition: transform 500ms ease;
+
+    &.has-children {
+      line-height: normal;
+      overflow   : hidden;
+      max-height : 75px;
+
+      .table-view {
+        margin-left: 15px;
+        transform  : translateX(99%);
+      }
+
+      &.is-selected {
+        background: transparent;
+        max-height: 100%;
+
+        > .table-view {
+          display  : block;
+          transform: translateX(0);
+        }
+      }
+    }
+  }
+}

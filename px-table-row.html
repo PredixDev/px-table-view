@@ -7,7 +7,6 @@
 <link rel="import" href="px-table-row-switch.html"/>
 <link rel="import" href="px-table-row-checkbox.html"/>
 <link rel="import" href="px-table-row-swipe-actions-behavior.html"/>
-
 <!--
 To use this element you can do the following:
 ```
@@ -47,65 +46,62 @@ Custom property | Description | Default
 -->
 <dom-module id="px-table-row">
   <link rel="import" type="css" href="css/px-table-row.css">
+  <style media="screen">
+    :host {
+      display: block;
+    }
+    :host.selected {
+      background-color: var(--px-table-row-selected-background-color, #0a9ec1);
+      color: var(--px-table-row-selected-color, #fff);
+    }
+  </style>
   <template>
-
     <div class="table-row">
-
       <template is="dom-if" if="{{editMode}}">
         <button class="btn btn--bare table-row__delete-btn" on-click="_handleRemoveItem">
           <i class="fa fa-minus-circle fa-lg color-red"></i>
         </button>
       </template>
-
       <template is="dom-if" if="{{label2}}">
         <span class="table-row__label table-row__label--left">{{label2}}</span>
       </template>
-
       <template is="dom-if" if="{{image}}">
         <div class="table-row__media table-row__media--image">
           <img src$="{{image}}" alt="{{title}}">
         </div>
       </template>
-
       <template is="dom-if" if="{{icon}}">
         <div class="table-row__media table-row__media--icon">
           <i class$="{{icon}}"></i>
         </div>
       </template>
-
       <template is="dom-if" if="{{iconLeft}}">
         <div class="table-row__media table-row__media--icon table-row__media--left">
           <!--<i class$="{{iconLeft}}"></i>-->
           <iron-icon icon$="{{iconLeft}}"></iron-icon>
         </div>
       </template>
-
       <template is="dom-if" if="{{iconRight}}">
         <div class="table-row__media table-row__media--icon table-row__media--right">
           <!--<i class$="{{iconRight}}"></i>-->
           <iron-icon icon$="{{iconRight}}"></iron-icon>
         </div>
       </template>
-
       <template is="dom-if" if="{{label1}}">
         <span class="table-row__label table-row__label--right">{{label1}}</span>
       </template>
-
       <template is="dom-if" if="{{orderMode}}">
         <button class="btn btn--bare table-row__reorder-btn" on-click="_handleReorderItem">
           <i class="fa fa-bars "></i>
         </button>
       </template>
-
       <div class="table-row__content">
         <template is="dom-if" if="{{title}}">
           <div class="table-row__title">{{title}}</div>
         </template>
-
         <template is="dom-if" if="{{subtitle}}">
           <div class="table-row__subtitle">{{subtitle}}</div>
         </template>
-
         <template is="dom-if" if="{{body}}">
           <div class="table-row__body">{{body}}</div>
         </template>
@@ -114,14 +110,11 @@ Custom property | Description | Default
       <content id="swiper" select="px-swipe"></content>
       <content id="actions" select="px-table-row-actions"></content>
     </div>
-
   </template>
   <script>
     Polymer({
       is: 'px-table-row',
-      behaviors: [
-        pxTableRowBehavior
-      ],
+      behaviors: [pxTableRowBehavior],
       properties: {
         /**
         * The table-row object.

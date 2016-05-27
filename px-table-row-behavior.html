@@ -1,5 +1,3 @@
-<link rel="import" href="../log-behavior/locale-storage.html"/>
-<link rel="import" href="../log-behavior/log-behavior.html"/>
 
 <script type="text/javascript">
   /**
@@ -7,7 +5,7 @@
    *
    * @polymerBehavior
    */
-  var _pxTableRowBehavior = {
+  var pxTableRowBehavior = {
     attached: function () {
       var _this = this;
       this.async(function () {
@@ -15,11 +13,7 @@
       });
     },
     ready: function () {
-      this._log.info('this is an info message');
-      this._log.debug('this is a debug message');
-      this._log.trace('this is a trace message');
-      this._log.warn('this is a warn message');
-      this._log.error('this is a error message');
+
     },
     detached: function () {
       //  console.log(this.tagName, 'attached');
@@ -72,10 +66,10 @@
         for (var i = 0; i < types.length; i++) {
           klass = 'table-row--' + types[i];
           _this.toggleClass(klass, true, _this.$$('.table-row'));
-          _this._log.info('adding class', klass);
+          
         }
       }
     }
   };
-  var pxTableRowBehavior = [PolymerElements.LogBehavior, _pxTableRowBehavior];
+
 </script>

@@ -7,22 +7,21 @@
 @include block ('table-row') {
   @include clearfix();
   @include noselect();
-  align-self: center;
-  position: relative;
-  overflow: hidden;
-  display: flex;
+  box-sizing    : border-box;
+  position      : relative;
+  overflow      : hidden;
+  display       : flex;
   flex-direction: row;
-  appearance: normal;
-  user-select: none;
-  flex: 1;
-  box-sizing: border-box;
+  appearance    : normal;
+  flex          : 1;
+
   //font-size       : $table-row-font-size;
   //background-color: $table-row-background-color;
-  > *:not(select),
-  > *:not(textarea),
-  > *:not(input) {
-    -webkit-text-size-adjust: none;
-    -webkit-highlight: none;
+   > *:not(input),
+   > *:not(textarea),
+  > *:not(select) {
+    -webkit-text-size-adjust   : none;
+    -webkit-highlight          : none;
     -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
   }
   ///---------------------------------------------------------------------------
@@ -58,27 +57,16 @@
   ///---------------------------------------------------------------------------
   ///.table-row--tappable
   @include modifier ('tappable') {
-    @include noselect();
-    @include tableRowClickable($table-row-active-background-color, $table-row-active-font-color);
-
+    @include tableRowClickable($table-row-selected-background-color, $table-row-active-font-color);
     &:active {
-      transition: none;
-      background-color: $table-row-active-background-color !important;
+      transition      : none;
+      background-color: $table-row-selected-background-color;
 
-      .table-row__label {
-        color: $table-row-active-font-color;
-      }
-
-      .table-row__content {
-        color: $table-row-active-font-color;
-      }
-
+      .table-row__body,
+      .table-row__label,
+      .table-row__subtitle,
       .table-row__title {
-        color: $table-row-active-font-color;
-      }
-
-      .table-row__body {
-        color: $table-row-active-font-color;
+        color: var(--px-table-row-selected-color, $table-row-active-font-color);
       }
     }
   }
@@ -86,7 +74,6 @@
   ///---------------------------------------------------------------------------
   ///.table-row--chevron
   @include modifier ('chevron') {
-    @include noselect();
     @include tableRowIcon($table-row-chevron-icon, $table-row-chevron-icon-color);
     @include tableRowClickable($table-row-active-background-color, $table-row-active-font-color);
   }
@@ -96,7 +83,6 @@
     @include tableRowClickable($table-row-active-background-color, $table-row-active-font-color);
     @include tableRowIcon($table-row-detail-icon, $table-row-detail-icon-color);
   }
-
 
   ///---------------------------------------------------------------------------
   ///.table-row--nav-right
@@ -110,20 +96,22 @@
   ///.table-row--actionable
   @include modifier ('actionable') {
     padding-right: 0;
+
     .table-row__content {
       transition: var(--px-table-row-actionable-transition, all 0.3s);
-      position: relative;
-      z-index: 10;
+      position  : relative;
+      z-index   : 10;
     }
   }
   ///---------------------------------------------------------------------------
   ///.table-row--collapsable
   @include modifier ('collapsable') {
     @include tableRowClickable($table-row-active-background-color, $table-row-active-font-color);
-    @include tableRowIcon('\f107');
+    @include tableRowIcon( '\f107');
+
     .table-row__body {
       transition: var(--px-table-row-collapseable-transition, all 0.3s);
-      display: none;
+      display   : none;
     }
     ///---------------------------------------------------------------------------
     @include modifier ('is-open') {
@@ -134,19 +122,37 @@
   }
 
   ///---------------------------------------------------------------------------
+  /// top aligned content
+  @include modifier ('top') {
+    align-items: flex-start;
+  }
+  ///---------------------------------------------------------------------------
+  /// bottom aligned content
+  @include modifier ('bottom') {
+    align-items: flex-end;
+  }
+  ///---------------------------------------------------------------------------
+  /// reversed content content
+  @include modifier ('bottom') {
+    align-items: flex-end;
+  }
+
+  ///---------------------------------------------------------------------------
   ///Elements
   ///---------------------------------------------------------------------------
+
 
   ///---------------------------------------------------------------------------
   ///.table-row__content
   @include element ('content') {
-    display: flex;
+    display       : flex;
     flex-direction: column;
-    align-self: stretch;
-    order: 2;
-    width: 100%;
-    flex: 1;
-    user-select: none;
+    align-self    : stretch;
+    order         : 2;
+    width         : 100%;
+    flex          : 1;
+    user-select   : none;
+  //  margin: 0 $inuit-base-spacing-unit;
 
     //margin-left: $inuit-base-spacing-unit--small;
     ///---------------------------------------------------------------------------
@@ -157,58 +163,57 @@
     @include modifier ('column') {
       flex-direction: column;
     }
+
+
     ///---------------------------------------------------------------------------
     @include modifier ('flush') {
       line-height: normal;
     }
+
+
   }
   ///---------------------------------------------------------------------------
   ///.table-row__title
   @include element ('title') {
-    @include noselect();
-    order: 3;
+    order      : 3;
     line-height: normal;
-    flex: 1 0 auto;
-    align-items: flex-start;
-    align-self: stretch;
+    flex       : 1 0 auto;
+    align-items: center;
+    align-self : stretch;
 
-    display: flex;
+    display    : flex;
   }
   ///---------------------------------------------------------------------------
   ///.table-row__title
   @include element ('subtitle') {
-    order: 4;
-    align-self: stretch;
+    order      : 4;
+    align-self : stretch;
     white-space: nowrap;
     line-height: normal;
-  flex: 1 0 auto;
+    flex       : 1 0 auto;
   }
   ///---------------------------------------------------------------------------
   ///.table-row__body
   @include element ('body') {
-    order: 5;
-    align-self: stretch;
-    flex: 1 0 auto;
+    order      : 5;
+    align-self : stretch;
+    flex       : 1 0 auto;
     white-space: normal;
     line-height: normal;
+
   }
   ///---------------------------------------------------------------------------
   ///.table-row__label
   @include element ('label') {
-    order: 0;
-    //flex: 1 0 6em;
+    order     : 0;
     align-self: center;
-    //padding: $inuit-base-spacing-unit--tiny;
-
-
     @include modifier ('right') {
-      text-align: left;
-      order: 4;
-      margin-left: $inuit-base-spacing-unit;
+      text-align : left;
+      order      : 4;
+      margin-right: $inuit-base-spacing-unit;
     }
     @include modifier ('left') {
-
-      margin-right: $inuit-base-spacing-unit;
+      margin-left: $inuit-base-spacing-unit;
     }
   }
   ///---------------------------------------------------------------------------
@@ -219,19 +224,20 @@
   ///---------------------------------------------------------------------------
   ///.table-row__reorder-btn
   @include element ('reorder-btn') {
-    float: right;
+    float   : right;
     position: absolute;
-    right: 5%;
-    top: 25%;
+    right   : 5%;
+    top     : 25%;
   }
   ///---------------------------------------------------------------------------
   ///.table-row__media
   @include element ('media') {
-    flex: 0 1 auto;
-    order: 1;
-    display: flex;
-    align-self: center;
+    flex           : 0 1 auto;
+    order          : 1;
+    display        : flex;
+    align-self     : center;
     justify-content: space-around;
+    ///---------------------------------------------------------------------------
     ///.table-row__media--left
     @include modifier ('left') {
       order: 0;
@@ -239,22 +245,21 @@
     ///---------------------------------------------------------------------------
     ///.table-row__media--right
     @include modifier ('right') {
+      margin-right: $inuit-base-spacing-unit;
       order: 9;
     }
     ///---------------------------------------------------------------------------
     ///.table-row__media--toggle
-    @include modifier ('toggle') {
-    }
+    @include modifier ('toggle') {}
 
     ///---------------------------------------------------------------------------
     ///.table-row__media--image
     @include modifier ('image') {
-
       padding: $table-row-image-padding;
-
+      margin-right: $inuit-base-spacing-unit;
       img {
-        display: block;
-        max-width: 80px;
+        display   : block;
+        max-width : 80px;
         max-height: 80px;
       }
     }
@@ -262,11 +267,11 @@
     ///---------------------------------------------------------------------------
     ///.table-row__media--icon
     @include modifier ('icon') {
-      margin-right: $inuit-base-spacing-unit;
-      align-self: center;
-      padding: $inuit-base-spacing-unit--tiny;
+
+      align-self  : center;
+      padding     : $inuit-base-spacing-unit--tiny;
       //margin-left: $inuit-base-spacing-unit--small;
-      text-align: center;
+      text-align  : center;
     }
   }
 
@@ -278,32 +283,32 @@
   }
 
   &.checkbox {
-    width: 100%;
-    height: 100%;
-    padding: 0;
-    margin: 0;
+    width      : 100%;
+    height     : 100%;
+    padding    : 0;
+    margin     : 0;
     line-height: 44px;
   }
 
   ///---------------------------------------------------------------------------
   /// Inputs
   ///---------------------------------------------------------------------------
-  @include c('input') {
+  @include c ('input') {
     width: 100%;
   }
 
   .text-input {
-    margin: 0;
+    margin    : 0;
     min-height: 44px;
-    font-size: 1.3rem;
+    font-size : 1.3rem;
     //  background: transparent;
     //  border    : none;
     box-shadow: none;
   }
 
   .btn {
-    outline: none;
+    outline   : none;
     min-height: 44px;
-    width: 100%;
+    width     : 100%;
   }
 }

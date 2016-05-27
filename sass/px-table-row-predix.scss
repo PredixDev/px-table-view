@@ -3,34 +3,21 @@
 @import 'px-table-row-sketch.scss';
 
 
-:host.selected {
-  @include noselect();
-  background-color: var(--px-table-row-selected-background-color, $table-row-active-background-color);
-  color: var(--px-table-row-selected-color, $table-row-active-font-color);
 
-  .table-row__body,
-  .table-row__label,
-  .table-row__subtitle,
-  .table-row__title {
-    color: var(--px-table-row-selected-color, $table-row-active-font-color);
-  }
 
-  .table-row:before {
-    color: var(--px-table-row-selected-color, $table-row-active-font-color);
-  }
-
-}
 
 /// @group px-table-row
 /// @access public
 @include b ('table-row') {
-
+  @include noselect();
 
   @import 'elements/_table-row__checkbox.scss';
   @import 'elements/_table-row__actions.scss';
 
   min-height: var(--px-table-row-min-height, $table-row-min-height);
+  line-height: $table-row-line-height;
   line-height: var(--px-table-row-line-height, $table-row-line-height);
+
   color: var(--px-table-row-color);
   font-size: var(--px-table-row-font-size, $table-row-font-size);
   background-color: var(--px-table-row-background-color, $table-row-background-color);
@@ -60,8 +47,8 @@
 
   ///.table-row--selected
   &--selected {
-    @include noselect();
-    background-color: var(--px-table-row-selected-background-color, $table-row-active-background-color);
+
+    background-color: var(--px-table-row-selected-background-color, $table-row-selected-background-color);
     color: var(--px-table-row-selected-color, $table-row-active-font-color);
 
     .table-row__body,
@@ -116,6 +103,24 @@
     line-height: var(--px-table-row-header-line-height, 24px);
     border-top: none;
     border-bottom: none;
+  }
+}
+
+/* This has no effect on the component.*/
+:host.selected {
+
+  background-color: var(--px-table-row-selected-background-color, $table-row-selected-background-color);
+  color: var(--px-table-row-selected-color, $table-row-active-font-color);
+
+  .table-row__body,
+  .table-row__label,
+  .table-row__subtitle,
+  .table-row__title {
+    color: var(--px-table-row-selected-color, $table-row-active-font-color);
+  }
+
+  .table-row:before {
+    color: var(--px-table-row-selected-color, $table-row-active-font-color);
   }
 
 }
