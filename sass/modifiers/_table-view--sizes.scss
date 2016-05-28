@@ -3,7 +3,11 @@
 
 
 @include c('.table-row') {
-  padding: $inuit-base-spacing-unit;
+
+  //padding: $inuit-base-spacing-unit;
+
+  padding-left: $inuit-base-spacing-unit;
+  padding-right: $inuit-base-spacing-unit;
 }
 ///.table-view--tiny
 @include modifier ('tiny') {

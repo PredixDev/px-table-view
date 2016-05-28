@@ -1,0 +1,28 @@
+0 info it worked if it ends with ok
+1 verbose cli [ '/usr/local/bin/node',
+1 verbose cli   '/Users/212400520/npm-global/bin/npm',
+1 verbose cli   'repo' ]
+2 info using npm@3.3.3
+3 info using node@v5.5.0
+4 silly fetchPackageMetaData .
+5 silly fetchDirectoryPackageData .
+6 verbose stack Error: no repository
+6 verbose stack     at getUrlAndOpen (/Users/212400520/npm-global/lib/node_modules/npm/lib/repo.js:27:21)
+6 verbose stack     at /Users/212400520/npm-global/lib/node_modules/npm/lib/repo.js:21:5
+6 verbose stack     at /Users/212400520/npm-global/lib/node_modules/npm/lib/fetch-package-metadata.js:36:12
+6 verbose stack     at addRequestedAndFinish (/Users/212400520/npm-global/lib/node_modules/npm/lib/fetch-package-metadata.js:72:5)
+6 verbose stack     at /Users/212400520/npm-global/lib/node_modules/npm/node_modules/read-package-json/read-json.js:345:5
+6 verbose stack     at checkBinReferences_ (/Users/212400520/npm-global/lib/node_modules/npm/node_modules/read-package-json/read-json.js:309:45)
+6 verbose stack     at final (/Users/212400520/npm-global/lib/node_modules/npm/node_modules/read-package-json/read-json.js:343:3)
+6 verbose stack     at then (/Users/212400520/npm-global/lib/node_modules/npm/node_modules/read-package-json/read-json.js:113:5)
+6 verbose stack     at /Users/212400520/npm-global/lib/node_modules/npm/node_modules/read-package-json/read-json.js:232:12
+6 verbose stack     at /Users/212400520/npm-global/lib/node_modules/npm/node_modules/graceful-fs/graceful-fs.js:76:16
+7 verbose cwd /Users/212400520/2016GithubEnterprise/2016Github/PredixDev-components/px-table-view
+8 error Darwin 15.4.0
+9 error argv "/usr/local/bin/node" "/Users/212400520/npm-global/bin/npm" "repo"
+10 error node v5.5.0
+11 error npm  v3.3.3
+12 error no repository
+13 error If you need help, you may report this error at:
+13 error     <https://github.com/npm/npm/issues>
+14 verbose exit [ 1, true ]

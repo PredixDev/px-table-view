@@ -15,6 +15,7 @@
 /// Make a table row item clickable.
 /// @access public
 @mixin tableRowClickable($bg:$table-row-active-background-color, $font:$table-row-active-font-color) {
+  cursor: pointer;
   &:active {
     color     : $font;
     transition: none;
@@ -58,7 +59,7 @@
   margin-left: -$gutter;
   margin-top : -$gutter;
 
-  > * {
+  > *, ::content > * {
     flex       : 1 0 $min-width;
     margin-left: $gutter;
     margin-top : $gutter;
