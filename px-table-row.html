@@ -24,24 +24,32 @@ To style this component you can do the following:
 
 ### Styling
 
+
 Custom property | Description | Default
 ------------ | ------------- | ------------
+`--px-table-row-font-size`       | The font size of the table row  | 16px
+`--px-table-row-color`       | The font color of the table row  | $black
+`--px-table-row-background-color`       | The background color of the table row  | $white
+`--px-table-row-selected-color`       | The font color of the selected table row  | $white
+`--px-table-row-selected-background-color`       | The background color of the selected table row  | #0a9ec1
+`--px-table-row-border-color`       | The border color  | $gray5
+`--px-table-row-border-width`       | The border width  | 1px
+`--px-table-row-border-style`       | The border style  | solid
+`--px-table-row-title-font-size`       | The font size of the table row title. | 17px
+`--px-table-row-title-color`       | The font color of the table row title. | $black
+`--px-table-row-body-font-size`       | The font size of the table row body. | 16px
+`--px-table-row-body-color`       | The font color of the table row body. | $black
+`--px-table-row-subtitle-font-size`       | The font size of the table row subtitle. | 15px
+`--px-table-row-subtitle-color`       | The font color of the table row subtitle. | $gray5
+`--px-table-row-label-font-size`       | The font size of the table row label. | 16px
+`--px-table-row-label-color`       | The font color of the table row label. | $black
 `--px-table-row-line-height`       | The line height of the table row  | 44px
 `--px-table-row-min-height`       | The min height of the table row  | 44px
-`--px-table-row-font-size`       | The font size of the table row  | 16px
-`--px-table-row-font-color`       | The font color of the table row  | black
-`--px-table-row-background-color`       | The background color of the table row  | #fff
-`--px-table-row-title-font-size`       | The font size of the table row title. | 17px
-`--px-table-row-title-font-color`       | The font color of the table row title. | #000
-`--px-table-row-subtitle-font-size`       | The font size of the table row subtitle. | 15px
-`--px-table-row-subtitle-font-color`       | The font color of the table row subtitle. | #444
-
-
-
+`--px-table-row-header-line-height` | The line height for the table-row header | 44px
 
 
 @element px-table-row.html
-@demo mobile-demo.html
+@demo demo/index.html
 @homepage index.html
 -->
 <dom-module id="px-table-row">
@@ -66,7 +74,8 @@ Custom property | Description | Default
 
   </style>
   <template>
-    <div id="row" class="table-row">
+    <div id="row" class="table-row" data-indicator$="{{indicator}}">
+      <content select="[content]"></content>
       <template is="dom-if" if="{{editMode}}">
         <button class="btn btn--bare table-row__delete-btn" on-click="_handleRemoveItem">
           <i class="fa fa-minus-circle fa-lg color-red"></i>
@@ -119,8 +128,10 @@ Custom property | Description | Default
       </div>
       <content id="swiper" select="px-swipe"></content>
     </div>
-    <content id="swiper" select="px-swipe"></content>
-    <content id="underlayContent" select="[underlay]"></content>
+
+    <div id="underlay">
+      <content id="underlayContent" select="[underlay]"></content>
+    </div>
   </template>
   <script>
     Polymer({

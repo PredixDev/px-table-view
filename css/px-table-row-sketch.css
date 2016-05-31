@@ -123,12 +123,12 @@
       position: absolute;
       right: 0.6666666667rem;
       top: 50%;
-      color: #b1b1bc;
+      color: var(--px-table-row-indicator-color, #b1b1bc);
       line-height: 1.8666666667rem;
       height: 1.8666666667rem;
       font-size: 1.8666666667rem;
       font-family: FontAwesome;
-      content: ""; }
+      content: var(--px-table-row-indicator, ""); }
     .table-row--chevron:active {
       background-color: #0a9ec1;
       transition: none; }
@@ -157,12 +157,12 @@
       position: absolute;
       right: 0.6666666667rem;
       top: 50%;
-      color: #0a9ec1;
+      color: var(--px-table-row-indicator-color, #0a9ec1);
       line-height: 1.8666666667rem;
       height: 1.8666666667rem;
       font-size: 1.8666666667rem;
       font-family: FontAwesome;
-      content: ""; }
+      content: var(--px-table-row-indicator, ""); }
     .table-row--detail:active {
       background-color: #0a9ec1;
       transition: none; }
@@ -178,12 +178,12 @@
       position: absolute;
       right: 0.6666666667rem;
       top: 50%;
-      color: #b1b1bc;
+      color: var(--px-table-row-indicator-color, #b1b1bc);
       line-height: 1.8666666667rem;
       height: 1.8666666667rem;
       font-size: 1.8666666667rem;
       font-family: FontAwesome;
-      content: ""; }
+      content: var(--px-table-row-indicator, ""); }
     .table-row--nav-right:active {
       background-color: #0a9ec1;
       transition: none; }
@@ -206,12 +206,12 @@
       position: absolute;
       right: 0.6666666667rem;
       top: 50%;
-      color: #b1b1bc;
+      color: var(--px-table-row-indicator-color, #b1b1bc);
       line-height: 1.8666666667rem;
       height: 1.8666666667rem;
       font-size: 1.8666666667rem;
       font-family: FontAwesome;
-      content: ""; }
+      content: var(--px-table-row-indicator, ""); }
     .table-row--collapsable:active {
       background-color: #0a9ec1;
       transition: none; }

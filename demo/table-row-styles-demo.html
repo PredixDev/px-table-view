@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>px-table-row styles demo</title>
+    <script src="../../webcomponentsjs/webcomponents-lite.js"></script>
+    <link rel='stylesheet' href='/px.css'>
+    <link rel="import" href="../px-table-view.html">
+    <link rel="import" href="../../iron-demo-helpers/demo-snippet.html"/>
+    <style media="screen">
+      body,
+      html {
+        background: #eee;
+      }
+      li,
+      ul {
+        padding: 0;
+        margin: 0;
+      }
+    </style>
+  </head>
+  <body unresolved>
+    <div class="viewport">
+      <h2 class="beta">Custom styles demo</h2>
+      <demo-snippet class="u-mb">
+        <template>
+          <template id="table-view-1" is="dom-bind">
+            <style is="custom-style">
+              :root {
+                --px-table-row-color: #b0fffe;
+                --px-table-row-label-color: #b0fffe;
+                --px-table-row-indicator-color: #b0fffe;
+                --px-table-row-border-color: #1b8555;
+                --px-table-row-background-color: #4dba67;
+                --px-table-row-body-font-size: .9rem;
+                --px-table-row-body-color: white;
+              }
+            </style>
+            <px-table-view modifier="large" class="my-custom-table">
+              <template is="dom-repeat" items="[[items]]">
+                <px-table-row title="Text Label"
+                icon-left="polymer-font-awesome:fa-pencil"
+                body="Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua." label1="Yesterday" modifier="nav-right"></px-table-row>
+              </template>
+            </px-table-view>
+          </template>
+          <script type="text/javascript">
+            document.addEventListener('WebComponentsReady', function () {
+              var app = document.getElementById('table-view-1');
+              app.items = [1, 2, 3, 4, 5];
+            });
+          </script>
+        </template>
+      </demo-snippet>
+    </div>
+    <script src="http://localhost:35724/livereload.js?snipver=1"></script>
+  </body>
+</html>

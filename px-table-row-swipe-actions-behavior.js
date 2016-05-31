@@ -42,6 +42,13 @@ var pxTableRowActionsSwipeBehavior = {
       value: false
     },
     /**
+     * If true, the number of pixels the swipeable content is peeking is equal to the width of the underlay.
+     */
+    peekUnderlay: {
+      type: Boolean,
+      value: false
+    },
+    /**
      * The numberb of pixels the swipeale content is peeking at from the screen edge
      * after being swiped to the screen edge.
      */
@@ -149,7 +156,7 @@ var pxTableRowActionsSwipeBehavior = {
     this.containerSize = this.container[dirProp(direction, 'offsetWidth', 'offsetHeight')];
     this.actionsSize = this.actions[dirProp(direction, 'offsetWidth', 'offsetHeight')];
     this.hammer = new Hammer.Manager(this.container);
-    this.hammer.add(new Hammer.Pan({direction: this.direction, threshold: 10}));
+    this.hammer.add(new Hammer.Pan({direction: this.direction}));
     this.hammer.on("panstart panmove panend pancancel", Hammer.bindFn(this._onPan, this));
   },
 	/**
@@ -334,7 +341,7 @@ var pxTableRowActionsSwipeBehavior = {
     if (_content && this._toUpdateHeight) {
       this.async(function () {
         console.log(this._content.offsetHeight);
-        this.style.height = _content.offsetHeight + 'px';
+        //this.style.height = _content.offsetHeight + 'px';
       }, 1);
     }
   },

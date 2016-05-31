@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>px-table-row icons demo</title>
+    <script src="../../webcomponentsjs/webcomponents-lite.js"></script>
+    <link rel='stylesheet' href='/px.css'>
+    <link rel="import" href="../px-table-view.html">
+    <link rel="import" href="../../iron-demo-helpers/demo-snippet.html"/>
+    <style media="screen">
+      body,
+      html {
+        background: #eee;
+      }
+      li,
+      ul {
+        padding: 0;
+        margin: 0;
+      }
+    </style>
+  </head>
+  <body unresolved>
+    <div class="viewport">
+      <h2 class="beta">Icons demo</h2>
+
+      <demo-snippet class="u-mb">
+        <template id="">
+          <h2>polymer-font-awesome</h2>
+          <px-table-view modifer="large">
+            <px-table-row title="Icon Left" icon-left="polymer-font-awesome:fa-bars"></px-table-row>
+            <px-table-row title="Icon Right" icon-right="polymer-font-awesome:fa-eye"></px-table-row>
+          </px-table-view>
+        </template>
+      </demo-snippet>
+
+      <demo-snippet class="u-mb">
+        <template id="">
+          <h2>font-awesome</h2>
+          <px-table-view modifer="large">
+            <px-table-row title="Icon Left" icon="fa fa-2x fa-square"></px-table-row>
+          </px-table-view>
+        </template>
+      </demo-snippet>
+
+
+      </div>
+      <script src="http://localhost:35724/livereload.js?snipver=1"></script>
+    </body>
+  </html>

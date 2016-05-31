@@ -114,12 +114,12 @@
     position   : absolute;
     right      : calculateRem(10px);
     top        : 50%;
-    color      : $iconColor;
+    color      : var(--px-table-row-indicator-color, $iconColor);
     line-height: calculateRem(28px);
     height     : calculateRem(28px);
     font-size  : calculateRem(28px);
     font-family: FontAwesome;
-    content    : '#{$icon}';
+    content    : var(--px-table-row-indicator, '#{$icon}');
   }
   &:active {
     background-color: $table-row-active-background-color;

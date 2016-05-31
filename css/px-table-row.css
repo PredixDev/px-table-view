@@ -123,12 +123,12 @@
       position: absolute;
       right: 0.6666666667rem;
       top: 50%;
-      color: #b1b1bc;
+      color: var(--px-table-row-indicator-color, #b1b1bc);
       line-height: 1.8666666667rem;
       height: 1.8666666667rem;
       font-size: 1.8666666667rem;
       font-family: FontAwesome;
-      content: ""; }
+      content: var(--px-table-row-indicator, ""); }
     .table-row--chevron:active {
       background-color: #0a9ec1;
       transition: none; }
@@ -157,12 +157,12 @@
       position: absolute;
       right: 0.6666666667rem;
       top: 50%;
-      color: #0a9ec1;
+      color: var(--px-table-row-indicator-color, #0a9ec1);
       line-height: 1.8666666667rem;
       height: 1.8666666667rem;
       font-size: 1.8666666667rem;
       font-family: FontAwesome;
-      content: ""; }
+      content: var(--px-table-row-indicator, ""); }
     .table-row--detail:active {
       background-color: #0a9ec1;
       transition: none; }
@@ -178,12 +178,12 @@
       position: absolute;
       right: 0.6666666667rem;
       top: 50%;
-      color: #b1b1bc;
+      color: var(--px-table-row-indicator-color, #b1b1bc);
       line-height: 1.8666666667rem;
       height: 1.8666666667rem;
       font-size: 1.8666666667rem;
       font-family: FontAwesome;
-      content: ""; }
+      content: var(--px-table-row-indicator, ""); }
     .table-row--nav-right:active {
       background-color: #0a9ec1;
       transition: none; }
@@ -206,12 +206,12 @@
       position: absolute;
       right: 0.6666666667rem;
       top: 50%;
-      color: #b1b1bc;
+      color: var(--px-table-row-indicator-color, #b1b1bc);
       line-height: 1.8666666667rem;
       height: 1.8666666667rem;
       font-size: 1.8666666667rem;
       font-family: FontAwesome;
-      content: ""; }
+      content: var(--px-table-row-indicator, ""); }
     .table-row--collapsable:active {
       background-color: #0a9ec1;
       transition: none; }
@@ -548,18 +548,22 @@
           .table-row__checkbox--no-border input[type="checkbox"]:disabled + div:after {
             opacity: 0.5; }
   .table-row--actionable {
-    z-index: 11;
-    background-color: white; }
+    background-color: white;
+    overflow: hidden;
+    -webkit-transform-style: preserve-3d;
+            transform-style: preserve-3d;
+    transition: -webkit-transform cubic-bezier(0.55, 0, 0.1, 1) 0.3s;
+    transition: transform cubic-bezier(0.55, 0, 0.1, 1) 0.3s;
+    z-index: 10; }
     .table-row--actionable .table-row__content {
-      position: relative;
-      z-index: 10; }
+      position: relative; }
   .table-row__actions {
     overflow: hidden;
     -webkit-transform-style: preserve-3d;
             transform-style: preserve-3d;
     position: absolute;
     top: 0;
-    height: 100%;
+    bottom: 0;
     display: -webkit-flex;
     display: -ms-flexbox;
     display: flex;

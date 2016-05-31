@@ -29,9 +29,9 @@
       <demo-snippet class="u-mb">
         <template>
           <template id="table-view-actions-1" is="dom-bind">
-            <px-table-view modifier="large">
+            <px-table-view modifier="large inset">
               <template is="dom-repeat" items="[[items]]">
-                <px-table-row title="Text Label" label1="Yesterday" modifier="nav-right" actionable swipe-right>
+                <px-table-row title="Text Label" label1="Yesterday" modifier="nav-right" actionable swipe-right peek-underlay>
                   <px-table-row-actions position="left" underlay class="flex flex--stretch">
                     <px-table-row-action-button label="More" type="more"></px-table-row-action-button>
                     <px-table-row-action-button label="Flag" type="flag"></px-table-row-action-button>
@@ -53,7 +53,7 @@
       <demo-snippet class="u-mb">
         <template>
           <template id="table-view-actions-2" is="dom-bind">
-            <px-table-view modifier="large">
+            <px-table-view modifier="large inset">
               <template is="dom-repeat" items="[[items]]">
                 <px-table-row title="Text Label" label1="Yesterday" modifier="nav-right" actionable swipe-left>
                   <px-table-row-actions position="right" underlay>
