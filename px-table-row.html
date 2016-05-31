@@ -51,14 +51,19 @@ Custom property | Description | Default
       display: block;
       position: relative;
       overflow: hidden;
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
+
+      @apply(--px-table-row);
     }
     :host.selected {
       background-color: var(--px-table-row-selected-background-color, #0a9ec1);
       color: var(--px-table-row-selected-color, #fff);
     }
-    :host .transition {
-      transition: transform cubic-bezier(.55,0,.1,1) 0.3s;
-    }
+
+
   </style>
   <template>
     <div id="row" class="table-row">
@@ -115,7 +120,7 @@ Custom property | Description | Default
       <content id="swiper" select="px-swipe"></content>
     </div>
     <content id="swiper" select="px-swipe"></content>
-    <content id="actions" select="px-table-row-actions"></content>
+    <content id="underlayContent" select="[underlay]"></content>
   </template>
   <script>
     Polymer({

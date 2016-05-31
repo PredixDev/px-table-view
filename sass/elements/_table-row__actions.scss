@@ -3,7 +3,18 @@
 @import "../variables";
 @import "../mixins";
 ///
+///---------------------------------------------------------------------------
+///.table-row--actionable
+@include modifier ('actionable') {
+  z-index: 11;
+  background-color: $white;
+  // transition: transform cubic-bezier(.55,0,.1,1) 0.3s;
 
+  .table-row__content {
+    position  : relative;
+    z-index   : 10;
+  }
+}
 ///---------------------------------------------------------------------------
 ///.table-row__actions
 @include element ('actions') {
@@ -15,8 +26,8 @@
   display        : flex;
   flex-direction : row;
   justify-content: space-between;
-  transition     : $table-row-actions-transition;
-  will-change    : transform;
+ // transition     : $table-row-actions-transition;
+ //will-change    : transform;
   //  z-index        : -1;
   width          : auto;
   align-self     : stretch;
@@ -30,6 +41,7 @@
   @include modifier ('left') {
     order    : 0;
     //transform: translateX(-125%);
+    left: 0;
 
     ///---------------------------------------------------------------------------
     //Visible actions
@@ -43,6 +55,7 @@
   //right actions
   @include modifier ('right') {
     order: 10;
+    right: 0;
     //  width: 0;
     //  transform: translateX(100%);
 
@@ -57,16 +70,17 @@
 @include element ('button') {
   @include noselect();
   cursor         : pointer;
+  flex: 1;
   margin         : 0;
   border-radius  : 0;
-  min-width      : 60px;
+  min-width      : 80px;
   outline        : 0;
   user-select    : none;
   margin         : $table-row-button-margin;
   padding        : $table-row-button-padding;
   color          : $table-row-button-font-color;
   font-size      : $table-row-button-font-size;
-  transition     : $table-row-button-transition;
+ // transition     : $table-row-button-transition;
   display        : flex;
   align-items    : center;
   flex-direction : column;

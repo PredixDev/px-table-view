@@ -89,21 +89,9 @@
   ///.table-row--nav-right
   @include modifier ('nav-right') {
     @include tableRowIcon($table-row-nav-right-icon);
-    &:active {
-      @include tableRowClickable($table-row-active-background-color, $table-row-active-font-color);
-    }
-  }
-  ///---------------------------------------------------------------------------
-  ///.table-row--actionable
-  @include modifier ('actionable') {
-    padding-right: 0;
 
-    .table-row__content {
-      transition: var(--px-table-row-actionable-transition, all 0.3s);
-      position  : relative;
-      z-index   : 10;
-    }
   }
+
   ///---------------------------------------------------------------------------
   ///.table-row--collapsable
   @include modifier ('collapsable') {
@@ -146,6 +134,7 @@
   ///---------------------------------------------------------------------------
   ///.table-row__content
   @include element ('content') {
+    @include noselect();
     display       : flex;
     flex-direction: column;
     align-self    : stretch;
@@ -176,6 +165,7 @@
   ///---------------------------------------------------------------------------
   ///.table-row__title
   @include element ('title') {
+    @include noselect();
     order      : 3;
     line-height: normal;
     flex       : 1 0 auto;

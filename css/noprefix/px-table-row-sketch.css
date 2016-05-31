@@ -180,20 +180,6 @@
       transition: none; }
       .table-row--nav-right:active:before {
         color: white; }
-    .table-row--nav-right:active {
-      cursor: pointer; }
-      .table-row--nav-right:active:active {
-        color: white;
-        transition: none;
-        background: #0a9ec1; }
-      .table-row--nav-right:active:hover {
-        transition: none; }
-  .table-row--actionable {
-    padding-right: 0; }
-    .table-row--actionable .table-row__content {
-      transition: var(--px-table-row-actionable-transition, all 0.3s);
-      position: relative;
-      z-index: 10; }
   .table-row--collapsable {
     cursor: pointer;
     overflow: hidden; }
@@ -233,6 +219,19 @@
   .table-row--bottom {
     align-items: flex-end; }
   .table-row__content {
+    -webkit-touch-callout: none;
+    /* iOS Safari */
+    -webkit-user-select: none;
+    /* Chrome/Safari/Opera */
+    -khtml-user-select: none;
+    /* Konqueror */
+    -moz-user-select: none;
+    /* Firefox */
+    -ms-user-select: none;
+    /* Internet Explorer/Edge */
+    user-select: none;
+    /* Non-prefixed version, currently
+                                 not supported by any browser */
     display: flex;
     flex-direction: column;
     align-self: stretch;
@@ -247,6 +246,19 @@
     .table-row__content--flush {
       line-height: normal; }
   .table-row__title {
+    -webkit-touch-callout: none;
+    /* iOS Safari */
+    -webkit-user-select: none;
+    /* Chrome/Safari/Opera */
+    -khtml-user-select: none;
+    /* Konqueror */
+    -moz-user-select: none;
+    /* Firefox */
+    -ms-user-select: none;
+    /* Internet Explorer/Edge */
+    user-select: none;
+    /* Non-prefixed version, currently
+                                 not supported by any browser */
     order: 3;
     line-height: normal;
     flex: 1 0 auto;

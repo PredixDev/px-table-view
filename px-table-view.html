@@ -83,6 +83,25 @@ To use this component with iron list you can do the following:
       display: block;
       position: relative;
     }
+
+
+    :host ::content .dragging{
+      background-color: purple;
+    }
+
+
+    :host ::content .transition {
+      background-color: green;
+      transition: -webkit-transform cubic-bezier(.55,0,.1,1) 0.3s;
+      transition: -moz-transform cubic-bezier(.55,0,.1,1) 0.3s;
+      transition: -mx-transform cubic-bezier(.55,0,.1,1) 0.3s;
+      transition: -o-transform cubic-bezier(.55,0,.1,1) 0.3s;
+    }
+
+    :host .table-view > ::content {
+      will-change: transform;
+    }
+
   </style>
   <template strip-whitespace>
     <template id="ironList" is="dom-if" if="{{tableData}}">

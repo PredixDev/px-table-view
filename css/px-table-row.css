@@ -189,20 +189,6 @@
       transition: none; }
       .table-row--nav-right:active:before {
         color: white; }
-    .table-row--nav-right:active {
-      cursor: pointer; }
-      .table-row--nav-right:active:active {
-        color: white;
-        transition: none;
-        background: #0a9ec1; }
-      .table-row--nav-right:active:hover {
-        transition: none; }
-  .table-row--actionable {
-    padding-right: 0; }
-    .table-row--actionable .table-row__content {
-      transition: var(--px-table-row-actionable-transition, all 0.3s);
-      position: relative;
-      z-index: 10; }
   .table-row--collapsable {
     cursor: pointer;
     overflow: hidden; }
@@ -249,6 +235,19 @@
         -ms-flex-align: end;
             align-items: flex-end; }
   .table-row__content {
+    -webkit-touch-callout: none;
+    /* iOS Safari */
+    -webkit-user-select: none;
+    /* Chrome/Safari/Opera */
+    -khtml-user-select: none;
+    /* Konqueror */
+    -moz-user-select: none;
+    /* Firefox */
+    -ms-user-select: none;
+    /* Internet Explorer/Edge */
+    user-select: none;
+    /* Non-prefixed version, currently
+                                 not supported by any browser */
     display: -webkit-flex;
     display: -ms-flexbox;
     display: flex;
@@ -280,6 +279,19 @@
     .table-row__content--flush {
       line-height: normal; }
   .table-row__title {
+    -webkit-touch-callout: none;
+    /* iOS Safari */
+    -webkit-user-select: none;
+    /* Chrome/Safari/Opera */
+    -khtml-user-select: none;
+    /* Konqueror */
+    -moz-user-select: none;
+    /* Firefox */
+    -ms-user-select: none;
+    /* Internet Explorer/Edge */
+    user-select: none;
+    /* Non-prefixed version, currently
+                                 not supported by any browser */
     -webkit-order: 3;
         -ms-flex-order: 3;
             order: 3;
@@ -416,7 +428,7 @@
   line-height: var(--px-table-row-line-height, 2.9333333333rem);
   color: var(--px-table-row-color);
   font-size: var(--px-table-row-font-size, 1.1333333333rem);
-  background-color: var(--px-table-row-background-color, transparent);
+  background-color: var(--px-table-row-background-color, none);
   border-bottom-style: var(--px-table-row-border-style, solid);
   border-bottom-width: var(--px-table-row-border-width, 1px);
   border-bottom-color: var(--px-table-row-border-color, #b1b1bc); }
@@ -535,6 +547,12 @@
           pointer-events: none; }
           .table-row__checkbox--no-border input[type="checkbox"]:disabled + div:after {
             opacity: 0.5; }
+  .table-row--actionable {
+    z-index: 11;
+    background-color: white; }
+    .table-row--actionable .table-row__content {
+      position: relative;
+      z-index: 10; }
   .table-row__actions {
     overflow: hidden;
     -webkit-transform-style: preserve-3d;
@@ -551,8 +569,6 @@
     -webkit-justify-content: space-between;
         -ms-flex-pack: justify;
             justify-content: space-between;
-    transition: all 0.4s;
-    will-change: transform;
     width: auto;
     -webkit-align-self: stretch;
         -ms-flex-item-align: stretch;
@@ -565,7 +581,8 @@
     .table-row__actions--left {
       -webkit-order: 0;
           -ms-flex-order: 0;
-              order: 0; }
+              order: 0;
+      left: 0; }
       .table-row__actions--left.is-visible {
         width: auto;
         -webkit-transform: translateX(0%);
@@ -573,7 +590,8 @@
     .table-row__actions--right {
       -webkit-order: 10;
           -ms-flex-order: 10;
-              order: 10; }
+              order: 10;
+      right: 0; }
       .table-row__actions--right.is-visible {
         width: auto;
         -webkit-transform: translateX(-100%);
@@ -593,9 +611,12 @@
     /* Non-prefixed version, currently
                                  not supported by any browser */
     cursor: pointer;
+    -webkit-flex: 1;
+        -ms-flex: 1;
+            flex: 1;
     margin: 0;
     border-radius: 0;
-    min-width: 60px;
+    min-width: 80px;
     outline: 0;
     -webkit-user-select: none;
        -moz-user-select: none;
@@ -605,7 +626,6 @@
     padding: 0.6666666667rem;
     color: white;
     font-size: 1.0666666667rem;
-    transition: all 0.4s;
     display: -webkit-flex;
     display: -ms-flexbox;
     display: flex;
