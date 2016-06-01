@@ -12,19 +12,13 @@
         _this._init();
       });
     },
-    ready: function () {
-
-    },
-    detached: function () {
-      //  console.log(this.tagName, 'attached');
-    },
     _init: function () {
       var _this = this;
 
       if (_this.size) {
         _this.toggleClass('table-row--' + _this.size, true, _this.$$('.table-row'));
       }
-      if (_this.actionable) {
+      if (_this.swipeable) {
         _this.toggleClass('table-row--actionable', true, _this.$$('.table-row'));
       }
       if (_this.iconPos) {
