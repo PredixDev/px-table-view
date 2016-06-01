@@ -1,15 +1,37 @@
 @import 'variables';
 @import 'mixins';
 
-  $inuit-enable-toggle--small: true;
-  $inuit-enable-toggle--huge: true;
-  $inuit-enable-toggle--large: true;
 
-  @import 'px-toggle-design/_objects.toggle.scss';
+///Objects
+$inuit-enable-toggle--small: true;
+$inuit-enable-toggle--huge: true;
+$inuit-enable-toggle--large: true;
+
+@import 'px-toggle-design/_objects.toggle.scss';
+
+$inuit-enable-inline-fields: true;
+$inuit-enable-input--tiny: true;
+$inuit-enable-input--small: true;
+$inuit-enable-input--regular: true;
+$inuit-enable-input--large: true;
+$inuit-enable-input--huge: true;
+$inuit-enable-input--bare: true;
+
+
+
 /// Table Row
 /// @group px-table-row
 /// @access public
 @include block ('table-row') {
+
+  @include c(null){
+    @import 'px-forms-design/_base.forms.scss';
+  }
+
+
+///Component
+
+
   @include clearfix();
   @include noselect();
   box-sizing    : border-box;

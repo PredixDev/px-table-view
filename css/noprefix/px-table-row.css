@@ -435,6 +435,241 @@ a {
   flex-direction: row;
   appearance: normal;
   flex: 1; }
+  .table-row ::content,
+  .table-row {
+    /**
+   * Styles for one line forms.
+   */ }
+    .table-row ::content fieldset,
+    .table-row fieldset {
+      margin: 0; }
+      .table-row ::content fieldset, .table-row ::content fieldset legend,
+      .table-row fieldset,
+      .table-row fieldset legend {
+        border: 0;
+        padding: 0; }
+    .table-row ::content legend,
+    .table-row legend {
+      margin-bottom: 1.3333333333rem;
+      font-weight: bold; }
+    .table-row ::content .form-field,
+    .table-row .form-field {
+      margin-bottom: 1.3333333333rem; }
+      .table-row ::content .form-field:last-child,
+      .table-row .form-field:last-child {
+        margin-bottom: 2.6666666667rem; }
+    .table-row ::content label,
+    .table-row label {
+      display: block;
+      margin-bottom: 0.3333333333rem;
+      cursor: pointer; }
+    .table-row ::content .label--inline,
+    .table-row .label--inline {
+      display: inline-block;
+      margin-bottom: 0;
+      line-height: 1; }
+      .table-row ::content .label--inline + .text-input,
+      .table-row .label--inline + .text-input {
+        margin-left: 0.6666666667rem; }
+    .table-row ::content .text-input,
+    .table-row ::content textarea, .table-row ::content select,
+    .table-row .text-input,
+    .table-row textarea,
+    .table-row select {
+      margin: 0;
+      border: 1px solid #b1b1bc;
+      font: inherit;
+      outline: 0;
+      -webkit-appearance: none;
+      -moz-appearance: none; }
+      .table-row ::content .text-input:disabled,
+      .table-row ::content textarea:disabled, .table-row ::content select:disabled,
+      .table-row .text-input:disabled,
+      .table-row textarea:disabled,
+      .table-row select:disabled {
+        cursor: not-allowed; }
+    .table-row ::content .text-input,
+    .table-row ::content textarea,
+    .table-row .text-input,
+    .table-row textarea {
+      width: 100%;
+      padding: 0 0.6666666667rem;
+      box-shadow: inset 0 0 0 1px #e4e4ea;
+      background-color: #efeff4;
+      color: black; }
+      .table-row ::content .text-input[readonly], .table-row ::content .text-input[disabled],
+      .table-row ::content textarea[readonly],
+      .table-row ::content textarea[disabled],
+      .table-row .text-input[readonly],
+      .table-row .text-input[disabled],
+      .table-row textarea[readonly],
+      .table-row textarea[disabled] {
+        box-shadow: none; }
+      .table-row ::content .text-input[readonly],
+      .table-row ::content textarea[readonly],
+      .table-row .text-input[readonly],
+      .table-row textarea[readonly] {
+        border: 1px solid #e4e4ea;
+        background-color: white;
+        color: #b1b1bc; }
+      .table-row ::content .text-input:disabled,
+      .table-row ::content textarea:disabled,
+      .table-row .text-input:disabled,
+      .table-row textarea:disabled {
+        border: 1px solid #e4e4ea;
+        box-shadow: none;
+        background-color: #f7f7fc;
+        color: #b1b1bc; }
+      .table-row ::content .text-input:focus,
+      .table-row ::content textarea:focus,
+      .table-row .text-input:focus,
+      .table-row textarea:focus {
+        border-color: #0a9ec1;
+        box-shadow: inset 0 0 0 1px #d1d0d8; }
+      .table-row ::content .text-input::-webkit-input-placeholder,
+      .table-row ::content textarea::-webkit-input-placeholder,
+      .table-row .text-input::-webkit-input-placeholder,
+      .table-row textarea::-webkit-input-placeholder {
+        color: #b1b1bc; }
+      .table-row ::content .text-input:-moz-placeholder,
+      .table-row ::content textarea:-moz-placeholder,
+      .table-row .text-input:-moz-placeholder,
+      .table-row textarea:-moz-placeholder {
+        color: #b1b1bc; }
+    .table-row ::content select,
+    .table-row select {
+      border-radius: 3px;
+      padding: 0 3em 0 1em;
+      box-shadow: 0 1px 0 rgba(0, 0, 0, 0.1);
+      line-height: calc(2em - 2px);
+      cursor: pointer;
+      background-color: #e4e4ea;
+      background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2212%22%20viewBox%3D%220%200%20658%201024%22%3E%3Cpath%20fill%3D%22%233b3b3f%22%20d%3D%22M614.286%20420.571q0%207.429-5.714%2013.143l-266.286%20266.286q-5.714%205.714-13.143%205.714t-13.143-5.714l-266.286-266.286q-5.714-5.714-5.714-13.143t5.714-13.143l28.571-28.571q5.714-5.714%2013.143-5.714t13.143%205.714l224.571%20224.571%20224.571-224.571q5.714-5.714%2013.143-5.714t13.143%205.714l28.571%2028.571q5.714%205.714%205.714%2013.143z%22%2F%3E%3C%2Fsvg%3E");
+      background-repeat: no-repeat;
+      background-position: calc(100% - 0.6666666667rem) 37.5%;
+      color: #3b3b3f; }
+      .table-row ::content select:hover, .table-row ::content select:focus,
+      .table-row select:hover,
+      .table-row select:focus {
+        border: 1px solid #9999a3;
+        box-shadow: 0 1px 0 rgba(0, 0, 0, 0.1);
+        background-color: #b1b1bc; }
+      .table-row ::content select:active,
+      .table-row select:active {
+        border: 1px solid #7c7c84;
+        box-shadow: 0 1px 0 rgba(0, 0, 0, 0.1);
+        background-color: #9999a3; }
+      .table-row ::content select:disabled,
+      .table-row select:disabled {
+        border: 1px solid #d1d0d8;
+        box-shadow: none;
+        background-color: white;
+        background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2212%22%20viewBox%3D%220%200%20658%201024%22%3E%3Cpath%20fill%3D%22%23d1d0d8%22%20d%3D%22M614.286%20420.571q0%207.429-5.714%2013.143l-266.286%20266.286q-5.714%205.714-13.143%205.714t-13.143-5.714l-266.286-266.286q-5.714-5.714-5.714-13.143t5.714-13.143l28.571-28.571q5.714-5.714%2013.143-5.714t13.143%205.714l224.571%20224.571%20224.571-224.571q5.714-5.714%2013.143-5.714t13.143%205.714l28.571%2028.571q5.714%205.714%205.714%2013.143z%22%2F%3E%3C%2Fsvg%3E");
+        color: #d1d0d8; }
+      .table-row ::content select[multiple],
+      .table-row select[multiple] {
+        border: 1px solid #b1b1bc;
+        padding: 0.3333333333rem;
+        cursor: pointer;
+        background: #f7f7fc; }
+    .table-row ::content select::-ms-expand,
+    .table-row select::-ms-expand {
+      display: none; }
+
+@-moz-document url-prefix() {
+  .table-row ::content select,
+  .table-row select {
+    padding-top: .4em;
+    padding-bottom: .4em; } }
+    @media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
+      .table-row ::content select,
+      .table-row select {
+        padding-top: .4em;
+        padding-bottom: .4em; } }
+    .table-row ::content .text-input,
+    .table-row .text-input {
+      height: 2em;
+      line-height: 1; }
+      .table-row ::content .text-input + [type=checkbox], .table-row ::content .text-input + [type=radio],
+      .table-row .text-input + [type=checkbox],
+      .table-row .text-input + [type=radio] {
+        margin-left: 1.3333333333rem; }
+      .table-row ::content .text-input + .label--inline,
+      .table-row .text-input + .label--inline {
+        margin-left: 0.6666666667rem; }
+      .table-row ::content .text-input[type=search],
+      .table-row .text-input[type=search] {
+        -webkit-appearance: none;
+        padding: 0; }
+      .table-row ::content .text-input::-webkit-input-placeholder,
+      .table-row .text-input::-webkit-input-placeholder {
+        padding-top: 1px; }
+      .table-row ::content .text-input:-moz-placeholder,
+      .table-row .text-input:-moz-placeholder {
+        padding-top: 1px; }
+    .table-row ::content .text-input + [type=submit], .table-row ::content .text-input [type=cancel],
+    .table-row ::content .label--inline + [type=submit],
+    .table-row ::content .label--inline [type=cancel],
+    .table-row .text-input + [type=submit],
+    .table-row .text-input [type=cancel],
+    .table-row .label--inline + [type=submit],
+    .table-row .label--inline [type=cancel] {
+      margin-left: 1.3333333333rem; }
+    .table-row ::content textarea,
+    .table-row textarea {
+      overflow: auto;
+      min-height: calc(120px + 0.6666666667rem);
+      padding: 0.3333333333rem 0.6666666667rem;
+      resize: vertical; }
+    .table-row ::content [type=checkbox], .table-row ::content [type=radio],
+    .table-row [type=checkbox],
+    .table-row [type=radio] {
+      margin: 0;
+      padding: 0;
+      font-size: 1.05em;
+      cursor: pointer; }
+      .table-row ::content [type=checkbox][disabled], .table-row ::content [type=radio][disabled],
+      .table-row [type=checkbox][disabled],
+      .table-row [type=radio][disabled] {
+        cursor: not-allowed; }
+        .table-row ::content [type=checkbox][disabled] + .label--inline, .table-row ::content [type=radio][disabled] + .label--inline,
+        .table-row [type=checkbox][disabled] + .label--inline,
+        .table-row [type=radio][disabled] + .label--inline {
+          cursor: not-allowed; }
+    .table-row ::content [type=checkbox] + .label--inline,
+    .table-row [type=checkbox] + .label--inline {
+      padding-left: 5px; }
+    .table-row ::content [type=radio] + .label--inline,
+    .table-row [type=radio] + .label--inline {
+      padding-left: 3px; }
+    .table-row ::content .form-field__help,
+    .table-row .form-field__help {
+      display: inline-block;
+      margin-top: 0.3333333333rem;
+      font-size: 1rem;
+      line-height: inherit;
+      color: #7c7c84; }
+    .table-row ::content .input--tiny,
+    .table-row .input--tiny {
+      max-width: 7.0666666667rem; }
+    .table-row ::content .input--small,
+    .table-row .input--small {
+      max-width: 14.1333333333rem; }
+    .table-row ::content .input--regular,
+    .table-row .input--regular {
+      max-width: 21.2rem; }
+    .table-row ::content .input--large,
+    .table-row .input--large {
+      max-width: 28.2666666667rem; }
+    .table-row ::content .input--huge,
+    .table-row .input--huge {
+      max-width: 35.3333333333rem; }
+    .table-row ::content .form-field--inline:last-child,
+    .table-row .form-field--inline:last-child {
+      margin-bottom: 1.3333333333rem; }
+    .table-row ::content .form-field--inline .text-input,
+    .table-row .form-field--inline .text-input {
+      margin-bottom: 1.3333333333rem; }
   .table-row:after, .table-row:before {
     display: table;
     content: ' '; }

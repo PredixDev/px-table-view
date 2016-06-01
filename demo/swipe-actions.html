@@ -5,15 +5,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <title>swipe actions</title>
     <script src="../../webcomponentsjs/webcomponents-lite.js"></script>
- 
-    <link rel="import" href="../px-table-view.html">
-    <link rel="import" href="../px-table-row-swipe-behavior.html">
-    <link rel="import" href="../../iron-demo-helpers/demo-snippet.html"/>
 
+    <link rel="import" href="../px-table-view.html">
+    <link rel="import" href="../../px-theme/px-app.html">
+    <link rel="import" href="../../px-theme/px-theme.html">
+    <link rel="import" href="../../px-card/px-card.html">
+    <link rel="import" href="../../iron-demo-helpers/demo-snippet.html"/>
     <style media="screen">
       body,
       html {
-        background: #eee;
+        background: #eee !important;
       }
       li,
       ul {
@@ -22,13 +23,23 @@
       }
     </style>
   </head>
-  <body unresolved>
+  <body unresolved class="viewport--full-height">
     <div class="viewport">
-      <h2>Swipe Action Right Actions</h2>
+      <h2 class="beta">Swipeable Actions</h2>
+      <p>
+        The following examples demonstrate using actions with the
+        <code>px-table-row</code>
+        element.
+      </p>
+      <p>
+        For the mobile version visit <a href="swipe-actions-mobile.html" target="_blank">here.</a>
+      </p>
+
+      <h3>Swipe Action Right Actions</h3>
       <demo-snippet class="u-mb">
         <template>
           <template id="table-view-actions-1" is="dom-bind">
-            <px-table-view modifier="large inset">
+            <px-table-view modifier="large">
               <template is="dom-repeat" items="[[items]]">
                 <px-table-row title="Text Label" label1="Yesterday" modifier="nav-right" actionable swipe-right fit-actions>
                   <px-table-row-actions position="left" underlay class="flex flex--stretch">
@@ -48,11 +59,11 @@
           </script>
         </template>
       </demo-snippet>
-      <h2>Swipe Action Left Actions</h2>
+      <h3>Swipe Action Left Actions</h3>
       <demo-snippet class="u-mb">
         <template>
           <template id="table-view-actions-2" is="dom-bind">
-            <px-table-view modifier="large inset">
+            <px-table-view modifier="large">
               <template is="dom-repeat" items="[[items]]">
                 <px-table-row title="Text Label" label1="Yesterday" modifier="nav-right" actionable swipe-left fit-actions>
                   <px-table-row-actions position="right" underlay>

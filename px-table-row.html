@@ -1,11 +1,14 @@
 <link rel="import" href="../polymer/polymer.html"/>
 <link rel="import" href="../polymer-font-awesome/polymer-font-awesome.html"/>
+
 <link rel="import" href="px-checkbox.html">
 <link rel="import" href="px-table-row-behavior.html"/>
-<link rel="import" href="px-table-row-switch.html"/>
-<link rel="import" href="px-table-row-checkbox.html"/>
 
+<link rel="import" href="px-table-row-checkbox.html"/>
+<link rel="import" href="px-table-row-actions.html"/>
+<link rel="import" href="px-table-row-action-button.html"/>
 <link rel="import" href="px-table-row-swipe-actions-behavior.html"/>
+<link rel="import" href="px-table-row-switch.html"/>
 <!--
 <p>
   For a list of all demos visit  <a href="./demo" target="_blank">here</a>.
@@ -78,7 +81,7 @@ Custom property | Description | Default
   </style>
   <template>
     <div id="row" class="table-row" data-indicator$="{{indicator}}">
-      <content select="[content]"></content>
+      <content select="[content], input, button"></content>
       <template is="dom-if" if="{{editMode}}">
         <button class="btn btn--bare table-row__delete-btn" on-click="_handleRemoveItem">
           <i class="fa fa-minus-circle fa-lg color-red"></i>
@@ -140,8 +143,8 @@ Custom property | Description | Default
     Polymer({
       is: 'px-table-row',
       behaviors: [
-        pxTableRowActionsSwipeBehavior,
-        pxTableRowBehavior
+        pxTableRowBehavior,
+        pxTableRowActionsSwipeBehavior
       ],
       properties: {
         /**

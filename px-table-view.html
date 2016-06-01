@@ -2,15 +2,14 @@
 
 <link rel="import" href="../polymer/polymer.html"/>
 <link rel="import" href="../iron-list/iron-list.html">
+
+<link rel="import" href="../iron-selector/iron-selector.html">
 <link rel="import" href="../iron-selector/iron-multi-selectable.html">
 
 <link rel="import" href="px-table-view-behavior.html"/>
 <link rel="import" href="px-table-view-drilldown-behavior.html" />
 
-
 <link rel="import" href="px-table-row.html"/>
-
-
 
 <script type="text/javascript">
   if ('addEventListener' in document) {
@@ -87,11 +86,9 @@ To use this component with iron list you can do the following:
       position: relative;
     }
 
-
     :host ::content .dragging{
       background-color: purple;
     }
-
 
     :host ::content .transition {
       background-color: var(--px-table-row-background-color, #fff);
@@ -120,7 +117,7 @@ To use this component with iron list you can do the following:
     -->
     </template>
     <div class="table-view">
-      <content id="content" select="px-table-row"></content>
+      <content id="content" select="px-table-row, [content]"></content>
     </div>
   </template>
   <script>
