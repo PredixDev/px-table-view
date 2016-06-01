@@ -285,7 +285,7 @@
       order: 4;
       padding-right: 1rem; }
   .table-row__icon {
-    margin-right: 1rem; }
+    margin-right: var(--px-table-row-icon-margin-right, 1rem); }
   .table-row__reorder-btn {
     float: right;
     position: absolute;
@@ -301,7 +301,7 @@
     .table-row__media--left {
       order: 0; }
     .table-row__media--right {
-      margin-right: 1rem;
+      margin-right: var(--px-table-row-media-margin-right, 1rem);
       order: 9; }
     .table-row__media--image img {
       display: block;

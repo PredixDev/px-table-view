@@ -346,7 +346,7 @@
               order: 4;
       padding-right: 1rem; }
   .table-row__icon {
-    margin-right: 1rem; }
+    margin-right: var(--px-table-row-icon-margin-right, 1rem); }
   .table-row__reorder-btn {
     float: right;
     position: absolute;
@@ -374,7 +374,7 @@
           -ms-flex-order: 0;
               order: 0; }
     .table-row__media--right {
-      margin-right: 1rem;
+      margin-right: var(--px-table-row-media-margin-right, 1rem);
       -webkit-order: 9;
           -ms-flex-order: 9;
               order: 9; }

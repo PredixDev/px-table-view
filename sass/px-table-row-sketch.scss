@@ -210,7 +210,7 @@
   ///---------------------------------------------------------------------------
   ///.table-row__icon
   @include element ('icon') {
-    margin-right: $inuit-base-spacing-unit;
+    margin-right: var(--px-table-row-icon-margin-right, $inuit-base-spacing-unit);
   }
   ///---------------------------------------------------------------------------
   ///.table-row__reorder-btn
@@ -237,7 +237,8 @@
     ///---------------------------------------------------------------------------
     ///.table-row__media--right
     @include modifier ('right') {
-      margin-right: $inuit-base-spacing-unit;
+      //margin-right: $inuit-base-spacing-unit;
+      margin-right: var(--px-table-row-media-margin-right, $inuit-base-spacing-unit);
       order: 9;
     }
     ///---------------------------------------------------------------------------
