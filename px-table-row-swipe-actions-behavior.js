@@ -43,7 +43,7 @@ var pxTableRowActionsSwipeBehavior = {
     /**
      * If true, the number of pixels the swipeable content is peeking is equal to the width of the underlay.
      */
-    fitActions: {
+    fitUnderlay: {
       type: Boolean,
       value: false
     },
@@ -140,7 +140,7 @@ var pxTableRowActionsSwipeBehavior = {
   },
 
   attached: function () {
-    if (this.actionable) {
+    if (this.swipeable) {
       // on child element attached, inherit the height of the content.
       var _content = Polymer.dom(this);
       this.async(function () {
@@ -158,10 +158,14 @@ var pxTableRowActionsSwipeBehavior = {
     this.direction = direction;
 
     this.underlay = container.queryEffectiveChildren('[underlay]');
-    this.actions = container.queryEffectiveChildren('px-table-row-actions').$.actions;
     this.underlaySize = this.underlay.getBoundingClientRect().width;
+
+
+    //this.actions = container.queryEffectiveChildren('px-table-row-actions').$.actions;
+    //this.actionsSize = this.actions[dirProp(direction, 'offsetWidth', 'offsetHeight')];
+
     this.containerSize = this.container[dirProp(direction, 'offsetWidth', 'offsetHeight')];
-    this.actionsSize = this.actions[dirProp(direction, 'offsetWidth', 'offsetHeight')];
+
     this.hammer = new Hammer.Manager(this.container);
     this.hammer.add(new Hammer.Pan({
       direction: this.direction
@@ -320,8 +324,8 @@ var pxTableRowActionsSwipeBehavior = {
     if (this._swipeAllowed() && this._tracking) {
       var slideTo = (this.containerSize - this.peekOffset);
 
-      if (this.fitActions) {
-        slideTo = (this.actionsSize);
+      if (this.fitUnderlay) {
+        slideTo = (this.underlaySize);
       }
 
       var offsetLR = (this.swipeRight ? slideTo : -slideTo);

@@ -77,6 +77,12 @@ Custom property | Description | Default
       color: var(--px-table-row-selected-color, #fff);
     }
 
+    :host #underlay{
+      position: absolute;
+      top: 0;
+      left: 0;
+      bottom: 0;
+    }
 
   </style>
   <template>
@@ -135,7 +141,7 @@ Custom property | Description | Default
       <content id="swiper" select="px-swipe"></content>
     </div>
 
-    <div id="underlay">
+    <div id="underlay" class="flex flex--stretch">
       <content id="underlayContent" select="[underlay]"></content>
     </div>
   </template>
@@ -242,9 +248,9 @@ Custom property | Description | Default
           type: Boolean
         },
         /**
-        * If actionable is true then this item responds to swipeleft/swiperight events.
+        * If swipeable is true then this item responds to swipeleft/swiperight events.
         */
-        actionable: {
+        swipeable: {
           type: Boolean
         }
       }
