@@ -1,6 +1,11 @@
 @import 'variables';
 @import 'mixins';
 
+  $inuit-enable-toggle--small: true;
+  $inuit-enable-toggle--huge: true;
+  $inuit-enable-toggle--large: true;
+
+  @import 'px-toggle-design/_objects.toggle.scss';
 /// Table Row
 /// @group px-table-row
 /// @access public
@@ -85,11 +90,11 @@
     @include tableRowIcon($table-row-detail-icon, $table-row-detail-icon-color);
   }
 
+
   ///---------------------------------------------------------------------------
   ///.table-row--nav-right
   @include modifier ('nav-right') {
     @include tableRowIcon($table-row-nav-right-icon);
-
   }
 
   ///---------------------------------------------------------------------------
@@ -238,7 +243,7 @@
     ///.table-row__media--right
     @include modifier ('right') {
       //margin-right: $inuit-base-spacing-unit;
-      margin-right: var(--px-table-row-media-margin-right, $inuit-base-spacing-unit);
+      margin-right: var(--px-table-row-media-margin-right, 0);
       order: 9;
     }
     ///---------------------------------------------------------------------------
@@ -302,4 +307,7 @@
     min-height: 44px;
     width     : 100%;
   }
+
+
+
 }

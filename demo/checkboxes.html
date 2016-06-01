@@ -1,86 +1,71 @@
 <!DOCTYPE html>
 <html>
+  <head>
+    <meta charset="utf-8">
 
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>px-table-row-checkbox</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <script src="../../webcomponentsjs/webcomponents-lite.js"></script>
+    <link rel="import" href="../px-table-view.html">
+    <link rel="import" href="../../px-theme/px-app.html">
+    <link rel="import" href="../../px-theme/px-theme.html">
+    <link rel="import" href="../../px-card/px-card.html">
+    <link rel="import" href="../../iron-demo-helpers/demo-snippet.html"/>
+    <style media="screen">
+      body,
+      html {
+        background: #eee !important;
+      }
+      li,
+      ul {
+        padding: 0;
+        margin: 0;
+      }
+    </style>
+  </head>
+  <body unresolved class="viewport--full-height">
+    <div class="viewport">
+      <h2 class="beta">Checkboxes</h2>
+      <p>
+        The following examples demonstrate using checkboxes with the
+        <code>px-table-row</code>
+        element.
+      </p>
 
-  <title>px-table-row-checkbox</title>
-  <link rel="stylesheet" href="//predixdev.github.io/px-library-design/css/style.css">
-  <script src="//cdnjs.cloudflare.com/ajax/libs/webcomponentsjs/0.7.21/webcomponents.min.js"></script>
+      <h3>Bordered Checkboxes</h3>
+      <demo-snippet>
+        <template id="">
+          <px-table-view>
+            <px-table-row>
+              <px-table-row-checkbox name="cb1-1" label="Border Checkbox"></px-table-row-checkbox>
+            </px-table-row>
+            <px-table-row>
+              <px-table-row-checkbox name="cb1-2" label="Border Checked (Disabled)" checked disabled></px-table-row-checkbox>
+            </px-table-row>
+            <px-table-row>
+              <px-table-row-checkbox name="cb1-3" label="Border (Disabled)" disabled></px-table-row-checkbox>
+            </px-table-row>
+          </px-table-view>
+        </template>
+      </demo-snippet>
 
-  <link rel="import" href="../px-table-view.html">
-  <link rel="import" href="../../px-card/px-card.html">
+      <h3>Borderless Checkboxes</h3>
+      <demo-snippet>
+        <template id="">
+          <px-table-view>
+            <px-table-row>
+              <px-table-row-checkbox name="cb2-1" label="No Border" type="no-border"></px-table-row-checkbox>
+            </px-table-row>
+            <px-table-row>
+              <px-table-row-checkbox name="cb2-2" label="No Border Checked (Disabled)" type="no-border" checked disabled></px-table-row-checkbox>
+            </px-table-row>
+            <px-table-row>
+              <px-table-row-checkbox name="cb2-3" label="No Border (Disabled)" type="no-border" disabled></px-table-row-checkbox>
+            </px-table-row>
+          </px-table-view>
+        </template>
+      </demo-snippet>
 
-
-  <style>
-    /* Disable certain interactions on touch devices */
-
-    body {
-      -webkit-touch-callout: none;
-      -webkit-text-size-adjust: none;
-      -webkit-user-select: none;
-      -webkit-highlight: none;
-      -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
-    }
-
-    px-card {
-      border: 1px solid #b1b1bc;
-      margin: .2rem;
-      padding: .5rem;
-      flex: 1 1 300px;
-    }
-
-    px-card ul {
-      padding: 0px !important;
-      margin: 0px !important;
-    }
-
-  </style>
-</head>
-
-<body>
-<div class="viewport">
-  <ul class="table-view table-view--small table-view-- u-mb+">
-    <li class="table-row">
-      <label class="table-row__checkbox">
-        <input type="checkbox" name="cb1" value="test1">
-        <div class="table-row__checkbox__checkmark"></div>
-        Checkbox
-      </label>
-    </li>
-    <li class="table-row">
-      <label class="table-row__checkbox">
-        <input type="checkbox" name="cb12" value="test1" checked disabled>
-        <div class="table-row__checkbox__checkmark"></div>
-        Checkbox - Checked - Disabled
-      </label>
-    </li>
-    <li class="table-row">
-      <label class="table-row__checkbox">
-        <input type="checkbox" name="cb13" value="test1" disabled>
-        <div class="table-row__checkbox__checkmark"></div>
-        Checkbox - Disabled
-      </label>
-    </li>
-    <li class="table-row table-row--tappable">
-      <px-table-row-checkbox name="cb0" label="No Border Checked" type="no-border" checked></px-table-row-checkbox>
-    </li>
-    <li class="table-row table-row--tappable">
-      <px-table-row-checkbox name="cb01" label="No Border Checked (Disabled)" type="no-border" checked disabled></px-table-row-checkbox>
-    </li>
-    <li class="table-row table-row--tappable">
-      <px-table-row-checkbox name="cb02" label="Bordered Checkbox"></px-table-row-checkbox>
-    </li>
-    <li class="table-row tabl">
-      <px-table-row-checkbox name="cb03" label="Border Checked (Disabled)" checked disabled></px-table-row-checkbox>
-    </li>
-    <li class="table-row">
-      <px-table-row-checkbox name="cb04" label="Border (Disabled)" disabled></px-table-row-checkbox>
-    </li>
-  </ul>
-</div>
-
-</body>
-
+    </div>
+  </body>
 </html>

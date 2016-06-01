@@ -535,123 +535,103 @@
         Table rows can have the following actions.
       </p>
       <h2>Default with Swipe - Left Actions</h2>
-      <demo-snippet>
+
+
+      <demo-snippet class="u-mb">
         <template>
-          <div>
-            <button class="btn btn--full btn-toggle-actions u-mb+">Toggle Actions</button>
-            <section class="table-view table-view--small">
-
-              <px-table-row title="Action Item" actionable>
-                <px-table-row-actions position="left">
-                  <px-table-row-action-button label="More" type="more"></px-table-row-action-button>
-                  <px-table-row-action-button label="Flag" type="flag"></px-table-row-action-button>
-                  <px-table-row-action-button label="Delete" type="delete"></px-table-row-action-button>
-                </px-table-row-actions>
-              </px-table-row>
-              <px-table-row title="Action Item" actionable>
-                <px-table-row-actions position="left">
-                  <px-table-row-action-button label="More" type="more"></px-table-row-action-button>
-                  <px-table-row-action-button label="Flag" type="flag"></px-table-row-action-button>
-                  <px-table-row-action-button label="Delete" type="delete"></px-table-row-action-button>
-                </px-table-row-actions>
-              </px-table-row>
-            </section>
-          </div>
-        </template>
-      </demo-snippet>
-
-      <h2>Default with Swipe - Left Actions with Icons</h2>
-      <demo-snippet>
-        <template>
-          <div>
-            <button class="btn btn--full btn-toggle-actions u-mb+">Toggle Actions</button>
-            <div class="table-view table-view--small">
-
-              <px-table-row title="Action Item" actionable>
-                <px-table-row-actions position="left">
-                  <px-table-row-action-button icon="fa fa-ellipsis-h" type="more"></px-table-row-action-button>
-                  <px-table-row-action-button icon="fa fa-flag" type="flag"></px-table-row-action-button>
-                  <px-table-row-action-button icon="fa fa-trash" type="delete"></px-table-row-action-button>
-                </px-table-row-actions>
-              </px-table-row>
-              <px-table-row title="Action Item" actionable>
-                <px-table-row-actions position="left">
-                  <px-table-row-action-button icon="fa fa-ellipsis-h" type="more"></px-table-row-action-button>
-                  <px-table-row-action-button icon="fa fa-flag" type="flag"></px-table-row-action-button>
-                  <px-table-row-action-button icon="fa fa-trash" type="delete"></px-table-row-action-button>
-                </px-table-row-actions>
-              </px-table-row>
-            </div>
-          </div>
-        </template>
-      </demo-snippet>
-
-      <h2>Default with Swipe - Right Actions</h2>
-      <demo-snippet>
-        <template>
-          <div>
-            <button class="btn btn--full btn-toggle-actions u-mb+">Toggle Actions</button>
-            <section class="table-view table-view--small">
-
-              <px-table-row title="Action Item" actionable>
-
-                <px-table-row title="Action Item" actionable>
-                  <px-table-row-actions position="right">
+          <template id="table-view-actions-1" is="dom-bind">
+            <px-table-view modifier="large inset">
+              <template is="dom-repeat" items="[[items]]">
+                <px-table-row title="Text Label" label1="Yesterday" modifier="nav-right" actionable swipe-left fit-actions>
+                  <px-table-row-actions position="right" underlay>
                     <px-table-row-action-button label="More" type="more"></px-table-row-action-button>
                     <px-table-row-action-button label="Flag" type="flag"></px-table-row-action-button>
                     <px-table-row-action-button label="Delete" type="delete"></px-table-row-action-button>
                   </px-table-row-actions>
                 </px-table-row>
+              </template>
+            </px-table-view>
+          </template>
+          <script type="text/javascript">
+            document.addEventListener('WebComponentsReady', function () {
+              var app = document.getElementById('table-view-actions-1');
+              app.items = [1, 2, 3, 4, 5];
+            });
+          </script>
+        </template>
+      </demo-snippet>
 
-                <px-table-row title="Correct Action Item" actionable>
-                  <px-table-row-actions position="right">
-                    <button class="table-row__button btn--full table-row__button--more">
-                      More
-                    </button>
-                    <button class="table-row__button btn--full table-row__button--flag">
-                      Flag
-                    </button>
-                    <button class="table-row__button btn--full table-row__button--delete">
-                      Delete
-                    </button>
+
+      <h2>Default with Swipe - Left Actions with Icons</h2>
+      <demo-snippet class="u-mb">
+        <template>
+          <template id="table-view-actions-2" is="dom-bind">
+            <px-table-view modifier="large inset">
+              <template is="dom-repeat" items="[[items]]">
+                <px-table-row title="Text Label" label1="Yesterday" modifier="nav-right" actionable swipe-left fit-actions>
+                  <px-table-row-actions position="right" underlay >
+                    <px-table-row-action-button icon="fa fa-flag fa-2x" type="flag"></px-table-row-action-button>
+                    <px-table-row-action-button icon="fa fa-trash fa-2x" type="delete"></px-table-row-action-button>
                   </px-table-row-actions>
                 </px-table-row>
+              </template>
+            </px-table-view>
+          </template>
+          <script type="text/javascript">
+            document.addEventListener('WebComponentsReady', function () {
+              var app = document.getElementById('table-view-actions-2');
+              app.items = [1, 2, 3, 4, 5];
+            });
+          </script>
+        </template>
+      </demo-snippet>
 
-                <px-table-row title="Action Item" actionable>
-                  <px-table-row-actions position="right">
-                    <button class="table-row__button btn--full table-row__button--more">
-                      More
-                    </button>
-                    <button class="table-row__button btn--full table-row__button--flag">
-                      Flag
-                    </button>
-                    <button class="table-row__button btn--full table-row__button--delete">
-                      Delete
-                    </button>
+      <h2>Default with Swipe - Right Actions</h2>
+      <demo-snippet class="u-mb">
+        <template>
+          <template id="table-view-actions-3" is="dom-bind">
+            <px-table-view modifier="large inset">
+              <template is="dom-repeat" items="[[items]]">
+                <px-table-row title="Text Label" label1="Yesterday" modifier="nav-right" actionable swipe-right fit-actions>
+                  <px-table-row-actions position="left" underlay>
+                    <px-table-row-action-button label="More" type="more"></px-table-row-action-button>
+                    <px-table-row-action-button label="Flag" type="flag"></px-table-row-action-button>
+                    <px-table-row-action-button label="Delete" type="delete"></px-table-row-action-button>
                   </px-table-row-actions>
                 </px-table-row>
-            </section>
-          </div>
+              </template>
+            </px-table-view>
+          </template>
+          <script type="text/javascript">
+            document.addEventListener('WebComponentsReady', function () {
+              var app = document.getElementById('table-view-actions-3');
+              app.items = [1, 2, 3, 4, 5];
+            });
+          </script>
         </template>
       </demo-snippet>
 
       <h2>Default with Swipe - Right Actions with Icons</h2>
-      <demo-snippet>
+      <demo-snippet class="u-mb">
         <template>
-          <div>
-            <button class="btn btn--full btn-toggle-actions u-mb+">Toggle Actions</button>
-            <section class="table-view table-view--small">
-
-              <px-table-row title="Action Item" actionable>
-                <px-table-row-actions position="right">
-                  <px-table-row-action-button icon="fa fa-ellipsis-h" type="more"></px-table-row-action-button>
-                  <px-table-row-action-button icon="fa fa-flag" type="flag"></px-table-row-action-button>
-                  <px-table-row-action-button icon="fa fa-trash" type="delete"></px-table-row-action-button>
-                </px-table-row-actions>
-              </px-table-row>
-
-            </section>
-          </div>
+          <template id="table-view-actions-4" is="dom-bind">
+            <px-table-view modifier="large inset">
+              <template is="dom-repeat" items="[[items]]">
+                <px-table-row title="Text Label" label1="Yesterday" modifier="nav-right" actionable swipe-right fit-actions>
+                  <px-table-row-actions position="left" underlay>
+                    <px-table-row-action-button icon="fa fa-flag" type="flag"></px-table-row-action-button>
+                    <px-table-row-action-button icon="fa fa-trash" type="delete"></px-table-row-action-button>
+                  </px-table-row-actions>
+                </px-table-row>
+              </template>
+            </px-table-view>
+          </template>
+          <script type="text/javascript">
+            document.addEventListener('WebComponentsReady', function () {
+              var app = document.getElementById('table-view-actions-4');
+              app.items = [1, 2, 3, 4, 5];
+            });
+          </script>
         </template>
       </demo-snippet>
     </section>

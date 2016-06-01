@@ -122,10 +122,10 @@
     content    : var(--px-table-row-indicator, '#{$icon}');
   }
   &:active {
-    background-color: $table-row-active-background-color;
+    //background-color: $table-row-active-background-color;
     transition      : none;
     &:before {
-      color: $table-row-active-font-color;
+      //color: $table-row-active-font-color;
     }
   }
   @content;

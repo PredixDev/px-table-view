@@ -8,6 +8,7 @@
   @include noselect();
   @import 'elements/_table-row__checkbox.scss';
   @import 'elements/_table-row__actions.scss';
+  @import 'elements/_table-row__switch.scss';
 
   min-height         : var(--px-table-row-min-height, $table-row-min-height);
   line-height        : $table-row-line-height;

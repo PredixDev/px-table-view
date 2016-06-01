@@ -1,14 +1,23 @@
 <link rel="import" href="../polymer/polymer.html" />
 <!--
+
+* <p>
+   For a list of all demos visit  <a href="./demo/swipe-actions-mobile.html" target="_blank">here</a>.
+</p>
+
 To use this component:
 
 ```
-<px-table-row>
-  <px-table-row-action-button type="info">Label</px-table-row-action-button>
+<px-table-row title="Text Label" label1="Yesterday" modifier="nav-right" actionable swipe-right fit-actions>
+  <px-table-row-actions position="left" underlay>
+    <px-table-row-action-button label="More" type="more"></px-table-row-action-button>
+    <px-table-row-action-button label="Flag" type="flag"></px-table-row-action-button>
+    <px-table-row-action-button label="Delete" type="delete"></px-table-row-action-button>
+  </px-table-row-actions>
 </px-table-row>
 ```
 @element px-table-row-action-button.html
-@demo demo/actions.html
+@demo demo/swipe-actions.html
 @homepage index.html
 -->
 <dom-module id="px-table-row-actions">
@@ -19,7 +28,7 @@ To use this component:
         display: block;
       }
     </style>
-    <div id="actions" class="table-row__actions">
+    <div id="actions" class="table-row__actions flex flex--stretch">
       <content id="content" select=".table-row__button, px-table-row-action-button"></content>
     </div>
   </template>
@@ -28,17 +37,28 @@ To use this component:
   Polymer({
     is: "px-table-row-actions",
     properties: {
-      //The position of the actions
+      /**
+      * The position of the actions. (left, right)
+      */
       position: {
-        type: String
+        type: String,
+        value: 'right'
       },
-      //The action button type
-      type: {
-        type: String
-      },
+
+      /**
+      * The current state of the actions
+      */
       opened: {
         type: Boolean
       }
+    },
+    /**
+   * Gets the width of the drawer.
+   *
+   * @return {Number} The width of the drawer in pixels.
+   */
+    getWidth: function () {
+      return this.$.actions.offsetWidth;
     },
     attached: function() {
       var self = this;

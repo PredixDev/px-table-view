@@ -5,12 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <title>swipe actions</title>
     <script src="../../webcomponentsjs/webcomponents-lite.js"></script>
-    <link rel='stylesheet' href='/px.css'>
+ 
     <link rel="import" href="../px-table-view.html">
     <link rel="import" href="../px-table-row-swipe-behavior.html">
     <link rel="import" href="../../iron-demo-helpers/demo-snippet.html"/>
-    <link rel="stylesheet" href="../css/px-table-row.css">
-    <link rel="stylesheet" href="../css/px-table-view.css">
+
     <style media="screen">
       body,
       html {
@@ -31,7 +30,7 @@
           <template id="table-view-actions-1" is="dom-bind">
             <px-table-view modifier="large inset">
               <template is="dom-repeat" items="[[items]]">
-                <px-table-row title="Text Label" label1="Yesterday" modifier="nav-right" actionable swipe-right peek-underlay>
+                <px-table-row title="Text Label" label1="Yesterday" modifier="nav-right" actionable swipe-right fit-actions>
                   <px-table-row-actions position="left" underlay class="flex flex--stretch">
                     <px-table-row-action-button label="More" type="more"></px-table-row-action-button>
                     <px-table-row-action-button label="Flag" type="flag"></px-table-row-action-button>
@@ -55,7 +54,7 @@
           <template id="table-view-actions-2" is="dom-bind">
             <px-table-view modifier="large inset">
               <template is="dom-repeat" items="[[items]]">
-                <px-table-row title="Text Label" label1="Yesterday" modifier="nav-right" actionable swipe-left>
+                <px-table-row title="Text Label" label1="Yesterday" modifier="nav-right" actionable swipe-left fit-actions>
                   <px-table-row-actions position="right" underlay>
                     <px-table-row-action-button label="More" type="more"></px-table-row-action-button>
                     <px-table-row-action-button label="Flag" type="flag"></px-table-row-action-button>
@@ -94,7 +93,7 @@
             <li class="table-row">Table Row</li>
           </ul>
         </template>
-      </demo-snippet> -->
+      </demo-snippet>
       <demo-snippet class="u-mb">
         <template>
           <template id="app" is="dom-bind">
@@ -145,7 +144,7 @@
               });
             </script>
           </template>
-        </demo-snippet>
+        </demo-snippet>-->
       </div>
       <script src="http://localhost:35724/livereload.js?snipver=1"></script>
     </body>

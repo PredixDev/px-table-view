@@ -4,18 +4,17 @@ if (!window.Hammer) {
 }
 var reqAnimationFrame = (function () {
   return window[Hammer.prefixed(window, "requestAnimationFrame")] || function (callback) {
-      setTimeout(callback, 1000 / 60);
-    };
+    setTimeout(callback, 1000 / 60);
+  };
 })();
+
 function dirProp(direction, hProp, vProp) {
-  return (direction & Hammer.DIRECTION_HORIZONTAL)
-    ? hProp
-    : vProp;
+  return (direction & Hammer.DIRECTION_HORIZONTAL) ? hProp : vProp;
 }
 
 /**
  * Behavior that manages the swipe actions
- *
+
  * @polymerBehavior
  */
 var pxTableRowActionsSwipeBehavior = {
@@ -44,7 +43,7 @@ var pxTableRowActionsSwipeBehavior = {
     /**
      * If true, the number of pixels the swipeable content is peeking is equal to the width of the underlay.
      */
-    peekUnderlay: {
+    fitActions: {
       type: Boolean,
       value: false
     },
@@ -63,6 +62,14 @@ var pxTableRowActionsSwipeBehavior = {
       type: Number,
       value: 80
     },
+    /**
+     * Minimal distance required before recognizing swipe.
+     */
+    threshold: {
+      type: Number,
+      value: 5
+    },
+
     /**
      * Whether the user is dragging the content interactively
      */
@@ -129,9 +136,7 @@ var pxTableRowActionsSwipeBehavior = {
   ready: function () {
     // Avoid transition at the beginning e.g. page loads and enable transitions only after the element is rendered and ready.
     this._transition = true;
-    this.setScrollDirection(this._swipeAllowed()
-      ? 'y'
-      : 'all');
+    this.setScrollDirection(this._swipeAllowed() ? 'y' : 'all');
   },
 
   attached: function () {
@@ -139,7 +144,7 @@ var pxTableRowActionsSwipeBehavior = {
       // on child element attached, inherit the height of the content.
       var _content = Polymer.dom(this);
       this.async(function () {
-   //     this.style.height = _content.offsetHeight + 'px';
+        //     this.style.height = _content.offsetHeight + 'px';
         this._initSwipeActions(this, Hammer.DIRECTION_HORIZONTAL);
       }, 500);
 
@@ -147,19 +152,23 @@ var pxTableRowActionsSwipeBehavior = {
       this.set('_content', _content);
     }
   },
-  _initSwipeActions: function(container, direction) {
+  _initSwipeActions: function (container, direction) {
     var instance = container;
     this.container = container;
     this.direction = direction;
-    this._content = this.$.row;
+
+    this.underlay = container.queryEffectiveChildren('[underlay]');
     this.actions = container.queryEffectiveChildren('px-table-row-actions').$.actions;
+    this.underlaySize = this.underlay.getBoundingClientRect().width;
     this.containerSize = this.container[dirProp(direction, 'offsetWidth', 'offsetHeight')];
     this.actionsSize = this.actions[dirProp(direction, 'offsetWidth', 'offsetHeight')];
     this.hammer = new Hammer.Manager(this.container);
-    this.hammer.add(new Hammer.Pan({direction: this.direction}));
+    this.hammer.add(new Hammer.Pan({
+      direction: this.direction
+    }));
     this.hammer.on("panstart panmove panend pancancel", Hammer.bindFn(this._onPan, this));
   },
-	/**
+  /**
    * when disableSwipe is true, only click event can be triggered!
    * @param event
    * @private
@@ -174,7 +183,7 @@ var pxTableRowActionsSwipeBehavior = {
       sharedPanel = null;
     }
   },
-	/**
+  /**
    *
    * @returns {boolean}
    * @private
@@ -182,7 +191,7 @@ var pxTableRowActionsSwipeBehavior = {
   _swipeAllowed: function () {
     return !this.disableSwipe;
   },
-	/**
+  /**
    *
    * @param translateX
    * @returns {*}
@@ -194,7 +203,7 @@ var pxTableRowActionsSwipeBehavior = {
     }
     return 'translate3d(' + translateX + 'px, 0, 0)';
   },
-	/**
+  /**
    * To trigger auto-swipe to the right:-
    * - newValue > oldValue
    * - newValue >= slideOffset
@@ -220,14 +229,10 @@ var pxTableRowActionsSwipeBehavior = {
    */
   _transitionDeltaChanged: function (newValue, oldValue) {
     if (this.swipeRight) {
-      this._validDelta = this._atEdge
-        ? newValue <= -this.slideOffset
-        : newValue >= this.slideOffset;
+      this._validDelta = this._atEdge ? newValue <= -this.slideOffset : newValue >= this.slideOffset;
     }
     if (this.swipeLeft) {
-      this._validDelta = this._atEdge
-        ? newValue >= this.slideOffset
-        : newValue <= -this.slideOffset;
+      this._validDelta = this._atEdge ? newValue >= this.slideOffset : newValue <= -this.slideOffset;
     }
     if (!this.swipeLeft && !this.swipeRight) {
       if (newValue > oldValue) {
@@ -239,23 +244,23 @@ var pxTableRowActionsSwipeBehavior = {
         this._validDelta = newValue <= -this.slideOffset;
       }
     }
-    console.warn('_validDelta', this._validDelta);
+
   },
-	/**
+  /**
    * Handle when Hammer.js Pan event is triggered
    * @param event
    */
   _onPan: function (event) {
     switch (event.type) {
-      case 'panstart':
-        this._onPanStart(event);
-        break;
-      case 'panmove':
-        this._onPanMove(event);
-        break;
-      case 'panend':
-        this._onPanEnd(event);
-        break;
+    case 'panstart':
+      this._onPanStart(event);
+      break;
+    case 'panmove':
+      this._onPanMove(event);
+      break;
+    case 'panend':
+      this._onPanEnd(event);
+      break;
     }
   },
 
@@ -274,8 +279,6 @@ var pxTableRowActionsSwipeBehavior = {
    * @private
    */
   _onPanStart: function (event) {
-    console.log('_onPanStart');
-
     if (this._swipeAllowed()) {
       sharedPanel = this;
       this._dragging = true;
@@ -292,13 +295,11 @@ var pxTableRowActionsSwipeBehavior = {
    */
   _onPanMove: function (event) {
     this._transition = true;
-    console.log('_onPanMove', this._curPos);
     if (this._dragging) {
       var dx = event.deltaX;
       var dragDx;
-
       this._transitionDelta = dx;
-      dragDx = this._atEdge  ? this._curPos + dx : dx;
+      dragDx = this._atEdge ? this._curPos + dx : dx;
       this._tracking = true;
       this._moveDrawer(dragDx);
     }
@@ -314,10 +315,15 @@ var pxTableRowActionsSwipeBehavior = {
    *  else vice versa for swiping to rightmsot edge and/ or either side.
    */
   _onPanEnd: function (event) {
-   // this._dragging = false;
+    // this._dragging = false;
 
     if (this._swipeAllowed() && this._tracking) {
-      var slideTo = (this.width - this.peekOffset );
+      var slideTo = (this.containerSize - this.peekOffset);
+
+      if (this.fitActions) {
+        slideTo = (this.actionsSize);
+      }
+
       var offsetLR = (this.swipeRight ? slideTo : -slideTo);
       var deltaLR;
       if (!this.swipeLeft) {
@@ -329,10 +335,9 @@ var pxTableRowActionsSwipeBehavior = {
       this._validDelta = false;
       this._tracking = false;
       this._moveDrawer(deltaLR);
-      console.log(this._validDelta, 'slideTo', slideTo, 'offsetLR', offsetLR, 'deltaLR', deltaLR);
     }
   },
-	/**
+  /**
    *
    * @private
    */
@@ -340,7 +345,6 @@ var pxTableRowActionsSwipeBehavior = {
     var _content = this._content;
     if (_content && this._toUpdateHeight) {
       this.async(function () {
-        console.log(this._content.offsetHeight);
         //this.style.height = _content.offsetHeight + 'px';
       }, 1);
     }

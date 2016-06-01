@@ -19,7 +19,7 @@
 // Trumps
 //@import "inuit-clearfix/_trumps.clearfix.scss";
 @import "px-spacing-responsive-design/_trumps.spacing-responsive.scss";
-@import "px-widths-responsive-design/_trumps.widths-responsive.scss";
+//@import "px-widths-responsive-design/_trumps.widths-responsive.scss";
 
 
 ///
@@ -121,6 +121,8 @@
   @include modifier ('swipeable') {
     overflow-x: hidden;
   }
+
+
   ///.table-view--bare
   @include modifier ('bare') {
     @include c('.table-row'){
@@ -145,6 +147,10 @@
     border-color    : $table-row-border-color;
     border-color    : var(--px-table-view-border-color, $table-row-border-color);
     border-radius   : 0;
+    .table-row:last-child {
+      border-bottom:none;
+      //border-color : var(--table-view-border-color, $table-row-border-color);
+    }
   }
 
   .switch {

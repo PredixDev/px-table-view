@@ -3,31 +3,33 @@
 To use this component:
 
 ```
-<px-table-row>
-  <px-table-row-action-button type="info">Label</px-table-row-action-button>
-</px-table-row>
+<px-table-row-actions position="left" underlay >
+  <px-table-row-action-button label="More" type="more"></px-table-row-action-button>
+  <px-table-row-action-button label="Flag" type="flag"></px-table-row-action-button>
+  <px-table-row-action-button label="Delete" type="delete"></px-table-row-action-button>
+</px-table-row-actions>
 ```
 @element px-table-row-action-button.html
-@demo demo/actions.html
+@demo demo/swipe-actions.html
 @homepage index.html
 -->
 <dom-module id="px-table-row-action-button">
-
+<link rel="import" type="css" href="css/px-table-row.css">
   <template>
     <style>
       :host {
         display: block;
       }
     </style>
-
-      <template is="dom-if" if="{{icon}}">
-        <i class$="{{icon}}"></i>
-      </template>
-      <template is="dom-if" if="{{label}}">
-        <span>{{label}}</span>
-      </template>
-      <content select="*"></content>
-
+      <div class="table-row__button">
+        <template is="dom-if" if="{{icon}}">
+          <i class$="{{icon}}"></i>
+        </template>
+        <template is="dom-if" if="{{label}}">
+          <span>{{label}}</span>
+        </template>
+        <content select="*"></content>
+      </div>
   </template>
 </dom-module>
 <script>
@@ -50,8 +52,8 @@ To use this component:
     attached: function() {
       var self = this;
       this.async(function() {
-        self.toggleClass('table-row__button');
-        self.toggleClass('table-row__button--' + this.type, true);
+        self.toggleClass('flex', true);
+        self.toggleClass('table-row__button--' + this.type, true, this.$$('.table-row__button'));
       });
     }
   });

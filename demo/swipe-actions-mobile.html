@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>swipe actions</title>
+    <script src="../../webcomponentsjs/webcomponents-lite.js"></script>
+    <link rel='stylesheet' href='/px.css'>
+    <link rel="import" href="../px-table-view.html">
+  
+    <style media="screen">
+      body,
+      html {
+        background: #eee;
+      }
+      li,
+      ul {
+        padding: 0;
+        margin: 0;
+      }
+    </style>
+  </head>
+  <body unresolved class="scrollable">
+    <template id="table-view-actions-2" is="dom-bind">
+      <px-table-view modifier="large inset">
+        <template is="dom-repeat" items="[[items]]">
+          <px-table-row title="Text Label" label1="Yesterday" modifier="nav-right" actionable swipe-left fit-actions>
+            <px-table-row-actions position="right" underlay>
+              <px-table-row-action-button label="More" type="more"></px-table-row-action-button>
+              <px-table-row-action-button label="Flag" type="flag"></px-table-row-action-button>
+              <px-table-row-action-button label="Delete" type="delete"></px-table-row-action-button>
+            </px-table-row-actions>
+          </px-table-row>
+        </template>
+      </px-table-view>
+    </template>
+    <script type="text/javascript">
+      document.addEventListener('WebComponentsReady', function () {
+        var app = document.getElementById('table-view-actions-2');
+        app.items = [];
+        var count = 100;
+        for (var i = 0; i < count; i++) {
+          app.items.push(i);
+        }
+      });
+    </script>
+  </div>
+  <script src="http://localhost:35724/livereload.js?snipver=1"></script>
+</body>
+</html>
