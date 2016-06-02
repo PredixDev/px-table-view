@@ -1,16 +1,12 @@
-<script src="../fastclick/lib/fastclick.js"></script>
-
 <link rel="import" href="../polymer/polymer.html"/>
+<link rel="import" href="../iron-resizable-behavior/iron-resizable-behavior.html">
 <link rel="import" href="../iron-list/iron-list.html">
-
 <link rel="import" href="../iron-selector/iron-selector.html">
 <link rel="import" href="../iron-selector/iron-multi-selectable.html">
-
 <link rel="import" href="px-table-view-behavior.html"/>
-<link rel="import" href="px-table-view-drilldown-behavior.html" />
-
+<link rel="import" href="px-table-view-sortable-behavior.html"/>
+<link rel="import" href="px-table-view-drilldown-behavior.html"/>
 <link rel="import" href="px-table-row.html"/>
- 
 <!--
 <p>
   For demo visit <a href="demo.html" target="_blank">Full demo here</a> or <a href="demo/mvp1-demo.html" target="_blank">Mobile demo here</a>
@@ -68,32 +64,26 @@ To use this component with iron list you can do the following:
 @demo demo.html
 @homepage index.html
 -->
-
 <dom-module id="px-table-view">
   <link rel="import" type="css" href="css/px-table-view.css">
-
   <style media="screen">
     :host {
       display: block;
       position: relative;
     }
-
-    :host ::content .dragging{
-      background-color: purple;
+    :host .table-view {
+      @apply(--px-table-view);
     }
 
-    :host ::content .transition {
-      background-color: var(--px-table-row-background-color, #fff);
-      transition: -webkit-transform cubic-bezier(.55,0,.1,1) 0.3s;
-      transition: -moz-transform cubic-bezier(.55,0,.1,1) 0.3s;
-      transition: -mx-transform cubic-bezier(.55,0,.1,1) 0.3s;
-      transition: -o-transform cubic-bezier(.55,0,.1,1) 0.3s;
+    :host .sortable-chosen,
+    :host ::content .sortable-chosen{
+        box-shadow: 0 2px 10px rgba(0,0,0,0.45);
     }
 
-    :host .table-view > ::content {
-      will-change: transform;
+    :host .iron-selected {
+      background-color: var(--px-table-row-selected-background-color, #0a9ec1);
+      color: var(--px-table-row-selected-color, #fff);
     }
-
   </style>
   <template strip-whitespace>
     <template id="ironList" is="dom-if" if="{{tableData}}">
@@ -117,6 +107,8 @@ To use this component with iron list you can do the following:
       is: 'px-table-view',
       behaviors: [
         //Polymer.IronMultiSelectableBehavior,
+        Polymer.IronResizableBehavior,
+      //  pxTableViewSortableBehavior,
         pxTableViewBehavior,
         pxTableViewDrilldownBehavior
       ],
@@ -125,30 +117,30 @@ To use this component with iron list you can do the following:
         tableData: {
           type: Array
         },
-        //The mode for the table view.
-        mode: {
-          type: String
-        },
-        //The modifiers for the table view.
-        modifier: {
-          type: String
-        },
         /**
-        * The class to set on elements when selected
-        */
-        selectedClass: {
-          type: String
+         * The modifiers to apply to the table-view (small, large, huge, responsive)
+         */
+        modifier: {
+          type: String,
+          notify: true,
+          reflectToAttribute: true,
+          observer: '_handleModifier'
         },
-        //To make the list items responsive
-        responsive: {
-          type: Boolean,
-          value: false
-        },
-        sortable: {
-          type: Boolean,
-          value: false
-        },
-
+        isSortable: {
+          type: Boolean
+        }
+      },
+      _handleModifier: function (newVal, oldVal) {
+        var _this = this, klass, types;
+        klass = 'table-view--' + oldVal;
+        _this.toggleClass(klass, false, _this.$$('.table-view'));
+        if (_this.modifier) {
+          types = _this.modifier.split(' ');
+          for (var i = 0; i < types.length; i++) {
+            klass = 'table-view--' + types[i];
+            _this.toggleClass(klass, true, _this.$$('.table-view'));
+          }
+        }
       }
     });
   </script>

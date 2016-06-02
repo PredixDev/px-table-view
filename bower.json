@@ -27,13 +27,14 @@
     "fastclick": "^1.0.6",
     "hammerjs": "~2.0.8",
     "iron-selector": "PolymerElements/iron-selector#^1.5.1",
-    "polymer-font-awesome": "https://github.com/mdwragg/polymer-font-awesome.git#0.1.4",
-    "px-toggle-design": "~0.2.12",
-    "px-forms-design": "~0.3.16"
+    "Sortable": "~1.4.2",
+    "polymer-font-awesome": "https://github.com/jonniespratley/polymer-font-awesome.git#~0.1.4"
   },
   "devDependencies": {
     "px-mobile-design": "https://github.com/PredixDev/px-mobile-design.git",
     "px-card": "latest",
+    "px-toggle-design": "~0.2.12",
+    "px-forms-design": "~0.3.16",
     "px-spacing-responsive-design": "^0.3.7",
     "iron-component-page": "PolymerElements/iron-component-page#~v1.1.0",
     "iron-ajax": "PolymerElements/iron-ajax#^1.0.0",
@@ -42,6 +43,7 @@
   },
   "resolutions": {
     "px-theme": "~0.7.0",
-    "polymer": "~v1.4.0"
+    "polymer": "^1.4.0",
+    "webcomponentsjs": "^0.7.20"
   }
 }

@@ -1001,7 +1001,7 @@ a {
   line-height: var(--px-table-row-line-height, 2.9333333333rem);
   color: var(--px-table-row-color);
   font-size: var(--px-table-row-font-size, 1.1333333333rem);
-  background-color: var(--px-table-row-background-color, white);
+  background-color: var(--px-table-row-background-color);
   border-bottom-style: var(--px-table-row-border-style, solid);
   border-bottom-width: var(--px-table-row-border-width, 1px);
   border-bottom-color: var(--px-table-row-border-color, #b1b1bc); }

@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>px-table-view / drilldown</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <script src="../../webcomponentsjs/webcomponents-lite.js"></script>
+    <link rel="import" href="../px-table-view.html">
+    <link rel="import" href="../../px-navbar/px-navbar.html"/>
+    <link rel="import" href="../../px-theme/px-app.html">
+    <link rel="import" href="../../px-theme/px-theme.html">
+    <link rel="import" href="../../px-card/px-card.html">
+    <link rel="import" href="../../iron-demo-helpers/demo-snippet.html"/>
+    <link rel="import" href="../../iron-ajax/iron-ajax.html"/>
+    <link rel="import" href="../../iron-list/iron-list.html"/>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/lodash.js/4.6.1/lodash.min.js"></script>
+    <!-- TODO: pxm components -->
+    <script src="../drilldown-behavior.js"></script>
+    <style media="screen">
+      body {
+        background: #fff;
+      }
+      iron-list {
+        overflow-y: scroll;
+        /* has to be scroll, not auto */
+        -webkit-overflow-scrolling: touch;
+      }
+    </style>
+    <script type="text/javascript">
+      $(function () {
+        function createItem(name, count) {
+          var o = {
+            id: name.replace(/\W/g, '-').toLowerCase(),
+            label: name,
+            children: null,
+            href: '#' + name.replace(/\W/g, '-').toLowerCase()
+          };
+          if (count) {
+            o.children = [];
+            _.times(count, function (i) {
+              o.children.push(createItem('File -' + i));
+            });
+          }
+          return o;
+        }
+        var tmpl = $('#tmpl').html();
+        var compiled = _.template(tmpl);
+        var nodes = [
+          createItem('My Documents', 25),
+          createItem('My Movies', 25),
+          createItem('My Music', 15),
+          createItem('My Photos', 25)
+        ];
+        var templateFn = _.template($('#drilldown__item--tmpl').html());
+        var html = compiled({'items': nodes, templateFn: templateFn});
+        $('#drilldown').append(html);
+        $('.drilldown__context').on('click', function (e) {
+          console.log('toggle parent', $(e.currentTarget).parents('.drilldown'));
+          $(e.currentTarget).parents('.drilldown').toggleClass('is-open');
+        });
+        console.log(nodes);
+        //var dd = new Drilldown('#drilldown');
+      });
+    </script>
+  </head>
+  <body unresolved>
+    <div class=" viewport--full-heiht">
+      <div class="flex flex--column flex--stretch">
+        <div class="flex__item border-rght">
+          <div class="table-view table-view--drilldown">
+            <div class="table-view__context">
+              Context
+              <!--
+            <nav aria-label="You are here:" role="navigation">
+              <ul class="list-inline breadcrumbs">
+                <li>
+                  <a href="#">Home</a>
+                </li>
+                <li class="disabled">Gene Splicing</li>
+                <li>
+                  <span class="show-for-sr">Current:
+                  </span>
+                  Cloning
+                </li>
+              </ul>
+            </nav>
+          -->
+            </div>
+            <ul id="drilldown" class="list-ui list-ui--small drilldown__menu" data-drilldown></ul>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script id="tmpl" type="text/template">
+      <% _.forEach(items, function(item) { %>
+        <li class="list-ui list-ui--small" data-id="<%- item.id %>">
+          <a href="#<%- item.id %>">
+            <i class="fa fa-folder"></i>
+            <%- item.label %>
+          </a>
+          <% if(item.children) { %>
+            <ul class="drilldown__sub-menu list-ui list-ui--small" data-submenu>
+              <!-- child node-->
+              <% _.forEach(item.children, function(child) { %>
+              <li class="is-drilldown-submenu-parent" data-id="<%- child.id %>" data-parent-id="<%- item.id %>">
+                <a href="#<%- child.id %>">
+                  <i class="fa fa-folder"></i>
+                  <%- child.label %>
+                </a>
+                <ul class="list-ui list-ui--small" data-submenu>
+                  <li>
+                    <a href="#<%- child.id %>">
+                      <i class="fa fa-file"></i>
+                      <%- child.label %>
+                    </a>
+                  </li>
+                </ul>
+              </li>
+              <!--/ child node-->
+            <% }); %>
+          </ul>
+        <% } %>
+      </li>
+    <% }); %>
+  </script>
+  <script src="http://localhost:35724/livereload.js?snipver=1"></script>
+</body>
+</html>

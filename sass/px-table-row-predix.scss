@@ -16,7 +16,7 @@
 
   color              : var(--px-table-row-color);
   font-size          : var(--px-table-row-font-size, $table-row-font-size);
-  background-color   : var(--px-table-row-background-color, $table-row-background-color);
+  background-color   : var(--px-table-row-background-color);
   border-bottom-style: var(--px-table-row-border-style, solid);
   border-bottom-width: var(--px-table-row-border-width, $table-row-border-width);
   border-bottom-color: var(--px-table-row-border-color, $table-row-border-color);

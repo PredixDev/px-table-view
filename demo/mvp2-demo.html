@@ -1,67 +1,34 @@
 <!DOCTYPE html>
 <html>
-
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-
     <title>px-table-view MVP (Phase 2)</title>
     <script src="../../webcomponentsjs/webcomponents-lite.js"></script>
-
-    <link rel='stylesheet prefetch' href='/px.css'>
-
     <link rel="import" href="../px-table-view.html">
-
-    <!-- TODO: iron-list example -->
+    <link rel="import" href="../../px-theme/px-app.html">
+    <link rel="import" href="../../px-theme/px-theme.html">
+    <link rel="import" href="../../px-card/px-card.html">
     <link rel="import" href="../../iron-demo-helpers/demo-snippet.html"/>
-
-
     <style media="screen">
-    .box{
-      background: #fff;
-    }
-      body {
-        background: #efeff4;
-        overflow: hidden;
-        overflow-y: scroll;
-        overflow-y: auto;
-        -webkit-overflow-scrolling: touch;
+      body,
+      html {
+        background: #eee !important;
       }
-
-      /* Disable certain interactions on touch devices */
-
-      px-card {
-        margin: 0.5rem;
+      li,
+      ul {
         padding: 0;
+        margin: 0;
       }
-
-      px-card .u-mb.px-card-header {
-        padding: 0.5rem;
-        margin-bottom: 0 !important;
-      }
-
-      px-card ul {
-        padding: 0 !important;
-        margin: 0 !important;
-      }
-
-      demo-snippet {
-        margin-bottom: 3rem;
-      }
-
     </style>
-
   </head>
-
-  <body class="u-bg--gray9">
-
+  <body class="u-bg--gray9" unresolved>
     <div class="viewport viewport-full-height">
       <div class="box u-mb u-mt">
         <h1 class="beta">MVP2</h1>
         <ul>
           <li>
             <strong>Table View Types</strong>
-
             <ul>
               <li>Horizontal</li>
               <li>Tiles</li>
@@ -69,7 +36,6 @@
           </li>
           <li>
             <strong>Visual Variations &amp; Additions</strong>
-
             <ul>
               <li>Drill Down</li>
               <li>Collapsable</li>
@@ -78,194 +44,168 @@
           </li>
           <li>
             <strong>Interactions</strong>
-
             <ul>
-              <li>Swipes
-
-                <ul>
-                  <li>Left Actions</li>
-                  <li>Right Actions</li>
-                  <li>With and Without Icons</li>
-                </ul>
-              </li>
               <li>Refresh Swipe</li>
               <li>Reorder item(s)</li>
               <li>Remove item(s)</li>
             </ul>
           </li>
         </ul>
-
       </div>
       <div class="flex flex--col flex--wrap flex--spaced u-bg--gray7 u-padding-10">
+
+
+
+
+        <!-- TODO:  -->
+        <h2>Horizontal Table Rows</h2>
         <demo-snippet>
+          <template>
+            <template id="table-view-demo-1" is="dom-bind">
+              <px-table-view modifier="small responsive row">
+                <template is="dom-repeat" items="[[items]]">
+                  <px-table-row title="Text Label" modifier="tappable">
+                  </px-table-row>
+                </template>
+              </px-table-view>
+            </template>
+            <script type="text/javascript">
+              document.addEventListener('WebComponentsReady', function () {
+                var app = document.getElementById('table-view-demo-1');
+                app.items = [1, 2, 3, 4, 5];
+              });
+            </script>
+          </template>
+        </demo-snippet>
 
+
+
+        <!-- TODO:  -->
+        <h2>Custom CSS Styles</h2>
+        <demo-snippet class="u-mb">
           <template id="">
-            <h2>CSS Vars Test</h2>
-
-            <style>
-              :host {
-                --px-table-row-border-color: red;
-                --px-table-row-background-color: pink;
-                --px-table-row-title-font-size: 2rem;
-                --px-table-row-body-font-size: 1rem;
-                --px-table-row-body-font-color: black;
+            <style is="custom-style">
+              .a {
+                --px-table-row: {
+                  font-size: 2rem;
+                  color: blue;
+                  background: pink;
+                  border-bottom-color: green;
+                }
               }
             </style>
-
             <px-table-view id="cssvartest" modifer="small">
-              <px-table-row id="row1" title="Item 1"></px-table-row>
+              <px-table-row class="a" title="Item 1"></px-table-row>
               <px-table-row class="a" title="Item 2"></px-table-row>
               <px-table-row class="a" title="Item 3"></px-table-row>
-              <px-table-row title="Item 4"></px-table-row>
             </px-table-view>
           </template>
         </demo-snippet>
 
-        <demo-snippet>
-          <template id="">
-            <h2>Selected Item Test</h2>
-            <template id="tmpl1" is="dom-bind">
-              <style media="screen">
-                .custom-selected{
-                  background: crimson;
-                  color: white;
 
+
+
+
+        <!-- TODO:  -->
+        <h2>Selectable (iron-selector)</h2>
+        <demo-snippet class="u-mb">
+          <template>
+            <template id="tmpl1" is="dom-bind">
+              <style is="custom-style">
+                .custom-selected {
+                  color: crimson;
                 }
               </style>
-              <h4>{{selected}}</h4>
-              <px-table-view modifer="small" attr-for-selected="name" selected="{{selected}}" selected-class="custom-selected">
-                <px-table-row verbose name="item-1" title="Item A" icon="fa fa-bars fa-lg" modifier="nav-right"></px-table-row>
-                <px-table-row name="item-2" title="Item B" icon-left="polymer-font-awesome:fa-bars" modifier="nav-right"></px-table-row>
-                <px-table-row name="item-3" title="Item C"></px-table-row>
+              <h4>Selected Item = {{selected}}</h4>
+              <px-table-view modifer="small">
+                <iron-selector attr-for-selected="name" selected="{{selected}}" selected-class="custom-selected" content>
+                  <px-table-row name="item-1" title="Item A" icon-left="polymer-font-awesome:fa-pencil" modifier="nav-right"></px-table-row>
+                  <px-table-row name="item-2" title="Item B" icon-left="polymer-font-awesome:fa-pencil" modifier="nav-right"></px-table-row>
+                  <px-table-row name="item-3" title="Item C" icon-left="polymer-font-awesome:fa-pencil" modifier="nav-right"></px-table-row>
+
+                </iron-selector>
               </px-table-view>
             </template>
             <script type="text/javascript">
               var tmpl = document.getElementById('tmpl1');
-              tmpl.selected = 'item-1';
+              tmpl.selected = 'item-2';
             </script>
           </template>
         </demo-snippet>
 
-        <demo-snippet>
-          <template id="">
-            <h2>Non Selected Item Test</h2>
-            <template id="tmpl1" is="dom-bind">
-              <h4>{{selected}}</h4>
-              <px-table-view modifer="small" attr-for-selected="name" selected="{{selected}}" >
-                <px-table-row name="item-1" title="Item A" ></px-table-row>
-                <px-table-row name="item-2" title="Item B"></px-table-row>
-                <px-table-row name="item-3" title="Item C"></px-table-row>
+
+        <h2>Icons Test</h2>
+        <demo-snippet class="u-mb">
+          <template>
+            <template id="table-view-demo-2" is="dom-bind">
+              <px-table-view modifer="small">
+                <template is="dom-repeat" items="[[navItems]]">
+                  <px-table-row title="{{item.label}}"
+                    icon-left="{{item.icon}}"
+                    modifier="tappable"></px-table-row>
+                </template>
               </px-table-view>
             </template>
             <script type="text/javascript">
-              var tmpl = document.getElementById('tmpl1');
-              tmpl.selected = 'item-1';
+            var navItems = [{
+              label: 'Dashboard',
+              icon: 'polymer-font-awesome:fa-home'
+            }, {
+              label: 'Alerts',
+              icon: 'polymer-font-awesome:fa-exclamation-triangle'
+            },
+            {
+              label: 'Profile',
+              icon: 'polymer-font-awesome:fa-pencil'
+            },
+            {
+              label: 'Cases',
+              icon: 'polymer-font-awesome:fa-briefcase'
+            },
+            {
+              label: 'Analysis',
+              icon: 'polymer-font-awesome:fa-bar-chart'
+            }];
+            var tmpl = document.getElementById('table-view-demo-2');
+            tmpl.navItems = navItems;
             </script>
+
           </template>
         </demo-snippet>
 
-        <demo-snippet>
+        <!-- TODO:  -->
+        <h2>Shadow Dom Icon Test</h2>
+        <demo-snippet class="u-mb">
           <template id="">
-            <h2>Shadow Dom Icon Test</h2>
             <px-table-view modifer="small">
               <px-table-row title="Font Awesome Icon" icon="fa fa-bars fa-lg"></px-table-row>
-              <px-table-row title="Polymer Font Awesome" icon-left="polymer-font-awesome:fa-bars"></px-table-row>
+              <px-table-row title="Polymer Font Awesome" icon-left="polymer-font-awesome:fa-pencil"></px-table-row>
               <px-table-row title="Polymer Font Awesome" icon-right="polymer-font-awesome:fa-eye"></px-table-row>
             </px-table-view>
           </template>
         </demo-snippet>
 
+        <!-- TODO:  -->
+        <h2>Sortable Table Rows</h2>
         <demo-snippet>
           <template id="">
-            <px-card header-text="Actionable">
-              <px-table-view id="table1" mode="sort" sortable>
-                <px-table-row title="Action Item" actionable>
-                  <px-table-row-actions position="right">
-                    <px-table-row-action-button label="More" modifier="more"></px-table-row-action-button>
-                    <px-table-row-action-button label="Flag" modifier="flag"></px-table-row-action-button>
-                    <px-table-row-action-button label="Delete" modifier="delete"></px-table-row-action-button>
-                  </px-table-row-actions>
-                </px-table-row>
-                <px-table-row title="Action Item" modifier="" actionable>
-                  <div class="table-row__actions table-row__actions--right">
-                    <button class="table-row__actions__button btn--full btn-more">
-                      More
-                    </button>
-                    <button class="table-row__actions__button btn--full btn-flag">
-                      Flag
-                    </button>
-                    <button class="table-row__actions__button btn--full btn-delete">
-                      Delete
-                    </button>
-                  </div>
-                </px-table-row>
-                <px-table-row title="Action Item" modifier="" actionable>
-                  <div class="table-row__actions table-row__actions--right">
-                    <button class="table-row__actions__button btn--full btn-more">
-                      More
-                    </button>
-                    <button class="table-row__actions__button btn--full btn-flag">
-                      Flag
-                    </button>
-                    <button class="table-row__actions__button btn--full btn-delete">
-                      Delete
-                    </button>
-                  </div>
-                </px-table-row>
-                <px-table-row title="Action Item" modifier="" actionable>
-                  <div class="table-row__actions table-row__actions--right">
-                    <button class="table-row__actions__button btn--full btn-more">
-                      More
-                    </button>
-                    <button class="table-row__actions__button btn--full btn-flag">
-                      Flag
-                    </button>
-                    <button class="table-row__actions__button btn--full btn-delete">
-                      Delete
-                    </button>
-                  </div>
-                </px-table-row>
+            <px-table-view id="table1" is-sortable>
+              <px-table-row title="Item 1"></px-table-row>
+              <px-table-row title="Item 2"></px-table-row>
+              <px-table-row title="Item 3"></px-table-row>
+              <px-table-row title="Item 4"></px-table-row>
 
-              </px-table-view>
-            </px-card>
+            </px-table-view>
           </template>
         </demo-snippet>
-
-        <demo-snippet>
-          <template id="">
-            <px-card header-text="Editable Rows">
-              <px-table-view>
-                <px-table-row title="Edit Mode Item" edit-mode></px-table-row>
-                <px-table-row title="Edit Mode Item" edit-mode></px-table-row>
-                <px-table-row title="Edit Mode Item" edit-mode></px-table-row>
-                <px-table-row title="Edit Mode Item" edit-mode></px-table-row>
-              </px-table-view>
-            </px-card>
-          </template>
-        </demo-snippet>
-
-        <demo-snippet>
-          <template id="">
-            <px-card header-text="1. Re-Order Table View">
-              <px-table-view id="table1" mode="sort" sortable>
-                <px-table-row title="Reorder Item"></px-table-row>
-                <px-table-row title="Reorder Item"></px-table-row>
-                <px-table-row title="Reorder Item"></px-table-row>
-                <px-table-row title="Reorder Item"></px-table-row>
-              </px-table-view>
-            </px-card>
-          </template>
-        </demo-snippet>
-
+        <hr>
         <h2 align="center">
           <b>sortable-list</b>
           <small>(open console to see event logs)</small>
         </h2>
-
         <div id="demos" horizontal layout wrap>
           <div class="demo">
             <h3>Basic Demo</h3>
-
             <sortable-list id="basic-demo">
               <div>First</div>
               <div>Second</div>
@@ -275,10 +215,8 @@
               <div>Sixth</div>
             </sortable-list>
           </div>
-
           <div class="demo">
             <h3>Animated Sorting</h3>
-
             <sortable-list id="animated-demo" animation="150">
               <div>First</div>
               <div>Second</div>
@@ -288,7 +226,6 @@
               <div>Sixth</div>
             </sortable-list>
           </div>
-
           <div class="demo">
             <h3>Grouped Lists</h3>
             <sortable-list id="grouped-a" group="grouped" animation="150">
@@ -296,7 +233,6 @@
               <div>Second</div>
               <div>Third</div>
             </sortable-list>
-
             <sortable-list id="grouped-b" group="grouped" animation="150">
               <div>Fourth</div>
               <div>Fifth</div>
@@ -319,11 +255,8 @@
             });
           });
         </script>
-
       </div>
-
     </div>
-
+    <script src="http://localhost:35724/livereload.js?snipver=1"></script>
   </body>
-
 </html>

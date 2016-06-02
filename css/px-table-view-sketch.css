@@ -513,6 +513,10 @@ html {
       @media (min-width: 80rem) {
         .table-view--responsive > *, .table-view--responsive ::content > * {
           min-width: calc(16.6666666667% - 0); } }
+  .table-view--bare ::content .table-row,
+  .table-view--bare .table-row {
+    background-color: transparent;
+    border-bottom: none; }
   .table-view--ptr ::content .table-row,
   .table-view--ptr .table-row {
     -webkit-user-select: none;
@@ -556,23 +560,20 @@ html {
                                  not supported by any browser */
     background-color: #0a9ec1;
     color: white; }
-    .table-view ::content .iron-selected .table-row__title,
-    .table-view ::content .iron-selected .table-row__subtitle,
     .table-view ::content .iron-selected .table-row__body,
     .table-view ::content .iron-selected .table-row__label,
-    .table-view .iron-selected .table-row__title,
-    .table-view .iron-selected .table-row__subtitle,
+    .table-view ::content .iron-selected .table-row__subtitle,
+    .table-view ::content .iron-selected .table-row__title,
     .table-view .iron-selected .table-row__body,
-    .table-view .iron-selected .table-row__label {
+    .table-view .iron-selected .table-row__label,
+    .table-view .iron-selected .table-row__subtitle,
+    .table-view .iron-selected .table-row__title {
       color: white; }
     .table-view ::content .iron-selected .table-row:before,
     .table-view .iron-selected .table-row:before {
       color: white; }
   .table-view--swipeable {
     overflow-x: hidden; }
-  .table-view--bare ::content .table-row:not(:last-child),
-  .table-view--bare .table-row:not(:last-child) {
-    border-bottom: none; }
   .table-view--inset {
     background-image: none;
     border: 1px solid;

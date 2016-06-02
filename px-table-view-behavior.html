@@ -5,21 +5,7 @@
    * @polymerBehavior
    */
   var pxTableViewBehavior = {
-    attached: function () {
-      if (this.responsive) {
-        this.toggleClass('table-view--responsive', this.responsive, _this.$$('.table-view'));
-      }
-      var _this = this;
-      var children = this.children;
-      if (_this.modifier) {
-        var types = _this.modifier.split(' ');
-        for (var i = 0; i < types.length; i++) {
-          _this.toggleClass('table-view--' + types[i], true, _this.$$('.table-view'));
-        }
-      }
-    },
     handleSelect: function (e) {
-      //  console.log('select', e.model);
       this.fire('select', e.model);
     },
     _clearSelected: function () {
@@ -29,7 +15,6 @@
       }
     },
     addItem: function (o) {
-      //  console.log('addItem', o);
       return this.push('tableData', o);
     }
   };

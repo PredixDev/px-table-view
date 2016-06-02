@@ -1,7 +1,6 @@
 @charset "utf-8";
 @import "variables";
 @import "mixins";
-
 @import "px-mobile-design/sass/_mixins.scss";
 
 // Generic
@@ -20,7 +19,6 @@
 //@import "inuit-clearfix/_trumps.clearfix.scss";
 @import "px-spacing-responsive-design/_trumps.spacing-responsive.scss";
 //@import "px-widths-responsive-design/_trumps.widths-responsive.scss";
-
 
 ///
 
@@ -51,10 +49,10 @@
   position       : relative;
   display        : block;
   flex-direction : column;
-  &ul{
+
+  &ul {
     margin: 0 !important;
   }
-
 
   /// Modifiers
   ///--------------------------------
@@ -67,18 +65,25 @@
   }
 
   ///.table-view--ptr
+  @include modifier ('bare') {
+    @include c ('.table-row') {
+      background-color: transparent;
+      border-bottom: none;
+    }
+  }
   @include modifier ('ptr') {
-    @include c('.table-row') {
+    @include c ('.table-row') {
       user-select: none;
     }
   }
   ///.table-view--col
   @include modifier ('col') {
-    display: flex;
+    display       : flex;
     flex-direction: column;
   }
+
   @include modifier ('row') {
-    display: flex;
+    display       : flex;
     flex-direction: row;
   }
 
@@ -89,7 +94,7 @@
 
   ///.table-view--avatars
   @include modifier ('avatars') {
-    @include c('.table-row') {
+    @include c ('.table-row') {
       img {
         height       : 32px;
         border-radius: 50%;
@@ -97,49 +102,26 @@
     }
   }
 
-  //background      : transparent;
-  //background-color: var(--table-view-background-color, $table-row-background-color);
-  @include c('.iron-selected') {
+  @include c ('.iron-selected') {
     @include noselect();
     background-color: $table-row-active-background-color;
     color           : $table-row-active-font-color;
 
-    .table-row__title,
-    .table-row__subtitle,
     .table-row__body,
-    .table-row__label{
-      color           : $table-row-active-font-color;
+    .table-row__label,
+    .table-row__subtitle,
+    .table-row__title {
+      color: $table-row-active-font-color;
     }
-
-    .table-row:before{
-      color           : $table-row-active-font-color;
+    .table-row:before {
+      color: $table-row-active-font-color;
     }
-
   }
-
 
   @include modifier ('swipeable') {
     overflow-x: hidden;
   }
 
-
-  ///.table-view--bare
-  @include modifier ('bare') {
-    @include c('.table-row'){
-      &:not(:last-child){
-        border-bottom: none;
-      }
-    }
-
-  }
-
-  ///.table-view--responsive
-  @include modifier ('responsive') {
-    > *:last-child {
-      //border-bottom: 1px solid $table-row-border-color !important;
-      //border-color : var(--table-view-border-color, $table-row-border-color);
-    }
-  }
   ///.table-view--inset
   @include modifier ('inset') {
     background-image: none;
@@ -148,8 +130,7 @@
     border-color    : var(--px-table-view-border-color, $table-row-border-color);
     border-radius   : 0;
     .table-row:last-child {
-      border-bottom:none;
-      //border-color : var(--table-view-border-color, $table-row-border-color);
+      border-bottom: none;
     }
   }
 
@@ -165,6 +146,5 @@
     margin-top  : 6px;
     margin-right: 10px;
   }
-
 
 }

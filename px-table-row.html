@@ -1,6 +1,8 @@
 <script src="../hammerjs/hammer.min.js"></script>
 <link rel="import" href="../polymer/polymer.html"/>
 <link rel="import" href="../iron-resizable-behavior/iron-resizable-behavior.html">
+<link rel="import" href="../iron-icon/iron-icon.html"/>
+
 <link rel="import" href="../polymer-font-awesome/polymer-font-awesome.html"/>
 <link rel="import" href="px-checkbox.html">
 <link rel="import" href="px-table-row-behavior.html"/>
@@ -22,14 +24,21 @@ To use this element you can do the following:
 To style this component you can do the following:
 
 ```
-:root {
-  --table-row-border-color: red;
-  --table-row-background-color: green;
-}
+<style is="custom-style">
+   :root .my-theme{
+     --px-table-row:{
+       color: #b0fffe;
+       background-color: #36bd64;
+       border-bottom: 1px solid #1d8756;
+     }
+     --px-table-row-underlay:{
+       width: 100%;
+     }
+   }
+ </style>
 ```
 
 ### Styling
-
 
 Custom property | Description | Default
 ------------ | ------------- | ------------
@@ -74,10 +83,7 @@ Custom property | Description | Default
       @apply(--px-table-row);
     }
 
-    :host.selected {
-      background-color: var(--px-table-row-selected-background-color, #0a9ec1);
-      color: var(--px-table-row-selected-color, #fff);
-    }
+
 
     :host #underlay{
       position: absolute;
@@ -98,29 +104,32 @@ Custom property | Description | Default
           <i class="fa fa-minus-circle fa-lg color-red"></i>
         </button>
       </template>
+
       <template is="dom-if" if="{{label2}}">
         <span class="table-row__label table-row__label--left">{{label2}}</span>
       </template>
+
       <template is="dom-if" if="{{image}}">
         <div class="table-row__media table-row__media--image">
           <img src$="{{image}}" alt="{{title}}">
         </div>
       </template>
+
       <template is="dom-if" if="{{icon}}">
         <div class="table-row__media table-row__media--icon">
-          <i class$="{{icon}}"></i>
+          <iron-icon id="icon" icon$="{{icon}}"></iron-icon>
         </div>
       </template>
       <template is="dom-if" if="{{iconLeft}}">
         <div class="table-row__media table-row__media--icon table-row__media--left">
           <!--<i class$="{{iconLeft}}"></i>-->
-          <iron-icon icon$="{{iconLeft}}"></iron-icon>
+          <iron-icon id="iconLeft" icon$="{{iconLeft}}"></iron-icon>
         </div>
       </template>
       <template is="dom-if" if="{{iconRight}}">
         <div class="table-row__media table-row__media--icon table-row__media--right">
           <!--<i class$="{{iconRight}}"></i>-->
-          <iron-icon icon$="{{iconRight}}"></iron-icon>
+          <iron-icon id="iconRight" icon$="{{iconRight}}"></iron-icon>
         </div>
       </template>
       <template is="dom-if" if="{{label1}}">
@@ -149,6 +158,7 @@ Custom property | Description | Default
     <div id="underlay" class="flex flex--stretch">
       <content id="underlayContent" select="[underlay]"></content>
     </div>
+    
   </template>
   <script>
     Polymer({
@@ -204,18 +214,24 @@ Custom property | Description | Default
         },
         /**
         * The icon to set on the table-row.
+        * Using font-awesome-polymer-icons svg set.
+        * Example: `fa:line-chart`
         */
         icon: {
           type: String
         },
         /**
         * The left icon to set on the table-row.
+        * Using font-awesome-polymer-icons svg set.
+        * Example: `fa:line-chart`
         */
         iconLeft: {
           type: String
         },
         /**
         * The right icon to set on the table-row.
+        * Using font-awesome-polymer-icons svg set.
+        * Example: `fa:line-chart`
         */
         iconRight: {
           type: String

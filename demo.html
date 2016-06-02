@@ -254,19 +254,33 @@
           <h1 class="beta">Style Modifiers</h1>
           <demo-snippet>
             <template>
-              <style is="custom-style">
-                #my-table {
-                  --px-table-row-font-size: 2rem;
-                  --px-table-row-color: crimson;
-                  --px-table-row-background-color: green;
-                  --px-table-row-border-color: red;
-                }
-              </style>
-              <px-table-view id="my-table">
-                <px-table-row title="Text Label" modifier="nav-right"></px-table-row>
-                <px-table-row title="Text Label" modifier="nav-right"></px-table-row>
-                <px-table-row title="Text Label" modifier="nav-right"></px-table-row>
-              </px-table-view>
+              <template id="table-view-1" is="dom-bind">
+                <style is="custom-style">
+                  .my-custom-table {
+                    --px-table-row: {
+                      color: #b0fffe;
+                      background-color: #4dba67;
+                      border-bottom-color: #1b8555;
+                    }
+
+                  }
+                </style>
+                <px-table-view modifier="tiny" class="my-custom-table">
+                  <template is="dom-repeat" items="[[items]]">
+                    <px-table-row
+                      title="Text Label"
+                      icon-left="polymer-font-awesome:fa-pencil"
+                      label1="Yesterday"
+                      modifier="nav-right tappable"></px-table-row>
+                  </template>
+                </px-table-view>
+              </template>
+              <script type="text/javascript">
+                document.addEventListener('WebComponentsReady', function () {
+                  var app = document.getElementById('table-view-1');
+                  app.items = [1, 2, 3, 4, 5];
+                });
+              </script>
             </template>
           </demo-snippet>
           <!-- TODO: Modifiers -->
@@ -360,9 +374,10 @@
                   $table.append($table.find('#table-row-1').clone());
                 });
               </script>
-              <div id="table-responsive" class="table-view table-view--bare table-view--responsive">
+              <px-table-view modifier="small responsive row">
+
                 <px-table-row id="table-row-1" type="tappable">
-                  <div class="table-row__content">
+                  <div content>
                     <h3 class="table-row__title epsilon">Lorem Ipsum</h3>
                     <div class="table-row__body">
                       <span class="beta">123.4</span>
@@ -371,7 +386,7 @@
                   </div>
                 </px-table-row>
                 <px-table-row type="tappable">
-                  <div class="table-row__content">
+                  <div content>
                     <h3 class="table-row__title epsilon">Lorem Ipsum</h3>
                     <div class="table-row__body">
                       <span class="beta">123.4</span>
@@ -380,7 +395,7 @@
                   </div>
                 </px-table-row>
                 <px-table-row type="tappable">
-                  <div class="table-row__content">
+                  <div content>
                     <h3 class="table-row__title epsilon">Lorem Ipsum</h3>
                     <div class="table-row__body">
                       <span class="beta">123.4</span>
@@ -388,7 +403,7 @@
                     </div>
                   </div>
                 </px-table-row>
-              </div>
+              </px-table-view>
             </template>
           </demo-snippet>
           <h2>Modifier - Flush</h2>
@@ -522,7 +537,7 @@
               <template id="table-view-actions-3" is="dom-bind">
                 <px-table-view modifier="large inset">
                   <template is="dom-repeat" items="[[items]]">
-                    <px-table-row title="Text Label" label1="Yesterday" modifier="nav-right" actionable swipe-right fit-actions>
+                    <px-table-row title="Text Label" label1="Yesterday" modifier="nav-right" actionable swipe-right fit-underlay>
                       <px-table-row-actions position="left" underlay>
                         <px-table-row-action-button label="More" type="more"></px-table-row-action-button>
                         <px-table-row-action-button label="Flag" type="flag"></px-table-row-action-button>
