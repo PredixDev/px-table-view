@@ -119,9 +119,9 @@
               <h4>Selected Item = {{selected}}</h4>
               <px-table-view modifer="small">
                 <iron-selector attr-for-selected="name" selected="{{selected}}" selected-class="custom-selected" content>
-                  <px-table-row name="item-1" title="Item A" icon-left="polymer-font-awesome:fa-pencil" modifier="nav-right"></px-table-row>
-                  <px-table-row name="item-2" title="Item B" icon-left="polymer-font-awesome:fa-pencil" modifier="nav-right"></px-table-row>
-                  <px-table-row name="item-3" title="Item C" icon-left="polymer-font-awesome:fa-pencil" modifier="nav-right"></px-table-row>
+                  <px-table-row name="item-1" title="Item A" icon-left="fa:fa-pencil" modifier="nav-right"></px-table-row>
+                  <px-table-row name="item-2" title="Item B" icon-left="fa:fa-pencil" modifier="nav-right"></px-table-row>
+                  <px-table-row name="item-3" title="Item C" icon-left="fa:fa-pencil" modifier="nav-right"></px-table-row>
 
                 </iron-selector>
               </px-table-view>
@@ -149,22 +149,22 @@
             <script type="text/javascript">
             var navItems = [{
               label: 'Dashboard',
-              icon: 'polymer-font-awesome:fa-home'
+              icon: 'fa:fa-home'
             }, {
               label: 'Alerts',
-              icon: 'polymer-font-awesome:fa-exclamation-triangle'
+              icon: 'fa:fa-exclamation-triangle'
             },
             {
               label: 'Profile',
-              icon: 'polymer-font-awesome:fa-pencil'
+              icon: 'fa:fa-pencil'
             },
             {
               label: 'Cases',
-              icon: 'polymer-font-awesome:fa-briefcase'
+              icon: 'fa:fa-briefcase'
             },
             {
               label: 'Analysis',
-              icon: 'polymer-font-awesome:fa-bar-chart'
+              icon: 'fa:fa-bar-chart'
             }];
             var tmpl = document.getElementById('table-view-demo-2');
             tmpl.navItems = navItems;
@@ -178,9 +178,9 @@
         <demo-snippet class="u-mb">
           <template id="">
             <px-table-view modifer="small">
-              <px-table-row title="Font Awesome Icon" icon="fa fa-bars fa-lg"></px-table-row>
-              <px-table-row title="Polymer Font Awesome" icon-left="polymer-font-awesome:fa-pencil"></px-table-row>
-              <px-table-row title="Polymer Font Awesome" icon-right="polymer-font-awesome:fa-eye"></px-table-row>
+              <px-table-row title="Font Awesome Icon" icon="fa:fa-bars"></px-table-row>
+              <px-table-row title="Polymer Font Awesome" icon-left="fa:fa-pencil"></px-table-row>
+              <px-table-row title="Polymer Font Awesome" icon-right="fa:fa-eye"></px-table-row>
             </px-table-view>
           </template>
         </demo-snippet>
