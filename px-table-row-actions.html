@@ -1,4 +1,4 @@
-<link rel="import" href="../polymer/polymer.html" />
+<link rel="import" href="../polymer/polymer.html"/>
 <!--
 
 * <p>
@@ -38,33 +38,40 @@ To use this component:
     is: "px-table-row-actions",
     properties: {
       /**
-      * The position of the actions. (left, right)
-      */
+       * The position of the actions. (left, right)
+       */
       position: {
         type: String,
         value: 'right'
       },
 
       /**
-      * The current state of the actions
-      */
+       * The current state of the actions
+       */
       opened: {
         type: Boolean
       }
     },
     /**
-   * Gets the width of the drawer.
-   *
-   * @return {Number} The width of the drawer in pixels.
-   */
+     * Gets the width of the drawer.
+     *
+     * @return {Number} The width of the drawer in pixels.
+     */
     getWidth: function () {
-      return this.$.actions.offsetWidth;
+      return this.$.content.offsetWidth;
     },
-    attached: function() {
+    attached: function () {
       var self = this;
-      self.toggleClass('table-row__actions--' + this.position, true, self.$$('.table-row__actions'));
+      this.async(function () {
+        self.toggleClass('table-row__actions--' + this.position, true, self.$$('.table-row__actions'));
+        var _content = Polymer.dom(this.$.content).getDistributedNodes()[0];
+        this.style.width = _content.offsetWidth + 'px';
+        this.style.height = _content.offsetHeight + 'px';
+
+      }, 500);
+
     },
-    toggle: function(){
+    toggle: function () {
       this.opened = !this.opened;
       this.toggleClass('is-visible', this.opened, this.$$('.table-row__actions'));
     }

@@ -2,8 +2,8 @@ var sharedPanel = null;
 if (!window.Hammer) {
   console.error('Must provide hammer.js');
 }
-var reqAnimationFrame = (function () {
-  return window[Hammer.prefixed(window, "requestAnimationFrame")] || function (callback) {
+var reqAnimationFrame = (function() {
+  return window[Hammer.prefixed(window, "requestAnimationFrame")] || function(callback) {
     setTimeout(callback, 1000 / 60);
   };
 })();
@@ -127,38 +127,57 @@ var pxTableRowActionsSwipeBehavior = {
       value: false
     },
     // Store children object via Polymer's getEffectiveChildren or getDistributedNodes;
-    _content: Object
+    _content: Object,
+    _underlay: Object
   },
   listeners: {
     'tap': '_tapHandler',
     'iron-resize': '_onIronResize'
   },
-  ready: function () {
+  ready: function() {
     // Avoid transition at the beginning e.g. page loads and enable transitions only after the element is rendered and ready.
     this._transition = true;
     this.setScrollDirection(this._swipeAllowed() ? 'y' : 'all');
   },
 
-  attached: function () {
+  attached: function() {
     if (this.swipeable) {
       // on child element attached, inherit the height of the content.
       var _content = Polymer.dom(this);
-      this.async(function () {
+
+      this.async(function() {
+
+        //  var _content = Polymer.dom(this.$.content).getDistributedNodes()[0];
         //     this.style.height = _content.offsetHeight + 'px';
         this._initSwipeActions(this, Hammer.DIRECTION_HORIZONTAL);
       }, 500);
 
       // save effective children object.
       this.set('_content', _content);
+
     }
   },
-  _initSwipeActions: function (container, direction) {
+  _initSwipeActions: function(container, direction) {
     var instance = container;
     this.container = container;
     this.direction = direction;
 
-    this.underlay = container.queryEffectiveChildren('[underlay]');
-    this.underlaySize = this.underlay.getBoundingClientRect().width;
+    var distributed = this.getContentChildren('#underlayContent');
+    //  console.log(distributed, distributed.length);
+
+    var _underlay = Polymer.dom(this.$.underlayContent).getDistributedNodes()[0];
+    this.set('_underlay', _underlay);
+
+    this.underlay = distributed[0];
+
+    if (this.underlay) {
+      this.underlaySize = this.underlay.getBoundingClientRect().width;
+    }
+
+
+    console.log('underlaySize', this.underlaySize);
+    //  console.log('distributed', distributed);
+    //console.log('underlay', this.underlay);
 
 
     //this.actions = container.queryEffectiveChildren('px-table-row-actions').$.actions;
@@ -177,8 +196,8 @@ var pxTableRowActionsSwipeBehavior = {
    * @param event
    * @private
    */
-  _tapHandler: function (event) {
-    this.fire('tap-underlay', {
+  _tapHandler: function(event) {
+    this.fire('px-tap-underlay', {
       nodeName: 'underlay',
       target: event
     });
@@ -192,7 +211,7 @@ var pxTableRowActionsSwipeBehavior = {
    * @returns {boolean}
    * @private
    */
-  _swipeAllowed: function () {
+  _swipeAllowed: function() {
     return !this.disableSwipe;
   },
   /**
@@ -201,7 +220,7 @@ var pxTableRowActionsSwipeBehavior = {
    * @returns {*}
    * @private
    */
-  _transformForTranslateX: function (translateX) {
+  _transformForTranslateX: function(translateX) {
     if (translateX === null) {
       return 'translate3d(0, 0, 0)';
     }
@@ -231,7 +250,7 @@ var pxTableRowActionsSwipeBehavior = {
    * @param oldValue
    * @private
    */
-  _transitionDeltaChanged: function (newValue, oldValue) {
+  _transitionDeltaChanged: function(newValue, oldValue) {
     if (this.swipeRight) {
       this._validDelta = this._atEdge ? newValue <= -this.slideOffset : newValue >= this.slideOffset;
     }
@@ -254,35 +273,35 @@ var pxTableRowActionsSwipeBehavior = {
    * Handle when Hammer.js Pan event is triggered
    * @param event
    */
-  _onPan: function (event) {
+  _onPan: function(event) {
     switch (event.type) {
-    case 'panstart':
-      this._onPanStart(event);
-      break;
-    case 'panmove':
-      this._onPanMove(event);
-      break;
-    case 'panend':
-      this._onPanEnd(event);
-      break;
+      case 'panstart':
+        this._onPanStart(event);
+        break;
+      case 'panmove':
+        this._onPanMove(event);
+        break;
+      case 'panend':
+        this._onPanEnd(event);
+        break;
     }
   },
 
   /**
    * Reset the position of the swipeable content with the attribute `content` from the edge after being dragged.
    */
-  resetPosition: function () {
+  resetPosition: function() {
     this._moveDrawer(null);
     this.set('_atEdge', false); // reset position of the swipeable content from the edge.
     this.set('_curPos', 0);
-    this.fire('position-reset'); // fire event when position is reset.
+    this.fire('px-position-reset'); // fire event when position is reset.
   },
   /**
    *
    * @param event
    * @private
    */
-  _onPanStart: function (event) {
+  _onPanStart: function(event) {
     if (this._swipeAllowed()) {
       sharedPanel = this;
       this._dragging = true;
@@ -297,7 +316,7 @@ var pxTableRowActionsSwipeBehavior = {
    * @param event
    * @private
    */
-  _onPanMove: function (event) {
+  _onPanMove: function(event) {
     this._transition = true;
     if (this._dragging) {
       var dx = event.deltaX;
@@ -318,7 +337,7 @@ var pxTableRowActionsSwipeBehavior = {
    *
    *  else vice versa for swiping to rightmsot edge and/ or either side.
    */
-  _onPanEnd: function (event) {
+  _onPanEnd: function(event) {
     // this._dragging = false;
 
     if (this._swipeAllowed() && this._tracking) {
@@ -338,17 +357,30 @@ var pxTableRowActionsSwipeBehavior = {
       this._atEdge = !(deltaLR === null);
       this._validDelta = false;
       this._tracking = false;
+
+      console.log('_onPanEnd', slideTo, 'underlaySize', this.underlaySize);
       this._moveDrawer(deltaLR);
+
+
     }
   },
+
   /**
    *
    * @private
    */
-  _onIronResize: function () {
+  _onIronResize: function() {
     var _content = this._content;
+
+    var w = this.offsetWidth;
+
+
+
+    //  console.log('underlay width', _underlay.offsetWidth);
+
     if (_content && this._toUpdateHeight) {
-      this.async(function () {
+      this.async(function() {
+        console.log("width is now ", w);
         //this.style.height = _content.offsetHeight + 'px';
       }, 1);
     }
@@ -358,7 +390,7 @@ var pxTableRowActionsSwipeBehavior = {
    * @param translateX
    * @private
    */
-  _moveDrawer: function (translateX) {
+  _moveDrawer: function(translateX) {
     var _content = this.$.row;
     this.transform(this._transformForTranslateX(translateX), _content);
     this.toggleClass('transition', this._transition, _content);

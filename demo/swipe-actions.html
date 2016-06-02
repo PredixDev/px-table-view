@@ -41,12 +41,12 @@
           <template id="table-view-actions-1" is="dom-bind">
             <px-table-view modifier="large">
               <template is="dom-repeat" items="[[items]]">
-                <px-table-row title="Text Label" label1="Yesterday" modifier="nav-right" actionable swipe-right fit-actions>
-                  <px-table-row-actions position="left" underlay class="flex flex--stretch">
+                <px-table-row title="Text Label" label1="Yesterday" modifier="nav-right" swipeable swipe-right fit-underlay>
+                  <div underlay class="full-height flex flex--stretch">
                     <px-table-row-action-button label="More" type="more"></px-table-row-action-button>
                     <px-table-row-action-button label="Flag" type="flag"></px-table-row-action-button>
                     <px-table-row-action-button label="Delete" type="delete"></px-table-row-action-button>
-                  </px-table-row-actions>
+                  </div>
                 </px-table-row>
               </template>
             </px-table-view>
@@ -63,14 +63,14 @@
       <demo-snippet class="u-mb">
         <template>
           <template id="table-view-actions-2" is="dom-bind">
-            <px-table-view modifier="large">
+            <px-table-view modifier="small">
               <template is="dom-repeat" items="[[items]]">
-                <px-table-row title="Text Label" label1="Yesterday" modifier="nav-right" actionable swipe-left fit-actions>
-                  <px-table-row-actions position="right" underlay>
-                    <px-table-row-action-button label="More" type="more"></px-table-row-action-button>
+                <px-table-row title="Text Label" label1="Yesterday" modifier="nav-right" swipeable swipe-left fit-underlay>
+                  <div underlay class="full-height flex flex--stretch">
+                    <px-table-row-action-button label="More" type="more" ></px-table-row-action-button>
                     <px-table-row-action-button label="Flag" type="flag"></px-table-row-action-button>
                     <px-table-row-action-button label="Delete" type="delete"></px-table-row-action-button>
-                  </px-table-row-actions>
+                  </div>
                 </px-table-row>
               </template>
             </px-table-view>

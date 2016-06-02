@@ -7,7 +7,8 @@
     <script src="../../webcomponentsjs/webcomponents-lite.js"></script>
     <link rel='stylesheet' href='/px.css'>
     <link rel="import" href="../px-table-view.html">
-  
+    <link rel="import" href="../../px-navbar/px-navbar.html">
+
     <style media="screen">
       body,
       html {
@@ -20,19 +21,24 @@
       }
     </style>
   </head>
-  <body unresolved class="scrollable">
+  <body unresolved class="has-navbar">
+
+    <px-navbar title="Mobile swipeable" fixed shadow></px-navbar>
+
     <template id="table-view-actions-2" is="dom-bind">
-      <px-table-view modifier="large inset">
-        <template is="dom-repeat" items="[[items]]">
-          <px-table-row title="Text Label" label1="Yesterday" modifier="nav-right" actionable swipe-left fit-actions>
-            <px-table-row-actions position="right" underlay>
-              <px-table-row-action-button label="More" type="more"></px-table-row-action-button>
-              <px-table-row-action-button label="Flag" type="flag"></px-table-row-action-button>
-              <px-table-row-action-button label="Delete" type="delete"></px-table-row-action-button>
-            </px-table-row-actions>
-          </px-table-row>
-        </template>
-      </px-table-view>
+      <div class="app">
+        <px-table-view modifier="large ">
+          <template is="dom-repeat" items="[[items]]">
+            <px-table-row title="Text Label" label1="Yesterday" modifier="nav-right" swipeable   fit-underlay>
+              <div underlay class="flex full-width flex-end">
+                <px-table-row-action-button label="More" type="more"></px-table-row-action-button>
+                <px-table-row-action-button label="Flag" type="flag"></px-table-row-action-button>
+                <px-table-row-action-button label="Delete" type="delete"></px-table-row-action-button>
+              </div>
+            </px-table-row>
+          </template>
+        </px-table-view>
+      </div>
     </template>
     <script type="text/javascript">
       document.addEventListener('WebComponentsReady', function () {

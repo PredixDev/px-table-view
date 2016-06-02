@@ -1,4 +1,6 @@
 <link rel="import" href="../polymer/polymer.html"/>
+<link rel="import" href="../iron-resizable-behavior/iron-resizable-behavior.html">
+
 <link rel="import" href="../polymer-font-awesome/polymer-font-awesome.html"/>
 
 <link rel="import" href="px-checkbox.html">
@@ -80,6 +82,7 @@ Custom property | Description | Default
     :host #underlay{
       position: absolute;
       top: 0;
+    
       left: 0;
       bottom: 0;
     }
@@ -149,6 +152,7 @@ Custom property | Description | Default
     Polymer({
       is: 'px-table-row',
       behaviors: [
+        Polymer.IronResizableBehavior,
         pxTableRowBehavior,
         pxTableRowActionsSwipeBehavior
       ],
