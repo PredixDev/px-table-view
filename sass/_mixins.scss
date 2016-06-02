@@ -18,12 +18,10 @@
   cursor: pointer;
   &:active {
     color     : $font;
-    transition: none;
     background: $bg;
   }
-
   &:hover {
-    transition: none;
+    
   }
   @content;
 }
@@ -32,12 +30,9 @@
 /// @group px-table-view
 @mixin actionButton($color) {
   user-select     : none;
-  transition      : background-color 0.2s linear;
   background-color: $color;
-  //	border-color: darken($color, 25%);
   border          : none;
   outline         : none;
-
   &:active {
     background-color: darken($color, 20%);
   }
@@ -122,10 +117,8 @@
     content    : var(--px-table-row-indicator, '#{$icon}');
   }
   &:active {
-    //background-color: $table-row-active-background-color;
-    transition      : none;
+
     &:before {
-      //color: $table-row-active-font-color;
     }
   }
   @content;

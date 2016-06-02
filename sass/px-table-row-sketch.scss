@@ -87,7 +87,7 @@ $inuit-enable-input--bare: true;
   @include modifier ('tappable') {
     @include tableRowClickable($table-row-selected-background-color, $table-row-active-font-color);
     &:active {
-      transition      : none;
+
       background-color: $table-row-selected-background-color;
 
       .table-row__body,
@@ -111,8 +111,6 @@ $inuit-enable-input--bare: true;
     @include tableRowClickable($table-row-active-background-color, $table-row-active-font-color);
     @include tableRowIcon($table-row-detail-icon, $table-row-detail-icon-color);
   }
-
-
   ///---------------------------------------------------------------------------
   ///.table-row--nav-right
   @include modifier ('nav-right') {
@@ -124,7 +122,6 @@ $inuit-enable-input--bare: true;
   @include modifier ('collapsable') {
     @include tableRowClickable($table-row-active-background-color, $table-row-active-font-color);
     @include tableRowIcon( '\f107');
-
     .table-row__body {
       transition: var(--px-table-row-collapseable-transition, all 0.3s);
       display   : none;

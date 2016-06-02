@@ -5,8 +5,8 @@
 ///
 ///---------------------------------------------------------------------------
 ///.table-row--actionable
-@include modifier ('actionable') {
-  background-color: $white;
+@include modifier ('swipeable') {
+  background-color: var(--px-table-row-background-color, $table-row-background-color);
   overflow       : hidden;
   transform-style: preserve-3d;
   transition: transform cubic-bezier(.55,0,.1,1) 0.3s;

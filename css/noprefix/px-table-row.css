@@ -697,12 +697,8 @@ a {
     cursor: pointer; }
     .table-row--tappable:active {
       color: white;
-      transition: none;
       background: #0a9ec1; }
-    .table-row--tappable:hover {
-      transition: none; }
     .table-row--tappable:active {
-      transition: none;
       background-color: #0a9ec1; }
       .table-row--tappable:active .table-row__body,
       .table-row--tappable:active .table-row__label,
@@ -726,22 +722,14 @@ a {
       font-family: FontAwesome;
       content: var(--px-table-row-indicator, ""); }
     .table-row--chevron:active {
-      transition: none; }
-    .table-row--chevron:active {
       color: white;
-      transition: none;
       background: #0a9ec1; }
-    .table-row--chevron:hover {
-      transition: none; }
   .table-row--detail {
     cursor: pointer;
     overflow: hidden; }
     .table-row--detail:active {
       color: white;
-      transition: none;
       background: #0a9ec1; }
-    .table-row--detail:hover {
-      transition: none; }
     .table-row--detail:before {
       transform: translateY(-50%);
       font-style: normal;
@@ -755,8 +743,6 @@ a {
       font-size: 1.8666666667rem;
       font-family: FontAwesome;
       content: var(--px-table-row-indicator, ""); }
-    .table-row--detail:active {
-      transition: none; }
   .table-row--nav-right {
     overflow: hidden; }
     .table-row--nav-right:before {
@@ -772,17 +758,12 @@ a {
       font-size: 1.8666666667rem;
       font-family: FontAwesome;
       content: var(--px-table-row-indicator, ""); }
-    .table-row--nav-right:active {
-      transition: none; }
   .table-row--collapsable {
     cursor: pointer;
     overflow: hidden; }
     .table-row--collapsable:active {
       color: white;
-      transition: none;
       background: #0a9ec1; }
-    .table-row--collapsable:hover {
-      transition: none; }
     .table-row--collapsable:before {
       transform: translateY(-50%);
       font-style: normal;
@@ -796,8 +777,6 @@ a {
       font-size: 1.8666666667rem;
       font-family: FontAwesome;
       content: var(--px-table-row-indicator, ""); }
-    .table-row--collapsable:active {
-      transition: none; }
     .table-row--collapsable .table-row__body {
       transition: var(--px-table-row-collapseable-transition, all 0.3s);
       display: none; }
@@ -940,7 +919,7 @@ a {
   line-height: var(--px-table-row-line-height, 2.9333333333rem);
   color: var(--px-table-row-color);
   font-size: var(--px-table-row-font-size, 1.1333333333rem);
-  background-color: var(--px-table-row-background-color, none);
+  background-color: var(--px-table-row-background-color, white);
   border-bottom-style: var(--px-table-row-border-style, solid);
   border-bottom-width: var(--px-table-row-border-width, 1px);
   border-bottom-color: var(--px-table-row-border-color, #b1b1bc); }
@@ -1050,13 +1029,13 @@ a {
           pointer-events: none; }
           .table-row__checkbox--no-border input[type="checkbox"]:disabled + div:after {
             opacity: 0.5; }
-  .table-row--actionable {
-    background-color: white;
+  .table-row--swipeable {
+    background-color: var(--px-table-row-background-color, white);
     overflow: hidden;
     transform-style: preserve-3d;
     transition: transform cubic-bezier(0.55, 0, 0.1, 1) 0.3s;
     z-index: 10; }
-    .table-row--actionable .table-row__content {
+    .table-row--swipeable .table-row__content {
       position: relative; }
   .table-row__actions {
     overflow: hidden;
@@ -1118,7 +1097,6 @@ a {
       display: block; }
     .table-row__button--delete {
       user-select: none;
-      transition: background-color 0.2s linear;
       background-color: #e32533;
       border: none;
       outline: none; }
@@ -1128,7 +1106,6 @@ a {
         background-color: #a61520; }
     .table-row__button--flag {
       user-select: none;
-      transition: background-color 0.2s linear;
       background-color: #ff9821;
       border: none;
       outline: none; }
@@ -1138,7 +1115,6 @@ a {
         background-color: #d47100; }
     .table-row__button--more {
       user-select: none;
-      transition: background-color 0.2s linear;
       background-color: #005cb9;
       border: none;
       outline: none; }
@@ -1148,7 +1124,6 @@ a {
         background-color: #00366d; }
     .table-row__button--info {
       user-select: none;
-      transition: background-color 0.2s linear;
       background-color: #b1b1bc;
       border: none;
       outline: none; }
@@ -1174,10 +1149,7 @@ a {
     cursor: pointer; }
     .table-row > a:active {
       color: white;
-      transition: none;
       background: #0a9ec1; }
-    .table-row > a:hover {
-      transition: none; }
   .table-row__title {
     font-size: var(--px-table-row-title-font-size, 1.1333333333rem);
     color: var(--px-table-row-title-color); }

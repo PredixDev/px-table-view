@@ -69,7 +69,6 @@
     font-size: var(--px-table-row-subtitle-font-size, $table-row-subtitle-font-size);
     color    : var(--px-table-row-subtitle-color, $table-row-subtitle-font-color);
   }
-
   ///.table-row__body
   @include e ('body') {
     font-size: var(--px-table-row-body-font-size, $table-row-body-font-size);
@@ -93,6 +92,9 @@
     border-bottom   : none;
   }
 }
+
+
+
 
 /* This has no effect on the component.*/
 :host.selected {

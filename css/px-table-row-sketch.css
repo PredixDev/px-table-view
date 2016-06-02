@@ -706,12 +706,8 @@ a {
     cursor: pointer; }
     .table-row--tappable:active {
       color: white;
-      transition: none;
       background: #0a9ec1; }
-    .table-row--tappable:hover {
-      transition: none; }
     .table-row--tappable:active {
-      transition: none;
       background-color: #0a9ec1; }
       .table-row--tappable:active .table-row__body,
       .table-row--tappable:active .table-row__label,
@@ -736,22 +732,14 @@ a {
       font-family: FontAwesome;
       content: var(--px-table-row-indicator, ""); }
     .table-row--chevron:active {
-      transition: none; }
-    .table-row--chevron:active {
       color: white;
-      transition: none;
       background: #0a9ec1; }
-    .table-row--chevron:hover {
-      transition: none; }
   .table-row--detail {
     cursor: pointer;
     overflow: hidden; }
     .table-row--detail:active {
       color: white;
-      transition: none;
       background: #0a9ec1; }
-    .table-row--detail:hover {
-      transition: none; }
     .table-row--detail:before {
       -webkit-transform: translateY(-50%);
               transform: translateY(-50%);
@@ -766,8 +754,6 @@ a {
       font-size: 1.8666666667rem;
       font-family: FontAwesome;
       content: var(--px-table-row-indicator, ""); }
-    .table-row--detail:active {
-      transition: none; }
   .table-row--nav-right {
     overflow: hidden; }
     .table-row--nav-right:before {
@@ -784,17 +770,12 @@ a {
       font-size: 1.8666666667rem;
       font-family: FontAwesome;
       content: var(--px-table-row-indicator, ""); }
-    .table-row--nav-right:active {
-      transition: none; }
   .table-row--collapsable {
     cursor: pointer;
     overflow: hidden; }
     .table-row--collapsable:active {
       color: white;
-      transition: none;
       background: #0a9ec1; }
-    .table-row--collapsable:hover {
-      transition: none; }
     .table-row--collapsable:before {
       -webkit-transform: translateY(-50%);
               transform: translateY(-50%);
@@ -809,8 +790,6 @@ a {
       font-size: 1.8666666667rem;
       font-family: FontAwesome;
       content: var(--px-table-row-indicator, ""); }
-    .table-row--collapsable:active {
-      transition: none; }
     .table-row--collapsable .table-row__body {
       transition: var(--px-table-row-collapseable-transition, all 0.3s);
       display: none; }

@@ -35,14 +35,14 @@
         For the mobile version visit <a href="swipe-actions-mobile.html" target="_blank">here.</a>
       </p>
 
-      <h3>Swipe Action Right Actions</h3>
+      <h3>Swipe Right</h3>
       <demo-snippet class="u-mb">
         <template>
           <template id="table-view-actions-1" is="dom-bind">
             <px-table-view modifier="large">
               <template is="dom-repeat" items="[[items]]">
                 <px-table-row title="Text Label" label1="Yesterday" modifier="nav-right" swipeable swipe-right fit-underlay>
-                  <div underlay class="full-height flex flex--stretch">
+                  <div underlay class="full-height flex flex--stretch flex--left">
                     <px-table-row-action-button label="More" type="more"></px-table-row-action-button>
                     <px-table-row-action-button label="Flag" type="flag"></px-table-row-action-button>
                     <px-table-row-action-button label="Delete" type="delete"></px-table-row-action-button>
@@ -59,14 +59,23 @@
           </script>
         </template>
       </demo-snippet>
-      <h3>Swipe Action Left Actions</h3>
+
+
+      <h3>Swipe Left</h3>
       <demo-snippet class="u-mb">
         <template>
           <template id="table-view-actions-2" is="dom-bind">
+          <style is="custom-style">
+            :root .b{
+              --px-table-row-underlay:{
+                right: 0;
+              }
+            }
+          </style>
             <px-table-view modifier="small">
               <template is="dom-repeat" items="[[items]]">
-                <px-table-row title="Text Label" label1="Yesterday" modifier="nav-right" swipeable swipe-left fit-underlay>
-                  <div underlay class="full-height flex flex--stretch">
+                <px-table-row title="Text Label" label1="Yesterday" modifier="nav-right" swipeable swipe-left fit-underlay class="b">
+                  <div underlay class="full-height flex flex--stretch flex--right">
                     <px-table-row-action-button label="More" type="more" ></px-table-row-action-button>
                     <px-table-row-action-button label="Flag" type="flag"></px-table-row-action-button>
                     <px-table-row-action-button label="Delete" type="delete"></px-table-row-action-button>
@@ -83,6 +92,44 @@
           </script>
         </template>
       </demo-snippet>
+
+      <h3>Custom CSS</h3>
+      <demo-snippet class="u-mb">
+        <template>
+          <template id="table-view-actions-3" is="dom-bind">
+            <style is="custom-style">
+              :root .a{
+                --px-table-row:{
+                  color: #b0fffe;
+                  background-color: #36bd64;
+                  border-bottom: 1px solid #1d8756;
+                }
+                --px-table-row-underlay:{
+                  width: 100%;
+                }
+              }
+            </style>
+            <px-table-view modifier="small" class="example1">
+              <template is="dom-repeat" items="[[items]]">
+                <px-table-row title="Text Label" modifier="tappable" class="a" peek-offset="0" swipeable>
+                  <div underlay class="full-height flex flex--stretch">
+                    <px-table-row-action-button label="More" type="more" class="flex__item"></px-table-row-action-button>
+                    <px-table-row-action-button label="Flag" type="flag" class="flex__item"></px-table-row-action-button>
+                    <px-table-row-action-button label="Delete" type="delete" class="flex__item"></px-table-row-action-button>
+                  </div>
+                </px-table-row>
+              </template>
+            </px-table-view>
+          </template>
+          <script type="text/javascript">
+            document.addEventListener('WebComponentsReady', function () {
+              var app = document.getElementById('table-view-actions-3');
+              app.items = [1, 2, 3, 4, 5];
+            });
+          </script>
+        </template>
+      </demo-snippet>
+
       <!-- <demo-snippet class="u-mb">
         <template>
           <h2>Table View Default</h2>

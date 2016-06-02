@@ -1,16 +1,14 @@
+<script src="../hammerjs/hammer.min.js"></script>
 <link rel="import" href="../polymer/polymer.html"/>
 <link rel="import" href="../iron-resizable-behavior/iron-resizable-behavior.html">
-
 <link rel="import" href="../polymer-font-awesome/polymer-font-awesome.html"/>
-
 <link rel="import" href="px-checkbox.html">
 <link rel="import" href="px-table-row-behavior.html"/>
-
 <link rel="import" href="px-table-row-checkbox.html"/>
 <link rel="import" href="px-table-row-actions.html"/>
 <link rel="import" href="px-table-row-action-button.html"/>
-<link rel="import" href="px-table-row-swipe-actions-behavior.html"/>
 <link rel="import" href="px-table-row-switch.html"/>
+<script src="px-table-row-swipe-behavior.js"></script>
 <!--
 <p>
   For a list of all demos visit  <a href="./demo" target="_blank">here</a>.
@@ -71,9 +69,11 @@ Custom property | Description | Default
       -moz-user-select: none;
       -ms-user-select: none;
       user-select: none;
-
+    }
+    :host .table-row{
       @apply(--px-table-row);
     }
+
     :host.selected {
       background-color: var(--px-table-row-selected-background-color, #0a9ec1);
       color: var(--px-table-row-selected-color, #fff);
@@ -82,9 +82,11 @@ Custom property | Description | Default
     :host #underlay{
       position: absolute;
       top: 0;
-    
-      left: 0;
       bottom: 0;
+      @apply(--px-table-row-underlay);
+    }
+    :host #underlay ::content > [underlay] {
+      @apply(--px-table-row-underlay-content);
     }
 
   </style>
@@ -154,7 +156,7 @@ Custom property | Description | Default
       behaviors: [
         Polymer.IronResizableBehavior,
         pxTableRowBehavior,
-        pxTableRowActionsSwipeBehavior
+        pxTableRowSwipeBehavior
       ],
       properties: {
         /**
@@ -238,18 +240,6 @@ Custom property | Description | Default
           notify: true,
           reflectToAttribute: true,
           observer: '_handleModifier'
-        },
-        /**
-        * If editMode is true then this item displays a delete icon.
-        */
-        editMode: {
-          type: Boolean
-        },
-        /**
-        * If orderMode is true then this item displays a order icon.
-        */
-        orderMode: {
-          type: Boolean
         },
         /**
         * If swipeable is true then this item responds to swipeleft/swiperight events.
