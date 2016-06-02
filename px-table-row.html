@@ -1,8 +1,6 @@
 <script src="../hammerjs/hammer.min.js"></script>
 <link rel="import" href="../polymer/polymer.html"/>
 <link rel="import" href="../iron-resizable-behavior/iron-resizable-behavior.html">
-<link rel="import" href="../iron-icon/iron-icon.html"/>
-
 <link rel="import" href="../polymer-font-awesome/polymer-font-awesome.html"/>
 <link rel="import" href="px-checkbox.html">
 <link rel="import" href="px-table-row-behavior.html"/>
@@ -78,27 +76,31 @@ Custom property | Description | Default
       -moz-user-select: none;
       -ms-user-select: none;
       user-select: none;
+      box-sizing: border-box;
     }
     :host .table-row{
       @apply(--px-table-row);
     }
 
-
-
     :host #underlay{
       position: absolute;
-      top: 0;
-      bottom: 0;
+      top: 0px;
+      bottom: 0px;
+      overflow: hidden;
       @apply(--px-table-row-underlay);
     }
+
     :host #underlay ::content > [underlay] {
       @apply(--px-table-row-underlay-content);
     }
 
   </style>
   <template>
+  <div class="table-row-container">
+
     <div id="row" class="table-row" data-indicator$="{{indicator}}">
       <content select="[content], input, button"></content>
+
       <template is="dom-if" if="{{editMode}}">
         <button class="btn btn--bare table-row__delete-btn" on-click="_handleRemoveItem">
           <i class="fa fa-minus-circle fa-lg color-red"></i>
@@ -158,7 +160,8 @@ Custom property | Description | Default
     <div id="underlay" class="flex flex--stretch">
       <content id="underlayContent" select="[underlay]"></content>
     </div>
-    
+  </div>
+
   </template>
   <script>
     Polymer({

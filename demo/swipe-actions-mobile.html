@@ -5,35 +5,42 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <title>swipe actions</title>
     <script src="../../webcomponentsjs/webcomponents-lite.js"></script>
-    <link rel='stylesheet' href='/px.css'>
+    <link rel="import" href="../../px-theme/px-app.html">
+    <link rel="import" href="../../px-theme/px-theme.html">
     <link rel="import" href="../px-table-view.html">
     <link rel="import" href="../../px-navbar/px-navbar.html">
-
     <style media="screen">
       body,
       html {
-        background: #eee;
+        background: #eee !important;
       }
       li,
       ul {
         padding: 0;
         margin: 0;
       }
+      .has-navbar{
+        padding-top:56px;
+      }
     </style>
   </head>
-  <body unresolved class="has-navbar">
-
-    <px-navbar title="Mobile swipeable" fixed shadow></px-navbar>
-
+  <body unresolved class="viewport--full-height has-navbar">
+    <px-navbar title="Mobile Swipeable" fixed shadow></px-navbar>
     <template id="table-view-actions-2" is="dom-bind">
+      <style is="custom-style">
+        :root .b {
+          --px-table-row-underlay: {
+            right: 0;
+          }
+        }
+      </style>
       <div class="app">
-        <px-table-view modifier="large ">
+        <px-table-view modifier="tiny">
           <template is="dom-repeat" items="[[items]]">
-            <px-table-row title="Text Label" label1="Yesterday" modifier="nav-right" swipeable   fit-underlay>
-              <div underlay class="flex full-width flex-end">
-                <px-table-row-action-button label="More" type="more"></px-table-row-action-button>
-                <px-table-row-action-button label="Flag" type="flag"></px-table-row-action-button>
-                <px-table-row-action-button label="Delete" type="delete"></px-table-row-action-button>
+            <px-table-row title="Text Label" label1="Yesterday" modifier="nav-right" swipeable swipe-left fit-underlay class="b">
+              <div underlay class="full-height flex flex--stretch flex--right">
+                <px-table-row-action-button icon="fa:fa-flag" type="flag" on-tap="flagItem"></px-table-row-action-button>
+                <px-table-row-action-button icon="fa:fa-trash" type="delete" on-tap="deleteItem"></px-table-row-action-button>
               </div>
             </px-table-row>
           </template>
@@ -47,6 +54,13 @@
         var count = 100;
         for (var i = 0; i < count; i++) {
           app.items.push(i);
+        }
+
+        app.flagItem = function(e){
+          console.log(e);
+        }
+        app.deleteItem = function(e){
+          console.log(e);
         }
       });
     </script>

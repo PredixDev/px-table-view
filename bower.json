@@ -32,6 +32,7 @@
   },
   "devDependencies": {
     "px-mobile-design": "https://github.com/PredixDev/px-mobile-design.git",
+    "px-navbar": "latest",
     "px-card": "latest",
     "px-toggle-design": "~0.2.12",
     "px-forms-design": "~0.3.16",

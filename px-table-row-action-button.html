@@ -1,4 +1,5 @@
 <link rel="import" href="../polymer/polymer.html" />
+<link rel="import" href="../polymer-font-awesome/polymer-font-awesome.html"/>
 <!--
 To use this component:
 
@@ -21,9 +22,9 @@ To use this component:
         display: block;
       }
     </style>
-      <button is="px-table-row-action-button" class="table-row__button" on-tap="_handleTap">
+      <button is="px-table-row-action-button" class="table-row__button" >
         <template is="dom-if" if="{{icon}}">
-          <i class$="{{icon}}"></i>
+            <iron-icon id="icon" icon$="{{icon}}"></iron-icon>
         </template>
         <template is="dom-if" if="{{label}}">
           <span>{{label}}</span>
