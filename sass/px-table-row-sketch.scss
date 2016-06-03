@@ -122,16 +122,17 @@ $inuit-enable-input--bare: true;
   @include modifier ('collapsable') {
     @include tableRowClickable($table-row-active-background-color, $table-row-active-font-color);
     @include tableRowIcon( '\f107');
-    @include c('.table-row__body') {
+    ~ .table-row__content {
       transition: var(--px-table-row-collapseable-transition, all 0.3s);
-      display   : none !important;
+      display   : none;
+        margin-left: $inuit-base-spacing-unit;
     }
     ///---------------------------------------------------------------------------
     @include modifier ('is-opened') {
-
       @include tableRowIcon( '\f106');
-      @include c('.table-row__body') {
+      ~ .table-row__content {
         display: block;
+
       }
     }
   }
@@ -165,7 +166,7 @@ $inuit-enable-input--bare: true;
     flex-direction: column;
     align-self    : stretch;
     order         : 2;
-    width         : 100%;
+    //width         : 100%;
     flex          : 1;
     user-select   : none;
   //  margin: 0 $inuit-base-spacing-unit;

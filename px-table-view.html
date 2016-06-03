@@ -74,6 +74,9 @@ To use this component with iron list you can do the following:
     :host .table-view {
       @apply(--px-table-view);
     }
+    :host ::content {
+      @apply(--px-table-row);
+    }
 
     :host .sortable-chosen,
     :host ::content .sortable-chosen{
@@ -84,6 +87,7 @@ To use this component with iron list you can do the following:
       background-color: var(--px-table-row-selected-background-color, #0a9ec1);
       color: var(--px-table-row-selected-color, #fff);
     }
+
   </style>
   <template strip-whitespace>
     <template id="ironList" is="dom-if" if="{{tableData}}">

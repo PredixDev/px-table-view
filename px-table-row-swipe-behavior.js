@@ -132,7 +132,7 @@ var pxTableRowSwipeBehavior = {
     _underlay: Object
   },
   listeners: {
-    'tap': '_tapHandler',
+    //'tap': '_tapHandler',
     'iron-resize': '_onIronResize'
   },
   ready: function () {

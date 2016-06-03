@@ -10,6 +10,7 @@
     <link rel="import" href="../../px-theme/px-theme.html">
     <link rel="import" href="../../px-card/px-card.html">
     <link rel="import" href="../../iron-demo-helpers/demo-snippet.html"/>
+    <script src="demo.js"></script>
     <style media="screen">
       body,
       html {
@@ -21,42 +22,22 @@
         margin: 0;
       }
     </style>
+    <script type="text/javascript">
+      document.addEventListener('WebComponentsReady', function(){
+        createToc('toc');
+      });
+    </script>
   </head>
   <body class="u-bg--gray9" unresolved>
     <div class="viewport viewport-full-height">
       <div class="box u-mb u-mt">
         <h1 class="beta">MVP2</h1>
-        <ul>
-          <li>
-            <strong>Table View Types</strong>
-            <ul>
-              <li>Horizontal</li>
-              <li>Tiles</li>
-            </ul>
-          </li>
-          <li>
-            <strong>Visual Variations &amp; Additions</strong>
-            <ul>
-              <li>Drill Down</li>
-              <li>Collapsable</li>
-              <li>Nested</li>
-            </ul>
-          </li>
-          <li>
-            <strong>Interactions</strong>
-            <ul>
-              <li>Refresh Swipe</li>
-              <li>Reorder item(s)</li>
-              <li>Remove item(s)</li>
-            </ul>
-          </li>
-        </ul>
+        <ol id="toc">
+
+        </ol>
+
       </div>
       <div class="flex flex--col flex--wrap flex--spaced u-bg--gray7 u-padding-10">
-
-
-
-
         <!-- TODO:  -->
         <h2>Horizontal Table Rows</h2>
         <demo-snippet>
@@ -64,8 +45,7 @@
             <template id="table-view-demo-1" is="dom-bind">
               <px-table-view modifier="small responsive row">
                 <template is="dom-repeat" items="[[items]]">
-                  <px-table-row title="Text Label" modifier="tappable">
-                  </px-table-row>
+                  <px-table-row title="Text Label" modifier="tappable"></px-table-row>
                 </template>
               </px-table-view>
             </template>
@@ -77,9 +57,6 @@
             </script>
           </template>
         </demo-snippet>
-
-
-
         <!-- TODO:  -->
         <h2>Custom CSS Styles</h2>
         <demo-snippet class="u-mb">
@@ -101,11 +78,6 @@
             </px-table-view>
           </template>
         </demo-snippet>
-
-
-
-
-
         <!-- TODO:  -->
         <h2>Selectable (iron-selector)</h2>
         <demo-snippet class="u-mb">
@@ -116,13 +88,13 @@
                   color: crimson;
                 }
               </style>
-              <h4>Selected Item = {{selected}}</h4>
+              <h4>Selected Item =
+                {{selected}}</h4>
               <px-table-view modifer="small">
                 <iron-selector attr-for-selected="name" selected="{{selected}}" selected-class="custom-selected" content>
                   <px-table-row name="item-1" title="Item A" icon-left="fa:fa-pencil" modifier="nav-right"></px-table-row>
                   <px-table-row name="item-2" title="Item B" icon-left="fa:fa-pencil" modifier="nav-right"></px-table-row>
                   <px-table-row name="item-3" title="Item C" icon-left="fa:fa-pencil" modifier="nav-right"></px-table-row>
-
                 </iron-selector>
               </px-table-view>
             </template>
@@ -132,61 +104,100 @@
             </script>
           </template>
         </demo-snippet>
-
-
         <h2>Icons Test</h2>
         <demo-snippet class="u-mb">
           <template>
             <template id="table-view-demo-2" is="dom-bind">
               <px-table-view modifer="small">
                 <template is="dom-repeat" items="[[navItems]]">
-                  <px-table-row title="{{item.label}}"
-                    icon-left="{{item.icon}}"
-                    modifier="tappable"></px-table-row>
+                  <px-table-row title="{{item.label}}" icon-left="{{item.icon}}" modifier="tappable"></px-table-row>
                 </template>
               </px-table-view>
             </template>
             <script type="text/javascript">
-            var navItems = [{
-              label: 'Dashboard',
-              icon: 'fa:fa-home'
-            }, {
-              label: 'Alerts',
-              icon: 'fa:fa-exclamation-triangle'
-            },
-            {
-              label: 'Profile',
-              icon: 'fa:fa-pencil'
-            },
-            {
-              label: 'Cases',
-              icon: 'fa:fa-briefcase'
-            },
-            {
-              label: 'Analysis',
-              icon: 'fa:fa-bar-chart'
-            }];
-            var tmpl = document.getElementById('table-view-demo-2');
-            tmpl.navItems = navItems;
+              var navItems = [
+                {
+                  label: 'Dashboard',
+                  icon: 'fa:fa-tachometer'
+                }, {
+                  label: 'Alerts',
+                  icon: 'fa:fa-exclamation-triangle'
+                }, {
+                  label: 'Profile',
+                  icon: 'fa:fa-pencil'
+                }, {
+                  label: 'Cases',
+                  icon: 'fa:fa-briefcase'
+                }, {
+                  label: 'Analysis',
+                  icon: 'fa:fa-bar-chart'
+                }
+              ];
+              var tmpl = document.getElementById('table-view-demo-2');
+              tmpl.navItems = navItems;
             </script>
-
           </template>
         </demo-snippet>
-
         <!-- TODO:  -->
         <h2>Shadow Dom Icon Test</h2>
         <demo-snippet class="u-mb">
           <template id="">
             <px-table-view modifer="small">
               <px-table-row title="Font Awesome Icon" icon="fa:fa-bars"></px-table-row>
-              <px-table-row title="Polymer Font Awesome" icon-left="fa:fa-pencil"></px-table-row>
+              <px-table-row title="Polymer Font Awesome" icon-left="fa:fa-bed"></px-table-row>
               <px-table-row title="Polymer Font Awesome" icon-right="fa:fa-eye"></px-table-row>
             </px-table-view>
           </template>
         </demo-snippet>
+        <!-- TODO: Collapsable -->
+        <h2>Collapsable</h2>
+        <demo-snippet class="u-mb">
+          <template id="">
+            <style is="custom-style">
+              .custom px-table-row{
+                --px-table-row:{
+                  border-bottom: none;
+                }
+              }
+            </style>
+            <px-table-view class="custom">
+              <px-table-row title="Grand Parent" modifier="tappable" collapsable opened>
+                <div content>
+                  <px-table-view modifier="tiny">
+                    <px-table-row title="Parent 1" modifier="tappable"  collapsable>
+                      <div content>
+                        <px-table-view modifier="tiny">
+                          <px-table-row title="Child 1-1" modifier="tappable" collapsable>
+                            <div content>
+                              <px-table-view modifier="tiny">
+                                <px-table-row title="Sub-Child 1-1-1" modifier="tappable" ></px-table-row>
+                                <px-table-row title="Sub-Child 1-1-2" modifier="tappable" ></px-table-row>
+                              </px-table-view>
+                            </div>
+                          </px-table-row>
+                          <px-table-row title="Child 1-2" modifier="tappable" ></px-table-row>
+                        </px-table-view>
+                      </div>
+                    </px-table-row>
+                    <px-table-row title="Parent 2" modifier="tappable" collapsable>
+                      <div content>
+                        <px-table-view modifier="tiny">
+                          <px-table-row title="Child 2-1" modifier="tappable"></px-table-row>
+                          <px-table-row title="Child 2-2" modifier="tappable"></px-table-row>
+                          <px-table-row title="Child 2-3" modifier="tappable"></px-table-row>
+                        </px-table-view>
+                      </div>
+                    </px-table-row>
+                  </px-table-view>
+                </div>
+              </px-table-row>
+            </px-table-view>
+          </template>
+        </demo-snippet>
+
 
         <!-- TODO:  -->
-        <h2>Sortable Table Rows</h2>
+        <h2>Sortable</h2>
         <demo-snippet>
           <template id="">
             <px-table-view id="table1" is-sortable>
@@ -194,67 +205,34 @@
               <px-table-row title="Item 2"></px-table-row>
               <px-table-row title="Item 3"></px-table-row>
               <px-table-row title="Item 4"></px-table-row>
-
             </px-table-view>
           </template>
         </demo-snippet>
-        <hr>
-        <h2 align="center">
-          <b>sortable-list</b>
-          <small>(open console to see event logs)</small>
-        </h2>
-        <div id="demos" horizontal layout wrap>
-          <div class="demo">
-            <h3>Basic Demo</h3>
-            <sortable-list id="basic-demo">
-              <div>First</div>
-              <div>Second</div>
-              <div>Third</div>
-              <div>Fourth</div>
-              <div>Fifth</div>
-              <div>Sixth</div>
-            </sortable-list>
-          </div>
-          <div class="demo">
-            <h3>Animated Sorting</h3>
-            <sortable-list id="animated-demo" animation="150">
-              <div>First</div>
-              <div>Second</div>
-              <div>Third</div>
-              <div>Fourth</div>
-              <div>Fifth</div>
-              <div>Sixth</div>
-            </sortable-list>
-          </div>
-          <div class="demo">
-            <h3>Grouped Lists</h3>
-            <sortable-list id="grouped-a" group="grouped" animation="150">
-              <div>First</div>
-              <div>Second</div>
-              <div>Third</div>
-            </sortable-list>
-            <sortable-list id="grouped-b" group="grouped" animation="150">
-              <div>Fourth</div>
-              <div>Fifth</div>
-              <div>Sixth</div>
-            </sortable-list>
-          </div>
-        </div>
-        <script>
-          [
-            'sort-start',
-            'sort-end',
-            'sort-add',
-            'sort-update',
-            'sort-change',
-            'sort-remove',
-            'sort-filter'
-          ].forEach(function (ev) {
-            document.addEventListener(ev, function (e) {
-              console.log(ev, e.target.id, e.detail);
-            });
-          });
-        </script>
+        <!-- TODO:  -->
+        <h2>Drill Down</h2>
+        <demo-snippet>
+          <template id="">
+            <px-table-view id="table1" drilldown>
+              <px-table-row title="Item 1"></px-table-row>
+              <px-table-row title="Item 2"></px-table-row>
+              <px-table-row title="Item 3"></px-table-row>
+              <px-table-row title="Item 4"></px-table-row>
+            </px-table-view>
+          </template>
+        </demo-snippet>
+        <h2>Pull to Refresh</h2>
+        <demo-snippet>
+          <template id="">
+            <px-table-view id="table1" pull-to-refresh>
+              <px-table-row title="Item 1"></px-table-row>
+              <px-table-row title="Item 2"></px-table-row>
+              <px-table-row title="Item 3"></px-table-row>
+              <px-table-row title="Item 4"></px-table-row>
+            </px-table-view>
+          </template>
+        </demo-snippet>
+
+
       </div>
     </div>
     <script src="http://localhost:35724/livereload.js?snipver=1"></script>
