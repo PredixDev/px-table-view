@@ -96,10 +96,10 @@ Custom property | Description | Default
 
   </style>
   <template>
-  <div class="table-row-container">
+  <div class="table-row-container" >
 
     <div id="row" class="table-row" data-indicator$="{{indicator}}">
-      <content select="[content], input, button"></content>
+
 
       <template is="dom-if" if="{{editMode}}">
         <button class="btn btn--bare table-row__delete-btn" on-click="_handleRemoveItem">
@@ -152,9 +152,12 @@ Custom property | Description | Default
         <template is="dom-if" if="{{body}}">
           <div class="table-row__body">{{body}}</div>
         </template>
-        <content select="[content], px-table-row-switch, px-table-row-checkbox"></content>
+        <content select="px-table-row-switch, px-table-row-checkbox"></content>
       </div>
-      <content id="swiper" select="px-swipe"></content>
+    </div>
+
+    <div class="table-row__body"  on-click="_tapHandler">
+      <content select="[content], input, button"></content>
     </div>
 
     <div id="underlay" class="flex flex--stretch">
@@ -265,8 +268,43 @@ Custom property | Description | Default
         */
         swipeable: {
           type: Boolean
+        },
+        collapsable: {
+          type: Boolean
+        },
+        opened: {
+          type: Boolean,
+          value: false,
+          notify: true,
+          reflectToAttribute: true,
+          observer: '_handleOpened'
+
         }
+      },
+      _hideBody: function(){
+        this.opened = !this.opened;
+        this.toggleClass('hidden', this.opened, this.$$('.table-row__body'));
+      },
+      _handleOpened: function (newVal, oldVal) {
+        this.toggleClass('table-row--collapsable--is-opened', oldVal, this.$$('.table-row'));
+        this.toggleClass('table-row--collapsable--is-opened', newVal, this.$$('.table-row'));
+      },
+      _tapHandler: function (e) {
+        var target = Polymer.dom(e).localTarget;
+        console.log(this.tagName, 'tap Handler', target);
+        if(this.collapsable){
+          if (target && target.hasAttribute('data-toggle')) {
+            this._hideBody();
+          }
+
+
+        }
+      //  e.preventDefault();
+      //  this.fire('reorder', e);
+
+        //return false;
       }
+
     });
   </script>
 </dom-module>

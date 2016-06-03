@@ -122,13 +122,15 @@ $inuit-enable-input--bare: true;
   @include modifier ('collapsable') {
     @include tableRowClickable($table-row-active-background-color, $table-row-active-font-color);
     @include tableRowIcon( '\f107');
-    .table-row__body {
+    @include c('.table-row__body') {
       transition: var(--px-table-row-collapseable-transition, all 0.3s);
-      display   : none;
+      display   : none !important;
     }
     ///---------------------------------------------------------------------------
-    @include modifier ('is-open') {
-      .table-row__body {
+    @include modifier ('is-opened') {
+
+      @include tableRowIcon( '\f106');
+      @include c('.table-row__body') {
         display: block;
       }
     }
