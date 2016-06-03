@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html >
+  <head>
+    <meta charset="UTF-8">
+    <title>Drilldown List</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <link rel="stylesheet" href="css/normalize.css">
+
+    <link rel='stylesheet prefetch' href='https://predixdev.github.io/px-library-design/css/style.css'>
+<link rel='stylesheet prefetch' href='http://predixdev.github.io/px-table-view/bower_components/px-table-view/css/px-table-view.css'>
+
+        <link rel="stylesheet" href="css/style.css">
+
+    
+    
+    
+  </head>
+
+  <body>
+
+    <base href="http://polygit.org/polymer+:master/components/">
+<link href="polymer/polymer.html" rel="import">
+<script src="webcomponentsjs/webcomponents-lite.min.js"></script>
+
+<div class="navbar">
+	<div class="navbar__left u-m">
+		<button class="btn btn--icon"><i class="fa fa-bars"></i></button>
+	</div>
+	<div class="navbar__center">View</div>
+	<div class="navbar__right u-m">
+		<button class="btn btn--icon"><i class="fa fa-search"></i></button>
+	</div>
+</div>
+<div class=" viewport--full-heiht">
+	<div class="flex flex--column flex--stretch">
+		<div class="flex__item border-rght">
+			<div class="drilldown">
+				<div class="drilldown__context">
+					<nav aria-label="You are here:" role="navigation">
+						<ul class="list-inline breadcrumbs">
+							<li><a href="#">Home</a></li>
+							<li class="disabled">Gene Splicing</li>
+							<li>
+								<span class="show-for-sr">Current: </span> Cloning
+							</li>
+						</ul>
+					</nav>
+
+				</div>
+				<ul id="drilldown" class="list-ui list-ui--small drilldown__menu" data-drilldown></ul>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+<script id="tmpl" type="text/template">
+	<% _.forEach(items, function(item) { %>
+		<li class="list-ui list-ui--small" data-id="<%- item.id %>">
+			<a href="#<%- item.id %>">
+				<i class="fa fa-folder"></i>
+				<%- item.label %>
+			</a>
+			<% if(item.children) { %>
+				<ul class="drilldown__sub-menu list-ui list-ui--small" data-submenu>
+					<!-- child node-->
+					<% _.forEach(item.children, function(child) { %>
+						<li class="is-drilldown-submenu-parent" data-id="<%- child.id %>" data-parent-id="<%- item.id %>">
+							<a href="#<%- child.id %>">
+								<i class="fa fa-folder"></i>
+								<%- child.label %>
+							</a>
+							<ul class="list-ui list-ui--small" data-submenu>
+								<li>
+									<a href="#<%- child.id %>">
+										<i class="fa fa-file"></i>
+										<%- child.label %>
+									</a>
+								</li>
+							</ul>
+						</li>
+						<!--/ child node-->
+						<% }); %>
+				</ul>
+				<% } %>
+		</li>
+
+		<% }); %>
+</script>
+
+
+<script id="navigation_template" type="text/template">
+	<div>
+		<%- item.label %>
+			<% _.each(item.children, function(child) { %>
+				<%= templateFn(child, templateFn) %>
+					<% }); %>
+	</div>
+</script>
+
+
+<template id="demo">	
+	<li class="is-drilldown-submenu-parent" role="menuitem">
+		<a>Item 4</a>
+		<ul class="list-ui list-ui--small is-drilldown-submenu" data-submenu=""><li class="js-drilldown-back"><a tabindex="0">Back</a></li>
+			<li class="is-drilldown-submenu-parent" role="menuitem">
+				<a class="is-drilldown-submenu-parent">Item 4A</a>
+				<ul class="list-ui list-ui--small is-drilldown-submenu" data-submenu=""><li class="js-drilldown-back"><a tabindex="0">Back</a></li>
+					<li role="menuitem"><a href="#Item-4A-1" class="is-drilldown-submenu-parent">Item 4A-1</a></li>
+					<li role="menuitem"><a href="#Item-4B-2" class="is-drilldown-submenu-parent">Item 4B-2</a></li>
+				</ul>
+			</li>
+		</ul>
+	</li>
+</template>
+    <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.2/jquery.min.js'></script>
+<script src='http://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.6.1/lodash.min.js'></script>
+
+        <script src="js/index.js"></script>
+
+    
+    
+    
+  </body>
+</html>

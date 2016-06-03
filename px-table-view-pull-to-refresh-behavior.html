@@ -1,148 +1,12 @@
-<style media="screen">
-/*
+<link rel="import" href="hammer-import.html">
+<script src="px-table-view-pull-to-refresh-behavior.js"></script>
+<script type="text/javascript">
 
-      <div id="ptr">
-        <div class="loading">
-          <span id="l1"></span>
-          <span id="l2"></span>
-          <span id="l3"></span>
-        </div>
-      </div>
-  */
 
-#ptr {
-  position: absolute;
-  top: 45px;
-  left: 0;
-  width: 100%;
-  color: #fff;
-  z-index: auto;
-  text-align: center;
-  height: 50px;
-}
-
-#ptr .icon {
-  background-color: #3e87e8;
-  opacity: .6;
-  font-size: 34px;
-  width: auto;
-  height: auto;
-  -webkit-transition: all .25s ease;
-  transition: all .25s ease;
-  -webkit-transform: rotate(90deg);
-  transform: rotate(90deg);
-  margin-top: 5px;
-}
-
-.ptr-refresh #ptr .icon {
-  -webkit-transform: rotate(270deg);
-  transform: rotate(270deg);
-}
-
-.ptr-loading #ptr .icon,
-.ptr-reset #ptr .icon {
-  display: none;
-}
-
-.loading {
-  display: inline-block;
-  text-align: center;
-  opacity: .4;
-  margin: 12px 0 0 5px;
-  display: none;
-}
-
-.loading span {
-  display: inline-block;
-  vertical-align: middle;
-  width: 10px;
-  height: 10px;
-  margin-right: 3px;
-  -webkit-transform: scale(0.3);
-  transform: scale(0.3);
-  border-radius: 50%;
-  -webkit-animation: ptr-loading 0.3s infinite alternate;
-  animation: ptr-loading 0.3s infinite alternate;
-}
-
-.ptr-loading .loading {
-  display: block;
-}
-
-#l1 {
-  -webkit-animation-delay: 0;
-  animation-delay: 0;
-}
-
-#l2 {
-  -webkit-animation-delay: 0.2s;
-  animation-delay: 0.2s;
-}
-
-#l3 {
-  -webkit-animation-delay: 0.3s;
-  animation-delay: 0.3s;
-}
-
-@-webkit-keyframes ptr-loading {
-  0% {
-    -webkit-transform: translateY(0) scale(0.3);
-    transform: translateY(0) scale(0.3);
-    opacity: 0;
-  }
-  100% {
-    -webkit-transform: scale(1);
-    transform: scale(1);
-    background: #3e87e8;
-    opacity: 1;
-  }
-}
-
-@keyframes ptr-loading {
-  0% {
-    -webkit-transform: translateY(0) scale(0.3);
-    transform: translateY(0) scale(0.3);
-    opacity: 0;
-  }
-  100% {
-    -webkit-transform: scale(1);
-    transform: scale(1);
-    background: #3e87e8;
-    opacity: 1;
-  }
-}
-
-#content {
-  min-height: 100%;
-  z-index: 20;
-  -webkit-backface-visibility: hidden;
-  -webkit-perspective: 1000;
-  box-sizing: border-box;
-}
-
-.ptr-loading #content,
-.ptr-reset #content,
-.ptr-loading #ptr,
-.ptr-reset #ptr {
-  -webkit-transition: all .25s ease;
-  transition: all .25s ease;
-}
-
-.ptr-reset #content {
-  -webkit-transform: translate3d(0, 0, 0);
-  transform: translate3d(0, 0, 0);
-}
-
-.ptr-loading #content {
-  -webkit-transform: translate3d(0, 50px, 0);
-  transform: translate3d(0, 50px, 0);
-}
-
-</style>
-<script>
-var WebPullToRefresh = (function() {
-  'use strict';
-
+  /**
+   * Easy shortener for handling adding and removing body classes.
+   */
+  //var bodyClass = document.body.classList;
   /**
    * Hold all of the default parameters for the module
    * @type {object}
@@ -154,14 +18,6 @@ var WebPullToRefresh = (function() {
     // ID of the element holding pull to refresh loading area
     ptrEl: 'ptr',
 
-    // Number of pixels of panning until refresh
-    distanceToRefresh: 70,
-
-    // Pointer to function that does the loading and returns a promise
-    loadingFunction: false,
-
-    // Dragging resistance level
-    resistance: 2
   };
 
   /**
@@ -180,27 +36,97 @@ var WebPullToRefresh = (function() {
     startingPositionY: 0
   };
 
-  /**
-   * Easy shortener for handling adding and removing body classes.
-   */
-  var bodyClass = document.body.classList;
 
+
+  /*
+
+
+  ## Usage:
+
+  window.onload = function () {
+    WebPullToRefresh.init({
+      loadingFunction: exampleLoadingFunction
+    });
+  };
+
+
+
+  // Just an example loading function that returns a
+  // promise that WebPullToRefresh can use.
+  var exampleLoadingFunction = function () {
+    var $list = document.getElementById('list');
+    var $item = document.createElement('li');
+    return new Promise(function (resolve, reject) {
+
+      $item.textContent = ('Text label');
+      $item.className = 'table-row table-row--tappable table-row--nav-right';
+      $list.appendChild($item);
+
+      if (true) {
+        resolve($item);
+      } else {
+        reject();
+      }
+    });
+  };
+  */
+var pxTableViewPullToRefreshBehavior = {
+  properties: {
+    pullToRefresh: {
+      type: Boolean
+    },
+    // Number of pixels of panning until refresh
+    distanceToRefresh: {
+      type: Number,
+      value: 70
+    },
+      // Pointer to function that does the loading and returns a promise
+    loadingFunction: {
+      type: Function
+    },
+    // Dragging resistance level
+    resistance: {
+      type: Number,
+      value: 2.5
+    }
+  },
+
+  attached: function () {
+    if (this.pullToRefresh) {
+      this.async(function(){
+        this.toggleClass('table-view--ptr', this.pullToRefresh, this.$$('.table-view'));
+        this.toggleClass('ptr', this.pullToRefresh);
+        this.toggleClass('ptr__content', this.pullToRefresh, this.$.content);
+        this._init();
+        console.log('pxTableViewPullToRefreshBehavior.ready');
+      });
+
+
+    }
+  },
+
+  detached: function () {
+    if (this.pullToRefresh) {
+      console.log('pxTableViewPullToRefreshBehavior.detached');
+    }
+  },
   /**
    * Initialize pull to refresh, hammer, and bind pan events.
    *
    * @param {object=} params - Setup parameters for pull to refresh
    */
-  var init = function(params) {
+  _init: function(params){
     params = params || {};
     options = {
-      contentEl: params.contentEl || document.getElementById(defaults.contentEl),
-      ptrEl: params.ptrEl || document.getElementById(defaults.ptrEl),
-      distanceToRefresh: params.distanceToRefresh || defaults.distanceToRefresh,
-      loadingFunction: params.loadingFunction || defaults.loadingFunction,
-      resistance: params.resistance || defaults.resistance
+      contentEl: this.$.content,
+      ptrEl: this.$.ptr,
+      distanceToRefresh: this.distanceToRefresh,
+      loadingFunction: this.loadingFunction,
+      resistance: this.resistance
     };
 
     if (!options.contentEl || !options.ptrEl) {
+      console.error('No contentEl or ptrEl', options);
       return false;
     }
 
@@ -210,31 +136,42 @@ var WebPullToRefresh = (function() {
       direction: Hammer.DIRECTION_VERTICAL
     });
 
-    h.on('panstart', _panStart);
-    h.on('pandown', _panDown);
-    h.on('panup', _panUp);
-    h.on('panend', _panEnd);
-  };
-
+    h.on('panstart', this._onPanStart.bind(this));
+    h.on('pandown', this._onPanDown.bind(this));
+    h.on('panup', this._onPanUp.bind(this));
+    h.on('panend', this._onPanEnd.bind(this));
+    this.fire('ptr-ready');
+  },
   /**
-   * Determine whether pan events should apply based on scroll position on panstart
-   *
-   * @param {object} e - Event object
+   * Set/remove the loading body class to show or hide the loading indicator after pull down.
    */
-  var _panStart = function(e) {
-    pan.startingPositionY = document.body.scrollTop;
+  _setBodyClass: function(){
+    if (pan.distance > options.distanceToRefresh) {
+      //bodyClass.add('ptr-refresh');
+      this.toggleClass('ptr-refresh', true);
+    } else {
+      //bodyClass.remove('ptr-refresh');
+      this.toggleClass('ptr-refresh', false);
+    }
+  },
 
+    /**
+     * Determine whether pan events should apply based on scroll position on panstart
+     *
+     * @param {object} e - Event object
+     */
+  _onPanStart: function(e){
+    pan.startingPositionY = document.body.scrollTop;
     if (pan.startingPositionY === 0) {
       pan.enabled = true;
     }
-  };
-
+  },
   /**
    * Handle element on screen movement when the pandown events is firing.
    *
    * @param {object} e - Event object
    */
-  var _panDown = function(e) {
+  _onPanDown: function(e){
     if (!pan.enabled) {
       return;
     }
@@ -242,16 +179,15 @@ var WebPullToRefresh = (function() {
     e.preventDefault();
     pan.distance = e.distance / options.resistance;
 
-    _setContentPan();
-    _setBodyClass();
-  };
-
+    this._setContentPan();
+    this._setBodyClass();
+  },
   /**
    * Handle element on screen movement when the pandown events is firing.
    *
    * @param {object} e - Event object
    */
-  var _panUp = function(e) {
+  _onPanUp: function(e){
     if (!pan.enabled || pan.distance === 0) {
       return;
     }
@@ -263,37 +199,15 @@ var WebPullToRefresh = (function() {
     } else {
       pan.distance = e.distance / options.resistance;
     }
-
-    _setContentPan();
-    _setBodyClass();
-  };
-
-  /**
-   * Set the CSS transform on the content element to move it on the screen.
-   */
-  var _setContentPan = function() {
-    // Use transforms to smoothly animate elements on desktop and mobile devices
-    options.contentEl.style.transform = options.contentEl.style.webkitTransform = 'translate3d( 0, ' + pan.distance + 'px, 0 )';
-    options.ptrEl.style.transform = options.ptrEl.style.webkitTransform = 'translate3d( 0, ' + (pan.distance - options.ptrEl.offsetHeight) + 'px, 0 )';
-  };
-
-  /**
-   * Set/remove the loading body class to show or hide the loading indicator after pull down.
-   */
-  var _setBodyClass = function() {
-    if (pan.distance > options.distanceToRefresh) {
-      bodyClass.add('ptr-refresh');
-    } else {
-      bodyClass.remove('ptr-refresh');
-    }
-  };
-
+    this._setContentPan();
+    this._setBodyClass();
+  },
   /**
    * Determine how to animate and position elements when the panend event fires.
    *
    * @param {object} e - Event object
    */
-  var _panEnd = function(e) {
+  _onPanEnd: function(e){
     if (!pan.enabled) {
       return;
     }
@@ -303,85 +217,78 @@ var WebPullToRefresh = (function() {
     options.contentEl.style.transform = options.contentEl.style.webkitTransform = '';
     options.ptrEl.style.transform = options.ptrEl.style.webkitTransform = '';
 
-    if (document.body.classList.contains('ptr-refresh')) {
-      _doLoading();
+    if (this.classList.contains('ptr-refresh')) {
+      this._doLoading();
     } else {
-      _doReset();
+      this._doReset();
     }
 
     pan.distance = 0;
     pan.enabled = false;
-  };
-
+  },
+  /**
+   * Set the CSS transform on the content element to move it on the screen.
+   */
+  _setContentPan: function(e){
+    this.transform(this._transformForTranslateY(pan.distance), options.contentEl);
+    this.transform(this._transformForTranslateY((pan.distance - options.ptrEl.offsetHeight)), options.ptrEl);
+    // Use transforms to smoothly animate elements on desktop and mobile devices
+    //options.contentEl.style.transform = options.contentEl.style.webkitTransform = 'translate3d( 0, ' + pan.distance + 'px, 0 )';
+    //options.ptrEl.style.transform = options.ptrEl.style.webkitTransform = 'translate3d( 0, ' + (pan.distance - options.ptrEl.offsetHeight) + 'px, 0 )';
+  },
   /**
    * Position content and refresh elements to show that loading is taking place.
    */
-  var _doLoading = function() {
-    bodyClass.add('ptr-loading');
-
+  _doLoading: function(e){
+    var self = this;
+    this.toggleClass('ptr-loading', true);
+    this.fire('ptr-loading');
     // If no valid loading function exists, just reset elements
-    if (!options.loadingFunction) {
-      return _doReset();
+    if (!this.loadingFunction) {
+      return this._doReset();
     }
 
     // The loading function should return a promise
-    var loadingPromise = options.loadingFunction();
+    var loadingPromise = this.loadingFunction();
 
-    // For UX continuity, make sure we show loading for at least one second before resetting
-    setTimeout(function() {
+
+    setTimeout(function () {
+      console.log('Sho')
       // Once actual loading is complete, reset pull to refresh
-      loadingPromise.then(_doReset);
+      loadingPromise.then(function(){
+        self.fire('ptr-complete');
+        self._doReset();
+      });
     }, 1000);
-  };
-
+  },
   /**
    * Reset all elements to their starting positions before any paning took place.
    */
-  var _doReset = function() {
-    bodyClass.remove('ptr-loading');
-    bodyClass.remove('ptr-refresh');
-    bodyClass.add('ptr-reset');
+  _doReset: function(e){
 
-    var bodyClassRemove = function() {
-      bodyClass.remove('ptr-reset');
-      document.body.removeEventListener('transitionend', bodyClassRemove, false);
+    this.toggleClass('ptr-loading', false);
+    this.toggleClass('ptr-refresh', false);
+    this.toggleClass('ptr-reset', true);
+
+    this.fire('ptr-reset');
+    var bodyClassRemove = function () {
+      this.toggleClass('ptr-reset', false);
+      this.removeEventListener('transitionend', bodyClassRemove, false);
+      this.fire('ptr-transitionend');
     };
-
-    document.body.addEventListener('transitionend', bodyClassRemove, false);
-  };
-
-  return {
-    init: init
-  }
-
-})();
-
-
-/* usage */
-window.onload = function() {
-  WebPullToRefresh.init({
-    loadingFunction: exampleLoadingFunction
-  });
-};
-
-// Just an example loading function that returns a
-// promise that WebPullToRefresh can use.
-var exampleLoadingFunction = function() {
-
-  return new Promise(function(resolve, reject) {
-    var $list = $('#list');
-    var $item = $('<li/>');
-
-    $item.text('Item #');
-    $list.append($item);
-
-    if (true) {
-      resolve($item);
-    } else {
-      reject();
+    this.addEventListener('transitionend', bodyClassRemove, false);
+  },
+  /**
+   * Handle transforming the table-row.
+   * @param translateX
+   * @returns {*}
+   * @private
+   */
+  _transformForTranslateY: function (translateY) {
+    if (translateY === null) {
+      return 'translate3d(0, 0, 0)';
     }
-  });
+    return 'translate3d(0, ' + translateY + 'px, 0)';
+  }
 };
-//@ sourceURL=pen.js
- 
 </script>

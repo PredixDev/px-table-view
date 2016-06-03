@@ -39,6 +39,7 @@
 ///     </div>
 ///   </div>
 /// </section>
+  @import 'modifiers/_table-view--ptr';
 @include b ('table-view') {
   @include switch();
   @include clearfix();
@@ -58,6 +59,7 @@
   ///--------------------------------
   @import 'modifiers/_table-view--drilldown';
   @import 'modifiers/_table-view--sizes';
+
 
   ///.table-view--responsive
   @include modifier ('responsive') {

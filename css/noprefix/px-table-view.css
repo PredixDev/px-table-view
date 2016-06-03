@@ -233,6 +233,105 @@ html {
  *
  * `.u-[breakpoint]-(m|p)(t|r|b|l|h|v)(-|+|0) {}` = utility - breakpoint - margin/padding top/right/bottom/left/horizontal/vertical less/more/none
  */
+.ptr-refresh {
+  background: green; }
+
+.ptr-loading {
+  background: purple; }
+
+.ptr-reset {
+  background: crimson; }
+
+.table-view--ptr {
+  position: relative; }
+
+.ptr__loader {
+  z-index: 10;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 50px;
+  display: none;
+  background-color: #efeff4; }
+
+.ptr__content {
+  min-height: 100%;
+  z-index: 20;
+  backface-visibility: hidden;
+  perspective: 1000;
+  box-sizing: border-box; }
+
+.ptr__icon {
+  opacity: .6;
+  font-size: 34px;
+  width: auto;
+  height: auto;
+  transition: all .25s ease;
+  transform: rotate(90deg);
+  margin-top: 5px; }
+
+.ptr__loading {
+  display: none;
+  text-align: center;
+  align-self: center;
+  flex: 1;
+  margin: 15px 0; }
+  .ptr__loading span {
+    display: inline-block;
+    vertical-align: middle;
+    width: 10px;
+    height: 10px;
+    margin-right: 3px;
+    transform: scale(0.3);
+    border-radius: 50%;
+    animation: ptr-loading .4s infinite alternate; }
+
+.ptr-refresh .ptr__icon {
+  transform: rotate(270deg); }
+
+.ptr-reset .ptr__content {
+  transform: translate3d(0, 0, 0); }
+
+.ptr-reset .ptr__icon {
+  display: none; }
+
+.ptr-loading .ptr__content {
+  transform: translate3d(0, 50px, 0); }
+
+.ptr-loading .ptr__loader {
+  display: block; }
+
+.ptr-loading .ptr__icon {
+  display: none; }
+
+.ptr__loading #l1 {
+  animation-delay: 0; }
+
+.ptr__loading #l2 {
+  animation-delay: .2s; }
+
+.ptr__loading #l3 {
+  animation-delay: .3s; }
+
+@-webkit-keyframes ptr-loading {
+  0% {
+    transform: translateY(0) scale(0.3);
+    opacity: 0; }
+  100% {
+    transform: scale(1);
+    background-color: #3E87E8;
+    opacity: 1; } }
+
+@keyframes ptr-loading {
+  0% {
+    transform: translateY(0) scale(0.3);
+    opacity: 0; }
+  100% {
+    transform: scale(1);
+    background-color: #3E87E8;
+    opacity: 1; } }
+
 .table-view {
   font-family: "GE Inspira Sans", sans-serif;
   font-weight: 500;

@@ -1,0 +1,161 @@
+@import '../variables';
+@import '../mixins';
+
+$primary-blue: #3E87E8;
+$gray2: #efeff4;
+$gray5: #b1b1bc;
+$ptr-loading-dot-background-color: $primary-blue;
+$ptr-loading-background-color: $gray2;
+$ptr-transition: all .25s ease;
+
+///----------------------------------
+.ptr-refresh {
+  background: green;
+}
+
+.ptr-loading {
+  background: purple;
+}
+
+.ptr-reset {
+  background: crimson;
+}
+
+.table-view {
+  @include m ('ptr') {
+    position: relative;
+  }
+}
+
+.ptr__loader {
+  z-index         : 10;
+  position        : absolute;
+  top             : 0;
+  left            : 0;
+  width           : 100%;
+  height          : 50px;
+  display         : none;
+  background-color: $ptr-loading-background-color;
+  //	transform: translateY(-100%);
+}
+
+.ptr__content {
+  min-height         : 100%;
+  z-index            : 20;
+  backface-visibility: hidden;
+  perspective        : 1000;
+  box-sizing         : border-box;
+}
+
+.ptr__icon {
+  opacity   : .6;
+  font-size : 34px;
+  width     : auto;
+  height    : auto;
+  transition: all .25s ease;
+  transform : rotate(90deg);
+  margin-top: 5px;
+}
+
+.ptr__loading {
+  //	opacity: .4;
+  display   : none;
+  text-align: center;
+  align-self: center;
+  flex      : 1;
+  margin    : 15px 0;
+
+  span {
+    display       : inline-block;
+    vertical-align: middle;
+    width         : 10px;
+    height        : 10px;
+    margin-right  : 3px;
+    transform     : scale(0.3);
+    border-radius : 50%;
+    animation     : ptr-loading .4s infinite alternate;
+  }
+}
+
+.ptr-refresh .ptr__icon {
+  transform: rotate(270deg);
+}
+
+///-----------------------------------------------------
+///Reset
+.ptr-reset {
+  &.ptr {
+  //  transition: $ptr-transition;
+  }
+
+  .ptr__content {
+    //transition: $ptr-transition;
+    transform : translate3d( 0, 0, 0);
+  }
+
+  .ptr__icon {
+    display: none;
+  }
+}
+
+///-----------------------------------------------------
+///Loading
+.ptr-loading {
+  &.ptr {
+  //  transition: $ptr-transition;
+  }
+
+  .ptr__content {
+    //transition: $ptr-transition;
+    transform : translate3d( 0, 50px, 0);
+  }
+
+  .ptr__loader {
+    display: block;
+    //	transform: translateY(0);
+  }
+
+  .ptr__icon {
+    display: none;
+  }
+}
+
+///---------------------------------------
+///Animations
+.ptr__loading {
+  #l1 {
+    animation-delay: 0;
+  }
+
+  #l2 {
+    animation-delay: .2s;
+  }
+
+  #l3 {
+    animation-delay: .3s;
+  }
+}
+@-webkit-keyframes ptr-loading {
+  0% {
+    transform: translateY(0) scale(0.3);
+    opacity  : 0;
+  }
+
+  100% {
+    transform       : scale(1);
+    background-color: $ptr-loading-dot-background-color;
+    opacity         : 1;
+  }
+}
+@keyframes ptr-loading {
+  0% {
+    transform: translateY(0) scale(0.3);
+    opacity  : 0;
+  }
+
+  100% {
+    transform       : scale(1);
+    background-color: $ptr-loading-dot-background-color;
+    opacity         : 1;
+  }
+}

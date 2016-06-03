@@ -5,6 +5,7 @@
 <link rel="import" href="../iron-selector/iron-multi-selectable.html">
 <link rel="import" href="px-table-view-behavior.html"/>
 <link rel="import" href="px-table-view-sortable-behavior.html"/>
+<link rel="import" href="px-table-view-pull-to-refresh-behavior.html"/>
 <link rel="import" href="px-table-view-drilldown-behavior.html"/>
 <link rel="import" href="px-table-row.html"/>
 <!--
@@ -70,6 +71,7 @@ To use this component with iron list you can do the following:
     :host {
       display: block;
       position: relative;
+
     }
     :host .table-view {
       @apply(--px-table-view);
@@ -88,23 +90,33 @@ To use this component with iron list you can do the following:
       color: var(--px-table-row-selected-color, #fff);
     }
 
+    .ptr__content{
+      -webkit-transition: all .2s ease;
+      transition: all .2s ease;
+      will-change: transform;
+    }
+
   </style>
   <template strip-whitespace>
-    <template id="ironList" is="dom-if" if="{{tableData}}">
+
+    <template is="dom-if" if="{{tableData}}">
       <template id="tableRowTemplate" items="{{tableData}}" is="dom-repeat">
         <px-table-row item="{{item}}"></px-table-row>
       </template>
-      <!--
-      <iron-list id="ironList" items="[[tableData]]" as="item">
-        <template>
-          <content select="px-table-row"></content>
-        </template>
-      </iron-list>
-    -->
     </template>
-    <div class="table-view">
+
+    <div id="ptr" class="ptr__loader" hidden$="{{!pullToRefresh}}">
+      <div class="ptr__loading">
+        <span id="l1"></span>
+        <span id="l2"></span>
+        <span id="l3"></span>
+      </div>
+    </div>
+
+    <div id="content" class="table-view">
       <content id="content" select="px-table-row, [content]"></content>
     </div>
+
   </template>
   <script>
     Polymer({
@@ -114,7 +126,8 @@ To use this component with iron list you can do the following:
         Polymer.IronResizableBehavior,
       //  pxTableViewSortableBehavior,
         pxTableViewBehavior,
-        pxTableViewDrilldownBehavior
+        pxTableViewDrilldownBehavior,
+        pxTableViewPullToRefreshBehavior
       ],
       properties: {
         //The list items data
