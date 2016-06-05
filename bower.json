@@ -45,6 +45,7 @@
   "resolutions": {
     "px-theme": "~0.7.0",
     "polymer": "^1.4.0",
-    "webcomponentsjs": "^0.7.20"
+    "webcomponentsjs": "^0.7.20",
+    "polymer-font-awesome": "~0.1.5"
   }
 }

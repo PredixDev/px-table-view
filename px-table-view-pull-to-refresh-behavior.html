@@ -39,10 +39,10 @@
 
 
   /*
-
-
+   * @polymerBehavior
   ## Usage:
 
+```
   window.onload = function () {
     WebPullToRefresh.init({
       loadingFunction: exampleLoadingFunction
@@ -69,7 +69,15 @@
       }
     });
   };
+  ```
+  *
   */
+
+  /**
+   * Behavior that manages the px-table-view
+   *
+   * @polymerBehavior
+   */
 var pxTableViewPullToRefreshBehavior = {
   properties: {
     pullToRefresh: {
@@ -243,7 +251,7 @@ var pxTableViewPullToRefreshBehavior = {
     var self = this;
     this.toggleClass('ptr-loading', true);
     this.fire('ptr-loading');
-    // If no valid loading function exists, just reset elements
+
     if (!this.loadingFunction) {
       return this._doReset();
     }
@@ -251,14 +259,9 @@ var pxTableViewPullToRefreshBehavior = {
     // The loading function should return a promise
     var loadingPromise = this.loadingFunction();
 
-
     setTimeout(function () {
-      console.log('Sho')
-      // Once actual loading is complete, reset pull to refresh
-      loadingPromise.then(function(){
-        self.fire('ptr-complete');
-        self._doReset();
-      });
+      console.log('Once actual loading is complete, reset pull to refresh');
+      loadingPromise.then(self._doReset);
     }, 1000);
   },
   /**

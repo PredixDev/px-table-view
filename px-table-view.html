@@ -96,6 +96,23 @@ To use this component with iron list you can do the following:
       will-change: transform;
     }
 
+    :host {
+
+    }
+    :host.ptr-refresh {
+      background: green;
+    }
+
+    :host.ptr-loading {
+      background-color: purple !important;
+    }
+    :host.ptr-loading .ptr_loading{
+      display:block;
+    }
+
+    :host.ptr-reset {
+      background-color: crimson !important;
+    }
   </style>
   <template strip-whitespace>
 
