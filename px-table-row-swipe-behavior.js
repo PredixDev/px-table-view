@@ -16,6 +16,17 @@ function dirProp(direction, hProp, vProp) {
 
 /**
  * Behavior that manages the swipeable table rows
+ *
+ * ```
+ <px-table-row title="Text Label" label1="Yesterday" modifier="nav-right" swipeable swipe-right fit-underlay>
+   <div underlay class="full-height flex flex--stretch flex--left">
+     <px-table-row-action-button label="More" type="more"></px-table-row-action-button>
+     <px-table-row-action-button label="Flag" type="flag"></px-table-row-action-button>
+     <px-table-row-action-button label="Delete" type="delete"></px-table-row-action-button>
+   </div>
+ </px-table-row>
+ * ```
+ *
  * @polymerBehavior
  */
 var pxTableRowSwipeBehavior = {
@@ -170,9 +181,10 @@ var pxTableRowSwipeBehavior = {
     this.hammer.on("panstart panmove panend pancancel", Hammer.bindFn(this._onPan, this));
   },
   /**
-   * when disableSwipe is true, only click event can be triggered.
+   * When disableSwipe is true, only a click event can be triggered.
    * @param event
    * @private
+   * @event px-tap-underlay
    */
   _tapHandler: function (event) {
     this.fire('px-tap-underlay', {
@@ -264,6 +276,7 @@ var pxTableRowSwipeBehavior = {
   },
   /**
    * Reset the position of the swipeable content.
+   * @event px-position-reset
    */
   resetPosition: function () {
     this._moveDrawer(null);
@@ -272,7 +285,7 @@ var pxTableRowSwipeBehavior = {
     this.fire('px-position-reset');
   },
   /**
-   *
+   * Handle when panning starts
    * @param event
    * @private
    */
@@ -287,7 +300,7 @@ var pxTableRowSwipeBehavior = {
     }
   },
   /**
-   *
+   * Handle when panning
    * @param event
    * @private
    */
@@ -303,6 +316,7 @@ var pxTableRowSwipeBehavior = {
     }
   },
   /**
+   * Handle when panning ends.
    *  to swipe to the leftmost edge:-
    *  - slide until [this.peekOffset] - [this.width].
    *  - validDelta = true
@@ -336,7 +350,7 @@ var pxTableRowSwipeBehavior = {
   },
 
   /**
-   *
+   * Handle when iron-resize event is fired.
    * @private
    */
   _onIronResize: function () {

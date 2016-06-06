@@ -22,10 +22,11 @@
         margin: 0;
       }
     </style>
+
   </head>
   <body unresolved class="viewport--full-height">
     <div class="viewport">
-      <h2 class="beta">Swipeable</h2>
+      <h1 class="beta">Swipeable</h1>
       <p>
         The following examples demonstrate using actions with the
         <code>px-table-row</code>
@@ -34,8 +35,17 @@
       <p>
         For the mobile version visit <a href="swipe-actions-mobile.html" target="_blank">here.</a>
       </p>
+      <script src="demo.js"></script>
+      <script type="text/javascript">
+        document.addEventListener('WebComponentsReady', function(){
+          createToc('toc');
+        });
+      </script>
+      <ol id="toc">
 
-      <h3>Swipe Right</h3>
+      </ol>
+
+      <h2>Swipe Right</h2>
       <demo-snippet class="u-mb">
         <template>
           <template id="table-view-actions-1" is="dom-bind">
@@ -61,7 +71,7 @@
       </demo-snippet>
 
 
-      <h3>Swipe Left</h3>
+      <h2>Swipe Left</h2>
       <demo-snippet class="u-mb">
         <template>
           <template id="table-view-actions-2" is="dom-bind">
@@ -93,7 +103,7 @@
         </template>
       </demo-snippet>
 
-      <h3>Custom CSS</h3>
+      <h2>Custom CSS</h2>
       <demo-snippet class="u-mb">
         <template>
           <template id="table-view-actions-3" is="dom-bind">
@@ -161,10 +171,10 @@
                 <li>
                   <x-element title="Test" swipe-left>
                     <div content>
-                      <h3>Content</h3>
+                      <h2>Content</h2>
                     </div>
                     <div underlay>
-                      <h3>UNDERLAY</h3>
+                      <h2>UNDERLAY</h2>
                     </div>
                   </li>
                 </template>

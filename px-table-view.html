@@ -3,9 +3,12 @@
 <link rel="import" href="../iron-list/iron-list.html">
 <link rel="import" href="../iron-selector/iron-selector.html">
 <link rel="import" href="../iron-selector/iron-multi-selectable.html">
+
+
 <link rel="import" href="px-table-view-behavior.html"/>
-<link rel="import" href="px-table-view-sortable-behavior.html"/>
+
 <link rel="import" href="px-table-view-pull-to-refresh-behavior.html"/>
+<link rel="import" href="px-table-view-sortable-behavior.html"/>
 <link rel="import" href="px-table-view-drilldown-behavior.html"/>
 <link rel="import" href="px-table-row.html"/>
 <!--
@@ -71,7 +74,6 @@ To use this component with iron list you can do the following:
     :host {
       display: block;
       position: relative;
-
     }
     :host .table-view {
       @apply(--px-table-view);
@@ -79,49 +81,42 @@ To use this component with iron list you can do the following:
     :host ::content {
       @apply(--px-table-row);
     }
-
     :host .sortable-chosen,
-    :host ::content .sortable-chosen{
-        box-shadow: 0 2px 10px rgba(0,0,0,0.45);
+    :host ::content .sortable-chosen {
+      box-shadow: 0 2px 10px rgba(0,0,0,0.45);
     }
-
     :host .iron-selected {
       background-color: var(--px-table-row-selected-background-color, #0a9ec1);
       color: var(--px-table-row-selected-color, #fff);
     }
 
-    .ptr__content{
-      -webkit-transition: all .2s ease;
-      transition: all .2s ease;
-      will-change: transform;
+    /* Handle when loading */
+    :host.ptr-loading.ptr {
+      -webkit-transition: all 0.25s ease;
+      transition: all 0.25s ease;
+    }
+    :host.ptr-loading .ptr__content {
+      -webkit-transition: all 0.25s ease;
+      transition: all 0.25s ease;
+      -webkit-transform: translate3d(0, 50px, 0);
+      transform: translate3d(0, 50px, 0);
+    }
+    :host.ptr-loading .ptr__loader {
+      -webkit-transform: translateY(0);
+      transform: translateY(0);
+    }
+    :host.ptr-loading .ptr__loader,
+    :host.ptr-loading .ptr__loading {
+      display: block;
     }
 
-    :host {
-
-    }
-    :host.ptr-refresh {
-      background: green;
-    }
-
-    :host.ptr-loading {
-      background-color: purple !important;
-    }
-    :host.ptr-loading .ptr_loading{
-      display:block;
-    }
-
-    :host.ptr-reset {
-      background-color: crimson !important;
-    }
   </style>
   <template strip-whitespace>
-
     <template is="dom-if" if="{{tableData}}">
       <template id="tableRowTemplate" items="{{tableData}}" is="dom-repeat">
         <px-table-row item="{{item}}"></px-table-row>
       </template>
     </template>
-
     <div id="ptr" class="ptr__loader" hidden$="{{!pullToRefresh}}">
       <div class="ptr__loading">
         <span id="l1"></span>
@@ -129,11 +124,9 @@ To use this component with iron list you can do the following:
         <span id="l3"></span>
       </div>
     </div>
-
     <div id="content" class="table-view">
-      <content id="content" select="px-table-row, [content]"></content>
+      <content id="tableViewContent" select="px-table-row, [content]"></content>
     </div>
-
   </template>
   <script>
     Polymer({
@@ -141,7 +134,7 @@ To use this component with iron list you can do the following:
       behaviors: [
         //Polymer.IronMultiSelectableBehavior,
         Polymer.IronResizableBehavior,
-      //  pxTableViewSortableBehavior,
+        //  pxTableViewSortableBehavior,
         pxTableViewBehavior,
         pxTableViewDrilldownBehavior,
         pxTableViewPullToRefreshBehavior
@@ -165,7 +158,9 @@ To use this component with iron list you can do the following:
         }
       },
       _handleModifier: function (newVal, oldVal) {
-        var _this = this, klass, types;
+        var _this = this,
+          klass,
+          types;
         klass = 'table-view--' + oldVal;
         _this.toggleClass(klass, false, _this.$$('.table-view'));
         if (_this.modifier) {

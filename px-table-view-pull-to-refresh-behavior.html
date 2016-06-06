@@ -36,68 +36,51 @@
     startingPositionY: 0
   };
 
-
-
-  /*
-   * @polymerBehavior
-  ## Usage:
-
-```
-  window.onload = function () {
-    WebPullToRefresh.init({
-      loadingFunction: exampleLoadingFunction
-    });
-  };
-
-
-
-  // Just an example loading function that returns a
-  // promise that WebPullToRefresh can use.
-  var exampleLoadingFunction = function () {
-    var $list = document.getElementById('list');
-    var $item = document.createElement('li');
-    return new Promise(function (resolve, reject) {
-
-      $item.textContent = ('Text label');
-      $item.className = 'table-row table-row--tappable table-row--nav-right';
-      $list.appendChild($item);
-
-      if (true) {
-        resolve($item);
-      } else {
-        reject();
-      }
-    });
-  };
-  ```
-  *
-  */
-
   /**
-   * Behavior that manages the px-table-view
+   * Behavior that manages the px-table-view pull to refresh behavior.
    *
    * @polymerBehavior
    */
 var pxTableViewPullToRefreshBehavior = {
   properties: {
+    /**
+     * Enable pull to refresh on the table
+     */
     pullToRefresh: {
-      type: Boolean
+      type: Boolean,
+      value: false
     },
-    // Number of pixels of panning until refresh
+    /**
+     * Number of pixels of panning until refresh
+     */
     distanceToRefresh: {
       type: Number,
       value: 70
     },
-      // Pointer to function that does the loading and returns a promise
+    /**
+     * Function that does the loading and returns a promise
+     * ```
+     var table = document.getElementById('ptr-table');
+     table.loadingFunction = function handleLoad() {
+       return new Promise(function () {
+         resolve({});
+       });
+     };
+     * ```
+     */
     loadingFunction: {
-      type: Function
+      type: String
     },
-    // Dragging resistance level
+    /**
+     * Dragging resistance level
+     */
     resistance: {
       type: Number,
       value: 2.5
     }
   },
+  //Reference to the Hammer instance
+  _hammer: null,
 
   attached: function () {
     if (this.pullToRefresh) {
@@ -106,16 +89,19 @@ var pxTableViewPullToRefreshBehavior = {
         this.toggleClass('ptr', this.pullToRefresh);
         this.toggleClass('ptr__content', this.pullToRefresh, this.$.content);
         this._init();
-        console.log('pxTableViewPullToRefreshBehavior.ready');
       });
-
-
     }
   },
 
   detached: function () {
     if (this.pullToRefresh) {
       console.log('pxTableViewPullToRefreshBehavior.detached');
+      if(this._hammer){
+        this._hammer.on('panstart', this._onPanStart.bind(this));
+        this._hammer.on('pandown', this._onPanDown.bind(this));
+        this._hammer.on('panup', this._onPanUp.bind(this));
+        this._hammer.on('panend', this._onPanEnd.bind(this));
+      }
     }
   },
   /**
@@ -138,34 +124,31 @@ var pxTableViewPullToRefreshBehavior = {
       return false;
     }
 
-    var h = new Hammer(options.contentEl);
+    this._hammer = new Hammer(options.contentEl);
 
-    h.get('pan').set({
+    this._hammer.get('pan').set({
       direction: Hammer.DIRECTION_VERTICAL
     });
 
-    h.on('panstart', this._onPanStart.bind(this));
-    h.on('pandown', this._onPanDown.bind(this));
-    h.on('panup', this._onPanUp.bind(this));
-    h.on('panend', this._onPanEnd.bind(this));
+    this._hammer.on('panstart', this._onPanStart.bind(this));
+    this._hammer.on('pandown', this._onPanDown.bind(this));
+    this._hammer.on('panup', this._onPanUp.bind(this));
+    this._hammer.on('panend', this._onPanEnd.bind(this));
     this.fire('ptr-ready');
   },
   /**
    * Set/remove the loading body class to show or hide the loading indicator after pull down.
+   * @event ptr-refresh
    */
   _setBodyClass: function(){
     if (pan.distance > options.distanceToRefresh) {
-      //bodyClass.add('ptr-refresh');
       this.toggleClass('ptr-refresh', true);
     } else {
-      //bodyClass.remove('ptr-refresh');
       this.toggleClass('ptr-refresh', false);
     }
   },
-
     /**
      * Determine whether pan events should apply based on scroll position on panstart
-     *
      * @param {object} e - Event object
      */
   _onPanStart: function(e){
@@ -176,7 +159,6 @@ var pxTableViewPullToRefreshBehavior = {
   },
   /**
    * Handle element on screen movement when the pandown events is firing.
-   *
    * @param {object} e - Event object
    */
   _onPanDown: function(e){
@@ -184,7 +166,7 @@ var pxTableViewPullToRefreshBehavior = {
       return;
     }
 
-    e.preventDefault();
+  e.preventDefault();
     pan.distance = e.distance / options.resistance;
 
     this._setContentPan();
@@ -192,7 +174,6 @@ var pxTableViewPullToRefreshBehavior = {
   },
   /**
    * Handle element on screen movement when the pandown events is firing.
-   *
    * @param {object} e - Event object
    */
   _onPanUp: function(e){
@@ -211,8 +192,7 @@ var pxTableViewPullToRefreshBehavior = {
     this._setBodyClass();
   },
   /**
-   * Determine how to animate and position elements when the panend event fires.
-   *
+   * Handle determining how to animate and position elements when the panend event fires.
    * @param {object} e - Event object
    */
   _onPanEnd: function(e){
@@ -235,56 +215,57 @@ var pxTableViewPullToRefreshBehavior = {
     pan.enabled = false;
   },
   /**
-   * Set the CSS transform on the content element to move it on the screen.
+   * Handle setting the CSS transform on the content element to move it on the screen.
    */
   _setContentPan: function(e){
     this.transform(this._transformForTranslateY(pan.distance), options.contentEl);
     this.transform(this._transformForTranslateY((pan.distance - options.ptrEl.offsetHeight)), options.ptrEl);
-    // Use transforms to smoothly animate elements on desktop and mobile devices
-    //options.contentEl.style.transform = options.contentEl.style.webkitTransform = 'translate3d( 0, ' + pan.distance + 'px, 0 )';
-    //options.ptrEl.style.transform = options.ptrEl.style.webkitTransform = 'translate3d( 0, ' + (pan.distance - options.ptrEl.offsetHeight) + 'px, 0 )';
   },
   /**
-   * Position content and refresh elements to show that loading is taking place.
+   * Handle position content and refresh elements to show that loading is taking place.
+   * @event ptr-loading
    */
   _doLoading: function(e){
     var self = this;
     this.toggleClass('ptr-loading', true);
+    this.toggleClass('ptr-reset', false);
     this.fire('ptr-loading');
 
     if (!this.loadingFunction) {
       return this._doReset();
     }
 
-    // The loading function should return a promise
     var loadingPromise = this.loadingFunction();
-
     setTimeout(function () {
-      console.log('Once actual loading is complete, reset pull to refresh');
       loadingPromise.then(self._doReset);
+      self._doReset();
     }, 1000);
   },
   /**
-   * Reset all elements to their starting positions before any paning took place.
+   * Handle resetting all elements to their starting positions before any paning took place.
+   * @event ptr-reset
    */
   _doReset: function(e){
-
     this.toggleClass('ptr-loading', false);
     this.toggleClass('ptr-refresh', false);
     this.toggleClass('ptr-reset', true);
-
+    this.addEventListener('transitionend', this._onTransitionEnd, false);
     this.fire('ptr-reset');
-    var bodyClassRemove = function () {
-      this.toggleClass('ptr-reset', false);
-      this.removeEventListener('transitionend', bodyClassRemove, false);
-      this.fire('ptr-transitionend');
-    };
-    this.addEventListener('transitionend', bodyClassRemove, false);
+  },
+  /**
+   * Handle removing event listener when transition ends.
+   * @event ptr-transitionend
+   */
+  _onTransitionEnd:function () {
+    this.toggleClass('ptr-reset', false);
+    this.removeEventListener('transitionend', this._onTransitionEnd, false);
+    this.fire('ptr-transitionend');
+    console.warn('Transition end', this);
   },
   /**
    * Handle transforming the table-row.
    * @param translateX
-   * @returns {*}
+   * @returns {String} The transform value
    * @private
    */
   _transformForTranslateY: function (translateY) {

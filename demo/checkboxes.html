@@ -25,14 +25,23 @@
   </head>
   <body unresolved class="viewport--full-height">
     <div class="viewport">
-      <h2 class="beta">Checkboxes</h2>
+      <h1 class="beta">Checkboxes</h1>
       <p>
         The following examples demonstrate using checkboxes with the
         <code>px-table-row</code>
         element.
       </p>
+      <script src="demo.js"></script>
+      <script type="text/javascript">
+        document.addEventListener('WebComponentsReady', function(){
+          createToc('toc');
+        });
+      </script>
+      <ol id="toc">
 
-      <h3>Bordered Checkboxes</h3>
+      </ol>
+
+      <h2>Bordered Checkboxes</h2>
       <demo-snippet>
         <template id="">
           <px-table-view>
@@ -49,7 +58,7 @@
         </template>
       </demo-snippet>
 
-      <h3>Borderless Checkboxes</h3>
+      <h2>Borderless Checkboxes</h2>
       <demo-snippet>
         <template id="">
           <px-table-view>

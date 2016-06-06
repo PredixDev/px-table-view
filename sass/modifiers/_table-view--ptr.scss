@@ -10,15 +10,15 @@ $ptr-transition: all .25s ease;
 
 ///----------------------------------
 .ptr-refresh {
-  background: green;
+  background-color: green;
 }
 
 .ptr-loading {
-  background-color: purple !important;
+  background-color: purple;
 }
 
 .ptr-reset {
-  background-color: crimson !important;
+  background-color: crimson;
 }
 
 .table-view {
@@ -36,11 +36,13 @@ $ptr-transition: all .25s ease;
   height          : 50px;
   display         : none;
   background-color: $ptr-loading-background-color;
-	transform: translateY(-100%);
+  border-bottom   : 1px solid $gray5;
+  transform       : translateY(-100%);
 }
 
 .ptr__content {
-  min-height         : 100%;
+  @include scrollable();
+  //min-height         : 100%;
   z-index            : 20;
   backface-visibility: hidden;
   perspective        : 1000;
@@ -58,7 +60,7 @@ $ptr-transition: all .25s ease;
 }
 
 .ptr__loading {
-  	opacity: .4;
+  opacity   : .4;
   display   : none;
   text-align: center;
   align-self: center;
@@ -77,9 +79,6 @@ $ptr-transition: all .25s ease;
   }
 }
 
-.ptr-refresh .ptr__icon {
-  transform: rotate(270deg);
-}
 
 ///-----------------------------------------------------
 ///Reset
@@ -87,14 +86,9 @@ $ptr-transition: all .25s ease;
   &.ptr {
     transition: $ptr-transition;
   }
-
   .ptr__content {
     transition: $ptr-transition;
     transform : translate3d( 0, 0, 0);
-  }
-
-  .ptr__icon {
-    display: none;
   }
 }
 
@@ -102,22 +96,17 @@ $ptr-transition: all .25s ease;
 ///Loading
 .ptr-loading {
   &.ptr {
-   transition: $ptr-transition;
+    transition: $ptr-transition;
   }
-
   .ptr__content {
     transition: $ptr-transition;
     transform : translate3d( 0, 50px, 0);
   }
-
-  .ptr__loading,
   .ptr__loader {
-    display: block;
     transform: translateY(0);
   }
-
-  .ptr__icon {
-    display: none;
+  .ptr__loading {
+    display: block;
   }
 }
 
