@@ -63,7 +63,7 @@
 
   ///.table-view--responsive
   @include modifier ('responsive') {
-    @include n-columns( $table-view-responsive-row-width, $table-view-responsive-row-gutters, true, $table-view-responsive-row-max);
+    @include n-columns( $table-view-responsive-row-width, $inuit-base-spacing-unit, true, $table-view-responsive-row-max);
   }
 
   ///.table-view--ptr

@@ -80,8 +80,8 @@
           <demo-snippet>
             <template>
               <px-table-view>
-                <px-table-row icon="fa fa-square" media-pos="right" modifier="tappable" title="Single-line item"></px-table-row>
-                <px-table-row icon="fa fa-square" media-pos="right" modifier="tappable" title="Single-line item"></px-table-row>
+                <px-table-row icon="fa:fa-square" media-pos="right" modifier="tappable" title="Single-line item"></px-table-row>
+                <px-table-row icon="fa:fa-square" media-pos="right" modifier="tappable" title="Single-line item"></px-table-row>
               </px-table-view>
             </template>
           </demo-snippet>
@@ -89,8 +89,8 @@
           <demo-snippet>
             <template>
               <px-table-view>
-                <px-table-row icon="fa fa-square" modifier="tappable" title="Single-line item"></px-table-row>
-                <px-table-row icon="fa fa-square" modifier="tappable" title="Single-line item"></px-table-row>
+                <px-table-row icon="fa:fa-square" modifier="tappable" title="Single-line item"></px-table-row>
+                <px-table-row icon="fa:fa-square" modifier="tappable" title="Single-line item"></px-table-row>
               </px-table-view>
             </template>
           </demo-snippet>
@@ -252,6 +252,7 @@
         <section id="modifiers">
           <!-- TODO: Style Modifiers -->
           <h1 class="beta">Style Modifiers</h1>
+          <h2>Custom CSS</h2>
           <demo-snippet>
             <template>
               <template id="table-view-1" is="dom-bind">
@@ -262,16 +263,11 @@
                       background-color: #4dba67;
                       border-bottom-color: #1b8555;
                     }
-
                   }
                 </style>
-                <px-table-view modifier="tiny" class="my-custom-table">
+                <px-table-view class="my-custom-table">
                   <template is="dom-repeat" items="[[items]]">
-                    <px-table-row
-                      title="Text Label"
-                      icon-left="polymer-font-awesome:fa-pencil"
-                      label1="Yesterday"
-                      modifier="nav-right tappable"></px-table-row>
+                    <px-table-row title="Text Label" icon="fa:fa-pencil" modifier="nav-right tappable"></px-table-row>
                   </template>
                 </px-table-view>
               </template>
@@ -364,7 +360,7 @@
             </table>
           </div>
           <!-- TODO: Responsive -->
-          <h2>Modifier - Responsive</h2>
+          <h2>Modifier - Responsive Rows</h2>
           <demo-snippet>
             <template>
               <button class="btn btn--full btn-add-responsive u-mb+">Add Table Row</button>
@@ -375,8 +371,7 @@
                 });
               </script>
               <px-table-view modifier="small responsive row">
-
-                <px-table-row id="table-row-1" type="tappable">
+                <px-table-row id="table-row-1" modifier="tappable">
                   <div content>
                     <h3 class="table-row__title epsilon">Lorem Ipsum</h3>
                     <div class="table-row__body">
@@ -385,7 +380,7 @@
                     </div>
                   </div>
                 </px-table-row>
-                <px-table-row type="tappable">
+                <px-table-row modifier="tappable">
                   <div content>
                     <h3 class="table-row__title epsilon">Lorem Ipsum</h3>
                     <div class="table-row__body">
@@ -394,7 +389,7 @@
                     </div>
                   </div>
                 </px-table-row>
-                <px-table-row type="tappable">
+                <px-table-row modifier="tappable">
                   <div content>
                     <h3 class="table-row__title epsilon">Lorem Ipsum</h3>
                     <div class="table-row__body">
@@ -403,6 +398,15 @@
                     </div>
                   </div>
                 </px-table-row>
+              </px-table-view>
+            </template>
+          </demo-snippet>
+          <h2>Modifier - Bare</h2>
+          <demo-snippet>
+            <template>
+              <px-table-view modifier="bare">
+                <px-table-row title="Text Label" modifier="tappable"></px-table-row>
+                <px-table-row title="Text Label" modifier="tappable"></px-table-row>
               </px-table-view>
             </template>
           </demo-snippet>
@@ -410,8 +414,8 @@
           <demo-snippet>
             <template>
               <px-table-view modifier="flush">
-                <px-table-row title="Text Label" type="tappable"></px-table-row>
-                <px-table-row title="Text Label" type="tappable"></px-table-row>
+                <px-table-row title="Text Label" modifier="tappable"></px-table-row>
+                <px-table-row title="Text Label" modifier="tappable"></px-table-row>
               </px-table-view>
             </template>
           </demo-snippet>
@@ -419,8 +423,8 @@
           <demo-snippet>
             <template>
               <px-table-view modifier="tiny">
-                <px-table-row title="Text Label" type="tappable"></px-table-row>
-                <px-table-row title="Text Label" type="tappable"></px-table-row>
+                <px-table-row title="Text Label" modifier="tappable"></px-table-row>
+                <px-table-row title="Text Label" modifier="tappable"></px-table-row>
               </px-table-view>
             </template>
           </demo-snippet>
@@ -428,17 +432,17 @@
           <demo-snippet>
             <template>
               <px-table-view modifier="small">
-                <px-table-row title="Text Label" type="tappable"></px-table-row>
-                <px-table-row title="Text Label" type="tappable"></px-table-row>
+                <px-table-row title="Text Label" modifier="tappable"></px-table-row>
+                <px-table-row title="Text Label" modifier="tappable"></px-table-row>
               </px-table-view>
             </template>
           </demo-snippet>
           <h2>Modifier - Regular</h2>
           <demo-snippet>
             <template>
-              <px-table-view modifier="regular">
-                <px-table-row title="Text Label" type="tappable"></px-table-row>
-                <px-table-row title="Text Label" type="tappable"></px-table-row>
+              <px-table-view>
+                <px-table-row title="Text Label" modifier="tappable"></px-table-row>
+                <px-table-row title="Text Label" modifier="tappable"></px-table-row>
               </px-table-view>
             </template>
           </demo-snippet>
@@ -446,8 +450,8 @@
           <demo-snippet>
             <template>
               <px-table-view modifier="large">
-                <px-table-row title="Text Label" type="tappable"></px-table-row>
-                <px-table-row title="Text Label" type="tappable"></px-table-row>
+                <px-table-row title="Text Label" modifier="tappable"></px-table-row>
+                <px-table-row title="Text Label" modifier="tappable"></px-table-row>
               </px-table-view>
             </template>
           </demo-snippet>
@@ -455,17 +459,26 @@
           <demo-snippet>
             <template>
               <px-table-view modifier="huge">
-                <px-table-row title="Text Label" type="tappable"></px-table-row>
-                <px-table-row title="Text Label" type="tappable"></px-table-row>
+                <px-table-row title="Text Label" modifier="tappable"></px-table-row>
+                <px-table-row title="Text Label" modifier="tappable"></px-table-row>
               </px-table-view>
             </template>
           </demo-snippet>
-          <h2>Default - Modifier - Inset</h2>
+          <h2>Modifier - Inset</h2>
           <demo-snippet>
             <template>
               <px-table-view modifier="inset">
-                <px-table-row title="Text Label" type="tappable"></px-table-row>
-                <px-table-row title="Text Label" type="tappable"></px-table-row>
+                <px-table-row title="Text Label" modifier="tappable"></px-table-row>
+                <px-table-row title="Text Label" modifier="tappable"></px-table-row>
+              </px-table-view>
+            </template>
+          </demo-snippet>
+          <h2>Modifier - Responsive</h2>
+          <demo-snippet>
+            <template>
+              <px-table-view modifier="row responsive">
+                <px-table-row title="Text Label" modifier="tappable"></px-table-row>
+                <px-table-row title="Text Label" modifier="tappable"></px-table-row>
               </px-table-view>
             </template>
           </demo-snippet>
@@ -478,24 +491,32 @@
           <h2>Action Buttons</h2>
           <demo-snippet>
             <template>
-              <px-table-row-action-button label="Delete" type="delete"></px-table-row-action-button>
-              <px-table-row-action-button label="Flag" type="flag"></px-table-row-action-button>
-              <px-table-row-action-button label="Info" type="info"></px-table-row-action-button>
-              <px-table-row-action-button label="More" type="more"></px-table-row-action-button>
+              <div class="flex flex--wrap">
+                <px-table-row-action-button label="Delete" type="delete"></px-table-row-action-button>
+                <px-table-row-action-button label="Flag" type="flag"></px-table-row-action-button>
+                <px-table-row-action-button label="Info" type="info"></px-table-row-action-button>
+                <px-table-row-action-button label="More" type="more"></px-table-row-action-button>
+              </div>
+              <div class="flex flex--wrap">
+                <px-table-row-action-button icon="fa:fa-trash" type="delete"></px-table-row-action-button>
+                <px-table-row-action-button icon="fa:fa-flag" type="flag"></px-table-row-action-button>
+                <px-table-row-action-button icon="fa:fa-info" type="info"></px-table-row-action-button>
+                <px-table-row-action-button icon="fa:fa-ellipsis-h" type="more"></px-table-row-action-button>
+              </div>
             </template>
           </demo-snippet>
-          <h2>Default with Swipe - Left Actions</h2>
+          <h2>Swipe Right Actions</h2>
           <demo-snippet class="u-mb">
             <template>
               <template id="table-view-actions-1" is="dom-bind">
-                <px-table-view modifier="large inset">
+                <px-table-view modifier="small">
                   <template is="dom-repeat" items="[[items]]">
-                    <px-table-row title="Text Label" label1="Yesterday" modifier="nav-right" actionable swipe-left fit-actions>
-                      <px-table-row-actions position="right" underlay>
+                    <px-table-row title="Text Label" label1="Yesterday" modifier="nav-right" swipeable swipe-right fit-underlay>
+                      <div underlay class="full-height flex flex--stretch flex--left">
                         <px-table-row-action-button label="More" type="more"></px-table-row-action-button>
                         <px-table-row-action-button label="Flag" type="flag"></px-table-row-action-button>
                         <px-table-row-action-button label="Delete" type="delete"></px-table-row-action-button>
-                      </px-table-row-actions>
+                      </div>
                     </px-table-row>
                   </template>
                 </px-table-view>
@@ -508,17 +529,25 @@
               </script>
             </template>
           </demo-snippet>
-          <h2>Default with Swipe - Left Actions with Icons</h2>
+          <h2>Swipe Left Actions</h2>
           <demo-snippet class="u-mb">
             <template>
               <template id="table-view-actions-2" is="dom-bind">
-                <px-table-view modifier="large inset">
+                <style is="custom-style">
+                  :root .b {
+                    --px-table-row-underlay: {
+                      right: 0;
+                    }
+                  }
+                </style>
+                <px-table-view modifier="small">
                   <template is="dom-repeat" items="[[items]]">
-                    <px-table-row title="Text Label" label1="Yesterday" modifier="nav-right" actionable swipe-left fit-actions>
-                      <px-table-row-actions position="right" underlay>
-                        <px-table-row-action-button icon="fa fa-flag fa-2x" type="flag"></px-table-row-action-button>
-                        <px-table-row-action-button icon="fa fa-trash fa-2x" type="delete"></px-table-row-action-button>
-                      </px-table-row-actions>
+                    <px-table-row title="Text Label" label1="Yesterday" modifier="nav-right" swipeable swipe-left fit-underlay class="b">
+                      <div underlay class="full-height flex flex--stretch flex--right">
+                        <px-table-row-action-button label="More" type="more"></px-table-row-action-button>
+                        <px-table-row-action-button label="Flag" type="flag"></px-table-row-action-button>
+                        <px-table-row-action-button label="Delete" type="delete"></px-table-row-action-button>
+                      </div>
                     </px-table-row>
                   </template>
                 </px-table-view>
@@ -526,53 +555,6 @@
               <script type="text/javascript">
                 document.addEventListener('WebComponentsReady', function () {
                   var app = document.getElementById('table-view-actions-2');
-                  app.items = [1, 2, 3, 4, 5];
-                });
-              </script>
-            </template>
-          </demo-snippet>
-          <h2>Default with Swipe - Right Actions</h2>
-          <demo-snippet class="u-mb">
-            <template>
-              <template id="table-view-actions-3" is="dom-bind">
-                <px-table-view modifier="large inset">
-                  <template is="dom-repeat" items="[[items]]">
-                    <px-table-row title="Text Label" label1="Yesterday" modifier="nav-right" actionable swipe-right fit-underlay>
-                      <px-table-row-actions position="left" underlay>
-                        <px-table-row-action-button label="More" type="more"></px-table-row-action-button>
-                        <px-table-row-action-button label="Flag" type="flag"></px-table-row-action-button>
-                        <px-table-row-action-button label="Delete" type="delete"></px-table-row-action-button>
-                      </px-table-row-actions>
-                    </px-table-row>
-                  </template>
-                </px-table-view>
-              </template>
-              <script type="text/javascript">
-                document.addEventListener('WebComponentsReady', function () {
-                  var app = document.getElementById('table-view-actions-3');
-                  app.items = [1, 2, 3, 4, 5];
-                });
-              </script>
-            </template>
-          </demo-snippet>
-          <h2>Default with Swipe - Right Actions with Icons</h2>
-          <demo-snippet class="u-mb">
-            <template>
-              <template id="table-view-actions-4" is="dom-bind">
-                <px-table-view modifier="large inset">
-                  <template is="dom-repeat" items="[[items]]">
-                    <px-table-row title="Text Label" label1="Yesterday" modifier="nav-right" actionable swipe-right fit-actions>
-                      <px-table-row-actions position="left" underlay>
-                        <px-table-row-action-button icon="fa fa-flag" type="flag"></px-table-row-action-button>
-                        <px-table-row-action-button icon="fa fa-trash" type="delete"></px-table-row-action-button>
-                      </px-table-row-actions>
-                    </px-table-row>
-                  </template>
-                </px-table-view>
-              </template>
-              <script type="text/javascript">
-                document.addEventListener('WebComponentsReady', function () {
-                  var app = document.getElementById('table-view-actions-4');
                   app.items = [1, 2, 3, 4, 5];
                 });
               </script>
@@ -616,8 +598,8 @@
           <demo-snippet>
             <template>
               <px-table-view modifier="small">
-                <px-table-row icon="fa fa-lg fa-exclamation-triangle color-red" modifier="tappable" title="Urgent Alert" body="GE-2483" label1="01/21/16"></px-table-row>
-                <px-table-row icon="fa fa-lg fa-exclamation-triangle color-red" modifier="tappable" title="Urgent Alert" body="GE-2483" label1="01/21/16"></px-table-row>
+                <px-table-row icon="fa:fa-exclamation-triangle" modifier="tappable" title="Urgent Alert" body="GE-2483" label1="01/21/16"></px-table-row>
+                <px-table-row icon="fa:fa-exclamation-triangle" modifier="tappable" title="Urgent Alert" body="GE-2483" label1="01/21/16"></px-table-row>
               </px-table-view>
             </template>
           </demo-snippet>
@@ -626,8 +608,8 @@
           <demo-snippet>
             <template>
               <px-table-view modifier="small">
-                <px-table-row title="Time Series Inlet Flow.pdf" label1="534 kb" icon="fa fa-file" modifier="tappable"></px-table-row>
-                <px-table-row title="Time Series Inlet Flow.pdf" label1="534 kb" icon="fa fa-file" modifier="tappable"></px-table-row>
+                <px-table-row title="Time Series Inlet Flow.pdf" label1="534 kb" icon="fa:fa-file" modifier="tappable"></px-table-row>
+                <px-table-row title="Time Series Inlet Flow.pdf" label1="534 kb" icon="fa:fa-file" modifier="tappable"></px-table-row>
               </px-table-view>
             </template>
           </demo-snippet>
@@ -638,10 +620,12 @@
               <px-table-view modifier="bare small">
                 <px-table-row
                   title="Symptoms"
+                  modifier="tappable"
                   body="There was a sustained (non-correcting) step change, Lorem ipsum dolor sit amet, consectetur adipisicing eli .
                   Minus, ab ducimus sit tempore qui aut, dolorem repellat suscipit molestias dignissimos expedita nisi iure"></px-table-row>
                 <px-table-row
                   title="Symptoms"
+                  modifier="tappable"
                   body="There was a sustained (non-correcting) step change, Lorem ipsum dolor sit amet, consectetur adipisicing eli .
                   Minus, ab ducimus sit tempore qui aut, dolorem repellat suscipit molestias dignissimos expedita nisi iure"></px-table-row>
               </px-table-view>
@@ -653,11 +637,13 @@
             <template>
               <px-table-view modifier="bare small">
                 <px-table-row
+                  modifier="tappable"
                   title="John Doe"
                   label1="11/02/12 1:32 PM"
                   body="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minus, ab ducimus sit tempore qui aut, dolorem repellat suscipit molestias dignissimos expedita nisi iure veniam voluptatibus fugiat."></px-table-row>
                 <px-table-row
                   title="John Doe"
+                  modifier="tappable"
                   label1="11/02/12 1:32 PM"
                   body="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minus, ab ducimus sit tempore qui aut, dolorem repellat suscipit molestias dignissimos expedita nisi iure veniam voluptatibus fugiat."></px-table-row>
               </px-table-view>
@@ -668,11 +654,11 @@
           <demo-snippet>
             <template>
               <px-table-view modifier="tiny">
-                <px-table-row title="Dashboard" type="tappable" icon="fa fa-dashboard"></px-table-row>
-                <px-table-row title="Alerts" type="tappable" icon="fa fa-exclamation-triangle"></px-table-row>
-                <px-table-row title="Cases" type="tappable" icon="fa fa-briefcase"></px-table-row>
-                <px-table-row title="Analysis" type="tappable" icon="fa fa-bar-chart"></px-table-row>
-                <px-table-row title="Settings" type="tappable" icon="fa fa-gear"></px-table-row>
+                <px-table-row title="Dashboard" modifier="tappable" icon="fa:fa-tachometer"></px-table-row>
+                <px-table-row title="Alerts" modifier="tappable" icon="fa:fa-exclamation-triangle"></px-table-row>
+                <px-table-row title="Cases" modifier="tappable" icon="fa:fa-briefcase"></px-table-row>
+                <px-table-row title="Analysis" modifier="tappable" icon="fa:fa-bar-chart"></px-table-row>
+                <px-table-row title="Settings" modifier="tappable" icon="fa:fa-cog"></px-table-row>
               </px-table-view>
             </template>
           </demo-snippet>
@@ -689,240 +675,166 @@
                   width: 100%;
                 }
               </style>
-              <ul id="widget-table" class="table-view table-view--bare table-view--responsive">
-                <li class="table-row">
-                  <px-card header-text="Widget 1">
-                    <p>
-                      Content
-                    </p>
-                  </px-card>
-                </li>
-                <li class="table-row">
-                  <px-card header-text="Widget 2">
-                    <p>
-                      Content
-                    </p>
-                  </px-card>
-                </li>
-                <li class="table-row">
-                  <px-card header-text="Widget 3">
-                    <p>
-                      Content
-                    </p>
-                  </px-card>
-                </li>
-                <li class="table-row">
-                  <px-card header-text="Widget 4">
-                    <p>
-                      Content
-                    </p>
-                  </px-card>
-                </li>
-                <li class="table-row">
-                  <px-card header-text="Widget 5">
-                    <p>
-                      Content
-                    </p>
-                  </px-card>
-                </li>
-                <li class="table-row">
-                  <px-card header-text="Widget 6">
-                    <p>
-                      Content
-                    </p>
-                  </px-card>
-                </li>
-              </ul>
+              <div id="widget-table" class="box u-p">
+                <px-table-view modifier="row responsive">
+                  <px-table-row>
+                    <px-card header-text="Widget 1" content>
+                      <p>
+                        Content
+                      </p>
+                    </px-card>
+                  </px-table-row>
+                  <px-table-row>
+                    <px-card header-text="Widget 1" content>
+                      <p>
+                        Content
+                      </p>
+                    </px-card>
+                  </px-table-row>
+                  <px-table-row>
+                    <px-card header-text="Widget 1" content>
+                      <p>
+                        Content
+                      </p>
+                    </px-card>
+                  </px-table-row>
+                </px-table-view>
+              </div>
             </template>
           </demo-snippet>
-          <!-- TODO: Actionable -->
-          <h2>Example - Actionable Rows</h2>
+
+          <!-- TODO: Reports List -->
+          <h2>Example - Collapasble List</h2>
           <demo-snippet>
             <template>
-              <px-table-view id="table-actions">
-                <px-table-row title="Action Item 1" actionable>
-                  <div class="table-row__actions table-row__actions--right">
-                    <button class="table-row__button table-row__button--more">
-                      More
-                    </button>
-                    <button class="table-row__button table-row__button--flag">
-                      Flag
-                    </button>
-                    <button class="table-row__button table-row__button--delete">
-                      Delete
-                    </button>
-                  </div>
-                </px-table-row>
-                <px-table-row title="Action Item 2" actionable>
-                  <div class="table-row__actions table-row__actions--right">
-                    <button class="table-row__button table-row__button--more">
-                      More
-                    </button>
-                    <button class="table-row__button table-row__button--flag">
-                      Flag
-                    </button>
-                    <button class="table-row__button table-row__button--delete">
-                      Delete
-                    </button>
-                  </div>
-                </px-table-row>
-                <px-table-row title="Action Item 3" actionable>
-                  <div class="table-row__actions table-row__actions--right">
-                    <button class="table-row__button table-row__button--more">
-                      More
-                    </button>
-                    <button class="table-row__button table-row__button--flag">
-                      Flag
-                    </button>
-                    <button class="table-row__button table-row__button--delete">
-                      Delete
-                    </button>
+              <style is="custom-style">
+                .custom px-table-row {
+                  --px-table-row: {
+                    border-bottom: none;
+                  }
+                }
+              </style>
+              <px-table-view class="custom">
+                <px-table-row title="Grand Parent" modifier="tappable" collapsable opened>
+                  <div content>
+                    <px-table-view modifier="tiny">
+                      <px-table-row title="Parent 1" modifier="tappable" collapsable>
+                        <div content>
+                          <px-table-view modifier="tiny">
+                            <px-table-row title="Child 1-1" modifier="tappable" collapsable>
+                              <div content>
+                                <px-table-view modifier="tiny">
+                                  <px-table-row title="Sub-Child 1-1-1" modifier="tappable"></px-table-row>
+                                  <px-table-row title="Sub-Child 1-1-2" modifier="tappable"></px-table-row>
+                                </px-table-view>
+                              </div>
+                            </px-table-row>
+                            <px-table-row title="Child 1-2" modifier="tappable"></px-table-row>
+                          </px-table-view>
+                        </div>
+                      </px-table-row>
+                      <px-table-row title="Parent 2" modifier="tappable" collapsable>
+                        <div content>
+                          <px-table-view modifier="tiny">
+                            <px-table-row title="Child 2-1" modifier="tappable"></px-table-row>
+                            <px-table-row title="Child 2-2" modifier="tappable"></px-table-row>
+                            <px-table-row title="Child 2-3" modifier="tappable"></px-table-row>
+                          </px-table-view>
+                        </div>
+                      </px-table-row>
+                    </px-table-view>
                   </div>
                 </px-table-row>
               </px-table-view>
             </template>
           </demo-snippet>
-          <!-- TODO: Login List -->
-          <h2>Example - Login Form</h2>
-          <demo-snippet>
-            <template>
-              <style media="screen">
-                .login {
-                  max-width: 330px;
-                  margin: 0 auto;
-                }
-              </style>
-              <div class="login">
-                <div class="box box--small">
-                  <h1 class="gamma text--center">Predix</h1>
-                  <form action="">
-                    <ul class="table-view table-view--tiny table-view--bare">
-                      <li class="table-row form-field">
-                        <input type="email" class="text-input" placeholder="E-mail" required="">
-                      </li>
-                      <li class="table-row form-field">
-                        <input type="password" class="text-input" placeholder="Password" required="">
-                      </li>
-                      <li class="table-row table-row--tappable">
-                        <px-table-row-checkbox name="userinfo" label="Remember Info"></px-table-row-checkbox>
-                      </li>
-                      <li class="table-row form-field">
-                        <button class="btn btn--primary btn--full">
-                          Sign in
-                        </button>
-                      </li>
-                    </ul>
-                  </form>
-                </div>
-              </div>
-            </template>
-          </demo-snippet>
-          <!-- TODO: Reports List -->
-          <h2>Example - Collapasble List</h2>
-          <demo-snippet>
-            <template>
-              <px-table-view class="table-view table-view--small table-view--">
-              <li class="table-row table-row--collapsable">
-                <div class="table-row__content">
-                  <div class="table-row__title">
-                    Collapsable Row
-                  </div>
-                  <p class="table-row__body">
-                    This row body should be hidden by default. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-                    ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-                  </p>
-                </div>
-              </li>
+        </section>
+        <section id="specs">
+          <h1 class="beta">Table Row Specs</h1>
+          <div class="u-m">
+            <p>A table-view consists of a single continuous column of tessellated sub-divisions of equal width called rows that function as containers for tiles. Tiles hold content, and can vary in height within a table-view.</p>
+            <style>
+              .debug * {
+                border: 1px solid red;
+              }
+            </style>
+            <px-table-view>
+              <px-table-row class="debug" title="Title" subtitle="Subtitle" body="Body" label1="label 1" label2="label 2" modifier="tappable"></px-table-row>
             </px-table-view>
-            <script type="text/javascript">
-              $('.table-row--collapsable').on('click', function (e) {
-                $(e.currentTarget).toggleClass('table-row--collapsable--is-open');
-              });
-            </script>
-          </template>
-        </demo-snippet>
-      </section>
-      <section id="specs">
-        <h1 class="beta">Table Row Specs</h1>
-        <div class="u-m">
-          <p>A table-view consists of a single continuous column of tessellated sub-divisions of equal width called rows that function as containers for tiles. Tiles hold content, and can vary in height within a table-view.</p>
-          <style>
-            .debug * {
-              border: 1px solid red;
-            }
-          </style>
-          <px-table-view>
-            <px-table-row class="debug" title="Title" subtitle="Subtitle" body="Body" label1="label 1" label2="label 2" type="tappable"></px-table-row>
-          </px-table-view>
-          <h3>Single-line</h3>
-          <px-table-view>
-            <px-table-row type="tappable" title="Single-line item"></px-table-row>
-            <px-table-row type="tappable" title="Single-line item"></px-table-row>
-            <px-table-row type="tappable" title="Single-line item"></px-table-row>
-          </px-table-view>
-          <h3>Single-line with icon</h3>
-          <px-table-view>
-            <px-table-row icon="fa fa-square fa-lg" type="tappable" title="Single-line item"></px-table-row>
-          </px-table-view>
-          <h3>Single-line with avatar</h3>
-          <px-table-view>
-            <px-table-row icon="fa fa-circle fa-3x" type="tappable" title="Single-line item"></px-table-row>
-          </px-table-view>
-          <h3>Single-line with avatar and icon</h3>
-          <px-table-view>
-            <px-table-row icon-left="fa fa-circle fa-3x" icon-right="fa fa-square fa-lg" type="tappable" title="Single-line item"></px-table-row>
-          </px-table-view>
-          <h3>Two-line</h3>
-          <px-table-view>
-            <px-table-row type="tappable" title="Two-line item" body="Secondary text"></px-table-row>
-          </px-table-view>
-          <h3>Two-line with icon</h3>
-          <px-table-view>
-            <px-table-row icon="fa fa-square fa-2x" type="tappable" title="Two-line item" body="Secondary text"></px-table-row>
-          </px-table-view>
-          <h3>Two-line with avatar</h3>
-          <px-table-view>
-            <px-table-row icon="fa fa-circle fa-3x" type="tappable" title="Two-line item" body="Secondary text"></px-table-row>
-          </px-table-view>
-          <h3>Two-line with avatar and icon</h3>
-          <px-table-view>
-            <px-table-row icon-left="fa fa-circle fa-3x" icon-right="fa fa-square fa-lg" type="tappable" title="Two-line item" body="Secondary text"></px-table-row>
-          </px-table-view>
-          <h3>Three-line</h3>
-          <px-table-view>
-            <px-table-row type="tappable" title="Three-line item" subtitle="John doez" body="Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."></px-table-row>
-          </px-table-view>
-          <h3>Three-line with icon</h3>
-          <px-table-view>
-            <px-table-row type="tappable" icon="fa fa-square fa-2x" title="Three-line item" body="Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."></px-table-row>
-          </px-table-view>
-          <h3>Three-line with avatar</h3>
-          <px-table-view>
-            <px-table-row type="tappable" icon="fa fa-circle fa-3x" title="Three-line item" body="Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."></px-table-row>
-          </px-table-view>
-          <h3>Three-line with avatar and icon</h3>
-          <px-table-view>
-            <px-table-row type="tappable" icon-left="fa fa-circle fa-3x" icon-right="fa fa-square fa-2x" title="Three-line item" body="Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."></px-table-row>
-          </px-table-view>
-        </div>
-      </section>
+            <h3>Single-line</h3>
+            <px-table-view>
+              <px-table-row modifier="tappable" title="Single-line item"></px-table-row>
+              <px-table-row modifier="tappable" title="Single-line item"></px-table-row>
+              <px-table-row modifier="tappable" title="Single-line item"></px-table-row>
+            </px-table-view>
+            <h3>Single-line with icon</h3>
+            <px-table-view>
+              <px-table-row icon="fa fa-square fa-lg" modifier="tappable" title="Single-line item"></px-table-row>
+            </px-table-view>
+            <h3>Single-line with avatar</h3>
+            <px-table-view>
+              <px-table-row icon="fa fa-circle fa-3x" modifier="tappable" title="Single-line item"></px-table-row>
+            </px-table-view>
+            <h3>Single-line with avatar and icon</h3>
+            <px-table-view>
+              <px-table-row icon-left="fa fa-circle fa-3x" icon-right="fa fa-square fa-lg" modifier="tappable" title="Single-line item"></px-table-row>
+            </px-table-view>
+            <h3>Two-line</h3>
+            <px-table-view>
+              <px-table-row modifier="tappable" title="Two-line item" body="Secondary text"></px-table-row>
+            </px-table-view>
+            <h3>Two-line with icon</h3>
+            <px-table-view>
+              <px-table-row icon="fa fa-square fa-2x" modifier="tappable" title="Two-line item" body="Secondary text"></px-table-row>
+            </px-table-view>
+            <h3>Two-line with avatar</h3>
+            <px-table-view>
+              <px-table-row icon="fa fa-circle fa-3x" modifier="tappable" title="Two-line item" body="Secondary text"></px-table-row>
+            </px-table-view>
+            <h3>Two-line with avatar and icon</h3>
+            <px-table-view>
+              <px-table-row icon-left="fa fa-circle fa-3x" icon-right="fa fa-square fa-lg" modifier="tappable" title="Two-line item" body="Secondary text"></px-table-row>
+            </px-table-view>
+            <h3>Three-line</h3>
+            <px-table-view>
+              <px-table-row modifier="tappable" title="Three-line item" subtitle="John doez" body="Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."></px-table-row>
+            </px-table-view>
+            <h3>Three-line with icon</h3>
+            <px-table-view>
+              <px-table-row modifier="tappable" icon="fa fa-square fa-2x" title="Three-line item" body="Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."></px-table-row>
+            </px-table-view>
+            <h3>Three-line with avatar</h3>
+            <px-table-view>
+              <px-table-row modifier="tappable" icon="fa fa-circle fa-3x" title="Three-line item" body="Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."></px-table-row>
+            </px-table-view>
+            <h3>Three-line with avatar and icon</h3>
+            <px-table-view>
+              <px-table-row
+                modifier="tappable"
+                icon-left="fa fa-circle fa-3x"
+                icon-right="fa fa-square fa-2x"
+                title="Three-line item"
+                body="Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."></px-table-row>
+            </px-table-view>
+          </div>
+        </section>
+        <br>
+        <hr>
+        <px-code-editor id="myEditor" layout="bottom" style="height: 500px;"></px-code-editor>
+        <script type="text/javascript">
+          document.addEventListener('WebComponentsReady', function (e) {
+            setTimeout(function () {
+              document.getElementById('myEditor').code = '<h2>Customize some code</h2>';
+            }, 500);
+          });
+        </script>
+      </article>
       <br>
-      <hr>
-      <px-code-editor id="myEditor" layout="bottom" style="height: 500px;"></px-code-editor>
-      <script type="text/javascript">
-        document.addEventListener('WebComponentsReady', function (e) {
-          setTimeout(function () {
-            document.getElementById('myEditor').code = '<h2>Customize some code</h2>';
-          }, 500);
-        });
-      </script>
-    </article>
-    <br>
-    <footer>
-      <p>&copy; 2016 GE Digital</p>
-    </footer>
-  </div>
-  <script src="demo/script.js"></script>
-  <script src="http://localhost:35724/livereload.js?snipver=1"></script>
-</body>
+      <footer>
+        <p>&copy; 2016 GE Digital</p>
+      </footer>
+    </div>
+    <script src="demo/script.js"></script>
+    <script src="http://localhost:35724/livereload.js?snipver=1"></script>
+  </body>
 </html>

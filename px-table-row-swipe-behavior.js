@@ -60,7 +60,7 @@ var pxTableRowSwipeBehavior = {
       value: false
     },
     /**
-     * The numberb of pixels the swipeale content is peeking at from the screen edge
+     * The number of pixels the swipeale content is peeking at from the screen edge
      * after being swiped to the screen edge.
      */
     peekOffset: {
@@ -147,9 +147,9 @@ var pxTableRowSwipeBehavior = {
     'iron-resize': '_onIronResize'
   },
   ready: function () {
-    this._transition = true;
-    this.setScrollDirection(this._swipeAllowed() ? 'y' : 'all');
     if (this.swipeable) {
+      this._transition = true;
+      this.setScrollDirection(this._swipeAllowed() ? 'y' : 'all');
       this.toggleClass('table-row--swipeable', true, this.$$('.table-row'));
     }
   },
@@ -158,7 +158,7 @@ var pxTableRowSwipeBehavior = {
       var _content = Polymer.dom(this);
       this.async(function () {
         this._initSwipeActions(this, Hammer.DIRECTION_HORIZONTAL);
-      }, 500);
+      }, 1000);
       this.set('_content', _content);
     }
   },

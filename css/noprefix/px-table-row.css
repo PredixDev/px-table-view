@@ -1156,9 +1156,9 @@ a {
     .table-row--selected .table-row__label2,
     .table-row--selected .table-row__subtitle,
     .table-row--selected .table-row__title {
-      color: var(--px-table-row-selected-color, white); }
+      color: var(--px-table-row-selected-color); }
     .table-row--selected .table-row:before {
-      color: var(--px-table-row-selected-color, white); }
+      color: var(--px-table-row-selected-color); }
   .table-row > a {
     text-decoration: none;
     cursor: pointer; }
@@ -1166,17 +1166,17 @@ a {
       color: white;
       background: #0a9ec1; }
   .table-row__title {
-    font-size: var(--px-table-row-title-font-size, 1.1333333333rem);
+    font-size: var(--px-table-row-title-font-size);
     color: var(--px-table-row-title-color); }
   .table-row__subtitle {
-    font-size: var(--px-table-row-subtitle-font-size, 0.9333333333rem);
-    color: var(--px-table-row-subtitle-color, #9999a3); }
+    font-size: var(--px-table-row-subtitle-font-size);
+    color: var(--px-table-row-subtitle-color); }
   .table-row__body {
-    font-size: var(--px-table-row-body-font-size, 1.0666666667rem);
-    color: var(--px-table-row-body-color, #7c7c84); }
+    font-size: var(--px-table-row-body-font-size);
+    color: var(--px-table-row-body-color); }
   .table-row__label {
-    font-size: var(--px-table-row-label-font-size, 1.0666666667rem);
-    color: var(--px-table-row-label-color, #9999a3); }
+    font-size: var(--px-table-row-label-font-size);
+    color: var(--px-table-row-label-color); }
   .table-row--header {
     padding: var(--px-table-row-header-padding, 0.3333333333rem);
     font-size: var(--px-table-row-header-font-size, 1.3333333333rem);

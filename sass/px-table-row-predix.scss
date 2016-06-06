@@ -44,11 +44,11 @@
     .table-row__label2,
     .table-row__subtitle,
     .table-row__title {
-      color: var(--px-table-row-selected-color, $table-row-active-font-color);
+      color: var(--px-table-row-selected-color);
     }
 
     .table-row:before {
-      color: var(--px-table-row-selected-color, $table-row-active-font-color);
+      color: var(--px-table-row-selected-color);
     }
   }
 
@@ -60,24 +60,24 @@
 
   ///.table-row__title
   @include e ('title') {
-    font-size: var(--px-table-row-title-font-size, $table-row-title-font-size);
+    font-size: var(--px-table-row-title-font-size);
     color    : var(--px-table-row-title-color);
   }
 
   ///.table-row__subtitle
   @include e ('subtitle') {
-    font-size: var(--px-table-row-subtitle-font-size, $table-row-subtitle-font-size);
-    color    : var(--px-table-row-subtitle-color, $table-row-subtitle-font-color);
+    font-size: var(--px-table-row-subtitle-font-size);
+    color    : var(--px-table-row-subtitle-color);
   }
   ///.table-row__body
   @include e ('body') {
-    font-size: var(--px-table-row-body-font-size, $table-row-body-font-size);
-    color    : var(--px-table-row-body-color, $table-row-body-font-color);
+    font-size: var(--px-table-row-body-font-size);
+    color    : var(--px-table-row-body-color);
   }
   ///.table-row__label
   @include e ('label') {
-    font-size: var(--px-table-row-label-font-size, $table-row-label-font-size);
-    color    : var(--px-table-row-label-color, $table-row-label-font-color);
+    font-size: var(--px-table-row-label-font-size);
+    color    : var(--px-table-row-label-color);
   }
 
   @include m ('header') {
