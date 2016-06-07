@@ -20,7 +20,8 @@
 @import "px-spacing-responsive-design/_trumps.spacing-responsive.scss";
 //@import "px-widths-responsive-design/_trumps.widths-responsive.scss";
 
-///
+///Pull To Refresh
+@import 'modifiers/_table-view--ptr';
 
 ///
 /// @group px-table-view
@@ -39,7 +40,7 @@
 ///     </div>
 ///   </div>
 /// </section>
-  @import 'modifiers/_table-view--ptr';
+
 @include b ('table-view') {
   @include switch();
   @include clearfix();
@@ -56,44 +57,51 @@
   }
 
   /// Modifiers
-  ///--------------------------------
+  ///------------------------------------------------------
   @import 'modifiers/_table-view--drilldown';
   @import 'modifiers/_table-view--sizes';
 
-
+  ///------------------------------------------------------
   ///.table-view--responsive
   @include modifier ('responsive') {
     @include n-columns( $table-view-responsive-row-width, $inuit-base-spacing-unit, true, $table-view-responsive-row-max);
   }
 
-  ///.table-view--ptr
+  ///------------------------------------------------------
+  ///.table-view--bare
   @include modifier ('bare') {
     @include c ('.table-row') {
       background-color: transparent;
       border-bottom: none;
     }
   }
+  ///------------------------------------------------------
+  ///.table-view--ptr
   @include modifier ('ptr') {
     @include c ('.table-row') {
       user-select: none;
     }
   }
+  ///------------------------------------------------------
   ///.table-view--col
   @include modifier ('col') {
     display       : flex;
     flex-direction: column;
   }
 
+  ///------------------------------------------------------
+  ///.table-view--row
   @include modifier ('row') {
     display       : flex;
     flex-direction: row;
   }
 
+  ///------------------------------------------------------
   ///.table-view--rev
   @include modifier ('rev') {
     direction: rtl;
   }
-
+  ///------------------------------------------------------
   ///.table-view--avatars
   @include modifier ('avatars') {
     @include c ('.table-row') {
@@ -103,27 +111,11 @@
       }
     }
   }
-
-  @include c ('.iron-selected') {
-    @include noselect();
-    background-color: $table-row-active-background-color;
-    color           : $table-row-active-font-color;
-
-    .table-row__body,
-    .table-row__label,
-    .table-row__subtitle,
-    .table-row__title {
-      color: $table-row-active-font-color;
-    }
-    .table-row:before {
-      color: $table-row-active-font-color;
-    }
-  }
-
+  ///------------------------------------------------------
   @include modifier ('swipeable') {
     overflow-x: hidden;
   }
-
+  ///------------------------------------------------------
   ///.table-view--inset
   @include modifier ('inset') {
     background-image: none;

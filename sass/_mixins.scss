@@ -4,6 +4,8 @@
 /// @group px-table-view
 @import "_variables.scss";
 @import "px-mobile-design/sass/_mixins.scss";
+
+///------------------------------------------------------
 /// @access public
 /// @group px-table-view
 @mixin pxFonts() {
@@ -12,6 +14,7 @@
   @content;
 }
 
+///------------------------------------------------------
 /// Make a table row item clickable.
 /// @access public
 @mixin tableRowClickable($bg:$table-row-active-background-color, $font:$table-row-active-font-color) {
@@ -25,6 +28,7 @@
   }
   @content;
 }
+///------------------------------------------------------
 ///Style an action button
 /// @access public
 /// @group px-table-view
@@ -42,6 +46,7 @@
   }
   @content;
 }
+///------------------------------------------------------
 /// Mixin to make list turn into columns on larger screen.
 /// Similar to App Store
 /// On iPad there are grid list
@@ -76,6 +81,7 @@
   }
 }
 
+///------------------------------------------------------
 /// Clearfix solution
 /// @group px-table-view
 @mixin clearfix() {
@@ -90,7 +96,7 @@
   }
   @content;
 }
-
+///------------------------------------------------------
 /// Scrollable solution
 /// @group px-table-view
 @mixin scrollable() {
@@ -99,7 +105,7 @@
   -webkit-overflow-scrolling: touch;
   @content;
 }
-
+///------------------------------------------------------
 /// Add a icon to the end of a table row.
 /// @group px-table-view
 @mixin tableRowIcon($icon, $iconColor: $gray5, $position:'right') {
@@ -125,7 +131,7 @@
   }
   @content;
 }
-
+///------------------------------------------------------
 /// Create the styles for a switch.
 /// @group px-table-view
 @mixin switch() {
@@ -225,7 +231,7 @@
     }
   }
 }
-
+///------------------------------------------------------
 /// @access public
 @mixin shadowEl($elName) {
   #{$elName}::shadow {

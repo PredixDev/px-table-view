@@ -627,35 +627,6 @@ html {
   .table-view--avatars .table-row img {
     height: 32px;
     border-radius: 50%; }
-  .table-view ::content .iron-selected,
-  .table-view .iron-selected {
-    -webkit-touch-callout: none;
-    /* iOS Safari */
-    -webkit-user-select: none;
-    /* Chrome/Safari/Opera */
-    -khtml-user-select: none;
-    /* Konqueror */
-    -moz-user-select: none;
-    /* Firefox */
-    -ms-user-select: none;
-    /* Internet Explorer/Edge */
-    user-select: none;
-    /* Non-prefixed version, currently
-                                 not supported by any browser */
-    background-color: #0a9ec1;
-    color: white; }
-    .table-view ::content .iron-selected .table-row__body,
-    .table-view ::content .iron-selected .table-row__label,
-    .table-view ::content .iron-selected .table-row__subtitle,
-    .table-view ::content .iron-selected .table-row__title,
-    .table-view .iron-selected .table-row__body,
-    .table-view .iron-selected .table-row__label,
-    .table-view .iron-selected .table-row__subtitle,
-    .table-view .iron-selected .table-row__title {
-      color: white; }
-    .table-view ::content .iron-selected .table-row:before,
-    .table-view .iron-selected .table-row:before {
-      color: white; }
   .table-view--swipeable {
     overflow-x: hidden; }
   .table-view--inset {

@@ -21,10 +21,13 @@ To use this component:
       :host {
         display: block;
       }
+      :host .table-row__button{
+        padding: 15px;
+      }
     </style>
-      <button is="px-table-row-action-button" class="table-row__button" >
+      <button is="px-table-row-action-button" class="table-row__button flex flex--center">
         <template is="dom-if" if="{{icon}}">
-            <iron-icon id="icon" icon$="{{icon}}"></iron-icon>
+          <iron-icon id="icon" icon$="{{icon}}"></iron-icon>
         </template>
         <template is="dom-if" if="{{label}}">
           <span>{{label}}</span>

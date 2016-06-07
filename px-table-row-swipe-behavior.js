@@ -32,6 +32,13 @@ function dirProp(direction, hProp, vProp) {
 var pxTableRowSwipeBehavior = {
   properties: {
     /**
+     * If true, position is reset after a tap.
+     */
+    tapReset: {
+      type: Boolean,
+      value: true
+    },
+    /**
      * If true, swiping is disabled
      */
     disableSwipe: {
@@ -82,6 +89,13 @@ var pxTableRowSwipeBehavior = {
       value: 5
     },
 
+    /**
+     * If the underlay is visible
+     */
+    underlayOpened: {
+      type: Boolean,
+      value: false
+    },
     /**
      * Whether the user is dragging the content interactively
      */
@@ -140,10 +154,11 @@ var pxTableRowSwipeBehavior = {
     },
     // Store children object via Polymer's getEffectiveChildren or getDistributedNodes;
     _content: Object,
-    _underlay: Object
+    _underlay: Object,
+    hammer: Object
   },
   listeners: {
-    //'tap': '_tapHandler',
+    'tap': '_tapHandler',
     'iron-resize': '_onIronResize'
   },
   ready: function () {
@@ -179,6 +194,12 @@ var pxTableRowSwipeBehavior = {
       direction: this.direction
     }));
     this.hammer.on("panstart panmove panend pancancel", Hammer.bindFn(this._onPan, this));
+    this.fire('px-swipe-init');
+  },
+  detached: function () {
+    if (this.hammer) {
+      this.hammer.off();
+    }
   },
   /**
    * When disableSwipe is true, only a click event can be triggered.
@@ -191,6 +212,11 @@ var pxTableRowSwipeBehavior = {
       nodeName: 'underlay',
       target: event
     });
+    if (this.tapReset) {
+      if (this._atEdge) {
+        this.resetPosition();
+      }
+    }
     if (sharedPanel) {
       sharedPanel = null;
     }
@@ -276,21 +302,26 @@ var pxTableRowSwipeBehavior = {
   },
   /**
    * Reset the position of the swipeable content.
-   * @event px-position-reset
+   * @event px-swipe-reset
    */
   resetPosition: function () {
     this._moveDrawer(null);
+
+    this.set('underlayOpened', false);
     this.set('_atEdge', false);
     this.set('_curPos', 0);
-    this.fire('px-position-reset');
+    this.fire('px-swipe-reset', this);
+    this.toggleClass('is-open', this._atEdge, this.$.row);
   },
   /**
    * Handle when panning starts
    * @param event
+   * @event px-pan-start
    * @private
    */
   _onPanStart: function (event) {
     if (this._swipeAllowed()) {
+      this.fire('px-swipe-start', this);
       sharedPanel = this;
       this._dragging = true;
       if (this._dragging) {
@@ -302,6 +333,7 @@ var pxTableRowSwipeBehavior = {
   /**
    * Handle when panning
    * @param event
+   * @event px-swipe-move
    * @private
    */
   _onPanMove: function (event) {
@@ -312,6 +344,7 @@ var pxTableRowSwipeBehavior = {
       this._transitionDelta = dx;
       dragDx = this._atEdge ? this._curPos + dx : dx;
       this._tracking = true;
+      //  this.fire('px-swipe-move');
       this._moveDrawer(dragDx);
     }
   },
@@ -325,18 +358,20 @@ var pxTableRowSwipeBehavior = {
    *  - animate the dragging by [_moveDrawer(pixel_to_animate)]
    *
    *  else vice versa for swiping to rightmsot edge and/ or either side.
+   * @event px-swipe-end
    */
   _onPanEnd: function (event) {
     this._dragging = false;
+    var slideTo, offsetLR, deltaLR;
     if (this._swipeAllowed() && this._tracking) {
-      var slideTo = (this.containerSize - this.peekOffset);
+      slideTo = (this.containerSize - this.peekOffset);
 
       if (this.fitUnderlay) {
         slideTo = (this.underlaySize);
       }
 
-      var offsetLR = (this.swipeRight ? slideTo : -slideTo);
-      var deltaLR;
+      offsetLR = (this.swipeRight ? slideTo : -slideTo);
+
       if (!this.swipeLeft) {
         offsetLR = (this._slideLeft ? -slideTo : slideTo);
       }
@@ -345,6 +380,8 @@ var pxTableRowSwipeBehavior = {
       this._atEdge = (deltaLR !== null);
       this._validDelta = false;
       this._tracking = false;
+      this.set('underlayOpened', this._atEdge);
+      this.fire('px-swipe-end', this);
       this._moveDrawer(deltaLR);
     }
   },
@@ -370,6 +407,7 @@ var pxTableRowSwipeBehavior = {
   _moveDrawer: function (translateX) {
     var _content = this.$.row;
     this.transform(this._transformForTranslateX(translateX), _content);
+    this.toggleClass('is-open', this.underlayOpened, _content);
     this.toggleClass('transition', this._transition, _content);
     this.toggleClass('dragging', this._dragging, _content);
     this.toggleClass('swipe-left', this.swipeLeft, _content);

@@ -4,10 +4,7 @@
 <link rel="import" href="../iron-list/iron-list.html">
 <link rel="import" href="../iron-selector/iron-selector.html">
 <link rel="import" href="../iron-selector/iron-multi-selectable.html">
-
-
 <link rel="import" href="px-table-view-behavior.html"/>
-
 <link rel="import" href="px-table-view-pull-to-refresh-behavior.html"/>
 <link rel="import" href="px-table-view-sortable-behavior.html"/>
 <link rel="import" href="px-table-view-drilldown-behavior.html"/>
@@ -79,13 +76,15 @@ To use this component with iron list you can do the following:
     :host .table-view {
       @apply(--px-table-view);
     }
-    :host ::content {
+    /*:host ::content {
       @apply(--px-table-row);
-    }
+    }*/
+
     :host .sortable-chosen,
     :host ::content .sortable-chosen {
       box-shadow: 0 2px 10px rgba(0,0,0,0.45);
     }
+
     :host .iron-selected {
       background-color: var(--px-table-row-selected-background-color, #0a9ec1);
       color: var(--px-table-row-selected-color, #fff);
@@ -96,6 +95,7 @@ To use this component with iron list you can do the following:
       -webkit-transition: all 0.25s ease;
       transition: all 0.25s ease;
     }
+
     :host.ptr-loading .ptr__content {
       -webkit-transition: all 0.25s ease;
       transition: all 0.25s ease;
@@ -110,7 +110,6 @@ To use this component with iron list you can do the following:
     :host.ptr-loading .ptr__loading {
       display: block;
     }
-
   </style>
   <template strip-whitespace>
     <template is="dom-if" if="{{tableData}}">
@@ -133,8 +132,7 @@ To use this component with iron list you can do the following:
     Polymer({
       is: 'px-table-view',
       behaviors: [
-        //Polymer.IronMultiSelectableBehavior,
-        Polymer.IronResizableBehavior,
+        Polymer.IronMultiSelectableBehavior, Polymer.IronResizableBehavior,
         //  pxTableViewSortableBehavior,
         pxTableViewBehavior,
         pxTableViewDrilldownBehavior,
@@ -142,13 +140,13 @@ To use this component with iron list you can do the following:
       ],
       properties: {
         /**
-         * The table data array
+         * The table data to set on the component
          */
         tableData: {
           type: Array
         },
         /**
-         * The modifiers to apply to the table-view (small, large, huge, responsive)
+         * The modifiers to apply to the table-view (bare, tiny, small, large, huge, etc)
          */
         modifier: {
           type: String,
@@ -156,8 +154,21 @@ To use this component with iron list you can do the following:
           reflectToAttribute: true,
           observer: '_handleModifier'
         },
+        /**
+         * If the table view is sortable set to true
+         */
         isSortable: {
-          type: Boolean
+          type: Boolean,
+          value: false
+        }
+      },
+      /**
+      * A reference to the px-drawer element.
+      * @property drawer
+      */
+      get rows() {
+        if(this.$.tableViewContent){
+          return Polymer.dom(this.$.tableViewContent).getDistributedNodes();
         }
       },
       _handleModifier: function (newVal, oldVal) {
