@@ -2,7 +2,7 @@ module.exports = {
   verbose: true,
   plugins: {
     local: {
-      browsers: ['chrome', 'firefox']
+      browsers: ['chrome']
     },
     sauce: {
       disabled: true
