@@ -1,4 +1,5 @@
 <link rel="import" href="../polymer/polymer.html"/>
+<link rel="import" href="../polymer-font-awesome/polymer-font-awesome.html"/>
 <link rel="import" href="../iron-resizable-behavior/iron-resizable-behavior.html">
 <link rel="import" href="../iron-list/iron-list.html">
 <link rel="import" href="../iron-selector/iron-selector.html">
@@ -140,7 +141,9 @@ To use this component with iron list you can do the following:
         pxTableViewPullToRefreshBehavior
       ],
       properties: {
-        //The list items data
+        /**
+         * The table data array
+         */
         tableData: {
           type: Array
         },
@@ -162,12 +165,12 @@ To use this component with iron list you can do the following:
           klass,
           types;
         klass = 'table-view--' + oldVal;
-        _this.toggleClass(klass, false, _this.$$('.table-view'));
+        _this.toggleClass(klass, false, _this.$.content);
         if (_this.modifier) {
           types = _this.modifier.split(' ');
           for (var i = 0; i < types.length; i++) {
             klass = 'table-view--' + types[i];
-            _this.toggleClass(klass, true, _this.$$('.table-view'));
+            _this.toggleClass(klass, true, _this.$.content);
           }
         }
       }

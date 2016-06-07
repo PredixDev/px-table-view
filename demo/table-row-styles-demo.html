@@ -25,19 +25,25 @@
   </head>
   <body unresolved class="viewport--full-height">
     <div class="viewport">
-      <h2 class="beta">Custom CSS</h2>
+      <h1 class="beta">Custom CSS</h1>
       <p>
         The following examples demonstrate using custom CSS with the <code>px-table-row</code>
         element.
       </p>
-      <h3>CSS Variables</h3>
+      <script src="demo.js"></script>
+      <script type="text/javascript">
+        document.addEventListener('WebComponentsReady', function () {
+          createToc('toc');
+        });
+      </script>
+      <ol id="toc"></ol>
+      <h2>CSS Variables</h2>
       <demo-snippet class="u-mb">
         <template>
           <template id="table-view-1" is="dom-bind">
             <style is="custom-style">
               :root {
                 --px-table-row-color: #b0fffe;
-                --px-table-row-label-color: #b0fffe;
                 --px-table-row-indicator-color: #b0fffe;
                 --px-table-row-border-color: #1b8555;
                 --px-table-row-background-color: #4dba67;
@@ -48,8 +54,7 @@
             <px-table-view modifier="large" class="my-custom-table">
               <template is="dom-repeat" items="[[items]]">
                 <px-table-row title="Text Label"
-                  icon-left="polymer-font-awesome:fa-pencil"
-                  label1="Yesterday"
+                  icon="fa:fa-pencil"
                   modifier="nav-right tappable"
                   body="Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."></px-table-row>
               </template>

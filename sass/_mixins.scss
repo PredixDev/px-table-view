@@ -21,7 +21,7 @@
     background: $bg;
   }
   &:hover {
-    
+
   }
   @content;
 }
@@ -51,10 +51,12 @@
 @mixin n-columns($min-width, $gutter, $last-equal: false, $max-cols: 6) {
   display    : flex;
   flex-wrap  : wrap;
+  flex-direction: row;
   margin-left: -$gutter;
   margin-top : -$gutter;
 
-  > *, ::content > * {
+  > *,
+  ::content > * {
     flex       : 1 0 $min-width;
     margin-left: $gutter;
     margin-top : $gutter;

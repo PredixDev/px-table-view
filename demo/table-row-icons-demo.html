@@ -20,34 +20,63 @@
         padding: 0;
         margin: 0;
       }
+
     </style>
   </head>
   <body unresolved class="viewport--full-height">
     <div class="viewport">
-      <h2 class="beta">Icons</h2>
+      <h1 class="beta">Icons</h1>
       <p>
         The following examples demonstrate using icons with the
         <code>px-table-row</code>
         element.
       </p>
-      <h3>Polymer Font Awesome</h3>
+      <script src="demo.js"></script>
+      <script type="text/javascript">
+        document.addEventListener('WebComponentsReady', function () {
+          createToc('toc');
+        });
+      </script>
+      <ol id="toc"></ol>
+      <h2>Polymer Font Awesome</h2>
       <demo-snippet class="u-mb">
         <template id="">
           <px-table-view modifer="large">
-            <px-table-row title="Icon Left" icon-left="polymer-font-awesome:fa-bars"></px-table-row>
-            <px-table-row title="Icon Right" icon-right="polymer-font-awesome:fa-eye"></px-table-row>
+            <px-table-row title="Icon" icon="fa:fa-square" modifier="tappable"></px-table-row>
+            <px-table-row title="Icon Left" icon-left="fa:fa-square" modifier="tappable nav-right"></px-table-row>
+            <px-table-row title="Icon Left and Right" icon-left="fa:fa-home" icon-right="fa:fa-cog" modifier="tappable nav-right"></px-table-row>
+            <px-table-row title="Icon Right" icon-right="fa:fa-bar-chart" modifier="tappable nav-right"></px-table-row>
           </px-table-view>
         </template>
       </demo-snippet>
-      <h3>Font Awesome</h3>
+      <h2>Available Font Awesome Icons</h2>
       <demo-snippet class="u-mb">
         <template id="">
-          <px-table-view modifer="large">
-            <px-table-row title="Icon Left" icon="fa fa-lg fa-home"></px-table-row>
-            <px-table-row title="Icon Right" icon="fa fa-lg fa-gear" media-pos="right"></px-table-row>
-          </px-table-view>
+          <template id="table-row-icons" is="dom-bind">
+            <px-table-view id="iconTable" modifier="tiny ">
+              <template is="dom-repeat" items="[[icons]]">
+                <px-table-row
+                  title="{{item.icon}}"
+                  icon$="{{item.icon}}" modifier="tappable"></px-table-row>
+              </template>
+            </px-table-view>
+          </template>
+          <script type="text/javascript">
+            var ficons = window.FONT_AWESOME.icons,
+              len = ficons.length,
+              table = document.getElementById('table-row-icons'),
+              icons = [];
+
+            for (var i = 0; i < len; i++) {
+              icons.push({
+                icon:'fa:'+ ficons[i]
+              });
+            }
+            table.icons = icons;
+          </script>
         </template>
       </demo-snippet>
+
     </div>
     <script src="http://localhost:35724/livereload.js?snipver=1"></script>
   </body>

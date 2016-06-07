@@ -567,29 +567,37 @@ html {
   .table-view--responsive {
     display: flex;
     flex-wrap: wrap;
+    flex-direction: row;
     margin-left: -1rem;
     margin-top: -1rem; }
-    .table-view--responsive > *, .table-view--responsive ::content > * {
+    .table-view--responsive > *,
+    .table-view--responsive ::content > * {
       flex: 1 0 13.3333333333rem;
       margin-left: 1rem;
       margin-top: 1rem; }
       @media (min-width: 28.6666666667rem) {
-        .table-view--responsive > *, .table-view--responsive ::content > * {
+        .table-view--responsive > *,
+        .table-view--responsive ::content > * {
           max-width: calc(50% - 1rem); } }
       @media (min-width: 43rem) {
-        .table-view--responsive > *, .table-view--responsive ::content > * {
+        .table-view--responsive > *,
+        .table-view--responsive ::content > * {
           max-width: calc(33.3333333333% - 1rem); } }
       @media (min-width: 57.3333333333rem) {
-        .table-view--responsive > *, .table-view--responsive ::content > * {
+        .table-view--responsive > *,
+        .table-view--responsive ::content > * {
           max-width: calc(25% - 1rem); } }
       @media (min-width: 71.6666666667rem) {
-        .table-view--responsive > *, .table-view--responsive ::content > * {
+        .table-view--responsive > *,
+        .table-view--responsive ::content > * {
           max-width: calc(20% - 1rem); } }
       @media (min-width: 86rem) {
-        .table-view--responsive > *, .table-view--responsive ::content > * {
+        .table-view--responsive > *,
+        .table-view--responsive ::content > * {
           max-width: calc(16.6666666667% - 1rem); } }
       @media (min-width: 80rem) {
-        .table-view--responsive > *, .table-view--responsive ::content > * {
+        .table-view--responsive > *,
+        .table-view--responsive ::content > * {
           min-width: calc(16.6666666667% - 1rem); } }
   .table-view--bare ::content .table-row,
   .table-view--bare .table-row {

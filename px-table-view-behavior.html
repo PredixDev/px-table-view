@@ -5,6 +5,14 @@
    * @polymerBehavior
    */
   var pxTableViewBehavior = {
+    ready: function() {
+      // Get a template from somewhere, e.g. light DOM
+var template = Polymer.dom(this).querySelector('template');
+// Prepare the template
+//this.templatize(template);
+
+console.log('template', template)
+    },
     handleSelect: function (e) {
       this.fire('select', e.model);
     },

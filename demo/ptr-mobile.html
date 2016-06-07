@@ -48,8 +48,8 @@
         // TODO: Example showing how to hook into the pull
         var table = document.getElementById('ptr-table');
         table.loadingFunction = function handleLoad() {
-          console.log('Fetching more items');
-          return new Promise(function () {
+          return new Promise(function (resolve, reject) {
+            console.log('Fetching more items');
             resolve({});
           });
         };

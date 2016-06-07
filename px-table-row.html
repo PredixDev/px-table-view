@@ -99,7 +99,7 @@ Custom property | Description | Default
   </style>
   <template strip-whitespace>
     <div class="">
-      <div id="row" class="table-row" data-indicator$="{{indicator}}" hidden$="{{!title}}">
+      <div id="row" class="table-row" data-indicator$="{{indicator}}" >
         <template is="dom-if" if="{{editMode}}">
           <button class="btn btn--bare table-row__delete-btn" on-tap="_handleRemoveItem">
             <i class="fa fa-minus-circle fa-lg color-red"></i>

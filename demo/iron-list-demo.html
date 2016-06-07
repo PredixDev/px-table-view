@@ -1,37 +1,27 @@
 <!DOCTYPE html>
 <html>
+<head>
+  <meta charset="UTF-8">
+  <title>px-table-view / iron-list</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <script src="../../webcomponentsjs/webcomponents-lite.js"></script>
+  <!-- TODO: pxm components -->
+  <link rel="import" href="../px-table-view.html">
+  <link rel="import" href="../../px-theme/px-app.html">
+  <link rel="import" href="../../px-theme/px-theme.html">
+  <link rel="import" href="../../px-card/px-card.html">
+  <link rel="import" href="../../px-navbar/px-navbar.html"/>
+  <link rel="import" href="../../iron-ajax/iron-ajax.html"/>
+  <link rel="import" href="../../iron-list/iron-list.html"/>
 
-  <head>
-    <meta charset="UTF-8">
-
-    <title>px-table-view / iron-list</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-    <link rel='stylesheet prefetch' href='https://predixdev.github.io/px-library-design/css/style.css'>
-
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/webcomponentsjs/0.7.21/webcomponents.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
-
-    <script src='https://cdnjs.cloudflare.com/ajax/libs/hammer.js/2.0.6/hammer.min.js'></script>
-
-    <!-- TODO: pxm components -->
-    <link rel="import" href="../px-table-view.html">
-    <link rel="import" href="../px-table-row-swipe-actions-behavior.html">
-    <link rel="import" href="../../px-navbar/px-navbar.html" />
-    <link rel="import" href="../../iron-ajax/iron-ajax.html" />
-    <link rel="import" href="../../iron-list/iron-list.html" />
-
-    <style media="screen">
+  <style media="screen">
     body {
       padding-top: 65px;
     }
 
-    px-navbar {
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      z-index: 200;
+    body,
+    html {
+      background: #fff !important;
     }
 
     #content {
@@ -46,18 +36,12 @@
       background-color: red !important;
     }
 
-    .table-row__media--icon:nth-of-type(even) {}
+    .table-row__media--icon:nth-of-type(even) {
+      color: #da2839;
+    }
 
     .table-row__media--icon:nth-child(2n) {
       color: #dd6b1f;
-    }
-
-    .color-red {
-      color: #da2839 !important;
-    }
-
-    .color-blue {
-      color: #0d5fb7 !important;
     }
 
     iron-list {
@@ -66,63 +50,50 @@
       -webkit-overflow-scrolling: touch;
     }
 
-    </style>
+  </style>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/fastclick/1.0.6/fastclick.min.js"></script>
-    <script type="text/javascript">
-    if ('addEventListener' in document) {
-      document.addEventListener('DOMContentLoaded', function() {
-        FastClick.attach(document.body);
-      }, false);
-    }
+</head>
 
-    </script>
-  </head>
+<body unresolved class=" viewport--full-height">
 
-  <body unresolved class="viewport viewport--full-height">
-
-
-
-
-    <div id="content" class="">
-      <template id="tableViewTemplate" is="dom-bind">
-        <px-navbar title="iron-list / px-table-view"></px-navbar>
-        <iron-ajax url="./data.json" last-response="{{data}}" auto></iron-ajax>
-        <iron-list id="ironList" items="[[data]]" as="item" class="table-view table-view--small">
-          <template>
-            <px-table-row icon="{{item.icon}}" type="nav-right" title="{{item.title}}"></px-table-row>
-          </template>
-        </iron-list>
-      </template>
-      <script type="text/javascript">
-      var tmpl = document.getElementById('tableViewTemplate');
-      tmpl.handleSelect = function(e) {
-        console.log('handleSelect', e);
-      };
-      tmpl.handleMore = function(e) {
-        console.log('handleMore', e);
-      };
-      tmpl.handleFlag = function(e) {
-        console.log('handleFlag', e);
-        $(e.currentTarget).parents('.table-row').toggleClass('flagged');
-      };
-      tmpl.handleDelete = function(e) {
-        console.log('handleDelete', e);
-        $(e.currentTarget).parents('.table-row').toggleClass('deleted');
-      };
-      document.addEventListener('WebComponentsReady', function() {
-        setTimeout(function() {
-          document.querySelector('iron-list').fire('iron-resize');
-          Hammer.each(document.querySelectorAll(".table-row--actionable"), function(container) {
-            var actions = new SwipeActions(container, Hammer.DIRECTION_HORIZONTAL);
-            //outer.hammer.get('pan').requireFailure(actions.hammer.get('pan'));
-            console.log('Adding Hammer', actions);
-          });
-        }, 10);
-      });
-
-      </script>
-    </div>
-  </body>
+<div id="content" class="has-navbar">
+  <template id="tableViewTemplate" is="dom-bind">
+    <px-navbar title="iron-list demo" fixed shadow></px-navbar>
+    <iron-ajax url="./data.json" last-response="{{data}}" auto></iron-ajax>
+    <px-table-view>
+      <iron-list id="ironList" items="[[data]]" as="item" content>
+        <template>
+          <px-table-row
+            icon="{{item.icon}}"
+            modifier="tappable nav-right"
+            title="{{item.title}}"></px-table-row>
+        </template>
+      </iron-list>
+    </px-table-view>
+  </template>
+  <script type="text/javascript">
+    var tmpl = document.getElementById('tableViewTemplate');
+    tmpl.handleSelect = function (e) {
+      console.log('handleSelect', e);
+    };
+    tmpl.handleMore = function (e) {
+      console.log('handleMore', e);
+    };
+    tmpl.handleFlag = function (e) {
+      console.log('handleFlag', e);
+      e.currentTarget.toggleClass('flagged');
+    };
+    tmpl.handleDelete = function (e) {
+      console.log('handleDelete', e);
+      e.currentTarget.toggleClass('deleted');
+    };
+    document.addEventListener('WebComponentsReady', function () {
+      setTimeout(function () {
+        document.querySelector('iron-list').fire('iron-resize');
+      }, 1000);
+    });
+  </script>
+</div>
+</body>
 
 </html>

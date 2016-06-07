@@ -6,6 +6,7 @@
     <title>px-table-view MVP (Phase 2)</title>
     <script src="../../webcomponentsjs/webcomponents-lite.js"></script>
     <link rel="import" href="../px-table-view.html">
+    <link rel="import" href="../../px-demo-helpers/px-demo-helpers.html">
     <link rel="import" href="../../px-theme/px-app.html">
     <link rel="import" href="../../px-theme/px-theme.html">
     <link rel="import" href="../../px-card/px-card.html">
@@ -92,9 +93,9 @@
                 {{selected}}</h4>
               <px-table-view modifer="small">
                 <iron-selector attr-for-selected="name" selected="{{selected}}" selected-class="custom-selected" content>
-                  <px-table-row name="item-1" title="Item A" icon-left="fa:fa-pencil" modifier="nav-right"></px-table-row>
-                  <px-table-row name="item-2" title="Item B" icon-left="fa:fa-pencil" modifier="nav-right"></px-table-row>
-                  <px-table-row name="item-3" title="Item C" icon-left="fa:fa-pencil" modifier="nav-right"></px-table-row>
+                  <px-table-row name="item-1" title="Item A" icon-left="fa:fa-pencil" modifier="tappable nav-right"></px-table-row>
+                  <px-table-row name="item-2" title="Item B" icon-left="fa:fa-pencil" modifier="tappable nav-right"></px-table-row>
+                  <px-table-row name="item-3" title="Item C" icon-left="fa:fa-pencil" modifier="tappable nav-right"></px-table-row>
                 </iron-selector>
               </px-table-view>
             </template>
@@ -200,35 +201,63 @@
         <h2>Sortable</h2>
         <demo-snippet>
           <template id="">
-            <px-table-view id="table1" is-sortable>
-              <px-table-row title="Item 1"></px-table-row>
-              <px-table-row title="Item 2"></px-table-row>
-              <px-table-row title="Item 3"></px-table-row>
-              <px-table-row title="Item 4"></px-table-row>
-            </px-table-view>
+            <template id="table-view-demo-7" is="dom-bind">
+              <px-table-view is-sortable>
+                <template is="dom-repeat" items="[[items]]">
+                  <px-table-row title="Item"></px-table-row>
+                </template>
+              </px-table-view>
+            </template>
+            <script type="text/javascript">
+              document.addEventListener('WebComponentsReady', function () {
+                var app = document.getElementById('table-view-demo-7');
+                app.items = [1, 2, 3, 4, 5];
+              });
+            </script>
           </template>
         </demo-snippet>
+
         <!-- TODO:  -->
         <h2>Drill Down</h2>
         <demo-snippet>
-          <template id="">
-            <px-table-view id="table1" drilldown>
-              <px-table-row title="Item 1"></px-table-row>
-              <px-table-row title="Item 2"></px-table-row>
-              <px-table-row title="Item 3"></px-table-row>
-              <px-table-row title="Item 4"></px-table-row>
-            </px-table-view>
+          <template>
+            <template id="table-view-demo-8" is="dom-bind">
+              <px-table-view drilldown>
+                <template is="dom-repeat" items="[[items]]">
+                  <px-table-row title="Item"></px-table-row>
+                </template>
+              </px-table-view>
+            </template>
+            <script type="text/javascript">
+              document.addEventListener('WebComponentsReady', function () {
+                var app = document.getElementById('table-view-demo-8');
+                app.items = [1, 2, 3, 4, 5];
+              });
+            </script>
           </template>
         </demo-snippet>
+
         <h2>Pull to Refresh</h2>
         <demo-snippet>
           <template id="">
-            <px-table-view id="table1" pull-to-refresh>
-              <px-table-row title="Item 1"></px-table-row>
-              <px-table-row title="Item 2"></px-table-row>
-              <px-table-row title="Item 3"></px-table-row>
-              <px-table-row title="Item 4"></px-table-row>
-            </px-table-view>
+            <div class="flex flex--center">
+              <div>
+                <device-view device="phone" src="./ptr-mobile.html"></device-view>
+                <a href="./ptr-mobile.html" target="_blank">Open in new page</a>
+              </div>
+            </div>
+          </template>
+        </demo-snippet>
+
+        <h2>Iron List</h2>
+        <demo-snippet>
+          <template id="">
+            <div class="flex flex--center">
+              <div>
+                <device-view device="phone" src="./iron-list-demo.html"></device-view>
+                <a href="./iron-list-demo.html" target="_blank">Open in new page</a>
+              </div>
+            </div>
           </template>
         </demo-snippet>
 
