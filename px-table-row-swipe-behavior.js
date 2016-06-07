@@ -165,7 +165,7 @@ var pxTableRowSwipeBehavior = {
     if (this.swipeable) {
       this._transition = true;
       this.setScrollDirection(this._swipeAllowed() ? 'y' : 'all');
-      this.toggleClass('table-row--swipeable', true, this.$$('.table-row'));
+      this.toggleClass('table-row--swipeable', true, this.$.row);
     }
   },
   attached: function () {
@@ -173,14 +173,17 @@ var pxTableRowSwipeBehavior = {
       var _content = Polymer.dom(this);
       this.async(function () {
         this._initSwipeActions(this, Hammer.DIRECTION_HORIZONTAL);
-      }, 1000);
+      }, 750);
       this.set('_content', _content);
     }
   },
   _initSwipeActions: function (container, direction) {
     var instance = container;
+
+
     this.container = container;
     this.direction = direction;
+
     var distributed = this.getContentChildren('#underlayContent');
     var _underlay = Polymer.dom(this.$.underlayContent).getDistributedNodes()[0];
     this.set('_underlay', _underlay);
@@ -189,11 +192,15 @@ var pxTableRowSwipeBehavior = {
       this.underlaySize = this.underlay.getBoundingClientRect().width;
     }
     this.containerSize = this.container[dirProp(direction, 'offsetWidth', 'offsetHeight')];
-    this.hammer = new Hammer.Manager(this.container);
-    this.hammer.add(new Hammer.Pan({
-      direction: this.direction
-    }));
-    this.hammer.on("panstart panmove panend pancancel", Hammer.bindFn(this._onPan, this));
+    var options = {
+      direction: this.direction,
+      threshold: this.threshold,
+      touchAction: 'manipulation'
+    };
+
+    this.hammer = new Hammer.Manager(this.container, options);
+    this.hammer.add(new Hammer.Pan(options));
+    this.hammer.on("panstart panmove panend", Hammer.bindFn(this._onPan, this));
     this.fire('px-swipe-init');
   },
   detached: function () {
