@@ -607,28 +607,66 @@
           <h2>Example - Documents List</h2>
           <demo-snippet>
             <template>
-              <px-table-view modifier="small">
-                <px-table-row title="Time Series Inlet Flow.pdf" label1="534 kb" icon="fa:fa-file" modifier="tappable"></px-table-row>
-                <px-table-row title="Time Series Inlet Flow.pdf" label1="534 kb" icon="fa:fa-file" modifier="tappable"></px-table-row>
-              </px-table-view>
+              <template id="example-34" is="dom-bind">
+                <px-table-view modifier="small">
+                  <template is="dom-repeat" items="[[documents]]">
+                    <px-table-row title="{{item.name}}" label1="{{item.size}}" icon="fa:fa-file" modifier="tappable"></px-table-row>
+                  </template>
+                </px-table-view>
+              </template>
+              <script type="text/javascript">
+                document.addEventListener('WebComponentsReady', function () {
+                  var app = document.getElementById('example-34');
+                  app.documents = [
+                    {
+                      name: "Time Series Inlet Flow",
+                      type: "pdf",
+                      size: "714 KB",
+                      created: "10/01/15 1:32 PM"
+                    }, {
+                      name: "Time Series Flow",
+                      type: "pdf",
+                      size: "2 MB",
+                      created: "10/06/15 6:16 PM"
+                    }, {
+                      name: "Gas Turbine Map",
+                      type: "pdf",
+                      size: "1.4 MB",
+                      created: "03/19/16 2:16 PM"
+                    }
+                  ];
+                });
+              </script>
             </template>
           </demo-snippet>
           <!-- TODO: Reports List -->
           <h2>Example - Reports List</h2>
           <demo-snippet>
             <template>
-              <px-table-view modifier="bare small">
-                <px-table-row
-                  title="Symptoms"
-                  modifier="tappable"
-                  body="There was a sustained (non-correcting) step change, Lorem ipsum dolor sit amet, consectetur adipisicing eli .
-                  Minus, ab ducimus sit tempore qui aut, dolorem repellat suscipit molestias dignissimos expedita nisi iure"></px-table-row>
-                <px-table-row
-                  title="Symptoms"
-                  modifier="tappable"
-                  body="There was a sustained (non-correcting) step change, Lorem ipsum dolor sit amet, consectetur adipisicing eli .
-                  Minus, ab ducimus sit tempore qui aut, dolorem repellat suscipit molestias dignissimos expedita nisi iure"></px-table-row>
-              </px-table-view>
+              <template id="example-35" is="dom-bind">
+                <px-table-view modifier="small">
+                  <template is="dom-repeat" items="[[reports]]">
+                    <px-table-row title="{{item.title}}" modifier="tappable" body="{{item.body}}"></px-table-row>
+                  </template>
+                </px-table-view>
+              </template>
+              <script type="text/javascript">
+                document.addEventListener('WebComponentsReady', function () {
+                  var app = document.getElementById('example-35');
+                  app.reports = [
+                    {
+                      "title": "Symptoms",
+                      "body": "There was a sustained (non-correcting) step change, Lorem ipsum dolor sit amet, consectetur adipisicing eli."
+                    }, {
+                      "title": "Diagnosis",
+                      "body": "There was a sustained (non-correcting) step change, Lorem ipsum dolor sit amet, consectetur adipisicing eli."
+                    }, {
+                      "title": "Solutions",
+                      "body": "There was a sustained (non-correcting) step change, Lorem ipsum dolor sit amet, consectetur adipisicing eli."
+                    }
+                  ];
+                });
+              </script>
             </template>
           </demo-snippet>
           <!-- TODO: Notes List -->
@@ -702,7 +740,6 @@
               </div>
             </template>
           </demo-snippet>
-
           <!-- TODO: Reports List -->
           <h2>Example - Collapasble List</h2>
           <demo-snippet>
