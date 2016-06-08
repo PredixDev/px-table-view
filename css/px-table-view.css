@@ -706,3 +706,15 @@ html {
     float: right;
     margin-top: 6px;
     margin-right: 10px; }
+
+.table-view .table-row--selected {
+  background-color: var(--px-table-row-selected-background-color, #0a9ec1);
+  color: var(--px-table-row-selected-color, white); }
+  .table-view .table-row--selected .table-row__body,
+  .table-view .table-row--selected .table-row__label,
+  .table-view .table-row--selected .table-row__label2,
+  .table-view .table-row--selected .table-row__subtitle,
+  .table-view .table-row--selected .table-row__title {
+    color: var(--px-table-row-selected-color); }
+  .table-view .table-row--selected .table-row:before {
+    color: var(--px-table-row-selected-color); }

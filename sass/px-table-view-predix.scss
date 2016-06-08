@@ -13,3 +13,24 @@
 @import "mixins";
 
 @import 'px-table-view-sketch.scss';
+
+@include b('table-view'){
+  ///.table-row--selected
+  .table-row--selected {
+
+    background-color: var(--px-table-row-selected-background-color, $table-row-selected-background-color);
+    color           : var(--px-table-row-selected-color, $table-row-active-font-color);
+
+    .table-row__body,
+    .table-row__label,
+    .table-row__label2,
+    .table-row__subtitle,
+    .table-row__title {
+      color: var(--px-table-row-selected-color);
+    }
+
+    .table-row:before {
+      color: var(--px-table-row-selected-color);
+    }
+  }
+}
