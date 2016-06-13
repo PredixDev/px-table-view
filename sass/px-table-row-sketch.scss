@@ -138,7 +138,7 @@ border-bottom: 1px solid #ddd;
     ~ .table-row__content {
       transition: var(--px-table-row-collapseable-transition, all 0.3s);
       display   : none;
-        margin-left: $inuit-base-spacing-unit;
+      //margin-left: $inuit-base-spacing-unit;
     }
     ///---------------------------------------------------------------------------
     @include modifier ('is-opened') {

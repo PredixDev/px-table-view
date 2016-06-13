@@ -791,8 +791,7 @@ a {
       content: var(--px-table-row-indicator, ""); }
     .table-row--collapsable ~ .table-row__content {
       transition: var(--px-table-row-collapseable-transition, all 0.3s);
-      display: none;
-      margin-left: 1rem; }
+      display: none; }
     .table-row--collapsable--is-opened {
       overflow: hidden; }
       .table-row--collapsable--is-opened:before {
