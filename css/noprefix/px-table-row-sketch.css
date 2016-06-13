@@ -691,6 +691,17 @@ a {
     padding: 2rem; }
   .table-row--flush {
     line-height: normal; }
+  .table-row--divider {
+    padding-top: 6px;
+    padding-bottom: 6px;
+    padding-left: 15px;
+    margin-top: -1px;
+    margin-left: 0;
+    font-weight: 500;
+    color: #999;
+    background-color: #fafafa;
+    border-top: 1px solid #ddd;
+    border-bottom: 1px solid #ddd; }
   .table-row--header {
     box-sizing: border-box; }
   .table-row--tappable {
@@ -699,7 +710,8 @@ a {
       color: white;
       background: #0a9ec1; }
     .table-row--tappable:active {
-      background-color: #0a9ec1; }
+      color: var(--px-table-row-selected-color, white);
+      background-color: var(--px-table-row-selected-background-color, #0a9ec1); }
       .table-row--tappable:active .table-row__body,
       .table-row--tappable:active .table-row__label,
       .table-row--tappable:active .table-row__subtitle,

@@ -25,6 +25,7 @@ $table-row-active-background-color      : $select-blue-default;
 ///
 $table-row-hover-background-color       : $select-blue-hover;
 ///
+$table-row-selected-color    : $white;
 $table-row-selected-background-color    : $select-blue-default;
 
 ///
@@ -86,7 +87,7 @@ $table-row-checkbox-checked-border-color: $select-blue-pressed;
 ///
 $table-row-checkbox-background-color    : $select-blue-default;
 ///
-$table-view-responsive-row-width        : calculateRem(200px);
+$table-view-responsive-row-width        : calculateRem(230px);
 ///
 $table-view-responsive-row-gutters      : 0;
 ///

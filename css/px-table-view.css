@@ -624,39 +624,39 @@ html {
     -webkit-flex-direction: row;
         -ms-flex-direction: row;
             flex-direction: row;
-    margin-left: -1rem;
-    margin-top: -1rem; }
+    margin-left: -0.3333333333rem;
+    margin-top: -0.3333333333rem; }
     .table-view--responsive > *,
     .table-view--responsive ::content > * {
-      -webkit-flex: 1 0 13.3333333333rem;
-          -ms-flex: 1 0 13.3333333333rem;
-              flex: 1 0 13.3333333333rem;
-      margin-left: 1rem;
-      margin-top: 1rem; }
-      @media (min-width: 28.6666666667rem) {
+      -webkit-flex: 1 0 15.3333333333rem;
+          -ms-flex: 1 0 15.3333333333rem;
+              flex: 1 0 15.3333333333rem;
+      margin-left: 0.3333333333rem;
+      margin-top: 0.3333333333rem; }
+      @media (min-width: 31.3333333333rem) {
         .table-view--responsive > *,
         .table-view--responsive ::content > * {
-          max-width: calc(50% - 1rem); } }
-      @media (min-width: 43rem) {
+          max-width: calc(50% - 0.3333333333rem); } }
+      @media (min-width: 47rem) {
         .table-view--responsive > *,
         .table-view--responsive ::content > * {
-          max-width: calc(33.3333333333% - 1rem); } }
-      @media (min-width: 57.3333333333rem) {
+          max-width: calc(33.3333333333% - 0.3333333333rem); } }
+      @media (min-width: 62.6666666667rem) {
         .table-view--responsive > *,
         .table-view--responsive ::content > * {
-          max-width: calc(25% - 1rem); } }
-      @media (min-width: 71.6666666667rem) {
+          max-width: calc(25% - 0.3333333333rem); } }
+      @media (min-width: 78.3333333333rem) {
         .table-view--responsive > *,
         .table-view--responsive ::content > * {
-          max-width: calc(20% - 1rem); } }
-      @media (min-width: 86rem) {
+          max-width: calc(20% - 0.3333333333rem); } }
+      @media (min-width: 94rem) {
         .table-view--responsive > *,
         .table-view--responsive ::content > * {
-          max-width: calc(16.6666666667% - 1rem); } }
-      @media (min-width: 80rem) {
+          max-width: calc(16.6666666667% - 0.3333333333rem); } }
+      @media (min-width: 92rem) {
         .table-view--responsive > *,
         .table-view--responsive ::content > * {
-          min-width: calc(16.6666666667% - 1rem); } }
+          min-width: calc(16.6666666667% - 0.3333333333rem); } }
   .table-view--bare ::content .table-row,
   .table-view--bare .table-row {
     background-color: transparent;
