@@ -81,9 +81,9 @@ var pxTableViewPullToRefreshBehavior = {
   //Reference to the Hammer instance
   _hammer: null,
 
-  attached: function () {
+  attached: function() {
     if (this.pullToRefresh) {
-      this.async(function () {
+      this.async(function() {
         this.toggleClass('table-view--ptr', this.pullToRefresh, this.$.content);
         this.toggleClass('ptr', this.pullToRefresh);
         this.toggleClass('ptr__content', this.pullToRefresh, this.$.content);
@@ -92,7 +92,7 @@ var pxTableViewPullToRefreshBehavior = {
     }
   },
 
-  detached: function () {
+  detached: function() {
     if (this.pullToRefresh) {
       if (this._hammer) {
         this._hammer.off();
@@ -108,7 +108,7 @@ var pxTableViewPullToRefreshBehavior = {
    *
    * @param {object=} params - Setup parameters for pull to refresh
    */
-  _init: function (params) {
+  _init: function(params) {
     params = params || {};
     options = {
       contentEl: this.$.content,
@@ -139,44 +139,44 @@ var pxTableViewPullToRefreshBehavior = {
     // this._hammer.on('pandown', this._onPanDown.bind(this));
     // this._hammer.on('panup', this._onPanUp.bind(this));
     // this._hammer.on('panend', this._onPanEnd.bind(this));
-    this.fire('ptr-ready');
+    this.fire('px-ptr-ready');
   },
   /**
    * Handle when Hammer.js Pan event is triggered
    * @param event
    */
-  _onPan: function (event) {
+  _onPan: function(event) {
     switch (event.type) {
-    case 'panstart':
-      this._onPanStart(event);
-      break;
-    case 'pandown':
-      this._onPanDown(event);
-      break;
-    case 'panup':
-      this._onPanUp(event);
-      break;
-    case 'panend':
-      this._onPanEnd(event);
-      break;
+      case 'panstart':
+        this._onPanStart(event);
+        break;
+      case 'pandown':
+        this._onPanDown(event);
+        break;
+      case 'panup':
+        this._onPanUp(event);
+        break;
+      case 'panend':
+        this._onPanEnd(event);
+        break;
     }
   },
   /**
    * Set/remove the loading body class to show or hide the loading indicator after pull down.
-   * @event ptr-refresh
+   * @event px-ptr-refresh
    */
-  _setBodyClass: function () {
+  _setBodyClass: function() {
     if (pan.distance > options.distanceToRefresh) {
-      this.toggleClass('ptr-refresh', true);
+      this.toggleClass('px-ptr-refresh', true);
     } else {
-      this.toggleClass('ptr-refresh', false);
+      this.toggleClass('px-ptr-refresh', false);
     }
   },
   /**
    * Determine whether pan events should apply based on scroll position on panstart
    * @param {object} e - Event object
    */
-  _onPanStart: function (e) {
+  _onPanStart: function(e) {
     pan.startingPositionY = document.body.scrollTop;
     if (pan.startingPositionY === 0) {
       pan.enabled = true;
@@ -186,7 +186,7 @@ var pxTableViewPullToRefreshBehavior = {
    * Handle element on screen movement when the pandown events is firing.
    * @param {object} e - Event object
    */
-  _onPanDown: function (e) {
+  _onPanDown: function(e) {
     if (!pan.enabled) {
       return;
     }
@@ -201,7 +201,7 @@ var pxTableViewPullToRefreshBehavior = {
    * Handle element on screen movement when the pandown events is firing.
    * @param {object} e - Event object
    */
-  _onPanUp: function (e) {
+  _onPanUp: function(e) {
     if (!pan.enabled || pan.distance === 0) {
       return;
     }
@@ -220,7 +220,7 @@ var pxTableViewPullToRefreshBehavior = {
    * Handle determining how to animate and position elements when the panend event fires.
    * @param {object} e - Event object
    */
-  _onPanEnd: function (e) {
+  _onPanEnd: function(e) {
     if (!pan.enabled) {
       return;
     }
@@ -230,7 +230,7 @@ var pxTableViewPullToRefreshBehavior = {
     options.contentEl.style.transform = options.contentEl.style.webkitTransform = '';
     options.ptrEl.style.transform = options.ptrEl.style.webkitTransform = '';
 
-    if (this.classList.contains('ptr-refresh')) {
+    if (this.classList.contains('px-ptr-refresh')) {
       this._doLoading();
     } else {
       this._doReset();
@@ -242,52 +242,52 @@ var pxTableViewPullToRefreshBehavior = {
   /**
    * Handle setting the CSS transform on the content element to move it on the screen.
    */
-  _setContentPan: function (e) {
+  _setContentPan: function(e) {
     this.transform(this._transformForTranslateY(pan.distance), options.contentEl);
     this.transform(this._transformForTranslateY((pan.distance - options.ptrEl.offsetHeight)),
       options.ptrEl);
   },
   /**
    * Handle position content and refresh elements to show that loading is taking place.
-   * @event ptr-loading
+   * @event px-ptr-loading
    */
-  _doLoading: function (e) {
+  _doLoading: function(e) {
     var self = this;
-    this.toggleClass('ptr-loading', true);
-    this.toggleClass('ptr-reset', false);
-    this.fire('ptr-loading');
+    this.toggleClass('px-ptr-loading', true);
+    this.toggleClass('px-ptr-reset', false);
+    this.fire('px-ptr-loading');
 
     if (!this.loadingFunction) {
       return this._doReset();
     }
 
     var loadingPromise = this.loadingFunction();
-    setTimeout(function () {
+    setTimeout(function() {
       loadingPromise.then(self._doReset.bind(self));
     }, 1000);
   },
   /**
    * Handle resetting all elements to their starting positions before any paning took place.
-   * @event ptr-reset
+   * @event px-ptr-reset
    */
-  _doReset: function (e) {
+  _doReset: function(e) {
 
     this.style.touchAction = 'unset';
 
-    this.toggleClass('ptr-loading', false);
-    this.toggleClass('ptr-refresh', false);
-    this.toggleClass('ptr-reset', true);
+    this.toggleClass('px-ptr-loading', false);
+    this.toggleClass('px-ptr-refresh', false);
+    this.toggleClass('px-ptr-reset', true);
     this.addEventListener('transitionend', this._onTransitionEnd, false);
-    this.fire('ptr-reset');
+    this.fire('px-ptr-reset');
   },
   /**
    * Handle removing event listener when transition ends.
-   * @event ptr-transitionend
+   * @event px-ptr-transitionend
    */
-  _onTransitionEnd: function () {
-    this.toggleClass('ptr-reset', false);
+  _onTransitionEnd: function() {
+    this.toggleClass('px-ptr-reset', false);
     this.removeEventListener('transitionend', this._onTransitionEnd, false);
-    this.fire('ptr-transitionend');
+    this.fire('px-ptr-transitionend');
   },
   /**
    * Handle transforming the table-row.
@@ -295,7 +295,7 @@ var pxTableViewPullToRefreshBehavior = {
    * @returns {String} The transform value
    * @private
    */
-  _transformForTranslateY: function (translateY) {
+  _transformForTranslateY: function(translateY) {
     if (translateY === null) {
       return 'translate3d(0, 0, 0)';
     }
