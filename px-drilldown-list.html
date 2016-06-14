@@ -1,0 +1,414 @@
+<link rel="import" href="../polymer/polymer.html">
+<link rel="import" href="../iron-resizable-behavior/iron-resizable-behavior.html">
+<script type="text/javascript">
+  function transitionend($elem) {
+    var transitions = {
+      'transition': 'transitionend',
+      'WebkitTransition': 'webkitTransitionEnd',
+      'MozTransition': 'transitionend',
+      'OTransition': 'otransitionend'
+    };
+    var elem = document.createElement('div'),
+      end;
+    for (var t in transitions) {
+      if (typeof elem.style[t] !== 'undefined') {
+        end = transitions[t];
+      }
+    }
+    if (end) {
+      return end;
+    } else {
+      end = setTimeout(function () {
+        $elem.triggerHandler('transitionend', [$elem]);
+      }, 1);
+      return 'transitionend';
+    }
+  }
+</script>
+<!--
+The `px-drilldown-list` element provides a way to have a list that drills down into a items children.
+
+##### Usage
+
+```
+<template id="app" is="dom-bind">
+  <px-drilldown-list id="dd1">
+    <li>
+      <a href="#">Category</a>
+      <ul class="list-ui" data-submenu>
+        <li><a href="#">Sub Category</a>
+          <ul class="list-ui" data-submenu>
+            <li><a href="#">Product</a>
+              <ul class="list-ui" data-submenu>
+                <li><a href="#">Part</a></li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </px-drilldown-list>
+</template>
+```
+
+### Styling
+
+Custom property | Description | Default
+------------ | ------------- | ------------
+`--px-drilldown` | Style mixin to be applied to the menu | {}
+`--px-drilldown-submenu` | Style mixin to be applied to the sub-menu | {}
+
+@element px-drilldown-list
+@blurb Element providing solution to drill down list menu.
+@homepage index.html
+@demo demo.html
+-->
+<dom-module id="px-drilldown-list">
+  <style>
+    :host {
+      display: block;
+    }
+    :host ::content li,
+    :host ::content ul {
+      margin: 0;
+      padding: 0;
+    }
+    :host .drilldown {
+      font-size: 1.3rem;
+      -webkit-transition: -webkit-transform 0.15s linear;
+      transition: transform 0.15s linear, -webkit-transform 0.15s linear;
+      border-top: none;
+      @apply(--px-drilldown);
+    }
+    :host ::content a,
+    :host a {
+      @apply(--px-drilldown-link);
+    }
+    :host ::content .is-drilldown {
+      position: relative;
+      overflow: auto;
+      width: 100%;
+    }
+    :host ::content .is-drilldown.drilldown__menu {
+      overflow: hidden;
+      user-select: none;
+      -webkit-user-select: none;
+    }
+    :host ::content .is-drilldown .js-drilldown-back a:before {
+      content: '';
+      left: 0;
+    }
+    :host ::content .is-drilldown li {
+      display: block;
+      cursor: pointer;
+    }
+    :host ::content .is-drilldown li a {
+      position: relative;
+      display: block;
+      width: 100%;
+      margin: 0;
+      padding: 0;
+    }
+    :host ::content .is-drilldown-submenu {
+      position: absolute;
+      top: 0;
+      left: 100%;
+      z-index: -1;
+      height: 100%;
+      width: 100%;
+      transition: transform 0.15s linear, -webkit-transform 0.15s linear;
+      background: #fff;
+      @apply(--px-drilldown-submenu);
+    }
+    :host ::content .is-drilldown-submenu.is-active {
+      z-index: 1;
+      display: block;
+      -webkit-transform: translateX(-100%);
+      transform: translateX(-100%);
+    }
+    :host ::content .is-drilldown-submenu.is-closing {
+      -webkit-transform: translateX(100%);
+      transform: translateX(100%);
+    }
+    :host ::content .is-drilldown-submenu-parent > a {
+      position: relative;
+    }
+    :host ::content .is-drilldown-submenu-parent > a::after {
+      position: absolute;
+      top: 50%;
+      margin-top: -6px;
+    }
+    :host ::content .js-drilldown-back > a::before {
+      border-left-width: 0;
+      display: inline-block;
+      vertical-align: middle;
+      margin-right: 0.75rem;
+    }
+    :host([arrows]) ::content .is-drilldown li a:before {
+      -webkit-transform: translateY(-50%);
+      transform: translateY(-50%);
+      font-style: normal;
+      font-weight: normal;
+      position: absolute;
+      right: 12px;
+      top: 50%;
+      color: #ccc;
+      line-height: 28px;
+      height: 28px;
+      font-size: 28px;
+      font-family: FontAwesome;
+      content: "";
+    }
+  </style>
+  <template strip-whitespace>
+    <div id="drilldownContainer">
+      <ul id="drilldown" class="list-ui" data-drilldown>
+        <content id="content"></content>
+      </ul>
+    </div>
+  </template>
+</dom-module>
+<script>
+  Polymer({
+    is: 'px-drilldown-list',
+    behaviors: [Polymer.IronResizableBehavior],
+    listeners: {
+      'iron-resize': '_resizeHandler'
+    },
+    properties: {
+      /**
+       * The markup used for JS generated back button.
+		   * Prepended to submenu lists and deleted on `destroy` method, 'js-drilldown-back' class required.
+       */
+      backButton: {
+        type: String,
+        value: '<a tabindex="0"> <i class="fa fa-lg fa-angle-left"></i> Back</a>'
+      },
+      /**
+       * Adds the parent link to the submenu.
+
+      parentLink: {
+        type: Boolean
+      },
+      */
+      /**
+       * Allow the menu to return to root list on body click.
+       */
+      closeOnClick: {
+        type: Boolean
+      }
+    },
+    _submenuAnchors: [],
+    _submenus: [],
+    _menuItems: [],
+    created: function () {
+      this.setScrollDirection('y');
+    },
+    attached: function () {
+      console.log('attached', this);
+      this.async(function () {
+        this._init();
+      }, 10);
+    },
+    detached: function () {},
+    /**
+     * Handles resetting the layout by setting the min-height / max-width of the parent element.
+     * The max-height is calculated by the number of elements in the root.
+    */
+    resetLayout: function () {
+      if (!this.$element) {
+        return;
+      }
+      var css = this._getMaxDims();
+      this.$.drilldownContainer.style.minHeight = css['min-height'];
+      this.$.drilldownContainer.style.maxWidth = css['max-width'];
+    },
+    _resizeHandler: function () {
+      if (!this.$element) {
+        return;
+      }
+      this.debounce('resetLayout', function () {
+        this.$.drilldownContainer.style.minHeight = '';
+        this.$.drilldownContainer.style.maxWidth = '';
+        this.resetLayout();
+      }, 100);
+    },
+    _init: function () {
+      var self = this;
+      this.$element = this.$.drilldown;
+      this.toggleClass('is-drilldown', true, this.$.drilldown);
+      this.toggleClass('drilldown__menu', true, this.$.drilldown);
+      var _submenus = this.$element.querySelectorAll('[data-submenu]');
+      var _menuItems = this.$element.querySelectorAll('li a');
+      /* Safari */
+      this._submenus = Array.prototype.slice.call(_submenus);
+      this._menuItems = Array.prototype.slice.call(_menuItems);
+      this._menuItems.forEach(function (el) {
+        self.toggleClass('is-drilldown-submenu-parent', true, el.parentNode);
+        el.parentNode.setAttribute('role', 'menu-item');
+        el.parentNode.setAttribute('data-id', el.textContent);
+      });
+      var _submenuAnchors = this.$element.querySelectorAll('li.is-drilldown-submenu-parent a');
+      /* Safari */
+      this._submenuAnchors = Array.prototype.slice.call(_submenuAnchors);
+      this._prepareMenu();
+    },
+    /**
+	 * prepares drilldown menu by setting attributes to links and elements
+	 * sets a min height to prevent content jumping
+	 * wraps the element if not already wrapped
+	 */
+    _prepareMenu: function () {
+      var self = this,
+        $link,
+        $sub,
+        submenus,
+        $menu,
+        $back;
+      //Build submenu anchors
+      this._submenuAnchors.forEach(function (el) {
+        $link = el;
+        self._events($link);
+        if (self.parentLink) {
+          console.warn('Clone node and prepend', $link, $link.nextSibling);
+          //  Polymer.dom($sub).insertBefore(self._createParentLink($link), _el.firstChild);
+        }
+      });
+      //Build sub menus
+      this._submenus.forEach(function (el) {
+        $menu = el;
+        $back = $menu.querySelectorAll('.js-drilldown-back');
+        $menu.setAttribute('tabindex', 0);
+        $menu.setAttribute('aria-hidden', true);
+        $menu.setAttribute('role', 'menu');
+        self.toggleClass('drilldown__sub-menu', true, $menu);
+        self.toggleClass('is-drilldown-submenu', true, $menu);
+        if (!$back.length) {
+          Polymer.dom($menu).insertBefore(self._createBackButton(), $menu.firstChild);
+          Polymer.dom.flush();
+        }
+        self._back($menu);
+      });
+    },
+    _events: function ($elem) {
+      var _this = this;
+      var _handleClick = function (e) {
+        _this.$selected = e.target;
+        if (e.target.parentNode.classList.contains('is-drilldown-submenu-parent')) {
+          e.stopImmediatePropagation();
+          e.preventDefault();
+        }
+        _this._show($elem.parentNode);
+        /*
+        if (_this.options.closeOnClick) {
+          var $body = $('body');
+          $body.off('.px.drilldown').on('click.px.drilldown', function (e) {
+            if (e.target === _this.$element[0] || $.contains(_this.$element[0], e.target)) {
+              return;
+            }
+            e.preventDefault();
+            _this._hideAll();
+            $body.off('.px.drilldown');
+          });
+        }*/
+      };
+      $elem.removeEventListener('click', _handleClick);
+      $elem.addEventListener('click', _handleClick);
+    },
+    /**
+     * Iterates through the nested menus to calculate the min-height, and max-width for the menu.
+     * Prevents content jumping.
+     * @function
+     * @private
+     */
+    _getMaxDims: function () {
+      var max = 0,
+        result = {};
+      this._submenus.push(this.$element);
+      this._submenus.forEach(function (el) {
+        var numOfElems = el.children.length;
+        max = numOfElems > max
+          ? numOfElems
+          : max;
+      });
+      result['min-height'] = max * this._menuItems[0].getBoundingClientRect().height + 'px';
+      result['max-width'] = this.$element.getBoundingClientRect().width + 'px';
+      return result;
+    },
+    /**
+     * Fires when back button is clicked
+     * @event px-drilldown-back
+     * @param {Element} $elem - the current sub-menu back link
+    */
+    _back: function ($elem) {
+      var _this = this;
+      var btns = $elem.querySelectorAll('.js-drilldown-back');
+      Array.prototype.slice.call(btns).forEach(function (btn) {
+        btn.addEventListener('click', function (e) {
+          e.stopImmediatePropagation();
+          _this._hide($elem);
+          _this.fire('px-drilldown-back', {target: btn});
+        });
+      });
+    },
+    /**
+     * Fires when the element shows its sub-menu
+     * @event px-drilldown-show
+     * @param {Element} $elem - the current element with a submenu to open
+     */
+    _show: function ($elem) {
+      this.toggleClass('is-active', true, $elem.querySelector('[data-submenu]'));
+      this.fire('px-drilldown-show', {target: $elem});
+    },
+    /**
+     * Hides a submenu
+     * @event px-drilldown-hide
+     * @param {Element} $elem - the current sub-menu to hide
+     */
+    _hide: function ($elem) {
+      var _this = this;
+      this.toggleClass('is-closing', true, $elem);
+      var handleTransition = function (e) {
+        _this.toggleClass('is-active', false, $elem);
+        _this.toggleClass('is-closing', false, $elem);
+        $elem.removeEventListener(transitionend($elem), handleTransition);
+      };
+      $elem.addEventListener(transitionend($elem), handleTransition);
+      this.fire('px-drilldown-hide', {target: $elem});
+    },
+    /**
+      * Closes all open elements, and returns to root menu.
+      * @event px-drilldown-closed
+      */
+    _hideAll: function () {
+      var _this = this;
+      var elems = this.$element.querySelectorAll('.is-drilldown-submenu.is-active');
+      elems.forEach(function (el) {
+        console.log('elem', el);
+        _this._hide(el);
+      });
+    },
+    _menuLinkEvents: function () {},
+    _handleTransition: function (e) {
+      var _this = this;
+      _this.toggleClass('is-active', false, $elem);
+      _this.toggleClass('is-closing', false, $elem);
+      console.log('transitionend', e);
+      $elem.removeEventListener(transitionend($elem), handleTransition);
+    },
+    _createBackButton: function () {
+      var li = document.createElement('li');
+      li.classList.add('js-drilldown-back');
+      li.innerHTML = this.backButton;
+      return li;
+    },
+    _createParentLink: function (node) {
+      var li = document.createElement('li');
+      li.classList.add('is-drilldown-submenu-item');
+      li.classList.add('is-submenu-parent-item');
+      li.classList.add('is-submenu-item')
+      li.appendChild(node);
+      return li;
+    }
+  });
+</script>

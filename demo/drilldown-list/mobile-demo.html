@@ -1,0 +1,307 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>px-drilldown-list Mobile Demo</title>
+    <script src="../../../webcomponentsjs/webcomponents-lite.min.js"></script>
+    <link rel="import" href="../../px-drilldown-list.html"/>
+    <link rel="import" href="../../../px-navbar/px-navbar.html"/>
+    <link rel="import" href="../../../px-theme/px-app.html"/>
+    <link rel="import" href="../../../px-theme/px-theme.html"/>
+    <style media="screen">
+      body{
+        background-color: #eee !important;
+        padding-top: 56px;
+      }
+      .list-ui {
+        border-top: none;
+      }
+    </style>
+  </head>
+  <body unresolved>
+    <template id="app" is="dom-bind">
+      <px-navbar title="drilldown list demo"></px-navbar>
+      <div class="has-navbar">
+        <px-drilldown-list id="dd1">
+        <template id="row" is="dom-repeat" items=[[items]]>
+          <li>
+            <a href="#">Category</a>
+            <ul class="list-ui" data-submenu>
+              <li>
+                <a href="#">Sub Category</a>
+                <ul class="list-ui" data-submenu>
+                  <li>
+                    <a href="#">Product</a>
+                    <ul class="list-ui" data-submenu>
+                      <li>
+                        <a href="#">Part</a>
+                      </li>
+                      <li>
+                        <a href="#">Part</a>
+                      </li>
+                      <li>
+                        <a href="#">Part</a>
+                      </li>
+                      <li>
+                        <a href="#">Part</a>
+                      </li>
+                      <li>
+                        <a href="#">Part</a>
+                      </li>
+                    </ul>
+                  </li>
+                  <li>
+                    <a href="#">Product</a>
+                    <ul class="list-ui" data-submenu>
+                      <li>
+                        <a href="#">Part</a>
+                      </li>
+                      <li>
+                        <a href="#">Part</a>
+                      </li>
+                      <li>
+                        <a href="#">Part</a>
+                      </li>
+                      <li>
+                        <a href="#">Part</a>
+                      </li>
+                      <li>
+                        <a href="#">Part</a>
+                      </li>
+                    </ul>
+                  </li>
+                  <li>
+                    <a href="#">Product</a>
+                    <ul class="list-ui" data-submenu>
+                      <li>
+                        <a href="#">Part</a>
+                      </li>
+                      <li>
+                        <a href="#">Part</a>
+                      </li>
+                      <li>
+                        <a href="#">Part</a>
+                      </li>
+                      <li>
+                        <a href="#">Part</a>
+                      </li>
+                      <li>
+                        <a href="#">Part</a>
+                      </li>
+                    </ul>
+                  </li>
+                  <li>
+                    <a href="#">Product</a>
+                    <ul class="list-ui" data-submenu>
+                      <li>
+                        <a href="#">Part</a>
+                      </li>
+                      <li>
+                        <a href="#">Part</a>
+                      </li>
+                      <li>
+                        <a href="#">Part</a>
+                      </li>
+                      <li>
+                        <a href="#">Part</a>
+                      </li>
+                      <li>
+                        <a href="#">Part</a>
+                      </li>
+                    </ul>
+                  </li>
+                  <li>
+                    <a href="#">Product</a>
+                    <ul class="list-ui" data-submenu>
+                      <li>
+                        <a href="#">Part</a>
+                      </li>
+                      <li>
+                        <a href="#">Part</a>
+                      </li>
+                      <li>
+                        <a href="#">Part</a>
+                      </li>
+                      <li>
+                        <a href="#">Part</a>
+                      </li>
+                      <li>
+                        <a href="#">Part</a>
+                      </li>
+                    </ul>
+                  </li>
+                  <li>
+                    <a href="#">Product</a>
+                    <ul class="list-ui" data-submenu>
+                      <li>
+                        <a href="#">Part</a>
+                      </li>
+                      <li>
+                        <a href="#">Part</a>
+                      </li>
+                      <li>
+                        <a href="#">Part</a>
+                      </li>
+                      <li>
+                        <a href="#">Part</a>
+                      </li>
+                      <li>
+                        <a href="#">Part</a>
+                      </li>
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+              <li>
+                <a href="#">Sub Category</a>
+                <ul class="list-ui" data-submenu>
+                  <li>
+                    <a href="#">Product</a>
+                    <ul class="list-ui" data-submenu>
+                      <li>
+                        <a href="#">Part</a>
+                      </li>
+                      <li>
+                        <a href="#">Part</a>
+                      </li>
+                      <li>
+                        <a href="#">Part</a>
+                      </li>
+                      <li>
+                        <a href="#">Part</a>
+                      </li>
+                      <li>
+                        <a href="#">Part</a>
+                      </li>
+                    </ul>
+                  </li>
+                  <li>
+                    <a href="#">Product</a>
+                    <ul class="list-ui" data-submenu>
+                      <li>
+                        <a href="#">Part</a>
+                      </li>
+                      <li>
+                        <a href="#">Part</a>
+                      </li>
+                      <li>
+                        <a href="#">Part</a>
+                      </li>
+                      <li>
+                        <a href="#">Part</a>
+                      </li>
+                      <li>
+                        <a href="#">Part</a>
+                      </li>
+                    </ul>
+                  </li>
+                  <li>
+                    <a href="#">Product</a>
+                    <ul class="list-ui" data-submenu>
+                      <li>
+                        <a href="#">Part</a>
+                      </li>
+                      <li>
+                        <a href="#">Part</a>
+                      </li>
+                      <li>
+                        <a href="#">Part</a>
+                      </li>
+                      <li>
+                        <a href="#">Part</a>
+                      </li>
+                      <li>
+                        <a href="#">Part</a>
+                      </li>
+                    </ul>
+                  </li>
+                  <li>
+                    <a href="#">Product</a>
+                    <ul class="list-ui" data-submenu>
+                      <li>
+                        <a href="#">Part</a>
+                      </li>
+                      <li>
+                        <a href="#">Part</a>
+                      </li>
+                      <li>
+                        <a href="#">Part</a>
+                      </li>
+                      <li>
+                        <a href="#">Part</a>
+                      </li>
+                      <li>
+                        <a href="#">Part</a>
+                      </li>
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+              <li>
+                <a href="#">Sub Category</a>
+                <ul class="list-ui" data-submenu>
+                  <li>
+                    <a href="#">Product</a>
+                    <ul class="list-ui" data-submenu>
+                      <li>
+                        <a href="#">Part</a>
+                      </li>
+                      <li>
+                        <a href="#">Part</a>
+                      </li>
+                      <li>
+                        <a href="#">Part</a>
+                      </li>
+                      <li>
+                        <a href="#">Part</a>
+                      </li>
+                      <li>
+                        <a href="#">Part</a>
+                      </li>
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+        </template>
+        <li>
+          <a href="#">Category</a>
+          <ul class="list-ui" data-submenu>
+            <li>
+              <a href="#">Sub Category</a>
+              <ul class="list-ui" data-submenu>
+                <li>
+                  <a href="#">Product</a>
+                  <ul class="list-ui" data-submenu>
+                    <li>
+                      <a href="#">Part</a>
+                    </li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+      </px-drilldown-list>
+      </div>
+  </template>
+
+  <script type="text/javascript">
+    document.addEventListener('WebComponentsReady', function () {
+      var app = document.getElementById('app');
+      app.items = [];
+      app.items.length = 25;
+
+
+      ['px-drilldown-show', 'px-drilldown-hide', 'px-drilldown-back', 'px-drilldown-closed'].forEach(function (event) {
+        document.addEventListener(event, function (e) {
+          console.log(e.target.id, e.type, e);
+        });
+      });
+    });
+  </script>
+  <script src="http://localhost:35724/livereload.js?snipver=1"></script>
+</body>
+</html>

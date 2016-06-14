@@ -1,0 +1,186 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>px-drilldown-list Demo</title>
+    <script src="../../../webcomponentsjs/webcomponents-lite.min.js"></script>
+    <link rel="import" href="../../px-drilldown-list.html"/>
+    <link rel="import" href="../../../px-theme/px-app.html"/>
+    <link rel="import" href="../../../px-theme/px-theme.html"/>
+    <link rel="import" href="../../../iron-demo-helpers/demo-snippet.html"/>
+
+    <style media="screen">
+  html,  body{
+      background-color: #eee !important;
+    }
+      .list-ui {
+        border-top: none;
+      }
+    </style>
+  </head>
+  <body unresolved>
+    <div class="viewport">
+      <h1 class="">px-drilldown-list Demo</h1>
+      <p>
+        The
+        <code>px-drilldown-list</code>
+        elements provides a way to have a list that drills down into a items children.
+      </p>
+      <h2>Demo with default options</h2>
+      <demo-snippet>
+        <template>
+          <template id="app" is="dom-bind">
+            <px-drilldown-list id="dd1">
+            <li>
+              <a href="#">Category</a>
+              <ul class="list-ui" data-submenu>
+                <li>
+                  <a href="#">Sub Category</a>
+                  <ul class="list-ui" data-submenu>
+                    <li>
+                      <a href="#">Product</a>
+                      <ul class="list-ui" data-submenu>
+                        <li>
+                          <a href="#">Part</a>
+                        </li>
+                      </ul>
+                    </li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+            <li>
+              <a href="#">Category</a>
+              <ul class="list-ui" data-submenu>
+                <li>
+                  <a href="#">Sub Category</a>
+                  <ul class="list-ui" data-submenu>
+                    <li>
+                      <a href="#">Product</a>
+                      <ul class="list-ui" data-submenu>
+                        <li>
+                          <a href="#">Part</a>
+                        </li>
+                      </ul>
+                    </li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+          </px-drilldown-list>
+        </template>
+      </template>
+    </demo-snippet>
+    <!-- TODO: No Styles -->
+    <h2>Demo with no styles</h2>
+    <demo-snippet>
+      <template>
+        <style media="screen">
+          .list-ui {
+            border-top: none;
+          }
+        </style>
+        <template id="app2" is="dom-bind">
+          <px-drilldown-list id="dd2">
+            <li>
+              <a href="#">Category</a>
+              <ul data-submenu>
+                <li>
+                  <a href="#">Sub Category</a>
+                  <ul data-submenu>
+                    <li>
+                      <a href="#">Product</a>
+                      <ul data-submenu>
+                        <li>
+                          <a href="#">Part</a>
+                        </li>
+                      </ul>
+                    </li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+          </px-drilldown-list>
+        </template>
+      </template>
+    </demo-snippet>
+    <h2>Demo with custom styles</h2>
+    <demo-snippet>
+      <template>
+        <style is="custom-style">
+          .custom {
+            --px-drilldown: {
+              background-color: gold;
+            }
+            --px-drilldown-submenu: {
+              background-color: crimson;
+            }
+          }
+        </style>
+        <template id="app3" is="dom-bind">
+          <px-drilldown-list id="dd3" class="custom">
+            <li>
+              <a href="#">Category</a>
+              <ul data-submenu>
+                <li>
+                  <a href="#">Sub Category</a>
+                  <ul data-submenu>
+                    <li>
+                      <a href="#">Product</a>
+                      <ul data-submenu>
+                        <li>
+                          <a href="#">Part</a>
+                        </li>
+                      </ul>
+                    </li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+          </px-drilldown-list>
+        </template>
+      </template>
+    </demo-snippet>
+    <!-- TODO: closeOnClick -->
+    <!-- TODO: parentLink -->
+    <h2>Demo with parentLink</h2>
+    <demo-snippet>
+      <template>
+        <template id="app4" is="dom-bind">
+          <px-drilldown-list id="dd4" parent-link>
+            <li>
+              <a href="#">Category</a>
+              <ul data-submenu>
+                <li>
+                  <a href="#">Sub Category</a>
+                  <ul data-submenu>
+                    <li>
+                      <a href="#">Product</a>
+                      <ul data-submenu>
+                        <li>
+                          <a href="#">Part</a>
+                        </li>
+                      </ul>
+                    </li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+          </px-drilldown-list>
+        </template>
+      </template>
+    </demo-snippet>
+  </div>
+  <script type="text/javascript">
+    document.addEventListener('WebComponentsReady', function () {
+      ['px-drilldown-show', 'px-drilldown-hide', 'px-drilldown-back', 'px-drilldown-closed'].forEach(function (event) {
+        document.addEventListener(event, function (e) {
+          console.log(e.target.id, e.type, e);
+        });
+      });
+    });
+  </script>
+  <script src="http://localhost:35724/livereload.js?snipver=1"></script>
+</body>
+</html>
