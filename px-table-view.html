@@ -9,59 +9,30 @@
 <link rel="import" href="px-table-view-sortable-behavior.html"/>
 <link rel="import" href="px-table-view-drilldown-behavior.html"/>
 <link rel="import" href="px-table-row.html"/>
+<link rel="import" href="px-drilldown-list.html"/>
+
 <!--
-<p>
-  For demo visit <a href="demo.html" target="_blank">Full demo here</a> or <a href="demo/mvp1-demo.html" target="_blank">Mobile demo here</a>
-</p>
-<p>
-  For a list of all demos visit  <a href="./demo" target="_blank">here</a>.
-</p>
+The `px-table-view` element provides a way to display list data.
 
-## Usage
 
-To style this component you can do the following:
+
+For a list of all individual demos visit <a href="./demo" target="_blank">here</a>.
+
+
+
+### Usage
 
 ```
-:root {
-  --table-view-border-color: red;
-  --table-view-background-color: green;
-}
+<px-table-view>
+  <px-table-row title="Text Label"></px-table-row>
+  <px-table-row title="Nav Right Item" modifier="nav-right"></px-table-row>
+  <px-table-row title="Detail Item" modifier="detail"></px-table-row>
+  <px-table-row title="Tappable Item" modifier="tappable"></px-table-row>
+</px-table-view>
 ```
 
-To use this component with iron list you can do the following:
-```
-<div class="demo" style="height: 500px; overflow:auto;">
-  <template id="tableViewTemplate" is="dom-bind">
-    <iron-ajax url="./demo/data.json" last-response="{{data}}" auto></iron-ajax>
-    <iron-list id="ironList" items="[[data]]" as="item" class="table-view  table-view--small">
-      <template>
-        <div class="table-row table-row--nav-right" on-click="handleSelect">
-          <div class="table-row__media table-row__media--icon" hidden="{{!item.icon}}">
-              <i class$="{{item.icon}}"></i>
-          </div>
-          <div class="table-row__media table-row__media--image" hidden="{{!item.image}}">
-            <img src$="{{item.image}}" alt="{{item.title}}">
-          </div>
-          <div class="table-row__content">
-            <span class="table-row__content__title">{{item.title}}</span>
-          </div>
-        </div>
-      </template>
-    </iron-list>
-  </template>
-  <script type="text/javascript">
-    var tmpl = document.getElementById('tableViewTemplate');
-    tmpl.handleSelect = function(e) {
-      console.log('handleSelect', e);
-    };
-    document.addEventListener('WebComponentsReady', function() {
-      setTimeout(function() {
-        document.querySelector('iron-list').fire('iron-resize');
-      }, 50);
-    });
-  </script>
-</div>
-```
+
+
 @element px-table-view.html
 @demo demo.html
 @homepage index.html
@@ -166,8 +137,8 @@ To use this component with iron list you can do the following:
         }
       },
       /**
-      * A reference to the px-drawer element.
-      * @property drawer
+      * A reference to the px-table-row elements.
+      * @property rows
       */
       get rows() {
         if(this.$.tableViewContent){

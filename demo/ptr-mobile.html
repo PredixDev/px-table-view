@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <title>ptr</title>
+    <title>px-table-view ptr demo</title>
     <script src="../../webcomponentsjs/webcomponents-lite.js"></script>
     <link rel="import" href="../../px-theme/px-app.html">
     <link rel="import" href="../../px-theme/px-theme.html">
@@ -15,8 +15,9 @@
       }
       body,
       html {
-        background-color: #fff;
+        background-color: #fff !important;
       }
+
     </style>
   </head>
   <body unresolved class="viewport--full-height has-navbar">
@@ -29,7 +30,7 @@
         }
       </style>
       <div class="app">
-        <px-navbar title="Pull To Refresh" shadow></px-navbar>
+        <px-navbar title="Pull To Refresh" shadow fixed auto-hide></px-navbar>
         <px-table-view id="ptr-table" modifier="" pull-to-refresh>
           <template is="dom-repeat" items="[[items]]">
             <px-table-row title="Text Label" modifier="nav-right" class="b"></px-table-row>
@@ -38,23 +39,31 @@
       </div>
     </template>
     <script type="text/javascript">
-      var count = 55;
+
       document.addEventListener('WebComponentsReady', function () {
         var app = document.getElementById('table-view-actions-2');
         app.items = [];
-        for (var i = 0; i < count; i++) {
-          app.items.push(i);
+
+        function addItems(count){
+          for (var i = 0; i < count; i++) {
+            app.push( 'items', i);
+          }
         }
+
+        addItems(5);
+
         // TODO: Example showing how to hook into the pull
         var table = document.getElementById('ptr-table');
         table.loadingFunction = function handleLoad() {
           return new Promise(function (resolve, reject) {
             console.log('Fetching more items');
+            addItems(2);
             resolve({});
           });
         };
-        ['ptr-ready', 'ptr-reset', 'ptr-refresh', 'ptr-loading', 'ptr-complete'].forEach(function (event) {
-          table.addEventListener(event, function (e) {
+
+        ['px-table-row-ptr-ready', 'px-table-row-ptr-reset', 'px-table-row-ptr-refresh', 'px-table-row-ptr-loading', 'px-table-row-ptr-complete'].forEach(function (event) {
+          document.addEventListener(event, function (e) {
             console.log('Fired Event =', e.type, e);
           });
         });

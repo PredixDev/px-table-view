@@ -282,10 +282,6 @@ Custom property | Description | Default
         },
         /**
          * The state of the table row if collapsable.
-         ```
-         <px-table-row title="Grand Parent" modifier="tappable" collapsable opened>
-         </px-table-row>
-         ```
          */
         opened: {
           type: Boolean,
@@ -293,18 +289,13 @@ Custom property | Description | Default
           notify: true,
           reflectToAttribute: true,
           observer: '_handleOpened'
-
         }
       },
       ready: function(){
-        if(this.collapsable){
-          this.listen(this.$.row, 'tap', '_handleTap');
-        }
+        this.listen(this.$.row, 'tap', '_handleTap');
       },
       detached: function(){
-        if(this.collapsable){
-          this.unlisten(this.$.row, 'tap', '_handleTap');
-        }
+        this.unlisten(this.$.row, 'tap', '_handleTap');
       },
       _hideBody: function(){
         this.opened = !this.opened;
@@ -313,12 +304,17 @@ Custom property | Description | Default
         this.toggleClass('table-row--collapsable--is-opened', oldVal, this.$$('.table-row'));
         this.toggleClass('table-row--collapsable--is-opened', newVal, this.$$('.table-row'));
       },
+      /**
+       * Fires event when row is tapped.
+       * @event px-table-row-tap
+       */
       _handleTap: function (e) {
-          e.preventDefault();
+        e.preventDefault();
         var target = Polymer.dom(e).rootTarget;
         if(this.collapsable){
           this._hideBody();
         }
+        this.fire('px-table-row-tap', e);
       }
     });
   </script>

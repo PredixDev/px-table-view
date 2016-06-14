@@ -128,18 +128,15 @@ var pxTableViewPullToRefreshBehavior = {
       direction: Hammer.DIRECTION_VERTICAL
     }));
     this._hammer.on("panstart panup pandown panend", Hammer.bindFn(this._onPan, this));
-
     //this._hammer = new Hammer(options.contentEl, options);
-
     // this._hammer.get('pan').set({
     //   direction: Hammer.DIRECTION_VERTICAL
     // });
-
     // this._hammer.on('panstart', this._onPanStart.bind(this));
     // this._hammer.on('pandown', this._onPanDown.bind(this));
     // this._hammer.on('panup', this._onPanUp.bind(this));
     // this._hammer.on('panend', this._onPanEnd.bind(this));
-    this.fire('px-ptr-ready');
+
   },
   /**
    * Handle when Hammer.js Pan event is triggered
@@ -163,13 +160,13 @@ var pxTableViewPullToRefreshBehavior = {
   },
   /**
    * Set/remove the loading body class to show or hide the loading indicator after pull down.
-   * @event px-ptr-refresh
+  
    */
   _setBodyClass: function() {
     if (pan.distance > options.distanceToRefresh) {
-      this.toggleClass('px-ptr-refresh', true);
+      this.toggleClass('ptr-refresh', true);
     } else {
-      this.toggleClass('px-ptr-refresh', false);
+      this.toggleClass('ptr-refresh', false);
     }
   },
   /**
@@ -224,13 +221,11 @@ var pxTableViewPullToRefreshBehavior = {
     if (!pan.enabled) {
       return;
     }
-
     e.preventDefault();
-
     options.contentEl.style.transform = options.contentEl.style.webkitTransform = '';
     options.ptrEl.style.transform = options.ptrEl.style.webkitTransform = '';
 
-    if (this.classList.contains('px-ptr-refresh')) {
+    if (this.classList.contains('ptr-refresh')) {
       this._doLoading();
     } else {
       this._doReset();
@@ -249,13 +244,13 @@ var pxTableViewPullToRefreshBehavior = {
   },
   /**
    * Handle position content and refresh elements to show that loading is taking place.
-   * @event px-ptr-loading
+   * @event px-table-row-ptr-loading
    */
   _doLoading: function(e) {
     var self = this;
-    this.toggleClass('px-ptr-loading', true);
-    this.toggleClass('px-ptr-reset', false);
-    this.fire('px-ptr-loading');
+    this.toggleClass('ptr-loading', true);
+    this.toggleClass('ptr-reset', false);
+    this.fire('px-table-row-ptr-loading');
 
     if (!this.loadingFunction) {
       return this._doReset();
@@ -268,26 +263,26 @@ var pxTableViewPullToRefreshBehavior = {
   },
   /**
    * Handle resetting all elements to their starting positions before any paning took place.
-   * @event px-ptr-reset
+   * @event px-table-row-ptr-reset
    */
   _doReset: function(e) {
 
     this.style.touchAction = 'unset';
 
-    this.toggleClass('px-ptr-loading', false);
-    this.toggleClass('px-ptr-refresh', false);
-    this.toggleClass('px-ptr-reset', true);
+    this.toggleClass('ptr-loading', false);
+    this.toggleClass('ptr-refresh', false);
+    this.toggleClass('ptr-reset', true);
     this.addEventListener('transitionend', this._onTransitionEnd, false);
-    this.fire('px-ptr-reset');
+    this.fire('px-table-row-ptr-reset');
   },
   /**
    * Handle removing event listener when transition ends.
-   * @event px-ptr-transitionend
+
    */
   _onTransitionEnd: function() {
-    this.toggleClass('px-ptr-reset', false);
+    this.toggleClass('ptr-reset', false);
     this.removeEventListener('transitionend', this._onTransitionEnd, false);
-    this.fire('px-ptr-transitionend');
+
   },
   /**
    * Handle transforming the table-row.
