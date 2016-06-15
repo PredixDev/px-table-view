@@ -19,7 +19,7 @@
   </head>
   <body class="viewport--full-height" unresolved>
     <div class="viewport">
-      <h2 class="beta">Table View Specs</h2>
+      <h1 class="beta">Table View: Rows</h1>
       <p>A table-view consists of a single continuous column of tessellated sub-divisions of equal width called rows that function as containers for tiles. Tiles hold content, and can vary in height within a table-view.</p>
       <br/>
       <style>
@@ -35,7 +35,7 @@
       <px-table-view class="debug">
         <px-table-row class="" title="Title" subtitle="Subtitle" body="Body" label1="label 1" label2="label 2" modifier="tappable"></px-table-row>
       </px-table-view>
-      <h3>Single-line</h3>
+      <h2>Single-line</h2>
       <demo-snippet>
         <template id="">
           <px-table-view>
@@ -43,15 +43,15 @@
           </px-table-view>
         </template>
       </demo-snippet>
-      <h3>Single-line with icon</h3>
+      <h2>Single-line with icon</h2>
       <demo-snippet>
         <template>
           <px-table-view >
-            <px-table-row icon="fa fa-square fa-lg" modifier="tappable" title="Single-line item"></px-table-row>
+            <px-table-row icon="fa:fa-square" modifier="tappable" title="Single-line item"></px-table-row>
           </px-table-view>
         </template>
       </demo-snippet>
-      <h3>Single-line with avatar</h3>
+      <h2>Single-line with image</h2>
       <demo-snippet>
         <template>
           <px-table-view >
@@ -59,15 +59,15 @@
           </px-table-view>
         </template>
       </demo-snippet>
-      <h3>Single-line with avatar and icon</h3>
+      <h2>Single-line with image and icon right</h2>
       <demo-snippet>
         <template>
           <px-table-view >
-            <px-table-row image="http://placehold.it/60" icon-right="fa fa-square fa-lg" modifier="tappable" title="Single-line item"></px-table-row>
+            <px-table-row image="http://placehold.it/60" icon-right="fa:fa-square" modifier="tappable" title="Single-line item"></px-table-row>
           </px-table-view>
         </template>
       </demo-snippet>
-      <h3>Two-line</h3>
+      <h2>Two-line</h2>
       <demo-snippet>
         <template>
           <px-table-view>
@@ -75,31 +75,31 @@
           </px-table-view>
         </template>
       </demo-snippet>
-      <h3>Two-line with icon</h3>
+      <h2>Two-line with icon</h2>
       <demo-snippet>
         <template>
           <px-table-view>
-            <px-table-row icon="fa fa-square fa-2x" modifier="tappable" title="Two-line item" body="Secondary text"></px-table-row>
+            <px-table-row icon="fa:fa-square" modifier="tappable" title="Two-line item" body="Secondary text"></px-table-row>
           </px-table-view>
         </template>
       </demo-snippet>
-      <h3>Two-line with avatar</h3>
+      <h2>Two-line with image</h2>
       <demo-snippet>
         <template>
           <px-table-view>
-            <px-table-row icon="fa fa-circle fa-3x" modifier="tappable" title="Two-line item" body="Secondary text"></px-table-row>
+            <px-table-row image="http://placehold.it/60" modifier="tappable" title="Two-line item" body="Secondary text"></px-table-row>
           </px-table-view>
         </template>
       </demo-snippet>
-      <h3>Two-line with avatar and icon</h3>
+      <h2>Two-line with image and icon</h2>
       <demo-snippet>
         <template id="">
           <px-table-view>
-            <px-table-row icon-left="fa fa-circle fa-3x" icon-right="fa fa-square fa-lg" modifier="tappable" title="Two-line item" body="Secondary text"></px-table-row>
+            <px-table-row image="http://placehold.it/60" icon-right="fa:fa-square" modifier="tappable" title="Two-line item" body="Secondary text"></px-table-row>
           </px-table-view>
         </template>
       </demo-snippet>
-      <h3>Three-line</h3>
+      <h2>Three-line</h2>
       <demo-snippet>
         <template>
           <px-table-view >
@@ -108,16 +108,16 @@
         </template>
       </demo-snippet>
       <br/>
-      <h3>Three-line with icon</h3>
+      <h2>Three-line with icon</h2>
       <demo-snippet>
         <template>
           <px-table-view >
-            <px-table-row modifier="tappable" icon="fa fa-square fa-2x" title="Three-line item" body="Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."></px-table-row>
+            <px-table-row modifier="tappable" icon="fa:fa-square" title="Three-line item" body="Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."></px-table-row>
           </px-table-view>
         </template>
       </demo-snippet>
       <br/>
-      <h3>Three-line with avatar</h3>
+      <h2>Three-line with image</h2>
       <demo-snippet>
         <template>
           <px-table-view modifier="avatar">
@@ -125,19 +125,47 @@
           </px-table-view>
         </template>
       </demo-snippet>
-      <h3>Three-line with avatar and icon</h3>
+      <h2>Three-line with image and icon</h2>
       <demo-snippet>
         <template>
           <px-table-view>
             <px-table-row
               modifier="tappable"
               image="http://placehold.it/60"
-              icon-right="fa fa-square fa-2x"
+              icon-right="fa:fa-square"
               title="Three-line item"
               body="Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."></px-table-row>
           </px-table-view>
         </template>
       </demo-snippet>
+
+
+      <h1 class="beta">Table View: Controls</h1>
+      <p>
+        Table View controls provide a way to interact with the table rows.
+      </p>
+      <p>
+        Types
+      </p>
+      <ul>
+        <li>Checkbox</li>
+        <li>Switch</li>
+        <li>Reorder</li>
+        <li>Expand/collapse</li>
+        <li>Swipe Actions</li>
+      </ul>
+
+      <h2>Switch Control</h2>
+      <demo-snippet>
+        <template>
+          <px-table-row title="WiFi" icon="fa:fa-wifi" modifier="switch">
+            <px-table-row-switch name="cb" size="small"></px-table-row-switch>
+          </px-table-row>
+        </template>
+      </demo-snippet>
+
+
     </div>
+    <script src="http://localhost:35724/livereload.js?snipver=1"></script>
   </body>
 </html>

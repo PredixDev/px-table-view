@@ -5,7 +5,6 @@
 $inuit-enable-toggle--small: true;
 $inuit-enable-toggle--huge: true;
 $inuit-enable-toggle--large: true;
-
 @import 'px-toggle-design/_objects.toggle.scss';
 
 $inuit-enable-inline-fields: true;
@@ -16,21 +15,15 @@ $inuit-enable-input--large: true;
 $inuit-enable-input--huge: true;
 $inuit-enable-input--bare: true;
 
-
-
 /// Table Row
 /// @group px-table-row
 /// @access public
 @include block ('table-row') {
-
-  @include c(null){
-    @import 'px-forms-design/_base.forms.scss';
+  @include c(null) {
+     @import'px-forms-design/_base.forms.scss';
   }
 
-
-///Component
-
-
+  ///Component
   @include clearfix();
   @include noselect();
   box-sizing    : border-box;
@@ -43,9 +36,9 @@ $inuit-enable-input--bare: true;
 
   //font-size       : $table-row-font-size;
   //background-color: $table-row-background-color;
-   > *:not(input),
+   > *:not(select),
    > *:not(textarea),
-  > *:not(select) {
+  > *:not(input) {
     -webkit-text-size-adjust   : none;
     -webkit-highlight          : none;
     -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
@@ -79,18 +72,19 @@ $inuit-enable-input--bare: true;
   ///---------------------------------------------------------------------------
   //.table-row--header
   @include modifier ('divider') {
-    padding-top: 6px;
-padding-bottom: 6px;
-padding-left: 15px;
-margin-top: -1px;
-margin-left: 0;
-font-weight: 500;
-color: #999;
-background-color: #fafafa;
-border-top: 1px solid #ddd;
-border-bottom: 1px solid #ddd;
+    padding-top     : 6px;
+    padding-bottom  : 6px;
+    padding-left    : 15px;
+    margin-top      : -1px;
+    margin-left     : 0;
+    font-weight     : 500;
+    color           : #999;
+    background-color: #fafafa;
+    border-top      : 1px solid #ddd;
+    border-bottom   : 1px solid #ddd;
 
   }
+
   @include modifier ('header') {
     box-sizing: border-box;
   }
@@ -98,9 +92,10 @@ border-bottom: 1px solid #ddd;
   ///.table-row--tappable
   @include modifier ('tappable') {
     @include tableRowClickable($table-row-selected-background-color, $table-row-active-font-color);
+
     &:active {
 
-      color: var(--px-table-row-selected-color, $table-row-selected-color);
+      color           : var(--px-table-row-selected-color, $table-row-selected-color);
       background-color: var(--px-table-row-selected-background-color, $table-row-selected-background-color);
 
       .table-row__body,
@@ -134,15 +129,22 @@ border-bottom: 1px solid #ddd;
   ///.table-row--collapsable
   @include modifier ('collapsable') {
     @include tableRowClickable($table-row-active-background-color, $table-row-active-font-color);
+    border-bottom: none;
     @include tableRowIcon( '\f107');
+
     ~ .table-row__content {
-      transition: var(--px-table-row-collapseable-transition, all 0.3s);
-      display   : none;
-      //margin-left: $inuit-base-spacing-unit;
+      transition : var(--px-table-row-collapseable-transition, all 0.3s);
+      display    : none;
+      margin-left: $inuit-base-spacing-unit;
+
+      .table-row {
+        border-bottom: none;
+      }
     }
     ///---------------------------------------------------------------------------
     @include modifier ('is-opened') {
       @include tableRowIcon( '\f106');
+
       ~ .table-row__content {
         display: block;
 
@@ -170,7 +172,6 @@ border-bottom: 1px solid #ddd;
   ///Elements
   ///---------------------------------------------------------------------------
 
-
   ///---------------------------------------------------------------------------
   ///.table-row__content
   @include element ('content') {
@@ -182,7 +183,7 @@ border-bottom: 1px solid #ddd;
     //width         : 100%;
     flex          : 1;
     user-select   : none;
-  //  margin: 0 $inuit-base-spacing-unit;
+    //  margin: 0 $inuit-base-spacing-unit;
 
     //margin-left: $inuit-base-spacing-unit--small;
     ///---------------------------------------------------------------------------
@@ -194,12 +195,10 @@ border-bottom: 1px solid #ddd;
       flex-direction: column;
     }
 
-
     ///---------------------------------------------------------------------------
     @include modifier ('flush') {
       line-height: normal;
     }
-
 
   }
   ///---------------------------------------------------------------------------
@@ -211,8 +210,10 @@ border-bottom: 1px solid #ddd;
     flex       : 1 0 auto;
     align-items: center;
     align-self : stretch;
-
     display    : flex;
+    //flex-direction: column;
+    //align-content: flex-end;
+    //justify-content: flex-end;
   }
   ///---------------------------------------------------------------------------
   ///.table-row__title
@@ -238,11 +239,13 @@ border-bottom: 1px solid #ddd;
   @include element ('label') {
     order     : 0;
     align-self: center;
+
     @include modifier ('right') {
-      text-align : left;
-      order      : 4;
+      text-align   : left;
+      order        : 4;
       padding-right: $inuit-base-spacing-unit;
     }
+
     @include modifier ('left') {
       //-left: $inuit-base-spacing-unit;
     }
@@ -266,9 +269,11 @@ border-bottom: 1px solid #ddd;
     flex           : 0 1 auto;
     order          : 1;
     display        : flex;
-    align-self     : center;
+    align-self: stretch;
     justify-content: center;
-    padding-right: $inuit-base-spacing-unit;
+    align-content: center;
+    flex-direction: column;
+    padding-right  : $inuit-base-spacing-unit;
     ///---------------------------------------------------------------------------
     ///.table-row__media--left
     @include modifier ('left') {
@@ -279,7 +284,7 @@ border-bottom: 1px solid #ddd;
     @include modifier ('right') {
       //margin-right: $inuit-base-spacing-unit;
       margin-right: var(--px-table-row-media-margin-right, 0);
-      order: 9;
+      order       : 9;
     }
     ///---------------------------------------------------------------------------
     ///.table-row__media--toggle
@@ -288,7 +293,7 @@ border-bottom: 1px solid #ddd;
     ///---------------------------------------------------------------------------
     ///.table-row__media--image
     @include modifier ('image') {
-     // padding: $table-row-image-padding;
+      // padding: $table-row-image-padding;
 
       img {
         display   : block;
@@ -300,7 +305,8 @@ border-bottom: 1px solid #ddd;
     ///---------------------------------------------------------------------------
     ///.table-row__media--icon
     @include modifier ('icon') {
-      align-self  : center;
+
+
       //padding     : $inuit-base-spacing-unit--tiny;
       //margin-left: $inuit-base-spacing-unit--small;
     }
@@ -342,7 +348,5 @@ border-bottom: 1px solid #ddd;
     min-height: 44px;
     width     : 100%;
   }
-
-
 
 }

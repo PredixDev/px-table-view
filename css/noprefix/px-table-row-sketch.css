@@ -675,9 +675,9 @@ a {
     content: ' '; }
   .table-row:after {
     clear: both; }
-  .table-row > *:not(input),
+  .table-row > *:not(select),
   .table-row > *:not(textarea),
-  .table-row > *:not(select) {
+  .table-row > *:not(input) {
     -webkit-text-size-adjust: none;
     -webkit-highlight: none;
     -webkit-tap-highlight-color: transparent; }
@@ -730,7 +730,7 @@ a {
       color: var(--px-table-row-indicator-color, #b1b1bc);
       line-height: 1.8666666667rem;
       height: 1.8666666667rem;
-      font-size: 1.8666666667rem;
+      font-size: 1.6rem;
       font-family: FontAwesome;
       content: var(--px-table-row-indicator, ""); }
     .table-row--chevron:active {
@@ -752,7 +752,7 @@ a {
       color: var(--px-table-row-indicator-color, #0a9ec1);
       line-height: 1.8666666667rem;
       height: 1.8666666667rem;
-      font-size: 1.8666666667rem;
+      font-size: 1.6rem;
       font-family: FontAwesome;
       content: var(--px-table-row-indicator, ""); }
   .table-row--nav-right {
@@ -767,11 +767,12 @@ a {
       color: var(--px-table-row-indicator-color, #b1b1bc);
       line-height: 1.8666666667rem;
       height: 1.8666666667rem;
-      font-size: 1.8666666667rem;
+      font-size: 1.6rem;
       font-family: FontAwesome;
       content: var(--px-table-row-indicator, ""); }
   .table-row--collapsable {
     cursor: pointer;
+    border-bottom: none;
     overflow: hidden; }
     .table-row--collapsable:active {
       color: white;
@@ -786,12 +787,15 @@ a {
       color: var(--px-table-row-indicator-color, #b1b1bc);
       line-height: 1.8666666667rem;
       height: 1.8666666667rem;
-      font-size: 1.8666666667rem;
+      font-size: 1.6rem;
       font-family: FontAwesome;
       content: var(--px-table-row-indicator, ""); }
     .table-row--collapsable ~ .table-row__content {
       transition: var(--px-table-row-collapseable-transition, all 0.3s);
-      display: none; }
+      display: none;
+      margin-left: 1rem; }
+      .table-row--collapsable ~ .table-row__content .table-row {
+        border-bottom: none; }
     .table-row--collapsable--is-opened {
       overflow: hidden; }
       .table-row--collapsable--is-opened:before {
@@ -804,7 +808,7 @@ a {
         color: var(--px-table-row-indicator-color, #b1b1bc);
         line-height: 1.8666666667rem;
         height: 1.8666666667rem;
-        font-size: 1.8666666667rem;
+        font-size: 1.6rem;
         font-family: FontAwesome;
         content: var(--px-table-row-indicator, ""); }
       .table-row--collapsable--is-opened ~ .table-row__content {
@@ -891,8 +895,10 @@ a {
     flex: 0 1 auto;
     order: 1;
     display: flex;
-    align-self: center;
+    align-self: stretch;
     justify-content: center;
+    align-content: center;
+    flex-direction: column;
     padding-right: 1rem; }
     .table-row__media--left {
       order: 0; }
@@ -903,8 +909,6 @@ a {
       display: block;
       max-width: 80px;
       max-height: 80px; }
-    .table-row__media--icon {
-      align-self: center; }
   .table-row--switch .table-row__content {
     flex-direction: row; }
   .table-row.checkbox {

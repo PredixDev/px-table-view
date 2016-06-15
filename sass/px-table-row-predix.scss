@@ -11,15 +11,23 @@
   @import 'elements/_table-row__switch.scss';
 
   min-height         : var(--px-table-row-min-height, $table-row-min-height);
-  line-height        : $table-row-line-height;
   line-height        : var(--px-table-row-line-height, $table-row-line-height);
 
-  color              : var(--px-table-row-color);
-  font-size          : var(--px-table-row-font-size, $table-row-font-size);
-  background-color   : var(--px-table-row-background-color);
-  border-bottom-style: var(--px-table-row-border-style, solid);
-  border-bottom-width: var(--px-table-row-border-width, $table-row-border-width);
-  border-bottom-color: var(--px-table-row-border-color, $table-row-border-color);
+  color              : var(--px-table-row-color, inherit);
+  font-size          : var(--px-table-row-font-size, inherit);
+  background-color   : var(--px-table-row-background-color, inherit);
+
+
+  @include m('border-bottom'){
+    border-bottom-style: var(--px-table-row-border-style, solid);
+    border-bottom-width: var(--px-table-row-border-width, $table-row-border-width);
+    border-bottom-color: var(--px-table-row-border-color, $table-row-border-color);
+
+  }
+
+  @include m('no-borders'){
+    border-bottom:none;
+  }
 
   &:active {
     transition: none;
@@ -60,8 +68,8 @@
 
   ///.table-row__title
   @include e ('title') {
-    font-size: var(--px-table-row-title-font-size);
-    color    : var(--px-table-row-title-color);
+    font-size: var(--px-table-row-title-font-size, inherit);
+    color    : var(--px-table-row-title-color, inherit);
   }
 
   ///.table-row__subtitle
@@ -71,13 +79,13 @@
   }
   ///.table-row__body
   @include e ('body') {
-    font-size: var(--px-table-row-body-font-size);
-    color    : var(--px-table-row-body-color);
+    font-size: var(--px-table-row-body-font-size, $table-row-body-font-size);
+    color    : var(--px-table-row-body-color, $table-row-body-font-color);
   }
   ///.table-row__label
   @include e ('label') {
-    font-size: var(--px-table-row-label-font-size);
-    color    : var(--px-table-row-label-color);
+    font-size: var(--px-table-row-label-font-size, $table-row-label-font-size);
+    color    : var(--px-table-row-label-color, $table-row-label-font-color);
   }
 
   @include m ('header') {
@@ -91,26 +99,4 @@
     border-top      : none;
     border-bottom   : none;
   }
-}
-
-
-
-
-/* This has no effect on the component.*/
-:host.selected {
-
-  background-color: var(--px-table-row-selected-background-color, $table-row-selected-background-color);
-  color           : var(--px-table-row-selected-color, $table-row-active-font-color);
-
-  .table-row__body,
-  .table-row__label,
-  .table-row__subtitle,
-  .table-row__title {
-    color: var(--px-table-row-selected-color, $table-row-active-font-color);
-  }
-
-  .table-row:before {
-    color: var(--px-table-row-selected-color, $table-row-active-font-color);
-  }
-
 }

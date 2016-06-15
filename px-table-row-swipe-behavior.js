@@ -227,18 +227,7 @@ var pxTableRowSwipeBehavior = {
   _swipeAllowed: function() {
     return !this.disableSwipe;
   },
-  /**
-   * Handle transforming the table-row.
-   * @param translateX
-   * @returns {*}
-   * @private
-   */
-  _transformForTranslateX: function(translateX) {
-    if (translateX === null) {
-      return 'translate3d(0, 0, 0)';
-    }
-    return 'translate3d(' + translateX + 'px, 0, 0)';
-  },
+
   _transitionDeltaChanged: function(newValue, oldValue) {
     if (this.swipeRight) {
       this._validDelta = this._atEdge ? newValue <= -this.slideOffset : newValue >= this.slideOffset;
@@ -380,5 +369,17 @@ var pxTableRowSwipeBehavior = {
     this.toggleClass('dragging', this._dragging, _content);
     this.toggleClass('swipe-left', this.swipeLeft, _content);
     this.toggleClass('swipe-right', this.swipeRight, _content);
+  },
+  /**
+   * Handle transforming the table-row.
+   * @param translateX
+   * @returns {*}
+   * @private
+   */
+  _transformForTranslateX: function(translateX) {
+    if (translateX === null) {
+      return 'translate3d(0, 0, 0)';
+    }
+    return 'translate3d(' + translateX + 'px, 0, 0)';
   }
 };

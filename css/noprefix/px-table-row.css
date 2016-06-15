@@ -675,9 +675,9 @@ a {
     content: ' '; }
   .table-row:after {
     clear: both; }
-  .table-row > *:not(input),
+  .table-row > *:not(select),
   .table-row > *:not(textarea),
-  .table-row > *:not(select) {
+  .table-row > *:not(input) {
     -webkit-text-size-adjust: none;
     -webkit-highlight: none;
     -webkit-tap-highlight-color: transparent; }
@@ -730,7 +730,7 @@ a {
       color: var(--px-table-row-indicator-color, #b1b1bc);
       line-height: 1.8666666667rem;
       height: 1.8666666667rem;
-      font-size: 1.8666666667rem;
+      font-size: 1.6rem;
       font-family: FontAwesome;
       content: var(--px-table-row-indicator, ""); }
     .table-row--chevron:active {
@@ -752,7 +752,7 @@ a {
       color: var(--px-table-row-indicator-color, #0a9ec1);
       line-height: 1.8666666667rem;
       height: 1.8666666667rem;
-      font-size: 1.8666666667rem;
+      font-size: 1.6rem;
       font-family: FontAwesome;
       content: var(--px-table-row-indicator, ""); }
   .table-row--nav-right {
@@ -767,11 +767,12 @@ a {
       color: var(--px-table-row-indicator-color, #b1b1bc);
       line-height: 1.8666666667rem;
       height: 1.8666666667rem;
-      font-size: 1.8666666667rem;
+      font-size: 1.6rem;
       font-family: FontAwesome;
       content: var(--px-table-row-indicator, ""); }
   .table-row--collapsable {
     cursor: pointer;
+    border-bottom: none;
     overflow: hidden; }
     .table-row--collapsable:active {
       color: white;
@@ -786,12 +787,15 @@ a {
       color: var(--px-table-row-indicator-color, #b1b1bc);
       line-height: 1.8666666667rem;
       height: 1.8666666667rem;
-      font-size: 1.8666666667rem;
+      font-size: 1.6rem;
       font-family: FontAwesome;
       content: var(--px-table-row-indicator, ""); }
     .table-row--collapsable ~ .table-row__content {
       transition: var(--px-table-row-collapseable-transition, all 0.3s);
-      display: none; }
+      display: none;
+      margin-left: 1rem; }
+      .table-row--collapsable ~ .table-row__content .table-row {
+        border-bottom: none; }
     .table-row--collapsable--is-opened {
       overflow: hidden; }
       .table-row--collapsable--is-opened:before {
@@ -804,7 +808,7 @@ a {
         color: var(--px-table-row-indicator-color, #b1b1bc);
         line-height: 1.8666666667rem;
         height: 1.8666666667rem;
-        font-size: 1.8666666667rem;
+        font-size: 1.6rem;
         font-family: FontAwesome;
         content: var(--px-table-row-indicator, ""); }
       .table-row--collapsable--is-opened ~ .table-row__content {
@@ -891,8 +895,10 @@ a {
     flex: 0 1 auto;
     order: 1;
     display: flex;
-    align-self: center;
+    align-self: stretch;
     justify-content: center;
+    align-content: center;
+    flex-direction: column;
     padding-right: 1rem; }
     .table-row__media--left {
       order: 0; }
@@ -903,8 +909,6 @@ a {
       display: block;
       max-width: 80px;
       max-height: 80px; }
-    .table-row__media--icon {
-      align-self: center; }
   .table-row--switch .table-row__content {
     flex-direction: row; }
   .table-row.checkbox {
@@ -941,14 +945,10 @@ a {
   /* Non-prefixed version, currently
                                  not supported by any browser */
   min-height: var(--px-table-row-min-height, 2.9333333333rem);
-  line-height: 2.9333333333rem;
   line-height: var(--px-table-row-line-height, 2.9333333333rem);
-  color: var(--px-table-row-color);
-  font-size: var(--px-table-row-font-size, 1.1333333333rem);
-  background-color: var(--px-table-row-background-color);
-  border-bottom-style: var(--px-table-row-border-style, solid);
-  border-bottom-width: var(--px-table-row-border-width, 1px);
-  border-bottom-color: var(--px-table-row-border-color, #b1b1bc); }
+  color: var(--px-table-row-color, inherit);
+  font-size: var(--px-table-row-font-size, inherit);
+  background-color: var(--px-table-row-background-color, inherit); }
   .table-row__checkbox {
     position: relative;
     display: inline-block;
@@ -1157,6 +1157,12 @@ a {
         background-color: #7a7a8d; }
       .table-row__button--info:hover {
         background-color: #888899; }
+  .table-row--border-bottom {
+    border-bottom-style: var(--px-table-row-border-style, solid);
+    border-bottom-width: var(--px-table-row-border-width, 1px);
+    border-bottom-color: var(--px-table-row-border-color, #b1b1bc); }
+  .table-row--no-borders {
+    border-bottom: none; }
   .table-row:active {
     transition: none; }
   .table-row--selected {
@@ -1177,20 +1183,20 @@ a {
       color: white;
       background: #0a9ec1; }
   .table-row__title {
-    font-size: var(--px-table-row-title-font-size);
-    color: var(--px-table-row-title-color); }
+    font-size: var(--px-table-row-title-font-size, inherit);
+    color: var(--px-table-row-title-color, inherit); }
   .table-row__subtitle {
     font-size: var(--px-table-row-subtitle-font-size);
     color: var(--px-table-row-subtitle-color); }
   .table-row__body {
-    font-size: var(--px-table-row-body-font-size);
-    color: var(--px-table-row-body-color); }
+    font-size: var(--px-table-row-body-font-size, 0.9333333333rem);
+    color: var(--px-table-row-body-color, #7c7c84); }
   .table-row__label {
-    font-size: var(--px-table-row-label-font-size);
-    color: var(--px-table-row-label-color); }
+    font-size: var(--px-table-row-label-font-size, 0.9333333333rem);
+    color: var(--px-table-row-label-color, #7c7c84); }
   .table-row--header {
     padding: var(--px-table-row-header-padding, 0.3333333333rem);
-    font-size: var(--px-table-row-header-font-size, 1.3333333333rem);
+    font-size: var(--px-table-row-header-font-size, 1.1333333333rem);
     color: var(--px-table-row-header-color, black);
     background-color: var(--px-table-row-header-background-color, #e4e4ea);
     text-transform: var(--px-table-row-header-text-transform, uppercase);
@@ -1198,15 +1204,3 @@ a {
     line-height: var(--px-table-row-header-line-height, 24px);
     border-top: none;
     border-bottom: none; }
-
-/* This has no effect on the component.*/
-:host.selected {
-  background-color: var(--px-table-row-selected-background-color, #0a9ec1);
-  color: var(--px-table-row-selected-color, white); }
-  :host.selected .table-row__body,
-  :host.selected .table-row__label,
-  :host.selected .table-row__subtitle,
-  :host.selected .table-row__title {
-    color: var(--px-table-row-selected-color, white); }
-  :host.selected .table-row:before {
-    color: var(--px-table-row-selected-color, white); }

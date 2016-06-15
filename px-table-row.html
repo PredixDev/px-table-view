@@ -111,11 +111,7 @@ Custom property | Description | Default
   <template strip-whitespace>
     <div class="">
       <div id="row" class="table-row" data-indicator$="{{indicator}}" >
-        <template is="dom-if" if="{{editMode}}">
-          <button class="btn btn--bare table-row__delete-btn" on-tap="_handleRemoveItem">
-            <i class="fa fa-minus-circle fa-lg color-red"></i>
-          </button>
-        </template>
+
         <template is="dom-if" if="{{label2}}">
           <span class="table-row__label table-row__label--left">{{label2}}</span>
         </template>
@@ -139,6 +135,13 @@ Custom property | Description | Default
           <div class="table-row__media table-row__media--icon table-row__media--right">
             <!--<i class$="{{iconRight}}"></i>-->
             <iron-icon id="iconRight" icon$="{{iconRight}}"></iron-icon>
+          </div>
+        </template>
+        <template is="dom-if" if="{{editMode}}">
+          <div class="table-row__media table-row__media--icon table-row__media--right">
+            <button class="btn btn--bare table-row__handle">
+              <iron-icon id="iconHandle" icon="fa:fa-bars"></iron-icon>
+            </button>
           </div>
         </template>
         <template is="dom-if" if="{{label1}}">
@@ -281,6 +284,12 @@ Custom property | Description | Default
           type: Boolean
         },
         /**
+         * If the table row should be editable.
+         */
+        editMode: {
+          type: Boolean
+        },
+        /**
          * The state of the table row if collapsable.
          */
         opened: {
@@ -309,7 +318,8 @@ Custom property | Description | Default
        * @event px-table-row-tap
        */
       _handleTap: function (e) {
-        e.preventDefault();
+        console.log('_handleTap', e);
+
         var target = Polymer.dom(e).rootTarget;
         if(this.collapsable){
           this._hideBody();

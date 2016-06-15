@@ -363,11 +363,14 @@ html {
 .table-view {
   font-family: "GE Inspira Sans", sans-serif;
   font-weight: 500;
+  font-size: 1.1333333333rem;
   list-style-type: none;
   margin: 0;
   padding: 0;
   position: relative;
-  display: block;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
   -webkit-flex-direction: column;
       -ms-flex-direction: column;
           flex-direction: column;
@@ -628,32 +631,32 @@ html {
     margin-top: -0.3333333333rem; }
     .table-view--responsive > *,
     .table-view--responsive ::content > * {
-      -webkit-flex: 1 0 15.3333333333rem;
-          -ms-flex: 1 0 15.3333333333rem;
-              flex: 1 0 15.3333333333rem;
+      -webkit-flex: 1 0 16.6666666667rem;
+          -ms-flex: 1 0 16.6666666667rem;
+              flex: 1 0 16.6666666667rem;
       margin-left: 0.3333333333rem;
       margin-top: 0.3333333333rem; }
-      @media (min-width: 31.3333333333rem) {
+      @media (min-width: 34rem) {
         .table-view--responsive > *,
         .table-view--responsive ::content > * {
           max-width: calc(50% - 0.3333333333rem); } }
-      @media (min-width: 47rem) {
+      @media (min-width: 51rem) {
         .table-view--responsive > *,
         .table-view--responsive ::content > * {
           max-width: calc(33.3333333333% - 0.3333333333rem); } }
-      @media (min-width: 62.6666666667rem) {
+      @media (min-width: 68rem) {
         .table-view--responsive > *,
         .table-view--responsive ::content > * {
           max-width: calc(25% - 0.3333333333rem); } }
-      @media (min-width: 78.3333333333rem) {
+      @media (min-width: 85rem) {
         .table-view--responsive > *,
         .table-view--responsive ::content > * {
           max-width: calc(20% - 0.3333333333rem); } }
-      @media (min-width: 94rem) {
+      @media (min-width: 102rem) {
         .table-view--responsive > *,
         .table-view--responsive ::content > * {
           max-width: calc(16.6666666667% - 0.3333333333rem); } }
-      @media (min-width: 92rem) {
+      @media (min-width: 100rem) {
         .table-view--responsive > *,
         .table-view--responsive ::content > * {
           min-width: calc(16.6666666667% - 0.3333333333rem); } }

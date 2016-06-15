@@ -78,6 +78,7 @@ Custom property | Description | Default
       -webkit-transition: -webkit-transform 0.15s linear;
       transition: transform 0.15s linear, -webkit-transform 0.15s linear;
       border-top: none;
+
       @apply(--px-drilldown);
     }
     :host ::content a,
@@ -123,6 +124,7 @@ Custom property | Description | Default
     :host ::content .is-drilldown-submenu.is-active {
       z-index: 1;
       display: block;
+
       -webkit-transform: translateX(-100%);
       transform: translateX(-100%);
     }
@@ -142,7 +144,7 @@ Custom property | Description | Default
       border-left-width: 0;
       display: inline-block;
       vertical-align: middle;
-      margin-right: 0.75rem;
+      margin-right: 0.5rem;
     }
     :host([arrows]) ::content .is-drilldown li a:before {
       -webkit-transform: translateY(-50%);
@@ -162,9 +164,9 @@ Custom property | Description | Default
   </style>
   <template strip-whitespace>
     <div id="drilldownContainer">
-      <ul id="drilldown" class="list-ui" data-drilldown>
+      <div id="drilldown" class="list-ui" data-drilldown>
         <content id="content"></content>
-      </ul>
+      </div>
     </div>
   </template>
 </dom-module>

@@ -25,7 +25,7 @@ $table-row-active-background-color      : $select-blue-default;
 ///
 $table-row-hover-background-color       : $select-blue-hover;
 ///
-$table-row-selected-color    : $white;
+$table-row-selected-color               : $white;
 $table-row-selected-background-color    : $select-blue-default;
 
 ///
@@ -60,8 +60,8 @@ $table-row-detail-icon-color            : $select-blue-default;
 $table-row-header-background-color      : $gray3;
 ///
 $table-row-header-font-color            : $black;
-///
-$table-row-title-font-size              : calculateRem(17px);
+
+$table-row-title-font-size              : calculateRem(16px);
 ///
 $table-row-title-font-color             : $black;
 ///
@@ -71,9 +71,12 @@ $table-row-subtitle-font-size           : calculateRem(14px);
 ///
 $table-row-body-font-color              : $gray7;
 ///
-$table-row-body-font-size               : calculateRem(16px);
+$table-row-body-font-size               : calculateRem(14px);
+$table-row-label-font-color              : $gray7;
+///
+$table-row-label-font-size               : calculateRem(14px);
 
-$table-row-header-font-size             : calculateRem(20px);
+$table-row-header-font-size             : calculateRem(17px);
 ///
 $table-row-header-padding               : $inuit-base-spacing-unit--tiny;
 ///
@@ -87,7 +90,7 @@ $table-row-checkbox-checked-border-color: $select-blue-pressed;
 ///
 $table-row-checkbox-background-color    : $select-blue-default;
 ///
-$table-view-responsive-row-width        : calculateRem(230px);
+$table-view-responsive-row-width        : calculateRem(250px);
 ///
 $table-view-responsive-row-gutters      : 0;
 ///
@@ -110,5 +113,5 @@ $table-row-button-margin                : 0;
 
 $table-row-button-font-color            : $white;
 $table-row-button-font-size             : calculateRem(16px);
-$table-row-actions-transition           : all .4s;
-$table-row-button-transition            : all .4s;
+$table-row-actions-transition           : all 0.4s;
+$table-row-button-transition            : all 0.4s;

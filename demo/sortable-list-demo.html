@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>Sortable List Demo</title>
+    <script src="../../webcomponentsjs/webcomponents-lite.js"></script>
+    <link rel="import" href="../px-table-view.html">
+    <link rel="import" href="../../px-demo-helpers/px-demo-helpers.html">
+    <link rel="import" href="../../px-theme/px-app.html">
+    <link rel="import" href="../../px-theme/px-theme.html">
+    <link rel="import" href="../../px-card/px-card.html">
+    <link rel="import" href="../../iron-demo-helpers/demo-snippet.html"/>
+    <script src="demo.js"></script>
+    <style media="screen">
+      body,
+      html {
+        background: #eee !important;
+      }
+      li,
+      ul {
+        padding: 0;
+        margin: 0;
+      }
+
+    </style>
+    <script type="text/javascript">
+      document.addEventListener('WebComponentsReady', function () {
+        createToc('toc');
+      });
+    </script>
+  </head>
+  <body class="u-bg--gray9" unresolved>
+    <div class="viewport viewport-full-height">
+      <div class="box u-mb u-mt">
+        <h1 class="beta">Sortable List Demo</h1>
+        <ol id="toc"></ol>
+
+      </div>
+    </div>
+    <article class="viewport">
+      <h1 class="beta">px-sortable-list</h1>
+      <p class="muted">open console to see event logs</p>
+      <div class="demo">
+        <h2>Basic</h2>
+        <demo-snippet>
+          <template>
+            <px-sortable-list id="basic-demo">
+              <div>First</div>
+              <div>Second</div>
+              <div>Third</div>
+              <div>Fourth</div>
+              <div>Fifth</div>
+              <div>Sixth</div>
+            </px-sortable-list>
+          </template>
+        </demo-snippet>
+        <div class=""></div>
+      </div>
+      <div class="demo">
+        <h2>Table View Demo</h2>
+        <demo-snippet>
+          <template>
+            <px-table-view id="table-view-demo-1">
+              <px-sortable-list id="table-view-demo" content>
+                <px-table-row title="Item 1"></px-table-row>
+                <px-table-row title="Item 2"></px-table-row>
+                <px-table-row title="Item 3"></px-table-row>
+                <px-table-row title="Item 4"></px-table-row>
+                <px-table-row title="Item 5"></px-table-row>
+                <px-table-row title="Item 6"></px-table-row>
+              </px-sortable-list>
+            </px-table-view>
+          </template>
+        </demo-snippet>
+
+      </div>
+      <div class="demo">
+        <h2>Table View Edit Mode</h2>
+        <demo-snippet>
+          <template>
+            <px-table-view id="table-view-demo-2">
+              <px-sortable-list id="table-view-demo" content handle=".table-row__handle">
+                <px-table-row title="Item 1" edit-mode></px-table-row>
+                <px-table-row title="Item 2" edit-mode></px-table-row>
+                <px-table-row title="Item 3" edit-mode></px-table-row>
+                <px-table-row title="Item 4" edit-mode></px-table-row>
+                <px-table-row title="Item 5" edit-mode></px-table-row>
+                <px-table-row title="Item 6" edit-mode></px-table-row>
+              </px-sortable-list>
+            </px-table-view>
+          </template>
+        </demo-snippet>
+      </div>
+      <div class="demo">
+        <h2>Table View Group</h2>
+        <demo-snippet>
+          <template>
+            <div class="flex">
+              <div class="flex__item u-m">
+                <px-table-view id="table-view-demo-3" modifier="inset">
+                  <px-sortable-list id="table-view-demo" content group="grouped">
+                    <px-table-row title="Item 1"></px-table-row>
+                    <px-table-row title="Item 2"></px-table-row>
+                    <px-table-row title="Item 3"></px-table-row>
+                  </px-sortable-list>
+                </px-table-view>
+              </div>
+              <div class="flex__item u-m">
+                <px-table-view id="table-view-demo-4" modifier="inset">
+                  <px-sortable-list id="table-view-demo" content group="grouped">
+                    <px-table-row title="Item 4"></px-table-row>
+                    <px-table-row title="Item 5"></px-table-row>
+                    <px-table-row title="Item 6"></px-table-row>
+                  </px-sortable-list>
+                </px-table-view>
+              </div>
+            </div>
+          </template>
+        </demo-snippet>
+
+      </div>
+      <div class="demo">
+        <h2>Sort by Handle</h2>
+        <demo-snippet>
+          <template>
+            <px-sortable-list id="handle-demo" handle=".handle">
+              <div>First
+                <button class="handle pull-right">
+                  <i class="fa fa-lg fa-bars"></i>
+                </button>
+              </div>
+              <div>Second
+                <button class="handle pull-right">
+                  <i class="fa fa-lg fa-bars"></i>
+                </button>
+              </div>
+              <div>Third
+                <button class="handle pull-right">
+                  <i class="fa fa-lg fa-bars"></i>
+                </button>
+              </div>
+              <div>Fourth
+                <button class="handle pull-right">
+                  <i class="fa fa-lg fa-bars"></i>
+                </button>
+              </div>
+            </px-sortable-list>
+          </template>
+        </demo-snippet>
+
+      </div>
+      <div class="demo">
+        <h2>Disabled</h2>
+        <demo-snippet>
+          <template>
+            <px-sortable-list id="disabled-demo" disabled>
+              <div>First</div>
+              <div>Second</div>
+              <div>Third</div>
+            </px-sortable-list>
+          </template>
+        </demo-snippet>
+
+      </div>
+      <div class="demo">
+        <h2>Animated</h2>
+        <demo-snippet>
+          <template>
+            <px-sortable-list id="animated-demo" animation="150">
+              <div>First</div>
+              <div>Second</div>
+              <div>Third</div>
+              <div>Fourth</div>
+              <div>Fifth</div>
+              <div>Sixth</div>
+            </px-sortable-list>
+          </template>
+        </demo-snippet>
+
+      </div>
+      <h2>Grouped</h2>
+      <demo-snippet>
+        <template>
+          <div class="demo flex flex--stretch">
+            <div class="flex__item u-m">
+              <px-sortable-list id="grouped-a" group="grouped" animation="150">
+                <div>First</div>
+                <div>Second</div>
+                <div>Third</div>
+              </px-sortable-list>
+            </div>
+            <div class="flex__item u-m">
+              <px-sortable-list id="grouped-b" group="grouped" animation="150">
+                <div>Fourth</div>
+                <div>Fifth</div>
+                <div>Sixth</div>
+              </px-sortable-list>
+            </div>
+          </div>
+        </template>
+      </demo-snippet>
+
+    </article>
+
+    <script src="http://localhost:35724/livereload.js?snipver=1"></script>
+  </body>
+</html>

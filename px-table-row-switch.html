@@ -14,31 +14,37 @@ To use this component:
 @homepage index.html
 -->
 <dom-module id="px-table-row-switch">
-      <link rel="import" type="css" href="css/px-table-row.css">
+  <link rel="import" type="css" href="css/px-table-row.css">
   <style>
   :host {
     display: flex;
     justify-content: space-between;
-    width: 100%;
+    order: 10;
+    align-self: center;
   }
   </style>
   <template strip-whitespace>
-    <div class="table-row__media table-row__media--toggle table-row__media--right">
-      <div class="toggle toggle__table-view-item">
-        <input id$="{{name}}" class="toggle__input" type="checkbox" name$="{{name}}" value$="{{value}}">
-        <label for$="{{name}}" class="toggle__label needsclick">
-          <span>{{label}}</span>
-        </label>
+
+    <div class="toggle toggle__table-view-item">
+      <input id$="{{name}}" class="toggle__input" type="checkbox" name$="{{name}}" value$="{{value}}">
+      <label for$="{{name}}" class="toggle__label needsclick">
+        <span>{{label}}</span>
+      </label>
+    </div>
+    <template is="dom-if" if="{{label}}">
+      <div class="table-row__content">
+        <span class="table-row__content__title">{{label}}</span>
       </div>
-    </div>
-    <div class="table-row__content">
-      <span class="table-row__content__title">{{label}}</span>
-    </div>
+    </template>
   </template>
   <script>
   Polymer({
     is: 'px-table-row-switch',
     properties: {
+      //The size for the switch
+      size: {
+        type: String
+      },
       //The label for the switch
       label: {
         type: String
@@ -66,6 +72,10 @@ To use this component:
       }
       if (this.disabled) {
         this.$$('input').disabled = true;
+      }
+      if(this.size){
+        this.toggleClass('toggle__input--'+this.size, true, this.$$('input'));
+        this.toggleClass('toggle__label--'+this.size, true, this.$$('label'));
       }
       //this.listen(this.$.myButton, 'tap', 'onTap');
       this.listen(this.$$('label'), 'tap', 'handleTap');

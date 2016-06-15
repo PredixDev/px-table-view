@@ -120,7 +120,7 @@
     color      : var(--px-table-row-indicator-color, $iconColor);
     line-height: calculateRem(28px);
     height     : calculateRem(28px);
-    font-size  : calculateRem(28px);
+    font-size  : calculateRem(24px);
     font-family: FontAwesome;
     content    : var(--px-table-row-indicator, '#{$icon}');
   }

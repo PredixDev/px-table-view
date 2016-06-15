@@ -45,11 +45,13 @@
   @include switch();
   @include clearfix();
   @include pxFonts();
+  font-size  : calculateRem(17px);
+
   list-style-type: none;
   margin         : 0;
   padding        : 0;
   position       : relative;
-  display        : block;
+  display        : flex;
   flex-direction : column;
 
   &ul {

@@ -50,13 +50,15 @@ The following is how to develop on this component.
   $ npm install
   ```
 
+  > Note: The `postinstall` runs `bower install`
+
 3. Start local server
 
   ```
   $ npm start
   ```
 
-  > Note: If issues with `polyserve` just install it globally and run it.
+  > Note: If issues with `polyserve` just install it globally and run.
 
 4. Compile styles
 
