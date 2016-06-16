@@ -201,41 +201,65 @@
         <!-- TODO:  -->
         <h2>Sortable</h2>
         <demo-snippet>
-          <template id="">
-            <template id="table-view-demo-7" is="dom-bind">
-              <px-table-view is-sortable>
-                <template is="dom-repeat" items="[[items]]">
-                  <px-table-row title="Item"></px-table-row>
-                </template>
-              </px-table-view>
-            </template>
-            <script type="text/javascript">
-              document.addEventListener('WebComponentsReady', function () {
-                var app = document.getElementById('table-view-demo-7');
-                app.items = [1, 2, 3, 4, 5];
-              });
-            </script>
+          <template>
+            <px-table-view id="table-view-demo-2">
+              <px-sortable-list id="table-view-demo" content handle=".table-row__handle">
+                <px-table-row title="Item 1" edit-mode></px-table-row>
+                <px-table-row title="Item 2" edit-mode></px-table-row>
+                <px-table-row title="Item 3" edit-mode></px-table-row>
+                <px-table-row title="Item 4" edit-mode></px-table-row>
+                <px-table-row title="Item 5" edit-mode></px-table-row>
+                <px-table-row title="Item 6" edit-mode></px-table-row>
+              </px-sortable-list>
+            </px-table-view>
           </template>
         </demo-snippet>
-
         <!-- TODO:  -->
-        <h2>Drill Down</h2>
+
+        <h2>Drill Down with default options</h2>
         <demo-snippet>
           <template>
-            <template id="table-view-demo-8" is="dom-bind">
-              <px-table-view drilldown>
-                <template is="dom-repeat" items="[[items]]">
-                  <px-table-row title="Item"></px-table-row>
-                </template>
-              </px-table-view>
-            </template>
-            <script type="text/javascript">
-              document.addEventListener('WebComponentsReady', function () {
-                var app = document.getElementById('table-view-demo-8');
-                app.items = [1, 2, 3, 4, 5];
-              });
-            </script>
+            <template id="app" is="dom-bind">
+              <px-drilldown-list id="dd1">
+              <li>
+                <a href="#">Category</a>
+                <ul class="list-ui" data-submenu>
+                  <li>
+                    <a href="#">Sub Category</a>
+                    <ul class="list-ui" data-submenu>
+                      <li>
+                        <a href="#">Product</a>
+                        <ul class="list-ui" data-submenu>
+                          <li>
+                            <a href="#">Part</a>
+                          </li>
+                        </ul>
+                      </li>
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+              <li>
+                <a href="#">Category</a>
+                <ul class="list-ui" data-submenu>
+                  <li>
+                    <a href="#">Sub Category</a>
+                    <ul class="list-ui" data-submenu>
+                      <li>
+                        <a href="#">Product</a>
+                        <ul class="list-ui" data-submenu>
+                          <li>
+                            <a href="#">Part</a>
+                          </li>
+                        </ul>
+                      </li>
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+            </px-drilldown-list>
           </template>
+        </template>
         </demo-snippet>
 
         <h2>Pull to Refresh</h2>
