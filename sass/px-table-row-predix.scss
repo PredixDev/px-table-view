@@ -18,16 +18,7 @@
   background-color   : var(--px-table-row-background-color, inherit);
 
 
-  @include m('border-bottom'){
-    border-bottom-style: var(--px-table-row-border-style, solid);
-    border-bottom-width: var(--px-table-row-border-width, $table-row-border-width);
-    border-bottom-color: var(--px-table-row-border-color, $table-row-border-color);
 
-  }
-
-  @include m('no-borders'){
-    border-bottom:none;
-  }
 
   &:active {
     transition: none;

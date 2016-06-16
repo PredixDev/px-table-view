@@ -15,6 +15,17 @@
 @import 'px-table-view-sketch.scss';
 
 @include b('table-view'){
+
+  @include m('border-bottom'){
+    .table-row{
+      border-bottom-style: var(--px-table-row-border-style, solid);
+      border-bottom-width: var(--px-table-row-border-width, $table-row-border-width);
+      border-bottom-color: var(--px-table-row-border-color, $table-row-border-color);
+    }
+  }
+
+
+
   ///.table-row--selected
   .table-row--selected {
 
@@ -26,11 +37,11 @@
     .table-row__label2,
     .table-row__subtitle,
     .table-row__title {
-      color: var(--px-table-row-selected-color);
+      color: var(--px-table-row-selected-color, $table-row-active-font-color);
     }
 
     .table-row:before {
-      color: var(--px-table-row-selected-color);
+      color: var(--px-table-row-selected-color, $table-row-active-font-color);
     }
   }
 }

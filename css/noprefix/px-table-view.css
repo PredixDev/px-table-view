@@ -648,6 +648,11 @@ html {
     margin-top: 6px;
     margin-right: 10px; }
 
+.table-view--border-bottom .table-row {
+  border-bottom-style: var(--px-table-row-border-style, solid);
+  border-bottom-width: var(--px-table-row-border-width, 1px);
+  border-bottom-color: var(--px-table-row-border-color, #b1b1bc); }
+
 .table-view .table-row--selected {
   background-color: var(--px-table-row-selected-background-color, #0a9ec1);
   color: var(--px-table-row-selected-color, white); }
@@ -656,6 +661,6 @@ html {
   .table-view .table-row--selected .table-row__label2,
   .table-view .table-row--selected .table-row__subtitle,
   .table-view .table-row--selected .table-row__title {
-    color: var(--px-table-row-selected-color); }
+    color: var(--px-table-row-selected-color, white); }
   .table-view .table-row--selected .table-row:before {
-    color: var(--px-table-row-selected-color); }
+    color: var(--px-table-row-selected-color, white); }

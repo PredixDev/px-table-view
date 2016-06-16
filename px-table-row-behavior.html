@@ -1,11 +1,10 @@
 <script type="text/javascript">
   /**
-   * Behavior that manages the px-table-view
+   * Behavior that manages the px-table-row
    *
    * @polymerBehavior
    */
   var pxTableRowBehavior = {
-
     attached: function () {
       var _this = this;
       this.async(function () {
@@ -14,15 +13,12 @@
     },
     _init: function () {
       var _this = this;
-
       if (_this.size) {
         _this.toggleClass('table-row--' + _this.size, true, _this.$$('.table-row'));
       }
-
       if (_this.collapsable) {
         _this.toggleClass('table-row--collapsable', true, _this.$$('.table-row'));
       }
-
       if (_this.iconPos) {
         _this.toggleClass('table-row__media--' + _this.iconPos, true, _this.$$('.table-row__media--icon'));
       }
@@ -53,8 +49,6 @@
       this.fire('reorder', e);
       return false;
     },
-
-    
     _handleModifier: function (newVal, oldVal) {
       var _this = this,
         klass,

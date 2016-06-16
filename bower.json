@@ -1,6 +1,6 @@
 {
   "name": "px-table-view",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "A responsive mobile first table view list.",
   "authors": [
     "Jonnie Spratley <jonnie.spratley@ge.com>"
@@ -21,7 +21,7 @@
     "test"
   ],
   "dependencies": {
-    "polymer": "~1.4.0",
+    "polymer": "~1.5.0",
     "px-theme": "https://github.com/PredixDev/px-theme.git#~0.4.0",
     "iron-list": "PolymerElements/iron-list#^1.2.8",
     "fastclick": "^1.0.6",
@@ -43,9 +43,8 @@
     "jquery": "~2.2.4"
   },
   "resolutions": {
-    "px-theme": "~0.7.0",
-    "polymer": "^1.4.0",
-    "webcomponentsjs": "^0.7.20",
-    "polymer-font-awesome": "~0.1.5"
+    "px-theme": "~0.8.0",
+    "polymer-font-awesome": "master",
+    "polymer": "^1.5.0"
   }
 }

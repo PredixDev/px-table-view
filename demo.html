@@ -3,8 +3,7 @@
     <title>px-table-view demo</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
     <script src="../webcomponentsjs/webcomponents-lite.js"></script>
-    <!-- For Demo -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0-rc1/jquery.min.js"></script>
+
     <link rel="import" href="../px-theme/px-app.html">
     <link rel="import" href="../px-theme/px-theme.html">
     <link rel="import" href="../iron-ajax/iron-ajax.html"/>
@@ -12,6 +11,8 @@
     <link rel="import" href="../iron-demo-helpers/demo-snippet.html"/>
     <link rel="import" href="px-table-view.html"/>
     <link rel="stylesheet" href="demo/style.css"/>
+    <script src="demo/demo.js"></script>
+
     <style media="screen">
       body,
       html {
@@ -22,6 +23,11 @@
         -webkit-overflow-scrolling: touch;
       }
     </style>
+    <script type="text/javascript">
+      document.addEventListener('WebComponentsReady', function(){
+        createToc('toc');
+      });
+    </script>
   </head>
   <body unresolved class="viewport--full-height">
     <div class="viewport examples">
@@ -40,11 +46,9 @@
           For more demos
           <a href="demo/index.html">visit here.</a>
         </p>
+
         <ol id="toc" class="list listbare"></ol>
-        <button class="btn-collapse-all btn btn--full">
-          <span>Collapse</span>
-          Examples
-        </button>
+
       </section>
       <article class="">
         <section id="variations">
@@ -76,6 +80,7 @@
               </px-table-view>
             </template>
           </demo-snippet>
+          <!-- TODO:  -->
           <h2>Icon Right</h2>
           <demo-snippet>
             <template>
@@ -85,6 +90,7 @@
               </px-table-view>
             </template>
           </demo-snippet>
+          <!-- TODO:  -->
           <h2>Icon Left</h2>
           <demo-snippet>
             <template>
@@ -94,6 +100,7 @@
               </px-table-view>
             </template>
           </demo-snippet>
+          <!-- TODO:  -->
           <h2>Image Left</h2>
           <demo-snippet>
             <template>
@@ -103,6 +110,7 @@
               </px-table-view>
             </template>
           </demo-snippet>
+          <!-- TODO:  -->
           <h2>Image Right</h2>
           <demo-snippet>
             <template>
@@ -112,6 +120,7 @@
               </px-table-view>
             </template>
           </demo-snippet>
+          <!-- TODO:  -->
           <h2>Image with Disclosure Indicator</h2>
           <demo-snippet>
             <template>
@@ -121,6 +130,7 @@
               </px-table-view>
             </template>
           </demo-snippet>
+          <!-- TODO:  -->
           <h2>Image with Detail Disclosure</h2>
           <demo-snippet>
             <template>
@@ -130,6 +140,7 @@
               </px-table-view>
             </template>
           </demo-snippet>
+          <!-- TODO:  -->
           <h2>Image with Description</h2>
           <demo-snippet>
             <template>
@@ -139,6 +150,7 @@
               </px-table-view>
             </template>
           </demo-snippet>
+          <!-- TODO:  -->
           <h2>Description with Disclosure Indicator</h2>
           <demo-snippet>
             <template>
@@ -148,6 +160,7 @@
               </px-table-view>
             </template>
           </demo-snippet>
+          <!-- TODO:  -->
           <h2>Description with Detail Indicator</h2>
           <demo-snippet>
             <template>
@@ -157,6 +170,7 @@
               </px-table-view>
             </template>
           </demo-snippet>
+          <!-- TODO:  -->
           <h2>Label with Disclosure Indicator</h2>
           <demo-snippet>
             <template>
@@ -166,6 +180,7 @@
               </px-table-view>
             </template>
           </demo-snippet>
+          <!-- TODO:  -->
           <h2>Label with Detail Disclosure</h2>
           <demo-snippet>
             <template>
@@ -176,6 +191,7 @@
             </template>
           </demo-snippet>
         </section>
+        <!-- TODO:  -->
         <section id="inputs">
           <h2>Inputs</h2>
           <demo-snippet>
@@ -207,6 +223,7 @@
               </px-table-view>
             </template>
           </demo-snippet>
+          <!-- TODO:  -->
           <h2>Switches</h2>
           <demo-snippet>
             <template>
@@ -226,6 +243,7 @@
               </px-table-view>
             </template>
           </demo-snippet>
+          <!-- TODO:  -->
           <h2>Checkboxes</h2>
           <demo-snippet>
             <template>
@@ -363,41 +381,36 @@
           <h2>Modifier - Responsive Rows</h2>
           <demo-snippet>
             <template>
-              <button class="btn btn--full btn-add-responsive u-mb+">Add Table Row</button>
+              <template id="table-view-demo-19" is="dom-bind">
+                <px-table-view modifier="small responsive row">
+                  <template is="dom-repeat" items="[[items]]">
+                    <px-table-row id="table-row-1" modifier="tappable">
+                      <div content>
+                        <h3 class="table-row__title epsilon">Lorem Ipsum</h3>
+                        <div class="table-row__body">
+                          <span class="beta">123.4</span>
+                          <span class="delta muted">AB</span>
+                        </div>
+                      </div>
+                    </px-table-row>
+                  </template>
+                </px-table-view>
+              </template>
               <script type="text/javascript">
-                $('.btn-add-responsive').bind('click', function (e) {
-                  var $table = $('#table-responsive');
-                  $table.append($table.find('#table-row-1').clone());
+                document.addEventListener('WebComponentsReady', function () {
+                  var app = document.getElementById('table-view-demo-19');
+                  app.items = [1, 2, 3, 4, 5];
                 });
               </script>
-              <px-table-view modifier="small responsive row">
-                <px-table-row id="table-row-1" modifier="tappable">
-                  <div content>
-                    <h3 class="table-row__title epsilon">Lorem Ipsum</h3>
-                    <div class="table-row__body">
-                      <span class="beta">123.4</span>
-                      <span class="delta muted">AB</span>
-                    </div>
-                  </div>
-                </px-table-row>
-                <px-table-row modifier="tappable">
-                  <div content>
-                    <h3 class="table-row__title epsilon">Lorem Ipsum</h3>
-                    <div class="table-row__body">
-                      <span class="beta">123.4</span>
-                      <span class="delta muted">AB</span>
-                    </div>
-                  </div>
-                </px-table-row>
-                <px-table-row modifier="tappable">
-                  <div content>
-                    <h3 class="table-row__title epsilon">Lorem Ipsum</h3>
-                    <div class="table-row__body">
-                      <span class="beta">123.4</span>
-                      <span class="delta muted">AB</span>
-                    </div>
-                  </div>
-                </px-table-row>
+            </template>
+          </demo-snippet>
+          <!-- TODO:  -->
+          <h2>Modifier - Borders</h2>
+          <demo-snippet>
+            <template>
+              <px-table-view modifier="borders">
+                <px-table-row title="Text Label" modifier="tappable"></px-table-row>
+                <px-table-row title="Text Label" modifier="tappable"></px-table-row>
               </px-table-view>
             </template>
           </demo-snippet>
@@ -410,6 +423,7 @@
               </px-table-view>
             </template>
           </demo-snippet>
+          <!-- TODO:  -->
           <h2>Modifier - Flush</h2>
           <demo-snippet>
             <template>
@@ -419,6 +433,7 @@
               </px-table-view>
             </template>
           </demo-snippet>
+          <!-- TODO:  -->
           <h2>Modifier - Tiny</h2>
           <demo-snippet>
             <template>
@@ -428,6 +443,7 @@
               </px-table-view>
             </template>
           </demo-snippet>
+          <!-- TODO:  -->
           <h2>Modifier - Small</h2>
           <demo-snippet>
             <template>
@@ -437,6 +453,7 @@
               </px-table-view>
             </template>
           </demo-snippet>
+          <!-- TODO:  -->
           <h2>Modifier - Regular</h2>
           <demo-snippet>
             <template>
@@ -446,6 +463,7 @@
               </px-table-view>
             </template>
           </demo-snippet>
+          <!-- TODO:  -->
           <h2>Modifier - Large</h2>
           <demo-snippet>
             <template>
@@ -455,6 +473,7 @@
               </px-table-view>
             </template>
           </demo-snippet>
+          <!-- TODO:  -->
           <h2>Modifier - Huge</h2>
           <demo-snippet>
             <template>
@@ -464,6 +483,7 @@
               </px-table-view>
             </template>
           </demo-snippet>
+          <!-- TODO:  -->
           <h2>Modifier - Inset</h2>
           <demo-snippet>
             <template>
@@ -473,6 +493,7 @@
               </px-table-view>
             </template>
           </demo-snippet>
+          <!-- TODO:  -->
           <h2>Modifier - Responsive</h2>
           <demo-snippet>
             <template>
@@ -488,6 +509,7 @@
           <p>
             Table rows can have the following actions.
           </p>
+          <!-- TODO:  -->
           <h2>Action Buttons</h2>
           <demo-snippet>
             <template>
@@ -505,6 +527,7 @@
               </div>
             </template>
           </demo-snippet>
+          <!-- TODO:  -->
           <h2>Swipe Right Actions</h2>
           <demo-snippet class="u-mb">
             <template>
@@ -529,6 +552,7 @@
               </script>
             </template>
           </demo-snippet>
+          <!-- TODO:  -->
           <h2>Swipe Left Actions</h2>
           <demo-snippet class="u-mb">
             <template>
@@ -871,7 +895,7 @@
         <p>&copy; 2016 GE Digital</p>
       </footer>
     </div>
-    <script src="demo/script.js"></script>
+
     <script src="http://localhost:35724/livereload.js?snipver=1"></script>
   </body>
 </html>

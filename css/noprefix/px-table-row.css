@@ -1157,12 +1157,6 @@ a {
         background-color: #7a7a8d; }
       .table-row__button--info:hover {
         background-color: #888899; }
-  .table-row--border-bottom {
-    border-bottom-style: var(--px-table-row-border-style, solid);
-    border-bottom-width: var(--px-table-row-border-width, 1px);
-    border-bottom-color: var(--px-table-row-border-color, #b1b1bc); }
-  .table-row--no-borders {
-    border-bottom: none; }
   .table-row:active {
     transition: none; }
   .table-row--selected {
