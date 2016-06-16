@@ -4,8 +4,8 @@ var sharedPanel = null;
 if (!window.Hammer) {
   console.error('Must provide hammer.js');
 }
-var reqAnimationFrame = (function() {
-  return window[Hammer.prefixed(window, "requestAnimationFrame")] || function(callback) {
+var reqAnimationFrame = (function () {
+  return window[Hammer.prefixed(window, "requestAnimationFrame")] || function (callback) {
     setTimeout(callback, 1000 / 60);
   };
 })();
@@ -161,31 +161,33 @@ var pxTableRowSwipeBehavior = {
     'tap': '_tapHandler',
     'iron-resize': '_onIronResize'
   },
-  ready: function() {
+  ready: function () {
     if (this.swipeable) {
       this._transition = true;
       this.setScrollDirection(this._swipeAllowed() ? 'y' : 'all');
       this.toggleClass('table-row--swipeable', true, this.$.row);
     }
   },
-  attached: function() {
+  attached: function () {
     if (this.swipeable) {
       var _content = Polymer.dom(this);
-      this.async(function() {
+      this.async(function () {
         this._initSwipeActions(this, Hammer.DIRECTION_HORIZONTAL);
       }, 1000);
       this.set('_content', _content);
     }
   },
-  _initSwipeActions: function(container, direction) {
+  _initSwipeActions: function (container, direction) {
     var instance = container;
 
     this.container = container;
     this.direction = direction;
 
-    var distributed = this.getContentChildren('#underlayContent');
+
     var _underlay = Polymer.dom(this.$.underlayContent).getDistributedNodes()[0];
     this.set('_underlay', _underlay);
+
+    var distributed = this.getContentChildren('#underlayContent');
     this.underlay = distributed[0];
     if (this.underlay) {
       this.underlaySize = this.underlay.getBoundingClientRect().width;
@@ -200,7 +202,7 @@ var pxTableRowSwipeBehavior = {
     this.hammer.add(new Hammer.Pan(options));
     this.hammer.on("panstart panmove panend", Hammer.bindFn(this._onPan, this));
   },
-  detached: function() {
+  detached: function () {
     if (this.hammer) {
       this.hammer.off();
     }
@@ -208,7 +210,7 @@ var pxTableRowSwipeBehavior = {
   /**
    * When disableSwipe is true, only a click event can be triggered.
    */
-  _tapHandler: function(event) {
+  _tapHandler: function (event) {
     //  this.fire('px-table-row-underlay-tap', event);
     if (this.tapReset) {
       if (this._atEdge) {
@@ -224,11 +226,11 @@ var pxTableRowSwipeBehavior = {
    * @returns {boolean}
    * @private
    */
-  _swipeAllowed: function() {
+  _swipeAllowed: function () {
     return !this.disableSwipe;
   },
 
-  _transitionDeltaChanged: function(newValue, oldValue) {
+  _transitionDeltaChanged: function (newValue, oldValue) {
     if (this.swipeRight) {
       this._validDelta = this._atEdge ? newValue <= -this.slideOffset : newValue >= this.slideOffset;
     }
@@ -252,24 +254,24 @@ var pxTableRowSwipeBehavior = {
    * Handle when Hammer.js Pan event is triggered
    * @param event
    */
-  _onPan: function(event) {
+  _onPan: function (event) {
     switch (event.type) {
-      case 'panstart':
-        this._onPanStart(event);
-        break;
-      case 'panmove':
-        this._onPanMove(event);
-        break;
-      case 'panend':
-        this._onPanEnd(event);
-        break;
+    case 'panstart':
+      this._onPanStart(event);
+      break;
+    case 'panmove':
+      this._onPanMove(event);
+      break;
+    case 'panend':
+      this._onPanEnd(event);
+      break;
     }
   },
   /**
    * Reset the position of the swipeable content.
    * @event px-table-row-swipe-reset
    */
-  resetPosition: function() {
+  resetPosition: function () {
     this._moveDrawer(null);
     this.set('underlayOpened', false);
     this.set('_atEdge', false);
@@ -283,7 +285,7 @@ var pxTableRowSwipeBehavior = {
    * @event px-table-row-pan-start
    * @private
    */
-  _onPanStart: function(event) {
+  _onPanStart: function (event) {
     if (this._swipeAllowed()) {
       sharedPanel = this;
       this._dragging = true;
@@ -300,7 +302,7 @@ var pxTableRowSwipeBehavior = {
    * @event px-swipe-move
    * @private
    */
-  _onPanMove: function(event) {
+  _onPanMove: function (event) {
     this._transition = true;
     if (this._dragging) {
       var dx = event.deltaX;
@@ -316,7 +318,7 @@ var pxTableRowSwipeBehavior = {
    * Handle when panning ends
    * @event px-swipe-end
    */
-  _onPanEnd: function(event) {
+  _onPanEnd: function (event) {
     this._dragging = false;
     var slideTo, offsetLR, deltaLR;
     if (this._swipeAllowed() && this._tracking) {
@@ -347,11 +349,16 @@ var pxTableRowSwipeBehavior = {
    * Handle when iron-resize event is fired.
    * @private
    */
-  _onIronResize: function() {
+  _onIronResize: function () {
     var _content = this._content;
     var w = this.offsetWidth;
+    var distributed = this.getContentChildren('#underlayContent');
+    this.underlay = distributed[0];
+    if (this.underlay) {
+      this.underlaySize = this.underlay.getBoundingClientRect().width;
+    }
     if (_content && this._toUpdateHeight) {
-      this.async(function() {
+      this.async(function () {
         //this.style.height = _content.offsetHeight + 'px';
       }, 1);
     }
@@ -361,7 +368,7 @@ var pxTableRowSwipeBehavior = {
    * @param translateX
    * @private
    */
-  _moveDrawer: function(translateX) {
+  _moveDrawer: function (translateX) {
     var _content = this.$.row;
     this.transform(this._transformForTranslateX(translateX), _content);
     this.toggleClass('is-open', this.underlayOpened, _content);
@@ -376,7 +383,7 @@ var pxTableRowSwipeBehavior = {
    * @returns {*}
    * @private
    */
-  _transformForTranslateX: function(translateX) {
+  _transformForTranslateX: function (translateX) {
     if (translateX === null) {
       return 'translate3d(0, 0, 0)';
     }

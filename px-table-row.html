@@ -122,6 +122,13 @@ Custom property | Description | Default
       @apply(--px-table-row-underlay-content);
     }
 
+    :host .table-row__handle{
+      border: none;
+      background: transparent;
+      color: #b1b1bc;
+      cursor: move;
+    }
+
   </style>
   <template strip-whitespace>
     <div class="">
@@ -333,8 +340,6 @@ Custom property | Description | Default
        * @event px-table-row-tap
        */
       _handleTap: function (e) {
-        console.log('_handleTap', e);
-
         var target = Polymer.dom(e).rootTarget;
         if(this.collapsable){
           this._hideBody();

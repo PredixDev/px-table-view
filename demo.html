@@ -7,6 +7,7 @@
     <link rel="import" href="../px-theme/px-theme.html">
     <link rel="import" href="../iron-ajax/iron-ajax.html"/>
     <link rel="import" href="../iron-list/iron-list.html"/>
+    <link rel="import" href="../../px-demo-helpers/px-demo-helpers.html">
     <link rel="import" href="../iron-demo-helpers/demo-snippet.html"/>
     <link rel="import" href="px-table-view.html"/>
     <link rel="stylesheet" href="demo/style.css"/>
@@ -221,20 +222,25 @@
           </demo-snippet>
           <!-- TODO:  -->
           <h2>Switches</h2>
+      
+
           <demo-snippet>
             <template>
               <px-table-view modifier="small">
-                <px-table-row>
-                  <px-table-row-switch name="cb05" label="Switch"></px-table-row-switch>
+                <px-table-row icon="fa:fa-wifi" title="WiFi" modifier="switch">
+                  <px-table-row-switch name="cb" size="small"></px-table-row-switch>
                 </px-table-row>
-                <px-table-row>
-                  <px-table-row-switch name="cb06" label="Checked Switch" checked></px-table-row-switch>
+                <px-table-row modifier="switch" title="Switch">
+                  <px-table-row-switch name="cb05"></px-table-row-switch>
                 </px-table-row>
-                <px-table-row>
-                  <px-table-row-switch name="cb07" label="Switch (Disabled)" disabled></px-table-row-switch>
+                <px-table-row modifier="switch" title="Checked Switch">
+                  <px-table-row-switch name="cb06" checked></px-table-row-switch>
                 </px-table-row>
-                <px-table-row>
-                  <px-table-row-switch name="cb08" label="Checked Switch (Disabled)" disabled checked></px-table-row-switch>
+                <px-table-row modifier="switch"  title="Switch (Disabled)">
+                  <px-table-row-switch name="cb07" disabled></px-table-row-switch>
+                </px-table-row>
+                <px-table-row modifier="switch" title="Checked Switch (Disabled)">
+                  <px-table-row-switch name="cb08"  disabled checked></px-table-row-switch>
                 </px-table-row>
               </px-table-view>
             </template>
@@ -577,9 +583,10 @@
         <section id="examples">
           <h1 class="beta">Examples</h1>
           <p>
-            The following shows examples of various ways to use the <code>px-table-view</code> element.
+            The following shows examples of various ways to use the
+            <code>px-table-view</code>
+            element.
           </p>
-
           <!-- TODO:  -->
           <h2>Selectable Item</h2>
           <demo-snippet>
@@ -591,7 +598,8 @@
                     color: white;
                   }
                 </style>
-                <h4>Selected Item = {{selected}}</h4>
+                <h4>Selected Item =
+                  {{selected}}</h4>
                 <px-table-view modifer="small" attr-for-selected="name" selected="{{selected}}" selected-class="custom-selected">
                   <px-table-row name="item-1" title="Item A" icon-left="fa:fa-pencil" modifier="tappable nav-right"></px-table-row>
                   <px-table-row name="item-2" title="Item B" icon-left="fa:fa-pencil" modifier="tappable nav-right"></px-table-row>
@@ -604,10 +612,7 @@
               </script>
             </template>
           </demo-snippet>
-
-
-
-          <!-- TODO: Iron List -->
+          <!-- TODO: Iron List
           <h2>Example - Iron List</h2>
           <p>The following example uses iron-list as a wrapper and the px-table-row as the repeater.</p>
           <demo-snippet>
@@ -636,7 +641,7 @@
                 </script>
               </div>
             </template>
-          </demo-snippet>
+          </demo-snippet> -->
           <!-- TODO: Alerts List -->
           <h2>Example - Alerts List</h2>
           <demo-snippet>
@@ -735,38 +740,38 @@
           <h2>Example - Nav List</h2>
           <demo-snippet>
             <template>
-            <template id="table-view-demo-39" is="dom-bind">
-              <px-table-view modifer="small">
-                <template is="dom-repeat" items="[[navItems]]">
-                  <px-table-row title="{{item.label}}" icon-left="{{item.icon}}" modifier="tappable"></px-table-row>
-                </template>
-              </px-table-view>
-            </template>
-            <script type="text/javascript">
-              var navItems = [
-                {
-                  label: 'Dashboard',
-                  icon: 'fa:fa-tachometer'
-                }, {
-                  label: 'Alerts',
-                  icon: 'fa:fa-exclamation-triangle'
-                }, {
-                  label: 'Profile',
-                  icon: 'fa:fa-pencil'
-                }, {
-                  label: 'Cases',
-                  icon: 'fa:fa-briefcase'
-                }, {
-                  label: 'Analysis',
-                  icon: 'fa:fa-bar-chart'
-                }
-              ];
-              var tmpl = document.getElementById('table-view-demo-39');
-              tmpl.navItems = navItems;
-            </script>
+              <template id="table-view-demo-39" is="dom-bind">
+                <px-table-view modifer="small">
+                  <template is="dom-repeat" items="[[navItems]]">
+                    <px-table-row title="{{item.label}}" icon-left="{{item.icon}}" modifier="tappable"></px-table-row>
+                  </template>
+                </px-table-view>
+              </template>
+              <script type="text/javascript">
+                var navItems = [
+                  {
+                    label: 'Dashboard',
+                    icon: 'fa:fa-tachometer'
+                  }, {
+                    label: 'Alerts',
+                    icon: 'fa:fa-exclamation-triangle'
+                  }, {
+                    label: 'Profile',
+                    icon: 'fa:fa-pencil'
+                  }, {
+                    label: 'Cases',
+                    icon: 'fa:fa-briefcase'
+                  }, {
+                    label: 'Analysis',
+                    icon: 'fa:fa-bar-chart'
+                  }
+                ];
+                var tmpl = document.getElementById('table-view-demo-39');
+                tmpl.navItems = navItems;
+              </script>
             </template>
           </demo-snippet>
-          <!-- TODO: Widget Grid -->
+          <!-- TODO: Widget Grid
           <h2>Example - Widget Grid</h2>
           <demo-snippet>
             <template>
@@ -805,7 +810,7 @@
                 </px-table-view>
               </div>
             </template>
-          </demo-snippet>
+          </demo-snippet> -->
           <!-- TODO: Reports List -->
           <h2>Example - Collapasble List</h2>
           <demo-snippet>
@@ -844,79 +849,136 @@
               </px-table-view>
             </template>
           </demo-snippet>
-        </section>
-        <section id="specs">
-          <h1 class="beta">Table Row Specs</h1>
-          <div class="u-m">
-            <p>A table-view consists of a single continuous column of tessellated sub-divisions of equal width called rows that function as containers for tiles. Tiles hold content, and can vary in height within a table-view.</p>
-            <style>
-              .debug * {
-                border: 1px solid red;
-              }
-            </style>
-            <px-table-view>
-              <px-table-row class="debug" title="Title" subtitle="Subtitle" body="Body" label1="label 1" label2="label 2" modifier="tappable"></px-table-row>
-            </px-table-view>
-            <h3>Single-line</h3>
-            <px-table-view>
-              <px-table-row modifier="tappable" title="Single-line item"></px-table-row>
-              <px-table-row modifier="tappable" title="Single-line item"></px-table-row>
-              <px-table-row modifier="tappable" title="Single-line item"></px-table-row>
-            </px-table-view>
-            <h3>Single-line with icon</h3>
-            <px-table-view>
-              <px-table-row icon="fa fa-square fa-lg" modifier="tappable" title="Single-line item"></px-table-row>
-            </px-table-view>
-            <h3>Single-line with avatar</h3>
-            <px-table-view>
-              <px-table-row icon="fa fa-circle fa-3x" modifier="tappable" title="Single-line item"></px-table-row>
-            </px-table-view>
-            <h3>Single-line with avatar and icon</h3>
-            <px-table-view>
-              <px-table-row icon-left="fa fa-circle fa-3x" icon-right="fa fa-square fa-lg" modifier="tappable" title="Single-line item"></px-table-row>
-            </px-table-view>
-            <h3>Two-line</h3>
-            <px-table-view>
-              <px-table-row modifier="tappable" title="Two-line item" body="Secondary text"></px-table-row>
-            </px-table-view>
-            <h3>Two-line with icon</h3>
-            <px-table-view>
-              <px-table-row icon="fa fa-square fa-2x" modifier="tappable" title="Two-line item" body="Secondary text"></px-table-row>
-            </px-table-view>
-            <h3>Two-line with avatar</h3>
-            <px-table-view>
-              <px-table-row icon="fa fa-circle fa-3x" modifier="tappable" title="Two-line item" body="Secondary text"></px-table-row>
-            </px-table-view>
-            <h3>Two-line with avatar and icon</h3>
-            <px-table-view>
-              <px-table-row icon-left="fa fa-circle fa-3x" icon-right="fa fa-square fa-lg" modifier="tappable" title="Two-line item" body="Secondary text"></px-table-row>
-            </px-table-view>
-            <h3>Three-line</h3>
-            <px-table-view>
-              <px-table-row modifier="tappable" title="Three-line item" subtitle="John doez" body="Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."></px-table-row>
-            </px-table-view>
-            <h3>Three-line with icon</h3>
-            <px-table-view>
-              <px-table-row modifier="tappable" icon="fa fa-square fa-2x" title="Three-line item" body="Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."></px-table-row>
-            </px-table-view>
-            <h3>Three-line with avatar</h3>
-            <px-table-view>
-              <px-table-row modifier="tappable" icon="fa fa-circle fa-3x" title="Three-line item" body="Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."></px-table-row>
-            </px-table-view>
-            <h3>Three-line with avatar and icon</h3>
-            <px-table-view>
-              <px-table-row
-                modifier="tappable"
-                icon-left="fa fa-circle fa-3x"
-                icon-right="fa fa-square fa-2x"
-                title="Three-line item"
-                body="Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."></px-table-row>
-            </px-table-view>
+          <h2>Table View Sortable</h2>
+          <p>
+            The following example uses the <code>px-sortable-list</code> element to enable sortable rows.
+          </p>
+          <demo-snippet>
+            <template>
+              <px-table-view id="table-view-demo-42">
+                <px-sortable-list id="table-view-demo-42-sort" content handle=".table-row__handle">
+                  <px-table-row title="Item 1" edit-mode></px-table-row>
+                  <px-table-row title="Item 2" edit-mode></px-table-row>
+                  <px-table-row title="Item 3" edit-mode></px-table-row>
+                  <px-table-row title="Item 4" edit-mode></px-table-row>
+                  <px-table-row title="Item 5" edit-mode></px-table-row>
+                  <px-table-row title="Item 6" edit-mode></px-table-row>
+                </px-sortable-list>
+              </px-table-view>
+            </template>
+          </demo-snippet>
+          <div class="demo">
+            <h2>Table View Sortable Group</h2>
+            <demo-snippet>
+              <template>
+                <div class="flex">
+                  <div class="flex__item u-m">
+                    <px-table-view id="table-view-demo-43a" modifier="inset">
+                      <px-sortable-list id="table-view-demo-43a-sort" content group="grouped">
+                        <px-table-row title="Item 1"></px-table-row>
+                        <px-table-row title="Item 2"></px-table-row>
+                        <px-table-row title="Item 3"></px-table-row>
+                      </px-sortable-list>
+                    </px-table-view>
+                  </div>
+                  <div class="flex__item u-m">
+                    <px-table-view id="table-view-demo-43b" modifier="inset">
+                      <px-sortable-list id="table-view-demo-43b-sort" content group="grouped">
+                        <px-table-row title="Item 4"></px-table-row>
+                        <px-table-row title="Item 5"></px-table-row>
+                        <px-table-row title="Item 6"></px-table-row>
+                      </px-sortable-list>
+                    </px-table-view>
+                  </div>
+                </div>
+              </template>
+            </demo-snippet>
           </div>
         </section>
+        <h2>Drill Down with default options</h2>
+        <demo-snippet>
+          <template>
+            <template id="app" is="dom-bind">
+              <px-drilldown-list id="dd1">
+              <li>
+                <a href="#">Category</a>
+                <ul class="list-ui" data-submenu>
+                  <li>
+                    <a href="#">Sub Category</a>
+                    <ul class="list-ui" data-submenu>
+                      <li>
+                        <a href="#">Product</a>
+                        <ul class="list-ui" data-submenu>
+                          <li>
+                            <a href="#">Part</a>
+                          </li>
+                        </ul>
+                      </li>
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+              <li>
+                <a href="#">Category</a>
+                <ul class="list-ui" data-submenu>
+                  <li>
+                    <a href="#">Sub Category</a>
+                    <ul class="list-ui" data-submenu>
+                      <li>
+                        <a href="#">Product</a>
+                        <ul class="list-ui" data-submenu>
+                          <li>
+                            <a href="#">Part</a>
+                          </li>
+                        </ul>
+                      </li>
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+            </px-drilldown-list>
+          </template>
+        </template>
+        </demo-snippet>
+
+        <h2>Pull to Refresh</h2>
+        <demo-snippet>
+          <template id="">
+            <div class="flex flex--center">
+              <div>
+                <device-view device="phone" src="./demo/ptr-mobile.html"></device-view>
+                <a href="./demo/ptr-mobile.html" target="_blank">Open in new page</a>
+              </div>
+            </div>
+          </template>
+        </demo-snippet>
+
+        <h2>Iron List</h2>
+        <demo-snippet>
+          <template id="">
+            <div class="flex flex--center">
+              <div>
+                <device-view device="phone" src="./demo/iron-list-demo.html"></device-view>
+                <a href="./demo/iron-list-demo.html" target="_blank">Open in new page</a>
+              </div>
+            </div>
+          </template>
+        </demo-snippet>
+
+        <h2>Swipe Actions</h2>
+        <demo-snippet>
+          <template id="">
+            <div class="flex flex--center">
+              <div>
+                <device-view device="phone" src="./demo/swipe-actions-mobile.html"></device-view>
+                <a href="./demo/iron-list-demo.html" target="_blank">Open in new page</a>
+              </div>
+            </div>
+          </template>
+        </demo-snippet>
         <br>
         <hr>
-        <px-code-editor id="myEditor" layout="bottom" style="height: 500px;"></px-code-editor>
+        <px-code-editor id="myEditor" layout="left" style="height: 500px;"></px-code-editor>
         <script type="text/javascript">
           document.addEventListener('WebComponentsReady', function (e) {
             setTimeout(function () {

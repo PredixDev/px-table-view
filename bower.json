@@ -3,23 +3,23 @@
   "version": "0.0.2",
   "description": "A responsive mobile first table view list.",
   "authors": [
-    "Jonnie Spratley <jonnie.spratley@ge.com>"
-  ],
+		"Jonnie Spratley <jonnie.spratley@ge.com>"
+	],
   "main": [
-    "px-table-view.html"
-  ],
+		"px-table-view.html"
+	],
   "keywords": [
-    "px",
-    "px-mobile"
-  ],
+		"px",
+		"px-mobile"
+	],
   "ignore": [
-    ".*",
-    "npm-debug.log",
-    "Gruntfile.js",
-    "bower_components",
-    "node_modules",
-    "test"
-  ],
+		".*",
+		"npm-debug.log",
+		"Gruntfile.js",
+		"bower_components",
+		"node_modules",
+		"test"
+	],
   "dependencies": {
     "polymer": "~1.5.0",
     "px-theme": "https://github.com/PredixDev/px-theme.git#~0.4.0",
@@ -32,6 +32,7 @@
     "iron-resizable-behavior": "~1.0.3"
   },
   "devDependencies": {
+    "px-demo-helpers": "https://github.com/PredixDev/px-demo-helpers.git",
     "px-mobile-design": "https://github.com/PredixDev/px-mobile-design.git",
     "px-navbar": "latest",
     "px-card": "latest",
