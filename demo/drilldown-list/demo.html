@@ -11,12 +11,14 @@
     <link rel="import" href="../../../iron-demo-helpers/demo-snippet.html"/>
 
     <style media="screen">
-  html,  body{
-      background-color: #eee !important;
-    }
+      body,
+      html {
+        background-color: #eee !important;
+      }
       .list-ui {
         border-top: none;
       }
+
     </style>
   </head>
   <body unresolved>
@@ -28,13 +30,14 @@
         elements provides a way to have a list that drills down into a items children.
       </p>
       <p>
-        For the mobile version visit <a href="mobile-demo.html" target="_blank">here.</a>
+        For the mobile version visit
+        <a href="mobile-demo.html" target="_blank">here.</a>
       </p>
       <h2>Demo with default options</h2>
       <demo-snippet>
         <template>
           <template id="app" is="dom-bind">
-            <px-drilldown-list id="dd1">
+            <px-drilldown-list id="dd1" arrows>
             <li>
               <a href="#">Category</a>
               <ul class="list-ui" data-submenu>
@@ -83,6 +86,7 @@
           .list-ui {
             border-top: none;
           }
+
         </style>
         <template id="app2" is="dom-bind">
           <px-drilldown-list id="dd2">
@@ -120,6 +124,7 @@
               background-color: crimson;
             }
           }
+
         </style>
         <template id="app3" is="dom-bind">
           <px-drilldown-list id="dd3" class="custom">

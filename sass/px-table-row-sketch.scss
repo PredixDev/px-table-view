@@ -127,6 +127,7 @@ $inuit-enable-input--bare: true;
 
   ///---------------------------------------------------------------------------
   ///.table-row--collapsable
+  // TODO: Update to use visually hidden class
   @include modifier ('collapsable') {
     @include tableRowClickable($table-row-active-background-color, $table-row-active-font-color);
     border-bottom: none;
