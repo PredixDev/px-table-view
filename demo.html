@@ -3,7 +3,6 @@
     <title>px-table-view demo</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
     <script src="../webcomponentsjs/webcomponents-lite.js"></script>
-
     <link rel="import" href="../px-theme/px-app.html">
     <link rel="import" href="../px-theme/px-theme.html">
     <link rel="import" href="../iron-ajax/iron-ajax.html"/>
@@ -12,7 +11,6 @@
     <link rel="import" href="px-table-view.html"/>
     <link rel="stylesheet" href="demo/style.css"/>
     <script src="demo/demo.js"></script>
-
     <style media="screen">
       body,
       html {
@@ -24,7 +22,7 @@
       }
     </style>
     <script type="text/javascript">
-      document.addEventListener('WebComponentsReady', function(){
+      document.addEventListener('WebComponentsReady', function () {
         createToc('toc');
       });
     </script>
@@ -46,9 +44,7 @@
           For more demos
           <a href="demo/index.html">visit here.</a>
         </p>
-
         <ol id="toc" class="list listbare"></ol>
-
       </section>
       <article class="">
         <section id="variations">
@@ -273,28 +269,21 @@
           <h2>Custom CSS</h2>
           <demo-snippet>
             <template>
-              <template id="table-view-1" is="dom-bind">
-                <style is="custom-style">
-                  .my-custom-table {
-                    --px-table-row: {
-                      color: #b0fffe;
-                      background-color: #4dba67;
-                      border-bottom-color: #1b8555;
-                    }
+              <style is="custom-style">
+                .a {
+                  --px-table-row: {
+                    font-size: 2rem;
+                    color: blue;
+                    background: pink;
+                    border-bottom-color: green;
                   }
-                </style>
-                <px-table-view class="my-custom-table">
-                  <template is="dom-repeat" items="[[items]]">
-                    <px-table-row title="Text Label" icon="fa:fa-pencil" modifier="nav-right tappable"></px-table-row>
-                  </template>
-                </px-table-view>
-              </template>
-              <script type="text/javascript">
-                document.addEventListener('WebComponentsReady', function () {
-                  var app = document.getElementById('table-view-1');
-                  app.items = [1, 2, 3, 4, 5];
-                });
-              </script>
+                }
+              </style>
+              <px-table-view id="cssvartest" modifer="small">
+                <px-table-row class="a" title="Item 1"></px-table-row>
+                <px-table-row class="a" title="Item 2"></px-table-row>
+                <px-table-row class="a" title="Item 3"></px-table-row>
+              </px-table-view>
             </template>
           </demo-snippet>
           <!-- TODO: Modifiers -->
@@ -587,6 +576,37 @@
         </section>
         <section id="examples">
           <h1 class="beta">Examples</h1>
+          <p>
+            The following shows examples of various ways to use the <code>px-table-view</code> element.
+          </p>
+
+          <!-- TODO:  -->
+          <h2>Selectable Item</h2>
+          <demo-snippet>
+            <template>
+              <template id="table-view-demo-34" is="dom-bind">
+                <style is="custom-style">
+                  .custom-selected {
+                    background-color: crimson;
+                    color: white;
+                  }
+                </style>
+                <h4>Selected Item = {{selected}}</h4>
+                <px-table-view modifer="small" attr-for-selected="name" selected="{{selected}}" selected-class="custom-selected">
+                  <px-table-row name="item-1" title="Item A" icon-left="fa:fa-pencil" modifier="tappable nav-right"></px-table-row>
+                  <px-table-row name="item-2" title="Item B" icon-left="fa:fa-pencil" modifier="tappable nav-right"></px-table-row>
+                  <px-table-row name="item-3" title="Item C" icon-left="fa:fa-pencil" modifier="tappable nav-right"></px-table-row>
+                </px-table-view>
+              </template>
+              <script type="text/javascript">
+                var tmpl = document.getElementById('table-view-demo-34');
+                tmpl.selected = 'item-2';
+              </script>
+            </template>
+          </demo-snippet>
+
+
+
           <!-- TODO: Iron List -->
           <h2>Example - Iron List</h2>
           <p>The following example uses iron-list as a wrapper and the px-table-row as the repeater.</p>
@@ -697,7 +717,7 @@
           <h2>Example - Notes List</h2>
           <demo-snippet>
             <template>
-              <px-table-view modifier="bare small">
+              <px-table-view modifier="small">
                 <px-table-row
                   modifier="tappable"
                   title="John Doe"
@@ -715,13 +735,35 @@
           <h2>Example - Nav List</h2>
           <demo-snippet>
             <template>
-              <px-table-view modifier="tiny">
-                <px-table-row title="Dashboard" modifier="tappable" icon="fa:fa-tachometer"></px-table-row>
-                <px-table-row title="Alerts" modifier="tappable" icon="fa:fa-exclamation-triangle"></px-table-row>
-                <px-table-row title="Cases" modifier="tappable" icon="fa:fa-briefcase"></px-table-row>
-                <px-table-row title="Analysis" modifier="tappable" icon="fa:fa-bar-chart"></px-table-row>
-                <px-table-row title="Settings" modifier="tappable" icon="fa:fa-cog"></px-table-row>
+            <template id="table-view-demo-39" is="dom-bind">
+              <px-table-view modifer="small">
+                <template is="dom-repeat" items="[[navItems]]">
+                  <px-table-row title="{{item.label}}" icon-left="{{item.icon}}" modifier="tappable"></px-table-row>
+                </template>
               </px-table-view>
+            </template>
+            <script type="text/javascript">
+              var navItems = [
+                {
+                  label: 'Dashboard',
+                  icon: 'fa:fa-tachometer'
+                }, {
+                  label: 'Alerts',
+                  icon: 'fa:fa-exclamation-triangle'
+                }, {
+                  label: 'Profile',
+                  icon: 'fa:fa-pencil'
+                }, {
+                  label: 'Cases',
+                  icon: 'fa:fa-briefcase'
+                }, {
+                  label: 'Analysis',
+                  icon: 'fa:fa-bar-chart'
+                }
+              ];
+              var tmpl = document.getElementById('table-view-demo-39');
+              tmpl.navItems = navItems;
+            </script>
             </template>
           </demo-snippet>
           <!-- TODO: Widget Grid -->
@@ -768,13 +810,6 @@
           <h2>Example - Collapasble List</h2>
           <demo-snippet>
             <template>
-              <style is="custom-style">
-                .custom px-table-row {
-                  --px-table-row: {
-                    border-bottom: none;
-                  }
-                }
-              </style>
               <px-table-view class="custom">
                 <px-table-row title="Grand Parent" modifier="tappable" collapsable opened>
                   <div content>
@@ -895,7 +930,6 @@
         <p>&copy; 2016 GE Digital</p>
       </footer>
     </div>
-
     <script src="http://localhost:35724/livereload.js?snipver=1"></script>
   </body>
 </html>

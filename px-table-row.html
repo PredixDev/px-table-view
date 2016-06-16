@@ -41,7 +41,11 @@ To style this component you can do the following:
 
 Custom property | Description | Default
 ------------ | ------------- | ------------
-  `--px-table-row` | Style mixin to be applied to the component |
+  `--px-table-row` | Style mixin to be applied to the component | {}
+  `--px-table-row__title` | Style mixin to be applied to the title element | {}
+  `--px-table-row__body` | Style mixin to be applied to the body element | {}
+  `--px-table-row__label` | Style mixin to be applied to the label element | {}
+  `--px-table-row__media` | Style mixin to be applied to the media element | {}
   `--px-table-row-font-size`       | The font size of the table row  | 16px
   `--px-table-row-color`       | The font color of the table row  | $black
   `--px-table-row-background-color`       | The background color of the table row  | $white
@@ -88,9 +92,20 @@ Custom property | Description | Default
       @apply(--px-table-row__title);
     }
 
+    :host .table-row__body{
+      @apply(--px-table-row__body);
+    }
+    :host .table-row__media{
+      @apply(--px-table-row__media);
+    }
+    :host .table-row__label{
+      @apply(--px-table-row__label);
+    }
+
     :host .table-row__label--right{
       @apply(--px-table-row__label--right);
     }
+
     :host .table-row__label--left{
       @apply(--px-table-row__label--left);
     }

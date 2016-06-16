@@ -6,8 +6,7 @@
 <link rel="import" href="../iron-selector/iron-multi-selectable.html">
 <link rel="import" href="px-table-view-behavior.html"/>
 <link rel="import" href="px-table-view-pull-to-refresh-behavior.html"/>
-<link rel="import" href="px-table-view-sortable-behavior.html"/>
-<link rel="import" href="px-table-view-drilldown-behavior.html"/>
+
 <link rel="import" href="px-table-row.html"/>
 <link rel="import" href="px-sortable-list.html"/>
 <link rel="import" href="px-drilldown-list.html"/>
@@ -15,15 +14,14 @@
 <!--
 The `px-table-view` element provides a way to display list data.
 
-
+[![Build Status](https://travis-ci.org/PredixDev/px-table-view.svg?branch=master)](https://travis-ci.org/PredixDev/px-table-view)
 
 For a list of all individual demos visit <a href="./demo" target="_blank">here</a>.
-
-
 
 ### Usage
 
 ```
+<link rel="import" href="../px-table-view/px-table-view.html"/>
 <px-table-view>
   <px-table-row title="Text Label"></px-table-row>
   <px-table-row title="Nav Right Item" modifier="nav-right"></px-table-row>
@@ -31,7 +29,6 @@ For a list of all individual demos visit <a href="./demo" target="_blank">here</
   <px-table-row title="Tappable Item" modifier="tappable"></px-table-row>
 </px-table-view>
 ```
-
 
 
 @element px-table-view.html
@@ -107,10 +104,9 @@ For a list of all individual demos visit <a href="./demo" target="_blank">here</
     Polymer({
       is: 'px-table-view',
       behaviors: [
-        Polymer.IronMultiSelectableBehavior, Polymer.IronResizableBehavior,
-        //  pxTableViewSortableBehavior,
+        Polymer.IronMultiSelectableBehavior,
+        Polymer.IronResizableBehavior,
         pxTableViewBehavior,
-        pxTableViewDrilldownBehavior,
         pxTableViewPullToRefreshBehavior
       ],
       properties: {
