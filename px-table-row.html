@@ -133,7 +133,6 @@ Custom property | Description | Default
   <template strip-whitespace>
     <div class="">
       <div id="row" class="table-row" data-indicator$="{{indicator}}" >
-
         <template is="dom-if" if="{{label2}}">
           <span class="table-row__label table-row__label--left">{{label2}}</span>
         </template>
@@ -149,13 +148,11 @@ Custom property | Description | Default
         </template>
         <template is="dom-if" if="{{iconLeft}}">
           <div class="table-row__media table-row__media--icon table-row__media--left">
-            <!--<i class$="{{iconLeft}}"></i>-->
             <iron-icon id="iconLeft" icon$="{{iconLeft}}"></iron-icon>
           </div>
         </template>
         <template is="dom-if" if="{{iconRight}}">
           <div class="table-row__media table-row__media--icon table-row__media--right">
-            <!--<i class$="{{iconRight}}"></i>-->
             <iron-icon id="iconRight" icon$="{{iconRight}}"></iron-icon>
           </div>
         </template>
@@ -169,11 +166,7 @@ Custom property | Description | Default
         <template is="dom-if" if="{{label1}}">
           <span class="table-row__label table-row__label--right">{{label1}}</span>
         </template>
-        <template is="dom-if" if="{{orderMode}}">
-          <button class="btn btn--bare table-row__reorder-btn " on-click="_handleReorderItem">
-            <i class="fa fa-bars muted"></i>
-          </button>
-        </template>
+
         <div class="table-row__content">
           <template is="dom-if" if="{{title}}">
             <div class="table-row__title">{{title}}</div>
@@ -276,6 +269,12 @@ Custom property | Description | Default
         * The size to set on the table-row.
         */
         size: {
+          type: String
+        },
+        /**
+        * The indicator to set on the table-row.
+        */
+        indicator: {
           type: String
         },
         /**

@@ -17,12 +17,11 @@ To use this component:
 @homepage index.html
 -->
 <dom-module id="px-table-row-checkbox">
-    <link rel="import" type="css" href="css/px-table-row.css">
+  <link rel="import" type="css" href="css/px-table-row.css">
   <style>
   :host {
     display: block;
   }
-
   </style>
   <template>
     <label class="table-row__checkbox needsclick" for$="{{name}}">
@@ -35,6 +34,10 @@ To use this component:
   Polymer({
     is: 'px-table-row-checkbox',
     properties: {
+      //The label for the checkbox
+      label: {
+        type: String
+      },
       //The input name for the checkbox
       name: {
         type: String
