@@ -6,6 +6,14 @@ module.exports = {
     },
     sauce: {
       disabled: true
+    },
+    "istanbul": {
+      "dir": "./coverage",
+      "reporters": [],
+      "include": [
+				"/px-*.html"
+			],
+      "exclude": []
     }
   },
   suites: [

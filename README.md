@@ -2,6 +2,7 @@
 This component provides responsive styles for lists.
 
 [![Build Status](https://travis-ci.org/PredixDev/px-table-view.svg?branch=master)](https://travis-ci.org/PredixDev/px-table-view)
+[![Coverage Status](https://coveralls.io/repos/github/PredixDev/px-table-view/badge.svg?branch=master)](https://coveralls.io/github/PredixDev/px-table-view?branch=master)
 
 ## Usage
 The following is how to use the component.
