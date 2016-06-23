@@ -79,7 +79,10 @@ $inuit-enable-input--bare: true;
     justify-content: center;
     align-items: center;
     align-content: center;
-    text-align: center;
+    > *{
+      text-align: center;
+      align-self: center;
+    }
   }
   ///---------------------------------------------------------------------------
   //.table-row--header
@@ -149,7 +152,6 @@ $inuit-enable-input--bare: true;
       transition : var(--px-table-row-collapseable-transition, all 0.3s);
       display    : none;
       margin-left: $inuit-base-spacing-unit;
-
       .table-row {
         border-bottom: none;
       }
@@ -157,10 +159,8 @@ $inuit-enable-input--bare: true;
     ///---------------------------------------------------------------------------
     @include modifier ('is-opened') {
       @include tableRowIcon( '\f106');
-
       ~ .table-row__content {
         display: block;
-
       }
     }
   }
@@ -191,18 +191,18 @@ $inuit-enable-input--bare: true;
     @include noselect();
     display       : flex;
     flex-direction: column;
-    //align-self    : stretch;
+    align-self    : stretch;
     order         : 2;
     //width         : 100%;
     flex          : 1;
     user-select   : none;
     //  margin: 0 $inuit-base-spacing-unit;
-
     //margin-left: $inuit-base-spacing-unit--small;
     ///---------------------------------------------------------------------------
     @include modifier ('row') {
       flex-direction: row;
     }
+
     ///---------------------------------------------------------------------------
     @include modifier ('column') {
       flex-direction: column;
@@ -246,18 +246,16 @@ $inuit-enable-input--bare: true;
     flex       : 1 0 auto;
     white-space: normal;
     line-height: normal;
-
   }
   ///---------------------------------------------------------------------------
   ///.table-row__label
   @include element ('label') {
     order     : 0;
     align-self: center;
-
     @include modifier ('right') {
       text-align   : left;
       order        : 4;
-      padding-right: $inuit-base-spacing-unit;
+      //padding-right: $inuit-base-spacing-unit;
     }
 
     @include modifier ('left') {
@@ -287,7 +285,7 @@ $inuit-enable-input--bare: true;
     justify-content: center;
     align-content  : center;
     flex-direction : column;
-    padding-right  : $inuit-base-spacing-unit;
+    //padding-right  : $inuit-base-spacing-unit;
     ///---------------------------------------------------------------------------
     ///.table-row__media--left
     @include modifier ('left') {
@@ -297,7 +295,7 @@ $inuit-enable-input--bare: true;
     ///.table-row__media--right
     @include modifier ('right') {
       //margin-right: $inuit-base-spacing-unit;
-      margin-right: var(--px-table-row-media-margin-right, 0);
+    //  margin-right: var(--px-table-row-media-margin-right, 0);
       order       : 9;
     }
     ///---------------------------------------------------------------------------
@@ -344,7 +342,7 @@ $inuit-enable-input--bare: true;
   /// Inputs
   ///---------------------------------------------------------------------------
   @include c ('input') {
-    width: 100%;
+    //width: 100%;
   }
 
   .text-input {

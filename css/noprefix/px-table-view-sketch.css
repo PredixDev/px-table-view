@@ -1,13 +1,4 @@
 @charset "UTF-8";
-/*
- * Copyright (c) 2016 GE Global Research. All rights reserved.
- *
- * The copyright to the computer software herein is the property of
- * GE Global Research. The software may be used and/or copied only
- * with the written permission of GE Global Research or in accordance
- * with the terms and conditions stipulated in the agreement/contract
- * under which the software has been supplied.
- */
 /**
  * Margin and padding helper classes. Use these to tweak layout on a micro
  * level.
@@ -80,9 +71,7 @@ html {
   /* [2] */
   min-height: 100%;
   /* [3] */
-  -webkit-text-size-adjust: 100%;
-      -ms-text-size-adjust: 100%;
-          text-size-adjust: 100%;
+  text-size-adjust: 100%;
   /* [4] */
   -moz-osx-font-smoothing: grayscale;
   /* [5] */
@@ -285,10 +274,8 @@ html {
   opacity: .4;
   display: none;
   text-align: center;
-  -ms-flex-item-align: center;
-      align-self: center;
-  -ms-flex: 1;
-      flex: 1;
+  align-self: center;
+  flex: 1;
   margin: 15px 0; }
   .ptr__loading span {
     display: inline-block;
@@ -329,6 +316,15 @@ html {
 .ptr__loading #l3 {
   animation-delay: .3s; }
 
+@-webkit-keyframes ptr-loading {
+  0% {
+    transform: translateY(0) scale(0.3);
+    opacity: 0; }
+  100% {
+    transform: scale(1);
+    background-color: #3E87E8;
+    opacity: 1; } }
+
 @keyframes ptr-loading {
   0% {
     transform: translateY(0) scale(0.3);
@@ -346,10 +342,8 @@ html {
   margin: 0;
   padding: 0;
   position: relative;
-  display: -ms-flexbox;
   display: flex;
-  -ms-flex-direction: column;
-      flex-direction: column;
+  flex-direction: column;
   /*
  * Copyright (c) 2016 GE Global Research. All rights reserved.
  *
@@ -391,9 +385,7 @@ html {
       width: 100%;
       height: 100%;
       margin: 0;
-      -webkit-appearance: none;
-         -moz-appearance: none;
-              appearance: none;
+      appearance: none;
       width: 51px;
       height: 44px;
       margin-top: -6px;
@@ -458,10 +450,8 @@ html {
   .table-view .table-view--drilldown {
     transition: all 0.4s;
     border-top: none;
-    display: -ms-flexbox;
     display: flex;
-    -ms-flex-direction: column;
-        flex-direction: column; }
+    flex-direction: column; }
     .table-view .table-view--drilldown.is-open .drilldown__context:before {
       transform: translateY(-50%);
       font-style: normal;
@@ -491,10 +481,7 @@ html {
       display: block;
       box-sizing: border-box;
       overflow: hidden;
-      -webkit-user-select: none;
-         -moz-user-select: none;
-          -ms-user-select: none;
-              user-select: none; }
+      user-select: none; }
       .table-view .table-view--drilldown:before {
         transform: translateY(-50%);
         font-style: normal;
@@ -584,18 +571,14 @@ html {
   .table-view--flush .table-row {
     padding: 0 !important; }
   .table-view--responsive {
-    display: -ms-flexbox;
     display: flex;
-    -ms-flex-wrap: wrap;
-        flex-wrap: wrap;
-    -ms-flex-direction: row;
-        flex-direction: row;
+    flex-wrap: wrap;
+    flex-direction: row;
     margin-left: -0.6666666667rem;
     margin-top: -0.6666666667rem; }
     .table-view--responsive > *,
     .table-view--responsive ::content > * {
-      -ms-flex: 1 0 15.3333333333rem;
-          flex: 1 0 15.3333333333rem;
+      flex: 1 0 15.3333333333rem;
       margin-left: 0.6666666667rem;
       margin-top: 0.6666666667rem; }
   .table-view--bare ::content .table-row,
@@ -604,20 +587,13 @@ html {
     border-bottom: none; }
   .table-view--ptr ::content .table-row,
   .table-view--ptr .table-row {
-    -webkit-user-select: none;
-       -moz-user-select: none;
-        -ms-user-select: none;
-            user-select: none; }
+    user-select: none; }
   .table-view--col {
-    display: -ms-flexbox;
     display: flex;
-    -ms-flex-direction: column;
-        flex-direction: column; }
+    flex-direction: column; }
   .table-view--row {
-    display: -ms-flexbox;
     display: flex;
-    -ms-flex-direction: row;
-        flex-direction: row; }
+    flex-direction: row; }
   .table-view--rev {
     direction: rtl; }
   .table-view--avatars ::content .table-row img,
@@ -643,20 +619,3 @@ html {
     float: right;
     margin-top: 6px;
     margin-right: 10px; }
-
-.table-view--border-bottom .table-row {
-  border-bottom-style: var(--px-table-row-border-style, solid);
-  border-bottom-width: var(--px-table-row-border-width, 1px);
-  border-bottom-color: var(--px-table-row-border-color, #b1b1bc); }
-
-.table-view .table-row--selected {
-  background-color: var(--px-table-row-selected-background-color, #0a9ec1);
-  color: var(--px-table-row-selected-color, white); }
-  .table-view .table-row--selected .table-row__body,
-  .table-view .table-row--selected .table-row__label,
-  .table-view .table-row--selected .table-row__label2,
-  .table-view .table-row--selected .table-row__subtitle,
-  .table-view .table-row--selected .table-row__title {
-    color: var(--px-table-row-selected-color, white); }
-  .table-view .table-row--selected .table-row:before {
-    color: var(--px-table-row-selected-color, white); }

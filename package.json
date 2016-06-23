@@ -3,14 +3,14 @@
   "version": "0.0.1",
   "description": "A px mobile web component.",
   "keywords": [
-		"px",
-		"px-mobile"
-	],
+    "px",
+    "px-mobile"
+  ],
   "author": "Jonnie Spratley",
   "scripts": {
+    "build": "gulp",
     "postinstall": "bower install",
     "serve": "polyserve .",
-    "build": "gulp",
     "start": "grunt depserve",
     "test": "wct",
     "watch": "gulp watch"
@@ -41,6 +41,7 @@
     "gulp-style-modules": "^0.1.0",
     "load-grunt-tasks": "^3.5.0",
     "node-sass-import-once": "^1.2.0",
+    "polymer-css-compiler": "git+https://github.com/jonniespratley/polymer-css-compiler.git",
     "polyserve": "^0.8.0",
     "sassdoc": "^2.1.20",
     "time-grunt": "^1.3.0",

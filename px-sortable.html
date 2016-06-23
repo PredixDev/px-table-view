@@ -2,16 +2,25 @@
 <link rel="import" href="sortable-import.html">
 
 <!--
-UPDATE DOCS AND LINK TO .js lib page/github
+The `px-sortable` element is a wrapper around the fancy [Sortable.js](https://github.com/RubaXa/Sortable) library.
+
+
+
 -->
-<dom-module id="px-sortable-list">
+<dom-module id="px-sortable">
 	<style>
 		:host {
 			display: block;
-			@apply(--px-sortable-list);
+			@apply(--px-sortable);
 			-webkit-touch-callout: none;
 			-webkit-user-select: none;
 			-webkit-tap-highlight-color: red;
+		}
+		:host .sortable-ghost, :host ::content .sortable-ghost {
+			@apply(--px-sortable-ghost);
+		}
+		:host .sortable-chosen, :host ::content .sortable-chosen {
+			@apply(--px-sortable-chosen);
 		}
 	</style>
 	<template>
@@ -19,7 +28,7 @@ UPDATE DOCS AND LINK TO .js lib page/github
 	</template>
 	<script>
 	Polymer({
-		is: 'px-sortable-list',
+		is: 'px-sortable',
 		properties: {
 			/**
 			 * A named group to allow drag and drop between multiple elements.

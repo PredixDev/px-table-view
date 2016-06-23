@@ -1,13 +1,4 @@
 @charset "UTF-8";
-/*
- * Copyright (c) 2016 GE Global Research. All rights reserved.
- *
- * The copyright to the computer software herein is the property of
- * GE Global Research. The software may be used and/or copied only
- * with the written permission of GE Global Research or in accordance
- * with the terms and conditions stipulated in the agreement/contract
- * under which the software has been supplied.
- */
 /**
  * Margin and padding helper classes. Use these to tweak layout on a micro
  * level.
@@ -643,20 +634,3 @@ html {
     float: right;
     margin-top: 6px;
     margin-right: 10px; }
-
-.table-view--border-bottom .table-row {
-  border-bottom-style: var(--px-table-row-border-style, solid);
-  border-bottom-width: var(--px-table-row-border-width, 1px);
-  border-bottom-color: var(--px-table-row-border-color, #b1b1bc); }
-
-.table-view .table-row--selected {
-  background-color: var(--px-table-row-selected-background-color, #0a9ec1);
-  color: var(--px-table-row-selected-color, white); }
-  .table-view .table-row--selected .table-row__body,
-  .table-view .table-row--selected .table-row__label,
-  .table-view .table-row--selected .table-row__label2,
-  .table-view .table-row--selected .table-row__subtitle,
-  .table-view .table-row--selected .table-row__title {
-    color: var(--px-table-row-selected-color, white); }
-  .table-view .table-row--selected .table-row:before {
-    color: var(--px-table-row-selected-color, white); }
