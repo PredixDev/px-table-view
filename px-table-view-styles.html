@@ -49,173 +49,310 @@
 /**
      * Dark
      */
-/*
- * Copyright (c) 2016 GE Global Research. All rights reserved.
+/*! normalize.css v3.0.2 | MIT License | git.io/normalize */
+/**
  *
- * The copyright to the computer software herein is the property of
- * GE Global Research. The software may be used and/or copied only
- * with the written permission of GE Global Research or in accordance
- * with the terms and conditions stipulated in the agreement/contract
- * under which the software has been supplied.
+ * 1. Set the default `font-size` and `line-height` for the entire project,
+ *    sourced from our default variables. The `font-size` is calculated to exist
+ *    in ems, the `line-height` is calculated to exist unitlessly.
+ * 2. Force scrollbars to always be visible to prevent awkward ‘jumps’ when
+ *    navigating between pages that do/do not have enough content to produce
+ *    scrollbars naturally.
+ * 3. Ensure the page always fills at least the entire height of the viewport.
+ * 4. Prevent certain mobile browsers from automatically zooming fonts.
+ * 5. Fonts on OSX will look more consistent with other systems that do not
+ *    render text using sub-pixel anti-aliasing.
  */
-.breadcrumbs li:after {
-  content: ' > '; }
+html {
+  font-size: 0.9375em;
+  /* [1] */
+  line-height: 1.33333;
+  /* [1] */
+  background-color: white;
+  color: black;
+  overflow-y: scroll;
+  /* [2] */
+  min-height: 100%;
+  /* [3] */
+  -webkit-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+  /* [4] */
+  -moz-osx-font-smoothing: grayscale;
+  /* [5] */
+  -webkit-font-smoothing: antialiased;
+  /* [5] */ }
 
-.breadcrumbs li:last-child:after {
-  content: ''; }
+/**
+ * Remove default margin.
+ */
+body {
+  margin: 0; }
 
-.breadcrumbs .disabled {
-  opacity: 0.5;
-  cursor: disabled; }
+/* HTML5 display definitions
+   ========================================================================== */
+/**
+ * Correct `block` display not defined for any HTML5 element in IE 8/9.
+ * Correct `block` display not defined for `details` or `summary` in IE 10/11
+ * and Firefox.
+ * Correct `block` display not defined for `main` in IE 11.
+ */
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+main,
+menu,
+nav,
+section,
+summary {
+  display: block; }
 
-.breadcrumbs .show-for-sr {
+/**
+ * 1. Correct `inline-block` display not defined in IE 8/9.
+ * 2. Normalize vertical alignment of `progress` in Chrome, Firefox, and Opera.
+ */
+audio,
+canvas,
+progress,
+video {
+  display: inline-block;
+  /* 1 */
+  vertical-align: baseline;
+  /* 2 */ }
+
+/**
+ * Prevent modern browsers from displaying `audio` without controls.
+ * Remove excess height in iOS 5 devices.
+ */
+audio:not([controls]) {
+  display: none;
+  height: 0; }
+
+/**
+ * Address `[hidden]` styling not present in IE 8/9/10.
+ * Hide the `template` element in IE 8/9/11, Safari, and Firefox < 22.
+ */
+[hidden],
+template {
   display: none; }
 
-.table-view--drilldown {
-  transition: all 0.4s;
-  border-top: none;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-direction: column;
-  -ms-flex-direction: column;
-  flex-direction: column; }
-  .table-view--drilldown.is-open .drilldown__context:before {
-    -webkit-transform: translateY(-50%);
-    transform: translateY(-50%);
-    font-style: normal;
-    font-weight: normal;
-    position: absolute;
-    right: 12px;
-    top: 50%;
-    color: #ccc;
-    line-height: 28px;
-    height: 28px;
-    font-size: 28px;
-    font-family: FontAwesome;
-    content: ""; }
-  .table-view--drilldown.is-open .drilldown__menu {
-    background-color: crimson;
-    opacity: 1; }
-  .table-view--drilldown {
-    opacity: 0; }
-    .table-view--drilldown a {
-      line-height: 44px; }
-  .table-view--drilldown {
-    position: relative;
-    padding: 1rem;
-    background: #eee;
-    border-bottom: 1px solid #ccc;
-    cursor: pointer;
-    display: block;
-    box-sizing: border-box;
-    overflow: hidden;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none; }
-    .table-view--drilldown:before {
-      -webkit-transform: translateY(-50%);
-      transform: translateY(-50%);
-      font-style: normal;
-      font-weight: normal;
-      position: absolute;
-      right: 12px;
-      top: 50%;
-      color: #ccc;
-      line-height: 28px;
-      height: 28px;
-      font-size: 28px;
-      font-family: FontAwesome;
-      content: ""; }
-  .table-view--drilldown .is-drilldown {
-    position: relative;
-    overflow: hidden;
-    width: 100%; }
-    .table-view--drilldown .is-drilldown .js-drilldown-back a:before {
-      content: '';
-      left: 0; }
-    .table-view--drilldown .is-drilldown li {
-      display: block !important;
-      cursor: pointer;
-      margin: 0;
-      padding: 0; }
-      .table-view--drilldown .is-drilldown li a {
-        position: relative;
-        display: block;
-        width: 100%;
-        margin: 0;
-        padding: 0; }
-        .table-view--drilldown .is-drilldown li a:before {
-          -webkit-transform: translateY(-50%);
-          transform: translateY(-50%);
-          font-style: normal;
-          font-weight: normal;
-          position: absolute;
-          right: 12px;
-          top: 50%;
-          color: #ccc;
-          line-height: 28px;
-          height: 28px;
-          font-size: 28px;
-          font-family: FontAwesome;
-          content: ""; }
-  .table-view--drilldown .is-drilldown-submenu {
-    position: absolute;
-    top: 0;
-    left: 100%;
-    z-index: -1;
-    height: 100%;
-    width: 100%;
-    background: #fff;
-    transition: -webkit-transform 0.14s linear;
-    transition: transform 0.14s linear;
-    transition: transform 0.14s linear, -webkit-transform 0.14s linear; }
-    .table-view--drilldown .is-drilldown-submenu.is-active {
-      z-index: 1;
-      display: block;
-      -webkit-transform: translateX(-100%);
-      transform: translateX(-100%); }
-    .table-view--drilldown .is-drilldown-submenu.is-closing {
-      -webkit-transform: translateX(100%);
-      transform: translateX(100%); }
-  .table-view--drilldown .is-drilldown-submenu-parent > a {
-    position: relative; }
-    .table-view--drilldown .is-drilldown-submenu-parent > a::after {
-      position: absolute;
-      top: 50%;
-      margin-top: -6px; }
-  .table-view--drilldown .js-drilldown-back > a::before {
-    border-left-width: 0;
+/* Margins
+   ========================================================================== */
+/**
+ * Where `margin-bottom` is concerned,this value will be the same as the
+ * base line-height. This allows us to keep a consistent vertical rhythm.
+ * As per: csswizardry.com/2012/06/single-direction-margin-declarations
+ */
+h1, h2, h3, h4, h5, h6,
+ul, ol, dl,
+blockquote, p, address,
+hr,
+table,
+fieldset, figure,
+pre {
+  margin-bottom: 1rem; }
+
+/**
+ * Remove extra vertical spacing when nesting lists.
+ */
+li > ul,
+li > ol {
+  margin-bottom: 0; }
+
+/**
+ * Where `margin-left` is concerned we want to try and indent certain elements
+ * by a consistent amount. Define that amount once,here.
+ */
+ul, ol, dd {
+  margin-left: 2rem; }
+
+/* Embedded content
+   ========================================================================== */
+/**
+ * Remove border when inside `a` element in IE 8/9/10. Make images shrink from their largest size.
+ */
+img {
+  max-width: 100%;
+  border: 0; }
+
+/**
+ * Correct overflow not hidden in IE 9/10/11.
+ */
+svg:not(:root) {
+  overflow: hidden; }
+
+/* Grouping content
+   ========================================================================== */
+/**
+ * Zero margins for figure.
+ */
+figure {
+  margin: 0; }
+
+/**
+ * Address differences between Firefox and other browsers.
+ */
+hr {
+  box-sizing: content-box;
+  height: 0; }
+
+/**
+ * Contain overflow in all browsers.
+ */
+pre {
+  overflow: auto; }
+
+/**
+ * Set the global `box-sizing` state to `border-box`.
+ *
+ * css-tricks.com/inheriting-box-sizing-probably-slightly-better-best-practice
+ * paulirish.com/2012/box-sizing-border-box-ftw
+ */
+html {
+  box-sizing: border-box; }
+
+*, *:before, *:after {
+  box-sizing: inherit; }
+
+/**
+ * the html and :host declarations cannot be adjacent to one other
+ * or cssmin will combine them into a single rule, breaking in
+ * Safari and Firefox.
+ */
+:host {
+  /*! Comment to prevent cssmin munging this rule with html above and borking Safari */
+  box-sizing: border-box; }
+
+/**
+ * Margin and padding helper classes with breakpoint prefixes. Use these to tweak layout on a micro
+ * level based on viewport widths.
+ *
+ * `.u-[breakpoint]-(m|p)(t|r|b|l|h|v)(-|+|0) {}` = utility - breakpoint - margin/padding top/right/bottom/left/horizontal/vertical less/more/none
+ */
+.ptr-refresh {
+  background-color: green; }
+
+.ptr-loading {
+  background-color: purple; }
+
+.ptr-reset {
+  background-color: crimson; }
+
+.table-view--ptr {
+  position: relative; }
+
+.ptr__loader {
+  z-index: 10;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 50px;
+  display: none;
+  background-color: #efeff4;
+  border-bottom: 1px solid #b1b1bc;
+  transform: translateY(-100%); }
+
+.ptr__content {
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  z-index: 20;
+  backface-visibility: hidden;
+  perspective: 1000;
+  box-sizing: border-box; }
+
+.ptr__icon {
+  opacity: .6;
+  font-size: 34px;
+  width: auto;
+  height: auto;
+  transition: all .25s ease;
+  transform: rotate(90deg);
+  margin-top: 5px; }
+
+.ptr__loading {
+  opacity: .4;
+  display: none;
+  text-align: center;
+  -ms-flex-item-align: center;
+  align-self: center;
+  -ms-flex: 1;
+  flex: 1;
+  margin: 15px 0; }
+  .ptr__loading span {
     display: inline-block;
     vertical-align: middle;
-    margin-right: 0.75rem; }
+    width: 10px;
+    height: 10px;
+    margin-right: 3px;
+    transform: scale(0.3);
+    border-radius: 50%;
+    animation: ptr-loading .4s infinite alternate; }
 
-/*
- * Copyright (c) 2016 GE Global Research. All rights reserved.
- *
- * The copyright to the computer software herein is the property of
- * GE Global Research. The software may be used and/or copied only
- * with the written permission of GE Global Research or in accordance
- * with the terms and conditions stipulated in the agreement/contract
- * under which the software has been supplied.
- */
+.ptr-reset.ptr {
+  transition: all 0.25s ease; }
+
+.ptr-reset .ptr__content {
+  transition: all 0.25s ease;
+  transform: translate3d(0, 0, 0); }
+
+.ptr-loading.ptr {
+  transition: all 0.25s ease; }
+
+.ptr-loading .ptr__content {
+  transition: all 0.25s ease;
+  transform: translate3d(0, 50px, 0); }
+
+.ptr-loading .ptr__loader {
+  transform: translateY(0); }
+
+.ptr-loading .ptr__loading {
+  display: block; }
+
+.ptr__loading #l1 {
+  animation-delay: 0; }
+
+.ptr__loading #l2 {
+  animation-delay: .2s; }
+
+.ptr__loading #l3 {
+  animation-delay: .3s; }
+
+@keyframes ptr-loading {
+  0% {
+    transform: translateY(0) scale(0.3);
+    opacity: 0; }
+  100% {
+    transform: scale(1);
+    background-color: #3E87E8;
+    opacity: 1; } }
+
 .table-view {
   font-family: "GE Inspira Sans", sans-serif;
   font-weight: 500;
-  cursor: default;
+  font-size: 1.13333rem;
   list-style-type: none;
-  line-height: normal;
   margin: 0;
   padding: 0;
   position: relative;
-  text-align: left;
-  display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
-  -webkit-flex-direction: column;
   -ms-flex-direction: column;
-  flex-direction: column; }
+  flex-direction: column;
+  /*
+ * Copyright (c) 2016 GE Global Research. All rights reserved.
+ *
+ * The copyright to the computer software herein is the property of
+ * GE Global Research. The software may be used and/or copied only
+ * with the written permission of GE Global Research or in accordance
+ * with the terms and conditions stipulated in the agreement/contract
+ * under which the software has been supplied.
+ */ }
   .table-view .switch {
     position: relative;
     display: inline-block;
@@ -285,10 +422,8 @@
     .table-view .switch input:checked + .toggle {
       background-color: #4cd964; }
     .table-view .switch input:checked + .toggle:before {
-      -webkit-transform: translateX(18px);
       transform: translateX(18px); }
     .table-view .switch input:not(:checked) + .toggle:before {
-      -webkit-transform: translateX(0px);
       transform: translateX(0px); }
     .table-view .switch input:disabled + .toggle {
       opacity: 0.3;
@@ -303,63 +438,196 @@
     content: ' '; }
   .table-view:after {
     clear: both; }
-  .table-view > * {
-    line-height: normal; }
-  .table-view--responsive {
-    display: -webkit-flex;
+  .table-viewul {
+    margin: 0 !important; }
+  .table-view .breadcrumbs li:after {
+    content: ' > '; }
+  .table-view .breadcrumbs li:last-child:after {
+    content: ''; }
+  .table-view .breadcrumbs .disabled {
+    opacity: 0.5;
+    cursor: disabled; }
+  .table-view .breadcrumbs .show-for-sr {
+    display: none; }
+  .table-view .table-view--drilldown {
+    transition: all 0.4s;
+    border-top: none;
     display: -ms-flexbox;
     display: flex;
-    -webkit-flex-wrap: wrap;
+    -ms-flex-direction: column;
+    flex-direction: column; }
+    .table-view .table-view--drilldown.is-open .drilldown__context:before {
+      transform: translateY(-50%);
+      font-style: normal;
+      font-weight: normal;
+      position: absolute;
+      right: 12px;
+      top: 50%;
+      color: #ccc;
+      line-height: 28px;
+      height: 28px;
+      font-size: 28px;
+      font-family: FontAwesome;
+      content: ""; }
+    .table-view .table-view--drilldown.is-open .drilldown__menu {
+      background-color: crimson;
+      opacity: 1; }
+    .table-view .table-view--drilldown {
+      opacity: 0; }
+      .table-view .table-view--drilldown a {
+        line-height: 44px; }
+    .table-view .table-view--drilldown {
+      position: relative;
+      padding: 1rem;
+      background: #eee;
+      border-bottom: 1px solid #ccc;
+      cursor: pointer;
+      display: block;
+      box-sizing: border-box;
+      overflow: hidden;
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none; }
+      .table-view .table-view--drilldown:before {
+        transform: translateY(-50%);
+        font-style: normal;
+        font-weight: normal;
+        position: absolute;
+        right: 12px;
+        top: 50%;
+        color: #ccc;
+        line-height: 28px;
+        height: 28px;
+        font-size: 28px;
+        font-family: FontAwesome;
+        content: ""; }
+    .table-view .table-view--drilldown .is-drilldown {
+      position: relative;
+      overflow: hidden;
+      width: 100%; }
+      .table-view .table-view--drilldown .is-drilldown .js-drilldown-back a:before {
+        content: '';
+        left: 0; }
+      .table-view .table-view--drilldown .is-drilldown li {
+        display: block !important;
+        cursor: pointer;
+        margin: 0;
+        padding: 0; }
+        .table-view .table-view--drilldown .is-drilldown li a {
+          position: relative;
+          display: block;
+          width: 100%;
+          margin: 0;
+          padding: 0; }
+          .table-view .table-view--drilldown .is-drilldown li a:before {
+            transform: translateY(-50%);
+            font-style: normal;
+            font-weight: normal;
+            position: absolute;
+            right: 12px;
+            top: 50%;
+            color: #ccc;
+            line-height: 28px;
+            height: 28px;
+            font-size: 28px;
+            font-family: FontAwesome;
+            content: ""; }
+    .table-view .table-view--drilldown .is-drilldown-submenu {
+      position: absolute;
+      top: 0;
+      left: 100%;
+      z-index: -1;
+      height: 100%;
+      width: 100%;
+      background: #fff;
+      transition: transform 0.14s linear; }
+      .table-view .table-view--drilldown .is-drilldown-submenu.is-active {
+        z-index: 1;
+        display: block;
+        transform: translateX(-100%); }
+      .table-view .table-view--drilldown .is-drilldown-submenu.is-closing {
+        transform: translateX(100%); }
+    .table-view .table-view--drilldown .is-drilldown-submenu-parent > a {
+      position: relative; }
+      .table-view .table-view--drilldown .is-drilldown-submenu-parent > a::after {
+        position: absolute;
+        top: 50%;
+        margin-top: -6px; }
+    .table-view .table-view--drilldown .js-drilldown-back > a::before {
+      border-left-width: 0;
+      display: inline-block;
+      vertical-align: middle;
+      margin-right: 0.75rem; }
+  .table-view ::content .table-row,
+  .table-view .table-row {
+    padding: 1rem; }
+  .table-view--tiny ::content .table-row,
+  .table-view--tiny .table-row {
+    padding: 0.33333rem; }
+  .table-view--small ::content .table-row,
+  .table-view--small .table-row {
+    padding: 0.66667rem; }
+  .table-view--large ::content .table-row,
+  .table-view--large .table-row {
+    padding: 1.33333rem; }
+  .table-view--huge ::content .table-row,
+  .table-view--huge .table-row {
+    padding: 2rem; }
+  .table-view--flush ::content .table-row,
+  .table-view--flush .table-row {
+    padding: 0 !important; }
+  .table-view--responsive {
+    display: -ms-flexbox;
+    display: flex;
     -ms-flex-wrap: wrap;
     flex-wrap: wrap;
-    margin-left: 0;
-    margin-top: 0; }
-    .table-view--responsive > * {
-      -webkit-flex: 1 0 13.33333rem;
-      -ms-flex: 1 0 13.33333rem;
-      flex: 1 0 13.33333rem;
-      margin-left: 0;
-      margin-top: 0; }
-      @media (min-width: 26.66667rem) {
-        .table-view--responsive > * {
-          max-width: calc(50% - 0); } }
-      @media (min-width: 40rem) {
-        .table-view--responsive > * {
-          max-width: calc(33.33333% - 0); } }
-      @media (min-width: 53.33333rem) {
-        .table-view--responsive > * {
-          max-width: calc(25% - 0); } }
-      @media (min-width: 66.66667rem) {
-        .table-view--responsive > * {
-          max-width: calc(20% - 0); } }
-      @media (min-width: 80rem) {
-        .table-view--responsive > * {
-          max-width: calc(16.66667% - 0); } }
-      @media (min-width: 80rem) {
-        .table-view--responsive > * {
-          min-width: calc(16.66667% - 0); } }
+    -ms-flex-direction: row;
+    flex-direction: row;
+    margin-left: -0.66667rem;
+    margin-top: -0.66667rem; }
+    .table-view--responsive > *,
+    .table-view--responsive ::content > * {
+      -ms-flex: 1 0 15.33333rem;
+      flex: 1 0 15.33333rem;
+      margin-left: 0.66667rem;
+      margin-top: 0.66667rem; }
+  .table-view--bare ::content .table-row,
+  .table-view--bare .table-row {
+    background-color: transparent;
+    border-bottom: none; }
+  .table-view--ptr ::content .table-row,
   .table-view--ptr .table-row {
     -webkit-user-select: none;
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none; }
+  .table-view--col {
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-direction: column;
+    flex-direction: column; }
+  .table-view--row {
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-direction: row;
+    flex-direction: row; }
   .table-view--rev {
     direction: rtl; }
-  .table-view--flush .table-row {
-    padding: 0 !important; }
-  .table-view--tiny .table-row {
-    padding: 0.33333rem; }
-  .table-view--small .table-row {
-    padding: 0.66667rem; }
-  .table-view--large .table-row {
-    padding: 1.33333rem; }
-  .table-view--huge .table-row {
-    padding: 2rem; }
+  .table-view--avatars ::content .table-row img,
   .table-view--avatars .table-row img {
     height: 32px;
     border-radius: 50%; }
-  .table-view--drilldown .table-row {
-    background: red; }
+  .table-view--swipeable {
+    overflow-x: hidden; }
+  .table-view--inset {
+    background-image: none;
+    border: 1px solid;
+    border-color: #b1b1bc;
+    border-color: var(--px-table-view-border-color, #b1b1bc);
+    border-radius: 0; }
+    .table-view--inset .table-row:last-child {
+      border-bottom: none; }
   .table-view .switch {
     float: right;
     position: absolute;
@@ -369,64 +637,6 @@
     float: right;
     margin-top: 6px;
     margin-right: 10px; }
-  .table-view--nested .table-row {
-    transition: -webkit-transform 500ms ease;
-    transition: transform 500ms ease;
-    transition: transform 500ms ease, -webkit-transform 500ms ease; }
-    .table-view--nested .table-row.has-children {
-      line-height: normal;
-      overflow: hidden;
-      max-height: 75px; }
-      .table-view--nested .table-row.has-children .table-view {
-        margin-left: 15px;
-        -webkit-transform: translateX(99%);
-        transform: translateX(99%); }
-      .table-view--nested .table-row.has-children.is-selected {
-        background: transparent;
-        max-height: 100%; }
-        .table-view--nested .table-row.has-children.is-selected > .table-view {
-          display: block;
-          -webkit-transform: translateX(0);
-          transform: translateX(0); }
-
-.table-view {
-  border: none; }
-  .table-view ::content .iron-selected, .table-view .iron-selected {
-    background-color: #0a9ec1;
-    color: #fff;
-    -webkit-touch-callout: none;
-    /* iOS Safari */
-    -webkit-user-select: none;
-    /* Chrome/Safari/Opera */
-    /* Konqueror */
-    -moz-user-select: none;
-    /* Firefox */
-    -ms-user-select: none;
-    /* Internet Explorer/Edge */
-    user-select: none;
-    /* Non-prefixed version, currently
-                                 not supported by any browser */ }
-  .table-view ::content .table-row:first-child {
-    border-bottom: none; }
-  .table-view ::content .table-row:last-child {
-    border-bottom: none; }
-  .table-view ::content .table-row:first-child:last-child {
-    border-top: none;
-    border-bottom: none; }
-  .table-view ::content .table-row:not(:last-child) {
-    border-bottom-style: solid;
-    border-bottom-width: 1px;
-    border-bottom-color: #b1b1bc;
-    border-bottom-color: var(--px-table-row-border-color, #b1b1bc); }
-  .table-view--bare .table-row,
-  .table-view--bare ::content .table-row {
-    border-bottom: none !important; }
-  .table-view--inset {
-    background-image: none;
-    border: 1px solid;
-    border-color: #b1b1bc;
-    border-color: var(--px-table-view-border-color, #b1b1bc);
-    border-radius: 0; }
 
 </style>
 </template>

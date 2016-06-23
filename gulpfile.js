@@ -31,7 +31,7 @@ const sassOptions = {
 
 
 
-gulp.task('clean', function() {
+gulp.task('clean', function () {
   return gulp.src(['.tmp', 'css'], {
       read: false
     })
@@ -46,7 +46,7 @@ gulp.task('clean', function() {
 
 
 /// 1. Compile styles
-gulp.task('sass', function() {
+gulp.task('sass', function () {
   return gulp.src(`./sass/${pkg.name}-sketch.scss`)
     .pipe($.filelog())
     .pipe($.sass(sassOptions).on('error', $.sass.logError))
@@ -56,16 +56,26 @@ gulp.task('sass', function() {
     .pipe(gulp.dest('./css'))
     .pipe($.filelog());
 });
+gulp.task('sass-row', function () {
+  return gulp.src(`./sass/px-table-row-sketch.scss`)
+    .pipe($.filelog())
+    .pipe($.sass(sassOptions).on('error', $.sass.logError))
+    .pipe($.size())
+    //  .pipe($.concat(pkg.name + '.css'))
+    .pipe($.rename(`px-table-row.css`))
+    .pipe(gulp.dest('./css'))
+    .pipe($.filelog());
+});
 
 /// 2. Document styles
-gulp.task('sassdoc', function() {
+gulp.task('sassdoc', function () {
   return gulp.src('sass/**/*.scss')
     .pipe(sassdoc(sassdocOptions))
     .pipe($.filelog());
 });
 
 /// 3. Prefix styles
-gulp.task('autoprefixer', function() {
+gulp.task('autoprefixer', function () {
   return gulp.src('css/*.css')
     .pipe($.filelog())
     .pipe($.autoprefixer({
@@ -78,7 +88,7 @@ gulp.task('autoprefixer', function() {
 });
 
 /// 4. Minify styles
-gulp.task('cssmin', function() {
+gulp.task('cssmin', function () {
   return gulp.src('css/*.css')
     .pipe($.sourcemaps.init())
     .pipe($.cssmin())
@@ -96,16 +106,31 @@ gulp.task('cssmin', function() {
 
 /// 5. Create Polymer styles module
 const stylemod = require('gulp-style-modules');
-gulp.task('poly-styles', function() {
+
+
+gulp.task('poly-styles', function () {
   gulp.src(`./css/${pkg.name}.css`)
     .pipe($.filelog())
     .pipe(stylemod({
       filename: 'styles',
-      moduleId: function(file) {
+      moduleId: function (file) {
         return path.basename(file.path, path.extname(file.path)) + '-css';
       }
     }))
     .pipe($.rename(`${pkg.name}-styles.html`))
+    .pipe(gulp.dest('.'))
+    .pipe($.filelog());
+});
+gulp.task('poly-styles-row', function () {
+  gulp.src(`./css/px-table-row.css`)
+    .pipe($.filelog())
+    .pipe(stylemod({
+      filename: 'styles',
+      moduleId: function (file) {
+        return path.basename(file.path, path.extname(file.path)) + '-css';
+      }
+    }))
+    .pipe($.rename(`px-table-row-styles.html`))
     .pipe(gulp.dest('.'))
     .pipe($.filelog());
 });
@@ -115,12 +140,12 @@ gulp.task('poly-styles', function() {
 gulp.task('build:styles', gulpSequence('sass', 'autoprefixer'));
 
 
-gulp.task('sass:watch', function() {
+gulp.task('sass:watch', function () {
   gulp.watch('./sass/**/*.scss', ['sass']);
   gulp.watch('./css/**/*.css', ['autoprefixer']);
 });
 
 
-gulp.task('styles', gulpSequence('sass', 'autoprefixer', 'poly-styles', 'cssmin', 'sassdoc'));
+gulp.task('styles', gulpSequence('sass', 'sass-row', 'autoprefixer', 'cssmin', 'sassdoc', 'poly-styles', 'poly-styles-row'));
 gulp.task('watch', ['sass:watch']);
 gulp.task('default', ['clean', 'styles']);

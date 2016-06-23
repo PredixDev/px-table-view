@@ -20,12 +20,11 @@ $inuit-enable-input--bare: true;
 /// @access public
 @include block ('table-row') {
   @include c(null) {
-     @import'px-forms-design/_base.forms.scss';
+     @import 'px-forms-design/_base.forms.scss';
   }
-
-  ///Component
   @include clearfix();
   @include noselect();
+
   box-sizing    : border-box;
   position      : relative;
   overflow      : hidden;
@@ -36,9 +35,9 @@ $inuit-enable-input--bare: true;
 
   //font-size       : $table-row-font-size;
   //background-color: $table-row-background-color;
-   > *:not(select),
+   > *:not(input),
    > *:not(textarea),
-  > *:not(input) {
+  > *:not(select) {
     -webkit-text-size-adjust   : none;
     -webkit-highlight          : none;
     -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
@@ -68,6 +67,19 @@ $inuit-enable-input--bare: true;
   ///.table-row--flush
   @include modifier ('flush') {
     line-height: normal;
+  }
+  ///---------------------------------------------------------------------------
+  ///.table-row--col
+  @include modifier ('col') {
+    flex-direction: column;
+  }
+  ///---------------------------------------------------------------------------
+  ///.table-row--center
+  @include modifier ('center') {
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    text-align: center;
   }
   ///---------------------------------------------------------------------------
   //.table-row--header
@@ -179,7 +191,7 @@ $inuit-enable-input--bare: true;
     @include noselect();
     display       : flex;
     flex-direction: column;
-    align-self    : stretch;
+    //align-self    : stretch;
     order         : 2;
     //width         : 100%;
     flex          : 1;
@@ -212,6 +224,7 @@ $inuit-enable-input--bare: true;
     align-items: center;
     align-self : stretch;
     display    : flex;
+    white-space: nowrap;
     //flex-direction: column;
     //align-content: flex-end;
     //justify-content: flex-end;
@@ -270,10 +283,10 @@ $inuit-enable-input--bare: true;
     flex           : 0 1 auto;
     order          : 1;
     display        : flex;
-    align-self: stretch;
+    align-self     : stretch;
     justify-content: center;
-    align-content: center;
-    flex-direction: column;
+    align-content  : center;
+    flex-direction : column;
     padding-right  : $inuit-base-spacing-unit;
     ///---------------------------------------------------------------------------
     ///.table-row__media--left
@@ -306,7 +319,6 @@ $inuit-enable-input--bare: true;
     ///---------------------------------------------------------------------------
     ///.table-row__media--icon
     @include modifier ('icon') {
-
 
       //padding     : $inuit-base-spacing-unit--tiny;
       //margin-left: $inuit-base-spacing-unit--small;

@@ -90,11 +90,11 @@ $table-row-checkbox-checked-border-color: $select-blue-pressed;
 ///
 $table-row-checkbox-background-color    : $select-blue-default;
 ///
-$table-view-responsive-row-width        : calculateRem(250px);
+$table-view-responsive-row-width        : calculateRem(230px);
 ///
 $table-view-responsive-row-gutters      : 0;
 ///
-$table-view-responsive-row-max          : 6;
+$table-view-responsive-row-max          : 4;
 
 $table-view-padding--tiny               : $inuit-base-spacing-unit--tiny;
 $table-view-padding--small              : $inuit-base-spacing-unit--small;

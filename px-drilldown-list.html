@@ -69,9 +69,7 @@ Custom property | Description | Default
   <style>
     :host {
       display: block;
-
     }
-
     :host .drilldown {
       -webkit-transition: -webkit-transform 0.15s linear;
       transition: transform 0.15s linear, -webkit-transform 0.15s linear;
@@ -83,7 +81,6 @@ Custom property | Description | Default
       display: block;
       @apply(--px-drilldown-link);
     }
-
     :host ::content .is-drilldown {
       position: relative;
       overflow: auto;
@@ -159,18 +156,21 @@ Custom property | Description | Default
       font-family: FontAwesome;
       content: "";
     }
-
   </style>
   <template strip-whitespace>
+  <div id="drilldownContainer">
     <ul id="drilldown" data-drilldown>
       <content id="content"></content>
     </ul>
+  </div>
   </template>
 </dom-module>
 <script>
   Polymer({
     is: 'px-drilldown-list',
-    behaviors: [Polymer.IronResizableBehavior, Polymer.IronMultiSelectableBehavior],
+    behaviors: [
+      Polymer.IronResizableBehavior, Polymer.IronMultiSelectableBehavior
+    ],
     listeners: {
       'iron-resize': '_resizeHandler'
     },
@@ -229,8 +229,11 @@ Custom property | Description | Default
         return;
       }
       this.debounce('resetLayout', function () {
-        this.$.drilldownContainer.style.minHeight = '';
-        this.$.drilldownContainer.style.maxWidth = '';
+        if(this.$.drilldownContainer){
+          this.$.drilldownContainer.style.minHeight = '';
+          this.$.drilldownContainer.style.maxWidth = '';
+        }
+
         this.resetLayout();
       }, 100);
     },
@@ -239,22 +242,17 @@ Custom property | Description | Default
       this.$element = this.$.drilldown;
       this.toggleClass('is-drilldown', true, this.$.drilldown);
       this.toggleClass('drilldown__menu', true, this.$.drilldown);
-
       var _submenus = Polymer.dom(this.$.drilldown.root).querySelectorAll('[data-submenu]');
       var _menuItems = Polymer.dom(this.$.drilldown.root).querySelectorAll('li a');
-
       /* Safari */
       this._submenus = Array.prototype.slice.call(_submenus);
       this._menuItems = Array.prototype.slice.call(_menuItems);
-
       this._menuItems.forEach(function (el) {
         self.toggleClass('is-drilldown-submenu-parent', true, el.parentNode);
         el.parentNode.setAttribute('role', 'menu-item');
         el.parentNode.setAttribute('data-id', el.textContent);
       });
-
       var _submenuAnchors = Polymer.dom(this.$.drilldown.root).querySelectorAll('li.is-drilldown-submenu-parent a');
-
       /* Safari */
       this._submenuAnchors = Array.prototype.slice.call(_submenuAnchors);
       this._prepareMenu();
@@ -269,7 +267,6 @@ Custom property | Description | Default
         submenus,
         $menu,
         $back;
-
       var el = null;
       for (var i = 0; i < this._submenuAnchors.length; i++) {
         el = this._submenuAnchors[i];
@@ -282,37 +279,24 @@ Custom property | Description | Default
       //Build sub menus
       for (var i = 0; i < this._submenus.length; i++) {
         $menu = Polymer.dom(this._submenus[i]);
-
         $back = $menu.querySelectorAll('.js-drilldown-back');
-
-        console.log($menu);
-        console.log('back button', $back);
-
         $menu.setAttribute('tabindex', 0);
         $menu.setAttribute('aria-hidden', true);
         $menu.setAttribute('role', 'menu');
         self.toggleClass('drilldown__sub-menu', true, $menu);
         self.toggleClass('is-drilldown-submenu', true, $menu);
-
         if ($back && !$back.length) {
-          console.log('Add back button', $menu);
+          //  console.log('Add back button', $menu);
           $menu.insertBefore(self._createBackButton(), $menu.firstChild);
           //Polymer.dom.flush();
         }
         self._back($menu);
       }
-
     },
     _events: function ($elem) {
       var _this = this;
       var _handleClick = function (e) {
         var normalizedEvent = Polymer.dom(e);
-        // logs #myButton
-        console.info('rootTarget is:', normalizedEvent.rootTarget);
-        // logs the instance of event-targeting that hosts #myButton
-        console.info('localTarget is:', normalizedEvent.localTarget);
-        // logs [#myButton, document-fragment, event-retargeting,       body, html, document, Window]
-        console.info('path is:', normalizedEvent.path);
         _this.$selected = e.target;
         if (e.target.parentNode.classList.contains('is-drilldown-submenu-parent')) {
           e.stopImmediatePropagation();
@@ -335,14 +319,13 @@ Custom property | Description | Default
       $elem.removeEventListener('click', _handleClick);
       $elem.addEventListener('click', _handleClick);
     },
-
     /**
      * Fires when back button is clicked
      * @event px-drilldown-back
      * @param {Element} $elem - the current sub-menu back link
     */
     _back: function ($elem) {
-      console.warn('wireup back event', Polymer.dom($elem).firstChild)
+      //console.warn('wireup back event', Polymer.dom($elem).firstChild)
       var _this = this;
       var btns = Polymer.dom($elem).querySelectorAll('.js-drilldown-back');
       Array.prototype.slice.call(btns).forEach(function (btn) {
@@ -375,7 +358,6 @@ Custom property | Description | Default
         _this.toggleClass('is-closing', false, $elem);
         $elem.removeEventListener(transitionend($elem), handleTransition);
       };
-
       $elem.addEventListener(transitionend($elem), handleTransition);
       this.fire('px-drilldown-hide', {target: $elem});
     },
@@ -387,12 +369,11 @@ Custom property | Description | Default
       var _this = this;
       var elems = this.$element.querySelectorAll('.is-drilldown-submenu.is-active');
       elems.forEach(function (el) {
-        console.log('elem', el);
+        //  console.log('elem', el);
         _this._hide(el);
       });
     },
     _menuLinkEvents: function () {},
-
     /**
      * Create a wrapper element for the back button.
      */
@@ -424,7 +405,6 @@ Custom property | Description | Default
         result = {};
       this._submenus.push(this.$element);
       var arr = this._submenus;
-
       var len = arr.length,
         i = 0,
         item;
@@ -435,7 +415,6 @@ Custom property | Description | Default
           ? numOfElems
           : max;
       }
-
       result['min-height'] = max * this._menuItems[0].getBoundingClientRect().height + 'px';
       result['max-width'] = this.$element.getBoundingClientRect().width + 'px';
       return result;

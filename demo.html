@@ -222,8 +222,6 @@
           </demo-snippet>
           <!-- TODO:  -->
           <h2>Switches</h2>
-      
-
           <demo-snippet>
             <template>
               <px-table-view modifier="small">
@@ -236,11 +234,11 @@
                 <px-table-row modifier="switch" title="Checked Switch">
                   <px-table-row-switch name="cb06" checked></px-table-row-switch>
                 </px-table-row>
-                <px-table-row modifier="switch"  title="Switch (Disabled)">
+                <px-table-row modifier="switch" title="Switch (Disabled)">
                   <px-table-row-switch name="cb07" disabled></px-table-row-switch>
                 </px-table-row>
                 <px-table-row modifier="switch" title="Checked Switch (Disabled)">
-                  <px-table-row-switch name="cb08"  disabled checked></px-table-row-switch>
+                  <px-table-row-switch name="cb08" disabled checked></px-table-row-switch>
                 </px-table-row>
               </px-table-view>
             </template>
@@ -495,6 +493,17 @@
               <px-table-view modifier="row responsive">
                 <px-table-row title="Text Label" modifier="tappable"></px-table-row>
                 <px-table-row title="Text Label" modifier="tappable"></px-table-row>
+              </px-table-view>
+            </template>
+          </demo-snippet>
+          <h2>Row Modifier</h2>
+          <demo-snippet>
+            <template>
+              <px-table-view modifier="row responsive" row-modifier="tappable col center">
+                <px-table-row icon="fa:fa-square" title="Single-line item"></px-table-row>
+                <px-table-row icon="fa:fa-square" title="Single-line item"></px-table-row>
+                <px-table-row icon="fa:fa-square" title="Single-line item"></px-table-row>
+                <px-table-row icon="fa:fa-square" title="Single-line item"></px-table-row>
               </px-table-view>
             </template>
           </demo-snippet>
@@ -851,7 +860,9 @@
           </demo-snippet>
           <h2>Table View Sortable</h2>
           <p>
-            The following example uses the <code>px-sortable-list</code> element to enable sortable rows.
+            The following example uses the
+            <code>px-sortable-list</code>
+            element to enable sortable rows.
           </p>
           <demo-snippet>
             <template>
@@ -939,59 +950,56 @@
             </px-drilldown-list>
           </template>
         </template>
-        </demo-snippet>
-
-        <h2>Pull to Refresh</h2>
-        <demo-snippet>
-          <template id="">
-            <div class="flex flex--center">
-              <div>
-                <device-view device="phone" src="./demo/ptr-mobile.html"></device-view>
-                <a href="./demo/ptr-mobile.html" target="_blank">Open in new page</a>
-              </div>
+      </demo-snippet>
+      <h2>Pull to Refresh</h2>
+      <demo-snippet>
+        <template id="">
+          <div class="flex flex--center">
+            <div>
+              <device-view device="phone" src="./demo/ptr-mobile.html"></device-view>
+              <a href="./demo/ptr-mobile.html" target="_blank">Open in new page</a>
             </div>
-          </template>
-        </demo-snippet>
-
-        <h2>Iron List</h2>
-        <demo-snippet>
-          <template id="">
-            <div class="flex flex--center">
-              <div>
-                <device-view device="phone" src="./demo/iron-list-demo.html"></device-view>
-                <a href="./demo/iron-list-demo.html" target="_blank">Open in new page</a>
-              </div>
+          </div>
+        </template>
+      </demo-snippet>
+      <h2>Iron List</h2>
+      <demo-snippet>
+        <template id="">
+          <div class="flex flex--center">
+            <div>
+              <device-view device="phone" src="./demo/iron-list-demo.html"></device-view>
+              <a href="./demo/iron-list-demo.html" target="_blank">Open in new page</a>
             </div>
-          </template>
-        </demo-snippet>
-
-        <h2>Swipe Actions</h2>
-        <demo-snippet>
-          <template id="">
-            <div class="flex flex--center">
-              <div>
-                <device-view device="phone" src="./demo/swipe-actions-mobile.html"></device-view>
-                <a href="./demo/iron-list-demo.html" target="_blank">Open in new page</a>
-              </div>
+          </div>
+        </template>
+      </demo-snippet>
+      <h2>Swipe Actions</h2>
+      <demo-snippet>
+        <template id="">
+          <div class="flex flex--center">
+            <div>
+              <device-view device="phone" src="./demo/swipe-actions-mobile.html"></device-view>
+              <a href="./demo/iron-list-demo.html" target="_blank">Open in new page</a>
             </div>
-          </template>
-        </demo-snippet>
-        <br>
-        <hr>
-        <px-code-editor id="myEditor" layout="left" style="height: 500px;"></px-code-editor>
-        <script type="text/javascript">
-          document.addEventListener('WebComponentsReady', function (e) {
-            setTimeout(function () {
-              document.getElementById('myEditor').code = '<h2>Customize some code</h2>';
-            }, 500);
-          });
-        </script>
-      </article>
+          </div>
+        </template>
+      </demo-snippet>
       <br>
-      <footer>
-        <p>&copy; 2016 GE Digital</p>
-      </footer>
-    </div>
-    <script src="http://localhost:35724/livereload.js?snipver=1"></script>
-  </body>
+      <hr>
+      <px-code-editor id="myEditor" layout="left" style="height: 500px;"></px-code-editor>
+      <script type="text/javascript">
+        document.addEventListener('WebComponentsReady', function (e) {
+          setTimeout(function () {
+            document.getElementById('myEditor').code = '<h2>Customize some code</h2>';
+          }, 500);
+        });
+      </script>
+    </article>
+    <br>
+    <footer>
+      <p>&copy; 2016 GE Digital</p>
+    </footer>
+  </div>
+  <script src="http://localhost:35724/livereload.js?snipver=1"></script>
+</body>
 </html>

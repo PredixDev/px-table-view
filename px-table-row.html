@@ -1,8 +1,9 @@
 <script src="../hammerjs/hammer.min.js"></script>
 <link rel="import" href="../polymer/polymer.html"/>
 <link rel="import" href="../iron-resizable-behavior/iron-resizable-behavior.html">
-<link rel="import" href="../polymer-font-awesome/polymer-font-awesome.html"/>
+<link rel="import" href="../px-partials/px-icon/px-icon.html"/>
 
+<link rel="import" href="px-table-row-styles.html">
 <link rel="import" href="px-table-row-behavior.html"/>
 <link rel="import" href="px-table-row-checkbox.html"/>
 <link rel="import" href="px-table-row-actions.html"/>
@@ -72,7 +73,8 @@ Custom property | Description | Default
 @homepage index.html
 -->
 <dom-module id="px-table-row">
-  <link rel="import" type="css" href="css/px-table-row.css">
+  <!-- <link rel="import" type="css" href="css/px-table-row.css"> -->
+  <style include="px-table-row-css"></style>
   <style media="screen">
     :host {
       display: block;
@@ -143,23 +145,23 @@ Custom property | Description | Default
         </template>
         <template is="dom-if" if="{{icon}}">
           <div class="table-row__media table-row__media--icon">
-            <iron-icon id="icon" icon$="{{icon}}"></iron-icon>
+            <px-icon id="icon" icon$="{{icon}}" size$="{{iconSize}}"></px-icon>
           </div>
         </template>
         <template is="dom-if" if="{{iconLeft}}">
           <div class="table-row__media table-row__media--icon table-row__media--left">
-            <iron-icon id="iconLeft" icon$="{{iconLeft}}"></iron-icon>
+            <px-icon id="iconLeft" icon$="{{iconLeft}}" size$="{{iconSize}}"></px-icon>
           </div>
         </template>
         <template is="dom-if" if="{{iconRight}}">
           <div class="table-row__media table-row__media--icon table-row__media--right">
-            <iron-icon id="iconRight" icon$="{{iconRight}}"></iron-icon>
+            <px-icon id="iconRight" icon$="{{iconRight}}" size$="{{iconSize}}"></px-icon>
           </div>
         </template>
         <template is="dom-if" if="{{editMode}}">
           <div class="table-row__media table-row__media--icon table-row__media--right">
             <button class="btn btn--bare table-row__handle">
-              <iron-icon id="iconHandle" icon="fa:fa-bars"></iron-icon>
+              <px-icon id="iconHandle" icon="fa:fa-bars"></px-icon>
             </button>
           </div>
         </template>
@@ -270,6 +272,12 @@ Custom property | Description | Default
         */
         size: {
           type: String
+        },
+        /**
+        * The size to set on the icon.
+        */
+        iconSize: {
+          type: Number
         },
         /**
         * The indicator to set on the table-row.

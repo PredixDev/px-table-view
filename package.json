@@ -11,7 +11,7 @@
     "postinstall": "bower install",
     "serve": "polyserve .",
     "build": "gulp",
-    "start": "polyserve",
+    "start": "grunt depserve",
     "test": "wct",
     "watch": "gulp watch"
   },
