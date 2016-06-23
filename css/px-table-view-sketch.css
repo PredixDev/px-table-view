@@ -253,14 +253,17 @@ html {
   display: none;
   background-color: #efeff4;
   border-bottom: 1px solid #b1b1bc;
-  transform: translateY(-100%); }
+  -webkit-transform: translateY(-100%);
+          transform: translateY(-100%); }
 
 .ptr__content {
   overflow-y: auto;
   -webkit-overflow-scrolling: touch;
   z-index: 20;
-  backface-visibility: hidden;
-  perspective: 1000;
+  -webkit-backface-visibility: hidden;
+          backface-visibility: hidden;
+  -webkit-perspective: 1000;
+          perspective: 1000;
   box-sizing: border-box; }
 
 .ptr__icon {
@@ -269,17 +272,20 @@ html {
   width: auto;
   height: auto;
   transition: all .25s ease;
-  transform: rotate(90deg);
+  -webkit-transform: rotate(90deg);
+          transform: rotate(90deg);
   margin-top: 5px; }
 
 .ptr__loading {
   opacity: .4;
   display: none;
   text-align: center;
-  -ms-flex-item-align: center;
-      align-self: center;
-  -ms-flex: 1;
-      flex: 1;
+  -webkit-align-self: center;
+      -ms-flex-item-align: center;
+          align-self: center;
+  -webkit-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
   margin: 15px 0; }
   .ptr__loading span {
     display: inline-block;
@@ -287,45 +293,66 @@ html {
     width: 10px;
     height: 10px;
     margin-right: 3px;
-    transform: scale(0.3);
+    -webkit-transform: scale(0.3);
+            transform: scale(0.3);
     border-radius: 50%;
-    animation: ptr-loading .4s infinite alternate; }
+    -webkit-animation: ptr-loading .4s infinite alternate;
+            animation: ptr-loading .4s infinite alternate; }
 
 .ptr-reset.ptr {
   transition: all 0.25s ease; }
 
 .ptr-reset .ptr__content {
   transition: all 0.25s ease;
-  transform: translate3d(0, 0, 0); }
+  -webkit-transform: translate3d(0, 0, 0);
+          transform: translate3d(0, 0, 0); }
 
 .ptr-loading.ptr {
   transition: all 0.25s ease; }
 
 .ptr-loading .ptr__content {
   transition: all 0.25s ease;
-  transform: translate3d(0, 50px, 0); }
+  -webkit-transform: translate3d(0, 50px, 0);
+          transform: translate3d(0, 50px, 0); }
 
 .ptr-loading .ptr__loader {
-  transform: translateY(0); }
+  -webkit-transform: translateY(0);
+          transform: translateY(0); }
 
 .ptr-loading .ptr__loading {
   display: block; }
 
 .ptr__loading #l1 {
-  animation-delay: 0; }
+  -webkit-animation-delay: 0;
+          animation-delay: 0; }
 
 .ptr__loading #l2 {
-  animation-delay: .2s; }
+  -webkit-animation-delay: .2s;
+          animation-delay: .2s; }
 
 .ptr__loading #l3 {
-  animation-delay: .3s; }
+  -webkit-animation-delay: .3s;
+          animation-delay: .3s; }
+
+@-webkit-keyframes ptr-loading {
+  0% {
+    -webkit-transform: translateY(0) scale(0.3);
+            transform: translateY(0) scale(0.3);
+    opacity: 0; }
+  100% {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+    background-color: #3E87E8;
+    opacity: 1; } }
 
 @keyframes ptr-loading {
   0% {
-    transform: translateY(0) scale(0.3);
+    -webkit-transform: translateY(0) scale(0.3);
+            transform: translateY(0) scale(0.3);
     opacity: 0; }
   100% {
-    transform: scale(1);
+    -webkit-transform: scale(1);
+            transform: scale(1);
     background-color: #3E87E8;
     opacity: 1; } }
 
@@ -337,10 +364,12 @@ html {
   margin: 0;
   padding: 0;
   position: relative;
+  display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
-  -ms-flex-direction: column;
-      flex-direction: column;
+  -webkit-flex-direction: column;
+      -ms-flex-direction: column;
+          flex-direction: column;
   /*
  * Copyright (c) 2016 GE Global Research. All rights reserved.
  *
@@ -419,9 +448,11 @@ html {
     .table-view .switch input:checked + .toggle {
       background-color: #4cd964; }
     .table-view .switch input:checked + .toggle:before {
-      transform: translateX(18px); }
+      -webkit-transform: translateX(18px);
+              transform: translateX(18px); }
     .table-view .switch input:not(:checked) + .toggle:before {
-      transform: translateX(0px); }
+      -webkit-transform: translateX(0px);
+              transform: translateX(0px); }
     .table-view .switch input:disabled + .toggle {
       opacity: 0.3;
       cursor: default;
@@ -449,12 +480,15 @@ html {
   .table-view .table-view--drilldown {
     transition: all 0.4s;
     border-top: none;
+    display: -webkit-flex;
     display: -ms-flexbox;
     display: flex;
-    -ms-flex-direction: column;
-        flex-direction: column; }
+    -webkit-flex-direction: column;
+        -ms-flex-direction: column;
+            flex-direction: column; }
     .table-view .table-view--drilldown.is-open .drilldown__context:before {
-      transform: translateY(-50%);
+      -webkit-transform: translateY(-50%);
+              transform: translateY(-50%);
       font-style: normal;
       font-weight: normal;
       position: absolute;
@@ -487,7 +521,8 @@ html {
           -ms-user-select: none;
               user-select: none; }
       .table-view .table-view--drilldown:before {
-        transform: translateY(-50%);
+        -webkit-transform: translateY(-50%);
+                transform: translateY(-50%);
         font-style: normal;
         font-weight: normal;
         position: absolute;
@@ -518,7 +553,8 @@ html {
           margin: 0;
           padding: 0; }
           .table-view .table-view--drilldown .is-drilldown li a:before {
-            transform: translateY(-50%);
+            -webkit-transform: translateY(-50%);
+                    transform: translateY(-50%);
             font-style: normal;
             font-weight: normal;
             position: absolute;
@@ -538,13 +574,16 @@ html {
       height: 100%;
       width: 100%;
       background: #fff;
+      transition: -webkit-transform 0.14s linear;
       transition: transform 0.14s linear; }
       .table-view .table-view--drilldown .is-drilldown-submenu.is-active {
         z-index: 1;
         display: block;
-        transform: translateX(-100%); }
+        -webkit-transform: translateX(-100%);
+                transform: translateX(-100%); }
       .table-view .table-view--drilldown .is-drilldown-submenu.is-closing {
-        transform: translateX(100%); }
+        -webkit-transform: translateX(100%);
+                transform: translateX(100%); }
     .table-view .table-view--drilldown .is-drilldown-submenu-parent > a {
       position: relative; }
       .table-view .table-view--drilldown .is-drilldown-submenu-parent > a::after {
@@ -575,18 +614,22 @@ html {
   .table-view--flush .table-row {
     padding: 0 !important; }
   .table-view--responsive {
+    display: -webkit-flex;
     display: -ms-flexbox;
     display: flex;
-    -ms-flex-wrap: wrap;
-        flex-wrap: wrap;
-    -ms-flex-direction: row;
-        flex-direction: row;
+    -webkit-flex-wrap: wrap;
+        -ms-flex-wrap: wrap;
+            flex-wrap: wrap;
+    -webkit-flex-direction: row;
+        -ms-flex-direction: row;
+            flex-direction: row;
     margin-left: -0.6666666667rem;
     margin-top: -0.6666666667rem; }
     .table-view--responsive > *,
     .table-view--responsive ::content > * {
-      -ms-flex: 1 0 15.3333333333rem;
-          flex: 1 0 15.3333333333rem;
+      -webkit-flex: 1 0 15.3333333333rem;
+          -ms-flex: 1 0 15.3333333333rem;
+              flex: 1 0 15.3333333333rem;
       margin-left: 0.6666666667rem;
       margin-top: 0.6666666667rem; }
   .table-view--bare ::content .table-row,
@@ -600,15 +643,19 @@ html {
         -ms-user-select: none;
             user-select: none; }
   .table-view--col {
+    display: -webkit-flex;
     display: -ms-flexbox;
     display: flex;
-    -ms-flex-direction: column;
-        flex-direction: column; }
+    -webkit-flex-direction: column;
+        -ms-flex-direction: column;
+            flex-direction: column; }
   .table-view--row {
+    display: -webkit-flex;
     display: -ms-flexbox;
     display: flex;
-    -ms-flex-direction: row;
-        flex-direction: row; }
+    -webkit-flex-direction: row;
+        -ms-flex-direction: row;
+            flex-direction: row; }
   .table-view--rev {
     direction: rtl; }
   .table-view--avatars ::content .table-row img,

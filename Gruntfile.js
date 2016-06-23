@@ -41,7 +41,7 @@ module.exports = function (grunt) {
 
     autoprefixer: {
       options: {
-        browsers: ['last 2 version']
+        browsers: ['last 2 versions', 'Safari 8' ]
       },
       multiple_files: {
         expand: true,
@@ -113,21 +113,25 @@ module.exports = function (grunt) {
         }
       }
     },
+    cssmin: {
+      target: {
+        files: {
+          'css/px-table-view.min.css': ['css/px-table-view.css'],
+          'css/px-table-row.min.css': ['css/px-table-row.css']
+        }
+      }
+    },
     'polymer-css-compiler': {
-      //Default options sent to task
-      default_options: {
+      target: {
         filename: '-styles',
         files: {
-          './px-table-view.html': ['css/px-table-view.css'],
-          './px-table-row.html': ['css/px-table-row.css']
+          './px-table-view.html': ['css/px-table-view.min.css'],
+          './px-table-row.html': ['css/px-table-row.min.css']
         }
       }
     }
   });
 
-
-
-  /*  */
   grunt.loadNpmTasks('grunt-sass');
   grunt.loadNpmTasks('grunt-shell');
   grunt.loadNpmTasks('grunt-contrib-clean');
@@ -138,11 +142,16 @@ module.exports = function (grunt) {
   grunt.loadNpmTasks('grunt-concurrent');
   grunt.loadNpmTasks('webdriver-support');
   grunt.loadNpmTasks('polymer-css-compiler');
+  grunt.loadNpmTasks('grunt-contrib-cssmin');
+
+
+
   // Default task.
   grunt.registerTask('default', 'Basic build', [
     'clean:css',
 		'sass',
 		'autoprefixer',
+    'cssmin',
     'polymer-css-compiler'
 	]);
 
