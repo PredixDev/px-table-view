@@ -595,9 +595,6 @@ html {
       display: inline-block;
       vertical-align: middle;
       margin-right: 0.75rem; }
-  .table-view ::content .table-row,
-  .table-view .table-row {
-    padding: 1rem; }
   .table-view--tiny ::content .table-row,
   .table-view--tiny .table-row {
     padding: 0.3333333333rem; }
@@ -613,6 +610,9 @@ html {
   .table-view--flush ::content .table-row,
   .table-view--flush .table-row {
     padding: 0 !important; }
+  .table-view ::content .table-row,
+  .table-view .table-row {
+    padding: 1rem; }
   .table-view--responsive {
     display: -webkit-flex;
     display: -ms-flexbox;

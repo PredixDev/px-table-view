@@ -285,7 +285,8 @@ $inuit-enable-input--bare: true;
     justify-content: center;
     align-content  : center;
     flex-direction : column;
-    //padding-right  : $inuit-base-spacing-unit;
+    margin-right  : $inuit-base-spacing-unit;
+    margin-right: var(--px-table-row-media-margin, $inuit-base-spacing-unit);
     ///---------------------------------------------------------------------------
     ///.table-row__media--left
     @include modifier ('left') {
@@ -295,7 +296,7 @@ $inuit-enable-input--bare: true;
     ///.table-row__media--right
     @include modifier ('right') {
       //margin-right: $inuit-base-spacing-unit;
-    //  margin-right: var(--px-table-row-media-margin-right, 0);
+      margin-right: var(--px-table-row-media-margin-right, 0);
       order       : 9;
     }
     ///---------------------------------------------------------------------------

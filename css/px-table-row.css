@@ -996,12 +996,15 @@ a {
             align-content: center;
     -webkit-flex-direction: column;
         -ms-flex-direction: column;
-            flex-direction: column; }
+            flex-direction: column;
+    margin-right: 1rem;
+    margin-right: var(--px-table-row-media-margin, 1rem); }
     .table-row__media--left {
       -webkit-order: 0;
           -ms-flex-order: 0;
               order: 0; }
     .table-row__media--right {
+      margin-right: var(--px-table-row-media-margin-right, 0);
       -webkit-order: 9;
           -ms-flex-order: 9;
               order: 9; }
