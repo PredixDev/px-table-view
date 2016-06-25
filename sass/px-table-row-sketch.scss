@@ -285,8 +285,8 @@ $inuit-enable-input--bare: true;
     justify-content: center;
     align-content  : center;
     flex-direction : column;
-    margin-right  : $inuit-base-spacing-unit;
-    margin-right: var(--px-table-row-media-margin, $inuit-base-spacing-unit);
+    margin-left: var(--px-table-row-media-margin, $inuit-base-spacing-unit--small);
+    margin-right: var(--px-table-row-media-margin, $inuit-base-spacing-unit--small);
     ///---------------------------------------------------------------------------
     ///.table-row__media--left
     @include modifier ('left') {

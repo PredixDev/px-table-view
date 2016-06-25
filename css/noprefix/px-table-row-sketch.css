@@ -908,8 +908,8 @@ a {
     justify-content: center;
     align-content: center;
     flex-direction: column;
-    margin-right: 1rem;
-    margin-right: var(--px-table-row-media-margin, 1rem); }
+    margin-left: var(--px-table-row-media-margin, 0.6666666667rem);
+    margin-right: var(--px-table-row-media-margin, 0.6666666667rem); }
     .table-row__media--left {
       order: 0; }
     .table-row__media--right {

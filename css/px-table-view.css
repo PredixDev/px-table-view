@@ -222,17 +222,12 @@ pre {
 html {
   box-sizing: border-box; }
 
-*, *:before, *:after {
-  box-sizing: inherit; }
-
-/**
- * the html and :host declarations cannot be adjacent to one other
- * or cssmin will combine them into a single rule, breaking in
- * Safari and Firefox.
- */
 :host {
   /*! Comment to prevent cssmin munging this rule with html above and borking Safari */
   box-sizing: border-box; }
+
+*, *:before, *:after {
+  box-sizing: inherit; }
 
 /**
  * Margin and padding helper classes with breakpoint prefixes. Use these to tweak layout on a micro
@@ -475,6 +470,27 @@ html {
     content: ' '; }
   .table-view:after {
     clear: both; }
+  .table-view ::content .table-row,
+  .table-view .table-row {
+    padding: 1rem; }
+  .table-view--tiny ::content .table-row,
+  .table-view--tiny .table-row {
+    padding: 0.3333333333rem !important; }
+  .table-view--small ::content .table-row,
+  .table-view--small .table-row {
+    padding: 0.6666666667rem !important; }
+  .table-view--large ::content .table-row,
+  .table-view--large .table-row {
+    padding: 1.3333333333rem !important; }
+  .table-view--huge ::content .table-row,
+  .table-view--huge .table-row {
+    padding: 2rem !important; }
+  .table-view--regular ::content .table-row,
+  .table-view--regular .table-row {
+    padding: 1rem !important; }
+  .table-view--flush ::content .table-row,
+  .table-view--flush .table-row {
+    padding: 0 !important; }
   .table-viewul {
     margin: 0 !important; }
   .table-view .breadcrumbs li:after {
@@ -604,24 +620,6 @@ html {
       display: inline-block;
       vertical-align: middle;
       margin-right: 0.75rem; }
-  .table-view--tiny ::content .table-row,
-  .table-view--tiny .table-row {
-    padding: 0.3333333333rem; }
-  .table-view--small ::content .table-row,
-  .table-view--small .table-row {
-    padding: 0.6666666667rem; }
-  .table-view--large ::content .table-row,
-  .table-view--large .table-row {
-    padding: 1.3333333333rem; }
-  .table-view--huge ::content .table-row,
-  .table-view--huge .table-row {
-    padding: 2rem; }
-  .table-view--flush ::content .table-row,
-  .table-view--flush .table-row {
-    padding: 0 !important; }
-  .table-view ::content .table-row,
-  .table-view .table-row {
-    padding: 1rem; }
   .table-view--responsive {
     display: -webkit-flex;
     display: -ms-flexbox;
@@ -676,10 +674,17 @@ html {
   .table-view--inset {
     background-image: none;
     border: 1px solid;
-    border-color: #b1b1bc;
     border-color: var(--px-table-view-border-color, #b1b1bc);
     border-radius: 0; }
     .table-view--inset .table-row:last-child {
+      border-bottom: none; }
+  .table-view--borders ::content .table-row,
+  .table-view--borders .table-row {
+    border-bottom: 1px solid;
+    border-color: var(--px-table-view-border-color, #b1b1bc);
+    border-radius: 0; }
+    .table-view--borders ::content .table-row:last-child,
+    .table-view--borders .table-row:last-child {
       border-bottom: none; }
   .table-view .switch {
     float: right;
