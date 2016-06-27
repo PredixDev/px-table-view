@@ -3,23 +3,23 @@
   "version": "0.0.2",
   "description": "A responsive mobile first table view list.",
   "authors": [
-		"Jonnie Spratley <jonnie.spratley@ge.com>"
-	],
+    "Jonnie Spratley <jonnie.spratley@ge.com>"
+  ],
   "main": [
-		"px-table-view.html"
-	],
+    "px-table-view.html"
+  ],
   "keywords": [
-		"px",
-		"px-mobile"
-	],
+    "px",
+    "px-mobile"
+  ],
   "ignore": [
-		".*",
-		"npm-debug.log",
-		"Gruntfile.js",
-		"bower_components",
-		"node_modules",
-		"test"
-	],
+    ".*",
+    "npm-debug.log",
+    "Gruntfile.js",
+    "bower_components",
+    "node_modules",
+    "test"
+  ],
   "dependencies": {
     "polymer": "~1.5.0",
     "px-theme": "https://github.com/PredixDev/px-theme.git#~0.4.0",
@@ -28,8 +28,8 @@
     "hammerjs": "~2.0.8",
     "iron-selector": "PolymerElements/iron-selector#^1.5.1",
     "Sortable": "~1.4.2",
-    "px-partials": "*",
-    "polymer-font-awesome": "https://github.com/PredixDev/polymer-font-awesome.git#master",
+    "px-partials": "latest",
+    "polymer-font-awesome": "https://github.com/PredixDev/polymer-font-awesome.git",
     "iron-resizable-behavior": "~1.0.3"
   },
   "devDependencies": {
