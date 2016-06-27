@@ -55,7 +55,7 @@
   flex-direction : column;
 
   @include c('.table-row') {
-    padding: $inuit-base-spacing-unit;
+    padding: $inuit-base-spacing-unit--tiny;
   }
 
   ///.table-view--tiny
