@@ -8,37 +8,7 @@ var PolymerTrackManager = {
 	_restraint: 100,
 	_startTime: 0,
 	_swipeDir: null,
-	_peekOffset: 80,
-	properties: {
-
-	},
-	/*
-		down —finger/button went down
-			x—clientX coordinate for event
-			y—clientY coordinate for event
-			sourceEvent—the original DOM event that caused the down action
-		up —finger/button went up
-			x—clientX coordinate for event
-			y—clientY coordinate for event
-			sourceEvent—the original DOM event that caused the up action
-		tap —down & up occurred
-			x—clientX coordinate for event
-			y—clientY coordinate for event
-			sourceEvent—the original DOM event that caused the tap action
-		track —moving while finger/button is down
-			state—a string indicating the tracking state:
-			start—fired when tracking is first detected (finger/button down and moved past a pre-set distance threshold)
-			track—fired while tracking
-		end —fired when tracking ends
-			x—clientX coordinate for event
-			y—clientY coordinate for event
-			dx—change in pixels horizontally since the first track event
-			dy—change in pixels vertically since the first track event
-			ddx—change in pixels horizontally since last track event
-			ddy—change in pixels vertically since last track event
-			hover()—a function that may be called to determine the element currently being hovered
-		*/
-
+//	_peekOffset: 80,
 	_handleTrackStart: function(e) {
 		this.containerSize = this.offsetWidth;
 		var touchobj = e.detail;
@@ -47,9 +17,9 @@ var PolymerTrackManager = {
 		this._startY = touchobj.sourceEvent.pageY;
 		this._startTime = new Date().getTime();
 		this._dist = 0;
-		this.handletouch(e, 'none', 'start', this._swipeDir, this._dist);
+		this._handletouch(e, 'none', 'start', this._swipeDir, this._dist);
 		// fire callback function with params dir="none", phase="start", swipetype="none" etc
-		e.preventDefault()
+		e.preventDefault();
 
 	},
 	_handleTrackMove: function(e) {
@@ -71,12 +41,11 @@ var PolymerTrackManager = {
 			// else consider this a vertical movement
 			this._dir = (this._distY < 0) ? 'up' : 'down';
 			// fire callback function with params dir="up|down", phase="move", swipetype="none" etc
-
-						dist = this._distY;
+			dist = this._distY;
 		}
 		this._dist = dist;
-					this.handletouch(e, this._dir, 'move', swipeType, dist);
-		e.preventDefault() // prevent scrolling when inside DIV
+		this._handletouch(e, this._dir, 'move', swipeType, dist);
+		e.preventDefault(); // prevent scrolling when inside DIV
 	},
 	/**
 	 * This method runs when tracking has ended
@@ -99,28 +68,33 @@ var PolymerTrackManager = {
 		if (elapsedTime <= allowedTime) {
 			if (Math.abs(distX) >= threshold && Math.abs(distY) <= restraint) {
 				// 2nd condition for horizontal swipe met
-				swipedir = (distX < 0) ?
-					'swipeleft' :
-					'swiperight'
+				swipedir = (distX < 0) ?'swipeleft' : 'swiperight';
 			} else if (Math.abs(distY) >= threshold && Math.abs(distX) <= restraint) {
 				// 2nd condition for vertical swipe met
-				swipedir = (distY < 0) ?
-					'swipeup' :
-					'swipedown'
+				swipedir = (distY < 0) ? 'swipeup' : 'swipedown';
 			}
 		}
 		//this._handleTrackComplete(swipedir);
-		this.handletouch(e, dir, 'end', swipedir, this._dist);
+		this._handletouch(e, dir, 'end', swipedir, this._dist);
 	},
 	_handleTrackComplete: function(swipedir) {
-		console.warn('swipeComplete', swipedir);
+	//	console.warn('swipeComplete', swipedir);
 		this.title = swipedir;
 	},
-	_transformForTranslateX: function(translateX) {
-		if (translateX === null || translateX === 0) {
-			return 'translate3d(0, 0, 0)';
+	_handleTrack: function(e) {
+		e.preventDefault();
+		switch (e.detail.state) {
+			case 'start':
+				this._handleTrackStart(e);
+				break;
+			case 'track':
+				this._handleTrackMove(e);
+				break;
+			case 'end':
+				this._handleTrackEnd(e);
+				break;
+			default:
 		}
-		return 'translate3d(' + translateX + 'px, 0, 0)';
 	},
 	/**
 
@@ -136,12 +110,12 @@ var PolymerTrackManager = {
 	console.log('You are moving the finger horizontally by ' + distance)
 })
 	*/
-	handletouch: function(evt, dir, phase, swipetype, distance) {
+	_handletouch: function(evt, dir, phase, swipetype, distance) {
 		this.dir = dir;
 		this.phase = phase;
 		this.swipeType = swipetype;
 		this.distance = distance;
-		console.log('handletouch', dir, phase, swipetype, distance);
+		console.log('Implement this method to override', '_handletouch', dir, phase, swipetype, distance);
 	}
 };
 
