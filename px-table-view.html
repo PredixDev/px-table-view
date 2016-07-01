@@ -7,6 +7,7 @@
 <link rel="import" href="px-table-view-behavior.html"/>
 <link rel="import" href="px-table-view-pull-to-refresh-behavior.html"/>
 <link rel="import" href="px-table-row.html"/>
+<link rel="import" href="polymer-track-manager.html"/>
 <!-- <link rel="import" href="px-sortable-list.html"/>
 <link rel="import" href="px-drilldown-list.html"/> -->
 
@@ -30,6 +31,15 @@ For individual demos visit <a href="./demo" target="_blank">here</a>.
 </px-table-view>
 ```
 
+### Styling
+
+Custom property | Description | Default
+------------ | ------------- | ------------
+  `--px-table-view` | Style mixin to be applied to the component | {}
+  `--px-table-view-sortable-chosen` | Style mixin to be applied to the sortable chosen element | {}
+  `--px-table-row-selected` | Style mixin to be applied to the selected table row element | {}
+  
+
 
 @element px-table-view.html
 @demo demo.html
@@ -52,7 +62,7 @@ For individual demos visit <a href="./demo" target="_blank">here</a>.
     }*/
     :host .sortable-chosen,
     :host ::content .sortable-chosen {
-      @apply(--px-table-row-sortable-chosen);
+      @apply(--px-table-view-sortable-chosen);
       box-shadow: 0 2px 10px rgba(0,0,0,0.45);
     }
     :host ::content .iron-selected .table-row:host .iron-selected .table-row,
@@ -102,10 +112,14 @@ For individual demos visit <a href="./demo" target="_blank">here</a>.
     Polymer({
       is: 'px-table-view',
       behaviors: [
-        Polymer.IronMultiSelectableBehavior, Polymer.IronResizableBehavior, pxTableViewBehavior, pxTableViewPullToRefreshBehavior
+        Polymer.IronMultiSelectableBehavior,
+        Polymer.IronResizableBehavior,
+        pxTableViewBehavior,
+
+        pxTableViewPullToRefreshBehavior
       ],
       properties: {
-        
+
         /**
          * The table data to set on the component
          */

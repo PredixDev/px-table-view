@@ -1,4 +1,3 @@
-<script src="../hammerjs/hammer.min.js"></script>
 <link rel="import" href="../polymer/polymer.html"/>
 <link rel="import" href="../iron-resizable-behavior/iron-resizable-behavior.html">
 <link rel="import" href="../px-partials/px-icon/px-icon.html"/>
@@ -7,7 +6,6 @@
 <link rel="import" href="px-table-row-behavior.html"/>
 <link rel="import" href="px-table-row-checkbox.html"/>
 <link rel="import" href="px-table-row-actions.html"/>
-<link rel="import" href="px-table-row-action-button.html"/>
 <link rel="import" href="px-table-row-swipe-behavior.html"/>
 <link rel="import" href="px-table-row-switch.html"/>
 
@@ -38,34 +36,22 @@ To style this component you can do the following:
  </style>
 ```
 
+### Content attributes
+
+Attribute | Description
+--------- | -----------
+content | The content for the table row
+
 ### Styling
 
 Custom property | Description | Default
 ------------ | ------------- | ------------
   `--px-table-row` | Style mixin to be applied to the component | {}
-  `--px-table-row__title` | Style mixin to be applied to the title element | {}
-  `--px-table-row__body` | Style mixin to be applied to the body element | {}
-  `--px-table-row__label` | Style mixin to be applied to the label element | {}
-  `--px-table-row__media` | Style mixin to be applied to the media element | {}
-  `--px-table-row-font-size`       | The font size of the table row  | 16px
-  `--px-table-row-color`       | The font color of the table row  | $black
-  `--px-table-row-background-color`       | The background color of the table row  | $white
-  `--px-table-row-selected-color`       | The font color of the selected table row  | $white
-  `--px-table-row-selected-background-color`       | The background color of the selected table row  | #0a9ec1
-  `--px-table-row-border-color`       | The border color  | $gray5
-  `--px-table-row-border-width`       | The border width  | 1px
-  `--px-table-row-border-style`       | The border style  | solid
-  `--px-table-row-title-font-size`       | The font size of the table row title. | 17px
-  `--px-table-row-title-color`       | The font color of the table row title. | $black
-  `--px-table-row-body-font-size`       | The font size of the table row body. | 16px
-  `--px-table-row-body-color`       | The font color of the table row body. | $black
-  `--px-table-row-subtitle-font-size`       | The font size of the table row subtitle. | 15px
-  `--px-table-row-subtitle-color`       | The font color of the table row subtitle. | $gray5
-  `--px-table-row-label-font-size`       | The font size of the table row label. | 16px
-  `--px-table-row-label-color`       | The font color of the table row label. | $black
-  `--px-table-row-line-height`       | The line height of the table row  | 44px
-  `--px-table-row-min-height`       | The min height of the table row  | 44px
-  `--px-table-row-header-line-height` | The line height for the table-row header | 44px
+  `--px-table-row-title` | Style mixin to be applied to the title element | {}
+  `--px-table-row-body` | Style mixin to be applied to the body element | {}
+  `--px-table-row-content` | Style mixin to be applied to the content element | {}
+  `--px-table-row-label` | Style mixin to be applied to the label element | {}
+  `--px-table-row-media` | Style mixin to be applied to the media element | {}
 
 
 @element px-table-row.html
@@ -93,7 +79,7 @@ Custom property | Description | Default
     :host .table-row__title{
       @apply(--px-table-row-title);
     }
-    
+
     :host .table-row__content{
       @apply(--px-table-row-content);
     }
@@ -144,7 +130,7 @@ Custom property | Description | Default
   </style>
   <template strip-whitespace>
     <div class="">
-      <div id="row" class="table-row" data-indicator$="{{indicator}}" >
+      <div id="row" class="table-row" >
         <template is="dom-if" if="{{label2}}">
           <span class="table-row__label table-row__label--left">{{label2}}</span>
         </template>
