@@ -1,1 +1,9 @@
 <script src="../hammerjs/hammer.min.js"></script>
+<script>
+  if (typeof Hammer === 'undefined') {
+    var script = document.createElement('script');
+    script.src = 'https://cdnjs.cloudflare.com/ajax/libs/hammer.js/2.0.8/hammer.min.js';
+    document.head.appendChild(script);
+    console.warn('Loading Hammer.js from CDN');
+  }
+</script>

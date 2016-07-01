@@ -426,8 +426,6 @@ a {
   -ms-user-select: none;
   /* Internet Explorer/Edge */
   user-select: none;
-  /* Non-prefixed version, currently
-                                 not supported by any browser */
   box-sizing: border-box;
   position: relative;
   overflow: hidden;
@@ -840,8 +838,6 @@ a {
     -ms-user-select: none;
     /* Internet Explorer/Edge */
     user-select: none;
-    /* Non-prefixed version, currently
-                                 not supported by any browser */
     display: flex;
     flex-direction: column;
     align-self: stretch;
@@ -866,8 +862,6 @@ a {
     -ms-user-select: none;
     /* Internet Explorer/Edge */
     user-select: none;
-    /* Non-prefixed version, currently
-                                 not supported by any browser */
     order: 3;
     line-height: normal;
     flex: 1 0 auto;
@@ -949,8 +943,6 @@ a {
   -ms-user-select: none;
   /* Internet Explorer/Edge */
   user-select: none;
-  /* Non-prefixed version, currently
-                                 not supported by any browser */
   min-height: var(--px-table-row-min-height, 2.9333333333rem);
   line-height: var(--px-table-row-line-height, 2.9333333333rem);
   color: var(--px-table-row-color, inherit);
@@ -1108,8 +1100,6 @@ a {
     -ms-user-select: none;
     /* Internet Explorer/Edge */
     user-select: none;
-    /* Non-prefixed version, currently
-                                 not supported by any browser */
     cursor: pointer;
     flex: 1;
     margin: 0;

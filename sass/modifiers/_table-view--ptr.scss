@@ -43,7 +43,7 @@ $ptr-transition: all .25s ease;
 .ptr__content {
   @include scrollable();
   //min-height         : 100%;
-  z-index            : 20;
+//  z-index            : 20;
   backface-visibility: hidden;
   perspective        : 1000;
   box-sizing         : border-box;

@@ -17,54 +17,45 @@
       html {
         background-color: #fff !important;
       }
-
     </style>
   </head>
   <body unresolved class="viewport--full-height has-navbar">
     <template id="table-view-actions-2" is="dom-bind">
-      <style is="custom-style">
-        :root .b {
-          --px-table-row-underlay: {
-            right: 0;
-          }
-        }
-      </style>
       <div class="app">
         <px-navbar title="Pull To Refresh" shadow fixed auto-hide></px-navbar>
-        <px-table-view id="ptr-table" modifier="" pull-to-refresh>
+
+        <px-table-view id="ptr-table" modifier="large" pull-to-refresh>
           <template is="dom-repeat" items="[[items]]">
-            <px-table-row title="Text Label" modifier="nav-right" class="b"></px-table-row>
+            <px-table-row
+              title="Text Label"
+              modifier="tappable nav-right" class="b"></px-table-row>
           </template>
         </px-table-view>
       </div>
     </template>
     <script type="text/javascript">
-
       document.addEventListener('WebComponentsReady', function () {
         var app = document.getElementById('table-view-actions-2');
         app.items = [];
-
-        function addItems(count){
+        function addItems(count) {
           for (var i = 0; i < count; i++) {
-            app.push( 'items', i);
+            app.push('items', i);
           }
         }
-
         addItems(5);
-
-        // TODO: Example showing how to hook into the pull
+        // TODO: Example showing how to hook into the ptr-loading event When the event fires, it means the loading is showing. To close the loading, fire a px-table-row-ptr-done event which hides the loading.
         var table = document.getElementById('ptr-table');
-        table.loadingFunction = function handleLoad() {
-          return new Promise(function (resolve, reject) {
-            console.log('Fetching more items');
-            addItems(2);
-            resolve({});
-          });
-        };
-
+        table.addEventListener('px-table-row-ptr-loading', function () {
+          console.log('Fetching items');
+          setTimeout(function () {
+            console.log('Fetching items complete');
+            addItems(10);
+            table.fire('px-table-row-ptr-done');
+          }, 1000);
+        });
         ['px-table-row-ptr-ready', 'px-table-row-ptr-reset', 'px-table-row-ptr-refresh', 'px-table-row-ptr-loading', 'px-table-row-ptr-complete'].forEach(function (event) {
           document.addEventListener(event, function (e) {
-            console.log('Fired Event =', e.type, e);
+            console.log('Fired Event =', e.type);
           });
         });
       });

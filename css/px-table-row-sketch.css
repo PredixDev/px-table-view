@@ -429,8 +429,6 @@ a {
   -ms-user-select: none;
   /* Internet Explorer/Edge */
   user-select: none;
-  /* Non-prefixed version, currently
-                                 not supported by any browser */
   box-sizing: border-box;
   position: relative;
   overflow: hidden;
@@ -870,8 +868,6 @@ a {
     -ms-user-select: none;
     /* Internet Explorer/Edge */
     user-select: none;
-    /* Non-prefixed version, currently
-                                 not supported by any browser */
     display: -webkit-flex;
     display: -ms-flexbox;
     display: flex;
@@ -913,8 +909,6 @@ a {
     -ms-user-select: none;
     /* Internet Explorer/Edge */
     user-select: none;
-    /* Non-prefixed version, currently
-                                 not supported by any browser */
     -webkit-order: 3;
         -ms-flex-order: 3;
             order: 3;

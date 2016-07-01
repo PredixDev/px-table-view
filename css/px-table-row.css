@@ -429,8 +429,6 @@ a {
   -ms-user-select: none;
   /* Internet Explorer/Edge */
   user-select: none;
-  /* Non-prefixed version, currently
-                                 not supported by any browser */
   box-sizing: border-box;
   position: relative;
   overflow: hidden;
@@ -870,8 +868,6 @@ a {
     -ms-user-select: none;
     /* Internet Explorer/Edge */
     user-select: none;
-    /* Non-prefixed version, currently
-                                 not supported by any browser */
     display: -webkit-flex;
     display: -ms-flexbox;
     display: flex;
@@ -913,8 +909,6 @@ a {
     -ms-user-select: none;
     /* Internet Explorer/Edge */
     user-select: none;
-    /* Non-prefixed version, currently
-                                 not supported by any browser */
     -webkit-order: 3;
         -ms-flex-order: 3;
             order: 3;
@@ -1044,8 +1038,6 @@ a {
   -ms-user-select: none;
   /* Internet Explorer/Edge */
   user-select: none;
-  /* Non-prefixed version, currently
-                                 not supported by any browser */
   min-height: var(--px-table-row-min-height, 2.9333333333rem);
   line-height: var(--px-table-row-line-height, 2.9333333333rem);
   color: var(--px-table-row-color, inherit);
@@ -1231,8 +1223,6 @@ a {
     -ms-user-select: none;
     /* Internet Explorer/Edge */
     user-select: none;
-    /* Non-prefixed version, currently
-                                 not supported by any browser */
     cursor: pointer;
     -webkit-flex: 1;
         -ms-flex: 1;

@@ -38,7 +38,7 @@ Custom property | Description | Default
   `--px-table-view` | Style mixin to be applied to the component | {}
   `--px-table-view-sortable-chosen` | Style mixin to be applied to the sortable chosen element | {}
   `--px-table-row-selected` | Style mixin to be applied to the selected table row element | {}
-  
+
 
 
 @element px-table-view.html
@@ -166,7 +166,7 @@ Custom property | Description | Default
           klass,
           types;
         klass = 'table-view--' + oldVal;
-        _this.toggleClass(klass, false, _this.$.content);
+        
         if (_this.modifier) {
           types = _this.modifier.split(' ');
           for (var i = 0; i < types.length; i++) {
