@@ -28,8 +28,8 @@ To use this component:
         display: block;
       }
     </style>
-    <div id="actions" class="table-row__actions flex flex--stretch">
-      <content id="content" select=".table-row__button, px-table-row-action-button"></content>
+    <div id="actions" class="table-row__actions flex flex--stretch flex--middle">
+      <content id="content"></content>
     </div>
   </template>
 </dom-module>
@@ -49,7 +49,9 @@ To use this component:
        * The current state of the actions
        */
       opened: {
-        type: Boolean
+        type: Boolean,
+        notify: true,
+        reflectToAttribute: true
       }
     },
     /**

@@ -1,20 +1,6 @@
-<!--
-<script src="https://cdnjs.cloudflare.com/ajax/libs/hammer.js/2.0.6/hammer.min.js"></script>
--->
-
-<link rel="import" href="hammer-import.html">
-<script src="px-table-row-swipe-behavior.js"></script>
-
 <script type="text/javascript">
-/* global Hammer */
 
 var sharedPanel = null;
-
-var reqAnimationFrame = (function () {
-  return window[Hammer.prefixed(window, "requestAnimationFrame")] || function (callback) {
-    setTimeout(callback, 1000 / 60);
-  };
-})();
 
 /**
  * Behavior that manages the swipeable table rows
@@ -158,7 +144,6 @@ var pxTableRowSwipeBehavior = {
     // Store children object via Polymer's getEffectiveChildren or getDistributedNodes;
     _content: Object,
     _underlay: Object,
-    hammer: Object
   },
   listeners: {
     //'track': '_handleTrack',
@@ -176,9 +161,7 @@ var pxTableRowSwipeBehavior = {
     if (this.swipeable) {
       var _content = Polymer.dom(this);
       this.async(function () {
-
         this._initSwipeActions(this);
-
       }, 1000);
       this.set('_content', _content);
     }
@@ -200,18 +183,13 @@ var pxTableRowSwipeBehavior = {
       this.underlaySize = this.underlay.getBoundingClientRect().width;
     }
     this.containerSize = this.container['offsetWidth'];
-    var options = {
-      direction: this.direction,
-      threshold: this.threshold,
-      touchAction: 'manipulation'
-    };
   //  this.hammer = new Hammer.Manager(this.container, options);
   //  this.hammer.add(new Hammer.Pan(options));
   //  this.hammer.on("panstart panmove panend", Hammer.bindFn(this._onPan, this));
   },
   detached: function () {
-    if (this.hammer) {
-      //this.hammer.off();
+    if (this.swipeable) {
+      this.unlisten(this.container, 'track', '_handleTrack');
     }
   },
   /**
@@ -255,9 +233,14 @@ var pxTableRowSwipeBehavior = {
         this._validDelta = newValue <= -this.slideOffset;
       }
     }
-
   },
+  /**
+   * Handle when swiping.
+   * @event px-table-row-swipe
+   */
   _handleTrack: function(e) {
+    e.preventDefault();
+    this.fire('px-table-row-swipe', e);
     e.preventDefault();
     switch (e.detail.state) {
       case 'start':
@@ -288,7 +271,7 @@ var pxTableRowSwipeBehavior = {
   /**
    * Handle when panning starts
    * @param event
-   * @event px-table-row-pan-start
+   * @event px-table-row-swipe-start
    * @private
    */
   _onPanStart: function (event) {
@@ -303,13 +286,13 @@ var pxTableRowSwipeBehavior = {
     }
   },
   /**
-   * Handle when panning
+   * Fires when swipe is moving
    * @param event
-   * @event px-swipe-move
+   * @event px-table-row-swipe-move
    * @private
    */
   _onPanMove: function (event) {
-    
+
     this._transition = true;
     if (this._dragging) {
       var dx = event.detail.dx;
@@ -317,13 +300,13 @@ var pxTableRowSwipeBehavior = {
       this._transitionDelta = dx;
       dragDx = this._atEdge ? this._curPos + dx : dx;
       this._tracking = true;
-      //  this.fire('px-swipe-move');
+       this.fire('px-table-row-swipe-move', event);
       this._moveDrawer(dragDx);
     }
   },
   /**
-   * Handle when panning ends
-   * @event px-swipe-end
+   * Fires when swiping ends
+   * @event px-table-row-swipe-end
    */
   _onPanEnd: function (event) {
 
@@ -349,7 +332,7 @@ var pxTableRowSwipeBehavior = {
 
 
       this.set('underlayOpened', this._atEdge);
-      this.fire('px-table-row-swipe-end', this);
+      this.fire('px-table-row-swipe-end', event);
       this._moveDrawer(deltaLR);
     }
   },
