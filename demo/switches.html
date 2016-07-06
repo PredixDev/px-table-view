@@ -1,10 +1,7 @@
 <!DOCTYPE html>
 <html>
-
   <head>
     <meta charset="utf-8">
-
-
     <title>px-table-view - switches</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <script src="../../webcomponentsjs/webcomponents-lite.js"></script>
@@ -13,7 +10,6 @@
     <link rel="import" href="../../px-theme/px-theme.html">
     <link rel="import" href="../../px-card/px-card.html">
     <link rel="import" href="../../iron-demo-helpers/demo-snippet.html"/>
-
     <style media="screen">
       body,
       html {
@@ -26,7 +22,6 @@
       }
     </style>
   </head>
-
   <body unresolved class="viewport--full-height">
     <div class="viewport">
       <h1 class="beta">Switches</h1>
@@ -35,29 +30,65 @@
         <code>px-table-row</code>
         element.
       </p>
-
       <h2>Table Row Switches</h2>
       <demo-snippet>
-        <template id="">
-          <px-table-view>
-            <px-table-row>
-              <px-table-row-switch name="cb05" label="Switch"></px-table-row-switch>
-            </px-table-row>
-            <px-table-row>
-              <px-table-row-switch name="cb06" label="Checked Switch" checked></px-table-row-switch>
-            </px-table-row>
-            <px-table-row>
-              <px-table-row-switch name="cb07" label="Switch (Disabled)" disabled></px-table-row-switch>
-            </px-table-row>
-            <px-table-row>
-              <px-table-row-switch name="cb08" label="Checked Switch (Disabled)" disabled checked></px-table-row-switch>
-            </px-table-row>
-          </px-table-view>
+        <template>
+          <template id="scope" is="dom-bind">
+            <label>Checked:
+              {{checked}}</label>
+            <px-table-view modifier="small">
+              <px-table-row icon="fa:fa-wifi" title="WiFi" modifier="switch">
+                <px-table-row-switch name="cb1" value="wifi" checked="{{checked}}"></px-table-row-switch>
+              </px-table-row>
+              <px-table-row modifier="switch" title="Switch">
+                <px-table-row-switch name="cb2" checked="{{checked}}"></px-table-row-switch>
+              </px-table-row>
+              <px-table-row modifier="switch" title="Checked Switch">
+                <px-table-row-switch name="cb3" checked="{{checked}}"></px-table-row-switch>
+              </px-table-row>
+              <px-table-row modifier="switch" title="Switch (Disabled)">
+                <px-table-row-switch name="cb4" disabled></px-table-row-switch>
+              </px-table-row>
+              <px-table-row modifier="switch" title="Checked Switch (Disabled)">
+                <px-table-row-switch name="cb5" disabled checked="{{checked}}"></px-table-row-switch>
+              </px-table-row>
+            </px-table-view>
+          </template>
+          <script type="text/javascript">
+            var scope = document.querySelector('#scope');
+            scope.checked = false;
+          </script>
         </template>
       </demo-snippet>
+      <h2>Table Row Switch w/ Form</h2>
+      <demo-snippet>
+        <template>
+          <template id="scope2" is="dom-bind">
+            <form>
+              <px-table-view modifier="small">
+                <px-table-row modifier="switch">
+                  <px-table-row-switch name="test4" value="switch1Value" required></px-table-row-switch>
+                </px-table-row>
+                <px-table-row modifier="switch" title="Switch 1">
+                  <px-table-row-switch name="test1" value="switch1Value" required></px-table-row-switch>
+                </px-table-row>
+                <px-table-row modifier="switch" title="Switch 2">
+                  <px-table-row-switch name="test2" value="switch2Value" required></px-table-row-switch>
+                </px-table-row>
+                <px-table-row>
+                  <div class="flex" content>
+                    <button class="btn flex__item" type="reset">Cancel</button>
+                    <button class="btn btn--primary flex__item" type="submit">Submit</button>
+                  </div>
+                </px-table-row>
+              </px-table-view>
 
-
-
-  </body>
-
-</html>
+            </form>
+          </template>
+          <script type="text/javascript">
+            var scope = document.querySelector('#scope2');
+          </script>
+        </template>
+      </demo-snippet>
+    </body>
+  </html>

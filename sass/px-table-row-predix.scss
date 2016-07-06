@@ -10,27 +10,18 @@
   @import 'elements/_table-row__actions.scss';
   @import 'elements/_table-row__switch.scss';
 
-  min-height         : var(--px-table-row-min-height, $table-row-min-height);
-  line-height        : var(--px-table-row-line-height, $table-row-line-height);
+  min-height      : var(--px-table-row-min-height, $table-row-min-height);
+  line-height     : var(--px-table-row-line-height, $table-row-line-height);
 
-  color              : var(--px-table-row-color, inherit);
-  font-size          : var(--px-table-row-font-size, inherit);
-  background-color   : var(--px-table-row-background-color, inherit);
-
-
-
+  color           : var(--px-table-row-color, inherit);
+  font-size       : var(--px-table-row-font-size, inherit);
+  background-color: var(--px-table-row-background-color, inherit);
 
   &:active {
     transition: none;
   }
 
-  &:first-child {}
-
-  &:last-child {}
-
-  &:first-child:last-child {}
-
-  &:not(:last-child) {}
+  ///------------------------------------------------------
 
   ///.table-row--selected
   &--selected {
@@ -51,34 +42,42 @@
     }
   }
 
+  ///------------------------------------------------------
   ///.table-row > a
   > a {
     text-decoration: none;
     @include tableRowClickable($table-row-active-background-color, $table-row-active-font-color);
   }
 
+  ///------------------------------------------------------
   ///.table-row__title
   @include e ('title') {
     font-size: var(--px-table-row-title-font-size, inherit);
     color    : var(--px-table-row-title-color, inherit);
   }
 
+  ///------------------------------------------------------
   ///.table-row__subtitle
   @include e ('subtitle') {
     font-size: var(--px-table-row-subtitle-font-size);
     color    : var(--px-table-row-subtitle-color);
   }
+
+  ///------------------------------------------------------
   ///.table-row__body
   @include e ('body') {
     font-size: var(--px-table-row-body-font-size, $table-row-body-font-size);
     color    : var(--px-table-row-body-color, $table-row-body-font-color);
   }
+
+  ///------------------------------------------------------
   ///.table-row__label
   @include e ('label') {
     font-size: var(--px-table-row-label-font-size, $table-row-label-font-size);
     color    : var(--px-table-row-label-color, $table-row-label-font-color);
   }
 
+  ///------------------------------------------------------
   @include m ('header') {
     padding         : var(--px-table-row-header-padding, $table-row-header-padding);
     font-size       : var(--px-table-row-header-font-size, $table-row-header-font-size);

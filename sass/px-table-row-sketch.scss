@@ -5,7 +5,7 @@
 $inuit-enable-toggle--small: true;
 $inuit-enable-toggle--huge: true;
 $inuit-enable-toggle--large: true;
-@import 'px-toggle-design/_objects.toggle.scss';
+
 
 $inuit-enable-inline-fields: true;
 $inuit-enable-input--tiny: true;
@@ -15,13 +15,29 @@ $inuit-enable-input--large: true;
 $inuit-enable-input--huge: true;
 $inuit-enable-input--bare: true;
 
+$inuit-enable-btn--primary: true;
+$inuit-enable-btn--tertiary: true;
+$inuit-enable-btn--small: true;
+$inuit-enable-btn--large: true;
+$inuit-enable-btn--huge: true;
+$inuit-enable-btn--icon: true;
+$inuit-enable-btn--bare: true;
+$inuit-enable-btn--disabled: true;
+///----------------------------------------------
+/// Style distrubed content
+@include c('') {
+   @import 'px-forms-design/_base.forms.scss';
+   @import 'px-buttons-design/_objects.buttons.scss';
+   @import 'px-toggle-design/_objects.toggle.scss';
+}
+
+
 /// Table Row
 /// @group px-table-row
 /// @access public
 @include block ('table-row') {
-  @include c(null) {
-     @import 'px-forms-design/_base.forms.scss';
-  }
+
+
   @include clearfix();
   @include noselect();
 
@@ -103,16 +119,15 @@ $inuit-enable-input--bare: true;
   @include modifier ('header') {
     box-sizing: border-box;
   }
+
   ///---------------------------------------------------------------------------
   ///.table-row--tappable
   @include modifier ('tappable') {
     @include tableRowClickable($table-row-selected-background-color, $table-row-active-font-color);
 
     &:active {
-
       color           : var(--px-table-row-selected-color, $table-row-selected-color);
       background-color: var(--px-table-row-selected-background-color, $table-row-selected-background-color);
-
       .table-row__body,
       .table-row__label,
       .table-row__subtitle,
@@ -252,13 +267,16 @@ $inuit-enable-input--bare: true;
   @include element ('label') {
     order     : 0;
     align-self: center;
+
+
     @include modifier ('right') {
       text-align   : left;
       order        : 4;
-      //padding-right: $inuit-base-spacing-unit;
+      margin-right: $inuit-base-spacing-unit;
     }
 
     @include modifier ('left') {
+      margin-left: $inuit-base-spacing-unit;
       //-left: $inuit-base-spacing-unit;
     }
   }

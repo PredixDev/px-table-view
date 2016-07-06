@@ -3,12 +3,22 @@
 <link rel="import" href="../iron-selector/iron-selector.html">
 <link rel="import" href="../iron-selector/iron-multi-selectable.html">
 
+<link rel="import" href="px-table-row-styles.html">
 <link rel="import" href="px-table-view-styles.html">
+
+<link rel="import" href="px-table-row-checkbox.html"/>
+<link rel="import" href="px-table-row-actions.html"/>
+<link rel="import" href="px-table-row-action-button.html"/>
+<link rel="import" href="px-table-row-swipe-behavior.html"/>
+<link rel="import" href="px-table-row-switch.html"/>
+<link rel="import" href="px-table-row.html"/>
 <link rel="import" href="px-table-view-behavior.html"/>
 <link rel="import" href="px-table-view-pull-to-refresh-behavior.html"/>
-<link rel="import" href="px-table-row.html"/>
+
 <link rel="import" href="polymer-track-manager.html"/>
-<!-- <link rel="import" href="px-sortable-list.html"/>
+<link rel="import" href="px-sortable.html"/>
+
+<!--
 <link rel="import" href="px-drilldown-list.html"/> -->
 
 <!--
@@ -46,7 +56,7 @@ Custom property | Description | Default
 @homepage index.html
 -->
 <dom-module id="px-table-view">
-  <!-- <link rel="import" type="css" href="css/px-table-view.css"> -->
+
   <style include="px-table-view-css"></style>
   <style media="screen">
     :host {
@@ -166,7 +176,7 @@ Custom property | Description | Default
           klass,
           types;
         klass = 'table-view--' + oldVal;
-        
+
         if (_this.modifier) {
           types = _this.modifier.split(' ');
           for (var i = 0; i < types.length; i++) {

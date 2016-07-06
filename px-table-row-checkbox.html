@@ -1,4 +1,5 @@
 <link rel="import" href="../polymer/polymer.html" />
+<link rel="import" href="../iron-checked-element-behavior/iron-checked-element-behavior.html">
 <!--
 To use this component:
 
@@ -33,6 +34,9 @@ To use this component:
   <script>
   Polymer({
     is: 'px-table-row-checkbox',
+    behaviors: [
+      Polymer.IronCheckedElementBehavior
+    ],
     properties: {
       //The label for the checkbox
       label: {
@@ -44,15 +48,13 @@ To use this component:
       },
       //The input value for the checkbox
       value: {
-        type: String
+        type: String,
+        reflectPropertyToAttribute: true,
+        notify: true
       },
       //The type of checkbox (no-border)
       type: {
         type: String
-      },
-      //The checked state
-      checked: {
-        type: Boolean
       },
       //The disabled state
       disabled: {

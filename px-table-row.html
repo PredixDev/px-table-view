@@ -1,13 +1,11 @@
 <link rel="import" href="../polymer/polymer.html"/>
 <link rel="import" href="../iron-resizable-behavior/iron-resizable-behavior.html">
-<link rel="import" href="../px-partials/px-icon/px-icon.html"/>
+
+
 
 <link rel="import" href="px-table-row-styles.html">
-<link rel="import" href="px-table-row-behavior.html"/>
-<link rel="import" href="px-table-row-checkbox.html"/>
-<link rel="import" href="px-table-row-actions.html"/>
-<link rel="import" href="px-table-row-swipe-behavior.html"/>
-<link rel="import" href="px-table-row-switch.html"/>
+
+<link rel="import" href="../px-partials/px-icon/px-icon.html"/>
 
 <!--
 <p>
@@ -107,6 +105,9 @@ Custom property | Description | Default
     :host .table-row__label--left{
       @apply(--px-table-row-label--left);
     }
+    :host .table-row__content:empty{
+      display: none;
+    }
 
     :host #underlay{
       position: absolute;
@@ -167,19 +168,20 @@ Custom property | Description | Default
 
         <div class="table-row__content">
           <template is="dom-if" if="{{title}}">
-            <div class="table-row__title">{{title}}</div>
+            <span class="table-row__title">{{title}}</span>
           </template>
           <template is="dom-if" if="{{subtitle}}">
-            <div class="table-row__subtitle">{{subtitle}}</div>
+            <span class="table-row__subtitle">{{subtitle}}</span>
           </template>
           <template is="dom-if" if="{{body}}">
-            <div class="table-row__body">{{body}}</div>
+            <span class="table-row__body">{{body}}</span>
           </template>
-          <content select="px-table-row-switch, px-table-row-checkbox"></content>
+        
+          <content select="[content], px-table-row-switch, px-table-row-checkbox"></content>
         </div>
       </div>
       <div class="table-row__content">
-        <content select="[content], input, button"></content>
+        <content select="[px-table-view], input, button"></content>
       </div>
       <div id="underlay" class="flex flex--stretch">
         <content id="underlayContent" select="[underlay]"></content>
@@ -191,7 +193,7 @@ Custom property | Description | Default
       is: 'px-table-row',
       behaviors: [
         Polymer.IronResizableBehavior,
-        pxTableRowBehavior,
+
         pxTableRowSwipeBehavior
       ],
       properties: {
@@ -325,18 +327,25 @@ Custom property | Description | Default
           observer: '_handleOpened'
         }
       },
+      listeners: {
+        'row.tap': '_handleTap'
+      },
       ready: function(){
-        this.listen(this.$.row, 'tap', '_handleTap');
+        //this.listen(this.$.row, 'tap', '_handleTap');
+        var _this = this;
+        this.async(function () {
+          _this._init();
+        });
       },
       detached: function(){
-        this.unlisten(this.$.row, 'tap', '_handleTap');
+        //this.unlisten(this.$.row, 'tap', '_handleTap');
       },
       _hideBody: function(){
         this.opened = !this.opened;
       },
       _handleOpened: function (newVal, oldVal) {
-        this.toggleClass('table-row--collapsable--is-opened', oldVal, this.$$('.table-row'));
-        this.toggleClass('table-row--collapsable--is-opened', newVal, this.$$('.table-row'));
+        this.toggleClass('table-row--collapsable--is-opened', oldVal, this.$.row);
+        this.toggleClass('table-row--collapsable--is-opened', newVal, this.$.row);
       },
       /**
        * Fires event when row is tapped.
@@ -348,6 +357,59 @@ Custom property | Description | Default
           this._hideBody();
         }
         this.fire('px-table-row-tap', e);
+      },
+
+      _init: function () {
+        var _this = this;
+        if (_this.size) {
+          _this.toggleClass('table-row--' + _this.size, true, this.$.row);
+        }
+        if (_this.collapsable) {
+          _this.toggleClass('table-row--collapsable', true, this.$.row);
+        }
+        if (_this.iconPos) {
+          _this.toggleClass('table-row__media--' + _this.iconPos, true, _this.$$('.table-row__media--icon'));
+        }
+        if (_this.imagePos) {
+          _this.toggleClass('table-row__media--' + _this.imagePos, true, _this.$$('.table-row__media--image'));
+        }
+        if (_this.mediaPos) {
+          _this.toggleClass('table-row__media--' + _this.mediaPos, true, _this.$$('.table-row__media'));
+          if (_this.mediaPos === 'right') {
+            //_this.toggleClass('u-mr++', true, _this.$$('.table-row__media'));
+          }
+        }
+        if (_this.item) {
+          var item = _this.item;
+          for (var prop in item) {
+            _this[prop] = item[prop];
+          }
+        }
+      },
+      _handleRemoveItem: function (e) {
+        e.preventDefault();
+        this.fire('remove', e);
+        this.remove();
+        return false;
+      },
+      _handleReorderItem: function (e) {
+        e.preventDefault();
+        this.fire('reorder', e);
+        return false;
+      },
+      _handleModifier: function (newVal, oldVal) {
+        var _this = this,
+          klass,
+          types;
+        klass = 'table-row--' + oldVal;
+        _this.toggleClass(klass, false, this.$.row);
+        if (_this.modifier) {
+          types = _this.modifier.split(' ');
+          for (var i = 0; i < types.length; i++) {
+            klass = 'table-row--' + types[i];
+            _this.toggleClass(klass, true, this.$.row);
+          }
+        }
       }
     });
   </script>

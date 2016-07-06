@@ -5,63 +5,6 @@
    * @polymerBehavior
    */
   var pxTableRowBehavior = {
-    attached: function () {
-      var _this = this;
-      this.async(function () {
-        _this._init();
-      });
-    },
-    _init: function () {
-      var _this = this;
-      if (_this.size) {
-        _this.toggleClass('table-row--' + _this.size, true, _this.$$('.table-row'));
-      }
-      if (_this.collapsable) {
-        _this.toggleClass('table-row--collapsable', true, _this.$$('.table-row'));
-      }
-      if (_this.iconPos) {
-        _this.toggleClass('table-row__media--' + _this.iconPos, true, _this.$$('.table-row__media--icon'));
-      }
-      if (_this.imagePos) {
-        _this.toggleClass('table-row__media--' + _this.imagePos, true, _this.$$('.table-row__media--image'));
-      }
-      if (_this.mediaPos) {
-        _this.toggleClass('table-row__media--' + _this.mediaPos, true, _this.$$('.table-row__media'));
-        if (_this.mediaPos === 'right') {
-          _this.toggleClass('u-mr++', true, _this.$$('.table-row__media'));
-        }
-      }
-      if (_this.item) {
-        var item = _this.item;
-        for (var prop in item) {
-          _this[prop] = item[prop];
-        }
-      }
-    },
-    _handleRemoveItem: function (e) {
-      e.preventDefault();
-      this.fire('remove', e);
-      this.remove();
-      return false;
-    },
-    _handleReorderItem: function (e) {
-      e.preventDefault();
-      this.fire('reorder', e);
-      return false;
-    },
-    _handleModifier: function (newVal, oldVal) {
-      var _this = this,
-        klass,
-        types;
-      klass = 'table-row--' + oldVal;
-      _this.toggleClass(klass, false, _this.$$('.table-row'));
-      if (_this.modifier) {
-        types = _this.modifier.split(' ');
-        for (var i = 0; i < types.length; i++) {
-          klass = 'table-row--' + types[i];
-          _this.toggleClass(klass, true, _this.$$('.table-row'));
-        }
-      }
-    }
+    
   };
 </script>

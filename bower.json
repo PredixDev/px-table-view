@@ -29,7 +29,9 @@
     "polymer-font-awesome": "https://github.com/PredixDev/polymer-font-awesome.git",
     "iron-resizable-behavior": "~1.0.3",
     "hammerjs": "hammer.js#~2.0.8",
-    "px-partials": "~0.0.6"
+    "px-partials": "~0.0.6",
+    "iron-checked-element-behavior": "PolymerElements/iron-checked-element-behavior#~1.0.4",
+    "iron-validatable-behavior": "PolymerElements/iron-validatable-behavior#~1.1.1"
   },
   "devDependencies": {
     "px-demo-helpers": "https://github.com/PredixDev/px-demo-helpers.git",

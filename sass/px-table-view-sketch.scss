@@ -40,12 +40,11 @@
 ///     </div>
 ///   </div>
 /// </section>
-
 @include b ('table-view') {
   @include switch();
   @include clearfix();
   @include pxFonts();
-  font-size  : calculateRem(17px);
+  font-size      : calculateRem(17px);
 
   list-style-type: none;
   margin         : 0;
@@ -54,52 +53,57 @@
   display        : flex;
   flex-direction : column;
 
-  @include c('.table-row') {
-    padding: $inuit-base-spacing-unit--tiny;
+  ///------------------------------------------------------
+  @include c ('.table-row') {
+    padding: $inuit-base-spacing-unit--small;
   }
 
+  ///------------------------------------------------------
   ///.table-view--tiny
   @include modifier ('tiny') {
-    @include c('.table-row') {
+    @include c ('.table-row') {
       padding: $inuit-base-spacing-unit--tiny !important;
     }
   }
 
+  ///------------------------------------------------------
   ///.table-view--small
   @include modifier ('small') {
-    @include c('.table-row') {
+    @include c ('.table-row') {
       padding: $inuit-base-spacing-unit--small !important;
     }
   }
 
+  ///------------------------------------------------------
   ///.table-view--large
   @include modifier ('large') {
-    @include c('.table-row') {
+    @include c ('.table-row') {
       padding: $inuit-base-spacing-unit--large !important;
     }
   }
 
+  ///------------------------------------------------------
   ///.table-view--huge
   @include modifier ('huge') {
-    @include c('.table-row') {
+    @include c ('.table-row') {
       padding: $inuit-base-spacing-unit--huge !important;
     }
   }
 
+  ///------------------------------------------------------
   @include modifier ('regular') {
-    @include c('.table-row') {
+    @include c ('.table-row') {
       padding: $inuit-base-spacing-unit !important;
     }
   }
 
+  ///------------------------------------------------------
   ///.table-view--flush
   @include modifier ('flush') {
-    @include c('.table-row') {
+    @include c ('.table-row') {
       padding: 0 !important;
     }
   }
-
-
 
   &ul {
     margin: 0 !important;
@@ -108,7 +112,6 @@
   /// Modifiers
   ///------------------------------------------------------
   @import 'modifiers/_table-view--drilldown';
-
 
   ///------------------------------------------------------
   ///.table-view--responsive
@@ -121,9 +124,10 @@
   @include modifier ('bare') {
     @include c ('.table-row') {
       background-color: transparent;
-      border-bottom: none;
+      border-bottom   : none;
     }
   }
+
   ///------------------------------------------------------
   ///.table-view--ptr
   @include modifier ('ptr') {
@@ -131,6 +135,7 @@
       user-select: none;
     }
   }
+
   ///------------------------------------------------------
   ///.table-view--col
   @include modifier ('col') {
@@ -150,6 +155,7 @@
   @include modifier ('rev') {
     direction: rtl;
   }
+
   ///------------------------------------------------------
   ///.table-view--avatars
   @include modifier ('avatars') {
@@ -160,10 +166,12 @@
       }
     }
   }
+
   ///------------------------------------------------------
   @include modifier ('swipeable') {
     overflow-x: hidden;
   }
+
   ///------------------------------------------------------
   ///.table-view--inset
   @include modifier ('inset') {
@@ -171,21 +179,26 @@
     border          : 1px solid;
     border-color    : var(--px-table-view-border-color, $table-row-border-color);
     border-radius   : 0;
+
     .table-row:last-child {
       border-bottom: none;
     }
   }
+
+  ///------------------------------------------------------
   @include modifier ('borders') {
-      @include c ('.table-row') {
-        border-bottom          : 1px solid;
-        border-color    : var(--px-table-view-border-color, $table-row-border-color);
-        border-radius   : 0;
-        &:last-child {
-          border-bottom: none;
-        }
+    @include c ('.table-row') {
+      border-bottom: 1px solid;
+      border-color : var(--px-table-view-border-color, $table-row-border-color);
+      border-radius: 0;
+
+      &:last-child {
+        border-bottom: none;
       }
+    }
   }
 
+  ///------------------------------------------------------
   .switch {
     float     : right;
     position  : absolute;

@@ -11,21 +11,21 @@
 @charset "utf-8";
 @import "variables";
 @import "mixins";
-
 @import 'px-table-view-sketch.scss';
 
-@include b('table-view'){
+///------------------------------------------------------
+@include b ('table-view') {
 
-  @include m('border-bottom'){
-    .table-row{
+  ///------------------------------------------------------
+  @include m ('border-bottom') {
+    .table-row {
       border-bottom-style: var(--px-table-row-border-style, solid);
       border-bottom-width: var(--px-table-row-border-width, $table-row-border-width);
       border-bottom-color: var(--px-table-row-border-color, $table-row-border-color);
     }
   }
 
-
-
+  ///------------------------------------------------------
   ///.table-row--selected
   .table-row--selected {
 

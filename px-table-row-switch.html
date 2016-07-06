@@ -1,12 +1,26 @@
 <link rel="import" href="../polymer/polymer.html" />
+
+<link rel="import" href="../iron-checked-element-behavior/iron-checked-element-behavior.html">
 <!--
 To use this component:
 
 ```
-<px-table-view>
-	<px-table-row>
-		<px-table-row-switch name="cb05" label="My Switch"></px-table-row-switch>
-	</px-table-row>
+<px-table-view modifier="small">
+  <px-table-row icon="fa:fa-wifi" title="WiFi" modifier="switch">
+    <px-table-row-switch name="cb" size="small" checked="{{checked}}"></px-table-row-switch>
+  </px-table-row>
+  <px-table-row modifier="switch" title="Switch">
+    <px-table-row-switch name="cb05" checked="{{checked}}"></px-table-row-switch>
+  </px-table-row>
+  <px-table-row modifier="switch" title="Checked Switch">
+    <px-table-row-switch name="cb06" checked="{{checked}}"></px-table-row-switch>
+  </px-table-row>
+  <px-table-row modifier="switch" title="Switch (Disabled)">
+    <px-table-row-switch name="cb07" disabled></px-table-row-switch>
+  </px-table-row>
+  <px-table-row modifier="switch" title="Checked Switch (Disabled)">
+    <px-table-row-switch name="cb08" disabled checked="{{checked}}"></px-table-row-switch>
+  </px-table-row>
 </px-table-view>
 ```
 @element px-table-row-switch.html
@@ -24,9 +38,12 @@ To use this component:
   }
   </style>
   <template strip-whitespace>
-
     <div class="toggle toggle__table-view-item">
-      <input id$="{{name}}" class="toggle__input" type="checkbox" name$="{{name}}" value$="{{value}}">
+      <input id$="{{name}}" class="toggle__input" type="checkbox"
+        required$="{{required}}" 
+        checked$="{{checked}}"
+        name$="{{name}}"
+        value$="{{value}}">
       <label for$="{{name}}" class="toggle__label needsclick">
         <span>{{label}}</span>
       </label>
@@ -40,6 +57,9 @@ To use this component:
   <script>
   Polymer({
     is: 'px-table-row-switch',
+    behaviors: [
+      Polymer.IronCheckedElementBehavior
+    ],
     properties: {
       //The size for the switch
       size: {
@@ -48,18 +68,6 @@ To use this component:
       //The label for the switch
       label: {
         type: String
-      },
-      //The input name for the switch
-      name: {
-        type: String
-      },
-      //The input value for the switch
-      value: {
-        type: String
-      },
-      //The switch state
-      checked: {
-        type: Boolean
       },
       //The disabled state
       disabled: {

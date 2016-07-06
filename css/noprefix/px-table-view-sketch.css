@@ -437,7 +437,7 @@ html {
     clear: both; }
   .table-view ::content .table-row,
   .table-view .table-row {
-    padding: 0.3333333333rem; }
+    padding: 0.6666666667rem; }
   .table-view--tiny ::content .table-row,
   .table-view--tiny .table-row {
     padding: 0.3333333333rem !important; }

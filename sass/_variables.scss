@@ -26,8 +26,8 @@ $table-row-active-background-color      : $select-blue-default;
 $table-row-hover-background-color       : $select-blue-hover;
 ///
 $table-row-selected-color               : $white;
+///
 $table-row-selected-background-color    : $select-blue-default;
-
 ///
 $table-row-active-font-color            : $white;
 ///
@@ -72,6 +72,7 @@ $table-row-subtitle-font-size           : calculateRem(14px);
 $table-row-body-font-color              : $gray7;
 ///
 $table-row-body-font-size               : calculateRem(14px);
+///
 $table-row-label-font-color              : $gray7;
 ///
 $table-row-label-font-size               : calculateRem(14px);
@@ -97,21 +98,31 @@ $table-view-responsive-row-gutters      : 0;
 $table-view-responsive-row-max          : 4;
 
 $table-view-padding--tiny               : $inuit-base-spacing-unit--tiny;
+///
 $table-view-padding--small              : $inuit-base-spacing-unit--small;
+///
 $table-view-padding--default            : $inuit-base-spacing-unit;
+///
 $table-view-padding--large              : $inuit-base-spacing-unit--large;
+///
 $table-view-padding--huge               : $inuit-base-spacing-unit--huge;
-
+///
 $table-row-image-padding                : $inuit-base-spacing-unit--tiny;
+///
 $table-row-image-margin                 : 0 $inuit-base-spacing-unit--tiny 0 0;
-
+///
 $table-row-icon-padding                 : $inuit-base-spacing-unit--small;
+///
 $table-row-icon-margin                  : $inuit-base-spacing-unit;
-
+///
 $table-row-button-padding               : $inuit-base-spacing-unit--small;
+///
 $table-row-button-margin                : 0;
-
+///
 $table-row-button-font-color            : $white;
+///
 $table-row-button-font-size             : calculateRem(16px);
+///
 $table-row-actions-transition           : all 0.4s;
+///
 $table-row-button-transition            : all 0.4s;

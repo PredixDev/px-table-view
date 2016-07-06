@@ -1,5 +1,6 @@
 <link rel="import" href="../polymer/polymer.html" />
-<link rel="import" href="../polymer-font-awesome/polymer-font-awesome.html"/>
+<link rel="import" href="../px-partials/px-icon/px-icon.html"/>
+<link rel="import" href="px-table-row-styles.html">
 <!--
 To use this component:
 
@@ -27,7 +28,7 @@ To use this component:
     </style>
       <button is="px-table-row-action-button" class="table-row__button flex flex--center">
         <template is="dom-if" if="{{icon}}">
-          <iron-icon id="icon" icon$="{{icon}}"></iron-icon>
+          <px-icon id="icon" icon$="{{icon}}"></px-icon>
         </template>
         <template is="dom-if" if="{{label}}">
           <span>{{label}}</span>
