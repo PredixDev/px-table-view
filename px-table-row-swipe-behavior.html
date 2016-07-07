@@ -1,3 +1,5 @@
+<link rel="import" href="../iron-resizable-behavior/iron-resizable-behavior.html">
+
 <script type="text/javascript">
 
 var sharedPanel = null;
@@ -342,18 +344,20 @@ var pxTableRowSwipeBehavior = {
    * @private
    */
   _onIronResize: function () {
-    var _content = this._content;
-    var w = this.offsetWidth;
-    var distributed = this.getContentChildren('#underlayContent');
-    this.underlay = distributed[0];
-    if (this.underlay) {
-      this.underlaySize = this.underlay.getBoundingClientRect().width;
+    if (!this.isAttached) {
+      console.warn('notAttached');
+      return;
     }
-    if (_content && this._toUpdateHeight) {
-      this.async(function () {
-        //this.style.height = _content.offsetHeight + 'px';
-      }, 1);
-    }
+    this.debounce('_onIronResize', function() {
+      var _content = this._content;
+      var w = this.offsetWidth;
+      var distributed = this.getContentChildren('#underlayContent');
+      this.underlay = distributed[0];
+      if (distributed && this.underlay) {
+        this.underlaySize = this.underlay.getBoundingClientRect().width;
+      }
+    }, 0);
+
   },
   /**
    * Handle moving the drawer
