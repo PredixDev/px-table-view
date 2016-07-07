@@ -1,5 +1,5 @@
 module.exports = {
-  verbose: true,
+  verbose: false,
   plugins: {
     local: {
       browsers: ['chrome']
@@ -9,8 +9,9 @@ module.exports = {
     },
     "istanbul": {
       "dir": "./coverage",
-      "reporters": [],
+      'reporters': ['text-summary', 'lcov'],
       "include": [
+				"/px-*.js",
 				"/px-*.html"
 			],
       "exclude": []
