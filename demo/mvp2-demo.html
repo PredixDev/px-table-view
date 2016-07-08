@@ -8,6 +8,7 @@
     <link rel="import" href="../px-table-view.html">
     <link rel="import" href="../../px-demo-helpers/px-demo-helpers.html">
     <link rel="import" href="../../px-theme/px-app.html">
+    <link rel="import" href="../../px-partials/px-partials.html">
     <link rel="import" href="../../px-theme/px-theme.html">
     <link rel="import" href="../../px-card/px-card.html">
     <link rel="import" href="../../iron-demo-helpers/demo-snippet.html"/>
@@ -262,6 +263,37 @@
               </li>
             </px-drilldown>
           </template>
+        </template>
+      </demo-snippet>
+
+
+
+      <h2>Form Elements</h2>
+      <demo-snippet>
+        <template id="">
+          <div class="box box--flush">
+          <form class="" action="index.html" method="post">
+            <px-table-view>
+              <px-table-row label2="Client ID">
+                <input type="text" class="text-input" placeholder="Enter Client ID here">
+              </px-table-row>
+              <px-table-row label2="Client Secret">
+                <input type="text" class="text-input" placeholder="Enter Client Secret here">
+              </px-table-row>
+              <px-table-row modifier="switch" label2="Auto Approve">
+              <px-table-row-switch name="auto"></px-table-row-switch>
+              </px-table-row>
+              <px-table-row>
+                <div class="flex flex--stretch flex--middle" row-content>
+                  <button type="reset" class="btn flex__item">Cancel</button>
+                  <px-button type="submit" modifier="full primary" class="flex__item u-ml-">Submit</px-button>
+
+
+                </div>
+              </px-table-row>
+            </px-table-view>
+          </form>
+          </div>
         </template>
       </demo-snippet>
       <h2>Pull to Refresh</h2>

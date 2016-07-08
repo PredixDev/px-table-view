@@ -396,7 +396,7 @@
   ::content .btn--small {
     height: 1.6666666667em;
     font-size: 0.8rem;
-    line-height: calc(1.6666666667em - 2px); }
+    line-height: calc($inuit-btn-height--small - 2px); }
 
 @-moz-document url-prefix() {
   ::content .btn--small {
@@ -701,6 +701,8 @@
   -ms-user-select: none;
   /* Internet Explorer/Edge */
   user-select: none;
+  /* Non-prefixed version, currently
+                                 not supported by any browser */
   box-sizing: border-box;
   position: relative;
   overflow: hidden;
@@ -878,6 +880,8 @@
     -ms-user-select: none;
     /* Internet Explorer/Edge */
     user-select: none;
+    /* Non-prefixed version, currently
+                                 not supported by any browser */
     display: flex;
     flex-direction: column;
     align-self: stretch;
@@ -902,6 +906,8 @@
     -ms-user-select: none;
     /* Internet Explorer/Edge */
     user-select: none;
+    /* Non-prefixed version, currently
+                                 not supported by any browser */
     order: 3;
     line-height: normal;
     flex: 1 0 auto;
@@ -922,14 +928,30 @@
     white-space: normal;
     line-height: normal; }
   .table-row__label {
+    -webkit-touch-callout: none;
+    /* iOS Safari */
+    -webkit-user-select: none;
+    /* Chrome/Safari/Opera */
+    -khtml-user-select: none;
+    /* Konqueror */
+    -moz-user-select: none;
+    /* Firefox */
+    -ms-user-select: none;
+    /* Internet Explorer/Edge */
+    user-select: none;
+    /* Non-prefixed version, currently
+                                 not supported by any browser */
     order: 0;
-    align-self: center; }
+    align-self: center;
+    white-space: nowrap; }
     .table-row__label--right {
       text-align: left;
       order: 4;
       margin-right: 1rem; }
     .table-row__label--left {
-      margin-left: 1rem; }
+      flex: 0 1 80px;
+      text-align: right;
+      margin-right: 1rem; }
   .table-row__icon {
     margin-right: var(--px-table-row-icon-margin-right, 1rem); }
   .table-row__reorder-btn {
@@ -964,10 +986,11 @@
     padding: 0;
     margin: 0;
     line-height: 44px; }
+  .table-row ::content .text-input,
   .table-row .text-input {
-    margin: 0;
-    min-height: 44px;
-    font-size: 1.3rem;
+    width: auto;
+    flex: 1;
+    align-self: stretch;
     box-shadow: none; }
   .table-row .btn {
     outline: none;
