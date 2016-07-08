@@ -265,8 +265,10 @@ $inuit-enable-btn--disabled: true;
   ///---------------------------------------------------------------------------
   ///.table-row__label
   @include element ('label') {
+    @include noselect();
     order     : 0;
     align-self: center;
+    white-space: nowrap;
 
 
     @include modifier ('right') {
@@ -276,7 +278,9 @@ $inuit-enable-btn--disabled: true;
     }
 
     @include modifier ('left') {
-      margin-left: $inuit-base-spacing-unit;
+      flex: 0 1 80px;
+      text-align: right;
+      margin-right: $inuit-base-spacing-unit;
       //-left: $inuit-base-spacing-unit;
     }
   }
@@ -360,18 +364,16 @@ $inuit-enable-btn--disabled: true;
   ///---------------------------------------------------------------------------
   /// Inputs
   ///---------------------------------------------------------------------------
-  @include c ('input') {
-    //width: 100%;
-  }
-
-  .text-input {
-    margin    : 0;
-    min-height: 44px;
-    font-size : 1.3rem;
+  @include c ('.text-input') {
+    width: auto;
+    flex: 1;
+    align-self: stretch;
     //  background: transparent;
     //  border    : none;
     box-shadow: none;
   }
+
+
 
   .btn {
     outline   : none;
