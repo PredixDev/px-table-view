@@ -45,7 +45,10 @@ Custom property | Description | Default
   </style>
   <template strip-whitespace>
     <div class="toggle toggle__table-view-item">
-      <input id="{{name}}" class="toggle__input" type="checkbox" checked="{{checked::change}}">
+      <input id="{{name}}" class="toggle__input" type="checkbox"
+        required$="{{required}}"
+        disabled$="{{disabled}}"
+        checked="{{checked::change}}">
       <label for$="{{name}}" class="toggle__label needsclick">
         <span>{{label}}</span>
       </label>
