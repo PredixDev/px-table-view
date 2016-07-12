@@ -396,7 +396,7 @@
   ::content .btn--small {
     height: 1.6666666667em;
     font-size: 0.8rem;
-    line-height: calc($inuit-btn-height--small - 2px); }
+    line-height: calc(1.6666666667em - 2px); }
 
 @-moz-document url-prefix() {
   ::content .btn--small {
@@ -704,8 +704,6 @@
   -ms-user-select: none;
   /* Internet Explorer/Edge */
   user-select: none;
-  /* Non-prefixed version, currently
-                                 not supported by any browser */
   box-sizing: border-box;
   position: relative;
   overflow: hidden;
@@ -910,8 +908,6 @@
     -ms-user-select: none;
     /* Internet Explorer/Edge */
     user-select: none;
-    /* Non-prefixed version, currently
-                                 not supported by any browser */
     display: -webkit-flex;
     display: -ms-flexbox;
     display: flex;
@@ -953,8 +949,6 @@
     -ms-user-select: none;
     /* Internet Explorer/Edge */
     user-select: none;
-    /* Non-prefixed version, currently
-                                 not supported by any browser */
     -webkit-order: 3;
         -ms-flex-order: 3;
             order: 3;
@@ -1008,8 +1002,6 @@
     -ms-user-select: none;
     /* Internet Explorer/Edge */
     user-select: none;
-    /* Non-prefixed version, currently
-                                 not supported by any browser */
     -webkit-order: 0;
         -ms-flex-order: 0;
             order: 0;

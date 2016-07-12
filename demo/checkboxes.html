@@ -43,35 +43,49 @@
 
       <h2>Bordered Checkboxes</h2>
       <demo-snippet>
-        <template id="">
-          <px-table-view>
-            <px-table-row>
-              <px-table-row-checkbox name="cb1-1" label="Border Checkbox"></px-table-row-checkbox>
-            </px-table-row>
-            <px-table-row>
-              <px-table-row-checkbox name="cb1-2" label="Border Checked (Disabled)" checked disabled></px-table-row-checkbox>
-            </px-table-row>
-            <px-table-row>
-              <px-table-row-checkbox name="cb1-3" label="Border (Disabled)" disabled></px-table-row-checkbox>
-            </px-table-row>
-          </px-table-view>
+        <template>
+          <template id="tmpl1" is="dom-bind">
+            <h3>Checked:{{checked}}</h3>
+            <px-table-view>
+              <px-table-row>
+                <px-table-row-checkbox name="cb1-1" label="Border Checkbox"  checked="{{checked}}"></px-table-row-checkbox>
+              </px-table-row>
+              <px-table-row>
+                <px-table-row-checkbox name="cb1-2" label="Border Checked (Disabled)" checked="{{checked}}" disabled></px-table-row-checkbox>
+              </px-table-row>
+              <px-table-row>
+                <px-table-row-checkbox name="cb1-3" label="Border (Disabled)" disabled></px-table-row-checkbox>
+              </px-table-row>
+            </px-table-view>
+          </template>
+          <script type="text/javascript">
+          var scope = document.getElementById('tmpl1');
+          scope.checked = false;
+          </script>
         </template>
       </demo-snippet>
 
       <h2>Borderless Checkboxes</h2>
       <demo-snippet>
-        <template id="">
-          <px-table-view>
-            <px-table-row>
-              <px-table-row-checkbox name="cb2-1" label="No Border" type="no-border"></px-table-row-checkbox>
-            </px-table-row>
-            <px-table-row>
-              <px-table-row-checkbox name="cb2-2" label="No Border Checked (Disabled)" type="no-border" checked disabled></px-table-row-checkbox>
-            </px-table-row>
-            <px-table-row>
-              <px-table-row-checkbox name="cb2-3" label="No Border (Disabled)" type="no-border" disabled></px-table-row-checkbox>
-            </px-table-row>
-          </px-table-view>
+        <template>
+          <template id="tmpl2" is="dom-bind">
+            <h3>Checked:{{checked}}</h3>
+            <px-table-view>
+              <px-table-row>
+                <px-table-row-checkbox name="cb2-1" label="No Border" modifier="no-border" checked="{{checked}}"></px-table-row-checkbox>
+              </px-table-row>
+              <px-table-row>
+                <px-table-row-checkbox name="cb2-2" label="No Border Checked (Disabled)" modifier="no-border" disabled></px-table-row-checkbox>
+              </px-table-row>
+              <px-table-row>
+                <px-table-row-checkbox name="cb2-3" label="No Border (Disabled)" modifier="no-border" disabled></px-table-row-checkbox>
+              </px-table-row>
+            </px-table-view>
+          </template>
+          <script type="text/javascript">
+          var scope = document.getElementById('tmpl2');
+          scope.checked = false;
+          </script>
         </template>
       </demo-snippet>
 

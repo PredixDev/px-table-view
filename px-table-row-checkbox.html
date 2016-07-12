@@ -4,7 +4,17 @@
 To use this component:
 
 ```
-<px-table-row-checkbox name="cb0" label="No Border Checked" type="no-border" checked></px-table-row-checkbox>
+<px-table-view>
+  <px-table-row>
+    <px-table-row-checkbox name="cb1-1" label="Border Checkbox"></px-table-row-checkbox>
+  </px-table-row>
+  <px-table-row>
+    <px-table-row-checkbox name="cb1-2" label="Border Checked (Disabled)" checked disabled></px-table-row-checkbox>
+  </px-table-row>
+  <px-table-row>
+    <px-table-row-checkbox name="cb1-3" label="Border (Disabled)" disabled></px-table-row-checkbox>
+  </px-table-row>
+</px-table-view>
 ```
 
 <demo-snippet>
@@ -13,20 +23,30 @@ To use this component:
   </template>
 </demo-snippet>
 
+### Styling
+
+Custom property | Description | Default
+------------ | ------------- | ------------
+  `--px-table-row-checkbox` | Style mixin to be applied to the element | {}
+
 @element px-table-row-checkbox.html
 @demo demo/checkboxes.html
 @homepage index.html
 -->
 <dom-module id="px-table-row-checkbox">
-  <style include="px-table-row-css"></style>
-  <style>
+  <style include="px-table-row-css">
   :host {
     display: block;
+    @apply(--px-table-row-checkbox);
   }
   </style>
-  <template>
-    <label class="table-row__checkbox needsclick" for$="{{name}}">
-      <input id$="{{name}}" type="checkbox" name$="{{name}}" value$="{{value}}">
+  <template strip-whitespace>
+    <label class="table-row__checkbox" for$="{{name}}">
+      <input id$="{{name}}" type="checkbox"
+        checked="{{checked::change}}"
+        required$="{{required}}"
+        disabled$="{{disabled}}"
+        >
       <div class="table-row__checkbox__checkmark "></div>
       <span>{{label}}</span>
     </label>
@@ -38,51 +58,15 @@ To use this component:
       Polymer.IronCheckedElementBehavior
     ],
     properties: {
-      //The label for the checkbox
-      label: {
+      //The modifier for the checkbox (`border`, `no-border`)
+      modifier: {
         type: String
-      },
-      //The input name for the checkbox
-      name: {
-        type: String
-      },
-      //The input value for the checkbox
-      value: {
-        type: String,
-        reflectPropertyToAttribute: true,
-        notify: true
-      },
-      //The type of checkbox (no-border)
-      type: {
-        type: String
-      },
-      //The disabled state
-      disabled: {
-        type: Boolean
       }
     },
     attached: function() {
-      if (this.type) {
-        this.toggleClass('table-row__checkbox--' + this.type, true, this.$$('label'));
+      if (this.modifier) {
+        this.toggleClass('table-row__checkbox--' + this.modifier, true, this.$$('label'));
       }
-      if (this.checked) {
-        this.$$('input').checked = true;
-      }
-      if (this.disabled) {
-        this.$$('input').disabled = true;
-      }
-      this.listen(this.$$('label'), 'tap', 'handleTap');
-    },
-    handleTap: function(e) {
-      if (this.disabled) {
-        return;
-      }
-      // TODO: IOS and FastClick have an issue where the label does not trigger the event.
-      var iOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
-      if (iOS) {
-        //this.$$('input').checked = !this.$$('input').checked;
-      }
-
     }
   });
 

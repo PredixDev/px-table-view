@@ -396,7 +396,7 @@
   ::content .btn--small {
     height: 1.6666666667em;
     font-size: 0.8rem;
-    line-height: calc($inuit-btn-height--small - 2px); }
+    line-height: calc(1.6666666667em - 2px); }
 
 @-moz-document url-prefix() {
   ::content .btn--small {
@@ -701,8 +701,6 @@
   -ms-user-select: none;
   /* Internet Explorer/Edge */
   user-select: none;
-  /* Non-prefixed version, currently
-                                 not supported by any browser */
   box-sizing: border-box;
   position: relative;
   overflow: hidden;
@@ -880,8 +878,6 @@
     -ms-user-select: none;
     /* Internet Explorer/Edge */
     user-select: none;
-    /* Non-prefixed version, currently
-                                 not supported by any browser */
     display: flex;
     flex-direction: column;
     align-self: stretch;
@@ -906,8 +902,6 @@
     -ms-user-select: none;
     /* Internet Explorer/Edge */
     user-select: none;
-    /* Non-prefixed version, currently
-                                 not supported by any browser */
     order: 3;
     line-height: normal;
     flex: 1 0 auto;
@@ -939,8 +933,6 @@
     -ms-user-select: none;
     /* Internet Explorer/Edge */
     user-select: none;
-    /* Non-prefixed version, currently
-                                 not supported by any browser */
     order: 0;
     align-self: center;
     white-space: nowrap; }
@@ -1009,8 +1001,6 @@
   -ms-user-select: none;
   /* Internet Explorer/Edge */
   user-select: none;
-  /* Non-prefixed version, currently
-                                 not supported by any browser */
   min-height: var(--px-table-row-min-height, 2.9333333333rem);
   line-height: var(--px-table-row-line-height, 2.9333333333rem);
   color: var(--px-table-row-color, inherit);
@@ -1168,8 +1158,6 @@
     -ms-user-select: none;
     /* Internet Explorer/Edge */
     user-select: none;
-    /* Non-prefixed version, currently
-                                 not supported by any browser */
     cursor: pointer;
     flex: 1;
     margin: 0;

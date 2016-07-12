@@ -1,5 +1,4 @@
-<link rel="import" href="../polymer/polymer.html" />
-
+<link rel="import" href="../polymer/polymer.html"/>
 <link rel="import" href="../iron-checked-element-behavior/iron-checked-element-behavior.html">
 <!--
 To use this component:
@@ -23,27 +22,30 @@ To use this component:
   </px-table-row>
 </px-table-view>
 ```
+
+### Styling
+
+Custom property | Description | Default
+------------ | ------------- | ------------
+  `--px-table-row-switch` | Style mixin to be applied to the element | {}
+
 @element px-table-row-switch.html
 @demo demo/switches.html
 @homepage index.html
 -->
 <dom-module id="px-table-row-switch">
-  <style include="px-table-row-css"></style>
-  <style>
-  :host {
-    display: flex;
-    justify-content: space-between;
-    order: 10;
-    align-self: center;
-  }
+  <style include="px-table-row-css">
+    :host {
+      display: flex;
+      justify-content: space-between;
+      order: 10;
+      align-self: center;
+      @apply(--px-table-row-switch);
+    }
   </style>
   <template strip-whitespace>
     <div class="toggle toggle__table-view-item">
-      <input id$="{{name}}" class="toggle__input" type="checkbox"
-        required$="{{required}}" 
-        checked$="{{checked}}"
-        name$="{{name}}"
-        value$="{{value}}">
+      <input id="{{name}}" class="toggle__input" type="checkbox" checked="{{checked::change}}">
       <label for$="{{name}}" class="toggle__label needsclick">
         <span>{{label}}</span>
       </label>
@@ -55,49 +57,21 @@ To use this component:
     </template>
   </template>
   <script>
-  Polymer({
-    is: 'px-table-row-switch',
-    behaviors: [
-      Polymer.IronCheckedElementBehavior
-    ],
-    properties: {
-      //The size for the switch
-      size: {
-        type: String
+    Polymer({
+      is: 'px-table-row-switch',
+      behaviors: [Polymer.IronCheckedElementBehavior],
+      properties: {
+        //The size for the switch. (tiny, small, large, huge)
+        size: {
+          type: String
+        }
       },
-      //The label for the switch
-      label: {
-        type: String
-      },
-      //The disabled state
-      disabled: {
-        type: Boolean
+      attached: function () {
+        if (this.size) {
+          this.toggleClass('toggle__input--' + this.size, true, this.$$('input'));
+          this.toggleClass('toggle__label--' + this.size, true, this.$$('label'));
+        }
       }
-    },
-    attached: function() {
-      if (this.checked) {
-        this.$$('input').checked = true;
-      }
-      if (this.disabled) {
-        this.$$('input').disabled = true;
-      }
-      if(this.size){
-        this.toggleClass('toggle__input--'+this.size, true, this.$$('input'));
-        this.toggleClass('toggle__label--'+this.size, true, this.$$('label'));
-      }
-      //this.listen(this.$.myButton, 'tap', 'onTap');
-      this.listen(this.$$('label'), 'tap', 'handleTap');
-    },
-    handleTap: function(e) {
-      if (this.disabled) {
-        return;
-      }
-      // TODO: IOS and FastClick have an issue where the label does not trigger the event.
-      var iOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
-      if (iOS) {
-      //  this.$$('input').checked = !this.$$('input').checked;
-      }
-    }
-  });
+    });
   </script>
 </dom-module>
