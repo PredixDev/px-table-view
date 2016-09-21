@@ -31,7 +31,9 @@
     "hammerjs": "hammer.js#~2.0.8",
     "px-partials": "~0.0.6",
     "iron-checked-element-behavior": "PolymerElements/iron-checked-element-behavior#~1.0.4",
-    "iron-validatable-behavior": "PolymerElements/iron-validatable-behavior#~1.1.1"
+    "iron-validatable-behavior": "PolymerElements/iron-validatable-behavior#~1.1.1",
+    "px-demo-snippet": "^0.5.2",
+    "px-api-viewer": "^0.1.0"
   },
   "devDependencies": {
     "px-demo-helpers": "https://github.com/PredixDev/px-demo-helpers.git",
@@ -44,11 +46,15 @@
     "iron-component-page": "PolymerElements/iron-component-page#~v1.1.0",
     "iron-ajax": "PolymerElements/iron-ajax#^1.0.0",
     "iron-demo-helpers": "PolymerElements/iron-demo-helpers#~1.2.3",
-    "jquery": "~2.2.4"
+    "jquery": "~2.2.4",
+    "px-api-viewer": "https://github.com/jonniespratley/px-api-viewer.git#^0.1.0",
+    "polymer-font-awesome": "px-polymer-font-awesome#^0.1.9",
+    "px-tabs": "^0.5.2"
   },
   "resolutions": {
-    "px-theme": "~0.8.0",
+    "px-theme": "1.1.2",
     "polymer-font-awesome": "master",
-    "polymer": "^1.5.0"
+    "polymer": "^1.6.0",
+    "px-typography-design": "^1.1.0"
   }
 }

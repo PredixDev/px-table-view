@@ -1,6 +1,5 @@
 var FONT_AWESOME = {
   "icons": [
-
     "fa-glass",
     "fa-music", "fa-search", "fa-envelope-o", "fa-heart", "fa-star", "fa-star-o", "fa-user",
     "fa-film",
@@ -114,8 +113,6 @@ var FONT_AWESOME = {
     "fa-spotify", "fa-deviantart", "fa-soundcloud", "fa-database", "fa-file-pdf-o",
     "fa-file-word-o",
     "fa-file-excel-o", "fa-file-powerpoint-o",
-
-
     "fa-file-image-o", "fa-file-zip-o", "fa-file-archive-o",
     "fa-file-audio-o",
     "fa-file-video-o", "fa-file-code-o", "fa-vine", "fa-codepen",
@@ -123,11 +120,8 @@ var FONT_AWESOME = {
     "fa-life-ring",
     "fa-circle-o-notch", "fa-rebel", "fa-empire", "fa-git-square", "fa-git",
     "fa-hacker-news", "fa-tencent-weibo", "fa-qq",
-
     "fa-weixin",
-
     "fa-paper-plane",
-
     "fa-paper-plane-o", "fa-history",
     "fa-circle-thin", "fa-header", "fa-paragraph", "fa-sliders", "fa-share-alt",
     "fa-share-alt-square",

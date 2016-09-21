@@ -1,14 +1,482 @@
-<!doctype html>
 <html>
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>px-table-view API</title>
-    <script src="../webcomponentsjs/webcomponents-lite.min.js"></script>
-    <link rel="import" href="../iron-component-page/iron-component-page.html"/>
-  </head>
-  <body>
-    <iron-component-page src="px-table-view.html" active="docs"></iron-component-page>
-    <script src="http://localhost:35724/livereload.js?snipver=1"></script>
-  </body>
+
+	<head>
+		<!-- TODO: dependencies -->
+		<script src="../webcomponentsjs/webcomponents-lite.min.js"></script>
+
+		<meta name="viewport" content="initial-scale=1, maximum-scale=1">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<link rel="import" href="../iron-icon/iron-icon.html">
+		<link rel="import" href="../iron-input/iron-input.html">
+
+		<link rel="import" href="../px-theme/px-theme-styles.html">
+		<link rel="import" href="../px-theme/px-theme.html">
+
+		<link rel="import" href="../px-tabs/px-tab-set.html">
+		<link rel="import" href="../px-tabs/px-tab-pages.html">
+		<link rel="import" href="../px-theme/px-app.html">
+		<link rel="import" href="../px-demo-helpers/px-demo-helpers.html" />
+		<link rel="import" href="../px-demo-snippet/px-demo-snippet.html">
+		<link rel="import" href="../px-api-viewer/px-api-viewer.html">
+		<link rel="import" href="../px-polymer-font-awesome/polymer-font-awesome.html" />
+		<link rel="import" href="../iron-component-page/iron-component-page.html">
+
+
+    <link rel="import" href="px-table-view.html">
+    <script src="demo/demo.js"></script>
+		<style include="px-theme-styles" is="custom-style"></style>
+
+		<title>px-table-view</title>
+		<style media="screen">
+			.box {
+				background: transparent;
+				border: none;
+				padding: 10px;
+			}
+
+			.actionable {
+				text-decoration: none;
+			}
+
+			.position-relative {
+				position: relative;
+        	margin-bottom: 1rem;
+
+			}
+
+      .bg--dark{
+        background: #333;
+      }
+
+			.u-mb {
+				margin-bottom: .5rem;
+			}
+
+			.hero {
+				background: #fff;
+			}
+
+			body,
+			html {
+				background: #f7f7fc !important;
+				overflow: hidden;
+				overflow-y: scroll;
+				overflow-y: auto;
+				-webkit-overflow-scrolling: touch;
+			}
+
+			.apiContainer {
+				background: #fff;
+			     margin-top: 1rem;
+			}
+
+			.mega-demo {
+				background: #f7f7fc;
+				width: 100%;
+			}
+
+			.demo,
+			.properties {
+				background: #fff;
+				border: 1px solid #d1d0d8;
+				flex: 1 0 275px;
+			}
+		</style>
+	</head>
+
+	<body unresolved>
+
+		<template id="app" is="dom-bind">
+
+      <style is="custom-style">
+      --px-table-row-label2:{
+        width: 100px;
+      }
+      </style>
+		<!-- Element Description -->
+    <div class="hero u-p++ text--shadow">
+      <a class="actionable flex flex--right flex--middle" href="https://github.com/PredixDev/px-navbar" target="_blank"><iron-icon class="menu__open" icon="fa:fa-github"></iron-icon>View on Github</a>
+  		<h1 class="delta">px-table-view</h1>
+      <div class="description-text">
+        <p>
+        The px-table-view element provides a way to display list data.
+        </p>
+      </div>
+  		<div class="flex">
+  			<img class="u-mr--" src="https://img.shields.io/travis/PredixDev/px-table-view.svg?style=flat-square" alt="Travis"/>
+  			<img class="u-mr--" src="https://img.shields.io/bower/v/px-table-view.svg?style=flat-square" alt="Bower"/>
+  			<img class="u-mr--" src="https://img.shields.io/github/issues-raw/PredixDev/px-table-view.svg?style=flat-square" alt="Issues"/>
+  		</div>
+  	</div>
+
+		<!--  Element Demo -->
+		<div class="flex flex--col">
+			<div class="demoContainer flex__item u-p++">
+
+          <px-tab-set id="tabs" bare="true" selected="{{selected}}">
+            <template is="dom-repeat" items="[[elements]]">
+              <px-tab id="{{item}}">{{item}}</px-tab>
+            </template>
+
+          </px-tab-set>
+            <px-tab-pages selected="{{selected}}" class="u-pt">
+
+              <!-- TODO: px-table-view -->
+              <section class="tab-page">
+                <div class="flex flex--wrap">
+                  <div class="u-ph- u-pb properties u-1/3">
+                    <p class="epsilon">Properties</p>
+                    <px-table-view id="tableViewProps">
+                      <px-table-row label2="Modifier">
+                        <input is="iron-input" bind-value="{{tableProps.modifier}}" type="text" class="text-input">
+                      </px-table-row>
+                      <px-table-row label2="Row Modifier">
+                        <input is="iron-input" bind-value="{{tableProps.rowModifier}}" type="text" class="text-input">
+                      </px-table-row>
+                      <px-table-row label2="Selected">
+                        <input is="iron-input" bind-value="{{tableProps.selected}}" type="text" class="text-input">
+                      </px-table-row>
+                    </px-table-view>
+                  </div>
+                  <div class="flex__item u-ml+ demo u-p">
+                    <div class="position-relative">
+                      <px-table-view id="demo1"
+                        selected="{{tableProps.selected}}"
+                        selected-values="{{tableProps.selectedValues}}"
+                        pull-to-refresh="[[tableProps.pullToRefresh]]"
+                        modifier="[[tableProps.modifier]]"
+                        row-modifier="[[tableProps.rowModifier]]"
+                        >
+                        <template is="dom-repeat" items="[[items]]">
+                          <px-table-row title="Item {{index}}" edit-mode="{{tableProps.editMode}}">
+                        </template>
+
+
+                      </px-table-view>
+                    </div>
+                    <px-demo-snippet element-properties="{{tableProps}}" element-name="px-table-view"></px-demo-snippet>
+                  </div>
+                </div>
+              </section>
+
+
+              <!-- TODO: px-table-row -->
+              <section>
+                <div class="flex flex--wrap">
+                  <div class="u-ph- u-pb properties u-1/3">
+                    <p class="epsilon">Properties</p>
+                    <px-table-view>
+                      <px-table-row label2="Title">
+                        <input is="iron-input" bind-value="{{tableRowProps.title}}" type="text" class="text-input">
+                      </px-table-row>
+                      <px-table-row label2="Body">
+                        <input is="iron-input" bind-value="{{tableRowProps.body}}" type="text" class="text-input">
+                      </px-table-row>
+                      <px-table-row label2="Label 1">
+                        <input is="iron-input" bind-value="{{tableRowProps.label1}}" type="text" class="text-input">
+                      </px-table-row>
+                      <px-table-row label2="Label 2">
+                        <input is="iron-input" bind-value="{{tableRowProps.label2}}" type="text" class="text-input">
+                      </px-table-row>
+                      <px-table-row label2="Modifier">
+                        <input is="iron-input" bind-value="{{tableRowProps.modifier}}" type="text" class="text-input">
+                      </px-table-row>
+                      <px-table-row label2="Icon Left">
+                        <select class="text-input" name="iconLeft" on-change="_onSelect">
+                          <template is="dom-repeat" items="[[FONT_AWESOME.icons]]">
+                            <option>fa:{{item}}</option>
+                          </template>
+                        </select>
+                      </px-table-row>
+                      <px-table-row label2="Icon Right">
+                        <select class="text-input" name="iconRight" on-change="_onSelect">
+                          <template is="dom-repeat" items="[[FONT_AWESOME.icons]]">
+                            <option>fa:{{item}}</option>
+                          </template>
+                        </select>
+                      </px-table-row>
+                      <px-table-row label2="Icon Size">
+                        <input is="iron-input" bind-value="{{tableRowProps.iconSize}}" type="number" class="text-input">
+                      </px-table-row>
+                      <px-table-row label2="Image">
+                        <input is="iron-input" bind-value="{{tableRowProps.image}}" type="text" class="text-input">
+                      </px-table-row>
+                      <px-table-row label2="Media Pos">
+                        <input is="iron-input" bind-value="{{tableRowProps.mediaPos}}" type="text" class="text-input">
+                      </px-table-row>
+                    </px-table-view>
+                  </div>
+                  <div class="flex__item u-ml+ demo u-p">
+                    <div class="position-relative">
+                      <px-table-view>
+                        <px-table-row
+                          title="[[tableRowProps.title]]"
+                          body="[[tableRowProps.body]]"
+                          label1="[[tableRowProps.label1]]"
+                          label2="{{tableRowProps.label2}}"
+                          modifier="{{tableRowProps.modifier}}"
+                          media-pos="{{tableRowProps.mediaPos}}"
+                          icon-left="[[tableRowProps.iconLeft]]"
+                          icon-right="[[tableRowProps.iconRight]]"
+                          icon-size="{{tableRowProps.iconSize}}"
+                          image="{{tableRowProps.image}}"
+                          ></px-table-row>
+                      </px-table-view>
+                    </div>
+                    <px-demo-snippet element-properties="{{tableRowProps}}" element-name="px-table-row"></px-demo-snippet>
+                  </div>
+                </div>
+              </section>
+
+              <!-- TODO: px-table-row-switch -->
+              <section>
+                <div class="flex flex--wrap">
+                  <div class="u-ph- u-pb properties u-1/3">
+                    <p class="epsilon">Properties</p>
+                    <px-table-view>
+                      <px-table-row label2="Name">
+                        <input is="iron-input" bind-value="{{tableRowSwitchProps.name}}" type="text" class="text-input">
+                      </px-table-row>
+                      <px-table-row label2="Label">
+                        <input is="iron-input" bind-value="{{tableRowSwitchProps.label}}" type="text" class="text-input">
+                      </px-table-row>
+                      <px-table-row label2="Value">
+                        <input is="iron-input" bind-value="{{tableRowSwitchProps.value}}" type="text" class="text-input">
+                      </px-table-row>
+                      <px-table-row label2="Checked">
+                        <px-table-row-checkbox checked="{{tableRowSwitchProps.checked}}"></px-table-row-checkbox>
+                      </px-table-row>
+                      <px-table-row label2="Required">
+                        <px-table-row-checkbox checked="{{tableRowSwitchProps.required}}"></px-table-row-checkbox>
+                      </px-table-row>
+                      <px-table-row label2="Disabled">
+                        <px-table-row-checkbox checked="{{tableRowSwitchProps.disabled}}"></px-table-row-checkbox>
+                      </px-table-row>
+                    </px-table-view>
+                  </div>
+                  <div class="flex__item u-ml+ demo u-p">
+                    <div class="position-relative">
+                      <form is="iron-form">
+                        <px-table-row-switch
+                          name="{{tableRowSwitchProps.name}}"
+                          value="{{tableRowSwitchProps.value}}"
+                          disabled="{{tableRowSwitchProps.disabled}}"
+                          required="{{tableRowSwitchProps.required}}"
+                          label="{{tableRowSwitchProps.label}}"
+                          checked="{{tableRowSwitchProps.checked}}"
+                          ></px-table-row-switch>
+                          <br>
+                          <button type="submit" name="button">Submit</button>
+                      </form>
+                    </div>
+                    <px-demo-snippet element-properties="{{tableRowSwitchProps}}" element-name="px-table-row-switch"></px-demo-snippet>
+                  </div>
+                </div>
+              </section>
+
+              <!-- TODO: px-table-row-checkbox -->
+              <section>
+                <div class="flex flex--wrap">
+                  <div class="u-ph- u-pb properties u-1/3">
+                    <p class="epsilon">Properties</p>
+                    <px-table-view id="tableRowProps">
+                      <px-table-row label2="Name">
+                        <input is="iron-input" bind-value="{{tableRowCheckboxProps.name}}" type="text" class="text-input">
+                      </px-table-row>
+                      <px-table-row label2="Label">
+                        <input is="iron-input" bind-value="{{tableRowCheckboxProps.label}}" type="text" class="text-input">
+                      </px-table-row>
+                      <px-table-row label2="Value">
+                        <input is="iron-input" bind-value="{{tableRowCheckboxProps.value}}" type="text" class="text-input">
+                      </px-table-row>
+                      <px-table-row label2="Checked">
+                        <px-table-row-checkbox checked="{{tableRowCheckboxProps.checked}}"></px-table-row-checkbox>
+                      </px-table-row>
+                      <px-table-row label2="Required">
+                        <px-table-row-checkbox checked="{{tableRowCheckboxProps.required}}"></px-table-row-checkbox>
+                      </px-table-row>
+                      <px-table-row label2="Disabled">
+                        <px-table-row-checkbox checked="{{tableRowCheckboxProps.disabled}}"></px-table-row-checkbox>
+                      </px-table-row>
+                    </px-table-view>
+                  </div>
+                  <div class="flex__item u-ml+ demo u-p">
+                    <div class="position-relative">
+                      <form is="iron-form">
+                        <px-table-row-checkbox
+                          name="{{tableRowCheckboxProps.name}}"
+                          value="{{tableRowCheckboxProps.value}}"
+                          disabled="{{tableRowCheckboxProps.disabled}}"
+                          required="{{tableRowCheckboxProps.required}}"
+                          label="{{tableRowCheckboxProps.label}}"
+                          checked="{{tableRowCheckboxProps.checked}}"
+                          ></px-table-row-checkbox>
+                          <br>
+                          <button type="submit" name="button">Submit</button>
+                      </form>
+                    </div>
+                    <px-demo-snippet element-properties="{{tableRowCheckboxProps}}" element-name="px-table-row-checkbox"></px-demo-snippet>
+                  </div>
+                </div>
+              </section>
+
+              <!-- TODO: px-table-row-actions -->
+              <section>
+                <div class="flex flex--wrap">
+                  <div class=" u-p">
+                    <p>
+                      Swipe on a table row to reveal row actions.
+                    </p>
+                  </div>
+                  <div class="flex__item u-p u-ml+">
+                    <div class="position-relative flex flex--center">
+                      <device-view landscape>
+                        <px-table-view modifier="small">
+                            <template is="dom-repeat" items="[[items]]">
+                              <px-table-row title="Text Label" label1="Yesterday" modifier="tappable nav-right" swipeable swipe-right fit-underlay>
+                                <div underlay class="full-height flex flex--stretch flex--left">
+                                  <px-table-row-action-button label="More" type="more"></px-table-row-action-button>
+                                  <px-table-row-action-button label="Flag" type="flag"></px-table-row-action-button>
+                                  <px-table-row-action-button label="Delete" type="delete"></px-table-row-action-button>
+                                </div>
+                              </px-table-row>
+                            </template>
+                          </px-table-view>
+                      </device-view>
+                    </div>
+                  </div>
+                </div>
+              </section>
+
+              <section>
+                <div class="flex">
+                  <div class="flex__item u-p">
+                    <px-table-view id="table-view-demo-43a" modifier="inset">
+                      <px-sortable id="table-view-demo-43a-sort" content group="grouped">
+                        <px-table-row title="Item 1"></px-table-row>
+                        <px-table-row title="Item 2"></px-table-row>
+                        <px-table-row title="Item 3"></px-table-row>
+                      </px-sortable>
+                    </px-table-view>
+                  </div>
+                  <div class="flex__item u-p">
+                    <px-table-view id="table-view-demo-43b" modifier="inset">
+                      <px-sortable id="table-view-demo-43b-sort" content group="grouped">
+                        <px-table-row title="Item 4"></px-table-row>
+                        <px-table-row title="Item 5"></px-table-row>
+                        <px-table-row title="Item 6"></px-table-row>
+                      </px-sortable>
+                    </px-table-view>
+                  </div>
+                </div>
+              </section>
+            </px-tab-pages>
+		    </div>
+		</div>
+
+    <!--  Element API -->
+    <div class="flex flex--col">
+      <div class="apiContainer flex__item">
+        <div class="u-p++">
+          <px-api-viewer source="px-table-view" element-name="{{selectedElement}}"></px-api-viewer>
+        </div>
+      </div>
+    </div>
+
+		<!-- Element Footer -->
+		<footer class="footer flex flex--center">
+			<div class="footer__container u-pv++">
+
+				<div class="footer__list">
+					<ul class="list-inline list-inline--delimited">
+						<li>
+							<a href="http://predix.io/legal" class="footer__list--lnk">Legal</a>
+						</li>
+						<li>
+							<a href="mailto:info@predix.io" class="footer__list--lnk">Contact Us</a>
+						</li>
+						<li>Copyright &copy; {{year}} General Electric Company. All rights reserved.</li>
+					</ul>
+				</div>
+			</div>
+		</footer>
+		</template>
+
+		<script type="text/javascript">
+			document.addEventListener('WebComponentsReady', function() {
+				var scope = document.querySelector('#app');
+        scope.selected = 0;
+        scope.elements = [
+          'px-table-view',
+          'px-table-row',
+          'px-table-row-switch',
+          'px-table-row-checkbox',
+          'px-table-row-actions',
+          'px-sortable'
+        ];
+        scope.FONT_AWESOME = window.FONT_AWESOME;
+        scope.selectedElement = scope.elements[scope.selected];
+        scope.items = [1, 2, 3, 4, 5];
+        document.getElementById('tabs').addEventListener('iron-select', function(e){
+          console.log(e);
+          scope.selectedElement = scope.elements[scope.selected];
+        });
+
+        scope._onSelect = function(e){
+          scope.set('tableRowProps.' + e.target.name, e.target.value);
+        };
+
+        //px-table-view
+      	scope.tableProps = {
+        //  isSortable: false,
+          //editMode: false,
+          selectedValues: null,
+          selected: null,
+          modifier: 'small',
+          rowModifier: 'tappable'
+				};
+
+        //px-table-row
+      	scope.tableRowProps = {
+					title: 'John Doe',
+					body: 'Started working on documentation',
+          modifier: 'tappable',
+          icon: '',
+          iconRight: 'fa:fa-cog',
+          iconLeft: '',
+          iconSize: '32',
+          image: 'http://placehold.it/80',
+          mediaPos: 'left',
+					label1: '5 min ago',
+					label2: ''
+				};
+
+        //px-table-row-switch
+        scope.tableRowSwitchProps = {
+          disabled: false,
+          required: false,
+          invalid: false,
+          checked: false,
+          value: 'switchvalue',
+          name: 'switch1',
+          label: ''
+        };
+        //px-table-row-checkbox
+        scope.tableRowCheckboxProps = {
+          required: false,
+          disabled: false,
+          invalid: false,
+          checked: false,
+          value: 'cbvalue',
+          name: 'cb1',
+          label: 'Checkbox Label'
+        };
+
+				scope.year = new Date().getFullYear();
+			});
+		</script>
+
+	</body>
+
 </html>

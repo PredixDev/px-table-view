@@ -1,1 +1,14 @@
-[object Object]
+{
+	"suites": ["test/px-table-view-test-fixture.html"],
+	"verbose": true,
+	"plugins": {
+		"sauce": {
+			"disabled": true
+		},
+		"local": {
+			"browsers": [
+				"chrome"
+			]
+		}
+	}
+}

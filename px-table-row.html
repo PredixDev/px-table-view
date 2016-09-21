@@ -5,37 +5,22 @@
 <link rel="import" href="../px-partials/px-icon/px-icon.html"/>
 
 <!--
-<p>
-  For a list of all demos visit  <a href="./demo" target="_blank">here</a>.
-</p>
+The `px-table-row` element provides various ways to display table data. For demo visit <a href="./demo/index.html" target="_blank">here</a>.
 
-To use this element you can do the following:
-```
-<px-table-row title="Item Label"></px-table-row>
-```
-
-To style this component you can do the following:
+### Usage
 
 ```
-<style is="custom-style">
-   :root .my-theme{
-     --px-table-row:{
-       color: #b0fffe;
-       background-color: #36bd64;
-       border-bottom: 1px solid #1d8756;
-     }
-     --px-table-row-underlay:{
-       width: 100%;
-     }
-   }
- </style>
+  <px-table-view>
+    <px-table-row title="Item Label"></px-table-row>
+  </px-table-view>
 ```
 
 ### Content attributes
 
 Attribute | Description
 --------- | -----------
-content | The content for the table row
+content | The content after the table row.
+row-content | The row-content for the table row.
 
 ### Styling
 
@@ -46,7 +31,14 @@ Custom property | Description | Default
   `--px-table-row-body` | Style mixin to be applied to the body element | {}
   `--px-table-row-content` | Style mixin to be applied to the content element | {}
   `--px-table-row-label` | Style mixin to be applied to the label element | {}
+  `--px-table-row-label--left` | Style mixin to be applied to the left label element | {}
+  `--px-table-row-label--right` | Style mixin to be applied to the right label element | {}
   `--px-table-row-media` | Style mixin to be applied to the media element | {}
+  `--px-table-row-media--left` | Style mixin to be applied to the left media element | {}
+  `--px-table-row-media--right` | Style mixin to be applied to the right media element | {}
+  `--px-table-row-media--img` | Style mixin to be applied to the media img element | {}
+  `--px-table-row-handle` | Style mixin to be applied to the drag handle element | {}
+
 
 
 @element px-table-row.html
@@ -95,7 +87,7 @@ Custom property | Description | Default
 		}
 
     :host .table-row__media img{
-      @apply(--px-table-row-media-img);
+      @apply(--px-table-row-media--img);
     }
 
     :host .table-row__label{
@@ -126,6 +118,7 @@ Custom property | Description | Default
     }
 
     :host .table-row__handle{
+        @apply(--px-table-row-handle);
       border: none;
       background: transparent;
       color: #b1b1bc;
@@ -180,7 +173,7 @@ Custom property | Description | Default
           <template is="dom-if" if="{{body}}">
             <span class="table-row__body">{{body}}</span>
           </template>
-          <content select="[row-content], input, px-table-row-switch, px-table-row-checkbox"></content>
+          <content select="[row-content], select, input, px-table-row-switch, px-table-row-checkbox"></content>
         </div>
       </div>
       <div class="table-row__content">
@@ -211,6 +204,8 @@ Custom property | Description | Default
         * The title to set on the table-row.
         */
         title: {
+          notify: true,
+          reflectToAttribute: true,
           type: String,
           value: null
         },
@@ -218,6 +213,8 @@ Custom property | Description | Default
         * The sub title to set on the table-row.
         */
         subtitle: {
+          notify: true,
+          reflectToAttribute: true,
           type: String
         },
         /**
@@ -236,6 +233,8 @@ Custom property | Description | Default
         * The body to set on the table-row.
         */
         body: {
+          notify: true,
+          reflectToAttribute: true,
           type: String
         },
         /**
@@ -247,7 +246,7 @@ Custom property | Description | Default
         /**
         * The icon to set on the table-row.
         * Using font-awesome-polymer-icons svg set.
-        * Example: `fa:line-chart`
+        * Example: `fa:fa-line-chart`
         */
         icon: {
           type: String
@@ -255,7 +254,7 @@ Custom property | Description | Default
         /**
         * The left icon to set on the table-row.
         * Using font-awesome-polymer-icons svg set.
-        * Example: `fa:line-chart`
+        * Example: `fa:fa-line-chart`
         */
         iconLeft: {
           type: String
@@ -263,21 +262,17 @@ Custom property | Description | Default
         /**
         * The right icon to set on the table-row.
         * Using font-awesome-polymer-icons svg set.
-        * Example: `fa:line-chart`
+        * Example: `fa:fa-line-chart`
         */
         iconRight: {
           type: String
         },
         /**
-        * The size to set on the table-row.
-        */
-        size: {
-          type: String
-        },
-        /**
-        * The size to set on the icon.
+        * The icon size to set on icon.
         */
         iconSize: {
+          notify: true,
+          reflectToAttribute: true,
           type: Number
         },
         /**
@@ -290,6 +285,8 @@ Custom property | Description | Default
         * The media position (left or right);
         */
         mediaPos: {
+          notify: true,
+          reflectToAttribute: true,
           type: String
         },
         /**
@@ -326,18 +323,20 @@ Custom property | Description | Default
           type: Boolean,
           value: false,
           notify: true,
-          reflectToAttribute: true,
-          observer: '_handleOpened'
+          reflectToAttribute: true
         }
       },
+      observers: [
+        '_handleMediaPos(mediaPos)',
+        '_handleOpened(opened)',
+        '_init(item, collapsable)'
+      ],
       listeners: {
         'row.tap': '_handleTap'
       },
       ready: function(){
-        //this.listen(this.$.row, 'tap', '_handleTap');
-        var _this = this;
         this.async(function () {
-          _this._init();
+          this._init();
         });
       },
       detached: function(){
@@ -376,12 +375,7 @@ Custom property | Description | Default
         if (_this.imagePos) {
           _this.toggleClass('table-row__media--' + _this.imagePos, true, _this.$$('.table-row__media--image'));
         }
-        if (_this.mediaPos) {
-          _this.toggleClass('table-row__media--' + _this.mediaPos, true, _this.$$('.table-row__media'));
-          if (_this.mediaPos === 'right') {
-            //_this.toggleClass('u-mr++', true, _this.$$('.table-row__media'));
-          }
-        }
+
         if (_this.item) {
           var item = _this.item;
           for (var prop in item) {
@@ -400,19 +394,39 @@ Custom property | Description | Default
         this.fire('reorder', e);
         return false;
       },
+      _handleMediaPos: function (newVal, oldVal) {
+        var el = this.$$('.table-row__media--image');
+        this.debounce('mediaPos', function(){
+          if(el){
+            el.classList.remove('table-row__media--right');
+            el.classList.remove('table-row__media--left');
+            this.toggleClass('table-row__media--' + oldVal, false, el);
+            this.toggleClass('table-row__media--' + newVal, true, el);
+          }
+        }, 500);
+      },
       _handleModifier: function (newVal, oldVal) {
         var _this = this,
           klass,
           types;
         klass = 'table-row--' + oldVal;
-        _this.toggleClass(klass, false, this.$.row);
-        if (_this.modifier) {
-          types = _this.modifier.split(' ');
-          for (var i = 0; i < types.length; i++) {
-            klass = 'table-row--' + types[i];
-            _this.toggleClass(klass, true, this.$.row);
+
+        this.debounce('toggleClass', function(){
+          if(oldVal){
+            types = oldVal.split(' ');
+            for (var i = 0; i < types.length; i++) {
+              klass = 'table-row--' + types[i];
+              this.$.row.classList.remove(klass);
+            }
           }
-        }
+          if (newVal) {
+            types = newVal.split(' ');
+            for (var i = 0; i < types.length; i++) {
+              klass = 'table-row--' + types[i];
+              _this.toggleClass(klass, true, this.$.row);
+            }
+          }
+        }, 500);
       }
     });
   </script>

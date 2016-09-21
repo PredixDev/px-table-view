@@ -1,21 +1,38 @@
 <link rel="import" href="../polymer/polymer.html"/>
 <!--
-
-* <p>
-   For a list of all demos visit  <a href="./demo/swipe-actions-mobile.html" target="_blank">here</a>.
-</p>
-
-To use this component:
+The `px-table-row-actions` element provides a way to enable swipping to reveal actions. For demos visit [here](./demo/swipe-actions.html)
+### Usage
 
 ```
-<px-table-row title="Text Label" label1="Yesterday" modifier="nav-right" actionable swipe-right fit-actions>
-  <px-table-row-actions position="left" underlay>
-    <px-table-row-action-button label="More" type="more"></px-table-row-action-button>
-    <px-table-row-action-button label="Flag" type="flag"></px-table-row-action-button>
-    <px-table-row-action-button label="Delete" type="delete"></px-table-row-action-button>
-  </px-table-row-actions>
-</px-table-row>
+<template id="table-view-actions-1" is="dom-bind">
+  <px-table-view modifier="small">
+    <template is="dom-repeat" items="[[items]]">
+      <px-table-row title="Text Label" label1="Yesterday" modifier="nav-right" swipeable swipe-right fit-underlay>
+        <div underlay class="full-height flex flex--stretch flex--left">
+          <px-table-row-action-button label="More" type="more"></px-table-row-action-button>
+          <px-table-row-action-button label="Flag" type="flag"></px-table-row-action-button>
+          <px-table-row-action-button label="Delete" type="delete"></px-table-row-action-button>
+        </div>
+      </px-table-row>
+    </template>
+  </px-table-view>
+</template>
+<script type="text/javascript">
+  document.addEventListener('WebComponentsReady', function () {
+    var app = document.getElementById('table-view-actions-1');
+    app.items = [1, 2, 3, 4, 5];
+  });
+</script>
 ```
+
+### Styling
+
+Custom property | Description | Default
+------------ | ------------- | ------------
+`--px-table-row-underlay` | Style mixin to be applied to the underlay element | {}
+`--px-table-row-underlay-content` | Style mixin to be applied to the underlay content element | {}
+
+
 @element px-table-row-action-button.html
 @demo demo/swipe-actions.html
 @homepage index.html
@@ -57,7 +74,8 @@ To use this component:
     /**
      * Gets the width of the drawer.
      *
-     * @return {Number} The width of the drawer in pixels.
+     * @return {Number} width The width of the drawer in pixels.
+     * @private
      */
     getWidth: function () {
       return this.$.content.offsetWidth;
