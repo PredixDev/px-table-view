@@ -29,7 +29,9 @@ The `px-table-row-checkbox` element is a form checkbox input.
 
 Custom property | Description | Default
 ------------ | ------------- | ------------
-  `--px-table-row-checkbox` | Style mixin to be applied to the element | {}
+`--px-table-row-checkbox` | Style mixin applied to the element | {}
+`--px-table-row-checkbox--disabled` | Style mixin applied to the disabled element | {}
+`--px-table-row-checkbox--checkmark` | Style mixin applied to the checkmark element | {}
 
 @element px-table-row-checkbox.html
 @demo demo/checkboxes.html
@@ -41,6 +43,15 @@ Custom property | Description | Default
     display: block;
     @apply(--px-table-row-checkbox);
   }
+
+  :host [disabled]{
+    @apply(--px-table-row-checkbox--disabled);
+  }
+
+  :host .table-row__checkbox input[type=checkbox] + div.table-row__checkbox__checkmark:after{
+    @apply(--px-table-row-checkbox--checkmark);
+  }
+
   </style>
   <template strip-whitespace>
     <label class="table-row__checkbox" for$="{{name}}">
@@ -49,8 +60,8 @@ Custom property | Description | Default
         required$="{{required}}"
         disabled$="{{disabled}}"
         >
-      <div class="table-row__checkbox__checkmark "></div>
-      <span>{{label}}</span>
+      <div class="table-row__checkbox__checkmark"></div>
+      <span disabled$="{{disabled}}">{{label}}</span>
     </label>
   </template>
   <script>
