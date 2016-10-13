@@ -23,21 +23,14 @@
 <link rel="import" href="px-drilldown-list.html"/> -->
 
 <!--
-The `px-table-view` element provides a way to display list data.
-
-[![Build Status](https://travis-ci.org/PredixDev/px-table-view.svg?branch=master)](https://travis-ci.org/PredixDev/px-table-view)
-
-For demos visit <a href="./demo.html" target="_blank">here</a>.
-For individual demos visit <a href="./demo" target="_blank">here</a>.
+The `px-table-view` element provides a way to display list data. For demos visit <a href="./demo.html" target="_blank">here</a>.
 
 ### Usage
 
 ```
-<link rel="import" href="../px-table-view/px-table-view.html"/>
 <px-table-view>
   <px-table-row title="Text Label"></px-table-row>
   <px-table-row title="Nav Right Item" modifier="nav-right"></px-table-row>
-  <px-table-row title="Detail Item" modifier="detail"></px-table-row>
   <px-table-row title="Tappable Item" modifier="tappable"></px-table-row>
 </px-table-view>
 ```
@@ -46,9 +39,12 @@ For individual demos visit <a href="./demo" target="_blank">here</a>.
 
 Custom property | Description | Default
 ------------ | ------------- | ------------
-  `--px-table-view` | Style mixin to be applied to the component | {}
-  `--px-table-view-sortable-chosen` | Style mixin to be applied to the sortable chosen element | {}
-  `--px-table-row-selected` | Style mixin to be applied to the selected table row element | {}
+`--px-table-view` | Style mixin to be applied to the component | {}
+`--px-table-row-selected` | Style mixin to be applied to the selected table row element | {}
+`--px-table-row-selected-color` | The selected row font color | {}
+`--px-table-row-selected-background-color` | The selected row background color | {}
+`--px-table-view-sortable-chosen` | Style mixin to be applied to the sortable chosen element | {}
+
 
 
 
@@ -172,28 +168,42 @@ Custom property | Description | Default
           return Polymer.dom(this.$.tableViewContent).getDistributedNodes();
         }
       },
+
       _handleModifier: function (newVal, oldVal) {
         var _this = this,
           klass,
           types;
         klass = 'table-view--' + oldVal;
 
-        if (_this.modifier) {
-          types = _this.modifier.split(' ');
-          for (var i = 0; i < types.length; i++) {
-            klass = 'table-view--' + types[i];
-            _this.toggleClass(klass, true, _this.$.content);
+        this.debounce('toggleClass', function(){
+
+          if(oldVal){
+            types = oldVal.split(' ');
+            for (var i = 0; i < types.length; i++) {
+              klass = 'table-view--' + types[i];
+              this.$.content.classList.remove(klass);
+            }
           }
-        }
+          if (newVal) {
+            types = this.modifier.split(' ');
+            for (var i = 0; i < types.length; i++) {
+              klass = 'table-view--' + types[i];
+              _this.toggleClass(klass, true, this.$.content);
+            }
+          }
+        }, 1000);
       },
       _handleRowModifier: function (newVal, oldVal) {
-        var rows = this.rows;
-        var len = rows.length;
-        var i = 0;
+
         if (newVal) {
-          for (; i < len; i++) {
-            rows[i].modifier = newVal;
-          }
+          this.debounce('rowModifier', function(){
+            var rows = this.rows;
+            var len = rows.length;
+            var i = 0;
+            for (; i < len; i++) {
+              rows[i].modifier = newVal;
+            }
+          }, 1000);
         }
       }
     });

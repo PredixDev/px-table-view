@@ -89,6 +89,54 @@
         </template>
       </demo-snippet>
 
+      <h2>Custom CSS Checkboxes</h2>
+      <demo-snippet>
+        <template>
+          <template id="tmpl3" is="dom-bind">
+            <style is="custom-style">
+              .custom-checkbox{
+                --px-table-row-checkbox:{
+                  color: green;
+                }
+              }
+
+              .custom-disabled-checkbox{
+                --px-table-row-checkbox:{
+                  color: crimson;
+                }
+
+                --px-table-row-checkbox--checkmark:{
+                  color: #ff9821;
+                  border-color: #ff9821;
+                }
+
+                --px-table-row-checkbox--disabled:{
+                  opacity: .5;
+                  color: red;
+                }
+              }
+
+            </style>
+            <h3>Checked:{{checked}}</h3>
+            <px-table-view>
+              <px-table-row >
+                <px-table-row-checkbox class="custom-checkbox" name="cb3-1" label="No Border" modifier="no-border" checked="{{checked}}"></px-table-row-checkbox>
+              </px-table-row>
+              <px-table-row>
+                <px-table-row-checkbox  class="custom-disabled-checkbox" name="cb3-2" label="No Border Styled" modifier="no-border" disabled="{{checked}}"></px-table-row-checkbox>
+              </px-table-row>
+              <px-table-row>
+                <px-table-row-checkbox name="cb3-3" label="No Border (Disabled)" modifier="no-border" disabled></px-table-row-checkbox>
+              </px-table-row>
+            </px-table-view>
+          </template>
+          <script type="text/javascript">
+          var scope = document.getElementById('tmpl3');
+          scope.checked = false;
+          </script>
+        </template>
+      </demo-snippet>
+
     </div>
   </body>
 </html>

@@ -65,15 +65,15 @@ var pxTableViewPullToRefreshBehavior = {
    * @private
    */
   _hammer: null,
-
-  attached: function() {
+  observers: ['_enablePullToRefresh(pullToRefresh)'],
+  _enablePullToRefresh: function() {
     if (this.pullToRefresh) {
-      this.async(function() {
+      this.debounce('ptr', function() {
         this.toggleClass('table-view--ptr', this.pullToRefresh, this.$.content);
         this.toggleClass('ptr', this.pullToRefresh);
         this.toggleClass('ptr__content', this.pullToRefresh, this.$.content);
         this._init();
-      });
+      }, 500);
     }
   },
 
