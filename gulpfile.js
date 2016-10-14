@@ -4,22 +4,13 @@ const gulp = require('gulp');
 const pkg = require('./package.json');
 const $ = require('gulp-load-plugins')();
 const gulpSequence = require('gulp-sequence');
-const sassdoc = require('sassdoc');
-const filelog = require('gulp-filelog');
 const importOnce = require('node-sass-import-once');
-require('web-component-tester').gulp.init(gulp);
-const sassdocOptions = {
-  dest: 'docs',
-  verbose: true,
-  display: {
-    access: ['public', 'private'],
-    alias: true,
-    watermark: true,
-  },
-  groups: {
-    'undefined': 'Ungrouped'
-  }
-};
+const stylemod = require('gulp-style-modules');
+const browserSync = require('browser-sync').create();
+const gulpif = require('gulp-if');
+const combiner = require('stream-combiner2');
+const bump = require('gulp-bump');
+const argv = require('yargs').argv;
 
 const sassOptions = {
   importer: importOnce,
@@ -29,123 +20,91 @@ const sassOptions = {
   }
 };
 
-
-
-gulp.task('clean', function () {
+gulp.task('clean', function() {
   return gulp.src(['.tmp', 'css'], {
-      read: false
-    })
-    .pipe($.filelog())
-    .pipe($.clean());
+    read: false
+  }).pipe($.clean());
 });
 
+function handleError(err){
+  console.log(err.toString());
+  this.emit('end');
+}
 
-///-------------------------------------------------------------------------
-/// Styles Tasks
-///-------------------------------------------------------------------------
-
-
-/// 1. Compile styles
-gulp.task('sass', function () {
-  return gulp.src(`./sass/${pkg.name}-sketch.scss`)
-    .pipe($.filelog())
-    .pipe($.sass(sassOptions).on('error', $.sass.logError))
-    .pipe($.size())
-    //  .pipe($.concat(pkg.name + '.css'))
-    .pipe($.rename(`${pkg.name}.css`))
-    .pipe(gulp.dest('./css'))
-    .pipe($.filelog());
-});
-gulp.task('sass-row', function () {
-  return gulp.src(`./sass/px-table-row-sketch.scss`)
-    .pipe($.filelog())
-    .pipe($.sass(sassOptions).on('error', $.sass.logError))
-    .pipe($.size())
-    //  .pipe($.concat(pkg.name + '.css'))
-    .pipe($.rename(`px-table-row.css`))
-    .pipe(gulp.dest('./css'))
-    .pipe($.filelog());
-});
-
-/// 2. Document styles
-gulp.task('sassdoc', function () {
-  return gulp.src('sass/**/*.scss')
-    .pipe(sassdoc(sassdocOptions))
-    .pipe($.filelog());
-});
-
-/// 3. Prefix styles
-gulp.task('autoprefixer', function () {
-  return gulp.src('css/*.css')
-    .pipe($.filelog())
-    .pipe($.autoprefixer({
-      browsers: ['last 2 versions'],
+function buildCSS(){
+  return combiner.obj([
+    $.sass(sassOptions),
+    $.autoprefixer({
+      browsers: ['last 2 versions', 'Safari 8.0'],
       cascade: false
-    }))
-    .pipe($.size())
-    .pipe(gulp.dest('css'))
-    .pipe($.filelog());
-});
+    }),
+    gulpif(!argv.debug, $.cssmin())
+  ]).on('error', handleError);
+}
 
-/// 4. Minify styles
-gulp.task('cssmin', function () {
-  return gulp.src('css/*.css')
-    .pipe($.sourcemaps.init())
-    .pipe($.cssmin())
-    .pipe($.filelog())
-    //.pipe($.concat(pkg.name + '.css'))
-    .pipe($.sourcemaps.write('.'))
-    .pipe($.rename({
-      suffix: '.min'
-    }))
-    .pipe($.size())
-    .pipe(gulp.dest('css'))
-    .pipe($.filelog());
-});
-
-
-/// 5. Create Polymer styles module
-const stylemod = require('gulp-style-modules');
-
-
-gulp.task('poly-styles', function () {
-  gulp.src(`./css/${pkg.name}.css`)
-    .pipe($.filelog())
+gulp.task('sass', function() {
+  return gulp.src(['./sass/*.scss', '!./sass/*sketch.scss', '!./sass/*-demo.scss'])
+    .pipe(buildCSS())
+    .pipe(gulpif(/.*predix/,
+      $.rename(function(path){
+        path.basename = new RegExp('.+?(?=\-predix)').exec(path.basename)[0];
+      })
+    ))
     .pipe(stylemod({
-      filename: 'styles',
-      moduleId: function (file) {
-        return path.basename(file.path, path.extname(file.path)) + '-css';
+      moduleId: function(file) {
+        return path.basename(file.path, path.extname(file.path)) + '-styles';
       }
     }))
-    .pipe($.rename(`${pkg.name}-styles.html`))
-    .pipe(gulp.dest('.'))
-    .pipe($.filelog());
-});
-gulp.task('poly-styles-row', function () {
-  gulp.src(`./css/px-table-row.css`)
-    .pipe($.filelog())
-    .pipe(stylemod({
-      filename: 'styles',
-      moduleId: function (file) {
-        return path.basename(file.path, path.extname(file.path)) + '-css';
-      }
-    }))
-    .pipe($.rename(`px-table-row-styles.html`))
-    .pipe(gulp.dest('.'))
-    .pipe($.filelog());
+    .pipe(gulp.dest('css'))
+    .pipe(browserSync.stream({match: 'css/*.html'}));
 });
 
-
-
-gulp.task('build:styles', gulpSequence('sass', 'autoprefixer'));
-
-
-gulp.task('sass:watch', function () {
-  gulp.watch('./sass/**/*.scss', ['sass']);
-  gulp.watch('./css/**/*.css', ['autoprefixer']);
+gulp.task('demosass', function() {
+  return gulp.src(['./sass/*-demo.scss'])
+    .pipe(buildCSS())
+    .pipe(gulp.dest('css'))
+    .pipe(browserSync.stream({match: '**/*.css'}));
 });
 
+gulp.task('watch', function() {
+  gulp.watch(['!sass/*-demo.scss', 'sass/*.scss'], ['sass']);
+  gulp.watch('sass/*-demo.scss', ['demosass']);
+});
 
-gulp.task('styles', gulpSequence('sass', 'sass-row', 'autoprefixer', 'cssmin', 'sassdoc', 'poly-styles', 'poly-styles-row'));
-gulp.task('watch', ['sass:watch']);
-gulp.task('default', ['clean', 'styles']);
+gulp.task('serve', function() {
+  browserSync.init({
+    port: 8080,
+    notify: false,
+    reloadOnRestart: true,
+    logPrefix: `${pkg.name}`,
+    https: false,
+    server: ['./', 'bower_components'],
+  });
+
+  gulp.watch(['css/*-styles.html', 'css/*-demo.css', '*.html', '*.js']).on('change', browserSync.reload);
+  gulp.watch(['sass/*.scss', '!sass/*-demo.scss'], ['sass']);
+  gulp.watch('sass/*-demo.scss', ['demosass']);
+
+});
+
+gulp.task('bump:patch', function(){
+  gulp.src(['./bower.json', './package.json'])
+  .pipe(bump({type:'patch'}))
+  .pipe(gulp.dest('./'));
+});
+
+gulp.task('bump:minor', function(){
+  gulp.src(['./bower.json', './package.json'])
+  .pipe(bump({type:'minor'}))
+  .pipe(gulp.dest('./'));
+});
+
+gulp.task('bump:major', function(){
+  gulp.src(['./bower.json', './package.json'])
+  .pipe(bump({type:'major'}))
+  .pipe(gulp.dest('./'));
+});
+
+gulp.task('default', function(callback) {
+  gulpSequence('clean', 'sass', 'demosass')(callback);
+});
