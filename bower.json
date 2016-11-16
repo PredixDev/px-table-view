@@ -1,6 +1,6 @@
 {
   "name": "px-table-view",
-  "version": "0.0.6",
+  "version": "1.0.0",
   "description": "A responsive mobile first table view list.",
   "authors": [
     "Jonnie Spratley <jonnie.spratley@ge.com>"
@@ -15,7 +15,7 @@
   "ignore": [
     ".*",
     "npm-debug.log",
-    "Gruntfile.js",
+    "gulpfile.js",
     "bower_components",
     "node_modules",
     "test"
