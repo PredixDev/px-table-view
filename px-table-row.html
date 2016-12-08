@@ -59,11 +59,12 @@ Custom property | Description | Default
       user-select: none;
       box-sizing: border-box;
     }
-    :host .table-row{
+
+    :host .table-row {
       @apply(--px-table-row);
     }
 
-    :host .table-row__title{
+    :host .table-row__title {
       @apply(--px-table-row-title);
     }
 
@@ -71,46 +72,50 @@ Custom property | Description | Default
       @apply(--px-table-row-content);
     }
 
-    :host .table-row__body{
+    :host .table-row__body {
       @apply(--px-table-row-body);
     }
 
-    :host .table-row__media{
+    :host .table-row__media {
       @apply(--px-table-row-media);
     }
 
-		:host .table-row__media--left{
+		:host .table-row__media--left {
 			@apply(--px-table-row-media--left)
 		}
-		:host .table-row__media--right{
+		:host .table-row__media--right {
 			@apply(--px-table-row-media--right)
 		}
 
-    :host .table-row__media img{
+    :host .table-row__media img {
       @apply(--px-table-row-media--img);
     }
 
-    :host .table-row__label{
+    :host .table-row__label {
       @apply(--px-table-row-label);
     }
 
-    :host .table-row__label--right{
+    :host .table-row__label--right {
       @apply(--px-table-row-label--right);
     }
 
-    :host .table-row__label--left{
+    :host .table-row__label--left {
       @apply(--px-table-row-label--left);
     }
-    :host .table-row__content:empty{
+    :host .table-row__content:empty {
       display: none;
     }
 
-    :host #underlay{
+    :host #underlay {
       position: absolute;
       top: 0px;
       bottom: 0px;
       overflow: hidden;
       @apply(--px-table-row-underlay);
+    }
+
+    :host([swipe-left]) #underlay {
+      right: 0;
     }
 
     :host #underlay ::content > [underlay] {
@@ -548,18 +553,6 @@ Custom property | Description | Default
           }
         }
       }
-
-      // _handleRemoveItem: function (e) {
-      //   e.preventDefault();
-      //   this.fire('remove', e);
-      //   this.remove();
-      //   return false;
-      // },
-      // _handleReorderItem: function (e) {
-      //   e.preventDefault();
-      //   this.fire('reorder', e);
-      //   return false;
-      // }
     });
   </script>
 </dom-module>

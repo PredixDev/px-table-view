@@ -1,392 +1,546 @@
 <link rel="import" href="../iron-resizable-behavior/iron-resizable-behavior.html">
 
 <script type="text/javascript">
+  var sharedPanel = null;
 
-var sharedPanel = null;
-
-/**
- * Behavior that manages the swipeable table rows
- *
- * ```
- <px-table-row title="Text Label" label1="Yesterday" modifier="nav-right" swipeable swipe-right fit-underlay>
-   <div underlay class="full-height flex flex--stretch flex--left">
-     <px-table-row-action-button label="More" type="more"></px-table-row-action-button>
-     <px-table-row-action-button label="Flag" type="flag"></px-table-row-action-button>
-     <px-table-row-action-button label="Delete" type="delete"></px-table-row-action-button>
-   </div>
- </px-table-row>
- * ```
- *
- * @polymerBehavior
- */
-
-var pxTableRowSwipeBehavior = {
-  properties: {
-    /**
-     * If true, position is reset after a tap.
-     */
-    tapReset: {
-      type: Boolean,
-      value: true
-    },
-    /**
-     * If true, swiping is disabled
-     */
-    disableSwipe: {
-      type: Boolean,
-      value: false
-    },
-    /**
-     * If true, only swiping to the left.
-     */
-    swipeLeft: {
-      type: Boolean,
-      value: false
-    },
-    /**
-     * If true, only swiping to the right.
-     */
-    swipeRight: {
-      type: Boolean,
-      value: false
-    },
-    /**
-     * If true, the number of pixels the swipeable content is peeking is equal to the width of the underlay.
-     */
-    fitUnderlay: {
-      type: Boolean,
-      value: false
-    },
-    /**
-     * The number of pixels the swipeale content is peeking at from the screen edge
-     * after being swiped to the screen edge.
-     */
-    peekOffset: {
-      type: Number,
-      value: 30
-    },
-    /**
-     * How many pixels needed to trigger auto-slide to the edge.
-     */
-    slideOffset: {
-      type: Number,
-      value: 80
-    },
-    /**
-     * Minimal distance required before recognizing swipe.
-     */
-    threshold: {
-      type: Number,
-      value: 2
-    },
-
-    /**
-     * If the underlay is visible
-     */
-    underlayOpened: {
-      type: Boolean,
-      value: false
-    },
-    /**
-     * Whether the user is dragging the content interactively
-     */
-    _dragging: {
-      type: Boolean,
-      value: false
-    },
-    /**
-     * Whether the transition is enabled.
-     */
-    _transition: {
-      type: Boolean,
-      value: false
-    },
-    /**
-     * If true, swiping to the left is detected and it is only applied to swiping to either side.
-     * Otherwise, use `swipeLeft' or 'swipeRight'.
-     */
-    _slideLeft: {
-      type: Boolean
-    },
-    /**
-     * Repetitively evaluating delta of the transitions.
-     */
-    _transitionDelta: {
-      type: Number,
-      observer: '_transitionDeltaChanged'
-    },
-    /**
-     * If true, the `transitionDelta` meets the dragging requirements set by `peekOffset` and `slideOffset`.
-     */
-    _validDelta: {
-      type: Boolean,
-      value: false
-    },
-    /**
-     * If true, draggable panel is now at the edge of the screen.
-     */
-    _atEdge: {
-      type: Boolean,
-      value: false
-    },
-    /**
-     * Current pixel position of the draggable panel.
-     */
-    _curPos: {
-      type: Number
-    },
-    /**
-     * If true, the draggable panel has been dragged.
-     * It is used to ensure that the panel is dragging.
-     */
-    _tracking: {
-      type: Boolean,
-      value: false
-    },
-    // Store children object via Polymer's getEffectiveChildren or getDistributedNodes;
-    _content: Object,
-    _underlay: Object,
-  },
-  listeners: {
-    //'track': '_handleTrack',
-    'tap': '_tapHandler',
-    'iron-resize': '_onIronResize'
-  },
-  ready: function () {
-    if (this.swipeable) {
-      this._transition = true;
-      this.setScrollDirection(this._swipeAllowed() ? 'y' : 'all');
-      this.toggleClass('table-row--swipeable', true, this.$.row);
-    }
-  },
-  attached: function () {
-    if (this.swipeable) {
-      var _content = Polymer.dom(this);
-      this.async(function () {
-        this._initSwipeActions(this);
-      }, 1000);
-      this.set('_content', _content);
-    }
-  },
-  _initSwipeActions: function (container, direction) {
-
-    var instance = container;
-
-    this.container = container;
-    this.direction = direction;
-
-    this.listen(container, 'track', '_handleTrack');
-    var _underlay = Polymer.dom(this.$.underlayContent).getDistributedNodes()[0];
-    this.set('_underlay', _underlay);
-
-    var distributed = this.getContentChildren('#underlayContent');
-    this.underlay = distributed[0];
-    if (this.underlay) {
-      this.underlaySize = this.underlay.getBoundingClientRect().width;
-    }
-    this.containerSize = this.container['offsetWidth'];
-  //  this.hammer = new Hammer.Manager(this.container, options);
-  //  this.hammer.add(new Hammer.Pan(options));
-  //  this.hammer.on("panstart panmove panend", Hammer.bindFn(this._onPan, this));
-  },
-  detached: function () {
-    if (this.swipeable) {
-      this.unlisten(this.container, 'track', '_handleTrack');
-    }
-  },
   /**
-   * When disableSwipe is true, only a click event can be triggered.
+   * Behavior that manages the swipeable table rows
+   *
+   * ```
+   <px-table-row title="Text Label" label1="Yesterday" modifier="nav-right" swipeable swipe-right fit-underlay>
+     <div underlay class="full-height flex flex--stretch flex--left">
+       <px-table-row-action-button label="More" type="more"></px-table-row-action-button>
+       <px-table-row-action-button label="Flag" type="flag"></px-table-row-action-button>
+       <px-table-row-action-button label="Delete" type="delete"></px-table-row-action-button>
+     </div>
+   </px-table-row>
+   * ```
+   *
+   * @polymerBehavior
    */
-  _tapHandler: function (event) {
-    //  this.fire('px-table-row-underlay-tap', event);
-    if (this.tapReset) {
-      if (this._atEdge) {
-        this.resetPosition();
+
+  var pxTableRowSwipeBehavior = {
+    properties: {
+      /**
+       * (Swipable property) If `true`, the position of the table-row is reset
+       * to its initial point when a underlay item is tapped.
+       *
+       * @property tapReset
+       * @type {Boolean}
+       * @default true
+       */
+      tapReset: {
+        type: Boolean,
+        value: true
+      },
+
+      /**
+       * (Swipable property) If `true`, table-row can be swiped from right-to-left.
+       *
+       * @property swipeLeft
+       * @type {Boolean}
+       * @default false
+       */
+      swipeLeft: {
+        type: Boolean,
+        value: false,
+        reflectToAttribute: true
+      },
+
+      /**
+       * (Swipable property) If `true`, table-row can be swiped from left-to-right.
+       *
+       * @property swipeRight
+       * @type {Boolean}
+       * @default false
+       */
+      swipeRight: {
+        type: Boolean,
+        value: false,
+        reflectToAttribute: true
+      },
+
+      /**
+       * (Swipable property) If `true`, sets the the number of pixels the swipeable
+       * content lands on after the user gesture to the width of the underlay.
+       *
+       * @property fitUnderlay
+       * @type {Boolean}
+       * @default false
+       */
+      fitUnderlay: {
+        type: Boolean,
+        value: false
+      },
+
+      /**
+       * (Swipable property) Manually set the number of pixels the swipeable content
+       * lands on after the user gesture to the width of the underlay. Use `fitUnderlay`
+       * to automatically fit the `peekOffset`.
+       *
+       * @property peekOffset
+       * @type {Number}
+       * @default 30
+       */
+      peekOffset: {
+        type: Number,
+        value: 30
+      },
+
+      /**
+       * (Swipable property) Sets the number of pixels the user must slide to trigger
+       * an auto-slide behavior that pushes the table-row to the edge of the visible area.
+       *
+       * @property slideOffset
+       * @type {Number}
+       * @default 80
+       */
+      slideOffset: {
+        type: Number,
+        value: 80
+      },
+
+      /**
+       * (Swipable property) The minimum distance the user must swipe the table-row
+       * before a swipe-left event is triggered.
+       *
+       * @property threshold
+       * @type {Number}
+       * @default 2
+       */
+      threshold: {
+        type: Number,
+        value: 2
+      },
+
+      /**
+       * (Swipable property) If `true`, the underlay is currently opened and visible.
+       * Use to inspect the state of the underlay drawer or to open it manually.
+       *
+       * @property underlayOpened
+       * @type {Boolean}
+       * @default false
+       */
+      underlayOpened: {
+        type: Boolean,
+        value: false
+      },
+
+      /**
+       * If `true`, the user is currently dragging and we are tracking it.
+       *
+       * @private
+       * @property _dragging
+       * @type {Boolean}
+       * @default false
+       */
+      _dragging: {
+        type: Boolean,
+        value: false
+      },
+
+      /**
+       * If `true`, the transition is enabled.
+       *
+       * @private
+       * @property _transition
+       * @type {Boolean}
+       * @default false
+       */
+      _transition: {
+        type: Boolean,
+        value: false
+      },
+
+      /**
+       * If `true`, swiping to the left is detected and it is only applied to swiping to either side.
+       * Otherwise, use `swipeLeft' or 'swipeRight'.
+       *
+       * @private
+       * @property _slideLeft
+       * @type {Boolean}
+       */
+      _slideLeft: {
+        type: Boolean
+      },
+
+      /**
+       * Repetitively evaluating delta of the transitions.
+       *
+       * @private
+       * @property _transitionDelta
+       */
+      _transitionDelta: {
+        type: Number,
+        observer: '_transitionDeltaChanged'
+      },
+
+      /**
+       * If `true`, the `transitionDelta` meets the dragging requirements set by
+       * `peekOffset` and `slideOffset`.
+       *
+       * @private
+       * @property _validDelta
+       * @type {Boolean}
+       * @default false
+       */
+      _validDelta: {
+        type: Boolean,
+        value: false
+      },
+
+      /**
+       * If `true`, draggable panel is now at the edge of the screen.
+       *
+       * @private
+       * @property _atEdge
+       * @type {Boolean}
+       * @default false
+       */
+      _atEdge: {
+        type: Boolean,
+        value: false
+      },
+
+      /**
+       * Current pixel position of the draggable panel.
+       *
+       * @private
+       * @property _curPos
+       * @type {Number}
+       */
+      _curPos: {
+        type: Number
+      },
+
+      /**
+       * If `true`, the draggable panel has been dragged. Used to ensure that the
+       * panel is dragging.
+       *
+       * @private
+       * @property _tracking
+       * @type {Boolean}
+       * @default false
+       */
+      _tracking: {
+        type: Boolean,
+        value: false
+      },
+
+      // Store children object via Polymer's getEffectiveChildren or getDistributedNodes;
+      _content: Object,
+      _underlay: Object
+    },
+
+    listeners: {
+      'tap': '_tapHandler',
+      'iron-resize': '_onIronResize'
+    },
+
+    ready: function() {
+      if (this.swipeable) {
+        this._transition = true;
+        this.setScrollDirection(this._swipeAllowed() ? 'y' : 'all');
+        this.toggleClass('table-row--swipeable', true, this.$.row);
       }
-    }
-    if (sharedPanel) {
-      sharedPanel = null;
-    }
-  },
-  /**
-   * Check if swiping is allowed.
-   * @returns {boolean}
-   * @private
-   */
-  _swipeAllowed: function () {
-    return !this.disableSwipe;
-  },
+    },
 
-  _transitionDeltaChanged: function (newValue, oldValue) {
-    if (this.swipeRight) {
-      this._validDelta = this._atEdge ? newValue <= -this.slideOffset : newValue >= this.slideOffset;
-    }
-    if (this.swipeLeft) {
-      this._validDelta = this._atEdge ? newValue >= this.slideOffset : newValue <= -this.slideOffset;
-
-    }
-    if (!this.swipeLeft && !this.swipeRight) {
-      if (newValue > oldValue) {
-        this._slideLeft = false;
-        this._validDelta = newValue >= this.slideOffset;
+    attached: function() {
+      if (this.swipeable) {
+        var _content = Polymer.dom(this);
+        this.async(function() {
+          this._initSwipeActions(this);
+        }, 1000);
+        this.set('_content', _content);
       }
-      if (newValue < oldValue) {
-        this._slideLeft = true;
-        this._validDelta = newValue <= -this.slideOffset;
-      }
-    }
-  },
-  /**
-   * Handle when swiping.
-   * @event px-table-row-swipe
-   */
-  _handleTrack: function(e) {
-    e.preventDefault();
-    this.fire('px-table-row-swipe', e);
-    e.preventDefault();
-    switch (e.detail.state) {
-      case 'start':
-        this._onPanStart(e);
-        break;
-      case 'track':
-        this._onPanMove(e);
-        break;
-      case 'end':
-        this._onPanEnd(e);
-        break;
-      default:
-    }
-  },
+    },
 
-  /**
-   * Reset the position of the swipeable content.
-   * @event px-table-row-swipe-reset
-   */
-  resetPosition: function () {
-    this._moveDrawer(null);
-    this.set('underlayOpened', false);
-    this.set('_atEdge', false);
-    this.set('_curPos', 0);
-    this.fire('px-table-row-swipe-reset', this);
-    this.toggleClass('is-open', this._atEdge, this.$.row);
-  },
-  /**
-   * Handle when panning starts
-   * @param event
-   * @event px-table-row-swipe-start
-   * @private
-   */
-  _onPanStart: function (event) {
-    if (this._swipeAllowed()) {
-      sharedPanel = this;
-      this._dragging = true;
-      if (this._dragging) {
-        this.width = this._content.offsetWidth;
-        this._transition = false;
-      }
-      this.fire('px-table-row-swipe-start', event);
-    }
-  },
-  /**
-   * Fires when swipe is moving
-   * @param event
-   * @event px-table-row-swipe-move
-   * @private
-   */
-  _onPanMove: function (event) {
-
-    this._transition = true;
-    if (this._dragging) {
-      var dx = event.detail.dx;
-      var dragDx;
-      this._transitionDelta = dx;
-      dragDx = this._atEdge ? this._curPos + dx : dx;
-      this._tracking = true;
-       this.fire('px-table-row-swipe-move', event);
-      this._moveDrawer(dragDx);
-    }
-  },
-  /**
-   * Fires when swiping ends
-   * @event px-table-row-swipe-end
-   */
-  _onPanEnd: function (event) {
-
-    this._dragging = false;
-    var slideTo, offsetLR, deltaLR;
-    if (this._swipeAllowed() && this._tracking) {
-      slideTo = (this.containerSize - this.peekOffset);
-
-      if (this.fitUnderlay) {
-        slideTo = (this.underlaySize);
-      }
-
-      offsetLR = (this.swipeRight ? slideTo : -slideTo);
-
-      if (!this.swipeLeft) {
-        offsetLR = (this._slideLeft ? -slideTo : slideTo);
-      }
-      deltaLR = this._validDelta && !this._atEdge ? offsetLR : null;
-      this._curPos = (this._atEdge ? null : deltaLR);
-      this._atEdge = (deltaLR !== null);
-      this._validDelta = false;
-      this._tracking = false;
-
-
-      this.set('underlayOpened', this._atEdge);
-      this.fire('px-table-row-swipe-end', event);
-      this._moveDrawer(deltaLR);
-    }
-  },
-
-  /**
-   * Handle when iron-resize event is fired.
-   * @private
-   */
-  _onIronResize: function () {
-    if (!this.isAttached) {
-      console.warn('notAttached');
-      return;
-    }
-    this.debounce('_onIronResize', function() {
-      var _content = this._content;
-      var w = this.offsetWidth;
+    /**
+     * Initializes the swipe actions by attaching appropriate listeners and setting
+     * internal representations of elements we will manipulate later.
+     *
+     * @private
+     * @method _initSwipeActions
+     * @param {HTMLElement} container - The `this` value of the table-row
+     */
+    _initSwipeActions: function(container, direction) {
+      var instance = container;
+      this.container = container;
+      this.direction = direction;
+      this.listen(container, 'track', '_handleTrack');
+      var _underlay = Polymer.dom(this.$.underlayContent).getDistributedNodes()[0];
+      this.set('_underlay', _underlay);
       var distributed = this.getContentChildren('#underlayContent');
       this.underlay = distributed[0];
-      if (distributed && this.underlay) {
+      if (this.underlay) {
         this.underlaySize = this.underlay.getBoundingClientRect().width;
       }
-    }, 0);
+      this.containerSize = this.container['offsetWidth'];
+    },
 
-  },
-  /**
-   * Handle moving the drawer
-   * @param translateX
-   * @private
-   */
-  _moveDrawer: function (translateX) {
-    var _content = this.$.row;
-    this.transform(this._transformForTranslateX(translateX), _content);
-    this.toggleClass('is-open', this.underlayOpened, _content);
-    this.toggleClass('transition', this._transition, _content);
-    this.toggleClass('dragging', this._dragging, _content);
-    this.toggleClass('swipe-left', this.swipeLeft, _content);
-    this.toggleClass('swipe-right', this.swipeRight, _content);
-  },
-  /**
-   * Handle transforming the table-row.
-   * @param translateX
-   * @returns {*}
-   * @private
-   */
-  _transformForTranslateX: function (translateX) {
-    if (translateX === null) {
-      return 'translate3d(0, 0, 0)';
+    detached: function() {
+      if (this.swipeable) {
+        this.unlisten(this.container, 'track', '_handleTrack');
+      }
+    },
+
+    /**
+     * Handles taps that bubble from internal elements. If `tapReset` is set, resets
+     * the position of the drawer to its initial state.
+     *
+     * @private
+     * @method _tapHandler
+     * @param {Event} event
+     */
+    _tapHandler: function(event) {
+      if (this.tapReset && this._atEdge) {
+        this.resetPosition();
+      }
+      if (sharedPanel) {
+        sharedPanel = null;
+      }
+    },
+
+    /**
+     * Checks if swiping is allowed by checking `disableSwipe`.
+     *
+     * @private
+     * @method _swipeAllowed
+     * @return {Boolean}
+     */
+    _swipeAllowed: function() {
+      return !this.disableSwipe;
+    },
+
+    /**
+     * Handles updates to the `_transitionDelta` property, changing the range
+     * for detecting swipe gestures.
+     *
+     * @private
+     * @method _transitionDelta
+     * @param {String} newValue
+     * @param {String} oldValue
+     */
+    _transitionDeltaChanged: function(newValue, oldValue) {
+      if (this.swipeRight) {
+        this._validDelta = this._atEdge ? newValue <= -this.slideOffset : newValue >= this.slideOffset;
+      }
+      if (this.swipeLeft) {
+        this._validDelta = this._atEdge ? newValue >= this.slideOffset : newValue <= -this.slideOffset;
+
+      }
+      if (!this.swipeLeft && !this.swipeRight) {
+        if (newValue > oldValue) {
+          this._slideLeft = false;
+          this._validDelta = newValue >= this.slideOffset;
+        }
+        if (newValue < oldValue) {
+          this._slideLeft = true;
+          this._validDelta = newValue <= -this.slideOffset;
+        }
+      }
+    },
+
+    /**
+     * Handles track gesture events by the user on the table-row host element.
+     *
+     * @private
+     * @method _handleTrack
+     * @param {Event} e - The track event
+     */
+    _handleTrack: function(e) {
+      e.preventDefault();
+      this.fire('px-table-row-swipe', e);
+      e.preventDefault();
+      switch (e.detail.state) {
+        case 'start':
+          this._onPanStart(e);
+          break;
+        case 'track':
+          this._onPanMove(e);
+          break;
+        case 'end':
+          this._onPanEnd(e);
+          break;
+        default:
+      }
+    },
+
+    /**
+     * (Swipeable event) Fired when tracking of a user gesture (likely a swipe) on
+     * the table-row element begins.
+     *
+     * @event px-table-row-swipe
+     */
+
+
+    /**
+     * Resets the position of the table-row to its initial state before a swipe
+     * event began.
+     *
+     * @method resetPosition
+     */
+    resetPosition: function() {
+      this._moveDrawer(null);
+      this.set('underlayOpened', false);
+      this.set('_atEdge', false);
+      this.set('_curPos', 0);
+      this.fire('px-table-row-swipe-reset', this);
+      this.toggleClass('is-open', this._atEdge, this.$.row);
+    },
+
+    /**
+     * (Swipeable event) Fired when the position of the table-row has been reset
+     * (likely after a tap event or swipe to close event).
+     *
+     * @event px-table-row-swipe-reset
+     */
+
+    /**
+     * Handles when panning starts
+     *
+     * @private
+     * @method _onPanStart
+     * @param {Event} event
+     */
+    _onPanStart: function(event) {
+      if (this._swipeAllowed()) {
+        sharedPanel = this;
+        this._dragging = true;
+        if (this._dragging) {
+          this.width = this._content.offsetWidth;
+          this._transition = false;
+        }
+        this.fire('px-table-row-swipe-start', event);
+      }
+    },
+
+    /**
+     * (Swipable event) Fired when swiping begins on the table-row.
+     *
+     * @event px-table-row-swipe-start
+     */
+
+    /**
+     * Handles the swipe in progress
+     *
+     * @private
+     * @method _onPanMove
+     * @param {Event} event
+     */
+    _onPanMove: function(event) {
+      this._transition = true;
+      if (this._dragging) {
+        var dx = event.detail.dx;
+        var dragDx;
+        this._transitionDelta = dx;
+        dragDx = this._atEdge ? this._curPos + dx : dx;
+        this._tracking = true;
+         this.fire('px-table-row-swipe-move', event);
+        this._moveDrawer(dragDx);
+      }
+    },
+
+    /**
+     * (Swipable event) Fired when swiping gesture is in progress and moving
+     * across the table-row.
+     *
+     * @event px-table-row-swipe-move
+     */
+
+     /**
+      * Handles the swipe end
+      *
+      * @private
+      * @method _onPanEnd
+      * @param {Event} event
+      */
+    _onPanEnd: function(event) {
+      this._dragging = false;
+      var slideTo, offsetLR, deltaLR;
+      if (this._swipeAllowed() && this._tracking) {
+        slideTo = (this.containerSize - this.peekOffset);
+
+        if (this.fitUnderlay) {
+          slideTo = (this.underlaySize);
+        }
+
+        offsetLR = (this.swipeRight ? slideTo : -slideTo);
+
+        if (!this.swipeLeft) {
+          offsetLR = (this._slideLeft ? -slideTo : slideTo);
+        }
+        deltaLR = this._validDelta && !this._atEdge ? offsetLR : null;
+        this._curPos = (this._atEdge ? null : deltaLR);
+        this._atEdge = (deltaLR !== null);
+        this._validDelta = false;
+        this._tracking = false;
+
+
+        this.set('underlayOpened', this._atEdge);
+        this.fire('px-table-row-swipe-end', event);
+        this._moveDrawer(deltaLR);
+      }
+    },
+
+    /**
+     * (Swipable event) Fired when swiping gesture ends.
+     *
+     * @event px-table-row-swipe-end
+     */
+
+    /**
+     * Handle when iron-resize event is fired.
+     *
+     * @private
+     * @method _onIronResize
+     */
+    _onIronResize: function() {
+      if (!this.isAttached) {
+        console.warn('notAttached');
+        return;
+      }
+      this.debounce('_onIronResize', function() {
+        var _content = this._content;
+        var w = this.offsetWidth;
+        var distributed = this.getContentChildren('#underlayContent');
+        this.underlay = distributed[0];
+        if (distributed && this.underlay) {
+          this.underlaySize = this.underlay.getBoundingClientRect().width;
+        }
+      }, 0);
+    },
+
+    /**
+     * Handle moving the drawer
+     *
+     * @private
+     * @method _moveDrawer
+     * @param {Number} translateX
+     */
+    _moveDrawer: function(translateX) {
+      var _content = this.$.row;
+      this.transform(this._transformForTranslateX(translateX), _content);
+      this.toggleClass('is-open', this.underlayOpened, _content);
+      this.toggleClass('transition', this._transition, _content);
+      this.toggleClass('dragging', this._dragging, _content);
+      this.toggleClass('swipe-left', this.swipeLeft, _content);
+      this.toggleClass('swipe-right', this.swipeRight, _content);
+    },
+
+    /**
+     * Handle transforming the table-row.
+     *
+     * @private
+     * @method _transformForTranslateX
+     * @param {Number} translateX
+     * @return {String}
+     */
+    _transformForTranslateX: function(translateX) {
+      if (translateX === null) {
+        return 'translate3d(0, 0, 0)';
+      }
+      return 'translate3d(' + translateX + 'px, 0, 0)';
     }
-    return 'translate3d(' + translateX + 'px, 0, 0)';
-  }
-};
-
-
-
+  };
 </script>

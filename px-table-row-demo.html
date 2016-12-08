@@ -110,7 +110,7 @@
                   <p class="u-mb--">Image:</p>
                   <input class="text-input" type="text" placeholder="{{demoOptions.image}}" value="{{demoOptions.image::input}}" />
                 </div>
-                <!-- Prop: Rows Size -->
+                <!-- Prop: Image Position -->
                 <div class="u-mb">
                   <p class="u-mb--">Image Position:</p>
                   <px-dropdown style="width:100%;" value="{{demoOptions.imagePosition}}" display-value="{{demoOptions.imagePosition}}">
@@ -123,18 +123,20 @@
                   <label for$="tappable{{indexPlusOne(index)}}" class="toggle__label toggle__label--small"></label>
                   <div class="u-ml-">Tappable</div>
                 </div>
-                <!-- Prop: Swipeable -->
-                <div class="flex u-mb u-mt+">
-                  <input id="swipeable{{indexPlusOne(index)}}" class="toggle__input toggle__input--small" type="checkbox" checked="{{demoOptions.swipeable::change}}">
-                  <label for$="swipeable{{indexPlusOne(index)}}" class="toggle__label toggle__label--small"></label>
-                  <div class="u-ml-">Swipeable</div>
-                </div>
-                <!-- Prop: Swipe Left -->
-                <div class="flex u-mb u-mt+">
-                  <input id="swipeLeft{{indexPlusOne(index)}}" class="toggle__input toggle__input--small" type="checkbox" checked="{{demoOptions.swipeLeft::change}}">
-                  <label for$="swipeLeft{{indexPlusOne(index)}}" class="toggle__label toggle__label--small"></label>
-                  <div class="u-ml-">Swipe Left</div>
-                </div>
+                <template is="dom-if" if="{{swipeableOption}}">
+                  <!-- Prop: Swipeable -->
+                  <div class="flex u-mb u-mt+">
+                    <input id="swipeable{{indexPlusOne(index)}}" class="toggle__input toggle__input--small" type="checkbox" checked="{{demoOptions.swipeable::change}}">
+                    <label for$="swipeable{{indexPlusOne(index)}}" class="toggle__label toggle__label--small"></label>
+                    <div class="u-ml-">Swipeable</div>
+                  </div>
+                  <!-- Prop: Swipe Left -->
+                  <div class="flex u-mb u-mt+">
+                    <input id="swipeLeft{{indexPlusOne(index)}}" class="toggle__input toggle__input--small" type="checkbox" checked="{{demoOptions.swipeLeft::change}}">
+                    <label for$="swipeLeft{{indexPlusOne(index)}}" class="toggle__label toggle__label--small"></label>
+                    <div class="u-ml-">Swipe Left</div>
+                  </div>
+                </template>
               </div>
               <!-- end Demo Box: Set Properties -->
 
@@ -157,21 +159,14 @@
                               icon-size="[[demoOptions.iconSize]]"
                               icon-color="[[demoOptions.iconColor]]"
                               image="[[demoOptions.image]]"
-                              image-position="[[demoOptions.imagePosition]]">
+                              image-position="[[demoOptions.imagePosition]]"
+                              tappable="[[demoOptions.tappable]]">
                           </px-table-row>
                         </px-table-view>
                       </template>
 
                       <template is="dom-if" if="{{swipeableOption}}">
-                      <style is="custom-style">
-                        :root px-table-row {
-                          --px-table-row-underlay: {
-                            right: 0;
-                          }
-                        }
-                      </style>
                         <px-table-view>
-                          <!-- <px-table-row title="Text Label" label1="Yesterday" modifier="nav-right" swipeable swipe-right fit-underlay> -->
                             <px-table-row
                                 title="[[demoOptions.title]]"
                                 body="[[demoOptions.body]]"
@@ -258,9 +253,7 @@
       var demoOptions1 = {
         title: 'John Doe',
         body: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit.',
-        tappable: true,
-        swipeable: false,
-        swipeLeft: false,
+        tappable: false,
         labelRight: 'Active 5min ago',
         labelLeft: '',
         iconLeft: '',
@@ -287,7 +280,7 @@
         iconColor: 'gray',
         image: '',
         imagePosition: '',
-        parentComponent: ['<style is="custom-style">:root px-table-row { --px-table-row-underlay: { right: 0; } }</style><px-table-view>','</px-table-view>']
+        parentComponent: ['<px-table-view>','</px-table-view>']
       };
 
       // Bind properties to template
