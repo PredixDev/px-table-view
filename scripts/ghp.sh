@@ -1,18 +1,4 @@
-#!/bin/bash -e
-# This script pushes a demo-friendly version of your element and its
-# dependencies to gh-pages.
-
-# usage gp Polymer core-item [branch]
-# Run in a clean directory passing in a GitHub org and repo name
-
-set -e            # Exit the shell when a simple command exits with nonzero status.
-set -o pipefail   # The return value of a pipeline is the value of the last (rightmost) command to exit with a nonzero status,
-set -x            # Print commands (after expansions) before running them.
-
-
-status() {
-  echo "-----> $*"
-}
+#!/bin/bash
 
 # Exit with nonzero exit code if anything fails
 set -e
@@ -25,8 +11,8 @@ REPO=`git config remote.origin.url`
 
 #pull requests and commits to other branches shouldn't try to deploy
 if [ "$TRAVIS_PULL_REQUEST" != "false" -o "$TRAVIS_BRANCH" != "$SOURCE_BRANCH" ]; then
-    status "Skipping deploy; just doing a build."
-    #exit 0
+    echo "Skipping deploy; just doing a build."
+    exit 0
 fi
 
 #create a temp directory that will store the bower.json file
@@ -38,7 +24,7 @@ cd ghp_tmp
 
 #find out our repo name from the bower file
 REPO_NAME=$(grep "name" bower.json | sed 's/"name": "//' | sed 's/",//')
-status "repo name is ${REPO_NAME}"
+echo "repo name is ${REPO_NAME}"
 
 #set up our variables and configs
 git config user.name "Travis CI"
@@ -50,6 +36,11 @@ SSH_REPO=${REPO/https:\/\/github.com\//git@github.com:}
 cp bower.json ../tmp_bower/bower.json
 #and checkout gh-pages - create it if it doesn't exist.
 git checkout $TARGET_BRANCH || git checkout --orphan $TARGET_BRANCH
+
+#remove the old .bowerrc, and replace it with one that tells bower to install everything in THIS folder, and not bower_components. passing with -f causes it to fail silently if .bowerrc doesn't exist.
+rm -f .bowerrc
+echo "{ \"directory\": \".\" }" > .bowerrc
+
 #copy the bower.json file from our temp directory into the current one, overriding it, and passing a yes in there's a prompt
 yes | cp ../tmp_bower/bower.json bower.json
 

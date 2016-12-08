@@ -3,27 +3,15 @@
 <link rel="import" href="../iron-selector/iron-selector.html">
 <link rel="import" href="../iron-selector/iron-multi-selectable.html">
 
-<link rel="import" href="px-table-view-behavior.html"/>
-<link rel="import" href="px-table-view-pull-to-refresh-behavior.html"/>
-
 <link rel="import" href="css/px-table-view-styles.html">
 <link rel="import" href="css/px-table-row-styles.html">
 
-
-<link rel="import" href="px-table-row-checkbox.html"/>
-<link rel="import" href="px-table-row-actions.html"/>
 <link rel="import" href="px-table-row-action-button.html"/>
-<link rel="import" href="px-table-row-switch.html"/>
 <link rel="import" href="px-table-row.html"/>
-
-<link rel="import" href="px-drilldown.html"/>
-<link rel="import" href="px-sortable.html"/>
+<link rel="import" href="px-table-view-sortable-list.html"/>
 
 <!--
-<link rel="import" href="px-drilldown-list.html"/> -->
-
-<!--
-The `px-table-view` element provides a way to display list data. For demos visit <a href="./demo.html" target="_blank">here</a>.
+The `px-table-view` element provides a way to display list data.
 
 ### Usage
 
@@ -43,15 +31,13 @@ Custom property | Description | Default
 `--px-table-row-selected` | Style mixin to be applied to the selected table row element | {}
 `--px-table-row-selected-color` | The selected row font color | {}
 `--px-table-row-selected-background-color` | The selected row background color | {}
-`--px-table-view-sortable-chosen` | Style mixin to be applied to the sortable chosen element | {}
-
-
-
+`--px-table-row-sortable-chosen-background-color` | (Sortable only) The background color for picked-up sortable rows | rgb(8,110,135)
 
 @element px-table-view.html
-@demo demo.html
+@demo index.html
 @homepage index.html
 -->
+
 <dom-module id="px-table-view">
 
   <style include="px-table-view-styles"></style>
@@ -60,42 +46,10 @@ Custom property | Description | Default
       display: block;
       position: relative;
     }
+
     :host .table-view {
       @apply(--px-table-view);
       -webkit-overflow-scrolling: touch;
-    }
-    /*:host ::content {
-      @apply(--px-table-row);
-    }*/
-    :host .sortable-chosen,
-    :host ::content .sortable-chosen {
-      @apply(--px-table-view-sortable-chosen);
-      box-shadow: 0 2px 10px rgba(0,0,0,0.45);
-    }
-    :host ::content .iron-selected .table-row:host .iron-selected .table-row,
-    :host ::content .px-selected .table-row {
-      @apply(--px-table-row-selected);
-      background-color: var(--px-table-row-selected-background-color);
-      color: var(--px-table-row-selected-color);
-    }
-    /* Handle when loading */
-    :host.ptr-loading.ptr {
-      -webkit-transition: all 0.25s ease;
-      transition: all 0.25s ease;
-    }
-    :host.ptr-loading .ptr__content {
-      -webkit-transition: all 0.25s ease;
-      transition: all 0.25s ease;
-      -webkit-transform: translate3d(0, 50px, 0);
-      transform: translate3d(0, 50px, 0);
-    }
-    :host.ptr-loading .ptr__loader {
-      -webkit-transform: translateY(0);
-      transform: translateY(0);
-    }
-    :host.ptr-loading .ptr__loader,
-    :host.ptr-loading .ptr__loading {
-      display: block;
     }
   </style>
   <template strip-whitespace>
@@ -104,13 +58,6 @@ Custom property | Description | Default
         <px-table-row item="{{item}}"></px-table-row>
       </template>
     </template>
-    <div id="ptr" class="ptr__loader" hidden$="{{!pullToRefresh}}">
-      <div class="ptr__loading">
-        <span id="l1"></span>
-        <span id="l2"></span>
-        <span id="l3"></span>
-      </div>
-    </div>
     <div id="content" class="table-view">
       <content id="tableViewContent" select="px-table-row, [content]"></content>
     </div>
@@ -118,93 +65,134 @@ Custom property | Description | Default
   <script>
     Polymer({
       is: 'px-table-view',
+
       behaviors: [
         Polymer.IronMultiSelectableBehavior,
         Polymer.IronResizableBehavior,
-        pxTableViewBehavior,
-
-        pxTableViewPullToRefreshBehavior
       ],
-      properties: {
 
+      properties: {
         /**
-         * The table data to set on the component
+         * An optional attribute that will build `px-table-row` children from a
+         * JSON data object. Expects an array of objects. Each object should contain
+         * keys that that correspond to `px-table-row` properties with defined values.
+         * For example: `'[{ "title": "Fixed Issue", "body": "Text body value", "icon": "fa:fa-exclamation-triangle"}]'`
+         *
+         * @property tableData
+         * @type {Array}
          */
         tableData: {
           type: Array
         },
+
         /**
-         * The modifiers to apply to the table-view (bare, tiny, small, large, huge, etc)
+         * Sets the size of the padding on `px-table-row` children. Can be 'flush', 'tiny', 'small', 'regular', 'large', 'huge'.
+         *
+         * @property rowsSize
+         * @type {String}
+         * @default 'regular'
          */
-        modifier: {
+        rowsSize: {
           type: String,
           notify: true,
-          reflectToAttribute: true,
-          observer: '_handleModifier'
+          observer: '_handleRowsSize',
+          value: 'regular'
         },
+
         /**
-         * If the table view is sortable set to true
+         * Makes all `px-table-row` children tappable, allowing user to click on
+         * each row and see feedback in the form of the row highlighting.
+         *
+         * @property rowsTappable
+         * @type {Boolean}
          */
-        isSortable: {
+        rowsTappable: {
           type: Boolean,
-          value: false
-        },
-        /**
-         * Modifier to be applied to each table row.
-         */
-        rowModifier: {
-          type: String,
-          notify: true,
-          reflectToAttribute: true,
-          observer: '_handleRowModifier'
+          observer: '_handleRowsTappable'
         }
       },
-      /**
-      * A reference to the px-table-row elements.
-      * @property rows
+
+     /**
+      * Returns an array with references to each `px-table-row` child.
+      *
+      * @return {Array} List of references to `px-table-row` children
       */
-      get rows() {
+      getRows: function() {
         if (this.$.tableViewContent) {
           return Polymer.dom(this.$.tableViewContent).getDistributedNodes();
         }
       },
 
-      _handleModifier: function (newVal, oldVal) {
-        var _this = this,
-          klass,
-          types;
-        klass = 'table-view--' + oldVal;
-
-        this.debounce('toggleClass', function(){
-
-          if(oldVal){
-            types = oldVal.split(' ');
-            for (var i = 0; i < types.length; i++) {
-              klass = 'table-view--' + types[i];
-              this.$.content.classList.remove(klass);
-            }
-          }
-          if (newVal) {
-            types = this.modifier.split(' ');
-            for (var i = 0; i < types.length; i++) {
-              klass = 'table-view--' + types[i];
-              _this.toggleClass(klass, true, this.$.content);
-            }
-          }
-        }, 1000);
+      /**
+       * Handles updates to the `rowsSize` property by applying requested row style
+       * modifier classes to the `content` local DOM node.
+       *
+       * @private
+       * @method _handleRowsSize
+       * @param {String} newVal - The new value of `rowsSize`
+       * @param {String} oldVal - The previous value of `rowsSize`, if any
+       */
+      _handleRowsSize: function(newVal, oldVal) {
+        if (oldVal) this._ensureRemoveCSSClass('table-view--' + oldVal);
+        if (newVal) this._ensureHasCSSClass('table-view--' + newVal);
       },
-      _handleRowModifier: function (newVal, oldVal) {
 
-        if (newVal) {
-          this.debounce('rowModifier', function(){
-            var rows = this.rows;
-            var len = rows.length;
-            var i = 0;
-            for (; i < len; i++) {
-              rows[i].modifier = newVal;
-            }
-          }, 1000);
+      /**
+       * Handles updates to the `rowsTappable` property, setting the `tappable`
+       * attribute on each child `px-table-row`.
+       *
+       * @private
+       * @method _handleRowsTappable
+       * @param {String} newVal - The new value of `rowsTappable`
+       * @param {String} oldVal - The previous value of `rowsTappable`, if any
+       */
+      _handleRowsTappable: function(newVal, oldVal) {
+        this.debounce('changeTappableAttr', function() {
+          this._changeAttrEachRow('tappable', newVal);
+        }, 500);
+      },
+
+      /**
+       * Sets the requested attribute `attr` on each child `px-table-row` to
+       * `value`.
+       *
+       * @private
+       * @method _changeAttrEachRow
+       * @param {String} attr - The name of the attribute to set
+       * @param {Primitive} value - Any value of any type to set for the attribute
+       */
+      _changeAttrEachRow: function (attr, value) {
+        var rows = this.getRows();
+        if (Array.isArray(rows) && rows.length) {
+          rows.forEach(function(row) {
+            row.set(attr, null);
+            row.set(attr, value);
+          })
         }
+      },
+
+      /**
+       * If the `content` local DOM node does not have the specific CSS class
+       * `klass`, this method adds that class.
+       *
+       * @private
+       * @method _ensureHasCSSClass
+       * @param {String} klass - The class to add if it doesn't already exist
+       */
+      _ensureHasCSSClass: function(klass) {
+        this.$.content.classList.add(klass);
+      },
+
+      /**
+       * If the `content` local DOM node has the specific CSS class `klass`, this
+       * method removes that class.
+       *
+       * @private
+       * @method _ensureRemoveCSSClass
+       * @param {String} klass - The class to remove if it already exist
+       */
+      _ensureRemoveCSSClass: function(klass) {
+        this.$.content.classList.remove(klass);
       }
     });
   </script>

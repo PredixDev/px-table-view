@@ -1,0 +1,78 @@
+<link rel="import" href="../polymer/polymer.html">
+<link rel="import" href="../polymer-font-awesome/polymer-font-awesome.html"/>
+
+<!--
+The `px-icon` element provides an easy way to use Font Awesome SVG icons.
+
+### Usage
+
+```
+<link rel="import" href="../px-partials/px-icon/px-icon.html">
+<px-icon icon="fa:fa-home"></px-icon>
+```
+
+@element px-icon
+@blurb Element The `px-icon` element provides an easy way to use Font Awesome SVG icons.
+-->
+
+<dom-module id="px-icon">
+  <style>
+  :host {
+    display: inline-block;
+  }
+  :host #icon {
+    --iron-icon-height: var(--px-icon-size);
+    --iron-icon-width: var(--px-icon-size);
+  }
+  </style>
+
+  <template strip-whitespace>
+    <iron-icon id="icn" icon$="{{icon}}" size$="{{size}}"></iron-icon>
+  </template>
+
+  <script type="text/javascript">
+  Polymer({
+    is: "px-icon",
+    properties: {
+      /**
+      * The name of the icon (`fa:fa-mobile`)
+      */
+      icon: {
+        type: String
+      },
+
+      /**
+      * The fill color for the icon (`crimson`)
+      */
+      color: {
+        type: String,
+        observer: '_handleColor'
+      },
+
+      /**
+      * The size of the icon. (`16, 24, 32, 48, etc`)
+      */
+      size: {
+        type: Number,
+        observer: '_handleSize'
+      }
+    },
+
+    _handleColor: function (newVal, oldVal) {
+      if (newVal) {
+        this.customStyle['--iron-icon-fill-color'] = newVal;
+        this.updateStyles();
+      }
+    },
+
+    _handleSize: function (newVal, oldVal) {
+      if (newVal) {
+        var size = Number.isInteger(newVal) ? newVal + 'px' : newVal;
+        this.customStyle['--iron-icon-width'] = size;
+        this.customStyle['--iron-icon-height'] = size;
+        this.updateStyles();
+      }
+    }
+  });
+  </script>
+</dom-module>
