@@ -150,18 +150,6 @@ Custom property | Description | Default
         rowsTappable: {
           type: Boolean,
           observer: '_handleRowsTappable'
-        },
-
-        /**
-         * Adds a chevron-style arrow to the far right of all `px-table-row` children
-         * to indicate the row can be used to navigate to a deeper item/screen.
-         *
-         * @property rowsChevron
-         * @type {Boolean}
-         */
-        rowsChevron: {
-          type: Boolean,
-          observer: '_handleRowsChevron'
         }
       },
 
@@ -202,21 +190,6 @@ Custom property | Description | Default
       _handleRowsTappable: function(newVal, oldVal) {
         this.debounce('changeTappableAttr', function() {
           this._changeAttrEachRow('tappable', newVal);
-        }, 500);
-      },
-
-      /**
-       * Handles updates to the `rowsChevron` property, setting the `chevron`
-       * attribute on each child `px-table-row`.
-       *
-       * @private
-       * @method _handleRowsChevron
-       * @param {String} newVal - The new value of `rowsChevron`
-       * @param {String} oldVal - The previous value of `rowsChevron`, if any
-       */
-      _handleRowsChevron: function(newVal, oldVal) {
-        this.debounce('changeChevronAttr', function() {
-          this._changeAttrEachRow('chevron', newVal);
         }, 500);
       },
 
