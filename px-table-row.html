@@ -1,11 +1,12 @@
 <link rel="import" href="../polymer/polymer.html"/>
 <link rel="import" href="../iron-resizable-behavior/iron-resizable-behavior.html">
-<link rel="import" href="px-table-row-swipe-behavior.html">
+
 <link rel="import" href="css/px-table-row-styles.html">
-<link rel="import" href="../px-partials/px-icon/px-icon.html"/>
+<link rel="import" href="px-table-row-swipe-behavior.html">
+<link rel="import" href="px-table-view-icon.html"/>
 
 <!--
-The `px-table-row` element provides various ways to display table data. For demo visit <a href="./demo/index.html" target="_blank">here</a>.
+The `px-table-row` element provides various ways to display table data within a `px-table-view`.
 
 ### Usage
 
@@ -42,11 +43,10 @@ Custom property | Description | Default
 
 
 @element px-table-row.html
-@demo demo/index.html
+@demo index.html
 @homepage index.html
 -->
 <dom-module id="px-table-row">
-  <!-- <link rel="import" type="css" href="css/px-table-row.css"> -->
   <style include="px-table-row-styles"></style>
   <style media="screen">
     :host {
@@ -129,27 +129,22 @@ Custom property | Description | Default
   <template strip-whitespace>
     <div class="">
       <div id="row" class="table-row" >
-        <template is="dom-if" if="{{label2}}">
-          <span class="table-row__label table-row__label--left">{{label2}}</span>
+        <template is="dom-if" if="{{labelLeft}}">
+          <span class="table-row__label table-row__label--left">{{labelLeft}}</span>
         </template>
         <template is="dom-if" if="{{image}}">
           <div class="table-row__media table-row__media--image">
             <img src$="{{image}}" alt="{{title}}">
           </div>
         </template>
-        <template is="dom-if" if="{{icon}}">
-          <div class="table-row__media table-row__media--icon">
-            <px-icon id="icon" icon$="{{icon}}" size$="{{iconSize}}"></px-icon>
-          </div>
-        </template>
         <template is="dom-if" if="{{iconLeft}}">
           <div class="table-row__media table-row__media--icon table-row__media--left">
-            <px-icon id="iconLeft" icon$="{{iconLeft}}" size$="{{iconSize}}"></px-icon>
+            <px-icon id="iconLeft" icon$="{{iconLeft}}" size$="{{iconSize}}" color$="{{iconColor}}"></px-icon>
           </div>
         </template>
         <template is="dom-if" if="{{iconRight}}">
           <div class="table-row__media table-row__media--icon table-row__media--right">
-            <px-icon id="iconRight" icon$="{{iconRight}}" size$="{{iconSize}}"></px-icon>
+            <px-icon id="iconRight" icon$="{{iconRight}}" size$="{{iconSize}}" color$="{{iconColor}}"></px-icon>
           </div>
         </template>
         <template is="dom-if" if="{{editMode}}">
@@ -159,10 +154,9 @@ Custom property | Description | Default
             </button>
           </div>
         </template>
-        <template is="dom-if" if="{{label1}}">
-          <span class="table-row__label table-row__label--right">{{label1}}</span>
+        <template is="dom-if" if="{{labelRight}}">
+          <span class="table-row__label table-row__label--right">{{labelRight}}</span>
         </template>
-
         <div class="table-row__content">
           <template is="dom-if" if="{{title}}">
             <span class="table-row__title">{{title}}</span>
@@ -189,178 +183,349 @@ Custom property | Description | Default
       is: 'px-table-row',
       behaviors: [
         Polymer.IronResizableBehavior,
-
         pxTableRowSwipeBehavior
       ],
       properties: {
         /**
-        * The table-row object.
-        */
+         * An object containing pre-defined properties to set on this table row.
+         * Useful for creating a table-row from an API. Can specify any public
+         * property available as an attribute on `px-table-row`.
+         *
+         * @property item
+         * @type {Object}
+         */
         item: {
           type: Object,
-          value: {}
+          value: function(){ return {} }
         },
+
         /**
-        * The title to set on the table-row.
-        */
+         * The title to set on the table-row.
+         *
+         * @property title
+         * @type {String}
+         */
         title: {
-          notify: true,
-          reflectToAttribute: true,
-          type: String,
-          value: null
+          type: String
         },
+
         /**
-        * The sub title to set on the table-row.
-        */
+         * The sub title to set on the table-row.
+         *
+         * @property subtitle
+         * @type {String}
+         */
         subtitle: {
-          notify: true,
-          reflectToAttribute: true,
           type: String
         },
+
         /**
-        * The label to place on the right side of the item.
-        */
-        label1: {
+         * The label text to place on the right side of the item.
+         *
+         * @property labelRight
+         * @type {String}
+         */
+        labelRight: {
           type: String
         },
+
         /**
-        * The label to place on the left side of the item.
-        */
-        label2: {
+         * The label text to place on the left side of the item.
+         *
+         * @property labelLeft
+         * @type {String}
+         */
+        labelLeft: {
           type: String
         },
+
         /**
-        * The body to set on the table-row.
-        */
+         * The body text to set on the table-row.
+         *
+         * @property body
+         * @type {String}
+         */
         body: {
-          notify: true,
-          reflectToAttribute: true,
           type: String
         },
+
         /**
-        * The image to set on the table-row.
-        */
+         * The URL path for an image to set on the table-row.
+         *
+         * @property image
+         * @type {String}
+         */
         image: {
           type: String
         },
+
         /**
-        * The icon to set on the table-row.
-        * Using font-awesome-polymer-icons svg set.
-        * Example: `fa:fa-line-chart`
-        */
-        icon: {
-          type: String
-        },
-        /**
-        * The left icon to set on the table-row.
-        * Using font-awesome-polymer-icons svg set.
-        * Example: `fa:fa-line-chart`
-        */
+         * The icon to set on the left side of the table-row. Uses a set of
+         * Font Awesome SVG icons sourced from font-awesome-polymer-icons.
+         * See http://fontawesome.io/ for available icons.
+         * Example: 'fa:fa-line-chart'
+         *
+         * @property iconLeft
+         * @type {String}
+         */
         iconLeft: {
           type: String
         },
+
         /**
-        * The right icon to set on the table-row.
-        * Using font-awesome-polymer-icons svg set.
-        * Example: `fa:fa-line-chart`
-        */
+         * The icon to set on the left side of the table-row. Uses a set of
+         * Font Awesome SVG icons sourced from font-awesome-polymer-icons.
+         * See http://fontawesome.io/ for available icons.
+         * Example: 'fa:fa-line-chart'
+         *
+         * @property iconLeft
+         * @type {String}
+         */
         iconRight: {
           type: String
         },
+
         /**
-        * The icon size to set on icon.
+        * The size to use for the table-row icon. Use a string with units attached.
+        * Will set the icon's width and height.
+        * Example: '50px' or '1em'
+        *
+        * @property iconSize
+        * @type {String}
         */
         iconSize: {
-          notify: true,
-          reflectToAttribute: true,
-          type: Number
-        },
-        /**
-        * The indicator to set on the table-row.
-        */
-        indicator: {
-          type: String
-        },
-        /**
-        * The media position (left or right);
-        */
-        mediaPos: {
-          notify: true,
-          reflectToAttribute: true,
-          type: String
-        },
-        /**
-         * The modifiers to apply to the table-row (tappable, info, nav-right, chevron)
-         */
-        modifier: {
           type: String,
-          notify: true,
-          reflectToAttribute: true,
-          observer: '_handleModifier'
+          value: '32px'
         },
+
         /**
-        * If swipeable is true then this item responds to swipeleft/swiperight events.
+        * The color to use for the table-row icon. Use a string that is a valid
+        * CSS-readable color.
+        *
+        * @property iconColor
+        * @type {String}
         */
-        swipeable: {
-          type: Boolean
+        iconColor: {
+          type: String
         },
+
         /**
-         * If the table row should be collapsable.
+         * The position for the image in the table-row. Choose from options
+         * 'left' or 'right'.
+         *
+         * @property imagePosition
+         * @type {String}
+         * @default 'left'
+         */
+        imagePosition: {
+          type: String,
+          observer: '_handleImagePosition'
+        },
+
+        /**
+         * Makes the table row tappable, allowing user to click it and see feedback
+         * in the form of the row highlighting.
+         *
+         * @property tappable
+         * @type {Boolean}
+         * @default false
+         */
+        tappable: {
+          type: Boolean,
+          observer: '_handleTappable',
+          value: false
+        },
+
+        /**
+         * If `true`, the table-row responds to swipe left and swipe right touch
+         * gesture events.
+         *
+         * @property swipeable
+         * @type {Boolean}
+         * @default false
+         */
+        swipeable: {
+          type: Boolean,
+          value: false
+        },
+
+        /**
+         * If `true`, the table-row will be collapsable by the user.
+         *
+         * @property collapsable
+         * @type {Boolean}
+         * @default false
          */
         collapsable: {
-          type: Boolean
+          type: Boolean,
+          value: false
         },
+
         /**
-         * If the table row should be editable.
+         * If `true`, the table-row will be editable by the user.
+         *
+         * @property editMode
+         * @type {Boolean}
+         * @default false
          */
         editMode: {
-          type: Boolean
+          type: Boolean,
+          value: false
         },
+
         /**
-         * The state of the table row if collapsable.
+         * The state of the table-row, if it is `collapsable`.
+         *
+         * @property opened
+         * @type {Boolean}
+         * @default false
          */
         opened: {
           type: Boolean,
           value: false,
           notify: true,
-          reflectToAttribute: true
+          reflectToAttribute: true,
+          observer: '_handleOpened'
         }
       },
+
       observers: [
-        '_handleMediaPos(mediaPos)',
-        '_handleOpened(opened)',
         '_init(item, collapsable)'
       ],
+
       listeners: {
         'row.tap': '_handleTap'
       },
+
       ready: function(){
-        this.async(function () {
+        this.async(function() {
           this._init();
         });
       },
-      detached: function(){
-        //this.unlisten(this.$.row, 'tap', '_handleTap');
-      },
-      _hideBody: function(){
-        this.opened = !this.opened;
-      },
-      _handleOpened: function (newVal, oldVal) {
-        this.toggleClass('table-row--collapsable--is-opened', oldVal, this.$.row);
-        this.toggleClass('table-row--collapsable--is-opened', newVal, this.$.row);
-      },
+
       /**
-       * Fires event when row is tapped.
-       * @event px-table-row-tap
+       * Handles updates to the `tappable` property, applying the `table-row--tappable`
+       * class to the `row` local DOM node when activated
+       *
+       * @private
+       * @method _handleTappable
+       * @param {String} newVal - The new value of `tappable`
+       * @param {String} oldVal - The previous value of `tappable`, if any
        */
-      _handleTap: function (e) {
-        var target = Polymer.dom(e).rootTarget;
-        if(this.collapsable){
-          this._hideBody();
+      _handleTappable: function(newVal, oldVal) {
+        if (newVal) {
+          this._ensureHasCSSClass('table-row--tappable');
+        } else {
+          this._ensureRemoveCSSClass('table-row--tappable');
         }
-        this.fire('px-table-row-tap', e);
       },
 
+      /**
+       * Handles updates to the `opened` property, applying the `table-row--collapsable--is-opened`
+       * class to the `row` local DOM node when activated
+       *
+       * @private
+       * @method _handleOpened
+       * @param {String} newVal - The new value of `opened`
+       * @param {String} oldVal - The previous value of `opened`, if any
+       */
+      _handleOpened: function (newVal, oldVal) {
+        if (newVal) {
+          this._ensureHasCSSClass('table-row--collapsable--is-opened');
+        } else {
+          this._ensureRemoveCSSClass('table-row--collapsable--is-opened');
+        }
+      },
+
+      /**
+       * Handles updates to the `imagePosition` property, adding appropriate
+       * classes to move the image (if one is defined) to the right or left
+       * side of the the tableRow.
+       *
+       * @private
+       * @method _handleOpened
+       * @param {String} newVal - The new value of `imagePosition`
+       * @param {String} oldVal - The previous value of `imagePosition`, if any
+       */
+      _handleImagePosition: function (newVal, oldVal) {
+        var el = this.$$('.table-row__media--image');
+        this.debounce('imagePosition', function(){
+          if (el && newVal && newVal === 'left') {
+            el.classList.add('table-row__media--left');
+            el.classList.remove('table-row__media--right');
+          }
+          if (el && newVal && newVal === 'right') {
+            el.classList.add('table-row__media--right');
+            el.classList.remove('table-row__media--left');
+          }
+        }, 500);
+      },
+
+      /**
+       * If the `content` local DOM node does not have the specific CSS class
+       * `klass`, this method adds that class.
+       *
+       * @private
+       * @method _ensureHasCSSClass
+       * @param {String} klass - The class to add if it doesn't already exist
+       */
+      _ensureHasCSSClass: function(klass) {
+        this.$.row.classList.add(klass);
+      },
+
+      /**
+       * If the `content` local DOM node has the specific CSS class `klass`, this
+       * method removes that class.
+       *
+       * @private
+       * @method _ensureRemoveCSSClass
+       * @param {String} klass - The class to remove if it already exist
+       */
+      _ensureRemoveCSSClass: function(klass) {
+        this.$.row.classList.remove(klass);
+      },
+
+      /**
+       * If the table-row is `collapsable`, shows or hides its body by toggling
+       * the `opened` property.
+       *
+       * @private
+       * @method _toggleBody
+       */
+      _toggleBody: function() {
+        this.opened = !this.opened;
+      },
+
+      /**
+       * Called when the table-row is tapped by the user. If the table-row is
+       * `collapsable`, toggles visibility on the table-row body. Fires the event
+       * `px-table-row-tap` with details about the tapped row.
+       *
+       * @private
+       * @method _handleTap
+       * @param {Event} evt
+       */
+      _handleTap: function(evt) {
+        if (this.collapsable) this._toggleBody();
+
+        var target = Polymer.dom(evt).rootTarget;
+        this.fire('px-table-row-tap', evt);
+      },
+
+      /**
+       * Fires when the `table-row` is tapped. Contains information about the
+       * tap event.
+       *
+       * @event px-table-row-tap
+       */
+
+      /**
+       * Called to rebuild the table-row when an `item` object is passed in. Also
+       * called when `collapsable` is set to prepare table-row.
+       *
+       * @private
+       * @method _init
+       */
       _init: function () {
         var _this = this;
         if (_this.size) {
@@ -382,52 +547,19 @@ Custom property | Description | Default
             _this[prop] = item[prop];
           }
         }
-      },
-      _handleRemoveItem: function (e) {
-        e.preventDefault();
-        this.fire('remove', e);
-        this.remove();
-        return false;
-      },
-      _handleReorderItem: function (e) {
-        e.preventDefault();
-        this.fire('reorder', e);
-        return false;
-      },
-      _handleMediaPos: function (newVal, oldVal) {
-        var el = this.$$('.table-row__media--image');
-        this.debounce('mediaPos', function(){
-          if(el){
-            el.classList.remove('table-row__media--right');
-            el.classList.remove('table-row__media--left');
-            this.toggleClass('table-row__media--' + oldVal, false, el);
-            this.toggleClass('table-row__media--' + newVal, true, el);
-          }
-        }, 500);
-      },
-      _handleModifier: function (newVal, oldVal) {
-        var _this = this,
-          klass,
-          types;
-        klass = 'table-row--' + oldVal;
-
-        this.debounce('toggleClass', function(){
-          if(oldVal){
-            types = oldVal.split(' ');
-            for (var i = 0; i < types.length; i++) {
-              klass = 'table-row--' + types[i];
-              this.$.row.classList.remove(klass);
-            }
-          }
-          if (newVal) {
-            types = newVal.split(' ');
-            for (var i = 0; i < types.length; i++) {
-              klass = 'table-row--' + types[i];
-              _this.toggleClass(klass, true, this.$.row);
-            }
-          }
-        }, 500);
       }
+
+      // _handleRemoveItem: function (e) {
+      //   e.preventDefault();
+      //   this.fire('remove', e);
+      //   this.remove();
+      //   return false;
+      // },
+      // _handleReorderItem: function (e) {
+      //   e.preventDefault();
+      //   this.fire('reorder', e);
+      //   return false;
+      // }
     });
   </script>
 </dom-module>

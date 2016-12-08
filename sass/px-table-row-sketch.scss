@@ -142,16 +142,22 @@ $inuit-enable-btn--disabled: true;
     @include tableRowIcon($table-row-chevron-icon, $table-row-chevron-icon-color);
     @include tableRowClickable($table-row-active-background-color, $table-row-active-font-color);
   }
+
   ///---------------------------------------------------------------------------
   ///.table-row--detail
   @include modifier ('detail') {
     @include tableRowClickable($table-row-active-background-color, $table-row-active-font-color);
     @include tableRowIcon($table-row-detail-icon, $table-row-detail-icon-color);
-  }
-  ///---------------------------------------------------------------------------
-  ///.table-row--nav-right
-  @include modifier ('nav-right') {
-    @include tableRowIcon($table-row-nav-right-icon);
+
+    &:active {
+      @include tableRowIcon($table-row-detail-icon, white);
+    }
+
+    .table-row__label--right {
+      position: relative;
+      top: 2px;
+      margin-right: 50px;
+    }
   }
 
   ///---------------------------------------------------------------------------
@@ -268,6 +274,9 @@ $inuit-enable-btn--disabled: true;
     order     : 0;
     align-self: center;
     white-space: nowrap;
+    // Move down slightly to align with icons
+    position: relative;
+    top: 2px;
 
 
     @include modifier ('right') {

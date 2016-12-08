@@ -1,0 +1,321 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <title>px-table-row Demo</title>
+  <link rel="stylesheet" type="text/css" href="css/px-table-view-demo.css"/>
+
+  <!-- Import custom element. Note: see comment about relative paths to dependencies in the *.html file referenced below -->
+  <script src="../webcomponentsjs/webcomponents-lite.min.js"></script>
+
+  <link rel="import" href="../px-theme/px-theme-styles.html">
+  <style include="px-theme-styles" is="custom-style"></style>
+
+  <link rel="import" href="../px-api-viewer/px-api-viewer.html" />
+  <link rel="import" href="../px-tabs/px-tab-set.html" />
+  <link rel="import" href="../px-demo-snippet/px-demo-snippet.html">
+  <link rel="import" href="../px-polymer-font-awesome/polymer-font-awesome.html" />
+  <link rel="import" href="../px-dropdown/px-dropdown.html" />
+  <link rel="import" href="../iron-demo-helpers/demo-snippet.html"/>
+
+  <link rel="import" href="px-table-view.html">
+  <link rel="import" href="px-table-row.html">
+</head>
+<body unresolved>
+  <template id="just-for-demo" is="dom-bind">
+
+  <!-- DESCRIPTION -->
+    <div class="hero u-p++ text--shadow">
+      <a class="actionable flex flex--right flex--middle" href="https://github.com/PredixDev/px-table-view" target="_blank"><iron-icon class="menu__open" icon="fa:fa-github"></iron-icon>View on Github</a>
+      <h1 class="delta">px-table-row</h1>
+      <div class="description-text">
+        <p>A sub-component of px-table-view that provides a container for an individual row of information in the table.</p>
+      </div>
+      <div class="flex">
+        <img class="u-mr--" src="https://img.shields.io/travis/PredixDev/px-table-view.svg?style=flat-square" alt="Travis"/>
+        <img class="u-mr--" src="https://img.shields.io/bower/v/px-table-view.svg?style=flat-square" alt="Bower"/>
+        <img class="u-mr--" src="https://img.shields.io/github/issues-raw/PredixDev/px-table-view.svg?style=flat-square" alt="Issues"/>
+      </div>
+    </div>
+    <!-- END DESCRIPTION -->
+
+
+    <!-- DEMO + API -->
+    <div style="position: relative;" class="u-pb++ flex flex--col" id="defaultTab">
+
+      <!-- Tab Container -->
+      <div class="tabContainer u-pt++ u-pl++">
+        <px-tab-set id="tabs" selected="{{selected}}" bare no-bottom-border>
+          <px-tab id="option1">Option 1: Profile</px-tab>
+          <px-tab id="option2">Option 2: Swipeable Menu Item</px-tab>
+        </px-tab-set>
+      </div>
+
+      <!-- For each tab, loop over and create a demo box  -->
+      <!-- <px-tab-pages selected="{{selected}}"> -->
+        <!-- <template is="dom-repeat" items="{{optionsArray}}" id="demoRepeat"> -->
+          <!-- <section class="tab-page"> -->
+
+            <!-- Demo Box -->
+            <div class="mega-demo flex u-ph++ u-pb++">
+
+              <!-- Demo Box: Set Properties -->
+              <div class="properties u-ph+ u-pb+ u-mt+">
+                <p class="epsilon">Properties</p>
+                <!-- Prop: Title -->
+                <div class="u-mb-">
+                  <p class="u-mb--">Title:</p>
+                  <input class="text-input" type="text" placeholder="{{demoOptions.title}}" value="{{demoOptions.title::input}}" />
+                </div>
+                <!-- Prop: Body -->
+                <div class="u-mb-">
+                  <p class="u-mb--">Body:</p>
+                  <input class="text-input" type="text" placeholder="{{demoOptions.body}}" value="{{demoOptions.body::input}}" />
+                </div>
+                <!-- Prop: Label Left -->
+                <div class="u-mb-">
+                  <p class="u-mb--">Label Left:</p>
+                  <input class="text-input" type="text" placeholder="{{demoOptions.labelLeft}}" value="{{demoOptions.labelLeft::input}}" />
+                </div>
+                <!-- Prop: Label Right -->
+                <div class="u-mb-">
+                  <p class="u-mb--">Label Right:</p>
+                  <input class="text-input" type="text" placeholder="{{demoOptions.labelRight}}" value="{{demoOptions.labelRight::input}}" />
+                </div>
+                <!-- Prop: Icon Left -->
+                <div class="u-mb-">
+                  <p class="u-mb--">Icon Left:</p>
+                  <input class="text-input" type="text" placeholder="{{demoOptions.iconLeft}}" value="{{demoOptions.iconLeft::input}}" />
+                </div>
+                <!-- Prop: Icon Right -->
+                <div class="u-mb-">
+                  <p class="u-mb--">Icon Right:</p>
+                  <input class="text-input" type="text" placeholder="{{demoOptions.iconRight}}" value="{{demoOptions.iconRight::input}}" />
+                </div>
+                <!-- Prop: Icon Size -->
+                <div class="u-mb-">
+                  <p class="u-mb--">Icon Size:</p>
+                  <input class="text-input" type="text" placeholder="{{demoOptions.iconSize}}" value="{{demoOptions.iconSize::input}}" />
+                </div>
+                <!-- Prop: Icon Color -->
+                <div class="u-mb-">
+                  <p class="u-mb--">Icon Color:</p>
+                  <input class="text-input" type="text" placeholder="{{demoOptions.iconColor}}" value="{{demoOptions.iconColor::input}}" />
+                </div>
+                <!-- Prop: Image -->
+                <div class="u-mb-">
+                  <p class="u-mb--">Image:</p>
+                  <input class="text-input" type="text" placeholder="{{demoOptions.image}}" value="{{demoOptions.image::input}}" />
+                </div>
+                <!-- Prop: Rows Size -->
+                <div class="u-mb">
+                  <p class="u-mb--">Image Position:</p>
+                  <px-dropdown style="width:100%;" value="{{demoOptions.imagePosition}}" display-value="{{demoOptions.imagePosition}}">
+                    <px-dropdown-content items={{imagePositionOptions}}></px-dropdown-content>
+                  </px-dropdown>
+                </div>
+                <!-- Prop: Tappable -->
+                <div class="flex u-mb u-mt+">
+                  <input id="tappable{{indexPlusOne(index)}}" class="toggle__input toggle__input--small" type="checkbox" checked="{{demoOptions.tappable::change}}">
+                  <label for$="tappable{{indexPlusOne(index)}}" class="toggle__label toggle__label--small"></label>
+                  <div class="u-ml-">Tappable</div>
+                </div>
+                <!-- Prop: Swipeable -->
+                <div class="flex u-mb u-mt+">
+                  <input id="swipeable{{indexPlusOne(index)}}" class="toggle__input toggle__input--small" type="checkbox" checked="{{demoOptions.swipeable::change}}">
+                  <label for$="swipeable{{indexPlusOne(index)}}" class="toggle__label toggle__label--small"></label>
+                  <div class="u-ml-">Swipeable</div>
+                </div>
+                <!-- Prop: Swipe Left -->
+                <div class="flex u-mb u-mt+">
+                  <input id="swipeLeft{{indexPlusOne(index)}}" class="toggle__input toggle__input--small" type="checkbox" checked="{{demoOptions.swipeLeft::change}}">
+                  <label for$="swipeLeft{{indexPlusOne(index)}}" class="toggle__label toggle__label--small"></label>
+                  <div class="u-ml-">Swipe Left</div>
+                </div>
+              </div>
+              <!-- end Demo Box: Set Properties -->
+
+              <!-- Demo Box: Show Demos -->
+              <div class="demoContainer u-mt+">
+                <div class="flex flex--col">
+                  <div class="demo u-p+">
+                      <!--<style is="custom-style">
+                        :root { --px-table-row: { border-bottom: 1px solid gray; } }
+                      </style>-->
+                      <template is="dom-if" if="{{!swipeableOption}}">
+                        <px-table-view>
+                          <px-table-row
+                              title="[[demoOptions.title]]"
+                              body="[[demoOptions.body]]"
+                              label-right="[[demoOptions.labelRight]]"
+                              label-left="[[demoOptions.labelLeft]]"
+                              icon-left="[[demoOptions.iconLeft]]"
+                              icon-right="[[demoOptions.iconRight]]"
+                              icon-size="[[demoOptions.iconSize]]"
+                              icon-color="[[demoOptions.iconColor]]"
+                              image="[[demoOptions.image]]"
+                              image-position="[[demoOptions.imagePosition]]">
+                          </px-table-row>
+                        </px-table-view>
+                      </template>
+
+                      <template is="dom-if" if="{{swipeableOption}}">
+                      <style is="custom-style">
+                        :root px-table-row {
+                          --px-table-row-underlay: {
+                            right: 0;
+                          }
+                        }
+                      </style>
+                        <px-table-view>
+                          <!-- <px-table-row title="Text Label" label1="Yesterday" modifier="nav-right" swipeable swipe-right fit-underlay> -->
+                            <px-table-row
+                                title="[[demoOptions.title]]"
+                                body="[[demoOptions.body]]"
+                                label-right="[[demoOptions.labelRight]]"
+                                label-left="[[demoOptions.labelLeft]]"
+                                icon-left="[[demoOptions.iconLeft]]"
+                                icon-right="[[demoOptions.iconRight]]"
+                                icon-size="[[demoOptions.iconSize]]"
+                                icon-color="[[demoOptions.iconColor]]"
+                                image="[[demoOptions.image]]"
+                                image-position="[[demoOptions.imagePosition]]"
+                                tappable="[[demoOptions.tappable]]"
+                                swipeable="[[demoOptions.swipeable]]"
+                                swipe-left="[[demoOptions.swipeLeft]]"
+                                fit-underlay="[[demoOptions.fitUnderlay]]">
+                            <div underlay class="full-height flex flex--stretch flex--right">
+                              <px-table-row-action-button label="More" type="more"></px-table-row-action-button>
+                              <px-table-row-action-button label="Flag" type="flag"></px-table-row-action-button>
+                              <px-table-row-action-button label="Delete" type="delete"></px-table-row-action-button>
+                            </div>
+                          </px-table-row>
+                        </px-table-view>
+                      </template>
+
+                    </div>
+                  </div>
+                  <div>
+                    <px-demo-snippet
+                        element-properties="{{demoOptions}}"
+                        element-name="px-table-row">
+                    </px-demo-snippet>
+                  </div>
+                </div>
+              </div>
+              <!-- end Demo Box: Show Demos -->
+
+            </div>
+            <!-- end Demo Box -->
+
+            <!-- API Container -->
+            <div class="apiContainer">
+              <div class="flex flex--col api u-mt++" >
+                <px-api-viewer source="px-table-row"></px-api-viewer>
+              </div>
+            </div>
+            <!-- end API Container -->
+
+          <!-- </section> -->
+        <!-- </template> -->
+      <!-- </px-tab-pages> -->
+    </div>
+    <!-- END DEMO + API -->
+
+    <!-- FOOTER -->
+    <footer class="footer flex flex--center">
+      <div class="footer__container u-pv++">
+        <div>
+          <a href="https://ge.com/digital" >
+            <img src="monogram-wdmk.png" alt="GE Monogram" class="footer__img">
+          </a>
+        </div>
+        <div class="footer__list">
+          <ul class="list-inline list-inline--delimited">
+            <li>
+              <a href="http://predix.io/legal" class="footer__list--lnk">Legal</a>
+            </li>
+            <li>
+              <a href="mailto:info@predix.io" class="footer__list--lnk">Contact Us</a>
+            </li>
+            <li>Copyright &copy; 2016 General Electric Company. All rights reserved.</li>
+          </ul>
+        </div>
+      </div>
+    </footer>
+    <!-- END FOOTER -->
+  </template>
+
+  <!-- DEMO SCRIPTS -->
+  <script>
+    window.addEventListener('WebComponentsReady', function() {
+      var template = document.querySelector('template[is=dom-bind]');
+
+      // Set default demo options
+      var demoOptions1 = {
+        title: 'John Doe',
+        body: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit.',
+        tappable: true,
+        swipeable: false,
+        swipeLeft: false,
+        labelRight: 'Active 5min ago',
+        labelLeft: '',
+        iconLeft: '',
+        iconRight: 'fa:fa-cog',
+        iconSize: '32',
+        iconColor: 'gray',
+        image: 'http://placehold.it/80',
+        imagePosition: 'left',
+        parentComponent: ['<px-table-view>','</px-table-view>']
+      };
+
+      var demoOptions2 = {
+        title: 'See All Engineers',
+        body: '',
+        tappable: true,
+        swipeable: true,
+        swipeLeft: true,
+        fitUnderlay: true,
+        labelRight: '21 Available',
+        labelLeft: '',
+        iconLeft: '',
+        iconRight: 'fa:fa-chevron-right',
+        iconSize: '18',
+        iconColor: 'gray',
+        image: '',
+        imagePosition: '',
+        parentComponent: ['<style is="custom-style">:root px-table-row { --px-table-row-underlay: { right: 0; } }</style><px-table-view>','</px-table-view>']
+      };
+
+      // Bind properties to template
+      template.imagePositionOptions = ['left','right'];
+      template.selected = '0';
+      template.demoOptions = demoOptions1;
+      template.swipeableOption = false;
+
+      // Attach methods
+      template.indexPlusOne = function(num) {
+        return num + 1;
+      };
+
+      // Listen for changes to selected tab
+      template.$.tabs.addEventListener('selected-changed', function(evt) {
+        template.debounce('update-demo', function(){
+          var selected = evt.target.selectedItem.id;
+          if (selected === 'option1') {
+            template.set('demoOptions', demoOptions1);
+          }
+          if (selected === 'option2') {
+            template.set('demoOptions', demoOptions2);
+            template.set('swipeableOption', true);
+          }
+        }, 50);
+      });
+    });
+  </script>
+  <!-- END DEMO SCRIPTS -->
+</body>
+</html>
