@@ -3,8 +3,6 @@
 <link rel="import" href="../iron-selector/iron-selector.html">
 <link rel="import" href="../iron-selector/iron-multi-selectable.html">
 
-<!-- <link rel="import" href="px-table-view-pull-to-refresh-behavior.html"/> -->
-
 <link rel="import" href="css/px-table-view-styles.html">
 <link rel="import" href="css/px-table-row-styles.html">
 
@@ -33,7 +31,14 @@ Custom property | Description | Default
 `--px-table-row-selected` | Style mixin to be applied to the selected table row element | {}
 `--px-table-row-selected-color` | The selected row font color | {}
 `--px-table-row-selected-background-color` | The selected row background color | {}
-`--px-table-view-sortable-chosen` | Style mixin to be applied to the sortable chosen element | {}
+`--px-table-row-sortable-chosen-background-color` | (Sortable only) The background color for picked-up sortable rows | rgb(8,110,135)
+`--px-table-row-sortable-chosen-text-color` | (Sortable only) The text color for picked-up sortable rows | white
+`--px-table-row-sortable-chosen-icon-color` | (Sortable only) The icon color for picked-up shortable rows | white
+`--px-table-row-sortable-ghost-background-color` | (Sortable only) The background color for ghost background sortable rows | rgb(8,110,135)
+`--px-table-row-sortable-ghost-text-color` | (Sortable only) The text color for ghost background sortable rows | white
+`--px-table-row-sortable-ghost-icon-color` | (Sortable only) The icon color for ghost background shortable rows | white
+
+
 
 @element px-table-view.html
 @demo index.html
@@ -48,42 +53,28 @@ Custom property | Description | Default
       display: block;
       position: relative;
     }
+
     :host .table-view {
       @apply(--px-table-view);
       -webkit-overflow-scrolling: touch;
     }
-    /*:host ::content {
-      @apply(--px-table-row);
-    }*/
-    :host .sortable-chosen,
+
     :host ::content .sortable-chosen {
-      @apply(--px-table-view-sortable-chosen);
-      box-shadow: 0 2px 10px rgba(0,0,0,0.45);
+      background-color: var(--px-table-row-sortable-chosen-background-color, rgb(8,110,135)); /*$select-blue-pressed*/
+      color: var(--px-table-row-sortable-chosen-text-color, white);
     }
-    :host ::content .iron-selected .table-row:host .iron-selected .table-row,
-    :host ::content .px-selected .table-row {
-      @apply(--px-table-row-selected);
-      background-color: var(--px-table-row-selected-background-color);
-      color: var(--px-table-row-selected-color);
+
+    :host ::content .sortable-chosen .table-row__handle {
+      color: var(--px-table-row-sortable-chosen-icon-color, white);
     }
-    /* Handle when loading */
-    :host.ptr-loading.ptr {
-      -webkit-transition: all 0.25s ease;
-      transition: all 0.25s ease;
+
+    :host ::content .sortable-ghost {
+      background-color: var(--px-table-row-sortable-ghost-background-color, rgb(10,158,193)); /*$select-blue-default*/
+      color: var(--px-table-row-sortable-ghost-text-color, var(--px-table-row-sortable-chosen-text-color));
     }
-    :host.ptr-loading .ptr__content {
-      -webkit-transition: all 0.25s ease;
-      transition: all 0.25s ease;
-      -webkit-transform: translate3d(0, 50px, 0);
-      transform: translate3d(0, 50px, 0);
-    }
-    :host.ptr-loading .ptr__loader {
-      -webkit-transform: translateY(0);
-      transform: translateY(0);
-    }
-    :host.ptr-loading .ptr__loader,
-    :host.ptr-loading .ptr__loading {
-      display: block;
+
+    :host ::content .sortable-ghost .table-row__handle {
+      color: var(--px-table-row-sortable-chosen-icon-color, var(--px-table-row-sortable-chosen-icon-color));
     }
   </style>
   <template strip-whitespace>
@@ -92,13 +83,6 @@ Custom property | Description | Default
         <px-table-row item="{{item}}"></px-table-row>
       </template>
     </template>
-    <div id="ptr" class="ptr__loader" hidden$="{{!pullToRefresh}}">
-      <div class="ptr__loading">
-        <span id="l1"></span>
-        <span id="l2"></span>
-        <span id="l3"></span>
-      </div>
-    </div>
     <div id="content" class="table-view">
       <content id="tableViewContent" select="px-table-row, [content]"></content>
     </div>
