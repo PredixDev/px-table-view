@@ -27,8 +27,8 @@ Custom property | Description | Default
 -->
 
 <dom-module id="px-table-row-action-button">
-  <style include="px-table-row-styles"></style>
   <template>
+    <style include="px-table-row-styles"></style>
     <style is="custom-style">
       :host {
         display: block;
@@ -57,7 +57,7 @@ Custom property | Description | Default
     </style>
       <button is="px-table-row-action-button" class="table-row__button flex flex--center" on-tap="_handleTap">
         <template is="dom-if" if="{{icon}}">
-          <px-icon id="icon" icon$="{{icon}}"></px-icon>
+          <px-icon id="icon" icon$="{{icon}}" size$="10px"></px-icon>
         </template>
         <template is="dom-if" if="{{label}}">
           <span>{{label}}</span>
