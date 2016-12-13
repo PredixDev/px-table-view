@@ -5,7 +5,7 @@
   <meta name="viewport" content="initial-scale=1, maximum-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
-  <title>px-table-view Demo</title>
+  <title>px-table-row-action-button Demo</title>
   <link rel="import" href="css/px-table-view-demo-styles.html" />
   <style include="px-table-view-demo-styles" is="custom-style"></style>
 
@@ -22,6 +22,8 @@
   <link rel="import" href="../px-dropdown/px-dropdown.html" />
 
   <link rel="import" href="px-table-view.html">
+  <link rel="import" href="px-table-row.html">
+  <link rel="import" href="px-table-row-action-button.html">
 </head>
 <body unresolved>
   <template id="just-for-demo" is="dom-bind">
@@ -29,9 +31,9 @@
   <!-- DESCRIPTION -->
     <div class="hero u-p++ text--shadow">
       <a class="actionable flex flex--right flex--middle" href="https://github.com/PredixDev/px-table-view" target="_blank"><iron-icon class="menu__open" icon="fa:fa-github"></iron-icon>View on Github</a>
-      <h1 class="delta">px-table-view</h1>
+      <h1 class="delta">px-table-row-action-button</h1>
       <div class="description-text">
-        <p>The px-table-view element provides a way to display list data.</p>
+        <p>A sub-component of px-table-view that that creates a simple button component that can be embedded inside a `px-table-row` swipable instance to display possible user actions.</p>
       </div>
       <div class="flex">
         <img class="u-mr--" src="https://img.shields.io/travis/PredixDev/px-table-view.svg?style=flat-square" alt="Travis"/>
@@ -65,23 +67,22 @@
               <!-- Demo Box: Set Properties -->
               <div class="properties u-ph+ u-pb+ u-mt+">
                 <p class="epsilon">Properties</p>
-                <!-- Prop: Rows Size -->
+                <!-- Prop: Type -->
                 <div class="u-mb">
-                  <p class="u-mb--">Rows Size:</p>
-                  <px-dropdown style="width:100%;" value="{{item.rowsSize}}" display-value="{{item.rowsSize}}">
-                    <px-dropdown-content items={{rowsSizeOptions}}></px-dropdown-content>
+                  <p class="u-mb--">Type:</p>
+                  <px-dropdown style="width:100%;" value="{{item.type}}" display-value="{{item.type}}">
+                    <px-dropdown-content items={{typeOptions}}></px-dropdown-content>
                   </px-dropdown>
                 </div>
-                <!-- Prop: Rows Tappable -->
-                <div class="flex u-mb u-mt+">
-                  <input id="rowsTappable{{indexPlusOne(index)}}" class="toggle__input toggle__input--small" type="checkbox" checked="{{item.rowsTappable::change}}">
-                  <label for$="rowsTappable{{indexPlusOne(index)}}" class="toggle__label toggle__label--small"></label>
-                  <div class="u-ml-">Rows Tappable</div>
-                </div>
-                <!-- Prop: Selected -->
+                <!-- Prop: Label -->
                 <div class="u-mb-">
-                  <p class="u-mb--">Selected:</p>
-                  <input class="text-input" type="text" placeholder="{{item.selected}}" value="{{item.selected::input}}" disabled />
+                  <p class="u-mb--">Label:</p>
+                  <input class="text-input" type="text" placeholder="{{item.label}}" value="{{item.label::input}}" />
+                </div>
+                <!-- Prop: Icon -->
+                <div class="u-mb-">
+                  <p class="u-mb--">Icon:</p>
+                  <input class="text-input" type="text" placeholder="{{item.icon}}" value="{{item.icon::input}}" />
                 </div>
               </div>
               <!-- end Demo Box: Set Properties -->
@@ -90,24 +91,30 @@
               <div class="demoContainer u-mt+">
                 <div class="flex flex--col">
                   <div class="demo u-p+">
-                      <style is="custom-style">
-                        :root { --px-table-row: { border-bottom: 1px solid gray; } }
-                      </style>
-                      <px-table-view
-                          id="drawer1"
-                          selected="{{item.selected}}"
-                          rows-size="[[item.rowsSize]]"
-                          rows-tappable="[[item.rowsTappable]]">
-                        <template is="dom-repeat" items="[[item.tableRowItems]]">
-                          <px-table-row title="Item {{index}}" edit-mode="{{item.editMode}}">
-                        </template>
-                      </px-table-view>
-                    </div>
+                    <px-table-view>
+                      <px-table-row
+                          title="Swipe left to see button"
+                          tappable
+                          swipeable
+                          swipe-left
+                          fit-underlay
+                          underlay-opened
+                          icon-right="fa:fa-chevron-right"
+                          icon-size="18">
+                          <div underlay class="full-height flex flex--stretch flex--right">
+                            <px-table-row-action-button
+                                label="[[item.label]]"
+                                type="[[item.type]]"
+                                icon="[[item.icon]]">
+                            </px-table-row-action-button>
+                          </div>
+                      </px-table-row>
+                    </px-table-view>
                   </div>
                   <div>
                     <px-demo-snippet
                         element-properties="{{item}}"
-                        element-name="px-table-view">
+                        element-name="px-table-row-action-button">
                     </px-demo-snippet>
                   </div>
                 </div>
@@ -127,9 +134,8 @@
                     <div class="componentHeader">Children Components</div>
                     <div class="componentList">
                       <ul>
-                        <li><a href="px-table-view-sortable-list-demo.html">px-table-view-sortable-list</a></li>
                         <li><a href="px-table-row-demo.html">px-table-row</a></li>
-                        <li><a href="px-table-row-action-button-demo.html">px-table-row-action-button</a></li>
+                        <li><a href="px-table-view-sortable-list-demo.html">px-table-view-sortable-list</a></li>
                       </ul>
                     </div>
                   </div>
@@ -145,7 +151,7 @@
                 </div>
 
                 <!-- API Viewer -->
-                <px-api-viewer source="px-table-view"></px-api-viewer>
+                <px-api-viewer source="px-table-row-action-button"></px-api-viewer>
               </div>
             </div>
             <!-- end API Container -->
@@ -184,20 +190,17 @@
   <script>
     window.addEventListener('WebComponentsReady', function() {
       var template = document.querySelector('template[is=dom-bind]'),
-      rowsSizeOptions = [
-        'flush',
-        'tiny',
-        'small',
-        'regular',
-        'large',
-        'huge',
+      typeOptions = [
+        'info',
+        'more',
+        'flag',
+        'delete'
       ],
       optionsArray = [
         {
-          rowsSize: 'regular',
-          rowsTappable: true,
-          selected: null,
-          tableRowItems: [1, 2, 3, 4, 5],
+          type: 'more',
+          icon: 'fa:fa-info-circle',
+          label: 'Details',
           parentComponent: ["<style is='custom-style'>:root { --px-table-row: { border-bottom: 1px solid gray; } }</style>", ""],
         }
       ],
@@ -207,7 +210,7 @@
 
       template.selected = "0";
       template.optionsArray = optionsArray;
-      template.rowsSizeOptions = rowsSizeOptions;
+      template.typeOptions = typeOptions;
       template.indexPlusOne = indexPlusOne;
     });
   </script>
