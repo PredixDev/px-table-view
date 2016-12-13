@@ -27,20 +27,18 @@ row-content | The row-content for the table row.
 
 Custom property | Description | Default
 ------------ | ------------- | ------------
-  `--px-table-row` | Style mixin to be applied to the component | {}
-  `--px-table-row-title` | Style mixin to be applied to the title element | {}
-  `--px-table-row-body` | Style mixin to be applied to the body element | {}
-  `--px-table-row-content` | Style mixin to be applied to the content element | {}
-  `--px-table-row-label` | Style mixin to be applied to the label element | {}
-  `--px-table-row-label--left` | Style mixin to be applied to the left label element | {}
-  `--px-table-row-label--right` | Style mixin to be applied to the right label element | {}
-  `--px-table-row-media` | Style mixin to be applied to the media element | {}
-  `--px-table-row-media--left` | Style mixin to be applied to the left media element | {}
-  `--px-table-row-media--right` | Style mixin to be applied to the right media element | {}
-  `--px-table-row-media--img` | Style mixin to be applied to the media img element | {}
-  `--px-table-row-handle` | Style mixin to be applied to the drag handle element | {}
-
-
+`--px-table-row` | Style mixin to be applied to the component | {}
+`--px-table-row-title` | Style mixin to be applied to the title element | {}
+`--px-table-row-body` | Style mixin to be applied to the body element | {}
+`--px-table-row-content` | Style mixin to be applied to the content element | {}
+`--px-table-row-label` | Style mixin to be applied to the label element | {}
+`--px-table-row-label--left` | Style mixin to be applied to the left label element | {}
+`--px-table-row-label--right` | Style mixin to be applied to the right label element | {}
+`--px-table-row-media` | Style mixin to be applied to the media element | {}
+`--px-table-row-media--left` | Style mixin to be applied to the left media element | {}
+`--px-table-row-media--right` | Style mixin to be applied to the right media element | {}
+`--px-table-row-media--img` | Style mixin to be applied to the media img element | {}
+`--px-table-row-handle` | Style mixin to be applied to the drag handle element | {}
 
 @element px-table-row.html
 @demo index.html
@@ -83,6 +81,7 @@ Custom property | Description | Default
 		:host .table-row__media--left {
 			@apply(--px-table-row-media--left)
 		}
+
 		:host .table-row__media--right {
 			@apply(--px-table-row-media--right)
 		}
@@ -102,6 +101,7 @@ Custom property | Description | Default
     :host .table-row__label--left {
       @apply(--px-table-row-label--left);
     }
+
     :host .table-row__content:empty {
       display: none;
     }
@@ -118,18 +118,39 @@ Custom property | Description | Default
       right: 0;
     }
 
-    :host #underlay ::content > [underlay] {
-      @apply(--px-table-row-underlay-content);
+    :host px-icon {
+      --iron-icon-fill-color: var(--px-table-row-icon-color, #b1b1bc);
     }
 
-    :host .table-row__handle{
-        @apply(--px-table-row-handle);
+    :host .table-row__handle {
+      @apply(--px-table-row-handle);
       border: none;
       background: transparent;
-      color: #b1b1bc;
       cursor: move;
     }
 
+    :host .sortable-chosen {
+      /*background-color: red !important;*/
+      /*border: 10px solid orange;*/
+    }
+
+    :host(.sortable-chosen) {
+      background-color: var(--px-table-row-sortable-chosen-background-color, rgb(8,110,135)); /*$select-blue-pressed*/
+      color: var(--px-table-row-sortable-chosen-text-color, white);
+    }
+
+    :host(.sortable-chosen) px-icon {
+      --iron-icon-fill-color: var(--px-table-row-sortable-chosen-icon-color, white);
+    }
+
+    :host(.sortable-ghost) {
+      background-color: var(--px-table-row-sortable-ghost-background-color, rgb(10,158,193)); /*$select-blue-default*/
+      color: var(--px-table-row-sortable-ghost-text-color, var(--px-table-row-sortable-chosen-text-color));
+    }
+
+    :host(.sortable-ghost) px-icon {
+      --iron-icon-fill-color: var(--px-table-row-sortable-ghost-icon-color, white);
+    }
   </style>
   <template strip-whitespace>
     <div class="">
@@ -144,12 +165,12 @@ Custom property | Description | Default
         </template>
         <template is="dom-if" if="{{iconLeft}}">
           <div class="table-row__media table-row__media--icon table-row__media--left">
-            <px-icon id="iconLeft" icon$="{{iconLeft}}" size$="{{iconSize}}" color$="{{iconColor}}"></px-icon>
+            <px-icon id="iconLeft" icon$="{{iconLeft}}" size$="{{iconSize}}"></px-icon>
           </div>
         </template>
         <template is="dom-if" if="{{iconRight}}">
           <div class="table-row__media table-row__media--icon table-row__media--right">
-            <px-icon id="iconRight" icon$="{{iconRight}}" size$="{{iconSize}}" color$="{{iconColor}}"></px-icon>
+            <px-icon id="iconRight" icon$="{{iconRight}}" size$="{{iconSize}}"></px-icon>
           </div>
         </template>
         <template is="dom-if" if="{{editMode}}">
@@ -304,17 +325,6 @@ Custom property | Description | Default
         },
 
         /**
-        * The color to use for the table-row icon. Use a string that is a valid
-        * CSS-readable color.
-        *
-        * @property iconColor
-        * @type {String}
-        */
-        iconColor: {
-          type: String
-        },
-
-        /**
          * The position for the image in the table-row. Choose from options
          * 'left' or 'right'.
          *
@@ -391,7 +401,22 @@ Custom property | Description | Default
           notify: true,
           reflectToAttribute: true,
           observer: '_handleOpened'
-        }
+        },
+
+        /**
+         * If `true` the table row is currently being dragged.
+         *
+         * @private
+         * @property _dragging
+         * @type {Boolean}
+         * @default false
+         */
+        _dragging: {
+          type: Boolean,
+          value: false,
+          reflectToAttribute: true,
+          observer: '_handleDragging'
+        },
       },
 
       observers: [
@@ -464,6 +489,17 @@ Custom property | Description | Default
             el.classList.remove('table-row__media--left');
           }
         }, 500);
+      },
+
+      /**
+       * Handles updates to the `_dragging` property, ensuring that styles
+       * are resynced to the element based on dynamic style variable changes.
+       *
+       * @private
+       * @method _handleDragging
+       */
+      _handleDragging: function() {
+        this.updateStyles();
       },
 
       /**
