@@ -1,30 +1,61 @@
 <link rel="import" href="../polymer/polymer.html" />
-<link rel="import" href="px-table-view-icon.html"/>
-<link rel="import" href="css/px-table-row-styles.html"/>
+<link rel="import" href="px-table-view-icon.html" />
+<link rel="import" href="css/px-table-row-styles.html" />
+
 <!--
-To use this component:
+A simple button component that can be embedded inside a `px-table-row` swipable
+instance to display possible user actions.
 
 ```
   <px-table-row-action-button label="More" type="more"></px-table-row-action-button>
   <px-table-row-action-button label="Flag" type="flag"></px-table-row-action-button>
   <px-table-row-action-button label="Delete" type="delete"></px-table-row-action-button>
 ```
+
+### Styling
+
+Custom property | Description | Default
+------------ | ------------- | ------------
+`--px-table-row-action-button-info-background-color` | Sets the background color for info-type button | $gray5
+`--px-table-row-action-button-more-background-color` | Sets the background color for more-type button | $blue
+`--px-table-row-action-button-flag-background-color` | Sets the background color for flag-type button | $orange
+`--px-table-row-action-button-delete-background-color` | Sets the background color for delete-type button | $red
+
 @element px-table-row-action-button.html
-@demo demo/swipe-actions.html
+@demo px-table-row-action-button-demo.html
 @homepage index.html
 -->
+
 <dom-module id="px-table-row-action-button">
   <style include="px-table-row-styles"></style>
   <template>
-    <style>
+    <style is="custom-style">
       :host {
         display: block;
       }
-      :host .table-row__button{
+
+      :host .table-row__button {
         padding: 15px;
       }
+
+      :host .table-row__button.table-row__button--info {
+        background-color: var(--px-table-row-action-button-info-background-color, rgb(177,177,188)); /*$gray5*/
+      }
+
+      :host .table-row__button.table-row__button--more {
+        background-color: var(--px-table-row-action-button-more-background-color, rgb(0,92,185)); /*$blue*/
+      }
+
+      :host .table-row__button.table-row__button--flag {
+        background-color: var(--px-table-row-action-button-flag-background-color, rgb(255,152,33)); /*$orange*/
+      }
+
+      :host .table-row__button.table-row__button--delete {
+        background-color: var(--px-table-row-action-button-delete-background-color, rgb(227,37,51)); /*$red*/
+      }
+
     </style>
-      <button is="px-table-row-action-button" class="table-row__button flex flex--center">
+      <button is="px-table-row-action-button" class="table-row__button flex flex--center" on-tap="_handleTap">
         <template is="dom-if" if="{{icon}}">
           <px-icon id="icon" icon$="{{icon}}"></px-icon>
         </template>
@@ -38,30 +69,92 @@ To use this component:
 <script>
   Polymer({
     is: "px-table-row-action-button",
-  //  extends: 'button',
+
     properties: {
-      //The action button label
+      /**
+       * The text label for the button.
+       *
+       * @property label
+       * @type {String}
+       */
       label: {
         type: String
       },
+
       //The action button icon
+      /**
+       * The icon to use for the button. Uses a set of Font Awesome SVG icons
+       * sourced from font-awesome-polymer-icons. See http://fontawesome.io/ for
+       * available icons.
+       *
+       * @example
+       * 'fa:fa-line-chart'
+       *
+       * @property icon
+       * @type {String}
+       */
       icon: {
         type: String
       },
-      //The action button type
+
+      /**
+       * Sets the button color and style. Choose from:
+       * - `info` - indicates a click will provide info about them item
+       * - `more` - indicates a click will move the user to additional information
+       *   about the item
+       * - `flag` - indicates a click will flag the item
+       * - `delete` - indicates click will initiate a delete action on the item
+       *
+       * @property type
+       * @type {String}
+       */
       type: {
-        type: String
+        type: String,
+        observer: '_handleType'
       }
     },
+
     attached: function() {
       var self = this;
       this.async(function() {
         self.toggleClass('flex', true);
-        self.toggleClass('table-row__button--' + this.type, true, this.$$('.table-row__button'));
+        self._handleType(this.type);
       });
     },
-    _handleTap: function(e){
-      this.fire('tap', e);
+
+    /**
+     * Handles tap events on the button, triggering an event that fires up
+     * and out to the consumer.
+     *
+     * @private
+     * @param {Event} e - The button click event
+     */
+    _handleTap: function(e) {
+      this.fire('px-table-row-action-button-tap', e);
+    },
+
+    /**
+     * Fires when the `table-row-action-button` is tapped. Contains information
+     * about the button that was Tapped.
+     *
+     * @event px-table-row-action-button-tap
+     */
+
+    /**
+     * Called when the button type is changed. Updates the classes on the button
+     * to ensure they're correct.
+     *
+     * @private
+     * @method _handleType
+     */
+    _handleType: function(newVal, oldVal) {
+      var buttonEl = this.$$('.table-row__button');
+      if (oldVal && oldVal.length) {
+        this.toggleClass('table-row__button--' + oldVal, false, buttonEl);
+      }
+      if (newVal && newVal.length) {
+        this.toggleClass('table-row__button--' + newVal, true, buttonEl);
+      }
     }
   });
 </script>

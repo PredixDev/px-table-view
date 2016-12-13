@@ -41,118 +41,113 @@ Custom property | Description | Default
 `--px-table-row-handle` | Style mixin to be applied to the drag handle element | {}
 
 @element px-table-row.html
-@demo index.html
+@demo px-table-row-demo.html
 @homepage index.html
 -->
 <dom-module id="px-table-row">
-  <style include="px-table-row-styles"></style>
-  <style media="screen">
-    :host {
-      display: block;
-      position: relative;
-      overflow: hidden;
-      -webkit-user-select: none;
-      -moz-user-select: none;
-      -ms-user-select: none;
-      user-select: none;
-      box-sizing: border-box;
-    }
-
-    :host .table-row {
-      @apply(--px-table-row);
-    }
-
-    :host .table-row__title {
-      @apply(--px-table-row-title);
-    }
-
-    :host .table-row__content{
-      @apply(--px-table-row-content);
-    }
-
-    :host .table-row__body {
-      @apply(--px-table-row-body);
-    }
-
-    :host .table-row__media {
-      @apply(--px-table-row-media);
-    }
-
-		:host .table-row__media--left {
-			@apply(--px-table-row-media--left)
-		}
-
-		:host .table-row__media--right {
-			@apply(--px-table-row-media--right)
-		}
-
-    :host .table-row__media img {
-      @apply(--px-table-row-media--img);
-    }
-
-    :host .table-row__label {
-      @apply(--px-table-row-label);
-    }
-
-    :host .table-row__label--right {
-      @apply(--px-table-row-label--right);
-    }
-
-    :host .table-row__label--left {
-      @apply(--px-table-row-label--left);
-    }
-
-    :host .table-row__content:empty {
-      display: none;
-    }
-
-    :host #underlay {
-      position: absolute;
-      top: 0px;
-      bottom: 0px;
-      overflow: hidden;
-      @apply(--px-table-row-underlay);
-    }
-
-    :host([swipe-left]) #underlay {
-      right: 0;
-    }
-
-    :host px-icon {
-      --iron-icon-fill-color: var(--px-table-row-icon-color, #b1b1bc);
-    }
-
-    :host .table-row__handle {
-      @apply(--px-table-row-handle);
-      border: none;
-      background: transparent;
-      cursor: move;
-    }
-
-    :host .sortable-chosen {
-      /*background-color: red !important;*/
-      /*border: 10px solid orange;*/
-    }
-
-    :host(.sortable-chosen) {
-      background-color: var(--px-table-row-sortable-chosen-background-color, rgb(8,110,135)); /*$select-blue-pressed*/
-      color: var(--px-table-row-sortable-chosen-text-color, white);
-    }
-
-    :host(.sortable-chosen) px-icon {
-      --iron-icon-fill-color: var(--px-table-row-sortable-chosen-icon-color, white);
-    }
-
-    :host(.sortable-ghost) {
-      background-color: var(--px-table-row-sortable-ghost-background-color, rgb(10,158,193)); /*$select-blue-default*/
-      color: var(--px-table-row-sortable-ghost-text-color, var(--px-table-row-sortable-chosen-text-color));
-    }
-
-    :host(.sortable-ghost) px-icon {
-      --iron-icon-fill-color: var(--px-table-row-sortable-ghost-icon-color, white);
-    }
-  </style>
   <template strip-whitespace>
+    <style include="px-table-row-styles"></style>
+    <style media="screen" is="custom-style">
+      :host {
+        display: block;
+        position: relative;
+        overflow: hidden;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+        box-sizing: border-box;
+      }
+
+      :host .table-row {
+        @apply(--px-table-row);
+      }
+
+      :host .table-row__title {
+        @apply(--px-table-row-title);
+      }
+
+      :host .table-row__content{
+        @apply(--px-table-row-content);
+      }
+
+      :host .table-row__body {
+        @apply(--px-table-row-body);
+      }
+
+      :host .table-row__media {
+        @apply(--px-table-row-media);
+      }
+
+      :host .table-row__media--left {
+        @apply(--px-table-row-media--left);
+      }
+
+      :host .table-row__media--right {
+        @apply(--px-table-row-media--right);
+      }
+
+      :host .table-row__media img {
+        @apply(--px-table-row-media--img);
+      }
+
+      :host .table-row__label {
+        @apply(--px-table-row-label);
+      }
+
+      :host .table-row__label--right {
+        @apply(--px-table-row-label--right);
+      }
+
+      :host .table-row__label--left {
+        @apply(--px-table-row-label--left);
+      }
+
+      :host .table-row__content:empty {
+        display: none;
+      }
+
+      :host #underlay {
+        position: absolute;
+        top: 0px;
+        bottom: 0px;
+        overflow: hidden;
+        @apply(--px-table-row-underlay);
+      }
+
+      :host([swipe-left]) #underlay {
+        right: 0;
+      }
+
+      :host px-icon {
+        --iron-icon-fill-color: var(--px-table-row-icon-color, #b1b1bc);
+      }
+
+      :host .table-row__handle {
+        @apply(--px-table-row-handle);
+        border: none;
+        background: transparent;
+        cursor: move;
+      }
+
+      :host(.sortable-chosen) {
+        background-color: var(--px-table-row-sortable-chosen-background-color, rgb(8,110,135)); /*$select-blue-pressed*/
+        color: var(--px-table-row-sortable-chosen-text-color, white);
+      }
+
+      :host(.sortable-chosen) px-icon {
+        --iron-icon-fill-color: var(--px-table-row-sortable-chosen-icon-color, white);
+      }
+
+      :host(.sortable-ghost) {
+        background-color: var(--px-table-row-sortable-ghost-background-color, rgb(10,158,193)); /*$select-blue-default*/
+        color: var(--px-table-row-sortable-ghost-text-color, var(--px-table-row-sortable-chosen-text-color));
+      }
+
+      :host(.sortable-ghost) px-icon {
+        --iron-icon-fill-color: var(--px-table-row-sortable-ghost-icon-color, white);
+      }
+    </style>
     <div class="">
       <div id="row" class="table-row" >
         <template is="dom-if" if="{{labelLeft}}">
