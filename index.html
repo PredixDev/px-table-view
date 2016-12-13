@@ -77,12 +77,6 @@
                   <label for$="rowsTappable{{indexPlusOne(index)}}" class="toggle__label toggle__label--small"></label>
                   <div class="u-ml-">Rows Tappable</div>
                 </div>
-                <!-- Prop: Rows Chevron -->
-                <div class="flex u-mb u-mt+">
-                  <input id="rowsChevron{{indexPlusOne(index)}}" class="toggle__input toggle__input--small" type="checkbox" checked="{{item.rowsChevron::change}}">
-                  <label for$="rowsChevron{{indexPlusOne(index)}}" class="toggle__label toggle__label--small"></label>
-                  <div class="u-ml-">Rows Chevron</div>
-                </div>
                 <!-- Prop: Selected -->
                 <div class="u-mb-">
                   <p class="u-mb--">Selected:</p>
@@ -102,8 +96,7 @@
                           id="drawer1"
                           selected="{{item.selected}}"
                           rows-size="[[item.rowsSize]]"
-                          rows-tappable="[[item.rowsTappable]]"
-                          rows-chevron="[[item.rowsChevron]]">
+                          rows-tappable="[[item.rowsTappable]]">
                         <template is="dom-repeat" items="[[item.tableRowItems]]">
                           <px-table-row title="Item {{index}}" edit-mode="{{item.editMode}}">
                         </template>
@@ -201,7 +194,6 @@
         {
           rowsSize: 'regular',
           rowsTappable: true,
-          rowsChevron: false,
           selected: null,
           tableRowItems: [1, 2, 3, 4, 5],
           parentComponent: ["<style is='custom-style'>:root { --px-table-row: { border-bottom: 1px solid gray; } }</style>", ""],
