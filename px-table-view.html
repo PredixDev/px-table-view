@@ -32,13 +32,6 @@ Custom property | Description | Default
 `--px-table-row-selected-color` | The selected row font color | {}
 `--px-table-row-selected-background-color` | The selected row background color | {}
 `--px-table-row-sortable-chosen-background-color` | (Sortable only) The background color for picked-up sortable rows | rgb(8,110,135)
-`--px-table-row-sortable-chosen-text-color` | (Sortable only) The text color for picked-up sortable rows | white
-`--px-table-row-sortable-chosen-icon-color` | (Sortable only) The icon color for picked-up shortable rows | white
-`--px-table-row-sortable-ghost-background-color` | (Sortable only) The background color for ghost background sortable rows | rgb(8,110,135)
-`--px-table-row-sortable-ghost-text-color` | (Sortable only) The text color for ghost background sortable rows | white
-`--px-table-row-sortable-ghost-icon-color` | (Sortable only) The icon color for ghost background shortable rows | white
-
-
 
 @element px-table-view.html
 @demo index.html
@@ -57,24 +50,6 @@ Custom property | Description | Default
     :host .table-view {
       @apply(--px-table-view);
       -webkit-overflow-scrolling: touch;
-    }
-
-    :host ::content .sortable-chosen {
-      background-color: var(--px-table-row-sortable-chosen-background-color, rgb(8,110,135)); /*$select-blue-pressed*/
-      color: var(--px-table-row-sortable-chosen-text-color, white);
-    }
-
-    :host ::content .sortable-chosen .table-row__handle {
-      color: var(--px-table-row-sortable-chosen-icon-color, white);
-    }
-
-    :host ::content .sortable-ghost {
-      background-color: var(--px-table-row-sortable-ghost-background-color, rgb(10,158,193)); /*$select-blue-default*/
-      color: var(--px-table-row-sortable-ghost-text-color, var(--px-table-row-sortable-chosen-text-color));
-    }
-
-    :host ::content .sortable-ghost .table-row__handle {
-      color: var(--px-table-row-sortable-chosen-icon-color, var(--px-table-row-sortable-chosen-icon-color));
     }
   </style>
   <template strip-whitespace>

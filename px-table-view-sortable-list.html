@@ -35,10 +35,12 @@ Use it inside a `px-table-view` container with many `px-table-row` items inside 
 
 Custom property | Description | Default
 ------------ | ------------- | ------------
-`--px-table-view-sortable-list` | Style mixin to be applied to the element | {}
-`--px-table-view-sortable-list-ghost` | Style mixin to be applied to the ghost element | {}
-`--px-table-view-sortable-list-chosen` | Style mixin to be applied to the chosen element | {}
-
+`--px-table-view-sortable-chosen-background-color` | (Sortable only) The background color for picked-up sortable rows | rgb(8,110,135)
+`--px-table-view-sortable-chosen-text-color` | (Sortable only) The text color for picked-up sortable rows | white
+`--px-table-view-sortable-chosen-icon-color` | (Sortable only) The icon color for picked-up shortable rows | white
+`--px-table-view-sortable-ghost-background-color` | (Sortable only) The background color for ghost background sortable rows | rgb(8,110,135)
+`--px-table-view-sortable-ghost-text-color` | (Sortable only) The text color for ghost background sortable rows | white
+`--px-table-view-sortable-ghost-icon-color` | (Sortable only) The icon color for ghost background shortable rows | white
 -->
 
 <dom-module id="px-table-view-sortable-list">
@@ -50,11 +52,23 @@ Custom property | Description | Default
       -webkit-user-select: none;
       -webkit-tap-highlight-color: red;
     }
-    :host .sortable-ghost, :host ::content .sortable-ghost {
-      @apply(--px-table-view-sortable-list-ghost);
+
+    :host ::content .sortable-chosen {
+      background-color: var(--px-table-row-sortable-chosen-background-color, rgb(8,110,135)); /*$select-blue-pressed*/
+      color: var(--px-table-row-sortable-chosen-text-color, white);
     }
-    :host .sortable-chosen, :host ::content .sortable-chosen {
-      @apply(--px-table-view-sortable-list-chosen);
+
+    :host ::content .sortable-chosen .table-row__handle {
+      color: var(--px-table-row-sortable-chosen-icon-color, white);
+    }
+
+    :host ::content .sortable-ghost {
+      background-color: var(--px-table-row-sortable-ghost-background-color, rgb(10,158,193)); /*$select-blue-default*/
+      color: var(--px-table-row-sortable-ghost-text-color, var(--px-table-row-sortable-chosen-text-color));
+    }
+
+    :host ::content .sortable-ghost .table-row__handle {
+      color: var(--px-table-row-sortable-chosen-icon-color, var(--px-table-row-sortable-chosen-icon-color));
     }
   </style>
 
