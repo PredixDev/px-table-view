@@ -1,3 +1,9 @@
+v2.0.0
+==================
+* Standardize component API
+* Remove un-supported features
+* Remove unused dependencies
+
 v1.1.0
 ==================
 * Updated dependencies

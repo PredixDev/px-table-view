@@ -20,7 +20,6 @@
   <link rel="import" href="../px-demo-snippet/px-demo-snippet.html">
   <link rel="import" href="../px-polymer-font-awesome/polymer-font-awesome.html" />
   <link rel="import" href="../px-dropdown/px-dropdown.html" />
-  <link rel="import" href="../iron-demo-helpers/demo-snippet.html"/>
 
   <link rel="import" href="px-table-view.html">
   <link rel="import" href="px-table-row.html">
@@ -101,11 +100,6 @@
                   <p class="u-mb--">Icon Size:</p>
                   <input class="text-input" type="text" placeholder="{{demoOptions.iconSize}}" value="{{demoOptions.iconSize::input}}" />
                 </div>
-                <!-- Prop: Icon Color -->
-                <div class="u-mb-">
-                  <p class="u-mb--">Icon Color:</p>
-                  <input class="text-input" type="text" placeholder="{{demoOptions.iconColor}}" value="{{demoOptions.iconColor::input}}" />
-                </div>
                 <!-- Prop: Image -->
                 <div class="u-mb-">
                   <p class="u-mb--">Image:</p>
@@ -158,7 +152,6 @@
                               icon-left="[[demoOptions.iconLeft]]"
                               icon-right="[[demoOptions.iconRight]]"
                               icon-size="[[demoOptions.iconSize]]"
-                              icon-color="[[demoOptions.iconColor]]"
                               image="[[demoOptions.image]]"
                               image-position="[[demoOptions.imagePosition]]"
                               tappable="[[demoOptions.tappable]]">
@@ -176,7 +169,6 @@
                                 icon-left="[[demoOptions.iconLeft]]"
                                 icon-right="[[demoOptions.iconRight]]"
                                 icon-size="[[demoOptions.iconSize]]"
-                                icon-color="[[demoOptions.iconColor]]"
                                 image="[[demoOptions.image]]"
                                 image-position="[[demoOptions.imagePosition]]"
                                 tappable="[[demoOptions.tappable]]"
@@ -260,7 +252,6 @@
         iconLeft: '',
         iconRight: 'fa:fa-cog',
         iconSize: '32',
-        iconColor: 'gray',
         image: 'http://placehold.it/80',
         imagePosition: 'left',
         parentComponent: ['<px-table-view>','</px-table-view>']
@@ -278,7 +269,6 @@
         iconLeft: '',
         iconRight: 'fa:fa-chevron-right',
         iconSize: '18',
-        iconColor: 'gray',
         image: '',
         imagePosition: '',
         parentComponent: ['<px-table-view>','</px-table-view>']

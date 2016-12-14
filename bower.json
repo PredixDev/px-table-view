@@ -1,9 +1,9 @@
 {
   "name": "px-table-view",
-  "version": "1.1.0",
+  "version": "2.0.0",
   "description": "A responsive mobile first table view list.",
   "authors": [
-  "General Electric",
+    "General Electric",
     "Jonnie Spratley <jonnie.spratley@ge.com>"
   ],
   "main": [
@@ -23,28 +23,23 @@
   ],
   "dependencies": {
     "polymer": "^1.7.0",
-    "px-theme": "^2.0.1",
-    "fastclick": "^1.0.6",
-    "iron-selector": "^1.5.1",
-    "Sortable": "~1.4.2",
-    "px-polymer-font-awesome": "^0.1.9",
-    "iron-resizable-behavior": "~1.0.3",
-    "hammerjs": "^2.0.8",
-    "px-partials": "~0.0.11",
-    "iron-checked-element-behavior": "~1.0.4",
-    "iron-validatable-behavior": "~1.1.1",
-    "px-demo-snippet": "^0.6.0",
-    "px-api-viewer": "^0.1.0",
+    "px-theme": "^2.0.2",
+    "iron-selector": "^1.5.2",
+    "Sortable": "^1.4.2",
+    "px-polymer-font-awesome": "^1.1.0",
+    "iron-resizable-behavior": "~1.0.5",
+    "px-demo-snippet": "^0.6.14",
+    "px-api-viewer": "^0.1.13",
     "polymer-font-awesome": "^0.1.5"
   },
   "devDependencies": {
-    "px-mobile-design": "^0.1.0",
-    "px-toggle-design": "^0.2.12",
-    "px-forms-design": "^0.3.16",
-    "px-spacing-responsive-design": "^0.3.7",
-    "px-tabs": "^0.5.2",
-    "px-headings-design": "^0.2.23",
-    "px-list-inline-design": "^0.2.18",
-    "px-dropdown": "^2.0.0"
+    "px-mobile-design": "^0.2.0",
+    "px-toggle-design": "^1.1.1",
+    "px-forms-design": "^1.1.1",
+    "px-spacing-responsive-design": "^0.4.0",
+    "px-tabs": "^0.6.0",
+    "px-headings-design": "^0.3.1",
+    "px-list-inline-design": "^0.3.1",
+    "px-dropdown": "^2.1.0"
   }
 }

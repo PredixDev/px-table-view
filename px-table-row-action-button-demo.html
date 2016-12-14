@@ -128,28 +128,6 @@
             <div class="apiContainer">
               <div class="flex flex--col api u-mt++" >
 
-                <!-- Child/Associated Components -->
-                <div class="flex u-mb">
-                  <div class="flex__item flex flex--col childrenAssociated">
-                    <div class="componentHeader">Children Components</div>
-                    <div class="componentList">
-                      <ul>
-                        <li><a href="px-table-row-demo.html">px-table-row</a></li>
-                        <li><a href="px-table-view-sortable-list-demo.html">px-table-view-sortable-list</a></li>
-                      </ul>
-                    </div>
-                  </div>
-                  <div class="flex__item flex flex--col">
-                    <div class="componentHeader">Associated Components</div>
-                    <div class="componentList">
-                      <ul>
-                        <li><a href="https://predixdev.github.io/px-drawer/px-drawer/index.html">px-drawer</a></li>
-                        <li><a href="https://predixdev.github.io/px-view-header/px-view-header/index.html">px-view-header</a></li>
-                      </ul>
-                    </div>
-                  </div>
-                </div>
-
                 <!-- API Viewer -->
                 <px-api-viewer source="px-table-row-action-button"></px-api-viewer>
               </div>
@@ -201,7 +179,7 @@
           type: 'more',
           icon: 'fa:fa-info-circle',
           label: 'Details',
-          parentComponent: ["<style is='custom-style'>:root { --px-table-row: { border-bottom: 1px solid gray; } }</style>", ""],
+          parentComponent: ["<px-table-view><px-table-row title='Swipe left to see button' icon-right='fa:fa-chevron-right' icon-size='18' tappable swipeable swipe-left fit-underlay>", "</px-table-row><px-table-view>"],
         }
       ],
       indexPlusOne = function(num) {
