@@ -1,9 +1,9 @@
 {
   "name": "px-table-view",
-  "version": "1.0.2",
+  "version": "1.1.0",
   "description": "A responsive mobile first table view list.",
   "authors": [
-    "General Electric",
+  "General Electric",
     "Jonnie Spratley <jonnie.spratley@ge.com>"
   ],
   "main": [

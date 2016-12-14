@@ -1,10 +1,10 @@
 {
   "name": "px-table-view",
-  "version": "1.0.2",
+  "version": "1.1.0",
   "description": "A px mobile web component.",
   "keywords": [
-      "px",
-      "px-mobile"
+    "px",
+    "px-mobile"
   ],
   "author": "Jonnie Spratley",
   "devDependencies": {
