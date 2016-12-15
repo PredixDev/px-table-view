@@ -15,6 +15,7 @@ addons:
 env:
   global:
   - secure: p0/h1thEYPMwK1AR/XIv09h1Fb21PFl2orkAEwf5cMZmnAegdpys0ziQ/eI+2UQhhgyqxODHBRHBLUfmmv9KXjT0BLDLwxGCYXcGZT1htUhxh/Yp1pnyXRsqSgc5uu8FYEefsS1oApOyrHxCxq7HzNNeupoN28ZSbfpgyGq806GKgCp8d6z8DmCiy9ivgfjPTW8gxK8nEJnt8xFVCf2nzpYmjAwJ6KH3wKUNbrSEtSnOqoW11GKVUZBKDctXYA8sOuRmaMNq+v7K7l1bAfVqDIM9HMdY1MQjla9ARIKfbf53p7ArM6m2oZtl1in8AVdlFakIA6/ou7c7QEbFQEgs99Nt4k9KPNpxdnZ9IV675xx7lNsEIXUMb4DiQ1sR7i3+qN1iInNZQyJxU0Te/Bg+PvmuVtj/KtIlTpy8OPhAaYjxFqBE4FGFbR5wR/CsieNzzpQdrYEP0jLOiSdYb+/RonuNBK3Hhf32Mp02W2uEgUYCDtlIidMvMzONAeDS5vPg36Qs6atAJyvq/sKSxsX79rtJUghZhFngHj3OjTmdenL0UKY4rocxI12eMXG7LHimYRUSJczxcLJwULC4Mj5bhmlHSPbk8fx/eaAm6kpzLU1J8hzpfaR0ODxOUO4+kW8NYodaC/F+65Wn+lQQE0Z7FY3cY77Yto9sXmiBa6KkL0Y=
+  - secure: kN6+ThP79W8+OoUrCV8zh+c2DH2J181hCKs89t2G3ymqTJqRRIHUKemIfqVz825Y8uz8+c5Fm9jV1R+CiIj5EqHLazIoXEvu+WM51sgo2lkG2bx0DsuRN7ANjR7ZzE2CRWtFZRAx9SjQZpZfe8v/x3AB2cl7Ru12NiUlmsl5fpweQOMhC8cRoGZ4SksXcO7/XfeKCn2EBDvk8+GdYWETXpyLEIPCi2qWb/t1HGzFbeaVElXV4rFUUa8NqFNEsqiyjGjFuXPtLLtJ8XicxEgb+lUJ2paJZGnkrFMlN5Fyq/L8MBpEVp5VI6yzPMUpTIqnsAOx0Wn3c5Xh3Dkb2QetaxPYvJwCjwYARgQxempKTybhPYX6JrsYdztbuqNL2Xmb4NcasbPRzeEy03ROBSjE1lleKdIYN2hHt1i3ftZ3hisLl3paAJIBNA/tPvJHUFW9+3OPlQdpR2rSWjLwNkdj4ECWYW7pZcwjMleJ/daiWRVWwqrK+UgXBkqOzbQWsw1VZEqeZGo16gtRLQbNS00hvRbmx4GrxE9U5XhYjDk6s2Rm8jrR0tngdZA5xJSXQmOozTM0fwRBcGOW7ScvbcOzRTJIv3KPMNjOofztCByD3DrC4KYlMGec/cw6On0/YOQacIKZPoAvSrWIkoUA34UIyn4IwhPgzFmfcXy99yIWAl4=
 before_script:
 - npm install web-component-tester
 - npm install bower
@@ -24,7 +25,7 @@ script:
 - xvfb-run wct --skip-plugin sauce
 - if [ "${TRAVIS_PULL_REQUEST}" = "false" ]; then wct --plugin sauce --skip-plugin local; fi
 after_success:
-- if [ "${TRAVIS_PULL_REQUEST}" = "false" ]; then openssl aes-256-cbc -k "$password" in id_rsa.enc -out deploy_key -d; fi
+- if [ "${TRAVIS_PULL_REQUEST}" = "false" ]; then openssl aes-256-cbc -k "$password" -in id_rsa.enc -out deploy_key -d; fi
 - cd $TRAVIS_BUILD_DIR/scripts
 - chmod 755 ghp.sh
 - ./ghp.sh
