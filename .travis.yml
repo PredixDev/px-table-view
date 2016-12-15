@@ -14,12 +14,7 @@ addons:
     - google-chrome-stable
 env:
   global:
-  - secure: pJN1apbK271/l87YzligwPzUH5/Rk31M32ubW0zM3l/sYwepRkvptbwKuh8BG6dpifwot/HbEZOktGyeDlgXqh4luUTnBDQOPaJeFQ9HNt+g6lxCuSJRh4K7WLvAYpJpHnj78r3BWEnRhmb4ie5CcfhA9H00+yErLnRv8Hp+7FaPnLl2IcFh505H5izDctimCc5OpHDmB6XEpURMeuMzYtjKHdKdJBghAsiKua1QdlCVLU6jPUybR2I4B+BlryP8tO24lpdic1iowNJ1AuvPaD0yvC495HSrRjuta+aBZ/HhMWW4xurFchYFOSx5nfHrIPGobChFVRDdW4jNwFAJ6sX3aJx6br3avgVuPZ3hG+Uqs4iSw7I0nP2CoMFCDKfJkhtgvcKS0pLUMwznGCfvOJlNqpHd3VrFqIqMBLj0vIUy7m6U5InmMtYqklhPvFL0WyVLX0p/o35a5v8kv+GVNPpZNNu8vrICkdefuzJ78JwoB7LZqUPdRLe8ZZhWIojY4d2xssSlJhdR2eEbtvHUfyVkp91jhXNFzYVUcd2DUXwaBGBFp/pBSJJ07uznNJOJXNDK4P6wd0DH0ULfJKGlQhUVEvCwJBqsRLlB1aMK/n17l0xIA1qkyRXMNVnIs6mB1dC1jLqiy4aV0jjLo5Qk7DPgCW8YBkE9s4RILi4g450=
-before_install:
-- >-
-  if [ "${TRAVIS_PULL_REQUEST}" = "false" ];
-  then openssl aes-256-cbc -k "$password" -in id_rsa.enc -out deploy_key -d;
-  fi
+  - secure: p0/h1thEYPMwK1AR/XIv09h1Fb21PFl2orkAEwf5cMZmnAegdpys0ziQ/eI+2UQhhgyqxODHBRHBLUfmmv9KXjT0BLDLwxGCYXcGZT1htUhxh/Yp1pnyXRsqSgc5uu8FYEefsS1oApOyrHxCxq7HzNNeupoN28ZSbfpgyGq806GKgCp8d6z8DmCiy9ivgfjPTW8gxK8nEJnt8xFVCf2nzpYmjAwJ6KH3wKUNbrSEtSnOqoW11GKVUZBKDctXYA8sOuRmaMNq+v7K7l1bAfVqDIM9HMdY1MQjla9ARIKfbf53p7ArM6m2oZtl1in8AVdlFakIA6/ou7c7QEbFQEgs99Nt4k9KPNpxdnZ9IV675xx7lNsEIXUMb4DiQ1sR7i3+qN1iInNZQyJxU0Te/Bg+PvmuVtj/KtIlTpy8OPhAaYjxFqBE4FGFbR5wR/CsieNzzpQdrYEP0jLOiSdYb+/RonuNBK3Hhf32Mp02W2uEgUYCDtlIidMvMzONAeDS5vPg36Qs6atAJyvq/sKSxsX79rtJUghZhFngHj3OjTmdenL0UKY4rocxI12eMXG7LHimYRUSJczxcLJwULC4Mj5bhmlHSPbk8fx/eaAm6kpzLU1J8hzpfaR0ODxOUO4+kW8NYodaC/F+65Wn+lQQE0Z7FY3cY77Yto9sXmiBa6KkL0Y=
 before_script:
 - npm install web-component-tester
 - npm install bower
@@ -27,11 +22,9 @@ before_script:
 - bower install
 script:
 - xvfb-run wct --skip-plugin sauce
-- >-
-  if [ "${TRAVIS_PULL_REQUEST}" = "false" ];
-  then wct --plugin sauce --skip-plugin local;
-  fi
+- if [ "${TRAVIS_PULL_REQUEST}" = "false" ]; then wct --plugin sauce --skip-plugin local; fi
 after_success:
+- if [ "${TRAVIS_PULL_REQUEST}" = "false" ]; then openssl aes-256-cbc -k "$password" in id_rsa.enc -out deploy_key -d; fi
 - cd $TRAVIS_BUILD_DIR/scripts
 - chmod 755 ghp.sh
 - ./ghp.sh
