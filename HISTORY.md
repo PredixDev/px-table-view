@@ -1,3 +1,7 @@
+v2.0.1
+==================
+* Fix travis configuration
+
 v2.0.0
 ==================
 * Standardize component API

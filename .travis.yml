@@ -12,6 +12,14 @@ addons:
     - google-chrome
     packages:
     - google-chrome-stable
+env:
+  global:
+  - secure: fLLSwGa2pxk+G8j5ZXBCef+wtSCnZsCPG0f9SmDgqcqUWMdeT5tfW37Xa91GC5CLtnQEv5bKXxSDLC4fIfdYJPKIscCwUJk5kyxs1nQlUxQI60+fZOFlDki/usCAw7vmkXDkYxuPTLro8+/v88P6ctFzbUeJ3ZzE9qu+oNnIgIgA2ja5BfZbayFg4DJeVipOv53FzomXngl46Z23cB0cQsunLE/qNOXmD7en+z0WVyYVaPPnJpEzAR691bON9Cl/0di+9ZGCP0rFco1cwj4RXyMGIONC0dXtXb27HsVh6OHSqIJ1N8PAbMFmcRRIWh2Dw/pZbhPUS1jeUt2eDNCdLCc6Hitrn+8p8298kYyNKODStXfgh1sXUMgzkV4gMD4rU5AV1hpjlsIgMy+BZ141/H4itRyesTjrN4qUfkyw++6I4qQ/benfmrKTExHHIZH4wPcCawwNn9VMIDfvep26sX0PazmT5Z9Ebmy9GBVH9n0BMeyeK9BK0LznjFsS0jPurjswVYjWEhNGBcxqfGiDETa7B/OpWYTLnCocsX3Gd2LhN4XPC4Ehu/J7580nebPs6X5BNkYFB5kMvrSLtEitJqW5901/91DmobHmw2B0W/Anb43cJpgJfrQFz6kLqNE/hcxhzW4qKN/LvQJUo8xPPJZsfgkWF4IvjyctYshRxEI=
+before_install:
+- >-
+  if [ "${TRAVIS_PULL_REQUEST}" = "false" ];
+  then openssl aes-256-cbc -k "$password" -in id_rsa.enc -out deploy_key -d;
+  fi
 before_script:
 - npm install web-component-tester
 - npm install bower
@@ -19,14 +27,10 @@ before_script:
 - bower install
 script:
 - xvfb-run wct --skip-plugin sauce
-- if [ "${TRAVIS_PULL_REQUEST}" = "false" ]; then wct --plugin sauce --skip-plugin
-  local; fi
-env:
-  global:
-  - secure: fLLSwGa2pxk+G8j5ZXBCef+wtSCnZsCPG0f9SmDgqcqUWMdeT5tfW37Xa91GC5CLtnQEv5bKXxSDLC4fIfdYJPKIscCwUJk5kyxs1nQlUxQI60+fZOFlDki/usCAw7vmkXDkYxuPTLro8+/v88P6ctFzbUeJ3ZzE9qu+oNnIgIgA2ja5BfZbayFg4DJeVipOv53FzomXngl46Z23cB0cQsunLE/qNOXmD7en+z0WVyYVaPPnJpEzAR691bON9Cl/0di+9ZGCP0rFco1cwj4RXyMGIONC0dXtXb27HsVh6OHSqIJ1N8PAbMFmcRRIWh2Dw/pZbhPUS1jeUt2eDNCdLCc6Hitrn+8p8298kYyNKODStXfgh1sXUMgzkV4gMD4rU5AV1hpjlsIgMy+BZ141/H4itRyesTjrN4qUfkyw++6I4qQ/benfmrKTExHHIZH4wPcCawwNn9VMIDfvep26sX0PazmT5Z9Ebmy9GBVH9n0BMeyeK9BK0LznjFsS0jPurjswVYjWEhNGBcxqfGiDETa7B/OpWYTLnCocsX3Gd2LhN4XPC4Ehu/J7580nebPs6X5BNkYFB5kMvrSLtEitJqW5901/91DmobHmw2B0W/Anb43cJpgJfrQFz6kLqNE/hcxhzW4qKN/LvQJUo8xPPJZsfgkWF4IvjyctYshRxEI=
-before_install:
-- if [ "${TRAVIS_PULL_REQUEST}" = "false" ]; then openssl aes-256-cbc -k "$password"
-- in id_rsa.enc -out deploy_key -d; fi
+- >-
+  if [ "${TRAVIS_PULL_REQUEST}" = "false" ];
+  then wct --plugin sauce --skip-plugin local;
+  fi
 after_success:
 - cd $TRAVIS_BUILD_DIR/scripts
 - chmod 755 ghp.sh
