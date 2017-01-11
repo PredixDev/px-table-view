@@ -1,3 +1,7 @@
+v2.0.2
+==================
+* changing ghp.sh to account for Alpha releases
+
 v2.0.1
 ==================
 * Fix travis configuration
