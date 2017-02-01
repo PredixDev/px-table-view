@@ -1,3 +1,7 @@
+v2.0.5
+==================
+* added OSS_Notice.pdf and .bowerrc
+
 v2.0.4
 ==================
 * Updating so px-demo-snippet and px-api-viewer get new grays
