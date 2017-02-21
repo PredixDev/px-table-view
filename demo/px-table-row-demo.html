@@ -1,0 +1,243 @@
+<!-- Common imports -->
+<link rel="import" href="../../polymer/polymer.html" />
+<link rel="import" href="../../px-polymer-font-awesome/px-polymer-font-awesome.html" />
+
+<!-- Common demo imports -->
+<link rel="import" href="../../px-demo/px-demo-header.html" />
+<link rel="import" href="../../px-demo/px-demo-api-viewer.html" />
+<link rel="import" href="../../px-demo/px-demo-footer.html" />
+<link rel="import" href="../../px-demo/px-demo-configs.html" />
+<link rel="import" href="../../px-demo/px-demo-props.html" />
+<link rel="import" href="../../px-demo/px-demo-interactive.html" />
+<link rel="import" href="../../px-demo/px-demo-component-snippet.html" />
+
+<!-- Imports for this componnent -->
+<link rel="import" href="../../px-demo/css/px-demo-styles.html" />
+<link rel="import" href="../px-table-view.html" />
+
+<!-- Demo DOM module -->
+<dom-module id="px-table-row-demo">
+  <template>
+    <style include="px-demo-styles" is="custom-style"></style>
+
+    <!-- Header -->
+    <px-demo-header
+        module-name="px-table-row"
+        description="A sub-component of px-table-view that provides a container for an individual row of information in the table."
+        parent-name="px-table-view">
+    </px-demo-header>
+
+    <!-- Interactive -->
+    <px-demo-interactive>
+      <!-- Configs -->
+      <px-demo-configs configs="[[configs]]" props="{{props}}" chosen-config="{{chosenConfig}}"></px-demo-configs>
+
+      <!-- Props -->
+      <px-demo-props props="{{props}}" config="[[chosenConfig]]"></px-demo-props>
+
+      <!-- Component ---------------------------------------------------------->
+      <px-demo-component>
+
+        <div style="width:500px;">
+          <template is="dom-if" if="{{!isSwipeable(props.swipeable.value)}}">
+            <px-table-view>
+              <px-table-row
+                title="{{props.title.value}}"
+                body="{{props.body.value}}"
+                label-right="{{props.labelRight.value}}"
+                label-left="{{props.labelLeft.value}}"
+                icon-right="{{props.iconRight.value}}"
+                icon-left="{{props.iconLeft.value}}"
+                icon-size="{{props.iconSize.value}}"
+                image="{{props.image.value}}"
+                image-position="{{props.imagePosition.value}}"
+                tappable="{{props.tappable.value}}">
+              </px-table-row>
+            </px-table-view>
+          </template>
+          <template is="dom-if" if="{{isSwipeable(props.swipeable.value)}}">
+            <px-table-view>
+              <px-table-row
+                title="{{props.title.value}}"
+                body="{{props.body.value}}"
+                label-right="{{props.labelRight.value}}"
+                label-left="{{props.labelLeft.value}}"
+                icon-right="{{props.iconRight.value}}"
+                icon-left="{{props.iconLeft.value}}"
+                icon-size="{{props.iconSize.value}}"
+                image="{{props.image.value}}"
+                image-position="{{props.imagePosition.value}}"
+                tappable="{{props.tappable.value}}"
+                swipeable="{{props.swipeable.value}}"
+                swipe-left="{{props.swipeLeft.value}}"
+                fit-underlay="{{props.fitUnderlay.value}}">
+                <div underlay class="full-height flex flex--stretch flex--right">
+                  <px-table-row-action-button label="More" type="more"></px-table-row-action-button>
+                  <px-table-row-action-button label="Flag" type="flag"></px-table-row-action-button>
+                  <px-table-row-action-button label="Delete" type="delete"></px-table-row-action-button>
+                </div>
+              </px-table-row>
+            </px-table-view>
+          </template>
+        </div>
+      </px-demo-component>
+      <!-- END Component ------------------------------------------------------>
+
+      <px-demo-component-snippet
+          element-properties="{{props}}"
+          element-name="px-table-row"
+          links-includes='["px-table-view/px-table-view.html","px-polymer-font-awesome/px-polymer-font-awesome.html"]'>
+      </px-demo-component-snippet>
+    </px-demo-interactive>
+
+    <!-- API Viewer -->
+    <px-demo-api-viewer source="px-table-row"></px-demo-api-viewer>
+
+    <!-- Footer -->
+    <px-demo-footer></px-demo-footer>
+
+  </template>
+
+</dom-module>
+<script>
+  Polymer({
+    is: 'px-table-row-demo',
+
+    properties: {
+
+      props: {
+        type: Object,
+        value: function(){ return this.demoProps; }
+      },
+
+      configs: {
+        type: Array,
+        value: function(){
+          return [
+            { configName: "User Profile",
+              configReset: true,
+              title: 'John Doe',
+              body: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit.',
+              tappable: false,
+              swipeable: false,
+              labelRight: 'Active 5min ago',
+              labelLeft: '',
+              iconLeft: '',
+              iconRight: 'fa:fa-cog',
+              iconSize: '32',
+              image: 'http://placehold.it/80',
+              imagePosition: 'left'
+            },
+            { configName: "Swipeable Menu",
+              title: 'See All Engineers',
+              body: '',
+              tappable: true,
+              swipeable: true,
+              swipeLeft: true,
+              fitUnderlay: true,
+              labelRight: '21 Available',
+              labelLeft: '',
+              iconLeft: '',
+              iconRight: 'fa:fa-chevron-right',
+              iconSize: '18',
+              image: '',
+              imagePosition: ''
+            }
+          ]
+        }
+      }
+    },
+
+    isSwipeable: function(prop) {
+      return prop;
+    },
+
+    demoProps: {
+      tappable: {
+        type: Boolean,
+        defaultValue: false,
+        inputType: 'toggle'
+      },
+
+      swipeable: {
+        type: Boolean,
+        defaultValue: false,
+        inputType: 'toggle'
+      },
+
+      swipeLeft: {
+        type: Boolean,
+        defaultValue: false,
+        inputType: 'toggle'
+      },
+
+      fitUnderlay: {
+        type: Boolean,
+        defaultValue: false,
+        inputType: 'toggle'
+      },
+
+      title: {
+        type: String,
+        defaultValue: '',
+        inputType: 'text'
+      },
+
+      body: {
+        type: String,
+        defaultValue: '',
+        inputType: 'text'
+      },
+
+      labelLeft: {
+        type: String,
+        defaultValue: '',
+        inputType: 'text'
+      },
+
+      labelRight: {
+        type: String,
+        defaultValue: '',
+        inputType: 'text'
+      },
+
+      iconLeft: {
+        type: String,
+        defaultValue: '',
+        inputType: 'text'
+      },
+
+      iconRight: {
+        type: String,
+        defaultValue: '',
+        inputType: 'text'
+      },
+
+      iconSize: {
+        type: Number,
+        defaultValue: '',
+        inputType: 'number'
+      },
+
+      image: {
+        type: String,
+        defaultValue: 'http://placehold.it/80',
+        inputType: 'text'
+      },
+
+      imagePosition: {
+        type: String,
+        defaultValue: 'left',
+        inputType: 'dropdown',
+        inputChoices: ['left','right']
+      },
+
+      parentComponent: {
+        type: Array,
+        defaultValue: ['<px-table-view>','</px-table-view>']
+      }
+
+    }
+
+  });
+</script>

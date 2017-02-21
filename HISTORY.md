@@ -1,3 +1,7 @@
+v2.0.6
+==================
+* updated to px-demo
+
 v2.0.5
 ==================
 * added OSS_Notice.pdf and .bowerrc

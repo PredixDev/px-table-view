@@ -1,0 +1,131 @@
+<!-- Common imports -->
+<link rel="import" href="../../polymer/polymer.html" />
+<link rel="import" href="../../px-polymer-font-awesome/px-polymer-font-awesome.html" />
+
+<!-- Common demo imports -->
+<link rel="import" href="../../px-demo/px-demo-header.html" />
+<link rel="import" href="../../px-demo/px-demo-api-viewer.html" />
+<link rel="import" href="../../px-demo/px-demo-footer.html" />
+<link rel="import" href="../../px-demo/px-demo-configs.html" />
+<link rel="import" href="../../px-demo/px-demo-props.html" />
+<link rel="import" href="../../px-demo/px-demo-interactive.html" />
+<link rel="import" href="../../px-demo/px-demo-component-snippet.html" />
+
+<!-- Imports for this componnent -->
+<link rel="import" href="../../px-demo/css/px-demo-styles.html" />
+<link rel="import" href="../px-table-view.html" />
+
+<!-- Demo DOM module -->
+<dom-module id="px-table-view-demo">
+  <template>
+    <style include="px-demo-styles" is="custom-style"></style>
+
+    <!-- Header -->
+    <px-demo-header
+        module-name="px-table-view"
+        description="The px-table-view element creates a table-style list of items that can be interacted with by the user. It works the way users expect from a native mobile app, allowing swiping, tapping and re-ordering of list items. Use px-table-view to create list-style interfaces like menus or to display arbitrary sets of related data that can be acted on.">
+    </px-demo-header>
+
+    <!-- Interactive -->
+    <px-demo-interactive>
+      <!-- Configs -->
+      <px-demo-configs configs="[[configs]]" props="{{props}}" chosen-config="{{chosenConfig}}"></px-demo-configs>
+
+      <!-- Props -->
+      <px-demo-props props="{{props}}" config="[[chosenConfig]]"></px-demo-props>
+
+      <!-- Component ---------------------------------------------------------->
+      <px-demo-component>
+
+        <div style="width:300px;">
+        <style is="custom-style">
+          :root { --px-table-row: { border-bottom: 1px solid gray; } }
+        </style>
+          <px-table-view
+              selected="{{props.selected.value}}"
+              rows-size="{{props.rowsSize.value}}"
+              rows-tappable="{{props.rowsTappable.value}}">
+              <px-table-row title="Item 1"></px-table-row>
+              <px-table-row title="Item 2"></px-table-row>
+              <px-table-row title="Item 3"></px-table-row>
+              <px-table-row title="Item 4"></px-table-row>
+              <px-table-row title="Item 5"></px-table-row>
+          </px-table-view>
+        </div>
+      </px-demo-component>
+      <!-- END Component ------------------------------------------------------>
+
+      <px-demo-component-snippet
+          element-properties="{{props}}"
+          element-name="px-table-view">
+      </px-demo-component-snippet>
+    </px-demo-interactive>
+
+    <!-- API Viewer -->
+    <px-demo-api-viewer source="px-table-view"></px-demo-api-viewer>
+
+    <!-- Footer -->
+    <px-demo-footer></px-demo-footer>
+
+  </template>
+
+</dom-module>
+<script>
+  Polymer({
+    is: 'px-table-view-demo',
+
+    properties: {
+
+      props: {
+        type: Object,
+        value: function(){ return this.demoProps; }
+      },
+
+      configs: {
+        type: Array,
+        value: function(){
+          return [
+            { configName: "Default",
+              selected: null,
+              rowsSize: 'regular',
+              rowsTappable: false }
+          ]
+        }
+      }
+    },
+
+    demoProps: {
+      rowsTappable: {
+        type: Boolean,
+        defaultValue: false,
+        inputType: 'toggle'
+      },
+
+      rowsSize: {
+        type: String,
+        defaultValue: 'regular',
+        inputType: 'dropdown',
+        inputChoices: ['flush','tiny','small','regular','large','huge']
+      },
+
+      selected: {
+        type: Number,
+        defaultValue: null,
+        inputType: 'text',
+        inputDisabled: true
+      },
+
+      lightDomContent: {
+        type: String,
+        defaultValue: '<px-table-row title="Item 1"></px-table-row><px-table-row title="Item 2"></px-table-row><px-table-row title="Item 3"></px-table-row><px-table-row title="Item 4"></px-table-row><px-table-row title="Item 5"></px-table-row>'
+      },
+
+      parentComponent: {
+        type: Array,
+        defaultValue: ["<style is='custom-style'>:root { --px-table-row: { border-bottom: 1px solid gray; } }</style>", ""]
+      }
+
+    }
+
+  });
+</script>

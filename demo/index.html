@@ -1,0 +1,56 @@
+<!-- Common imports -->
+<link rel="import" href="../../polymer/polymer.html" />
+<link rel="import" href="../../px-demo/css/px-demo-styles.html" />
+<link rel="import" href="../../px-demo/px-demo-collection.html" />
+<link rel="import" href="../../px-demo/px-demo-code-editor.html" />
+
+<!-- Import peer demo pages -->
+<link rel="import" href="px-table-view-demo.html" />
+<link rel="import" href="px-table-view-sortable-list-demo.html" />
+<link rel="import" href="px-table-row-demo.html" />
+<link rel="import" href="px-table-row-action-button-demo.html" />
+
+<!-- Demo DOM module -->
+<dom-module id="local-element-demo">
+  <template>
+    <!-- Theme includes -->
+    <style include="px-demo-styles" is="custom-style"></style>
+    <style include="px-theme-styles" is="custom-style"></style>
+    <style include="px-dark-demo-theme-styles" is="custom-style"></style>
+    <style include="px-dark-theme-styles" is="custom-style"></style>
+
+    <!-- Demo list/view change entrypoint -->
+    <px-demo-collection demos="{{demos}}"></px-demo-collection>
+
+    <!-- Code Editor -->
+    <px-demo-code-editor props="{{props}}"></px-demo-code-editor>
+  </template>
+</dom-module>
+<script>
+  Polymer({
+    is: 'local-element-demo',
+
+    properties: {
+
+      demos: {
+        type: Array,
+        value: function(){
+          return [
+            { name: "px-table-view",
+              tagName: "px-table-view-demo" },
+            { name: "px-table-view-sortable-list",
+              tagName: "px-table-view-sortable-list-demo" },
+            { name: "px-table-row",
+              tagName: "px-table-row-demo" },
+            { name: "px-table-row-action-button",
+              tagName: "px-table-row-action-button-demo" }
+          ]
+        }
+      },
+
+      chosenDemoName: {
+        type: String
+      }
+    }
+  });
+</script>

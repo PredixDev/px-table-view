@@ -1,0 +1,129 @@
+<!-- Common imports -->
+<link rel="import" href="../../polymer/polymer.html" />
+<link rel="import" href="../../px-polymer-font-awesome/px-polymer-font-awesome.html" />
+
+<!-- Common demo imports -->
+<link rel="import" href="../../px-demo/px-demo-header.html" />
+<link rel="import" href="../../px-demo/px-demo-api-viewer.html" />
+<link rel="import" href="../../px-demo/px-demo-footer.html" />
+<link rel="import" href="../../px-demo/px-demo-configs.html" />
+<link rel="import" href="../../px-demo/px-demo-props.html" />
+<link rel="import" href="../../px-demo/px-demo-interactive.html" />
+<link rel="import" href="../../px-demo/px-demo-component-snippet.html" />
+
+<!-- Imports for this componnent -->
+<link rel="import" href="../../px-demo/css/px-demo-styles.html" />
+<link rel="import" href="../px-table-view.html" />
+
+<!-- Demo DOM module -->
+<dom-module id="px-table-view-sortable-list-demo">
+  <template>
+    <style include="px-demo-styles" is="custom-style"></style>
+
+    <!-- Header -->
+    <px-demo-header
+        module-name="px-table-view-sortable-list"
+        description="A sub-component of px-table-view that creates an interactive, sortable list of px-table-row child elements."
+        parent-name="px-table-view">
+    </px-demo-header>
+
+    <!-- Interactive -->
+    <px-demo-interactive>
+      <!-- Configs -->
+      <px-demo-configs configs="[[configs]]" props="{{props}}" chosen-config="{{chosenConfig}}"></px-demo-configs>
+
+      <!-- Props -->
+      <px-demo-props props="{{props}}" config="[[chosenConfig]]"></px-demo-props>
+
+      <!-- Component ---------------------------------------------------------->
+      <px-demo-component>
+
+        <div style="width:600px;" class="flex">
+          <style is="custom-style">
+            :root { --px-table-row: { border-bottom: 1px solid gray; } }
+          </style>
+          <div class="flex__item u-m">
+            <px-table-view>
+              <px-table-view-sortable-list content group="grouped">
+                <px-table-row edit-mode title="Item 1"></px-table-row>
+                <px-table-row edit-mode title="Item 2"></px-table-row>
+                <px-table-row edit-mode title="Item 3"></px-table-row>
+            </px-table-view>
+          </div>
+          <div class="flex__item u-m">
+            <px-table-view>
+              <px-table-view-sortable-list content group="grouped">
+                <px-table-row edit-mode title="Item 4"></px-table-row>
+                <px-table-row edit-mode title="Item 5"></px-table-row>
+                <px-table-row edit-mode title="Item 6"></px-table-row>
+            </px-table-view>
+          </div>
+        </div>
+      </px-demo-component>
+      <!-- END Component ------------------------------------------------------>
+
+      <px-demo-component-snippet
+          element-properties="{{props}}"
+          element-name="px-table-view-sortable-list"
+          links-includes='["px-table-view/px-table-view.html","px-polymer-font-awesome/px-polymer-font-awesome.html"]'>
+      </px-demo-component-snippet>
+    </px-demo-interactive>
+
+    <!-- API Viewer -->
+    <px-demo-api-viewer source="px-table-view-sortable-list"></px-demo-api-viewer>
+
+    <!-- Footer -->
+    <px-demo-footer></px-demo-footer>
+
+  </template>
+
+</dom-module>
+<script>
+  Polymer({
+    is: 'px-table-view-sortable-list-demo',
+
+    properties: {
+
+      props: {
+        type: Object,
+        value: function(){ return this.demoProps; }
+      },
+
+      configs: {
+        type: Array,
+        value: function(){
+          return [
+            { configName: "Default",
+              configShowProps: [] }
+          ]
+        }
+      }
+    },
+
+    demoProps: {
+      group: {
+        type: String,
+        defaultValue: 'grouped',
+        inputType: 'text'
+      },
+
+      content: {
+        type: Boolean,
+        defaultValue: true,
+        inputType: 'toggle'
+      },
+
+      parentComponent: {
+        type: Array,
+        defaultValue: ['<div class="flex"><div class="flex__item u-m"><px-table-view>','</px-table-view></div></div>']
+      },
+
+      lightDomContent: {
+        type: String,
+        defaultValue: '<px-table-row edit-mode title="Item 1"></px-table-row><px-table-row edit-mode title="Item 2"></px-table-row><px-table-row edit-mode title="Item 3"></px-table-row>'
+      }
+
+    }
+
+  });
+</script>

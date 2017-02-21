@@ -1,45 +1,45 @@
 {
-    "name": "px-table-view",
-    "version": "2.0.5",
-    "description": "A responsive mobile first table view list.",
-    "authors": [
-        "General Electric",
-        "Jonnie Spratley <jonnie.spratley@ge.com>"
-    ],
-    "main": [
-        "px-table-view.html"
-    ],
-    "keywords": [
-        "px",
-        "px-mobile"
-    ],
-    "ignore": [
-        ".*",
-        "npm-debug.log",
-        "gulpfile.js",
-        "bower_components",
-        "node_modules",
-        "test"
-    ],
-    "dependencies": {
-        "polymer": "^1.7.0",
-        "px-theme": "^2.0.2",
-        "iron-selector": "^1.5.2",
-        "Sortable": "^1.4.2",
-        "px-polymer-font-awesome": "^1.1.0",
-        "iron-resizable-behavior": "~1.0.5",
-        "px-demo-snippet": "^0.6.14",
-        "px-api-viewer": "^0.1.13",
-        "polymer-font-awesome": "^0.1.5"
-    },
-    "devDependencies": {
-        "px-mobile-design": "^0.2.0",
-        "px-toggle-design": "^1.1.1",
-        "px-forms-design": "^1.1.1",
-        "px-spacing-responsive-design": "^0.4.0",
-        "px-tabs": "^0.6.0",
-        "px-headings-design": "^0.3.1",
-        "px-list-inline-design": "^0.3.1",
-        "px-dropdown": "^2.1.0"
-    }
+  "name": "px-table-view",
+  "version": "2.0.6",
+  "description": "A responsive mobile first table view list.",
+  "authors": [
+    "General Electric",
+    "Jonnie Spratley <jonnie.spratley@ge.com>"
+  ],
+  "main": [
+    "px-table-view.html"
+  ],
+  "keywords": [
+    "px",
+    "px-mobile"
+  ],
+  "ignore": [
+    "**/.*",
+    "bower_components",
+    "node_modules",
+    "sass",
+    "*.md",
+    "scripts",
+    ".github",
+    "gulpfile.js",
+    "wct.conf.json",
+    "test",
+    "OSS_Notice.pdf",
+    "*.png",
+    "npm-debug.log"
+  ],
+  "dependencies": {
+    "polymer": "^1.7.0",
+    "px-theme": "^2.0.2",
+    "iron-selector": "^1.5.2",
+    "Sortable": "^1.4.2",
+    "px-polymer-font-awesome": "^1.1.0",
+    "iron-resizable-behavior": "~1.0.5"
+  },
+  "devDependencies": {
+    "px-mobile-design": "^0.2.0",
+    "px-toggle-design": "^1.1.1",
+    "px-demo": "^1.4.8",
+    "px-starter-kit-design": "^0.7.4"
+  }
 }

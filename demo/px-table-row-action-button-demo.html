@@ -1,0 +1,132 @@
+<!-- Common imports -->
+<link rel="import" href="../../polymer/polymer.html" />
+<link rel="import" href="../../px-polymer-font-awesome/px-polymer-font-awesome.html" />
+
+<!-- Common demo imports -->
+<link rel="import" href="../../px-demo/px-demo-header.html" />
+<link rel="import" href="../../px-demo/px-demo-api-viewer.html" />
+<link rel="import" href="../../px-demo/px-demo-footer.html" />
+<link rel="import" href="../../px-demo/px-demo-configs.html" />
+<link rel="import" href="../../px-demo/px-demo-props.html" />
+<link rel="import" href="../../px-demo/px-demo-interactive.html" />
+<link rel="import" href="../../px-demo/px-demo-component-snippet.html" />
+
+<!-- Imports for this componnent -->
+<link rel="import" href="../../px-demo/css/px-demo-styles.html" />
+<link rel="import" href="../px-table-view.html" />
+
+<!-- Demo DOM module -->
+<dom-module id="px-table-row-action-button-demo">
+  <template>
+    <style include="px-demo-styles" is="custom-style"></style>
+
+    <!-- Header -->
+    <px-demo-header
+        module-name="px-table-row-action-button"
+        description="A sub-component of px-table-view that that creates a simple button component that can be embedded inside a `px-table-row` swipable instance to display possible user actions."
+        parent-name="px-table-view">
+    </px-demo-header>
+
+    <!-- Interactive -->
+    <px-demo-interactive>
+      <!-- Configs -->
+      <px-demo-configs configs="[[configs]]" props="{{props}}" chosen-config="{{chosenConfig}}"></px-demo-configs>
+
+      <!-- Props -->
+      <px-demo-props props="{{props}}" config="[[chosenConfig]]"></px-demo-props>
+
+      <!-- Component ---------------------------------------------------------->
+      <px-demo-component>
+
+        <div style="width:500px;">
+          <px-table-view>
+            <px-table-row
+              title="Swipe left to see button"
+              icon-right="fa:fa-chevron-right"
+              icon-size="18"
+              tappable
+              swipeable
+              swipe-left
+              fit-underlay
+              underlay-opened>
+              <div underlay class="full-height flex flex--stretch flex--right">
+                <px-table-row-action-button
+                  label="{{props.label.value}}"
+                  type="{{props.type.value}}"
+                  icon="{{props.icon.value}}">
+                </px-table-row-action-button>
+              </div>
+            </px-table-row>
+          </px-table-view>
+        </div>
+      </px-demo-component>
+      <!-- END Component ------------------------------------------------------>
+
+      <px-demo-component-snippet
+          element-properties="{{props}}"
+          element-name="px-table-row-action-button"
+          links-includes='["px-table-view/px-table-view.html","px-polymer-font-awesome/px-polymer-font-awesome.html"]'>
+      </px-demo-component-snippet>
+    </px-demo-interactive>
+
+    <!-- API Viewer -->
+    <px-demo-api-viewer source="px-table-row-action-button"></px-demo-api-viewer>
+
+    <!-- Footer -->
+    <px-demo-footer></px-demo-footer>
+
+  </template>
+
+</dom-module>
+<script>
+  Polymer({
+    is: 'px-table-row-action-button-demo',
+
+    properties: {
+
+      props: {
+        type: Object,
+        value: function(){ return this.demoProps; }
+      },
+
+      configs: {
+        type: Array,
+        value: function(){
+          return [
+            { configName: "Action button",
+              configReset: true
+            }
+          ]
+        }
+      }
+    },
+
+    demoProps: {
+      type: {
+        type: String,
+        defaultValue: 'more',
+        inputType: 'dropdown',
+        inputChoices: ['info','more','flag','delete']
+      },
+
+      label: {
+        type: String,
+        defaultValue: 'Details',
+        inputType: 'text'
+      },
+
+      icon: {
+        type: String,
+        defaultValue: 'fa:fa-info-circle',
+        inputType: 'text'
+      },
+
+      parentComponent: {
+        type: Array,
+        defaultValue: ["<px-table-view><px-table-row title='Swipe left to see button' icon-right='fa:fa-chevron-right' icon-size='18' tappable swipeable swipe-left fit-underlay><div underlay class='full-height flex flex--stretch flex--right'>", "</div></px-table-row><px-table-view>"]
+      }
+
+    }
+
+  });
+</script>

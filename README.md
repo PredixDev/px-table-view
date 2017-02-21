@@ -1,10 +1,12 @@
-# px-table-view
+#px-table-view [![Build Status](https://travis-ci.org/PredixDev/px-table-view.svg?branch=master)](https://travis-ci.org/PredixDev/px-table-view)
+
+[![px-table-view demo](px-table-view.png?raw=true)](https://github.com/PredixDev/px-table-view)
+
+## Overview
 
 The `px-table-view` element creates a table-style list of items that can be interacted with by the user. It works the way users expect from a native mobile app, allowing swiping, tapping and re-ordering of list items.
 
 Use `px-table-view` to create list-style interfaces like menus or to display arbitrary sets of related data that can be acted on.
-
-[![Build Status](https://travis-ci.org/PredixDev/px-table-view.svg?branch=master)](https://travis-ci.org/PredixDev/px-table-view)
 
 ## Usage
 
