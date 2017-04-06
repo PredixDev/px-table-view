@@ -94,6 +94,7 @@
         value: function(){
           return [
             { configName: "Default",
+              configReset: true,
               configShowProps: [] }
           ]
         }
@@ -101,17 +102,6 @@
     },
 
     demoProps: {
-      group: {
-        type: String,
-        defaultValue: 'grouped',
-        inputType: 'text'
-      },
-
-      content: {
-        type: Boolean,
-        defaultValue: true,
-        inputType: 'toggle'
-      },
 
       parentComponent: {
         type: Array,

@@ -1,5 +1,5 @@
 <link rel="import" href="../polymer/polymer.html">
-<link rel="import" href="sortable-import.html">
+<link rel="import" href="../polymer-sortablejs/polymer-sortablejs.html"/>
 
 <!--
 The `px-table-view-sortable-list` element is a wrapper around the [Sortable.js](https://github.com/RubaXa/Sortable) library.
@@ -55,7 +55,19 @@ Custom property | Description | Default
   </style>
 
   <template>
-    <content></content>
+    <sortable-js
+      group="{{group}}"
+      sort="{{sort}}"
+      disabled="{{disabled}}"
+      animation="{{animation}}"
+      handle="{{handle}}"
+      filter="{{filter}}"
+      sortable="{{sortable}}"
+      scroll="{{scroll}}"
+      scroll-sensitivity="{{scrollSensitivity}}"
+      scroll-speed="{{scrollSpeed}}">
+      <content></content>
+    </sortable-js>
   </template>
 
   <script>
@@ -195,120 +207,7 @@ Custom property | Description | Default
           type: Number,
           value: 10
         }
-      },
-
-      observers: [
-        '_reactivate(group, sort, disabled, store, animation, handle, filter, sortable, ghostClass, scroll, scrollSensitivity, scrollSpeed)'
-      ],
-
-      attached: function() {
-        this._reactivate();
-      },
-
-      /**
-       * Manually destroy and recreate the scrollable instance. Happens whenever
-       * any property changes. This is an expensive action, so try not to configure
-       * properties on the fly. Set them in advance and forget them (if possible).
-       *
-       * @private
-       * @method _reactivate
-       */
-      _reactivate: function() {
-        if (this._sortable) {
-          this._sortable.destroy();
-        }
-        this._sortable = Sortable.create(this, this._generateOptions());
-      },
-
-      /**
-       * Gets all the properties set on the host element to pass to the Sortable
-       * instance that will manage the hosts' lists.
-       *
-       * @private
-       * @method _generateOptions
-       * @return {Object}
-       */
-      _generateOptions: function() {
-        return {
-          group: this.group || Math.random(),
-          sort: this.sort,
-          disabled: this.disabled,
-          animation: this.animation,
-          handle: this.handle,
-          filter: this.filter,
-          draggable: this.sortable,
-          ghostClass: this.ghostClass || 'sortable-ghost',
-          dragClass: this.dragClass || 'sortable-drag',
-          scroll: this.scroll,
-          scrollSensitivity: this.scrollSensitivity,
-          scrollSpeed: this.scrollSpeed,
-
-          onStart: function(evt) {
-            evt.item.set('_dragging', true);
-            this.fire('px-table-view-sortable-list-sort-start', evt);
-            evt.stopPropagation();
-          }.bind(this),
-
-          onEnd: function(evt) {
-            evt.item.set('_dragging', false);
-            this.fire('px-table-view-sortable-list-sort-end', evt);
-            evt.stopPropagation();
-          }.bind(this),
-
-          onAdd: function(evt) {
-            this.fire('px-table-view-sortable-list-sort-add', evt);
-            evt.stopPropagation();
-          }.bind(this),
-
-          onUpdate: function(evt) {
-            this.fire('px-table-view-sortable-list-sort-update', evt);
-            evt.stopPropagation();
-          }.bind(this),
-
-          onSort: function(evt) {
-            this.fire('px-table-view-sortable-list-sort-change', evt);
-            evt.stopPropagation();
-          }.bind(this),
-
-          onRemove: function(evt) {
-            this.fire('px-table-view-sortable-list-sort-remove', evt);
-            evt.stopPropagation();
-          }.bind(this),
-
-          onFilter: function(evt) {
-            this.fire('px-table-view-sortable-list-sort-filter', evt);
-            evt.stopPropagation();
-          }.bind(this)
-        };
       }
-      /**
-       * Fires when sorting begins on the sortable list.
-       * @event px-table-view-sortable-list-sort-start
-       */
-      /**
-       * Fired when sorting ends on the sortable list.
-       * @event px-table-view-sortable-list-sort-end
-       */
-      /**
-       * Fired when a new element is dragged into the sortable list by the user.
-       * @event px-table-view-sortable-list-sort-add
-       */
-      /**
-       * Fired when the sortable lists' order is modified by the user.
-       * @event px-table-view-sortable-list-sort-update
-       */
-      /**
-       * Fired when an item is added, removed, or updated in the sortable list.
-       * @event px-table-view-sortable-list-sort-change
-       */
-      /**
-       * Fired when a sortable list item is dragged out of the list by the user.
-       * @event px-table-view-sortable-list-sort-remove
-       */
-      /**
-       * Fired when the sortable list is filtered.
-       * @event px-table-view-sortable-list-sort-remove
-       */
     });
   </script>
 </dom-module>
