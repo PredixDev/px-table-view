@@ -1,3 +1,9 @@
+v2.0.7
+==================
+* Solves issue that prevents sorting in non-shadow DOM. Locks this component in to the Sortable library at the 1.4.X release track, as a regression in 1.5.X causes the sort to fail. Waiting on a patch submitted to Sortable that should fix the issue.
+* Manually handles moving elements between sortable lists in shady DOM
+* Removes some sort configuration properties that do not work because they can't be dynamic (`sort`, `disabled`, `store`) or can't notify
+
 v2.0.6
 ==================
 * updated to px-demo

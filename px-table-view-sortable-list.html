@@ -72,43 +72,7 @@ Custom property | Description | Default
          */
         group: {
           type: String,
-          value: null
-        },
-
-        /**
-         * If `true`, activates ability to sort list of elements.
-         *
-         * @property sort
-         * @type {Boolean}
-         * @default true
-         */
-        sort: {
-          type: Boolean,
-          value: true
-        },
-
-        /**
-         * If `true`, explicitly disables sorting.
-         *
-         * @property disabled
-         * @type {Boolean}
-         * @default false
-         */
-        disabled: {
-          type: Boolean,
-          value: false
-        },
-
-        /**
-         * A dynamic store of the sorted list. Managed by the Sortable library.
-         *
-         * @property store
-         * @type {Object}
-         * @default null
-         */
-        store: {
-          type: Object,
-          value: null
+          value: 'defaultgroup'
         },
 
         /**
@@ -201,6 +165,10 @@ Custom property | Description | Default
         '_reactivate(group, sort, disabled, store, animation, handle, filter, sortable, ghostClass, scroll, scrollSensitivity, scrollSpeed)'
       ],
 
+      created: function() {
+        this._isShady = !Polymer.Settings.useNativeShadow;
+      },
+
       attached: function() {
         this._reactivate();
       },
@@ -231,8 +199,8 @@ Custom property | Description | Default
       _generateOptions: function() {
         return {
           group: this.group || Math.random(),
-          sort: this.sort,
-          disabled: this.disabled,
+          sort: true,
+          disabled: false,
           animation: this.animation,
           handle: this.handle,
           filter: this.filter,
@@ -255,23 +223,94 @@ Custom property | Description | Default
             evt.stopPropagation();
           }.bind(this),
 
+          // Called when a new item is added to a list
           onAdd: function(evt) {
+            if (this._isShady) {
+              // SHADY DOM ONLY:
+              // Manually remove the child from its source list and append it
+              // into the correct position if its target list
+              var item = evt.item;
+              var source = Polymer.dom(evt.from);
+              var sourceIndex = evt.oldIndex;
+              var target = Polymer.dom(evt.to);
+              var targetIndex = evt.newIndex;
+              var targetChildren = target.children;
+
+              // Remove from the source
+              source.removeChild(item);
+              source.flush();
+
+              // Add the target at the correct position
+              if (targetIndex === 0) {
+                target.insertBefore(item, targetChildren[0]);
+              }
+              if (targetIndex === targetChildren.length) {
+                target.appendChild(item);
+              }
+              if (targetIndex > 0 && targetIndex < targetChildren.length) {
+                target.insertBefore(item, targetChildren[targetIndex + 1]);
+              }
+              target.flush();
+            }
+
             this.fire('px-table-view-sortable-list-sort-add', evt);
             evt.stopPropagation();
           }.bind(this),
 
+          // Called when an item is removed from a list
+          onRemove: function(evt) {
+            if (this._isShady) {
+              // SHADY DOM ONLY:
+              // If the child still exists in the list it was to be removed
+              // from, clean it up
+              var item = evt.item;
+              var source = Polymer.dom(evt.from);
+              var sourceChildren = source.children;
+              if (sourceChildren.indexOf(item) !== -1) {
+                source.removeChild(item);
+                source.flush();
+              }
+            }
+
+            this.fire('px-table-view-sortable-list-sort-remove', evt);
+            evt.stopPropagation();
+          }.bind(this),
+
+          // Called when an item is moved around within its existing list
           onUpdate: function(evt) {
+            if (this._isShady) {
+              // SHADY DOM ONLY:
+              // Manually move this child from its old position to its new
+              // position in the same list
+              var item = evt.item;
+              var oldIndex = evt.oldIndex;
+              var newIndex = evt.newIndex;
+              var list = Polymer.dom(evt.to);
+              var listChildren = list.children;
+
+              // Remove from its original list position
+              list.removeChild(item);
+              list.flush();
+
+              // Add at its new list position
+              if (newIndex === 0 && listChildren[0] instanceof HTMLElement) {
+                list.insertBefore(item, listChildren[0]);
+              }
+              else if (newIndex === (listChildren.length - 1)) {
+                list.appendChild(item);
+              }
+              else if (typeof newIndex === 'number' && listChildren[newIndex] instanceof HTMLElement && listChildren[newIndex] !== item) {
+                list.insertBefore(item, listChildren[newIndex]);
+              }
+              list.flush();
+            }
+
             this.fire('px-table-view-sortable-list-sort-update', evt);
             evt.stopPropagation();
           }.bind(this),
 
           onSort: function(evt) {
             this.fire('px-table-view-sortable-list-sort-change', evt);
-            evt.stopPropagation();
-          }.bind(this),
-
-          onRemove: function(evt) {
-            this.fire('px-table-view-sortable-list-sort-remove', evt);
             evt.stopPropagation();
           }.bind(this),
 
