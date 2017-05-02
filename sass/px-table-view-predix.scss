@@ -16,10 +16,13 @@
 ///------------------------------------------------------
 @include b ('table-view') {
 
+  border-top: $table-row-border-width $table-row-border-style $table-row-border-color;
+  border-bottom: $table-row-border-width $table-row-border-style $table-row-border-color;
+
   ///------------------------------------------------------
   @include m ('border-bottom') {
     .table-row {
-      border-bottom-style: var(--px-table-row-border-style, solid);
+      border-bottom-style: var(--px-table-row-border-style, $table-row-border-style);
       border-bottom-width: var(--px-table-row-border-width, $table-row-border-width);
       border-bottom-color: var(--px-table-row-border-color, $table-row-border-color);
     }

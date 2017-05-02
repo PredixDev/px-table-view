@@ -2,6 +2,10 @@
 @import 'mixins';
 @import 'px-table-row-sketch.scss';
 
+:host:last-of-type .table-row {
+  border-bottom: 0;
+}
+
 /// @group px-table-row
 /// @access public
 @include b ('table-row') {
@@ -16,6 +20,7 @@
   color           : var(--px-table-row-color, inherit);
   font-size       : var(--px-table-row-font-size, inherit);
   background-color: var(--px-table-row-background-color, inherit);
+  border-bottom   : $table-row-separator-width $table-row-separator-style $table-row-separator-color;
 
   &:active {
     transition: none;

@@ -6,40 +6,12 @@
 // Generic
 @import "px-normalize-design/_generic.normalize.scss";
 @import "px-box-sizing-design/_generic.box-sizing.scss";
-//@import "px-helpers-design/_generic.helpers.scss";
 
 // Base
-//@import "px-flexbox-design/_base.flexbox.scss";
-//@import "px-viewport-design/_base.viewport.scss";
-//@import "px-forms-design/_base.forms.scss";
-//@import "px-meta-lists-design/_meta.lists.scss";
-//@import "px-meta-buttons-design/_meta.buttons.scss";
-
-// Trumps
-//@import "inuit-clearfix/_trumps.clearfix.scss";
-@import "px-spacing-responsive-design/_trumps.spacing-responsive.scss";
-//@import "px-widths-responsive-design/_trumps.widths-responsive.scss";
 
 ///Pull To Refresh
 @import 'modifiers/_table-view--ptr';
 
-///
-/// @group px-table-view
-/// -------------------------
-/// Table View
-/// @group px-table-view
-/// @example html
-///
-/// <section class="table-view table-view--small">
-///   <div class="table-row table-row--tappable">
-///     <div class="table-row__media table-row__media--image table-row__media--left">
-///       <img src="http://placehold.it/44">
-///     </div>
-///     <div class="table-row__content">
-///       <span class="table-row__content__title">Text Label</span>
-///     </div>
-///   </div>
-/// </section>
 @include b ('table-view') {
   @include switch();
   @include clearfix();
@@ -213,3 +185,6 @@
   }
 
 }
+
+// Trumps
+@import "px-spacing-responsive-design/_trumps.spacing-responsive.scss";
