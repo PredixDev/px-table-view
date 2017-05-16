@@ -1,6 +1,6 @@
 <!-- Common imports -->
 <link rel="import" href="../../polymer/polymer.html" />
-<link rel="import" href="../../px-polymer-font-awesome/px-polymer-font-awesome.html" />
+<link rel="import" href="../../px-polymer-font-awesome/px-icon-set.html" />
 
 <!-- Common demo imports -->
 <link rel="import" href="../../px-demo/px-demo-header.html" />
@@ -42,7 +42,7 @@
           <px-table-view>
             <px-table-row
               title="Swipe left to see button"
-              icon-right="fa:fa-chevron-right"
+              icon-right="px:chevron-right"
               icon-size="18"
               tappable
               swipeable
@@ -65,7 +65,7 @@
       <px-demo-component-snippet
           element-properties="{{props}}"
           element-name="px-table-row-action-button"
-          links-includes='["px-table-view/px-table-view.html","px-polymer-font-awesome/px-polymer-font-awesome.html"]'>
+          links-includes='["px-table-view/px-table-view.html","px-polymer-font-awesome/px-icon-set.html"]'>
       </px-demo-component-snippet>
     </px-demo-interactive>
 
@@ -117,13 +117,13 @@
 
       icon: {
         type: String,
-        defaultValue: 'fa:fa-info-circle',
+        defaultValue: 'px:help',
         inputType: 'text'
       },
 
       parentComponent: {
         type: Array,
-        defaultValue: ["<px-table-view><px-table-row title='Swipe left to see button' icon-right='fa:fa-chevron-right' icon-size='18' tappable swipeable swipe-left fit-underlay><div underlay class='full-height flex flex--stretch flex--right'>", "</div></px-table-row><px-table-view>"]
+        defaultValue: ["<px-table-view><px-table-row title='Swipe left to see button' icon-right='px:chevron-right' icon-size='18' tappable swipeable swipe-left fit-underlay><div underlay class='full-height flex flex--stretch flex--right'>", "</div></px-table-row><px-table-view>"]
       }
 
     }
