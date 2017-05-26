@@ -15,23 +15,23 @@ $table-row-font-color                   : $black;
 ///
 $table-row-font-size                    : calculateRem(17px);
 ///
-$table-row-border-color                 : $gray5;
+$table-row-border-color                 : $gray6;
 ///
 $table-row-border-width                 : 1px;
 ///
 $table-row-background-color             : $white;
 ///
-$table-row-active-background-color      : $select-blue-default;
+$table-row-active-background-color      : $select-default;
 ///
-$table-row-hover-background-color       : $select-blue-hover;
+$table-row-hover-background-color       : $select-hover;
 ///
 $table-row-selected-color               : $white;
 ///
-$table-row-selected-background-color    : $select-blue-default;
+$table-row-selected-background-color    : $select-default;
 ///
 $table-row-active-font-color            : $white;
 ///
-$table-row-label-font-color             : $gray6;
+$table-row-label-font-color             : $gray8;
 ///
 $table-row-label-font-size              : calculateRem(16px);
 ///
@@ -43,21 +43,21 @@ $table-row-nav-right-icon               : '\f105';
 ///
 $table-row-edit-icon                    : '\f056';
 ///
-$table-row-edit-icon-color              : $red-light;
+$table-row-edit-icon-color              : $status-red2;
 ///
 $table-row-order-icon                   : '\f0c9';
 ///
-$table-row-order-icon-color             : $gray5;
+$table-row-order-icon-color             : $gray6;
 ///
 $table-row-chevron-icon                 : '\f105';
 ///
-$table-row-chevron-icon-color           : $gray5;
+$table-row-chevron-icon-color           : $gray6;
 ///
 $table-row-detail-icon                  : '\f05a';
 ///
-$table-row-detail-icon-color            : $select-blue-default;
+$table-row-detail-icon-color            : $select-default;
 ///
-$table-row-header-background-color      : $gray3;
+$table-row-header-background-color      : $gray2;
 ///
 $table-row-header-font-color            : $black;
 
@@ -65,15 +65,15 @@ $table-row-title-font-size              : calculateRem(16px);
 ///
 $table-row-title-font-color             : $black;
 ///
-$table-row-subtitle-font-color          : $gray6;
+$table-row-subtitle-font-color          : $gray8;
 ///
 $table-row-subtitle-font-size           : calculateRem(14px);
 ///
-$table-row-body-font-color              : $gray7;
+$table-row-body-font-color              : $gray10;
 ///
 $table-row-body-font-size               : calculateRem(14px);
 ///
-$table-row-label-font-color              : $gray7;
+$table-row-label-font-color              : $gray10;
 ///
 $table-row-label-font-size               : calculateRem(14px);
 
@@ -85,11 +85,11 @@ $table-row-header-text-transform        : uppercase;
 ///
 $table-row-checkbox-font-color          : $white;
 ///
-$table-row-checkbox-border-color        : $gray5;
+$table-row-checkbox-border-color        : $gray6;
 ///
-$table-row-checkbox-checked-border-color: $select-blue-pressed;
+$table-row-checkbox-checked-border-color: $select-pressed;
 ///
-$table-row-checkbox-background-color    : $select-blue-default;
+$table-row-checkbox-background-color    : $select-default;
 ///
 $table-view-responsive-row-width        : calculateRem(230px);
 ///

@@ -1,3 +1,8 @@
+v3.0.0
+==================
+* Update colors and icons
+* Update dependencies for refresh
+
 v2.0.7
 ==================
 * Solves issue that prevents sorting in non-shadow DOM. Locks this component in to the Sortable library at the 1.4.X release track, as a regression in 1.5.X causes the sort to fail. Waiting on a patch submitted to Sortable that should fix the issue.

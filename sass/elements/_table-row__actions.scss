@@ -94,18 +94,18 @@
   }
 
   @include modifier ('delete') {
-    @include actionButton($red);
+    @include actionButton($status-red3);
   }
 
   @include modifier ('flag') {
-    @include actionButton($orange);
+    @include actionButton($status-orange3);
   }
 
   @include modifier ('more') {
-    @include actionButton($blue);
+    @include actionButton($status-blue3);
   }
 
   @include modifier ('info') {
-    @include actionButton($gray5);
+    @include actionButton($gray4);
   }
 }

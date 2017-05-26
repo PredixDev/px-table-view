@@ -171,7 +171,7 @@ Custom property | Description | Default
         <template is="dom-if" if="{{editMode}}">
           <div class="table-row__media table-row__media--icon table-row__media--right">
             <button class="btn btn--bare table-row__handle">
-              <px-icon id="iconHandle" icon="fa:fa-bars"></px-icon>
+              <px-icon id="iconHandle" icon="px:hamburger"></px-icon>
             </button>
           </div>
         </template>
@@ -282,9 +282,8 @@ Custom property | Description | Default
 
         /**
          * The icon to set on the left side of the table-row. Uses a set of
-         * Font Awesome SVG icons sourced from font-awesome-polymer-icons.
-         * See http://fontawesome.io/ for available icons.
-         * Example: 'fa:fa-line-chart'
+         * Predix icons sourced from px-polymer-font-awesome.
+         * Example: 'px:chart'
          *
          * @property iconLeft
          * @type {String}
@@ -294,12 +293,11 @@ Custom property | Description | Default
         },
 
         /**
-         * The icon to set on the left side of the table-row. Uses a set of
-         * Font Awesome SVG icons sourced from font-awesome-polymer-icons.
-         * See http://fontawesome.io/ for available icons.
-         * Example: 'fa:fa-line-chart'
+         * The icon to set on the right side of the table-row. Uses a set of
+         * Predix icons sourced from px-polymer-font-awesome.
+         * Example: 'px:chart'
          *
-         * @property iconLeft
+         * @property iconRight
          * @type {String}
          */
         iconRight: {
