@@ -116,17 +116,6 @@
           return [
             { configName: "User Profile",
               configReset: true,
-              title: 'John Doe',
-              body: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit.',
-              tappable: false,
-              swipeable: false,
-              labelRight: 'Active 5min ago',
-              labelLeft: '',
-              iconLeft: '',
-              iconRight: 'px:settings',
-              iconSize: '32',
-              image: 'http://placehold.it/80',
-              imagePosition: 'left'
             },
             { configName: "Swipeable Menu",
               title: 'See All Engineers',
@@ -179,13 +168,13 @@
 
       title: {
         type: String,
-        defaultValue: '',
+        defaultValue: 'John Doe',
         inputType: 'text'
       },
 
       body: {
         type: String,
-        defaultValue: '',
+        defaultValue: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit.',
         inputType: 'text'
       },
 
@@ -197,7 +186,7 @@
 
       labelRight: {
         type: String,
-        defaultValue: '',
+        defaultValue: 'Active 5min ago',
         inputType: 'text'
       },
 
@@ -209,13 +198,13 @@
 
       iconRight: {
         type: String,
-        defaultValue: '',
+        defaultValue: 'px:settings',
         inputType: 'text'
       },
 
       iconSize: {
         type: Number,
-        defaultValue: '',
+        defaultValue: '32',
         inputType: 'number'
       },
 

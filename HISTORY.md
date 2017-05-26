@@ -1,5 +1,6 @@
 v3.0.0
 ==================
+* Fix px-table-row demo
 * Update colors and icons
 * Update dependencies for refresh
 
