@@ -16,7 +16,7 @@
   @include switch();
   @include clearfix();
   @include pxFonts();
-  font-size      : calculateRem(17px);
+  font-size      : calculateRem(15px);
 
   list-style-type: none;
   margin         : 0;

@@ -17,10 +17,12 @@
   min-height      : var(--px-table-row-min-height, $table-row-min-height);
   line-height     : var(--px-table-row-line-height, $table-row-line-height);
 
-  color           : var(--px-table-row-color, inherit);
-  font-size       : var(--px-table-row-font-size, inherit);
-  background-color: var(--px-table-row-background-color, inherit);
-  border-bottom   : $table-row-separator-width $table-row-separator-style $table-row-separator-color;
+  color           : var(--px-table-row-color, $table-row-color);
+  font-size       : var(--px-table-row-font-size, $table-row-font-size);
+  background-color: var(--px-table-row-background-color, $table-row-background-color);
+  border-bottom-width:  var(--px-table-row-separator-width, $table-row-separator-width);
+  border-bottom-style:  var(--px-table-row-separator-style, $table-row-separator-style);
+  border-bottom-color:  var(--px-table-row-separator-color, $table-row-separator-color);
 
   &:active {
     transition: none;
@@ -57,15 +59,15 @@
   ///------------------------------------------------------
   ///.table-row__title
   @include e ('title') {
-    font-size: var(--px-table-row-title-font-size, inherit);
-    color    : var(--px-table-row-title-color, inherit);
+    font-size: var(--px-table-row-title-font-size, $table-row-title-font-size);
+    color    : var(--px-table-row-title-color, $table-row-title-font-color);
   }
 
   ///------------------------------------------------------
   ///.table-row__subtitle
   @include e ('subtitle') {
-    font-size: var(--px-table-row-subtitle-font-size);
-    color    : var(--px-table-row-subtitle-color);
+    font-size: var(--px-table-row-subtitle-font-size, $table-row-subtitle-font-size);
+    color    : var(--px-table-row-subtitle-color, $table-row-subtitle-font-color);
   }
 
   ///------------------------------------------------------

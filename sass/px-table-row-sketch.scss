@@ -25,7 +25,6 @@ $inuit-enable-btn--disabled: true;
 ///----------------------------------------------
 /// Style distrubed content
 @include c('') {
-   @import 'px-forms-design/_base.forms.scss';
    @import 'px-buttons-design/_objects.buttons.scss';
    @import 'px-toggle-design/_objects.toggle.scss';
 }
