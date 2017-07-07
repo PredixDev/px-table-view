@@ -32,14 +32,17 @@
   "dependencies": {
     "polymer": "^1.9.0",
     "px-theme": "^3.0.0",
-    "iron-selector": "^1.5.2",
+    "iron-selector": "^2.0.0",
     "Sortable": "~1.4.0",
     "px-polymer-font-awesome": "^2.0.0",
-    "iron-resizable-behavior": "~1.0.5"
+    "iron-resizable-behavior": "^2.0.0"
   },
   "devDependencies": {
     "px-mobile-design": "^1.0.0",
     "px-demo": "^2.0.0",
     "px-starter-kit-design": "^1.0.0"
+  },
+  "resolutions": {
+    "webcomponentsjs": "^0.7.24"
   }
 }
