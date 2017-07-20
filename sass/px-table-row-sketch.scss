@@ -26,7 +26,6 @@ $inuit-enable-btn--disabled: true;
 /// Style distrubed content
 @include c('') {
    @import 'px-buttons-design/_objects.buttons.scss';
-   @import 'px-toggle-design/_objects.toggle.scss';
 }
 
 
@@ -98,25 +97,6 @@ $inuit-enable-btn--disabled: true;
       align-self: center;
     }
   }
-  ///---------------------------------------------------------------------------
-  //.table-row--header
-  @include modifier ('divider') {
-    padding-top     : 6px;
-    padding-bottom  : 6px;
-    padding-left    : 15px;
-    margin-top      : -1px;
-    margin-left     : 0;
-    font-weight     : 500;
-    color           : #999;
-    background-color: #fafafa;
-    border-top      : 1px solid #ddd;
-    border-bottom   : 1px solid #ddd;
-
-  }
-
-  @include modifier ('header') {
-    box-sizing: border-box;
-  }
 
   ///---------------------------------------------------------------------------
   ///.table-row--tappable
@@ -124,48 +104,22 @@ $inuit-enable-btn--disabled: true;
     @include tableRowClickable($table-row-selected-background-color, $table-row-active-font-color);
 
     &:active {
-      color           : var(--px-table-row-selected-color, $table-row-selected-color);
-      background-color: var(--px-table-row-selected-background-color, $table-row-selected-background-color);
+      color           : $table-row-selected-color;
+      background-color: $table-row-selected-background-color;
       .table-row__body,
       .table-row__label,
       .table-row__subtitle,
       .table-row__title {
-        color: var(--px-table-row-selected-color, $table-row-active-font-color);
+        color: $table-row-active-font-color;
       }
     }
   }
 
-  ///---------------------------------------------------------------------------
-  ///.table-row--chevron
-  @include modifier ('chevron') {
-    @include tableRowIcon($table-row-chevron-icon, $table-row-chevron-icon-color);
-    @include tableRowClickable($table-row-active-background-color, $table-row-active-font-color);
-  }
-
-  ///---------------------------------------------------------------------------
-  ///.table-row--detail
-  @include modifier ('detail') {
-    @include tableRowClickable($table-row-active-background-color, $table-row-active-font-color);
-    @include tableRowIcon($table-row-detail-icon, $table-row-detail-icon-color);
-
-    &:active {
-      @include tableRowIcon($table-row-detail-icon, white);
-    }
-
-    .table-row__label--right {
-      position: relative;
-      top: 2px;
-      margin-right: 50px;
-    }
-  }
-
-  ///---------------------------------------------------------------------------
   ///.table-row--collapsable
   // TODO: Update to use visually hidden class
   @include modifier ('collapsable') {
     @include tableRowClickable($table-row-active-background-color, $table-row-active-font-color);
     border-bottom: none;
-    @include tableRowIcon( '\f107');
 
     ~ .table-row__content {
       transition : var(--px-table-row-collapseable-transition, all 0.3s);
@@ -177,7 +131,6 @@ $inuit-enable-btn--disabled: true;
     }
     ///---------------------------------------------------------------------------
     @include modifier ('is-opened') {
-      @include tableRowIcon( '\f106');
       ~ .table-row__content {
         display: block;
       }
@@ -291,19 +244,8 @@ $inuit-enable-btn--disabled: true;
       //-left: $inuit-base-spacing-unit;
     }
   }
-  ///---------------------------------------------------------------------------
-  ///.table-row__icon
-  @include element ('icon') {
-    margin-right: var(--px-table-row-icon-margin-right, $inuit-base-spacing-unit);
-  }
-  ///---------------------------------------------------------------------------
-  ///.table-row__reorder-btn
-  @include element ('reorder-btn') {
-    float   : right;
-    position: absolute;
-    right   : 5%;
-    top     : 25%;
-  }
+
+
   ///---------------------------------------------------------------------------
   ///.table-row__media
   @include element ('media') {
@@ -343,44 +285,7 @@ $inuit-enable-btn--disabled: true;
         max-height: 80px;
       }
     }
-
-    ///---------------------------------------------------------------------------
-    ///.table-row__media--icon
-    @include modifier ('icon') {
-
-      //padding     : $inuit-base-spacing-unit--tiny;
-      //margin-left: $inuit-base-spacing-unit--small;
-    }
   }
-
-  ///---------------------------------------------------------------------------
-  @include modifier ('switch') {
-    .table-row__content {
-      flex-direction: row;
-    }
-  }
-
-  &.checkbox {
-    width      : 100%;
-    height     : 100%;
-    padding    : 0;
-    margin     : 0;
-    line-height: 44px;
-  }
-
-  ///---------------------------------------------------------------------------
-  /// Inputs
-  ///---------------------------------------------------------------------------
-  @include c ('.text-input') {
-    width: auto;
-    flex: 1;
-    align-self: stretch;
-    //  background: transparent;
-    //  border    : none;
-    box-shadow: none;
-  }
-
-
 
   .btn {
     outline   : none;
@@ -389,3 +294,7 @@ $inuit-enable-btn--disabled: true;
   }
 
 }
+
+// Trumps
+$inuit-enable-margins : true;
+@import 'px-spacing-design/_trumps.spacing.scss';

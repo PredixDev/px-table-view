@@ -29,13 +29,13 @@ arbitrary sets of related data that can be acted on.
 
 ### Styling
 
-Custom property | Description | Default
------------- | ------------- | ------------
-`--px-table-view` | Style mixin to be applied to the component | {}
-`--px-table-row-selected` | Style mixin to be applied to the selected table row element | {}
-`--px-table-row-selected-color` | The selected row font color | {}
-`--px-table-row-selected-background-color` | The selected row background color | {}
-`--px-table-row-sortable-chosen-background-color` | (Sortable only) The background color for picked-up sortable rows | rgb(8,110,135)
+Custom property | Description
+------------ | -------------
+`--px-table-view` | Style mixin to be applied to the component
+`--px-table-row-selected` | Style mixin to be applied to the selected table row element
+`--px-table-row-selected-color` | The selected row font color
+`--px-table-row-selected-background-color` | The selected row background color
+`--px-table-row-sortable-chosen-background-color` | (Sortable only) The background color for picked-up sortable rows
 
 @element px-table-view.html
 @demo index.html
@@ -80,7 +80,7 @@ Custom property | Description | Default
          * An optional attribute that will build `px-table-row` children from a
          * JSON data object. Expects an array of objects. Each object should contain
          * keys that that correspond to `px-table-row` properties with defined values.
-         * For example: `'[{ "title": "Fixed Issue", "body": "Text body value", "icon": "px:failure"}]'`
+         * For example: `'[{ "title": "Fixed Issue", "body": "Text body value", "icon": "px-utl:failure"}]'`
          *
          * @property tableData
          * @type {Array}

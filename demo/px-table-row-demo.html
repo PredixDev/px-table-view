@@ -72,9 +72,9 @@
                 swipe-left="{{props.swipeLeft.value}}"
                 fit-underlay="{{props.fitUnderlay.value}}">
                 <div underlay class="full-height flex flex--stretch flex--right">
-                  <px-table-row-action-button label="More" type="more"></px-table-row-action-button>
-                  <px-table-row-action-button label="Flag" type="flag"></px-table-row-action-button>
-                  <px-table-row-action-button label="Delete" type="delete"></px-table-row-action-button>
+                  <px-table-row-action-button label="More" type="primary"></px-table-row-action-button>
+                  <px-table-row-action-button label="Flag" type="warn"></px-table-row-action-button>
+                  <px-table-row-action-button label="Delete" type="alert"></px-table-row-action-button>
                 </div>
               </px-table-row>
             </px-table-view>
@@ -127,7 +127,7 @@
               labelRight: '21 Available',
               labelLeft: '',
               iconLeft: '',
-              iconRight: 'px:chevron-right',
+              iconRight: 'px-nav:next',
               iconSize: '18',
               image: '',
               imagePosition: ''
@@ -198,7 +198,7 @@
 
       iconRight: {
         type: String,
-        defaultValue: 'px:settings',
+        defaultValue: 'px-utl:app-settings',
         inputType: 'text'
       },
 

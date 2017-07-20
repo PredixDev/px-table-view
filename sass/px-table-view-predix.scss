@@ -22,9 +22,9 @@
   ///------------------------------------------------------
   @include m ('border-bottom') {
     .table-row {
-      border-bottom-style: var(--px-table-row-border-style, $table-row-border-style);
-      border-bottom-width: var(--px-table-row-border-width, $table-row-border-width);
-      border-bottom-color: var(--px-table-row-border-color, $table-row-border-color);
+      border-bottom-style: $table-row-border-style;
+      border-bottom-width: $table-row-border-width;
+      border-bottom-color: $table-row-border-color;
     }
   }
 
@@ -32,19 +32,19 @@
   ///.table-row--selected
   .table-row--selected {
 
-    background-color: var(--px-table-row-selected-background-color, $table-row-selected-background-color);
-    color           : var(--px-table-row-selected-color, $table-row-active-font-color);
+    background-color: $table-row-selected-background-color;
+    color           : $table-row-active-font-color;
 
     .table-row__body,
     .table-row__label,
     .table-row__label2,
     .table-row__subtitle,
     .table-row__title {
-      color: var(--px-table-row-selected-color, $table-row-active-font-color);
+      color: $table-row-active-font-color;
     }
 
     .table-row:before {
-      color: var(--px-table-row-selected-color, $table-row-active-font-color);
+      color: $table-row-active-font-color;
     }
   }
 }

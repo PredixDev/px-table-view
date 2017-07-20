@@ -1,5 +1,5 @@
 <link rel="import" href="../polymer/polymer.html">
-<link rel="import" href="sortable-import.html">
+<script src="../Sortable/Sortable.min.js"></script>
 
 <!--
 The `px-table-view-sortable-list` element is a wrapper around the [Sortable.js](https://github.com/RubaXa/Sortable) library.
@@ -33,14 +33,14 @@ Use it inside a `px-table-view` container with many `px-table-row` items inside 
 
 ### Styling
 
-Custom property | Description | Default
------------- | ------------- | ------------
-`--px-table-view-sortable-chosen-background-color` | (Sortable only) The background color for picked-up sortable rows | rgb(8,110,135)
-`--px-table-view-sortable-chosen-text-color` | (Sortable only) The text color for picked-up sortable rows | white
-`--px-table-view-sortable-chosen-icon-color` | (Sortable only) The icon color for picked-up shortable rows | white
-`--px-table-view-sortable-ghost-background-color` | (Sortable only) The background color for ghost background sortable rows | rgb(8,110,135)
-`--px-table-view-sortable-ghost-text-color` | (Sortable only) The text color for ghost background sortable rows | white
-`--px-table-view-sortable-ghost-icon-color` | (Sortable only) The icon color for ghost background shortable rows | white
+Custom property | Description
+------------ | -------------
+`--px-table-view-sortable-chosen-background-color` | (Sortable only) The background color for picked-up sortable rows
+`--px-table-view-sortable-chosen-text-color` | (Sortable only) The text color for picked-up sortable rows
+`--px-table-view-sortable-chosen-icon-color` | (Sortable only) The icon color for picked-up shortable rows
+`--px-table-view-sortable-ghost-background-color` | (Sortable only) The background color for ghost background sortable rows
+`--px-table-view-sortable-ghost-text-color` | (Sortable only) The text color for ghost background sortable rows
+`--px-table-view-sortable-ghost-icon-color` | (Sortable only) The icon color for ghost background shortable rows
 -->
 
 <dom-module id="px-table-view-sortable-list">

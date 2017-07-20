@@ -1,6 +1,5 @@
 #px-table-view [![Build Status](https://travis-ci.org/PredixDev/px-table-view.svg?branch=master)](https://travis-ci.org/PredixDev/px-table-view)
 
-[![px-table-view demo](px-table-view.png?raw=true)](https://github.com/PredixDev/px-table-view)
 
 ## Overview
 

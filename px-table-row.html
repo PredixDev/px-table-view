@@ -1,9 +1,11 @@
 <link rel="import" href="../polymer/polymer.html"/>
 <link rel="import" href="../iron-resizable-behavior/iron-resizable-behavior.html">
+<link rel="import" href="../px-icon-set/px-icon-set.html"/>
+<link rel="import" href="../px-icon-set/px-icon.html"/>
 
 <link rel="import" href="css/px-table-row-styles.html">
 <link rel="import" href="px-table-row-swipe-behavior.html">
-<link rel="import" href="px-table-view-icon.html"/>
+
 
 <!--
 The `px-table-row` element provides various ways to display table data within a `px-table-view`.
@@ -25,20 +27,20 @@ row-content | The row-content for the table row.
 
 ### Styling
 
-Custom property | Description | Default
------------- | ------------- | ------------
-`--px-table-row` | Style mixin to be applied to the component | {}
-`--px-table-row-title` | Style mixin to be applied to the title element | {}
-`--px-table-row-body` | Style mixin to be applied to the body element | {}
-`--px-table-row-content` | Style mixin to be applied to the content element | {}
-`--px-table-row-label` | Style mixin to be applied to the label element | {}
-`--px-table-row-label--left` | Style mixin to be applied to the left label element | {}
-`--px-table-row-label--right` | Style mixin to be applied to the right label element | {}
-`--px-table-row-media` | Style mixin to be applied to the media element | {}
-`--px-table-row-media--left` | Style mixin to be applied to the left media element | {}
-`--px-table-row-media--right` | Style mixin to be applied to the right media element | {}
-`--px-table-row-media--img` | Style mixin to be applied to the media img element | {}
-`--px-table-row-handle` | Style mixin to be applied to the drag handle element | {}
+Custom property | Description
+------------ | -------------
+`--px-table-row` | Style mixin to be applied to the component
+`--px-table-row-title` | Style mixin to be applied to the title element
+`--px-table-row-body` | Style mixin to be applied to the body element
+`--px-table-row-content` | Style mixin to be applied to the content element
+`--px-table-row-label` | Style mixin to be applied to the label element
+`--px-table-row-label--left` | Style mixin to be applied to the left label element
+`--px-table-row-label--right` | Style mixin to be applied to the right label element
+`--px-table-row-media` | Style mixin to be applied to the media element
+`--px-table-row-media--left` | Style mixin to be applied to the left media element
+`--px-table-row-media--right` | Style mixin to be applied to the right media element
+`--px-table-row-media--img` | Style mixin to be applied to the media img element
+`--px-table-row-handle` | Style mixin to be applied to the drag handle element
 
 @element px-table-row.html
 @demo px-table-row-demo.html
@@ -120,7 +122,7 @@ Custom property | Description | Default
       }
 
       :host px-icon {
-        --iron-icon-fill-color: var(--px-table-row-icon-color, #b1b1bc);
+        --iron-icon-stroke-color: var(--px-table-row-icon-color, grey);
       }
 
       :host .table-row__handle {
@@ -131,21 +133,21 @@ Custom property | Description | Default
       }
 
       :host(.sortable-chosen) {
-        background-color: var(--px-table-row-sortable-chosen-background-color, rgb(8,110,135)); /*$select-blue-pressed*/
+        background-color: var(--px-table-row-sortable-chosen-background-color, teal);
         color: var(--px-table-row-sortable-chosen-text-color, white);
       }
 
       :host(.sortable-chosen) px-icon {
-        --iron-icon-fill-color: var(--px-table-row-sortable-chosen-icon-color, white);
+        --iron-icon-stroke-color: var(--px-table-row-sortable-chosen-icon-color, white);
       }
 
       :host(.sortable-ghost) {
-        background-color: var(--px-table-row-sortable-ghost-background-color, rgb(10,158,193)); /*$select-blue-default*/
+        background-color: var(--px-table-row-sortable-ghost-background-color, blue);
         color: var(--px-table-row-sortable-ghost-text-color, var(--px-table-row-sortable-chosen-text-color));
       }
 
       :host(.sortable-ghost) px-icon {
-        --iron-icon-fill-color: var(--px-table-row-sortable-ghost-icon-color, white);
+        --iron-icon-stroke-color: var(--px-table-row-sortable-ghost-icon-color, white);
       }
     </style>
     <div class="">
@@ -160,18 +162,18 @@ Custom property | Description | Default
         </template>
         <template is="dom-if" if="{{iconLeft}}">
           <div class="table-row__media table-row__media--icon table-row__media--left">
-            <px-icon id="iconLeft" icon$="{{iconLeft}}" size$="{{iconSize}}"></px-icon>
+            <px-icon id="iconLeft dynamicSize" icon="[[iconLeft]]"></px-icon>
           </div>
         </template>
         <template is="dom-if" if="{{iconRight}}">
           <div class="table-row__media table-row__media--icon table-row__media--right">
-            <px-icon id="iconRight" icon$="{{iconRight}}" size$="{{iconSize}}"></px-icon>
+            <px-icon id="iconRight dynamicSize" icon="[[iconRight]]"></px-icon>
           </div>
         </template>
         <template is="dom-if" if="{{editMode}}">
           <div class="table-row__media table-row__media--icon table-row__media--right">
             <button class="btn btn--bare table-row__handle">
-              <px-icon id="iconHandle" icon="px:hamburger"></px-icon>
+              <px-icon id="iconHandle" icon="px-nav:hamburger"></px-icon>
             </button>
           </div>
         </template>
@@ -283,7 +285,7 @@ Custom property | Description | Default
         /**
          * The icon to set on the left side of the table-row. Uses a set of
          * Predix icons sourced from px-icon-set.
-         * Example: 'px:analysis'
+         * Example: 'px-fea:analysis'
          *
          * @property iconLeft
          * @type {String}
@@ -295,7 +297,7 @@ Custom property | Description | Default
         /**
          * The icon to set on the right side of the table-row. Uses a set of
          * Predix icons sourced from px-icon-set.
-         * Example: 'px:analysis'
+         * Example: 'px-fea:analysis'
          *
          * @property iconRight
          * @type {String}
@@ -314,7 +316,8 @@ Custom property | Description | Default
         */
         iconSize: {
           type: String,
-          value: '32px'
+          value: '32px',
+          observer: '_updateIconSize'
         },
 
         /**
@@ -581,6 +584,16 @@ Custom property | Description | Default
             _this[prop] = item[prop];
           }
         }
+      },
+
+      _updateIconSize: function() {
+        var icons = Polymer.dom(this).querySelectorAll('.dynamicSize');
+
+        icons.forEach(function(icon) {
+          this.customStyle['--iron-icon-width'] = this.size;
+          this.customStyle['--iron-icon-height'] = this.size;
+        });
+        this.updateStyles();
       }
     });
   </script>

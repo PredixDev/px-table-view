@@ -1,5 +1,6 @@
 <link rel="import" href="../polymer/polymer.html" />
-<link rel="import" href="px-table-view-icon.html" />
+<link rel="import" href="../px-icon-set/px-icon-set.html"/>
+<link rel="import" href="../px-icon-set/px-icon.html"/>
 <link rel="import" href="css/px-table-row-styles.html" />
 
 <!--
@@ -14,12 +15,12 @@ instance to display possible user actions.
 
 ### Styling
 
-Custom property | Description | Default
------------- | ------------- | ------------
-`--px-table-row-action-button-info-background-color` | Sets the background color for info-type button | $gray5
-`--px-table-row-action-button-more-background-color` | Sets the background color for more-type button | $blue
-`--px-table-row-action-button-flag-background-color` | Sets the background color for flag-type button | $orange
-`--px-table-row-action-button-delete-background-color` | Sets the background color for delete-type button | $red
+Custom property | Description
+------------ | -------------
+`--px-table-row-action-button-info-background-color` | Sets the background color for info-type button
+`--px-table-row-action-button-more-background-color` | Sets the background color for more-type button
+`--px-table-row-action-button-flag-background-color` | Sets the background color for flag-type button
+`--px-table-row-action-button-delete-background-color` | Sets the background color for delete-type button
 
 @element px-table-row-action-button.html
 @demo px-table-row-action-button-demo.html
@@ -38,29 +39,17 @@ Custom property | Description | Default
         padding: 15px;
       }
 
-      :host .table-row__button.table-row__button--info {
-        background-color: var(--px-table-row-action-button-info-background-color, rgb(177,177,188)); /*$gray5*/
-      }
-
-      :host .table-row__button.table-row__button--more {
-        background-color: var(--px-table-row-action-button-more-background-color, rgb(0,92,185)); /*$blue*/
-      }
-
-      :host .table-row__button.table-row__button--flag {
-        background-color: var(--px-table-row-action-button-flag-background-color, rgb(255,152,33)); /*$orange*/
-      }
-
-      :host .table-row__button.table-row__button--delete {
-        background-color: var(--px-table-row-action-button-delete-background-color, rgb(227,37,51)); /*$red*/
+      .mt {
+        margin-top: 10px;
       }
 
     </style>
       <button is="px-table-row-action-button" class="table-row__button flex flex--center" on-tap="_handleTap">
         <template is="dom-if" if="{{icon}}">
-          <px-icon id="icon" icon$="{{icon}}" size$="10px"></px-icon>
+          <px-icon id="icon" icon="[[icon]]"></px-icon>
         </template>
         <template is="dom-if" if="{{label}}">
-          <span>{{label}}</span>
+          <span class="mt">{{label}}</span>
         </template>
         <content select="*"></content>
       </button>
@@ -87,7 +76,7 @@ Custom property | Description | Default
        * from px-icon-set.
        *
        * @example
-       * 'px:analysis'
+       * 'px-fea:analysis'
        *
        * @property icon
        * @type {String}

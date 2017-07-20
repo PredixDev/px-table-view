@@ -8,21 +8,19 @@
 
 /// @group px-table-row
 /// @access public
-@include b ('table-row') {
+.table-row {
   @include noselect();
-  @import 'elements/_table-row__checkbox.scss';
   @import 'elements/_table-row__actions.scss';
-  @import 'elements/_table-row__switch.scss';
 
-  min-height      : var(--px-table-row-min-height, $table-row-min-height);
-  line-height     : var(--px-table-row-line-height, $table-row-line-height);
+  min-height      : $table-row-min-height;
+  line-height     : $table-row-line-height;
 
-  color           : var(--px-table-row-color, $table-row-color);
-  font-size       : var(--px-table-row-font-size, $table-row-font-size);
-  background-color: var(--px-table-row-background-color, $table-row-background-color);
-  border-bottom-width:  var(--px-table-row-separator-width, $table-row-separator-width);
-  border-bottom-style:  var(--px-table-row-separator-style, $table-row-separator-style);
-  border-bottom-color:  var(--px-table-row-separator-color, $table-row-separator-color);
+  color           : $table-row-color;
+  font-size       : $table-row-font-size;
+  background-color: $table-row-background-color;
+  border-bottom-width:  $table-row-separator-width;
+  border-bottom-style:  $table-row-separator-style;
+  border-bottom-color:  $table-row-separator-color;
 
   &:active {
     transition: none;
@@ -33,67 +31,67 @@
   ///.table-row--selected
   &--selected {
 
-    background-color: var(--px-table-row-selected-background-color, $table-row-selected-background-color);
-    color           : var(--px-table-row-selected-color, $table-row-active-font-color);
+    background-color: $table-row-selected-background-color;
+    color           : $table-row-active-font-color;
 
     .table-row__body,
     .table-row__label,
     .table-row__label2,
     .table-row__subtitle,
     .table-row__title {
-      color: var(--px-table-row-selected-color);
+      color: $table-row-active-font-color;
     }
 
     .table-row:before {
-      color: var(--px-table-row-selected-color);
+      color: $table-row-active-font-color;
     }
   }
+}
 
-  ///------------------------------------------------------
-  ///.table-row > a
-  > a {
-    text-decoration: none;
-    @include tableRowClickable($table-row-active-background-color, $table-row-active-font-color);
-  }
+///------------------------------------------------------
+///.table-row > a
+.table-row > a {
+  text-decoration: none;
+  @include tableRowClickable($table-row-active-background-color, $table-row-active-font-color);
+}
 
-  ///------------------------------------------------------
-  ///.table-row__title
-  @include e ('title') {
-    font-size: var(--px-table-row-title-font-size, $table-row-title-font-size);
-    color    : var(--px-table-row-title-color, $table-row-title-font-color);
-  }
+///------------------------------------------------------
+///.table-row__title
+.table-row__title {
+  font-size: $table-row-title-font-size;
+  color    : $table-row-title-font-color;
+}
 
-  ///------------------------------------------------------
-  ///.table-row__subtitle
-  @include e ('subtitle') {
-    font-size: var(--px-table-row-subtitle-font-size, $table-row-subtitle-font-size);
-    color    : var(--px-table-row-subtitle-color, $table-row-subtitle-font-color);
-  }
+///------------------------------------------------------
+///.table-row__subtitle
+.table-row__subtitle {
+  font-size: $table-row-subtitle-font-size;
+  color    : $table-row-subtitle-font-color;
+}
 
-  ///------------------------------------------------------
-  ///.table-row__body
-  @include e ('body') {
-    font-size: var(--px-table-row-body-font-size, $table-row-body-font-size);
-    color    : var(--px-table-row-body-color, $table-row-body-font-color);
-  }
+///------------------------------------------------------
+///.table-row__body
+.table-row__body {
+  font-size: $table-row-body-font-size;
+  color    : $table-row-body-font-color;
+}
 
-  ///------------------------------------------------------
-  ///.table-row__label
-  @include e ('label') {
-    font-size: var(--px-table-row-label-font-size, $table-row-label-font-size);
-    color    : var(--px-table-row-label-color, $table-row-label-font-color);
-  }
+///------------------------------------------------------
+///.table-row__label
+.table-row__label {
+  font-size: $table-row-label-font-size;
+  color    : $table-row-label-font-color;
+}
 
-  ///------------------------------------------------------
-  @include m ('header') {
-    padding         : var(--px-table-row-header-padding, $table-row-header-padding);
-    font-size       : var(--px-table-row-header-font-size, $table-row-header-font-size);
-    color           : var(--px-table-row-header-color, $table-row-header-font-color);
-    background-color: var(--px-table-row-header-background-color, $table-row-header-background-color);
-    text-transform  : var(--px-table-row-header-text-transform, $table-row-header-text-transform);
-    min-height      : var(--px-table-row-header-min-height, 24px);
-    line-height     : var(--px-table-row-header-line-height, 24px);
-    border-top      : none;
-    border-bottom   : none;
-  }
+///------------------------------------------------------
+.table-row--header {
+  padding         : $table-row-header-padding;
+  font-size       : $table-row-header-font-size;
+  color           : $table-row-header-font-color;
+  background-color: $table-row-header-background-color;
+  text-transform  : $table-row-header-text-transform;
+  min-height      : var(--px-table-row-header-min-height, 24px);
+  line-height     : var(--px-table-row-header-line-height, 24px);
+  border-top      : none;
+  border-bottom   : none;
 }
