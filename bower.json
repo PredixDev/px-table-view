@@ -30,9 +30,9 @@
     "npm-debug.log"
   ],
   "dependencies": {
-    "polymer": "^1.7.0",
+    "polymer": "^1.9.0",
     "px-theme": "^3.0.0",
-    "iron-selector": "^1.5.2",
+    "iron-selector": "^2.0.0",
     "Sortable": "~1.4.0",
     "px-icon-set": "^2.0.0",
     "iron-resizable-behavior": "^2.0.0"
