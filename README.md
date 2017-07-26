@@ -2,9 +2,9 @@
 
 ## Overview
 
-Px-table-view is a Predix UI component that creates a table-style list of items which can be interacted with by the user. It works the way users expect from a native mobile app, allowing swiping, tapping and re-ordering of list items.
+`Px-table-view` is a Predix UI component that creates a table-style list of items which can be interacted with by the user. It works as users expect from a native mobile app, allowing swiping, tapping, and re-ordering of list items.
 
-Use the px-table-view component to create list-style interfaces like menus or to display sets of related data that can be acted upon.
+Use the `px-table-view` component to create list-style interfaces like menus or to display sets of related data that can be acted upon.
 
 ## Usage
 
@@ -14,17 +14,17 @@ Use the px-table-view component to create list-style interfaces like menus or to
 3. bower
 4. [webcomponents-lite.js polyfill](https://github.com/webcomponents/webcomponentsjs)
 
-Node, npm and bower are necessary to install the component and dependencies. webcomponents.js adds support for web components and custom elements to your application.
+Node, npm, and bower are necessary to install the component and dependencies. webcomponents.js adds support for web components and custom elements to your application.
 
 ## Getting Started
 
-First, install the component via bower on the command line.
+First, install the component via bower on the command line:
 
 ```
 bower install px-table-view --save
 ```
 
-Second, import the component to your application with the following tag in your head.
+Second, import the component in your application with the following tag in your head:
 
 ```
 <link rel="import" href="/bower_components/px-table-view/px-table-view.html"/>
