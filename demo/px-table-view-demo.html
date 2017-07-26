@@ -1,6 +1,6 @@
 <!-- Common imports -->
 <link rel="import" href="../../polymer/polymer.html" />
-<link rel="import" href="../../px-polymer-font-awesome/px-icon-set.html" />
+<link rel="import" href="../../px-icon-set/px-icon-set.html" />
 
 <!-- Common demo imports -->
 <link rel="import" href="../../px-demo/px-demo-header.html" />
@@ -39,7 +39,7 @@
 
         <div style="width:300px;">
           <px-table-view
-              selected="{{props.selected.value}}"
+              selected="{{props.selectedItem.value}}"
               rows-size="{{props.rowsSize.value}}"
               rows-tappable="{{props.rowsTappable.value}}">
               <px-table-row title="Item 1"></px-table-row>
@@ -105,7 +105,7 @@
         inputChoices: ['flush','tiny','small','regular','large','huge']
       },
 
-      selected: {
+      selectedItem: {
         type: Number,
         defaultValue: null,
         inputType: 'text',

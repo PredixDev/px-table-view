@@ -46,10 +46,8 @@ $inuit-enable-btn--disabled: true;
   appearance    : normal;
   flex          : 1;
 
-  //font-size       : $table-row-font-size;
-  //background-color: $table-row-background-color;
-   > *:not(input),
-   > *:not(textarea),
+  > *:not(input),
+  > *:not(textarea),
   > *:not(select) {
     -webkit-text-size-adjust   : none;
     -webkit-highlight          : none;
@@ -165,11 +163,8 @@ $inuit-enable-btn--disabled: true;
     flex-direction: column;
     align-self    : stretch;
     order         : 2;
-    //width         : 100%;
     flex          : 1;
     user-select   : none;
-    //  margin: 0 $inuit-base-spacing-unit;
-    //margin-left: $inuit-base-spacing-unit--small;
     ///---------------------------------------------------------------------------
     @include modifier ('row') {
       flex-direction: row;
@@ -197,9 +192,6 @@ $inuit-enable-btn--disabled: true;
     align-self : stretch;
     display    : flex;
     white-space: nowrap;
-    //flex-direction: column;
-    //align-content: flex-end;
-    //justify-content: flex-end;
   }
   ///---------------------------------------------------------------------------
   ///.table-row__title
@@ -241,7 +233,6 @@ $inuit-enable-btn--disabled: true;
       flex: 0 1 80px;
       text-align: right;
       margin-right: $inuit-base-spacing-unit;
-      //-left: $inuit-base-spacing-unit;
     }
   }
 
@@ -277,7 +268,6 @@ $inuit-enable-btn--disabled: true;
     ///---------------------------------------------------------------------------
     ///.table-row__media--image
     @include modifier ('image') {
-      // padding: $table-row-image-padding;
 
       img {
         display   : block;

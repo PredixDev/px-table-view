@@ -23,13 +23,9 @@
   position       : absolute;
   top            : 0;
   bottom            : 0;
- // height         : 100%;
   display        : flex;
   flex-direction : row;
   justify-content: space-between;
- // transition     : $table-row-actions-transition;
- //will-change    : transform;
-  //  z-index        : -1;
   width          : auto;
   align-self     : stretch;
   align-items    : stretch;
@@ -41,7 +37,6 @@
   //left actions
   @include modifier ('left') {
     order    : 0;
-    //transform: translateX(-125%);
     left: 0;
 
     ///---------------------------------------------------------------------------
@@ -57,8 +52,6 @@
   @include modifier ('right') {
     order: 10;
     right: 0;
-    //  width: 0;
-    //  transform: translateX(100%);
 
     &.is-visible {
       width    : auto;
@@ -82,7 +75,6 @@
   padding        : $table-row-button-padding;
   color          : $table-row-button-font-color;
   font-size      : $table-row-button-font-size;
- // transition     : $table-row-button-transition;
   display        : flex;
   align-items    : center;
   flex-direction : column;
