@@ -1,12 +1,12 @@
 {
     "name": "px-table-view",
-    "version": "3.0.0",
+    "author": "General Electric",
     "description": "A px mobile web component.",
+    "version": "3.0.0",
     "keywords": [
         "px",
         "px-mobile"
     ],
-    "author": "Jonnie Spratley",
     "devDependencies": {
         "browser-sync": "^2.13.0",
         "gulp": "^3.9.1",
