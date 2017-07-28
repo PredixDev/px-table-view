@@ -56,7 +56,7 @@
        */
       swipeRight: {
         type: Boolean,
-        value: false,
+        value: true,
         reflectToAttribute: true
       },
 
@@ -240,7 +240,7 @@
     ready: function() {
       if (this.swipeable) {
         this._transition = true;
-        this.setScrollDirection(this._swipeAllowed() ? 'y' : 'all');
+        this.setScrollDirection(this.swipeable ? 'y' : 'all');
         this.toggleClass('table-row--swipeable', true, this.$.row);
       }
     },
@@ -299,17 +299,6 @@
       if (sharedPanel) {
         sharedPanel = null;
       }
-    },
-
-    /**
-     * Checks if swiping is allowed by checking `disableSwipe`.
-     *
-     * @private
-     * @method _swipeAllowed
-     * @return {Boolean}
-     */
-    _swipeAllowed: function() {
-      return !this.disableSwipe;
     },
 
     /**
@@ -404,7 +393,7 @@
      * @param {Event} event
      */
     _onPanStart: function(event) {
-      if (this._swipeAllowed()) {
+      if (this.swipeable && (this.swipeLeft || this.swipeRight)) {
         sharedPanel = this;
         this._dragging = true;
         if (this._dragging) {
@@ -458,7 +447,7 @@
     _onPanEnd: function(event) {
       this._dragging = false;
       var slideTo, offsetLR, deltaLR;
-      if (this._swipeAllowed() && this._tracking) {
+      if (this.swipeable && this._tracking) {
         slideTo = (this.containerSize - this.peekOffset);
 
         if (this.fitUnderlay) {
