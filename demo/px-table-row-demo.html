@@ -73,9 +73,9 @@
                 swipe-left="{{props.swipeLeft.value}}"
                 fit-underlay="{{props.fitUnderlay.value}}">
                 <div underlay class="full-height flex flex--stretch flex--right">
-                  <px-table-row-action-button label="More" type="primary"></px-table-row-action-button>
-                  <px-table-row-action-button label="Flag" type="warn"></px-table-row-action-button>
-                  <px-table-row-action-button label="Delete" type="alert"></px-table-row-action-button>
+                  <px-table-row-action-button label="More" icon="px-nav:more" type="primary"></px-table-row-action-button>
+                  <px-table-row-action-button label="Flag" icon="px-utl:flag" type="warn"></px-table-row-action-button>
+                  <px-table-row-action-button label="Delete" icon="px-utl:delete" type="alert"></px-table-row-action-button>
                 </div>
               </px-table-row>
             </px-table-view>
@@ -211,7 +211,7 @@
 
       image: {
         type: String,
-        defaultValue: 'http://placehold.it/80',
+        defaultValue: 'https://placehold.it/80',
         inputType: 'text'
       },
 
