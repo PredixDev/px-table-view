@@ -1,3 +1,7 @@
+v3.0.2
+==================
+* update ghp.sh to fix travis build
+
 v3.0.1
 ==================
 * Mitigate #10
