@@ -1,3 +1,7 @@
+v3.0.3
+==================
+* fix border variable typo
+
 v3.0.2
 ==================
 * update ghp.sh to fix travis build
