@@ -1,3 +1,7 @@
+v3.0.4
+==================
+* fix comment for analyzer
+
 v3.0.3
 ==================
 * fix border variable typo
