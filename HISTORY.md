@@ -1,3 +1,7 @@
+v3.0.5
+==================
+* Fix for sub-component demos to refer to shared API docs.
+
 v3.0.4
 ==================
 * fix comment for analyzer
