@@ -1,3 +1,7 @@
+v3.0.6
+==================
+* override min width for bare buttons
+
 v3.0.5
 ==================
 * Fix for sub-component demos to refer to shared API docs.

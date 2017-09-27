@@ -2,6 +2,10 @@
 @import 'mixins';
 @import 'px-table-row-sketch.scss';
 
+:host {
+  --px-btn-min-width: 0;
+}
+
 :host:last-of-type .table-row {
   border-bottom: 0;
 }
